@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,7 +18,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +29,33 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -30,56 +64,42 @@
 
 
 
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/blog/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
 
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="zhenweiliu&#39;s blog">
 <meta property="og:url" content="http://zhenweiliu.gitee.io/blog/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
@@ -89,38 +109,21 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
 
 
-
+  
+  
   <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/">
 
 
 
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
-
+  
   <title>zhenweiliu's blog</title>
   
 
@@ -130,6 +133,35 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
@@ -146,7 +178,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -156,13 +188,12 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -170,35 +201,53 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
       
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -206,22 +255,26 @@
 
 
 
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
     
-      
+        
 
   
+  
+  
 
-  
-  
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -248,37 +301,52 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" itemprop="url">Approximation Algorithm(1)-Vertex Cover</a></h1>
+                
+                <a href="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="post-title-link" itemprop="url">Approximation Algorithm(1)-Vertex Cover</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-26T16:27:55+08:00">
-                2019-07-26
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
-
+              <time title="创建时间：2019-07-26 16:27:55 / 修改时间：23:38:10" itemprop="dateCreated datePublished" datetime="2019-07-26T16:27:55+08:00">2019-07-26</time>
+            </span>
           
 
           
             
+
+            
+          
+
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -300,106 +368,106 @@
       
         
           
-            <p>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。<br>在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
-<h3 id="Week-1-Vertex-Cover"><a href="#Week-1-Vertex-Cover" class="headerlink" title="Week 1: Vertex Cover"></a>Week 1: Vertex Cover</h3><h6 id="问题定义：最小点覆盖，即给出一个无向图，求一个最小的点集-S-，使得每条边都至少有一个顶点在这个点集里。"><a href="#问题定义：最小点覆盖，即给出一个无向图，求一个最小的点集-S-，使得每条边都至少有一个顶点在这个点集里。" class="headerlink" title="问题定义：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。"></a>问题定义：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。</h6><h6 id="已有知识："><a href="#已有知识：" class="headerlink" title="已有知识："></a>已有知识：</h6><ol>
-<li>树的最小点覆盖很容易用$O(|V|)$的时间求出:</li>
-<li>动态规划：$dp[v][0/1]$ 表示，最少需要多少个点来覆盖以$v$为根的子树，第二维$0/1$表示$v$和它父亲节点之间的边是否已经被覆盖, 转移考虑点$v$选还是不选，从子树的结果转移即可。</li>
+            <p>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。 在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
+<h3 id="week-1-vertex-cover">Week 1: Vertex Cover</h3>
+<h6 id="问题定义最小点覆盖即给出一个无向图求一个最小的点集s使得每条边都至少有一个顶点在这个点集里">问题定义：最小点覆盖，即给出一个无向图，求一个最小的点集<span class="math inline">\(S\)</span>，使得每条边都至少有一个顶点在这个点集里。</h6>
+<h6 id="已有知识">已有知识：</h6>
+<ol type="1">
+<li>树的最小点覆盖很容易用<span class="math inline">\(O(|V|)\)</span>的时间求出:</li>
+<li>动态规划：<span class="math inline">\(dp[v][0/1]\)</span> 表示，最少需要多少个点来覆盖以<span class="math inline">\(v\)</span>为根的子树，第二维<span class="math inline">\(0/1\)</span>表示<span class="math inline">\(v\)</span>和它父亲节点之间的边是否已经被覆盖, 转移考虑点<span class="math inline">\(v\)</span>选还是不选，从子树的结果转移即可。</li>
 <li>贪心：从叶子节点考虑，每个叶子节点和它父亲的边必须要被覆盖，为了覆盖这条边，显然选叶子节点不如还选它的父亲。所以只要将节点按深度从大到小排序，依次考虑，如果当前节点和它父亲之间的边未被覆盖，就选择它的父亲。</li>
-<li>算法与数据结构课上讲到的local search的方法。 </li>
+<li>算法与数据结构课上讲到的local search的方法。</li>
 </ol>
-<h6 id="课程内容："><a href="#课程内容：" class="headerlink" title="课程内容："></a>课程内容：</h6><ul>
-<li><p>一般图的最小点覆盖是NP-Hard的，证明留坑。</p>
-</li>
-<li><p>点覆盖问题转整数线性规划：</p>
+<h6 id="课程内容">课程内容：</h6>
 <ul>
-<li>$|V|$个$0/1$变量,对应每个点选还是不选，$|E|$个条件，表示每条边必须被覆盖，目标函数是$\sum{x_i}$, 如果每个点带点权，则应是$\sum{w_i x_i}$.</li>
-<li>如何用一个不等式来表示某条边必须被覆盖？ 假设某条边的端点分别是$u$和$v$， 对应条件$x_u + x_v \geq 1$， 即$x_u, x_v$至少有一个是$1$.</li>
+<li>一般图的最小点覆盖是NP-Hard的，证明留坑。</li>
+<li>点覆盖问题转整数线性规划：
+<ul>
+<li><span class="math inline">\(|V|\)</span>个<span class="math inline">\(0/1\)</span>变量,对应每个点选还是不选，<span class="math inline">\(|E|\)</span>个条件，表示每条边必须被覆盖，目标函数是<span class="math inline">\(\sum{x_i}\)</span>, 如果每个点带点权，则应是<span class="math inline">\(\sum{w_i x_i}\)</span>.</li>
+<li>如何用一个不等式来表示某条边必须被覆盖？ 假设某条边的端点分别是<span class="math inline">\(u\)</span>和<span class="math inline">\(v\)</span>， 对应条件<span class="math inline">\(x_u + x_v \geq 1\)</span>， 即<span class="math inline">\(x_u, x_v\)</span>至少有一个是<span class="math inline">\(1\)</span>.</li>
 <li>遗憾的是，整数线性规划并没有多项式算法，不过实数线性规划存在多项式算法。</li>
-</ul>
-</li>
-<li><p>近似算法：</p>
+</ul></li>
+<li>近似算法：
 <ul>
-<li>Idea：放宽条件，允许$x_i$不是整数，但需要满足$x_i \in [0, 1]$. 在该条件下用实数线性规划的做法，求出最优解$X’$，将该最优解通过某种办法改造成原线性规划问题的最优解 $X$.</li>
-<li><strong>Solution</strong>:  把实数线性规划的解做一个“四舍五入”， 即令$x_i =  [x_i’  \geq 0.5]$.</li>
-<li><strong>Proof of Correctness</strong>:  我们还需要证明，得到的解确实是一个点覆盖，即对于任意边$&lt;u, v&gt;$, 需要满足 $x_u + x_v \ge 1$. $x_u + x_v \ge 1$.   证明很简单，因为$x_u’ + x_v’ \ge 1$, 那么$x_u’, x_v’$至少有一个$\geq 0.5$, 所以$x_u, x_v$至少有一个是$1$.</li>
-<li><strong>Approximation Ratio</strong>: 一个重要的性质是$x_i \leq 2x_i’$.  因此 $W(X) \leq 2W(X’) $. 而$X’$是放宽条件之后的最优解，肯定不会大于原问题的最优解，所以有$W(X) \leq 2W(X’) \leq 2OPT$.因此$Appromation \ ratio = 2.$</li>
-<li><strong>Tightness</strong>: 首先考虑一个四元环，每个点的点权相等，显然最优解只需要用2个点。 然而用实数线性规划得到的一个最优解会是$x_1’ = x_2’ = x_3’ = x_4’ = 0.5$，四舍五入之后$x_1 = x_2 = x_3 = x_4 = 1$. 是最优解的2倍。</li>
-</ul>
-</li>
-</ul>
+<li>Idea：放宽条件，允许<span class="math inline">\(x_i\)</span>不是整数，但需要满足<span class="math inline">\(x_i \in [0, 1]\)</span>. 在该条件下用实数线性规划的做法，求出最优解<span class="math inline">\(X&#39;\)</span>，将该最优解通过某种办法改造成原线性规划问题的最优解 <span class="math inline">\(X\)</span>.</li>
+<li><strong>Solution</strong>: 把实数线性规划的解做一个“四舍五入”， 即令<span class="math inline">\(x_i = [x_i&#39; \geq 0.5]\)</span>.</li>
+<li><strong>Proof of Correctness</strong>: 我们还需要证明，得到的解确实是一个点覆盖，即对于任意边<span class="math inline">\(&lt;u, v&gt;\)</span>, 需要满足 <span class="math inline">\(x_u + x_v \ge 1\)</span>. <span class="math inline">\(x_u + x_v \ge 1\)</span>. 证明很简单，因为<span class="math inline">\(x_u&#39; + x_v&#39; \ge 1\)</span>, 那么<span class="math inline">\(x_u&#39;, x_v&#39;\)</span>至少有一个<span class="math inline">\(\geq 0.5\)</span>, 所以<span class="math inline">\(x_u, x_v\)</span>至少有一个是<span class="math inline">\(1\)</span>.</li>
+<li><strong>Approximation Ratio</strong>: 一个重要的性质是<span class="math inline">\(x_i \leq 2x_i&#39;\)</span>. 因此 $W(X) 2W(X') <span class="math inline">\(. 而\)</span>X'<span class="math inline">\(是放宽条件之后的最优解，肯定不会大于原问题的最优解，所以有\)</span>W(X) 2W(X') 2OPT<span class="math inline">\(.因此\)</span>Appromation  ratio = 2.$</li>
+<li><strong>Tightness</strong>: 首先考虑一个四元环，每个点的点权相等，显然最优解只需要用2个点。 然而用实数线性规划得到的一个最优解会是<span class="math inline">\(x_1&#39; = x_2&#39; = x_3&#39; = x_4&#39; = 0.5\)</span>，四舍五入之后<span class="math inline">\(x_1 = x_2 = x_3 = x_4 = 1\)</span>. 是最优解的2倍。</li>
+</ul></li>
+<li>练习: 官方没有提供答案，以下是我个人答案：
 <ul>
-<li><p>练习:<br>官方没有提供答案，以下是我个人答案：</p>
+<li>习题1. 分析下面的点覆盖算法： <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 <ul>
-<li>习题1.  分析下面的点覆盖算法：<img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<ul>
-<li>Algorithm: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
+<li>Algorithm: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合<span class="math inline">\(S\)</span>。</li>
 <li>Proof of Correctness： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
-<li>Appromation Ratio： 因为匹配边之间没有公共点，所以$OPT \geq 匹配数 = \frac{1}{2}|S|$， 即$|S| \leq 2 OPT$。</li>
+<li>Appromation Ratio： 因为匹配边之间没有公共点，所以<span class="math inline">\(OPT \geq 匹配数 = \frac{1}{2}|S|\)</span>， 即<span class="math inline">\(|S| \leq 2 OPT\)</span>。</li>
 <li>Tightness: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
-</ul>
-</li>
-<li>习题2：<img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
+</ul></li>
+<li>习题2： <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
 <ul>
 <li>Algorithm: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
-<li>Linear Program:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$&lt;a, b, c&gt;$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
-<li>Rounding: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令$x_i = [x_i’ \geq \frac{1}{3}]$.</li>
-<li>Appromation Ratio: 类似上面最小点覆盖的证明，$x_i \leq 3x_i’$, 可以推出这样求出的答案不超过最优解的3倍.</li>
-<li>Tightness: 考虑一个三元环，线性规划实数解会求出一个最优解是$x_1’ = x_2’ = x_3’ = \frac{1}{3}$, rounding 一下变成$x_1 = x_2 = x_3 = 1$， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>Linear Program: 从线性规划的角度考虑，每个点删还是不删对应一个<span class="math inline">\(0/1\)</span>变量，每个原图中的三元环<span class="math inline">\(&lt;a, b, c&gt;\)</span>对应一个条件<span class="math inline">\(x_a +x_b + x_c \geq 1\)</span>.</li>
+<li>Rounding: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令<span class="math inline">\(x_i = [x_i&#39; \geq \frac{1}{3}]\)</span>.</li>
+<li>Appromation Ratio: 类似上面最小点覆盖的证明，<span class="math inline">\(x_i \leq 3x_i&#39;\)</span>, 可以推出这样求出的答案不超过最优解的3倍.</li>
+<li>Tightness: 考虑一个三元环，线性规划实数解会求出一个最优解是<span class="math inline">\(x_1&#39; = x_2&#39; = x_3&#39; = \frac{1}{3}\)</span>, rounding 一下变成<span class="math inline">\(x_1 = x_2 = x_3 = 1\)</span>， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
+</ul></li>
+</ul></li>
 <li><p>互评作业：</p>
-<p>  分析下面的算法。</p>
-  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-
+<p>分析下面的算法。 <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png"></p>
 <ul>
-<li><p>补充知识: </p>
-<p>  最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in {0, \frac{1}{2}, 1}$ (half-integrality)。</p>
-<p>证明：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是${x_i}$.<br>取足够小的$\epsilon$, 构造新的解${y_i}$：<br>$ abc $<br>$\begin{equation}<br>y_i = \left{<br>\begin{array}{lr}<br>x_i, &amp; x_i \in {0, 0.5, 1}\<br>x_i+ \epsilon, &amp; 0\lt x_i\lt 0.5\<br>x_i - \epsilon, &amp; 0.5\lt x_i\lt 1 &amp;<br>\end{array}<br>\right. \end{equation}$<br>以及${z_i}$</p>
-<p>$\begin{equation} z_i = \left{<br>\begin{array}{lr}<br>x_i, &amp; x_i \in {0, 0.5, 1}\<br>x_i - \epsilon, &amp; 0\lt x_i\lt 0.5\<br>x_i + \epsilon, &amp; 0.5\lt x_i\lt 1 &amp;<br>\end{array}<br>\right. \end{equation}$</p>
-<p>check一下容易发现${y_i}, {z_i}$也是线性规划的解。</p>
-<p>因为${x_i}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$</p>
-<p>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.</p>
-<p>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即${y_i}, {z_i}$也是最优解。</p>
-<p>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。</p>
-<p>不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。</p>
-<p>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in {0, \frac{1}{2}, 1}$的形式。</p>
-</li>
-<li><p>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。</p>
+<li><p>补充知识:</p>
+<p>最小点覆盖问题的实数线性规划，一定存在某个最优解，任意<span class="math inline">\(x_i\)</span>满足<span class="math inline">\(x_i \in \{0, \frac{1}{2}, 1\}\)</span> (half-integrality)。</p></li>
+</ul>
+<p>证明： 只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是<span class="math inline">\(\{x_i\}\)</span>. 取足够小的<span class="math inline">\(\epsilon\)</span>, 构造新的解<span class="math inline">\(\{y_i\}\)</span>： $ abc $ <span class="math inline">\(\begin{equation}  y_i = \left\{  \begin{array}{lr}  x_i, &amp; x_i \in \{0, 0.5, 1\}\\  x_i+ \epsilon, &amp; 0\lt x_i\lt 0.5\\  x_i - \epsilon, &amp; 0.5\lt x_i\lt 1 &amp;  \end{array}  \right. \end{equation}\)</span> 以及<span class="math inline">\(\{z_i\}\)</span></p>
+<p><span class="math inline">\(\begin{equation} z_i = \left\{  \begin{array}{lr}  x_i, &amp; x_i \in \{0, 0.5, 1\}\\  x_i - \epsilon, &amp; 0\lt x_i\lt 0.5\\  x_i + \epsilon, &amp; 0.5\lt x_i\lt 1 &amp;  \end{array}  \right. \end{equation}\)</span></p>
+<p>check一下容易发现<span class="math inline">\(\{y_i\}, \{z_i\}\)</span>也是线性规划的解。</p>
+<p>因为<span class="math inline">\(\{x_i\}\)</span>是最优解，所以有<span class="math inline">\(\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}\)</span></p>
+<p>又有<span class="math inline">\(\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}\)</span>.</p>
+<p>因此<span class="math inline">\(\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}\)</span>, 即<span class="math inline">\(\{y_i\}, \{z_i\}\)</span>也是最优解。</p>
+<p>考虑<span class="math inline">\(\epsilon\)</span>从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。</p>
+<p>不断重复这个过程，最终所有变量都会变成0或者0.5或者1. 因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 <span class="math inline">\(|V|\)</span>次松弛操作。</p>
+<p>综上，我们可以在多项式时间内把任意最优解改造成任意<span class="math inline">\(x_i\)</span>满足<span class="math inline">\(x_i \in \{0, \frac{1}{2}, 1\}\)</span>的形式。</p>
 <ul>
-<li>算法流程：<ol>
+<li>考虑一个可以四染色的图，下面给出一个近似度为<span class="math inline">\(\frac{3}{2}\)</span>的点覆盖算法。
+<ul>
+<li>算法流程：
+<ol type="1">
 <li>将图四染色。</li>
-<li>做一次实数线性规划，并把解改造成任意$x_i$满足$x_i \in {0, \frac{1}{2}, 1}$的形式。</li>
-<li>将所有$x_i = 1$的点加入答案集合$S$.</li>
-<li>将所有$x_i = \frac{1}{2}$的点，按照颜色分类，并按权值和排序。即按颜色分成$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}, V_3^{\frac{1}{2}}$四个集合，满足$W(V_0^{\frac{1}{2}}) \leq W(V_1^{\frac{1}{2}}) \leq W(V_2^{\frac{1}{2}})  \leq W(V_3^{\frac{1}{2}}) $</li>
-<li>将$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}$加入答案集合$S$.</li>
-</ol>
-</li>
-<li>Proof of Correctress：<br>考虑边$&lt;u, v&gt;$, 有 $x_u+x_v \geq 1$.<ol>
-<li>如果$x_u, x_v$有一个为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>如果$x_u, x_v$有一个为0，另一个肯定为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>剩下一种$x_u = x_v = \frac{1}{2}$的情况。因为它们相邻，所以颜色不同，因此不会都在$V_3^{\frac{1}{2}}$里，所以至少有一个点在$S$中。</li>
-</ol>
-</li>
-<li>Approximation Ratio：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>做一次实数线性规划，并把解改造成任意<span class="math inline">\(x_i\)</span>满足<span class="math inline">\(x_i \in \{0, \frac{1}{2}, 1\}\)</span>的形式。</li>
+<li>将所有<span class="math inline">\(x_i = 1\)</span>的点加入答案集合<span class="math inline">\(S\)</span>.</li>
+<li>将所有<span class="math inline">\(x_i = \frac{1}{2}\)</span>的点，按照颜色分类，并按权值和排序。即按颜色分成<span class="math inline">\(V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}, V_3^{\frac{1}{2}}\)</span>四个集合，满足$W(V_0^{}) W(V_1^{}) W(V_2^{}) W(V_3^{}) $</li>
+<li>将<span class="math inline">\(V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}\)</span>加入答案集合<span class="math inline">\(S\)</span>.</li>
+</ol></li>
+<li>Proof of Correctress： 考虑边<span class="math inline">\(&lt;u, v&gt;\)</span>, 有 <span class="math inline">\(x_u+x_v \geq 1\)</span>.
+<ol type="1">
+<li>如果<span class="math inline">\(x_u, x_v\)</span>有一个为1，那么那个点在<span class="math inline">\(S\)</span>中，这条边被覆盖。</li>
+<li>如果<span class="math inline">\(x_u, x_v\)</span>有一个为0，另一个肯定为1，那么那个点在<span class="math inline">\(S\)</span>中，这条边被覆盖。</li>
+<li>剩下一种<span class="math inline">\(x_u = x_v = \frac{1}{2}\)</span>的情况。因为它们相邻，所以颜色不同，因此不会都在<span class="math inline">\(V_3^{\frac{1}{2}}\)</span>里，所以至少有一个点在<span class="math inline">\(S\)</span>中。</li>
+</ol></li>
+<li>Approximation Ratio： <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png"></li>
+</ul></li>
+</ul></li>
 </ul>
 
           
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -422,7 +490,6 @@
   
   </article>
 
-
     
   </section>
 
@@ -430,9 +497,6 @@
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -448,63 +512,68 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
+  
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
 
-          <nav class="site-state motion-element">
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
 
-            
+    
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
 
-          </nav>
+
+
+
+
+
+
+
+
+
+
+
 
           
-
           
-
-          
-          
-
-          
-          
-
-          
-
         </div>
-      </section>
+      </div>
 
       
 
@@ -512,6 +581,7 @@
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -521,16 +591,18 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder"></span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -538,12 +610,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -564,11 +637,15 @@
 
     
 
+    
+
+    
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -582,12 +659,6 @@
 
 
 
-  
-
-
-
-
-
 
 
 
@@ -597,74 +668,50 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
 
 
 
 
-	
 
 
 
 
 
   
+  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
 
+
+  <script src="/blog/js/utils.js?v=7.2.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+  
+
+  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
 
 
   
@@ -680,24 +727,36 @@
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
 
-  
-  
 
-  
 
-  
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 
