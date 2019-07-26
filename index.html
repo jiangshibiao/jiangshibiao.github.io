@@ -342,7 +342,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-27 00:29:07" itemprop="dateModified" datetime="2019-07-27T00:29:07+08:00">2019-07-27</time>
+                <time title="修改时间：2019-07-27 00:46:36" itemprop="dateModified" datetime="2019-07-27T00:46:36+08:00">2019-07-27</time>
               </span>
             
           
@@ -404,9 +404,9 @@
 </ul>
 </li>
 </ul>
+<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题:"></a>练习题:</h4><p>官方没有提供答案，以下是我个人答案：</p>
 <ul>
-<li>练习:<br>官方没有提供答案，以下是我个人答案：<ul>
-<li>习题1.  分析下面的点覆盖算法：<img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<li>习题1.  分析下面的点覆盖算法：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 <ul>
 <li>Algorithm: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
 <li>Proof of Correctness： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
@@ -414,7 +414,7 @@
 <li>Tightness: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
 </ul>
 </li>
-<li>习题2：<img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
+<li>习题2：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
 <ul>
 <li>Algorithm: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
 <li>Linear Program:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
@@ -424,31 +424,28 @@
 </ul>
 </li>
 </ul>
-</li>
-<li><p>互评作业：</p>
-<p>  分析下面的算法。</p>
-  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
+<h4 id="互评作业："><a href="#互评作业：" class="headerlink" title="互评作业："></a>互评作业：</h4><p>分析下面的算法。</p>
 <ul>
-<li><p>补充知识: </p>
-<p>  最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (half-integrality)。</p>
-<p>证明：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：</p>
-<script type="math/tex; mode=display">\begin{equation} 
+<li>补充知识: <ul>
+<li>Lemma: 最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (<strong>Half Integrality</strong>)。   </li>
+<li>Proof：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：<script type="math/tex; mode=display">\begin{equation} 
 y_i = \left\{ 
 \begin{array}{lr} 
 x_i, & x_i \in \{0, 0.5, 1\}\\ 
 x_i+ \epsilon, & 0\lt x_i\lt 0.5\\ 
 x_i - \epsilon, & 0.5\lt x_i\lt 1 & 
 \end{array} 
-\right. \end{equation}</script><p>以及$\{z_i\}$:</p>
-<script type="math/tex; mode=display">\begin{equation} z_i = \left\{ 
+\right. \end{equation}</script>以及$\{z_i\}$:<script type="math/tex; mode=display">\begin{equation} z_i = \left\{ 
 \begin{array}{lr} 
 x_i, & x_i \in \{0, 0.5, 1\}\\ 
 x_i - \epsilon, & 0\lt x_i\lt 0.5\\ 
 x_i + \epsilon, & 0.5\lt x_i\lt 1 & 
 \end{array} 
-\right. \end{equation}</script><p>check一下容易发现$\{y_i\}, \{z_i\}$也是线性规划的解。<br>因为$\{x_i\}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$<br>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.<br>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即$\{y_i\}, \{z_i\}$也是最优解。<br>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。<br>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</p>
+\right. \end{equation}</script>check一下容易发现$\{y_i\}, \{z_i\}$也是线性规划的解。<br>因为$\{x_i\}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$<br>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.<br>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即$\{y_i\}, \{z_i\}$也是最优解。<br>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。<br>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
+</ul>
 </li>
-<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。<ul>
+<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
+<ul>
 <li>算法流程：<ol>
 <li>将图四染色。</li>
 <li>做一次实数线性规划，并把解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
@@ -464,8 +461,6 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 </ol>
 </li>
 <li>Approximation Ratio：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-</li>
-</ul>
 </li>
 </ul>
 </li>
