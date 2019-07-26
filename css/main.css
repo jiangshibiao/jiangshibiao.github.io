@@ -1639,7 +1639,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff;
+  background: #75faff;
 }
 .feed-link,
 .chat {
@@ -1945,6 +1945,10 @@ pre .javascript .function {
   50%, 70% {
     transform: scale(1.1);
   }
+}
+.has-jax {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .page-archive .archive-page-counter {
   position: relative;
