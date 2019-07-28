@@ -99,23 +99,20 @@
   };
 </script>
 
-  <meta name="description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
+  <meta name="description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/index.html">
+<meta property="og:title" content="Approximation Algorithm(3)-The Binpacking Problem">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The Binpacking Problem/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
-<meta property="og:description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
+<meta property="og:description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-<meta property="og:updated_time" content="2019-07-28T12:21:50.276Z">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
+<meta property="og:updated_time" content="2019-07-28T15:59:08.235Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta name="twitter:description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
-<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<meta name="twitter:title" content="Approximation Algorithm(3)-The Binpacking Problem">
+<meta name="twitter:description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
+<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
 
 
 
@@ -123,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The Binpacking Problem/">
 
 
 
@@ -134,7 +131,7 @@
 </script>
 
   
-  <title>Approximation Algorithm(1)-Vertex Cover | zhenweiliu's blog</title>
+  <title>Approximation Algorithm(3)-The Binpacking Problem | zhenweiliu's blog</title>
   
 
 
@@ -339,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/07/28/Approximation-Algorithm-3-The Binpacking Problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -356,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(1)-Vertex Cover
+          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(3)-The Binpacking Problem
 
               
             
@@ -382,23 +379,13 @@
                 
               
 
-              <time title="创建时间：2019-07-26 16:27:55" itemprop="dateCreated datePublished" datetime="2019-07-26T16:27:55+08:00">2019-07-26</time>
+              <time title="创建时间：2019-07-28 20:16:22 / 修改时间：23:59:08" itemprop="dateCreated datePublished" datetime="2019-07-28T20:16:22+08:00">2019-07-28</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-28 20:21:50" itemprop="dateModified" datetime="2019-07-28T20:21:50+08:00">2019-07-28</time>
-              </span>
             
           
 
@@ -446,93 +433,56 @@
       
 
       
-        <p>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。<br>在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
-<h3 id="Week-1-Vertex-Cover"><a href="#Week-1-Vertex-Cover" class="headerlink" title="Week 1: Vertex Cover"></a>Week 1: Vertex Cover</h3><h4 id="Problem-Definition："><a href="#Problem-Definition：" class="headerlink" title="Problem Definition："></a>Problem Definition：</h4><p>最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。</p>
-<h4 id="已有知识："><a href="#已有知识：" class="headerlink" title="已有知识："></a>已有知识：</h4><ol>
-<li>树的最小点覆盖很容易用$O(|V|)$的时间求出:</li>
-<li>动态规划：$dp[v][0/1]$ 表示，最少需要多少个点来覆盖以$v$为根的子树，第二维$0/1$表示$v$和它父亲节点之间的边是否已经被覆盖, 转移考虑点$v$选还是不选，从子树的结果转移即可。</li>
-<li>贪心：从叶子节点考虑，每个叶子节点和它父亲的边必须要被覆盖，为了覆盖这条边，显然选叶子节点不如还选它的父亲。所以只要将节点按深度从大到小排序，依次考虑，如果当前节点和它父亲之间的边未被覆盖，就选择它的父亲。</li>
-<li>算法与数据结构课上讲到的local search的方法。 </li>
-</ol>
+        <h3 id="Week-3-The-Binpacking-Problem"><a href="#Week-3-The-Binpacking-Problem" class="headerlink" title="Week 3: The Binpacking Problem"></a>Week 3: The Binpacking Problem</h3><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition:"></a>Problem Definition:</h4><p>本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。</p>
 <h4 id="课程内容："><a href="#课程内容：" class="headerlink" title="课程内容："></a>课程内容：</h4><ul>
-<li>一般图的最小点覆盖是NP-Hard的，证明留坑。</li>
-<li><p>点覆盖问题转整数线性规划：</p>
-<ul>
-<li>$|V|$个$0/1$变量,对应每个点选还是不选，$|E|$个条件，表示每条边必须被覆盖，目标函数是$\sum{x_i}$, 如果每个点带点权，则应是$\sum{w_i x_i}$.</li>
-<li>如何用一个不等式来表示某条边必须被覆盖？ 假设某条边的端点分别是$u$和$v$， 对应条件$x_u + x_v \geq 1$， 即$x_u, x_v$至少有一个是$1$.</li>
-<li>遗憾的是，整数线性规划并没有多项式算法，不过实数线性规划存在多项式算法。</li>
-</ul>
-</li>
-<li><p>近似算法：</p>
-<ul>
-<li><strong>Idea</strong>：放宽条件，允许$x_i$不是整数，但需要满足$x_i \in [0, 1]$. 在该条件下用实数线性规划的做法，求出最优解$X’$，将该最优解通过某种办法改造成原线性规划问题的最优解 $X$.</li>
-<li><strong>Solution</strong>:  把实数线性规划的解做一个“四舍五入”， 即令$x_i =  [x_i’  \geq 0.5]$.</li>
-<li><strong>Proof of Correctness</strong>:  我们还需要证明，得到的解确实是一个点覆盖，即对于任意边$(u, v)$, 需要满足 $x_u + x_v \geq 1$. 证明很简单，因为$x_u’ + x_v’ \ge 1$, 那么$x_u’, x_v’$至少有一个$\geq 0.5$, 所以$x_u, x_v$至少有一个是$1$.</li>
-<li><strong>Approximation Ratio</strong>: 一个重要的性质是$x_i \leq 2x_i’$.  因此 $W(X) \leq 2W(X’) $. 而$X’$是放宽条件之后的最优解，肯定不会大于原问题的最优解，所以有$W(X) \leq 2W(X’) \leq 2OPT$.因此$Appromation \; ratio = 2.$</li>
-<li><strong>Tightness</strong>: 首先考虑一个四元环，每个点的点权相等，显然最优解只需要用2个点。 然而用实数线性规划得到的一个最优解会是$x_1’ = x_2’ = x_3’ = x_4’ = 0.5$, 四舍五入之后$x_1 = x_2 = x_3 = x_4 = 1$. 是最优解的2倍。</li>
+<li>Next Fit Algorithm: <ul>
+<li>Algorithm: 依次考虑每个物品, 如果这个物品能放入当前箱子, 就放入, 否则关闭当前箱子, 打开一个新的箱子放入这个物品。</li>
+<li>Approximation Ratio: 把编号相邻的箱子配对, 考虑箱子$2i-1$和箱子$2i$。我们打开了箱子$2i$, 说明箱子$2i-1$里面的物品体积之和加上箱子$2i$里面的第一个物品的体积, 必然是大于$1$的，否则按照算法流程会把那个物品放入箱子$2i-1$. 假设按照算法流程用了$K$个箱子, 装入最后一个箱子的第一个物品编号是$L$. 那么有$OPT \geq \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \gt \lfloor \frac{K}{2} \rfloor \geq \frac{K-1}{2}$, 即$K \lt 2OPT+1$, 也就是$K \leq 2OPT$.</li>
+<li>Tightness: 课程没有给出一个具体的例子, 我google到了一份<a href="https://sites.cs.ucsb.edu/~teo/cs130b.w15/bp.pdf" target="_blank" rel="noopener">资料</a>, 里面给出了一个$2OPT-2$的例子: 一共$4n$个物品, 满足$s_{2i-1} = \frac{1}{2}, s_{2i} = \frac{1}{2n}$. 显然$OPT = n+1$, 而Next Fit给出的结果是$2n$.</li>
+<li>Special Case: 所有物品的$s_i \lt \frac{1}{3}$. <ul>
+<li>Analysis: 当关闭一个箱子的时候(除了最后一个箱子), 这个箱子里面物品体积之和必然$\geq \frac{2}{3}$, 否则还可以接着装物品。 假设用了$K$个箱子, 第一个装入第$K$个的物品编号是$L$, 那么有$OPT \gt \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \geq \frac{2}{3}(K-1)$. 因此有$K \leq \frac{3}{2}OPT$。</li>
+<li>相应地，可以推导所有物品的$s_i \lt U$的时候,  有$K \leq \frac{1}{1-U}OPT$。</li>
 </ul>
 </li>
 </ul>
-<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题:"></a>练习题:</h4><p>官方没有提供答案，以下是我个人答案：</p>
-<ul>
-<li>习题1.  分析下面的点覆盖算法：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<ul>
-<li>Algorithm: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
-<li>Proof of Correctness： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
-<li>Appromation Ratio： 因为匹配边之间没有公共点，所以$OPT \geq 匹配数 = \frac{1}{2}|S|$， 即$|S| \leq 2 OPT$。</li>
-<li>Tightness: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
+</li>
+<li>A very special case: 物品体积较大, 不同的size比较少(large items, few distinct sizes).<ul>
+<li>New Definitions:<ul>
+<li>Configuration: 指将若干物品装入一个箱子的某种方法。比如往一个箱子中装入2个size为0.2的物品和1个size为0.6的物品。</li>
+<li>$A_{c, s}$: configuration $c$中有$A_{c, s}$个size为$s$的物品。</li>
 </ul>
 </li>
-<li>习题2：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<ul>
-<li>Algorithm: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
-<li>Linear Program:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
-<li>Rounding: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令$x_i = [x_i’ \geq \frac{1}{3}]$.</li>
-<li>Appromation Ratio: 类似上面最小点覆盖的证明，$x_i \leq 3x_i’$, 可以推出这样求出的答案不超过最优解的3倍.</li>
-<li>Tightness: 考虑一个三元环，线性规划实数解会求出一个最优解是$x_1’ = x_2’ = x_3’ = \frac{1}{3}$, rounding 一下变成$x_1 = x_2 = x_3 = 1$， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
+<li>Observation: 假设物品体积的下界是$D$, 一共有$K$种不同的size, 那么不同configuration的数量$\leq K^{\frac{1}{D}}$.</li>
+<li>Linear Programming:<br>  对每种size $s$, 设有$n_s$个物品, 那么必须有$\sum\limits_{c}{A_{c, s}x_c} \geq n_s$.<br>  目标函数就是$\sum\limits_{c}{x_c}$</li>
+<li>Rounding: 求出实数线性规划的解向上取整。</li>
+<li>Analysis: 显然求出的解是合法解，而$OPT \geq \sum\limits_{c}{x_c} \geq \sum\limits_{c}{(\lceil x_c \rceil-1)}$, 因此我们求出的解不会比$OPT$多于线性规划变量的个数, 也就是configuration的数目。而configuration的数目$\leq K^{\frac{1}{D}}$。 综上近似解$\leq OPT + K^{\frac{1}{D}}$。</li>
 </ul>
 </li>
-</ul>
-<h4 id="互评作业："><a href="#互评作业：" class="headerlink" title="互评作业："></a>互评作业：</h4><p>分析下面的算法。</p>
-<ul>
-<li>补充知识: <ul>
-<li>Lemma: 最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (<strong>Half Integrality</strong>)。   </li>
-<li>Proof：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：<script type="math/tex; mode=display">\begin{equation} 
-y_i = \left\{ 
-\begin{array}{lr} 
-x_i, & x_i \in \{0, 0.5, 1\}\\ 
-x_i+ \epsilon, & 0\lt x_i\lt 0.5\\ 
-x_i - \epsilon, & 0.5\lt x_i\lt 1 & 
-\end{array} 
-\right. \end{equation}</script>以及$\{z_i\}$:<script type="math/tex; mode=display">\begin{equation} z_i = \left\{ 
-\begin{array}{lr} 
-x_i, & x_i \in \{0, 0.5, 1\}\\ 
-x_i - \epsilon, & 0\lt x_i\lt 0.5\\ 
-x_i + \epsilon, & 0.5\lt x_i\lt 1 & 
-\end{array} 
-\right. \end{equation}</script>check一下容易发现$\{y_i\}, \{z_i\}$也是线性规划的解。<br>因为$\{x_i\}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$<br>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.<br>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即$\{y_i\}, \{z_i\}$也是最优解。<br>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。<br>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
+<li>A less special case: 物品体积较大, 不同的size比较多(large items, many distinct sizes)。<ul>
+<li>Reduce to previous case: 考虑Rounding， 将物品按size排序， 然后分成若干组，将每组物品的size round成最大的那个。</li>
+<li>Adaptive Rounding:<ul>
+<li>假设$\min s_i \gt \epsilon$.</li>
+<li>将物品按照size从小到大排序。</li>
+<li>将物品分组，每组的数目是$G = \lfloor N\epsilon^{2}\rfloor$(除了最后最后一组)。</li>
+<li>将每组内物品的size全部变成组内最大的。</li>
+<li>通过上面LP的方法求出最优解.</li>
 </ul>
 </li>
-<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<ul>
-<li>算法流程：<ol>
-<li>将图四染色。</li>
-<li>做一次实数线性规划，并把解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
-<li>将所有$x_i = 1$的点加入答案集合$S$.</li>
-<li>将所有$x_i = \frac{1}{2}$的点，按照颜色分类，并按权值和排序。即按颜色分成$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}, V_3^{\frac{1}{2}}$四个集合，满足$W(V_0^{\frac{1}{2}}) \leq W(V_1^{\frac{1}{2}}) \leq W(V_2^{\frac{1}{2}})  \leq W(V_3^{\frac{1}{2}}) $</li>
-<li>将$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}$加入答案集合$S$.</li>
-</ol>
-</li>
-<li>Proof of Correctress：<br>考虑边$(u, v)$, 有 $x_u+x_v \geq 1$.<ol>
-<li>如果$x_u, x_v$有一个为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>如果$x_u, x_v$有一个为0，另一个肯定为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>剩下一种$x_u = x_v = \frac{1}{2}$的情况。因为它们相邻，所以颜色不同，因此不会都在$V_3^{\frac{1}{2}}$里，所以至少有一个点在$S$中。</li>
-</ol>
-</li>
-<li>Approximation Ratio：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
+<li>Analysis(有些tricky):<ul>
+<li>显然上面求出的解是合法的，因为将物品的体积变大了能装下，原问题更加可以装下。</li>
+<li>引入一种新的rounding：不是将每组内物品的size全部变成组内最大的, 而是变成<strong>上一组物品的最大size</strong>(第一组就全变成0)。为了表示方便，把第一种rounding后的问题表示为$U(up, 向上变大)$, 第二种rounding后的问题表示为$D(down, 向下变大)$. </li>
+<li>考虑$D$和$U$的区别, 假设有$K$组物品, $D$的第$2$组物品和$U$的第$1$组物品是一样的, $D$的第$3$组物品和$U$的第$2$组物品是一样的$\cdots$$D$的第$i+1$组物品和$U$的第$i$组物品是一样的($1 \leq i \leq K-2$)。如下图所示：<img src="/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
+而$D$的第$1$组物品体积全是$0$, 可以忽略掉。因此$D$和$U$的区别就是$D$的最后一组和$U$的第$K-1, K$组. 而$D$的最后一组其实完全包含在$U$的第$K-1$组里。 综上, 如果忽略$D$的第$1$, 那么有$card(U-D) \leq \lfloor N\epsilon^{2}\rfloor$,从而容易得出$OPT(U) - OPT(D) \leq \lfloor N\epsilon^{2}\rfloor$.</li>
+<li>设$O$是原问题, 那么有$OPT(D) \leq OPT(O) \leq OPT(U)$.</li>
+<li>结合上2条, 可以推出$OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor$.</li>
+<li>因为$\min s_i \gt \epsilon$, 所以有$OPT(O) \geq \sum\limits_{i=1}^{N}{s_i} \geq N\epsilon$.</li>
+<li>进一步推出$OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor \leq OPT(O) + \epsilon OPT(O) = (1+\epsilon)OPT(O)$.</li>
+<li>综上, Adaptive Rounding的近似比是$1+\epsilon$.</li>
+</ul>
 </li>
 </ul>
 </li>
+<li>General Cases: 去掉物品体积较大的限制。</li>
 </ul>
 
       
@@ -577,15 +527,15 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="next" title="Approximation Algorithm(2)-The Knapsack Problem">
+                <i class="fa fa-chevron-left"></i> Approximation Algorithm(2)-The Knapsack Problem
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="prev" title="Approximation Algorithm(2)-The Knapsack Problem">
-                Approximation Algorithm(2)-The Knapsack Problem <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -748,7 +698,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Week-1-Vertex-Cover"><span class="nav-number">1.</span> <span class="nav-text">Week 1: Vertex Cover</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition："><span class="nav-number">1.1.</span> <span class="nav-text">Problem Definition：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已有知识："><span class="nav-number">1.2.</span> <span class="nav-text">已有知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">1.3.</span> <span class="nav-text">课程内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">1.4.</span> <span class="nav-text">练习题:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互评作业："><span class="nav-number">1.5.</span> <span class="nav-text">互评作业：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Week-3-The-Binpacking-Problem"><span class="nav-number">1.</span> <span class="nav-text">Week 3: The Binpacking Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">1.1.</span> <span class="nav-text">Problem Definition:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">1.2.</span> <span class="nav-text">课程内容：</span></a></li></ol></li></ol></div>
             
 
           </div>
