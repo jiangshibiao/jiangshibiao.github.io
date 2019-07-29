@@ -109,7 +109,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/2.png">
-<meta property="og:updated_time" content="2019-07-29T11:10:30.523Z">
+<meta property="og:updated_time" content="2019-07-29T11:20:28.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(3)-The Binpacking Problem">
 <meta name="twitter:description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
@@ -395,7 +395,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-29 19:10:30" itemprop="dateModified" datetime="2019-07-29T19:10:30+08:00">2019-07-29</time>
+                <time title="修改时间：2019-07-29 19:20:28" itemprop="dateModified" datetime="2019-07-29T19:20:28+08:00">2019-07-29</time>
               </span>
             
           
@@ -479,18 +479,8 @@
 <li>通过上面LP的方法求出最优解.</li>
 </ul>
 </li>
-<li>Analysis(有些tricky):<ul>
-<li>显然上面求出的解是合法的，因为将物品的体积变大了能装下，原问题更加可以装下。</li>
-<li>引入一种新的rounding：不是将每组内物品的size全部变成组内最大的, 而是变成<strong>上一组物品的最大size</strong>(第一组就全变成0)。为了表示方便，把第一种rounding后的问题表示为$U(up, 向上变大)$, 第二种rounding后的问题表示为$D(down, 向下变大)$. </li>
-<li>考虑$D$和$U$的区别, 假设有$K$组物品, $D$的第$2$组物品和$U$的第$1$组物品是一样的, $D$的第$3$组物品和$U$的第$2$组物品是一样的$\cdots$$D$的第$i+1$组物品和$U$的第$i$组物品是一样的($1 \leq i \leq K-2$)。如下图所示：<img src="/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
-而$D$的第$1$组物品体积全是$0$, 可以忽略掉。因此$D$和$U$的区别就是$D$的最后一组和$U$的第$K-1, K$组. 而$D$的最后一组其实完全包含在$U$的第$K-1$组里。 综上, 如果忽略$D$的第$1$, 那么有$card(U-D) \leq \lfloor N\epsilon^{2}\rfloor$,从而容易得出$OPT(U) - OPT(D) \leq \lfloor N\epsilon^{2}\rfloor$.</li>
-<li>设$O$是原问题, 那么有$OPT(D) \leq OPT(O) \leq OPT(U)$.</li>
-<li>结合上2条, 可以推出$OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor$.</li>
-<li>因为$\min s_i \geq \epsilon$, 所以有$OPT(O) \geq \sum\limits_{i=1}^{N}{s_i} \geq N\epsilon$.</li>
-<li>进一步推出$OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor \leq OPT(O) + \epsilon OPT(O) = (1+\epsilon)OPT(O)$.</li>
-<li>综上, Adaptive Rounding的近似比是$1+\epsilon$.</li>
-</ul>
-</li>
+<li>Analysis(有些tricky):<br>  显然上面求出的解是合法的，因为将物品的体积变大了能装下，原问题更加可以装下。<br>  引入一种新的rounding：不是将每组内物品的size全部变成组内最大的, 而是变成<strong>上一组物品的最大size</strong>(第一组就全变成0)。为了表示方便，把第一种rounding后的问题表示为$U(up, 向上变大)$, 第二种rounding后的问题表示为$D(down, 向下变大)$.<br>  考虑$D$和$U$的区别, 假设有$K$组物品, $D$的第$2$组物品和$U$的第$1$组物品是一样的, $D$的第$3$组物品和$U$的第$2$组物品是一样的$\cdots$$D$的第$i+1$组物品和$U$的第$i$组物品是一样的($1 \leq i \leq K-2$)。如下图所示：  <img src="/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
+  而$D$的第$1$组物品体积全是$0$, 可以忽略掉。因此$D$和$U$的区别就是$D$的最后一组和$U$的第$K-1, K$组. 而$D$的最后一组其实完全包含在$U$的第$K-1$组里。 综上, 如果忽略$D$的第$1$组, 那么有<script type="math/tex; mode=display">card(U-D) \leq \lfloor N\epsilon^{2}\rfloor</script>  从而容易得出<script type="math/tex; mode=display">OPT(U) - OPT(D) \leq \lfloor N\epsilon^{2}\rfloor</script>  设$O$是原问题, 那么<script type="math/tex; mode=display">OPT(D) \leq OPT(O) \leq OPT(U)</script>  结合上2条, 可以推出<script type="math/tex; mode=display">OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor</script>  因为$\min s_i \geq \epsilon$, 所以有<script type="math/tex; mode=display">OPT(O) \geq \sum\limits_{i=1}^{N}{s_i} \geq N\epsilon</script>  进一步推出<script type="math/tex; mode=display">OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor \leq OPT(O) + \epsilon OPT(O) = (1+\epsilon)OPT(O)</script>  综上, Adaptive Rounding的近似比是$1+\epsilon$.</li>
 </ul>
 </li>
 <li>General Cases: 去掉物品体积较大的限制。<ul>
@@ -499,12 +489,7 @@
 <li>剩下的物品按照现有的箱子有空就塞，没空就开新箱子的原则贪心。</li>
 </ul>
 </li>
-<li>Analysis: <ul>
-<li>假设没有开新的箱子，那么有:<script type="math/tex; mode=display">output(All) = output(Large) \leq (1+\epsilon)OPT(Large) \leq (1+\epsilon)OPT(All)</script></li>
-<li>假设开了新的箱子, 那么除了最后一个箱子, 其他箱子里面装的物品体积之和肯定$\gt 1-\epsilon$。那么有<script type="math/tex; mode=display">OPT(All) \gt (1-\epsilon) (output(All)-1)</script>  即<script type="math/tex; mode=display">output(All) \leq \frac{1}{1-\epsilon}OPT(All)</script></li>
-<li>$\frac{1}{1-\epsilon} = 1+\epsilon+\epsilon^2+\epsilon^3\cdots$, 所以$\frac{1}{1-\epsilon} \geq 1+\epsilon$. 综合一下就是$output(All) \leq \frac{1}{1-\epsilon} OPT(All)$.</li>
-</ul>
-</li>
+<li>Analysis:<br>  如果加入体积较小的物品没有导致需要打开新的箱子，那么<script type="math/tex; mode=display">output(All) = output(Large) \leq (1+\epsilon)OPT(Large) \leq (1+\epsilon)OPT(All)</script>  如果开了新的箱子, 那么除了最后一个箱子, 其他箱子里面装的物品体积之和肯定$\gt 1-\epsilon$。那么<script type="math/tex; mode=display">OPT(All) \gt (1-\epsilon) (output(All)-1)</script>  即<script type="math/tex; mode=display">output(All) \leq \frac{1}{1-\epsilon}OPT(All)</script>  因为<script type="math/tex; mode=display">\frac{1}{1-\epsilon} = 1+\epsilon+\epsilon^2+\epsilon^3\cdots</script>  所以<script type="math/tex; mode=display">\frac{1}{1-\epsilon} \geq 1+\epsilon</script>  综合一下就是<script type="math/tex; mode=display">output(All) \leq \frac{1}{1-\epsilon} OPT(All)</script></li>
 </ul>
 </li>
 <li>前沿科技：Narendra Karmarkar和Richard Karp提出了$OPT+O(log^2(OPT))$的算法, Rebecca Hoberg和Thomas Rothvoss改进了算法，做到了$OPT+O(log(OPT))$。</li>
