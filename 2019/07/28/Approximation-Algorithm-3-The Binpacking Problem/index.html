@@ -108,7 +108,7 @@
 <meta property="og:description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
-<meta property="og:updated_time" content="2019-07-28T15:59:08.235Z">
+<meta property="og:updated_time" content="2019-07-29T03:39:04.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(3)-The Binpacking Problem">
 <meta name="twitter:description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
@@ -379,13 +379,23 @@
                 
               
 
-              <time title="创建时间：2019-07-28 20:16:22 / 修改时间：23:59:08" itemprop="dateCreated datePublished" datetime="2019-07-28T20:16:22+08:00">2019-07-28</time>
+              <time title="创建时间：2019-07-28 20:16:22" itemprop="dateCreated datePublished" datetime="2019-07-28T20:16:22+08:00">2019-07-28</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-29 11:39:04" itemprop="dateModified" datetime="2019-07-29T11:39:04+08:00">2019-07-29</time>
+              </span>
             
           
 
@@ -441,7 +451,7 @@
 <li>Tightness: 课程没有给出一个具体的例子, 我google到了一份<a href="https://sites.cs.ucsb.edu/~teo/cs130b.w15/bp.pdf" target="_blank" rel="noopener">资料</a>, 里面给出了一个$2OPT-2$的例子: 一共$4n$个物品, 满足$s_{2i-1} = \frac{1}{2}, s_{2i} = \frac{1}{2n}$. 显然$OPT = n+1$, 而Next Fit给出的结果是$2n$.</li>
 <li>Special Case: 所有物品的$s_i \lt \frac{1}{3}$. <ul>
 <li>Analysis: 当关闭一个箱子的时候(除了最后一个箱子), 这个箱子里面物品体积之和必然$\geq \frac{2}{3}$, 否则还可以接着装物品。 假设用了$K$个箱子, 第一个装入第$K$个的物品编号是$L$, 那么有$OPT \gt \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \geq \frac{2}{3}(K-1)$. 因此有$K \leq \frac{3}{2}OPT$。</li>
-<li>相应地，可以推导所有物品的$s_i \lt U$的时候,  有$K \leq \frac{1}{1-U}OPT$。</li>
+<li>相应地，可以推导所有物品的$s_i \lt \epsilon$的时候,  有$K \leq \frac{1}{1-\epsilon}OPT$。</li>
 </ul>
 </li>
 </ul>
@@ -452,7 +462,7 @@
 <li>$A_{c, s}$: configuration $c$中有$A_{c, s}$个size为$s$的物品。</li>
 </ul>
 </li>
-<li>Observation: 假设物品体积的下界是$D$, 一共有$K$种不同的size, 那么不同configuration的数量$\leq K^{\frac{1}{D}}$.</li>
+<li>Observation: 假设物品体积的下界是$\epsilon$, 一共有$K$种不同的size, 那么不同configuration的数量$\leq K^{\frac{1}{\epsilon}}$.</li>
 <li>Linear Programming:<br>  对每种size $s$, 设有$n_s$个物品, 那么必须有$\sum\limits_{c}{A_{c, s}x_c} \geq n_s$.<br>  目标函数就是$\sum\limits_{c}{x_c}$</li>
 <li>Rounding: 求出实数线性规划的解向上取整。</li>
 <li>Analysis: 显然求出的解是合法解，而$OPT \geq \sum\limits_{c}{x_c} \geq \sum\limits_{c}{(\lceil x_c \rceil-1)}$, 因此我们求出的解不会比$OPT$多于线性规划变量的个数, 也就是configuration的数目。而configuration的数目$\leq K^{\frac{1}{D}}$。 综上近似解$\leq OPT + K^{\frac{1}{D}}$。</li>
@@ -461,7 +471,7 @@
 <li>A less special case: 物品体积较大, 不同的size比较多(large items, many distinct sizes)。<ul>
 <li>Reduce to previous case: 考虑Rounding， 将物品按size排序， 然后分成若干组，将每组物品的size round成最大的那个。</li>
 <li>Adaptive Rounding:<ul>
-<li>假设$\min s_i \gt \epsilon$.</li>
+<li>假设$\min s_i \geq \epsilon$.</li>
 <li>将物品按照size从小到大排序。</li>
 <li>将物品分组，每组的数目是$G = \lfloor N\epsilon^{2}\rfloor$(除了最后最后一组)。</li>
 <li>将每组内物品的size全部变成组内最大的。</li>
@@ -475,14 +485,28 @@
 而$D$的第$1$组物品体积全是$0$, 可以忽略掉。因此$D$和$U$的区别就是$D$的最后一组和$U$的第$K-1, K$组. 而$D$的最后一组其实完全包含在$U$的第$K-1$组里。 综上, 如果忽略$D$的第$1$, 那么有$card(U-D) \leq \lfloor N\epsilon^{2}\rfloor$,从而容易得出$OPT(U) - OPT(D) \leq \lfloor N\epsilon^{2}\rfloor$.</li>
 <li>设$O$是原问题, 那么有$OPT(D) \leq OPT(O) \leq OPT(U)$.</li>
 <li>结合上2条, 可以推出$OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor$.</li>
-<li>因为$\min s_i \gt \epsilon$, 所以有$OPT(O) \geq \sum\limits_{i=1}^{N}{s_i} \geq N\epsilon$.</li>
+<li>因为$\min s_i \geq \epsilon$, 所以有$OPT(O) \geq \sum\limits_{i=1}^{N}{s_i} \geq N\epsilon$.</li>
 <li>进一步推出$OPT(U) \leq OPT(O) + \lfloor N\epsilon^{2}\rfloor \leq OPT(O) + \epsilon OPT(O) = (1+\epsilon)OPT(O)$.</li>
 <li>综上, Adaptive Rounding的近似比是$1+\epsilon$.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>General Cases: 去掉物品体积较大的限制。</li>
+<li>General Cases: 去掉物品体积较大的限制。<ul>
+<li>Algorithm:<ul>
+<li>将体积$\geq \epsilon$的物品, 按照上面的方法做一遍。</li>
+<li>剩下的物品按照现有的箱子有空就塞，没空就开新箱子的原则贪心。</li>
+</ul>
+</li>
+<li>Analysis: <ul>
+<li>假设没有开新的箱子，那么有:<br>$output(All) = output(Large) \leq (1+\epsilon)OPT(Large) \leq (1+\epsilon)OPT(All)$.</li>
+<li>假设开了新的箱子, 那么除了最后一个箱子, 其他箱子里面装的物品体积之和肯定$\gt 1-\epsilon$。那么有$OPT(All) \gt (1-\epsilon) (output(All)-1)$, 即$output(All) \leq \frac{1}{1-\epsilon}OPT(All)$. </li>
+<li>$\frac{1}{1-\epsilon} = 1+\epsilon+\epsilon^2+\epsilon^3\cdots$, 所以$\frac{1}{1-\epsilon} \geq 1+\epsilon$. 综合一下就是$output(All) \leq \frac{1}{1-\epsilon} OPT(All)$.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>前沿科技：Narendra Karmarkar和Richard Karp提出了$OPT+O(log^2(OPT))$的算法, Rebecca Hoberg和Thomas Rothvoss改进了算法，做到了$OPT+O(log(OPT))$。</li>
 </ul>
 
       
