@@ -109,7 +109,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/2.png">
-<meta property="og:updated_time" content="2019-07-29T09:31:40.850Z">
+<meta property="og:updated_time" content="2019-07-29T11:10:30.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(3)-The Binpacking Problem">
 <meta name="twitter:description" content="Week 3: The Binpacking ProblemProblem Definition:本周讲的问题和上周背包问题有点相似，上周的是给出物品的体积和价值，要装到一个背包里使得价值之和尽可能大。本周的问题是$N$件物品，每件物品有一个体积$\{s_i\}$, 不失一般性地，可以约定$\{s_i\} \leq 1$, 有容量为$1$箱子, 要用尽可能少的箱子容纳所有的物品。 课程内容： Ne">
@@ -395,7 +395,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-29 17:31:40" itemprop="dateModified" datetime="2019-07-29T17:31:40+08:00">2019-07-29</time>
+                <time title="修改时间：2019-07-29 19:10:30" itemprop="dateModified" datetime="2019-07-29T19:10:30+08:00">2019-07-29</time>
               </span>
             
           
@@ -448,10 +448,10 @@
 <h4 id="课程内容："><a href="#课程内容：" class="headerlink" title="课程内容："></a>课程内容：</h4><ul>
 <li>Next Fit Algorithm: <ul>
 <li>Algorithm: 依次考虑每个物品, 如果这个物品能放入当前箱子, 就放入, 否则关闭当前箱子, 打开一个新的箱子放入这个物品。</li>
-<li>Approximation Ratio: 把编号相邻的箱子配对, 考虑箱子$2i-1$和箱子$2i$。我们打开了箱子$2i$, 说明箱子$2i-1$里面的物品体积之和加上箱子$2i$里面的第一个物品的体积, 必然是大于$1$的，否则按照算法流程会把那个物品放入箱子$2i-1$. 假设按照算法流程用了$K$个箱子, 装入最后一个箱子的第一个物品编号是$L$. 那么有$OPT \geq \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \gt \lfloor \frac{K}{2} \rfloor \geq \frac{K-1}{2}$, 即$K \lt 2OPT+1$, 也就是$K \leq 2OPT$.</li>
-<li>Tightness: 课程没有给出一个具体的例子, 我google到了一份<a href="https://sites.cs.ucsb.edu/~teo/cs130b.w15/bp.pdf" target="_blank" rel="noopener">资料</a>, 里面给出了一个$2OPT-2$的例子: 一共$4n$个物品, 满足$s_{2i-1} = \frac{1}{2}, s_{2i} = \frac{1}{2n}$. 显然$OPT = n+1$, 而Next Fit给出的结果是$2n$.</li>
+<li>Approximation Ratio: 把编号相邻的箱子配对, 考虑箱子$2i-1$和箱子$2i$。我们打开了箱子$2i$, 说明箱子$2i-1$里面的物品体积之和加上箱子$2i$里面的第一个物品的体积, 必然是大于$1$的，否则按照算法流程会把那个物品放入箱子$2i-1$. 假设按照算法流程用了$K$个箱子, 装入最后一个箱子的第一个物品编号是$L$. 那么有<script type="math/tex; mode=display">OPT \geq \lceil \sum\limits_{i=1}^{N}{s_i} \rceil \geq \lceil \sum\limits_{i=1}^{L-1}{s_i} \rceil</script>因为<script type="math/tex">\sum\limits_{i=1}^{L-1}{s_i} \gt \lfloor \frac{K}{2} \rfloor</script>, $\lfloor \frac{K}{2} \rfloor$是整数，所以<script type="math/tex; mode=display">\lfloor \frac{K}{2} \rfloor \leq \lceil \sum\limits_{i=1}^{L-1}{s_i} \rceil - 1</script>综合一下有<script type="math/tex; mode=display">\frac{K-1}{2} \leq \lfloor \frac{K}{2} \rfloor \leq OPT-1</script>即<script type="math/tex; mode=display">K \leq 2OPT-1</script></li>
+<li>Tightness: 一个$2OPT-2$的例子: 一共$4n$个物品, 满足$s_{2i-1} = \frac{1}{2}, s_{2i} = \frac{1}{2n}$. 显然$OPT = n+1$, 而Next Fit给出的结果是$2n$.</li>
 <li>Special Case: 所有物品的$s_i \lt \frac{1}{3}$. <ul>
-<li>Analysis: 当关闭一个箱子的时候(除了最后一个箱子), 这个箱子里面物品体积之和必然$\geq \frac{2}{3}$, 否则还可以接着装物品。 假设用了$K$个箱子, 第一个装入第$K$个的物品编号是$L$, 那么有$OPT \gt \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \geq \frac{2}{3}(K-1)$. 因此有$K \leq \frac{3}{2}OPT$。</li>
+<li>Analysis: 当关闭一个箱子的时候(除了最后一个箱子), 这个箱子里面物品体积之和必然$\geq \frac{2}{3}$, 否则还可以接着装物品。 假设用了$K$个箱子, 第一个装入第$K$个的物品编号是$L$, 那么有<script type="math/tex; mode=display">OPT \gt \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \geq \frac{2}{3}(K-1)</script>因此<script type="math/tex; mode=display">K \leq \frac{3}{2}OPT</script></li>
 <li>相应地，可以推导所有物品的$s_i \lt \epsilon$的时候,  有$K \leq \frac{1}{1-\epsilon}OPT$。</li>
 </ul>
 </li>
@@ -500,8 +500,8 @@
 </ul>
 </li>
 <li>Analysis: <ul>
-<li>假设没有开新的箱子，那么有:<br>$output(All) = output(Large) \leq (1+\epsilon)OPT(Large) \leq (1+\epsilon)OPT(All)$.</li>
-<li>假设开了新的箱子, 那么除了最后一个箱子, 其他箱子里面装的物品体积之和肯定$\gt 1-\epsilon$。那么有$OPT(All) \gt (1-\epsilon) (output(All)-1)$, 即$output(All) \leq \frac{1}{1-\epsilon}OPT(All)$. </li>
+<li>假设没有开新的箱子，那么有:<script type="math/tex; mode=display">output(All) = output(Large) \leq (1+\epsilon)OPT(Large) \leq (1+\epsilon)OPT(All)</script></li>
+<li>假设开了新的箱子, 那么除了最后一个箱子, 其他箱子里面装的物品体积之和肯定$\gt 1-\epsilon$。那么有<script type="math/tex; mode=display">OPT(All) \gt (1-\epsilon) (output(All)-1)</script>  即<script type="math/tex; mode=display">output(All) \leq \frac{1}{1-\epsilon}OPT(All)</script></li>
 <li>$\frac{1}{1-\epsilon} = 1+\epsilon+\epsilon^2+\epsilon^3\cdots$, 所以$\frac{1}{1-\epsilon} \geq 1+\epsilon$. 综合一下就是$output(All) \leq \frac{1}{1-\epsilon} OPT(All)$.</li>
 </ul>
 </li>
@@ -536,7 +536,7 @@ Theorem: Partition Problem is NP-complete.</li>
 <li>FFD Algorithm: 将物品按size从大到小排序后用First-Fit原则放入箱子。</li>
 <li>Proof: 这个问题是目前为止的习题中想的最久的…题目的$\frac{3}{2}$还是有点提示性的。<ul>
 <li>考虑最后一个箱子的第一个物品, 假设它的编号是$L$。</li>
-<li>如果$s_L \leq \frac{1}{3}$, 因为除了最后一个箱子，前面的每个箱子都装不下它，所以前面的每个箱子里面装的体积都$\gt \frac{2}{3}$，从而有$OPT \geq \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \gt \frac{2}{3}(output(FFD)-1)$, 即$output(FFD) \leq \frac{3}{2}OPT$.</li>
+<li>如果$s_L \leq \frac{1}{3}$, 因为除了最后一个箱子，前面的每个箱子都装不下它，所以前面的每个箱子里面装的体积都$\gt \frac{2}{3}$，从而有<script type="math/tex; mode=display">OPT \geq \sum\limits_{i=1}^{N}{s_i} \gt \sum\limits_{i=1}^{L-1}{s_i} \gt \frac{2}{3}(output(FFD)-1)</script>即<script type="math/tex; mode=display">output(FFD) \leq \frac{3}{2}OPT</script></li>
 <li>如果$s_L \gt \frac{1}{3}$, 那么对任意$i \leq L$, $s_i \gt \frac{1}{3}$。也就是说前$L$个物品, 一个箱子最多只能装2个。此时问题等价于：让尽可能少的物品独占一个箱子，即将尽可能多的物品配对装到箱子里。可以证明，在这个情境下, FFD的结果就是最优解, 即$output(FFD) = OPT$.证明如下：<ul>
 <li>脑补一下, FFD的过程等价于：<ol>
 <li>将 $\{s_i\}$ 从大到小排序.</li>
