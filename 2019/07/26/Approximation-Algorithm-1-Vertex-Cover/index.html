@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-<meta property="og:updated_time" content="2019-07-28T12:21:50.276Z">
+<meta property="og:updated_time" content="2019-07-31T12:10:44.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
 <meta name="twitter:description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-28 20:21:50" itemprop="dateModified" datetime="2019-07-28T20:21:50+08:00">2019-07-28</time>
+                <time title="修改时间：2019-07-31 20:10:44" itemprop="dateModified" datetime="2019-07-31T20:10:44+08:00">2019-07-31</time>
               </span>
             
           
@@ -507,27 +507,27 @@
 <ul>
 <li>习题1.  分析下面的点覆盖算法：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 <ul>
-<li>Algorithm: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
-<li>Proof of Correctness： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
-<li>Appromation Ratio： 因为匹配边之间没有公共点，所以$OPT \geq 匹配数 = \frac{1}{2}|S|$， 即$|S| \leq 2 OPT$。</li>
-<li>Tightness: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
+<li><strong>Algorithm</strong>: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
+<li><strong>Proof of Correctness</strong>： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
+<li><strong>Appromation Ratio</strong>： 因为匹配边之间没有公共点，所以$OPT \geq 匹配数 = \frac{1}{2}|S|$， 即$|S| \leq 2 OPT$。</li>
+<li><strong>Tightness</strong>: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
 </ul>
 </li>
 <li>习题2：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
 <ul>
-<li>Algorithm: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
-<li>Linear Program:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
-<li>Rounding: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令$x_i = [x_i’ \geq \frac{1}{3}]$.</li>
-<li>Appromation Ratio: 类似上面最小点覆盖的证明，$x_i \leq 3x_i’$, 可以推出这样求出的答案不超过最优解的3倍.</li>
-<li>Tightness: 考虑一个三元环，线性规划实数解会求出一个最优解是$x_1’ = x_2’ = x_3’ = \frac{1}{3}$, rounding 一下变成$x_1 = x_2 = x_3 = 1$， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
+<li><strong>Algorithm</strong>: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
+<li><strong>Linear Program</strong>:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
+<li><strong>Rounding</strong>: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令$x_i = [x_i’ \geq \frac{1}{3}]$.</li>
+<li><strong>Appromation Ratio</strong>: 类似上面最小点覆盖的证明，$x_i \leq 3x_i’$, 可以推出这样求出的答案不超过最优解的3倍.</li>
+<li><strong>Tightness</strong>: 考虑一个三元环，线性规划实数解会求出一个最优解是$x_1’ = x_2’ = x_3’ = \frac{1}{3}$, rounding 一下变成$x_1 = x_2 = x_3 = 1$， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
 </ul>
 </li>
 </ul>
 <h4 id="互评作业："><a href="#互评作业：" class="headerlink" title="互评作业："></a>互评作业：</h4><p>分析下面的算法。</p>
 <ul>
 <li>补充知识: <ul>
-<li>Lemma: 最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (<strong>Half Integrality</strong>)。   </li>
-<li>Proof：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：<script type="math/tex; mode=display">\begin{equation} 
+<li><strong>Lemma</strong>: 最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (<strong>Half Integrality</strong>)。   </li>
+<li><strong>Proof</strong>：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：<script type="math/tex; mode=display">\begin{equation} 
 y_i = \left\{ 
 \begin{array}{lr} 
 x_i, & x_i \in \{0, 0.5, 1\}\\ 
@@ -545,7 +545,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 </li>
 <li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
 <ul>
-<li>算法流程：<ol>
+<li><strong>Algorithm</strong>：<ol>
 <li>将图四染色。</li>
 <li>做一次实数线性规划，并把解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
 <li>将所有$x_i = 1$的点加入答案集合$S$.</li>
@@ -553,13 +553,13 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 <li>将$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}$加入答案集合$S$.</li>
 </ol>
 </li>
-<li>Proof of Correctress：<br>考虑边$(u, v)$, 有 $x_u+x_v \geq 1$.<ol>
+<li><strong>Proof of Correctress</strong>：<br>考虑边$(u, v)$, 有 $x_u+x_v \geq 1$.<ol>
 <li>如果$x_u, x_v$有一个为1，那么那个点在$S$中，这条边被覆盖。</li>
 <li>如果$x_u, x_v$有一个为0，另一个肯定为1，那么那个点在$S$中，这条边被覆盖。</li>
 <li>剩下一种$x_u = x_v = \frac{1}{2}$的情况。因为它们相邻，所以颜色不同，因此不会都在$V_3^{\frac{1}{2}}$里，所以至少有一个点在$S$中。</li>
 </ol>
 </li>
-<li>Approximation Ratio：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
+<li><strong>Approximation Ratio</strong>：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
 </li>
 </ul>
 </li>
