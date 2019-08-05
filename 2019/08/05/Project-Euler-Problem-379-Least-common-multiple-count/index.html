@@ -99,23 +99,18 @@
   };
 </script>
 
-  <meta name="description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
-<meta name="keywords" content="Approximation Algorithms">
+  <meta name="description" content="Project Euler Problem 379 Least common multiple countProblem:求有多少正整数对$(x, y)$满足$x \leq y$并且$x, y$的最小公倍数$\leq 10^{12}$. Solution:为了方便，先去掉$x \leq y$的限制: 设$N = 10^{12}$, 那么原问题的答案 = (去掉 $x\leq y$的限制后的答案+N">
+<meta name="keywords" content="Number Theory,Project Euler">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/index.html">
+<meta property="og:title" content="Project Euler Problem 379 Least common multiple count">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
-<meta property="og:description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
+<meta property="og:description" content="Project Euler Problem 379 Least common multiple countProblem:求有多少正整数对$(x, y)$满足$x \leq y$并且$x, y$的最小公倍数$\leq 10^{12}$. Solution:为了方便，先去掉$x \leq y$的限制: 设$N = 10^{12}$, 那么原问题的答案 = (去掉 $x\leq y$的限制后的答案+N">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-<meta property="og:updated_time" content="2019-07-31T12:10:44.472Z">
+<meta property="og:updated_time" content="2019-08-05T14:57:07.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta name="twitter:description" content="最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示，最">
-<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<meta name="twitter:title" content="Project Euler Problem 379 Least common multiple count">
+<meta name="twitter:description" content="Project Euler Problem 379 Least common multiple countProblem:求有多少正整数对$(x, y)$满足$x \leq y$并且$x, y$的最小公倍数$\leq 10^{12}$. Solution:为了方便，先去掉$x \leq y$的限制: 设$N = 10^{12}$, 那么原问题的答案 = (去掉 $x\leq y$的限制后的答案+N">
 
 
 
@@ -125,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/">
 
 
 
@@ -136,7 +131,7 @@
 </script>
 
   
-  <title>Approximation Algorithm(1)-Vertex Cover | zhenweiliu's blog</title>
+  <title>Project Euler Problem 379 Least common multiple count | zhenweiliu's blog</title>
   
 
 
@@ -341,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -358,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(1)-Vertex Cover
+          <h1 class="post-title" itemprop="name headline">Project Euler Problem 379 Least common multiple count
 
               
             
@@ -384,23 +379,13 @@
                 
               
 
-              <time title="创建时间：2019-07-26 16:27:55" itemprop="dateCreated datePublished" datetime="2019-07-26T16:27:55+08:00">2019-07-26</time>
+              <time title="创建时间：2019-08-05 22:52:51 / 修改时间：22:57:07" itemprop="dateCreated datePublished" datetime="2019-08-05T22:52:51+08:00">2019-08-05</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-31 20:10:44" itemprop="dateModified" datetime="2019-07-31T20:10:44+08:00">2019-07-31</time>
-              </span>
             
           
 
@@ -423,7 +408,7 @@
 
           
           
-            <span id="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(1)-Vertex Cover">
+            <span id="/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/" class="post-meta-item leancloud_visitors" data-flag-title="Project Euler Problem 379 Least common multiple count">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -448,8 +433,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" itemprop="commentCount"></span>
+    <a href="/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -476,95 +461,47 @@
       
 
       
-        <p>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。<br>在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
-<h3 id="Week-1-Vertex-Cover"><a href="#Week-1-Vertex-Cover" class="headerlink" title="Week 1: Vertex Cover"></a>Week 1: Vertex Cover</h3><h4 id="Problem-Definition："><a href="#Problem-Definition：" class="headerlink" title="Problem Definition："></a>Problem Definition：</h4><p>最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。</p>
-<h4 id="已有知识："><a href="#已有知识：" class="headerlink" title="已有知识："></a>已有知识：</h4><ol>
-<li>树的最小点覆盖很容易用$O(|V|)$的时间求出:</li>
-<li>动态规划：$dp[v][0/1]$ 表示，最少需要多少个点来覆盖以$v$为根的子树，第二维$0/1$表示$v$和它父亲节点之间的边是否已经被覆盖, 转移考虑点$v$选还是不选，从子树的结果转移即可。</li>
-<li>贪心：从叶子节点考虑，每个叶子节点和它父亲的边必须要被覆盖，为了覆盖这条边，显然选叶子节点不如还选它的父亲。所以只要将节点按深度从大到小排序，依次考虑，如果当前节点和它父亲之间的边未被覆盖，就选择它的父亲。</li>
-<li>算法与数据结构课上讲到的local search的方法。 </li>
-</ol>
-<h4 id="课程内容："><a href="#课程内容：" class="headerlink" title="课程内容："></a>课程内容：</h4><ul>
-<li>一般图的最小点覆盖是NP-Hard的，证明留坑。</li>
-<li><p>点覆盖问题转整数线性规划：</p>
+        <h2 id="Project-Euler-Problem-379-Least-common-multiple-count"><a href="#Project-Euler-Problem-379-Least-common-multiple-count" class="headerlink" title="Project Euler Problem 379 Least common multiple count"></a>Project Euler Problem 379 Least common multiple count</h2><h4 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h4><p>求有多少正整数对$(x, y)$满足$x \leq y$并且$x, y$的最小公倍数$\leq 10^{12}$.</p>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h4><p>为了方便，先去掉$x \leq y$的限制:</p>
+<p>设$N = 10^{12}$, 那么原问题的答案 = (去掉 $x\leq y$的限制后的答案+N) / 2.  </p>
+<p>枚举$(x, y)$的最大公约数$d$,即$x = id, y = jd$, 最小公倍数就是$ijd$, 当然还要求$i, j$互质。</p>
+<p>令$[expression]$表示当表达式为真的时候是1，否则是0。</p>
+<p>$(i, j)$表示$i,j$的最大公约数)。</p>
+<p>$h(n) = \sum\limits_{i=1}\sum\limits_{j=1}\lfloor\frac{n}{ij} \rfloor$。</p>
+<p>利用莫比乌斯函数容斥去掉$i, j$互质的限制。</p>
+<p>要求的就是下面的式子：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+answer &=\sum\limits_{i=1}^{N}\sum\limits_{j = 1}^{N}\sum\limits_{d}[(i, j) = 1](ijd\leq N) \\ 
+&= \sum\limits_{i=1}^{N}\sum\limits_{j = 1}^{N}[(i, j) = 1]\lfloor\frac{N}{ij} \rfloor \\
+&= \sum\limits_{d=1}^{N}\mu(d)\sum\limits_{i=1}\sum\limits_{j=1}\lfloor\frac{N}{ijd^2} \rfloor\\
+&= \sum\limits_{d=1}^{N}\mu(d) h(\lfloor \frac{N}{d^2} \rfloor) \\
+&= \sum\limits_{d=1}^{\sqrt {N}}\mu(d) h(\lfloor \frac{N}{d^2} \rfloor)
+\end{split}</script><p>考虑如何算$h(n)$: </p>
+<p>令$hh(n) = \sum\limits_{i=1}^{n}{\lfloor \frac{n}{i}\rfloor}$。</p>
+<script type="math/tex; mode=display">
+\begin{split}
+h(n) &=  \sum\limits_{i=1}\sum\limits_{j=1}\lfloor\frac{n}{ij} \rfloor \\
+&= \sum\limits_{i=1}^{n}{hh(\lfloor \frac{n}{i}\rfloor)}
+\end{split}</script><p>$hh(n)$可以在$O(\sqrt n)$的时间内计算(根据$\lfloor \frac{n}{i} \rfloor$只有$O(\sqrt n)$种不同的取值分段计算)。</p>
+<p>同理, $h(n)$也可以根据$\lfloor \frac{n}{i} \rfloor$的值分段计算, 复杂度是$O(n^{\frac{3}{4}})$.</p>
+<p>复杂度推导:</p>
 <ul>
-<li>$|V|$个$0/1$变量,对应每个点选还是不选，$|E|$个条件，表示每条边必须被覆盖，目标函数是$\sum{x_i}$, 如果每个点带点权，则应是$\sum{w_i x_i}$.</li>
-<li>如何用一个不等式来表示某条边必须被覆盖？ 假设某条边的端点分别是$u$和$v$， 对应条件$x_u + x_v \geq 1$， 即$x_u, x_v$至少有一个是$1$.</li>
-<li>遗憾的是，整数线性规划并没有多项式算法，不过实数线性规划存在多项式算法。</li>
-</ul>
+<li><p>当$i \geq \sqrt n$的时候,  $\lfloor \frac{n}{i} \rfloor \leq \sqrt n$, 对时间复杂度的贡献不超过$\sum\limits_{i=1}^{\sqrt n}{O(\sqrt i)}$, $\sum\limits_{i=1}^{\sqrt n }{\sqrt i} \leq  \int\limits_{1}^{\sqrt n + 1}{\sqrt x  dx} = O(n^{\frac{3}{4}})$</p>
 </li>
-<li><p>近似算法：</p>
-<ul>
-<li><strong>Idea</strong>：放宽条件，允许$x_i$不是整数，但需要满足$x_i \in [0, 1]$. 在该条件下用实数线性规划的做法，求出最优解$X’$，将该最优解通过某种办法改造成原线性规划问题的最优解 $X$.</li>
-<li><strong>Solution</strong>:  把实数线性规划的解做一个“四舍五入”， 即令$x_i =  [x_i’  \geq 0.5]$.</li>
-<li><strong>Proof of Correctness</strong>:  我们还需要证明，得到的解确实是一个点覆盖，即对于任意边$(u, v)$, 需要满足 $x_u + x_v \geq 1$. 证明很简单，因为$x_u’ + x_v’ \ge 1$, 那么$x_u’, x_v’$至少有一个$\geq 0.5$, 所以$x_u, x_v$至少有一个是$1$.</li>
-<li><strong>Approximation Ratio</strong>: 一个重要的性质是$x_i \leq 2x_i’$.  因此 $W(X) \leq 2W(X’) $. 而$X’$是放宽条件之后的最优解，肯定不会大于原问题的最优解，所以有$W(X) \leq 2W(X’) \leq 2OPT$.因此$Appromation \; ratio = 2.$</li>
-<li><strong>Tightness</strong>: 首先考虑一个四元环，每个点的点权相等，显然最优解只需要用2个点。 然而用实数线性规划得到的一个最优解会是$x_1’ = x_2’ = x_3’ = x_4’ = 0.5$, 四舍五入之后$x_1 = x_2 = x_3 = x_4 = 1$. 是最优解的2倍。</li>
-</ul>
+<li><p>当$i \lt \sqrt n$的时候,  对时间复杂度的贡献不超过$\sum\limits_{i=1}^{\sqrt n}{O(\sqrt {\frac{n}{i}})}$,  $\sum\limits_{i=1}^{\sqrt n}{\sqrt {\frac{n}{i}}} \leq \int\limits_{0}^{\sqrt n}{\sqrt{\frac{n}{x}} dx} = O(n^{\frac{3}{4}})$ </p>
 </li>
 </ul>
-<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题:"></a>练习题:</h4><p>官方没有提供答案，以下是我个人答案：</p>
-<ul>
-<li>习题1.  分析下面的点覆盖算法：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<ul>
-<li><strong>Algorithm</strong>: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
-<li><strong>Proof of Correctness</strong>： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
-<li><strong>Appromation Ratio</strong>： 因为匹配边之间没有公共点，所以$OPT \geq 匹配数 = \frac{1}{2}|S|$， 即$|S| \leq 2 OPT$。</li>
-<li><strong>Tightness</strong>: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
-</ul>
-</li>
-<li>习题2：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<ul>
-<li><strong>Algorithm</strong>: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
-<li><strong>Linear Program</strong>:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
-<li><strong>Rounding</strong>: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令$x_i = [x_i’ \geq \frac{1}{3}]$.</li>
-<li><strong>Appromation Ratio</strong>: 类似上面最小点覆盖的证明，$x_i \leq 3x_i’$, 可以推出这样求出的答案不超过最优解的3倍.</li>
-<li><strong>Tightness</strong>: 考虑一个三元环，线性规划实数解会求出一个最优解是$x_1’ = x_2’ = x_3’ = \frac{1}{3}$, rounding 一下变成$x_1 = x_2 = x_3 = 1$， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
-</ul>
-</li>
-</ul>
-<h4 id="互评作业："><a href="#互评作业：" class="headerlink" title="互评作业："></a>互评作业：</h4><p>分析下面的算法。</p>
-<ul>
-<li>补充知识: <ul>
-<li><strong>Lemma</strong>: 最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (<strong>Half Integrality</strong>)。   </li>
-<li><strong>Proof</strong>：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：<script type="math/tex; mode=display">\begin{equation} 
-y_i = \left\{ 
-\begin{array}{lr} 
-x_i, & x_i \in \{0, 0.5, 1\}\\ 
-x_i+ \epsilon, & 0\lt x_i\lt 0.5\\ 
-x_i - \epsilon, & 0.5\lt x_i\lt 1 & 
-\end{array} 
-\right. \end{equation}</script>以及$\{z_i\}$:<script type="math/tex; mode=display">\begin{equation} z_i = \left\{ 
-\begin{array}{lr} 
-x_i, & x_i \in \{0, 0.5, 1\}\\ 
-x_i - \epsilon, & 0\lt x_i\lt 0.5\\ 
-x_i + \epsilon, & 0.5\lt x_i\lt 1 & 
-\end{array} 
-\right. \end{equation}</script>check一下容易发现$\{y_i\}, \{z_i\}$也是线性规划的解。<br>因为$\{x_i\}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$<br>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.<br>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即$\{y_i\}, \{z_i\}$也是最优解。<br>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。<br>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
-</ul>
-</li>
-<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<ul>
-<li><strong>Algorithm</strong>：<ol>
-<li>将图四染色。</li>
-<li>做一次实数线性规划，并把解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
-<li>将所有$x_i = 1$的点加入答案集合$S$.</li>
-<li>将所有$x_i = \frac{1}{2}$的点，按照颜色分类，并按权值和排序。即按颜色分成$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}, V_3^{\frac{1}{2}}$四个集合，满足$W(V_0^{\frac{1}{2}}) \leq W(V_1^{\frac{1}{2}}) \leq W(V_2^{\frac{1}{2}})  \leq W(V_3^{\frac{1}{2}}) $</li>
-<li>将$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}$加入答案集合$S$.</li>
-</ol>
-</li>
-<li><strong>Proof of Correctress</strong>：<br>考虑边$(u, v)$, 有 $x_u+x_v \geq 1$.<ol>
-<li>如果$x_u, x_v$有一个为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>如果$x_u, x_v$有一个为0，另一个肯定为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>剩下一种$x_u = x_v = \frac{1}{2}$的情况。因为它们相邻，所以颜色不同，因此不会都在$V_3^{\frac{1}{2}}$里，所以至少有一个点在$S$中。</li>
-</ol>
-</li>
-<li><strong>Approximation Ratio</strong>：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-</li>
-</ul>
-</li>
-</ul>
-
+<p>因此总复杂度是$O(n^{\frac{3}{4}})$.</p>
+<p>计算总答案$answer =\sum\limits_{d=1}^{\sqrt {N}}\mu(d) h(\lfloor \frac{N}{d^2} \rfloor)$的复杂度：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\sum\limits_{d=1}^{\sqrt {N}}{(\frac{N}{d^2})^{\frac{3}{4}}} &= N^{\frac{3}{4}} \sum\limits_{d=1}^{\sqrt {N}}{d^{-\frac{3}{2}}} \\
+&\leq N^{\frac{3}{4}} \int\limits_{0}^{\sqrt N}{x^{-\frac{3}{2}} dx} \\
+&= O(N^{\frac{3}{4}})
+\end{split}</script><h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation:"></a>Implementation:</h4><p>在我的机子上大约需要跑5min。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIM = <span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">int</span> flag[LIM], p[LIM], mu[LIM];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">hh</span><span class="params">(LL n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LL ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (LL l = <span class="number">1</span>, r; l &lt;= n; l = r + <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r = n / (n/l);</span><br><span class="line">		ret += (r-l+<span class="number">1</span>) * (n/l); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">h</span><span class="params">(LL n)</span> <span class="comment">// h(n) = sum(n/ij)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LL ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (LL l = <span class="number">1</span>, r; l &lt;= n; l = r + <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r = n / (n/l);</span><br><span class="line">		ret += (r-l+<span class="number">1</span>) * hh(n/l); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; LIM; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!flag[i]) mu[i] = <span class="number">-1</span>, p[++p[<span class="number">0</span>]] = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= p[<span class="number">0</span>] &amp;&amp; i*p[j] &lt; LIM; ++j)</span><br><span class="line">		&#123;</span><br><span class="line">			flag[i*p[j]] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (i % p[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">			mu[i*p[j]] = -mu[i];</span><br><span class="line">		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">	</span><br><span class="line"> 	LL n = <span class="number">1e12</span>, ans = <span class="number">0</span>; </span><br><span class="line"> 	<span class="keyword">for</span> (LL d = <span class="number">1</span>; d*d &lt;= n; ++d)</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		<span class="keyword">if</span> (!mu[d]) <span class="keyword">continue</span>;</span><br><span class="line"> 		ans += mu[d] * h(n/d/d);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	ans = (ans+n) / <span class="number">2</span>;</span><br><span class="line"> 	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="More-Efficient-Solution"><a href="#More-Efficient-Solution" class="headerlink" title="More Efficient Solution:"></a>More Efficient Solution:</h4>
       
     </div>
 
@@ -594,7 +531,9 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+            <a href="/blog/tags/Number-Theory/" rel="tag"># Number Theory</a>
+          
+            <a href="/blog/tags/Project-Euler/" rel="tag"># Project Euler</a>
           
         </div>
       
@@ -607,15 +546,15 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2019/08/02/一些有趣的东西/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="prev" title="Approximation Algorithm(2)-The Knapsack Problem">
-                Approximation Algorithm(2)-The Knapsack Problem <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -791,7 +730,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Week-1-Vertex-Cover"><span class="nav-number">1.</span> <span class="nav-text">Week 1: Vertex Cover</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition："><span class="nav-number">1.1.</span> <span class="nav-text">Problem Definition：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已有知识："><span class="nav-number">1.2.</span> <span class="nav-text">已有知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">1.3.</span> <span class="nav-text">课程内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">1.4.</span> <span class="nav-text">练习题:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互评作业："><span class="nav-number">1.5.</span> <span class="nav-text">互评作业：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Euler-Problem-379-Least-common-multiple-count"><span class="nav-number">1.</span> <span class="nav-text">Project Euler Problem 379 Least common multiple count</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem"><span class="nav-number">1.0.1.</span> <span class="nav-text">Problem:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.2.</span> <span class="nav-text">Solution:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementation"><span class="nav-number">1.0.3.</span> <span class="nav-text">Implementation:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#More-Efficient-Solution"><span class="nav-number">1.0.4.</span> <span class="nav-text">More Efficient Solution:</span></a></li></ol></li></ol></div>
             
 
           </div>
