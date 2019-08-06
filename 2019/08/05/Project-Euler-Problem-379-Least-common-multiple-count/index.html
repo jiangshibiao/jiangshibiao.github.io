@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="Problem:求有多少正整数对$(x, y)$满足$x \leq y$并且$x, y$的最小公倍数$\leq 10^{12}$. Solution:为了方便，先去掉$x \leq y$的限制: 设$N = 10^{12}$, 那么原问题的答案 = (去掉 $x\leq y$的限制后的答案+N) / 2.   枚举$(x, y)$的最大公约数$d$,即$x = id, y = jd$, 最小公倍数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-06T08:18:30.805Z">
+<meta property="og:updated_time" content="2019-08-06T08:20:40.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 379 Least common multiple count">
 <meta name="twitter:description" content="Problem:求有多少正整数对$(x, y)$满足$x \leq y$并且$x, y$的最小公倍数$\leq 10^{12}$. Solution:为了方便，先去掉$x \leq y$的限制: 设$N = 10^{12}$, 那么原问题的答案 = (去掉 $x\leq y$的限制后的答案+N) / 2.   枚举$(x, y)$的最大公约数$d$,即$x = id, y = jd$, 最小公倍数">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-06 16:18:30" itemprop="dateModified" datetime="2019-08-06T16:18:30+08:00">2019-08-06</time>
+                <time title="修改时间：2019-08-06 16:20:40" itemprop="dateModified" datetime="2019-08-06T16:20:40+08:00">2019-08-06</time>
               </span>
             
           
@@ -491,7 +491,7 @@ answer &=\sum\limits_{i=1}^{N}\sum\limits_{j = 1}^{N}\sum\limits_{d}[(i, j) = 1]
 <p>令$hh(n) = \sum\limits_{i=1}^{n}{\lfloor \frac{n}{i}\rfloor}$。</p>
 <script type="math/tex; mode=display">
 \begin{split}
-h(n) &=  \sum\limits_{i=1}\sum\limits_{j=1}\lfloor\frac{n}{ij} \rfloor \\
+h(n) &=  \sum\limits_{i\geq 1}\sum\limits_{j\geq 1}\lfloor\frac{n}{ij} \rfloor \\
 &= \sum\limits_{i=1}^{n}{hh(\lfloor \frac{n}{i}\rfloor)}
 \end{split}</script><p>$hh(n)$可以在$O(\sqrt n)$的时间内计算(根据$\lfloor \frac{n}{i} \rfloor$只有$O(\sqrt n)$种不同的取值分段计算)。</p>
 <p>同理, $h(n)$也可以根据$\lfloor \frac{n}{i} \rfloor$的值分段计算, 复杂度是$O(n^{\frac{3}{4}})$.</p>
