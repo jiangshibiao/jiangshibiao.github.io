@@ -68,6 +68,28 @@
   </entry>
   
   <entry>
+    <title>Interesting Ideas</title>
+    <link href="http://zhenweiliu.gitee.io/blog/2019/08/05/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E4%B8%9C%E8%A5%BF/"/>
+    <id>http://zhenweiliu.gitee.io/blog/2019/08/05/一些有趣的东西/</id>
+    <published>2019-08-05T14:52:51.000Z</published>
+    <updated>2019-08-05T15:42:09.396Z</updated>
+    
+    <content type="html"><![CDATA[<p>数轴上一个人，一半的概率往左走一步，一半的概率往右走一步，期望多少次从i走到i+1.<br>x 表示 往右走一步的期望  x = 0.5 + 0.5 * (x+x)  x = inf。</p><p><a href="http://blog.sina.com.cn/s/blog_a661ecd501014dw1.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_a661ecd501014dw1.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;数轴上一个人，一半的概率往左走一步，一半的概率往右走一步，期望多少次从i走到i+1.&lt;br&gt;x 表示 往右走一步的期望  x = 0.5 + 0.5 * (x+x)  x = inf。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/bl
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Project Euler Problem 379 Least common multiple count</title>
     <link href="http://zhenweiliu.gitee.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/"/>
     <id>http://zhenweiliu.gitee.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/</id>
@@ -91,28 +113,6 @@
       <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
     
       <category term="Number Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Number-Theory/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Interesting Ideas</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/05/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E4%B8%9C%E8%A5%BF/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/05/一些有趣的东西/</id>
-    <published>2019-08-05T14:52:51.000Z</published>
-    <updated>2019-08-05T15:42:09.396Z</updated>
-    
-    <content type="html"><![CDATA[<p>数轴上一个人，一半的概率往左走一步，一半的概率往右走一步，期望多少次从i走到i+1.<br>x 表示 往右走一步的期望  x = 0.5 + 0.5 * (x+x)  x = inf。</p><p><a href="http://blog.sina.com.cn/s/blog_a661ecd501014dw1.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_a661ecd501014dw1.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;数轴上一个人，一半的概率往左走一步，一半的概率往右走一步，期望多少次从i走到i+1.&lt;br&gt;x 表示 往右走一步的期望  x = 0.5 + 0.5 * (x+x)  x = inf。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/bl
-      
-    
-    </summary>
-    
     
   </entry>
   
