@@ -99,22 +99,22 @@
   };
 </script>
 
-  <meta name="description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示">
+  <meta name="description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Approximation Algorithm(1)-Vertex Cover">
 <meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
-<meta property="og:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示">
+<meta property="og:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-<meta property="og:updated_time" content="2019-08-05T15:54:48.856Z">
+<meta property="og:updated_time" content="2019-08-13T03:41:14.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta name="twitter:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex CoverProblem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表示">
+<meta name="twitter:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
 <meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 
 
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-05 23:54:48" itemprop="dateModified" datetime="2019-08-05T23:54:48+08:00">2019-08-05</time>
+                <time title="修改时间：2019-08-13 11:41:14" itemprop="dateModified" datetime="2019-08-13T11:41:14+08:00">2019-08-13</time>
               </span>
             
           
@@ -477,7 +477,8 @@
 
       
         <p><strong>前言</strong><br>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。<br>在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
-<h3 id="Week-1-Vertex-Cover"><a href="#Week-1-Vertex-Cover" class="headerlink" title="Week 1: Vertex Cover"></a>Week 1: Vertex Cover</h3><h4 id="Problem-Definition："><a href="#Problem-Definition：" class="headerlink" title="Problem Definition："></a>Problem Definition：</h4><p>最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。</p>
+<p><strong>Week 1: Vertex Cover</strong></p>
+<h4 id="Problem-Definition："><a href="#Problem-Definition：" class="headerlink" title="Problem Definition："></a>Problem Definition：</h4><p>最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。</p>
 <h4 id="已有知识："><a href="#已有知识：" class="headerlink" title="已有知识："></a>已有知识：</h4><ol>
 <li>树的最小点覆盖很容易用$O(|V|)$的时间求出:</li>
 <li>动态规划：$dp[v][0/1]$ 表示，最少需要多少个点来覆盖以$v$为根的子树，第二维$0/1$表示$v$和它父亲节点之间的边是否已经被覆盖, 转移考虑点$v$选还是不选，从子树的结果转移即可。</li>
@@ -686,7 +687,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -799,7 +800,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Week-1-Vertex-Cover"><span class="nav-number">1.</span> <span class="nav-text">Week 1: Vertex Cover</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition："><span class="nav-number">1.1.</span> <span class="nav-text">Problem Definition：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已有知识："><span class="nav-number">1.2.</span> <span class="nav-text">已有知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">1.3.</span> <span class="nav-text">课程内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">1.4.</span> <span class="nav-text">练习题:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互评作业："><span class="nav-number">1.5.</span> <span class="nav-text">互评作业：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition："><span class="nav-number">1.</span> <span class="nav-text">Problem Definition：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已有知识："><span class="nav-number">2.</span> <span class="nav-text">已有知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">3.</span> <span class="nav-text">课程内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">4.</span> <span class="nav-text">练习题:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互评作业："><span class="nav-number">5.</span> <span class="nav-text">互评作业：</span></a></li></ol></div>
             
 
           </div>

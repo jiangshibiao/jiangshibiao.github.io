@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="f2MopcIYUE_Fr5pQ8Rep3fUF9Pe_obIDhqvtZCyQMrI">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","width":250,"display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/blog/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Week 5: The MultiwayCut Problem Problem Definition给出一个边权非负的无向图$G = (V, E)$, 其中有$k$个顶点是terminals(之后记为$a_1 \cdots a_k, A := \{a_i\}$)。删掉边集$E’ \subset E$, 使得这$k$个顶点互相不连通，要求$weight(E’)$尽可能小。 Trivial Case:">
+<meta name="keywords" content="Approximation Algorithms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Approximation-Algorithm-5-The MultiwayCut Problem">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/index.html">
+<meta property="og:site_name" content="zhenweiliu&#39;s blog">
+<meta property="og:description" content="Week 5: The MultiwayCut Problem Problem Definition给出一个边权非负的无向图$G = (V, E)$, 其中有$k$个顶点是terminals(之后记为$a_1 \cdots a_k, A := \{a_i\}$)。删掉边集$E’ \subset E$, 使得这$k$个顶点互相不连通，要求$weight(E’)$尽可能小。 Trivial Case:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/2.jpg">
+<meta property="og:updated_time" content="2019-08-15T04:45:32.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Approximation-Algorithm-5-The MultiwayCut Problem">
+<meta name="twitter:description" content="Week 5: The MultiwayCut Problem Problem Definition给出一个边权非负的无向图$G = (V, E)$, 其中有$k$个顶点是terminals(之后记为$a_1 \cdots a_k, A := \{a_i\}$)。删掉边集$E’ \subset E$, 使得这$k$个顶点互相不连通，要求$weight(E’)$尽可能小。 Trivial Case:">
+<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/2.jpg">
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="zhenweiliu's blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>Approximation-Algorithm-5-The MultiwayCut Problem | zhenweiliu's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhenweiliu's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenweiliu's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Approximation-Algorithm-5-The MultiwayCut Problem
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-13 11:39:39" itemprop="dateCreated datePublished" datetime="2019-08-13T11:39:39+08:00">2019-08-13</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-15 12:45:32" itemprop="dateModified" datetime="2019-08-15T12:45:32+08:00">2019-08-15</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+            <span id="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation-Algorithm-5-The MultiwayCut Problem">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Week 5: The MultiwayCut Problem</strong></p>
+<h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>给出一个边权非负的无向图$G = (V, E)$, 其中有$k$个顶点是terminals(之后记为$a_1 \cdots a_k, A := \{a_i\}$)。删掉边集$E’ \subset E$, 使得这$k$个顶点互相不连通，要求$weight(E’)$尽可能小。</p>
+<h4 id="Trivial-Case-k-2"><a href="#Trivial-Case-k-2" class="headerlink" title="Trivial Case: $k= 2$"></a>Trivial Case: $k= 2$</h4><p>经典问题，最大流=最小割，分别以两个terminals为源点和汇点做最大流。</p>
+<h4 id="Small-Case-k-3"><a href="#Small-Case-k-3" class="headerlink" title="Small Case: $k=3$"></a>Small Case: $k=3$</h4><p>假设3个terminals分别是$a, b, c$, 考虑怎么把$k=2$的做法利用起来。 </p>
+<p>$mincut(S_1, S_2)$表示把$V$分成两个不相交集合$V_1,V_2$,并且$S_1 \subset V_1, S_2 \subset V_2$的最小割。</p>
+<p>如何计算$mincut(S_1, S_2)$? 稍微熟悉网络流模型的就可以想到只要新建一个超级源向所有$S_1$中的点连容量无穷的边, 一个超级汇连容量无穷的边到所有$S_2$中的点跑网络流。</p>
+<p>考虑$mincut(\{a\}, \{b,c\}), mincut(\{b\}, \{a,c\}), mincut(\{c\}, \{a,b\})$这三种割。容易证明随便选2个并起来一定可以把$a,b,c$分开来，那么肯定选代价小的2个。</p>
+<p>分析一下近似度：</p>
+<p>最优解肯定不会小于上面3个cut的任意一个，因此</p>
+<script type="math/tex; mode=display">
+OPT \geq \frac{1}{3}(mincut(\{a\}, \{b,c\}) + mincut(\{b\}, \{a,c\})+ mincut(\{c\}, \{a,b\}))</script><p>而我们选的是较小的2个，因此</p>
+<script type="math/tex; mode=display">
+value(output) \leq \frac{2}{3}(mincut(\{a\}, \{b,c\}) + mincut(\{b\}, \{a,c\})+ mincut(\{c\}, \{a,b\}))</script><p>容易得到$value(output) \leq 2OPT$.</p>
+<h4 id="General-Cases"><a href="#General-Cases" class="headerlink" title="General Cases"></a>General Cases</h4><p>记$mincut_i := mincut(a_i, A \backslash a_i)$, 从$k=3$的情况容易扩展成选$mincut_1 \cdots mincut_k$中较小的$k-1$个作为答案。</p>
+<p>用类似上面的方法分析很容易得到一个$value(output) \leq (k-1)OPT$的bound，不过进一步法分析还可以得到更紧的bound。</p>
+<p>首先因为取的是最小的$k-1$个，肯定比随便取$k-1$个要好。随便取$k-1$个有$k$种方案，这$k$种方案的价值之和是$(k-1)\sum_i{mincut_i}$, 所以</p>
+<script type="math/tex; mode=display">
+value(output) \leq \frac{k-1}{k}\sum_i{mincut_i}</script><p>最优解OPT把原图分成了若干个联通块，设$a_i$所在的联通块是$A_i$, $F_i$表示只有一个端点在$A_i$中的边，因此</p>
+<script type="math/tex; mode=display">
+\sum_i{w(F_i)} = 2OPT</script><p>因为$F_i$也是某种$Cut(a_i, A \backslash a_i)$,  所以</p>
+<script type="math/tex; mode=display">
+mincut_i \leq w(F_i)</script><p>结合几个不等式可以得到 </p>
+<script type="math/tex; mode=display">
+value(output) \leq 2(1-\frac{1}{k})OPT</script><p>特别地, $k=2$时$value(output) = OPT$, $k=3$时$value(output)\leq \frac{4}{3}OPT$.</p>
+<h4 id="Algorithm-via-LP-and-Randomized-Rounding"><a href="#Algorithm-via-LP-and-Randomized-Rounding" class="headerlink" title="Algorithm via LP and Randomized Rounding"></a>Algorithm via LP and Randomized Rounding</h4><h5 id="Linear-Programming"><a href="#Linear-Programming" class="headerlink" title="Linear Programming"></a>Linear Programming</h5><ul>
+<li>Variables:  $x_{u,i}$表示点$u$是否属于$a_i$所在的集合。</li>
+<li>Contraints: $x_{u,i} \in [0,1], \sum_i{x_{u,i}=1}$   </li>
+<li>Objective: $\frac{1}{2} \sum\limits_{(u,v)\in E}w(u,v)(\sum\limits_i{|x_{u, i} - x_{v, i}|})$</li>
+</ul>
+<p>比较巧妙的地方是用$\sum\limits_i{|x_{u, i} - x_{v, i}|}$将$u,v$属于不同集合的条件表达出来了。</p>
+<h5 id="Geometric-Interpretation"><a href="#Geometric-Interpretation" class="headerlink" title="Geometric Interpretation"></a>Geometric Interpretation</h5><p>将每个点的信息看成一个$k$维向量: $\vec{X_u} := (x_{u,1}, x_{u,2} \cdots x_{u, k})$</p>
+<p>$\sum\limits_i{|x_{u, i} - x_{v, i}|}=|X_u - X_v|_1$, 即$X_u, X_v$的$L_1$距离。</p>
+<p>令$d(u,v) := \frac{1}{2}|X_u-X_v|$, 那么总的cost就是$ \sum\limits_{(u,v)\in E}w(u,v)(\frac{1}{2}\sum\limits_i{|x_{u, i} - x_{v, i}|}) = \sum\limits_{(u,v)\in E}w(u,v)d(u,v)$</p>
+<p>LP的结果相当于返回了$|V|$个在$L_1$距离意义下的单位单纯形内部的点。</p>
+<p>Rounding相当于将单纯形内部的点挪到顶点上。</p>
+<p>LP的Objective相当于：如果某两个点$u,v$被挪到了不同顶点上，就要付出$w(u,v)$的代价。</p>
+<h5 id="Randomized-Rounding"><a href="#Randomized-Rounding" class="headerlink" title="Randomized Rounding"></a>Randomized Rounding</h5><p>有点好奇算法的发明者是怎么想到的。</p>
+<p><strong>算法流程</strong>：</p>
+<ol>
+<li>随机一个实数$r \in [0,1]$(因为单纯形内任意两点$u,v$满足$d(u,v)\leq1$).</li>
+<li>随机一个排列$\sigma_1, \cdots \sigma_k$.</li>
+<li>对于每个待rounding的内部点$u$，依次考虑$a_{\sigma_1}, a_{\sigma_2} \cdots a_{\sigma_{k-1}}$，把这个点挪到第一个与它距离不超过$r$的顶点$a_{\sigma_i}$上(这里的距离指的是$d$, $d(u, a_{\sigma_i}) \leq r$)。 如果距离都大于$r$，把这个点挪到顶点$a_{\sigma_k}$上。</li>
+</ol>
+<p><strong>分析</strong>：</p>
+<p>$u,v$被round到不同的顶点上当且仅当$a_{\sigma_1}, a_{\sigma_2} \cdots a_{\sigma_{k-1}}$中存在某个点$a$能将$u,v$分开, 即</p>
+<script type="math/tex; mode=display">
+\min(d(a, u), d(a,v)) \leq r \lt max(d(a, u), d(a, v))</script><p>设事件$Event_i$表示$a_i$恰好是第一个能将$u, v$分开的点, 那么有</p>
+<script type="math/tex; mode=display">
+Pr[u,v \text{ are seperated}] = \sum_i{Pr[Event_i]}</script><p>设$l := \mathop {argmin}\limits_i\{min(d(a_i, u), d(a_i, v))\}$.</p>
+<p>如果$i \neq l$, 那么$a_i$必须排在$a_l$的前面，这个概率是$\frac{1}{2}$, 同时需要满足</p>
+<script type="math/tex; mode=display">
+\min(d(a_i, u), d(a_i,v)) \leq r \lt max(d(a_i, u), d(a_i, v))</script><p>这个概率是$|d(a_i, u) - d(a_i, v)|$. 两个部分是独立事件，而$Event_i$要发生，至少需要满足这两个条件，因此</p>
+<script type="math/tex; mode=display">
+Pr[Event_i] \leq \frac{1}{2}|d(a_i, u) - d(a_i, v)|</script><p>如果$i = l$, 那么首先$a_i$不能排在最后($a_{\sigma_k} \neq a_i$), 这个概率是$\frac{k-1}{k}$, 因此</p>
+<script type="math/tex; mode=display">
+Pr[Event_i] \leq \frac{k-1}{k}|d(a_i, u) - d(a_i, v)|</script><p>结合这两种情况，可以推出</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&Pr[u,v \text{ are seperated}] = \sum_i{Pr[Event_i]}\\
+&\leq \frac{k-1}{k}|d(a_i, u) - d(a_i, v)| + \sum_{i \neq l}\frac{1}{2}|d(a_i, u) - d(a_i, v)| \\
+&= (\frac{1}{2} -\frac{1}{k})|d(a_l, u) - d(a_l, v)| + \sum_i\frac{1}{2}|d(a_i, u) - d(a_i, v)| \\
+&= (\frac{1}{2} -\frac{1}{k})|\sum_j\frac{1}{2}|a_{l,j}-x_{u,j}| - \sum_j\frac{1}{2}|a_{l,j}-x_{v,j}|| + \sum_i\frac{1}{2}|\sum_j\frac{1}{2}|a_{i,j}-x_{u,j}| - \sum_j\frac{1}{2}|a_{i,j}-x_{v,j}|| \\
+&=  \frac{1}{2}(\frac{1}{2} -\frac{1}{k})|(1-x_{u,l})-(1-x_{v,l})+\sum_{j \neq l}{(x_{u,j}-x_{v,j})}|
++\frac{1}{4}\sum_i|(1-x_{u,i})-(1-x_{v,i})+\sum_{j \neq i}(x_{u,j}-x_{v,j})| \\
+&= \frac{1}{2}(\frac{1}{2} -\frac{1}{k})|\sum_j(x_{u,j}-x_{v,j})-2(x_{u,l}-x_{v,l})| -\frac{1}{4}\sum_i|\sum_{j}(x_{u,j}-x_{v,j})-2(x_{u,i}-x_{v,i})| \\
+&= (\frac{1}{2} -\frac{1}{k})|x_{u,l}-x_{v,l}|+\frac{1}{2}\sum_i|x_{u,i}-x_{v,i}|
+\end{split}</script><p>接下来用到一个不太显然的结论$|x_{u,l} - x_{v,l}| \leq \frac{1}{2}\sum_i|x_{u,i}-x_{v,i}|$</p>
+<p>证明：</p>
+<p>构造新的向量$X_1 := (x_{u,1}, \cdots ,x_{u,l-1}, x_{u,l+1}, \cdots x_{u,k}), X_2:= (x_{u,1}, \cdots ,x_{v,l-1}, x_{v,l+1}, \cdots x_{v,k})$</p>
+<p>$|X_1| = 1-x_{u,l}, |X_2| = 1-x_{v,l}, \sum_i|x_{u,i}-x_{v,i}|=|X_1-X_2|+|x_{u,i}-x_{v,i}|$</p>
+<p>根据$L_1$范数的三角形不等式$|X_1-X_2| \geq ||X_1|-|X_2|| = |x_{u,l}-x_{v,l}|$</p>
+<p>整合一下容易推出$|x_{u,l} - x_{v,l}| \leq \frac{1}{2}\sum_i|x_{u,i}-x_{v,i}|$。</p>
+<p>利用这个小结论可以将$Pr[u,v \text{ are seperated}]$ 的式子中$|x_{u,l} - x_{v,l}| $的部分去掉：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+Pr[u,v \text{ are seperated}] &\leq (\frac{1}{2} -\frac{1}{k})|x_{u,l}-x_{v,l}|+\frac{1}{2}\sum_i|x_{u,i}-x_{v,i}| \\
+&\leq (\frac{3}{2}-\frac{1}{k})(\frac{1}{2}\sum_i|x_{u,i}-x_{v,i}|) 
+\end{split}</script><p>因此</p>
+<script type="math/tex; mode=display">
+\begin{split}
+E(output) &= \sum_{(u,v) \in E}w(u,v)Pr[u,v \text{ are seperated}] \\
+&\leq (\frac{3}{2}-\frac{1}{k})\sum_{(u,v) \in E}(\frac{1}{2}\sum_i|x_{u,i}-x_{v,i}|)w(u,v)  \\
+&\leq (\frac{3}{2}-\frac{1}{k}) OPT
+\end{split}</script><h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><p>Consider the following algorithm.<br><img src="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/2.jpg"><br>We define $P_0,\cdots, P_{k-1}$  to be the partitions of the vertices defined by the set $\mathcal{P}$ at the different stage of the algorithm. $P_0 = V$ and for any $i&gt;0, P_i$ is the partition of the vertices defined by $\mathcal{P}$ at the $i^{th}$ iteration of the while loop.</p>
+<p>We denote by $w(P_i)$ the sum of the weights of the edges that connect vertices lying in different parts of the partition induced by $P_i$. </p>
+<p>Moreover, for any partition $\Gamma$ of the vertices of $G$, we say that the partition is valid if each part of the partition contains at least one terminal.</p>
+<p>For any part $\Gamma_j \in \Gamma$, we define $w(\Gamma_j)$ as the sum of the weights of the edges having exactly one endpoint in $\Gamma_j$.</p>
+<p>We aim at showing the following Lemma:</p>
+<p><strong>Lemma</strong>: For any $i \leq k$, for any valid partition $\Gamma=\{\Gamma_1, \cdots, \Gamma_i\}$ with $i$ parts</p>
+<script type="math/tex; mode=display">
+w(P_{i−1}) \leq \sum_{j=1}^{i−1}{w(\Gamma_j)}</script><p><strong>Question 1</strong>: Argue that the case $i=1$ holds.<br>We need to prove $w(P_0) \leq 0$.   Since $P_0 = \{V\}$, there’s only one part of the partition, thus $w(P_0) = 0.$</p>
+<p>We now want to show that the statement is true for any $i$. We assume that it holds up to $i-1$. We consider an arbitrary valid partition$\Gamma=\{\Gamma_1, \cdots, \Gamma_i \}$ with $i$ parts.</p>
+<p><strong>Question 2</strong>: Consider the partition $P_{i-2}$. How many parts does it contain?<br>$i-1$ parts.</p>
+<p><strong>Question 3</strong>. Argue that there exist two terminals which belong to the same part $B$ of $P_{i-2}$ but to two different parts $\Gamma_h, \Gamma_l$ of $\Gamma$.<br>Since $\Gamma$ is valid, each of the $\Gamma_i$ contains at least one terminal and let’s call them $v_1, v_2 \cdots v_{i}$. However there are only $i-1$ parts in $P_{i-2}$, so there must be  some $v_h \in \Gamma_h$ and $v_l \in \Gamma_l  $ with $h \neq l$ that belongs to the same part $B$ in $P_{i-2}$. </p>
+<p><strong>Question 4</strong>: Compare the cost of splitting $B$ into $B\cap \Gamma_h$ and $B \backslash \Gamma_h$ to the difference $w(P_{i-1}) - w(P_{i-2})$.<br>$C_0(B):=\text{minimum cost of splitting B into two parts with each containing  terminals }$<br>$C_1(B) := \text {cost of splitting B into } B \cap \Gamma_h \text{ and } B \backslash \Gamma_h$<br>Since the algorithm chooses to split the element with minimum cost, we have $w(P_{i-1} ) - w(P_{i-2}) \leq C_0(B) \leq C_1(B)$.</p>
+<p><strong>Question 5</strong>: Conclude the proof of the Lemma using Question 4 and the induction hypothesis.<br>For convenience, let’s add one more constraint to $h, l$ in question 3: $h \lt l$ so that $h \leq i-1$ holds.<br>Consider another valid partition $\Gamma’ = \{\Gamma_1, \cdots \Gamma_{h-1}, \Gamma_{h+1}, \cdots \Gamma_{i-1},  \Gamma_h \cup \Gamma_i\}$ with $|\Gamma’| = i-1$. Assume the lemma holds for $i-1$ so we have  $w(P_{i-2})\leq \sum\limits_{1\leq j \leq i-1, j \neq h}w(\Gamma_j)$.  </p>
+<p>   By question 4 we have:</p>
+<script type="math/tex; mode=display">
+   \begin{split}
+   w(P_{i-1}) -w(P_{i-2}) &\leq C_1(B) \\
+   &= \sum\limits_{u \in B\cap\Gamma_h}\sum\limits_{v\in B \backslash \Gamma_h}w(u,v) \\ 
+   &\leq \sum\limits_{u \in B\cap\Gamma_h}\sum\limits_{v\in V \backslash \Gamma_h}w(u,v) \\
+   &\leq \sum\limits_{u \in \Gamma_h}\sum\limits_{v\in V \backslash \Gamma_h}w(u,v) \\
+   &= w(\Gamma_h)
+   \end{split}</script><p>   add the two inequations we can get  $w(P_{i-1}) \leq \sum\limits_{j=1}^{i-1}{w(\Gamma_j)}$.</p>
+<p><strong>Question 6</strong>. What is the approximation ratio? Conclude using the lectures and the lemma.<br>By the lemma we have $value(output) = w(P_{k-1}) \leq \sum_{j=1}^{k-1}{w(F_j)}$.<br>As $w(F_k)$ is the largest among $w(F_i)$, we have $w(F_k) \geq \frac{\sum_{j=1}^{k-1}{w(F_j)}}{k-1}$.   Thus $2OPT = \sum_{j=1}^{k}{w(F_j) \geq (1+\frac{1}{k-1})\sum_{j=1}^{k-1}{w(F_j)} }$<br>Combine them and we get $value(output) \leq \sum_{j=1}^{k-1}{w(F_j)} \leq \frac{2}{1+\frac{1}{k-1}}OPT$ and the approximation ratio is $\frac{2}{1+\frac{1}{k-1}} = 2(1-\frac{1}{k})$.</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/08/09/Project-Euler-Problem-550-Divisor-Game/" rel="next" title="Project Euler Problem 550 Divisor Game">
+                <i class="fa fa-chevron-left"></i> Project Euler Problem 550 Divisor Game
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/blog/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/blog/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/blog/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://tigertang.cn" title="http://tigertang.cn" rel="noopener" target="_blank">tigertnag</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://www.cnblogs.com/jiangshibiao/" title="http://www.cnblogs.com/jiangshibiao/" rel="noopener" target="_blank">jiangshibiao</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/vb4896/" title="https://www.cnblogs.com/vb4896/" rel="noopener" target="_blank">我的旧博客</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trivial-Case-k-2"><span class="nav-number">2.</span> <span class="nav-text">Trivial Case: $k= 2$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Small-Case-k-3"><span class="nav-number">3.</span> <span class="nav-text">Small Case: $k=3$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#General-Cases"><span class="nav-number">4.</span> <span class="nav-text">General Cases</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Algorithm-via-LP-and-Randomized-Rounding"><span class="nav-number">5.</span> <span class="nav-text">Algorithm via LP and Randomized Rounding</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Linear-Programming"><span class="nav-number">5.1.</span> <span class="nav-text">Linear Programming</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Geometric-Interpretation"><span class="nav-number">5.2.</span> <span class="nav-text">Geometric Interpretation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Randomized-Rounding"><span class="nav-number">5.3.</span> <span class="nav-text">Randomized Rounding</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise"><span class="nav-number">6.</span> <span class="nav-text">Exercise</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/blog/js/utils.js?v=7.2.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
+<script src="/blog/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+    
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'yXO6KJNmXhErdElfzCTM0LbB-gzGzoHsz',
+    appKey: 'FFFdwO3D1mtNv8A34KbbisJz',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+  
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/blog/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+
