@@ -154,7 +154,7 @@ template {
 body {
   position: relative;
   font-family: 'Lato', "Microsoft YaHei", "PingFang SC", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 2;
   color: #555;
   background: #fff;
@@ -166,7 +166,7 @@ body {
 }
 @media (min-width: 1200px) {
   body {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 h1,
@@ -322,7 +322,7 @@ kbd {
 }
 .translation {
   margin-top: -20px;
-  font-size: 12px;
+  font-size: 11px;
   color: #999;
 }
 .scrollbar-measure {
@@ -347,7 +347,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  font-size: 12px;
+  font-size: 11px;
 }
 table > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -432,7 +432,7 @@ body {
 pre,
 .highlight {
   margin: 20px 0;
-  font-size: 12px;
+  font-size: 11px;
   color: #4d4d4c;
   background: #f7f7f7;
   line-height: 1.6;
@@ -874,7 +874,7 @@ pre .javascript .function {
 .btn {
   display: inline-block;
   padding: 0 20px;
-  font-size: 12px;
+  font-size: 11px;
   color: #fff;
   background: #222;
   border: 2px solid #222;
@@ -1042,7 +1042,7 @@ pre .javascript .function {
   color: #fff;
   background: #222;
   border-bottom: none;
-  line-height: 20px;
+  line-height: 19px;
 }
 .brand:hover {
   color: #fff;
@@ -1057,13 +1057,13 @@ pre .javascript .function {
   display: inline-block;
   vertical-align: top;
   line-height: 1.5;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: normal;
   font-family: 'Lato', "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 .site-subtitle {
   margin-top: 10px;
-  font-size: 11px;
+  font-size: 10px;
   color: #999;
 }
 .use-motion .brand {
@@ -1130,7 +1130,7 @@ pre .javascript .function {
 .menu .menu-item a,
 .menu .menu-item span.exturl {
   display: block;
-  font-size: 11px;
+  font-size: 10px;
   line-height: inherit;
   border-bottom: 1px solid transparent;
   transition-property: border-color;
@@ -1154,21 +1154,21 @@ pre .javascript .function {
   font-family: 'Lato', "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 .post-body span.exturl .fa {
-  font-size: 12px;
+  font-size: 11px;
   margin-left: 4px;
 }
 .post-body .image-caption,
 .post-body .figure .caption {
   margin: -20px auto 15px;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   color: #999;
   font-weight: bold;
   line-height: 1;
 }
 .post-sticky-flag {
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
   transform: rotate(30deg);
 }
 .use-motion .post-block,
@@ -1317,7 +1317,7 @@ pre .javascript .function {
   content: " ";
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 9px;
   width: 6px;
   height: 6px;
   margin-left: -4px;
@@ -1337,7 +1337,7 @@ pre .javascript .function {
 }
 .posts-collapse .post-meta {
   position: absolute;
-  font-size: 10px;
+  font-size: 9px;
   left: 20px;
   top: 5px;
 }
@@ -1345,8 +1345,8 @@ pre .javascript .function {
   display: none;
 }
 .posts-collapse .post-title {
-  margin-left: 50px;
-  font-size: 14px;
+  margin-left: 45px;
+  font-size: 13px;
   font-weight: normal;
   line-height: inherit;
 }
@@ -1398,18 +1398,18 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 18px;
+  font-size: 17px;
   margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
   font-family: 'Lato', "Microsoft YaHei", "PingFang SC", sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   text-align: center;
 }
 .posts-expand .post-meta .post-description {
-  font-size: 12px;
+  font-size: 11px;
   margin-top: 2px;
 }
 .posts-expand .post-meta time {
@@ -1446,7 +1446,7 @@ pre .javascript .function {
 .posts-expand .post-tags a {
   display: inline-block;
   margin-right: 10px;
-  font-size: 11px;
+  font-size: 10px;
 }
 .post-nav {
   display: table;
@@ -1468,7 +1468,7 @@ pre .javascript .function {
   position: relative;
   display: block;
   line-height: 1.6;
-  font-size: 12px;
+  font-size: 11px;
   color: #555;
   border-bottom: none;
 }
@@ -1480,7 +1480,7 @@ pre .javascript .function {
   top: 2px;
 }
 .post-nav-item .fa {
-  font-size: 10px;
+  font-size: 9px;
   margin-right: 5px;
 }
 .post-nav-next a {
@@ -1615,7 +1615,7 @@ pre .javascript .function {
 .site-description {
   margin-top: 5px;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   color: #999;
 }
 .links-of-author {
@@ -1628,7 +1628,7 @@ pre .javascript .function {
   margin-right: 10px;
   margin-bottom: 10px;
   border-bottom-color: #555;
-  font-size: 11px;
+  font-size: 10px;
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
@@ -1639,7 +1639,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #59ffe8;
+  background: #e550af;
 }
 .feed-link,
 .chat {
@@ -1668,11 +1668,11 @@ pre .javascript .function {
 }
 .links-of-blogroll {
   margin-top: 10px;
-  font-size: 11px;
+  font-size: 10px;
 }
 .links-of-blogroll-title {
   margin-top: 0;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
 }
 .links-of-blogroll-list {
@@ -1721,7 +1721,7 @@ pre .javascript .function {
   display: inline-block;
   cursor: pointer;
   border-bottom: 1px solid transparent;
-  font-size: 12px;
+  font-size: 11px;
   color: #555;
 }
 .sidebar-nav li:hover {
@@ -1782,7 +1782,7 @@ pre .javascript .function {
   background: #87daff;
 }
 .post-toc-empty {
-  font-size: 12px;
+  font-size: 11px;
   color: #666;
 }
 .post-toc-wrap {
@@ -1796,7 +1796,7 @@ pre .javascript .function {
   padding: 0 2px 5px 10px;
   text-align: left;
   list-style: none;
-  font-size: 12px;
+  font-size: 11px;
 }
 .post-toc ol > ol {
   padding-left: 0;
@@ -1865,14 +1865,14 @@ pre .javascript .function {
   text-align: center;
   color: inherit;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 17px;
 }
 .site-state-item-name {
-  font-size: 12px;
+  font-size: 11px;
   color: inherit;
 }
 .footer {
-  font-size: 12px;
+  font-size: 11px;
   color: #999;
 }
 .footer img {
@@ -1973,7 +1973,7 @@ pre .javascript .function {
   border-radius: 50%;
 }
 .page-archive .fa-external-link {
-  font-size: 12px;
+  font-size: 11px;
   margin-left: 5px;
 }
 .category-all-page .category-all-title {
@@ -2154,7 +2154,7 @@ ul.breadcrumb {
   margin: 1em 0;
   padding: 0 2em;
   text-align: center;
-  font-size: 10px;
+  font-size: 9px;
 }
 ul.breadcrumb li {
   display: inline;
