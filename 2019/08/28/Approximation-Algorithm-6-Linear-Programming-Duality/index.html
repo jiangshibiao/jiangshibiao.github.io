@@ -99,23 +99,22 @@
   };
 </script>
 
-  <meta name="description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
+  <meta name="description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/index.html">
+<meta property="og:title" content="Approximation Algorithm(6)-Linear Programming Duality">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
-<meta property="og:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
+<meta property="og:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-<meta property="og:updated_time" content="2019-08-13T03:41:14.348Z">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
+<meta property="og:updated_time" content="2019-09-02T01:41:27.206Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta name="twitter:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
-<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
+<meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
+<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 
 
 
@@ -125,7 +124,7 @@
 
   
   
-  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
 
 
 
@@ -136,7 +135,7 @@
 </script>
 
   
-  <title>Approximation Algorithm(1)-Vertex Cover | zhenweiliu's blog</title>
+  <title>Approximation Algorithm(6)-Linear Programming Duality | zhenweiliu's blog</title>
   
 
 
@@ -341,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -358,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(1)-Vertex Cover
+          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(6)-Linear Programming Duality
 
               
             
@@ -384,7 +383,7 @@
                 
               
 
-              <time title="创建时间：2019-07-26 16:27:55" itemprop="dateCreated datePublished" datetime="2019-07-26T16:27:55+08:00">2019-07-26</time>
+              <time title="创建时间：2019-08-28 11:01:20" itemprop="dateCreated datePublished" datetime="2019-08-28T11:01:20+08:00">2019-08-28</time>
             </span>
           
 
@@ -399,7 +398,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-13 11:41:14" itemprop="dateModified" datetime="2019-08-13T11:41:14+08:00">2019-08-13</time>
+                <time title="修改时间：2019-09-02 09:41:27" itemprop="dateModified" datetime="2019-09-02T09:41:27+08:00">2019-09-02</time>
               </span>
             
           
@@ -423,7 +422,7 @@
 
           
           
-            <span id="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(1)-Vertex Cover">
+            <span id="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(6)-Linear Programming Duality">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -448,8 +447,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" itemprop="commentCount"></span>
+    <a href="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -476,95 +475,129 @@
       
 
       
-        <p><strong>前言</strong><br>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。<br>在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
-<p><strong>Week 1: Vertex Cover</strong></p>
-<h4 id="Problem-Definition："><a href="#Problem-Definition：" class="headerlink" title="Problem Definition："></a>Problem Definition：</h4><p>最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。</p>
-<h4 id="已有知识："><a href="#已有知识：" class="headerlink" title="已有知识："></a>已有知识：</h4><ol>
-<li>树的最小点覆盖很容易用$O(|V|)$的时间求出:</li>
-<li>动态规划：$dp[v][0/1]$ 表示，最少需要多少个点来覆盖以$v$为根的子树，第二维$0/1$表示$v$和它父亲节点之间的边是否已经被覆盖, 转移考虑点$v$选还是不选，从子树的结果转移即可。</li>
-<li>贪心：从叶子节点考虑，每个叶子节点和它父亲的边必须要被覆盖，为了覆盖这条边，显然选叶子节点不如还选它的父亲。所以只要将节点按深度从大到小排序，依次考虑，如果当前节点和它父亲之间的边未被覆盖，就选择它的父亲。</li>
-<li>算法与数据结构课上讲到的local search的方法。 </li>
-</ol>
-<h4 id="课程内容："><a href="#课程内容：" class="headerlink" title="课程内容："></a>课程内容：</h4><ul>
-<li>一般图的最小点覆盖是NP-Hard的，证明留坑。</li>
-<li><p>点覆盖问题转整数线性规划：</p>
-<ul>
-<li>$|V|$个$0/1$变量,对应每个点选还是不选，$|E|$个条件，表示每条边必须被覆盖，目标函数是$\sum{x_i}$, 如果每个点带点权，则应是$\sum{w_i x_i}$.</li>
-<li>如何用一个不等式来表示某条边必须被覆盖？ 假设某条边的端点分别是$u$和$v$， 对应条件$x_u + x_v \geq 1$， 即$x_u, x_v$至少有一个是$1$.</li>
-<li>遗憾的是，整数线性规划并没有多项式算法，不过实数线性规划存在多项式算法。</li>
-</ul>
-</li>
-<li><p>近似算法：</p>
-<ul>
-<li><strong>Idea</strong>：放宽条件，允许$x_i$不是整数，但需要满足$x_i \in [0, 1]$. 在该条件下用实数线性规划的做法，求出最优解$X’$，将该最优解通过某种办法改造成原线性规划问题的最优解 $X$.</li>
-<li><strong>Solution</strong>:  把实数线性规划的解做一个“四舍五入”， 即令$x_i =  [x_i’  \geq 0.5]$.</li>
-<li><strong>Proof of Correctness</strong>:  我们还需要证明，得到的解确实是一个点覆盖，即对于任意边$(u, v)$, 需要满足 $x_u + x_v \geq 1$. 证明很简单，因为$x_u’ + x_v’ \ge 1$, 那么$x_u’, x_v’$至少有一个$\geq 0.5$, 所以$x_u, x_v$至少有一个是$1$.</li>
-<li><strong>Approximation Ratio</strong>: 一个重要的性质是$x_i \leq 2x_i’$.  因此 $W(X) \leq 2W(X’) $. 而$X’$是放宽条件之后的最优解，肯定不会大于原问题的最优解，所以有$W(X) \leq 2W(X’) \leq 2OPT$.因此$Appromation \; ratio = 2.$</li>
-<li><strong>Tightness</strong>: 首先考虑一个四元环，每个点的点权相等，显然最优解只需要用2个点。 然而用实数线性规划得到的一个最优解会是$x_1’ = x_2’ = x_3’ = x_4’ = 0.5$, 四舍五入之后$x_1 = x_2 = x_3 = x_4 = 1$. 是最优解的2倍。</li>
-</ul>
-</li>
-</ul>
-<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题:"></a>练习题:</h4><p>官方没有提供答案，以下是我个人答案：</p>
-<ul>
-<li>习题1.  分析下面的点覆盖算法：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<ul>
-<li><strong>Algorithm</strong>: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
-<li><strong>Proof of Correctness</strong>： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
-<li><strong>Appromation Ratio</strong>： 因为匹配边之间没有公共点，所以$OPT \geq 匹配数 = \frac{1}{2}|S|$， 即$|S| \leq 2 OPT$。</li>
-<li><strong>Tightness</strong>: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
-</ul>
-</li>
-<li>习题2：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<ul>
-<li><strong>Algorithm</strong>: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
-<li><strong>Linear Program</strong>:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
-<li><strong>Rounding</strong>: 同样地，考虑把实数解改造成整数解，需要做一个rounding。 显然应该令$x_i = [x_i’ \geq \frac{1}{3}]$.</li>
-<li><strong>Appromation Ratio</strong>: 类似上面最小点覆盖的证明，$x_i \leq 3x_i’$, 可以推出这样求出的答案不超过最优解的3倍.</li>
-<li><strong>Tightness</strong>: 考虑一个三元环，线性规划实数解会求出一个最优解是$x_1’ = x_2’ = x_3’ = \frac{1}{3}$, rounding 一下变成$x_1 = x_2 = x_3 = 1$， 答案是3， 而最优解只要随便删掉1个点就好了，因此3倍的上界是可以达到的。</li>
-</ul>
-</li>
-</ul>
-<h4 id="互评作业："><a href="#互评作业：" class="headerlink" title="互评作业："></a>互评作业：</h4><p>分析下面的算法。</p>
-<ul>
-<li>补充知识: <ul>
-<li><strong>Lemma</strong>: 最小点覆盖问题的实数线性规划，一定存在某个最优解，任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$ (<strong>Half Integrality</strong>)。   </li>
-<li><strong>Proof</strong>：<br>只要证明任意最优解一定可以调整为上面的形式。假设求出一个最优解是$\{x_i\}$.<br>取足够小的$\epsilon$, 构造新的解$\{y_i\}$：<script type="math/tex; mode=display">\begin{equation} 
-y_i = \left\{ 
-\begin{array}{lr} 
-x_i, & x_i \in \{0, 0.5, 1\}\\ 
-x_i+ \epsilon, & 0\lt x_i\lt 0.5\\ 
-x_i - \epsilon, & 0.5\lt x_i\lt 1 & 
-\end{array} 
-\right. \end{equation}</script>以及$\{z_i\}$:<script type="math/tex; mode=display">\begin{equation} z_i = \left\{ 
-\begin{array}{lr} 
-x_i, & x_i \in \{0, 0.5, 1\}\\ 
-x_i - \epsilon, & 0\lt x_i\lt 0.5\\ 
-x_i + \epsilon, & 0.5\lt x_i\lt 1 & 
-\end{array} 
-\right. \end{equation}</script>check一下容易发现$\{y_i\}, \{z_i\}$也是线性规划的解。<br>因为$\{x_i\}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$<br>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.<br>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即$\{y_i\}, \{z_i\}$也是最优解。<br>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。<br>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
-</ul>
-</li>
-<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<ul>
-<li><strong>Algorithm</strong>：<ol>
-<li>将图四染色。</li>
-<li>做一次实数线性规划，并把解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
-<li>将所有$x_i = 1$的点加入答案集合$S$.</li>
-<li>将所有$x_i = \frac{1}{2}$的点，按照颜色分类，并按权值和排序。即按颜色分成$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}, V_3^{\frac{1}{2}}$四个集合，满足$W(V_0^{\frac{1}{2}}) \leq W(V_1^{\frac{1}{2}}) \leq W(V_2^{\frac{1}{2}})  \leq W(V_3^{\frac{1}{2}}) $</li>
-<li>将$V_0^{\frac{1}{2}}, V_1^{\frac{1}{2}}, V_2^{\frac{1}{2}}$加入答案集合$S$.</li>
-</ol>
-</li>
-<li><strong>Proof of Correctress</strong>：<br>考虑边$(u, v)$, 有 $x_u+x_v \geq 1$.<ol>
-<li>如果$x_u, x_v$有一个为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>如果$x_u, x_v$有一个为0，另一个肯定为1，那么那个点在$S$中，这条边被覆盖。</li>
-<li>剩下一种$x_u = x_v = \frac{1}{2}$的情况。因为它们相邻，所以颜色不同，因此不会都在$V_3^{\frac{1}{2}}$里，所以至少有一个点在$S$中。</li>
-</ol>
-</li>
-<li><strong>Approximation Ratio</strong>：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
-</li>
-</ul>
-</li>
-</ul>
+        <p><strong>Week 6: Linear Programming Duality</strong></p>
+<p>本周学习的内容是利用线性规划的对偶来设计近似算法。</p>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>考虑下面一个线性规划问题：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&\min 7x_1 + x_2 + 5x_3 \\
+&x_1-x_2+3x_3 &\geq 10 \ \ &(1)\\
+&5x_1 + 2x_2 - x_3 &\geq 6  &(2) \\
+&x_1, x_2, x_3 &\geq 0 &(3,4,5)
+\end{split}</script><p>$2 *(1) + (2)$ 可以得到$7x_1 + 5x_3 \geq 26$。</p>
+<p>因此目标函数$7x_1+x_2+5x_3\geq 7x_1+5x_3 \geq 26$</p>
+<p>从上面的例子受到启发，我们可以通过构造线性规划的约数不等式的凸组合来得到目标函数的下界。</p>
+<p>那么要如何构造凸组合使得这个下界尽可能紧呢？</p>
+<p>考虑凸组合$y_1<em>(1) + y_2</em>(2) :$</p>
+<script type="math/tex; mode=display">
+(y_1+5y_2)x_1 + (-y_1+2y_2)x_2 + (3y_1-y_2)x_3 \geq 10y_1+6y_2</script><p>需要满足</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&\max 10y_1 + 6y_2 \\
+& y_1+5y_2 &\leq 7 \ \ \ &(1')\\
+& -y1+2y_2 &\leq 1 &(2')\\
+& 3y_1 -y_2 & \leq 5 &(3')\\
+& y_1, y_2 &\geq 0 &(4',5')
+\end{split}</script><p>于是又转换成了一个线性规划问题。</p>
+<p>写成矩阵的形式：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Primal</th>
+<th style="text-align:center">Dual </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">\begin{split} \min c^Tx  \\ Ax \geq b \\x \geq 0 \end{split}</script></td>
+<td style="text-align:center"><script type="math/tex">\begin{split} \max b^Ty \\ A^Ty \leq c \\ y \geq 0 \end{split}</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上面两个线性规划问题互为对偶，以前学过的对偶问题还有最大流最小割，平面图的对偶等。</p>
+<h4 id="Properties-of-LP-Duality"><a href="#Properties-of-LP-Duality" class="headerlink" title="Properties of LP Duality"></a>Properties of LP Duality</h4><p>在上一节的例子中，我们通过构造线性规划的约数不等式的凸组合来得到目标函数的下界，为了使得得到的下界尽可能紧，又转化为一个与原问题对偶的线性规划问题。问题是，通过这样得出的最紧的下界，是不是就是原问题的解呢？</p>
+<h5 id="Weak-Duality-Theorem"><a href="#Weak-Duality-Theorem" class="headerlink" title="Weak Duality Theorem"></a>Weak Duality Theorem</h5><p>从例子也容易知道</p>
+<script type="math/tex; mode=display">
+\max b^Ty \leq \min c^Tx</script><p>因为 $ \max b^Ty $ 就是我们要求的最紧的$ \min c^Tx$的下界。</p>
+<p>从矩阵的角度也很容易证明：</p>
+<script type="math/tex; mode=display">
+b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theorem"><a href="#Strong-Duality-Theorem" class="headerlink" title="Strong Duality Theorem"></a>Strong Duality Theorem</h5><script type="math/tex; mode=display">
+\max b^Ty = \min c^Tx</script><p>证明：</p>
+<p>先留个坑。</p>
+<h5 id="Complementary-Slackness-Conditions"><a href="#Complementary-Slackness-Conditions" class="headerlink" title="Complementary Slackness Conditions"></a>Complementary Slackness Conditions</h5><p>根据<strong>Strong Duality Theorem</strong>, <strong>Weak Duality Theorem</strong>中$b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx$所有不等式等号都应该成立。</p>
+<p>要使得$b^Ty \leq (Ax)^Ty$的等号成立, 必须有$y_i = 0$或者$b^T_i = (Ax)^T_i$即$b_i = \sum_ja_{ij}x_j$</p>
+<p>要使得$x^TA^Ty \leq x^Tc$的等号成立, 必须有$x_i = 0$或者$c_i = (A^Ty)_i$即$c_i = \sum_ja_{ji}y_i$</p>
+<h4 id="Vertex-Cover-by-LP-Duality"><a href="#Vertex-Cover-by-LP-Duality" class="headerlink" title="Vertex Cover by LP Duality"></a>Vertex Cover by LP Duality</h4><p>下面以顶点覆盖问题为例介绍如何利用LP Duality来设计近似算法。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Primal</th>
+<th style="text-align:center">Dual </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">\begin{split} &\min w_ux_u\\ x_u+x_v &\geq 1  \ \forall  (u, v)\in E \\ \ x_u &\geq 0 \ \forall u \in V \end{split}</script></td>
+<td style="text-align:center"><script type="math/tex">\begin{split}&\max y_e \\  \sum_{e: u \in e}y_e &\leq w_u\ \forall u \in V \\ y_e &\geq 0  \ \forall e \in E\end{split}</script> </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dual的组合意义：</p>
+<p>相当于要给每条边加”能量”，每个点的能量是与它关联的边的能量之和，每个点限制$w_u$,表示这个点的能量不能超过$ w_u $. </p>
+<h5 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h5><p>令 $x:= (0, 0 \cdots, 0)^T, y := (0, 0, \cdots, 0)^T$</p>
+<p>重复以下过程:</p>
+<p>选取某条边 $e = (u, v)$ 满足 $e_u + e_v \lt 1$</p>
+<p>将$y_e$增大, 直到$u$或者$v$的”能量”到达瓶颈，$\sum_{e’: u\in e’}y_{e’} = w_u$或者$\sum_{e’:v \in e’} y_{e’} = w_v$</p>
+<p>将先到达瓶颈的那个端点的x置为1，同时到达的话任选一个。</p>
+<h5 id="Correctness"><a href="#Correctness" class="headerlink" title="Correctness"></a>Correctness</h5><p>一开始$x$不是可行解，$y$是可行解，但代价太大。</p>
+<p>每次迭代都会使得$x$更加可行，因为至少会让一条未覆盖的边被覆盖(让Primal一个未被满足的限制被满足)。最终$x$是可行解。而且每次迭代不会破坏Dual的任意一个限制，只会让$y$的代价减少，因此最终$y$也是可行解。</p>
+<h5 id="Approximation-Ratio"><a href="#Approximation-Ratio" class="headerlink" title="Approximation Ratio"></a>Approximation Ratio</h5><p>先发现一些小性质：</p>
+<p>算法最终返回的$x, y$满足:</p>
+<p>$x_u = 0$或$x_u \neq 0, \sum_{e: u \in e}{y_e} = w_u$.</p>
+<p>$y_e = 0$或$y_e \neq 0, x_u + x_v = 1   or  2$($e = (u, v)$).</p>
+<p>对比<strong>Complementary Slackness Conditions</strong>，只不过是$x_u+x_v = 1$的条件变成了$x_u + x_v = 1, 2$, 放宽了2倍，可以根据这个2倍入手来证明近似度。</p>
+<p><strong>Proof</strong>:</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&\sum_u{w_ux_u} = \sum_{u:x_u \neq 0}{x_u}\sum_{e:u \in e}y_e \\ \\
+&= \sum_{u:x_u \neq 0}{x_u}\sum_{e:u \in e}y_e \\
+&= \sum_{u}{x_u}\sum_{e:u \in e}y_e \\
+&= \sum_{e:e=(u,v)}y_e(x_u+x_v) \\
+&\leq 2\sum_{e}y_e \\
+&\leq 2 OPT_{Dual} \\
+&= 2 OPT_{Primal}
+\end{split}</script><p>因此近似度是2.</p>
+<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
+<img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
+<img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
+<h5 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h5><p><strong>Question 1</strong></p>
+<p>$\max \sum\limits_{j=1}^{n}{y_i}$</p>
+<p>$\forall i \in \{1,\cdots,m\}, \sum_{j:e_j \in S_i}{y_j} \leq w_i$</p>
+<p>$\forall i \in \{1,\cdots,n\}, y_i \geq 0$</p>
+<p><strong>Question 2</strong></p>
+<p>1</p>
+<p><strong>Question 3</strong></p>
+<p>The algorithm terminates in at most $n$ iterations. When it terminates, every element is covered, so it’s a feasible solution.</p>
+<p><strong>Question 4</strong></p>
+<p>$OPT \geq val(x^{*}) = val(y^*)$</p>
+<p><strong>Question 5</strong></p>
+<p>Initially, $y = 0$ and $y$ is feasible.</p>
+<p>In each iteration, the algorithm only increases $y_i$ until some constraint is reached, which means we will never violate any constraint, so  the final solution $y$ is also feasible.</p>
+<p><strong>Question 6</strong></p>
+<p>$val(y) \leq val(y^*) \leq OPT$</p>
+<p><strong>Question 7</strong></p>
+<p>$\sum_{i:e_i\in S_j} = w_j$</p>
+<p><strong>Question 8</strong></p>
+<p>$\sum_{j\in I}{w_j} = \sum_{j \in I}{\sum_{i:e_i\in S_j}{y_i}}$</p>
+<p><strong>Question 9</strong></p>
+<p>$\sum_{j\in I}{w_j} = \sum_{j \in I}{\sum_{i:e_i\in S_j}{y_i}} = \sum_iy_i|\{j : e_i \in S_j\}| \leq \sum_ify_i = f\cdot val(y)$</p>
+<p><strong>Question 10</strong></p>
+<p>$\sum_{j\in I}{w_j} \leq f \cdot val(y) \leq f \cdot OPT$</p>
+<p>Thus the approximation ratio of the algorithm is $f$.</p>
 
       
     </div>
@@ -608,15 +641,15 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/" rel="next" title="Approximation Algorithm(5)-The MultiwayCut Problem">
+                <i class="fa fa-chevron-left"></i> Approximation Algorithm(5)-The MultiwayCut Problem
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="prev" title="Approximation Algorithm(2)-The Knapsack Problem">
-                Approximation Algorithm(2)-The Knapsack Problem <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -800,7 +833,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition："><span class="nav-number">1.</span> <span class="nav-text">Problem Definition：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已有知识："><span class="nav-number">2.</span> <span class="nav-text">已有知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">3.</span> <span class="nav-text">课程内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">4.</span> <span class="nav-text">练习题:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互评作业："><span class="nav-number">5.</span> <span class="nav-text">互评作业：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties-of-LP-Duality"><span class="nav-number">2.</span> <span class="nav-text">Properties of LP Duality</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Weak-Duality-Theorem"><span class="nav-number">2.1.</span> <span class="nav-text">Weak Duality Theorem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Strong-Duality-Theorem"><span class="nav-number">2.2.</span> <span class="nav-text">Strong Duality Theorem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Complementary-Slackness-Conditions"><span class="nav-number">2.3.</span> <span class="nav-text">Complementary Slackness Conditions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vertex-Cover-by-LP-Duality"><span class="nav-number">3.</span> <span class="nav-text">Vertex Cover by LP Duality</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Algorithm"><span class="nav-number">3.1.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Correctness"><span class="nav-number">3.2.</span> <span class="nav-text">Correctness</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Approximation-Ratio"><span class="nav-number">3.3.</span> <span class="nav-text">Approximation Ratio</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise"><span class="nav-number">4.</span> <span class="nav-text">Exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem"><span class="nav-number">4.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#My-Solution"><span class="nav-number">4.2.</span> <span class="nav-text">My Solution</span></a></li></ol></li></ol></div>
             
 
           </div>
