@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
-<meta property="og:updated_time" content="2019-09-02T01:41:27.206Z">
+<meta property="og:updated_time" content="2019-09-02T01:43:40.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
 <meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-02 09:41:27" itemprop="dateModified" datetime="2019-09-02T09:41:27+08:00">2019-09-02</time>
+                <time title="修改时间：2019-09-02 09:43:40" itemprop="dateModified" datetime="2019-09-02T09:43:40+08:00">2019-09-02</time>
               </span>
             
           
@@ -484,11 +484,11 @@
 &x_1-x_2+3x_3 &\geq 10 \ \ &(1)\\
 &5x_1 + 2x_2 - x_3 &\geq 6  &(2) \\
 &x_1, x_2, x_3 &\geq 0 &(3,4,5)
-\end{split}</script><p>$2 *(1) + (2)$ 可以得到$7x_1 + 5x_3 \geq 26$。</p>
+\end{split}</script><p>$2*(1) + (2)$ 可以得到$7x_1 + 5x_3 \geq 26$。</p>
 <p>因此目标函数$7x_1+x_2+5x_3\geq 7x_1+5x_3 \geq 26$</p>
 <p>从上面的例子受到启发，我们可以通过构造线性规划的约数不等式的凸组合来得到目标函数的下界。</p>
 <p>那么要如何构造凸组合使得这个下界尽可能紧呢？</p>
-<p>考虑凸组合$y_1<em>(1) + y_2</em>(2) :$</p>
+<p>考虑凸组合$y_1*(1) + y_2*(2)$:</p>
 <script type="math/tex; mode=display">
 (y_1+5y_2)x_1 + (-y_1+2y_2)x_2 + (3y_1-y_2)x_3 \geq 10y_1+6y_2</script><p>需要满足</p>
 <script type="math/tex; mode=display">
