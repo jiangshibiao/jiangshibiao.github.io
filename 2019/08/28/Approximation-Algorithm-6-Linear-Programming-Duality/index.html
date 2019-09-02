@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
-<meta property="og:updated_time" content="2019-09-02T01:43:40.726Z">
+<meta property="og:updated_time" content="2019-09-02T01:45:10.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
 <meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-02 09:43:40" itemprop="dateModified" datetime="2019-09-02T09:43:40+08:00">2019-09-02</time>
+                <time title="修改时间：2019-09-02 09:45:10" itemprop="dateModified" datetime="2019-09-02T09:45:10+08:00">2019-09-02</time>
               </span>
             
           
@@ -558,7 +558,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
 <h5 id="Approximation-Ratio"><a href="#Approximation-Ratio" class="headerlink" title="Approximation Ratio"></a>Approximation Ratio</h5><p>先发现一些小性质：</p>
 <p>算法最终返回的$x, y$满足:</p>
 <p>$x_u = 0$或$x_u \neq 0, \sum_{e: u \in e}{y_e} = w_u$.</p>
-<p>$y_e = 0$或$y_e \neq 0, x_u + x_v = 1   or  2$($e = (u, v)$).</p>
+<p>$y_e = 0$或$y_e \neq 0, x_u + x_v = 1,2$($e = (u, v)$).</p>
 <p>对比<strong>Complementary Slackness Conditions</strong>，只不过是$x_u+x_v = 1$的条件变成了$x_u + x_v = 1, 2$, 放宽了2倍，可以根据这个2倍入手来证明近似度。</p>
 <p><strong>Proof</strong>:</p>
 <script type="math/tex; mode=display">
