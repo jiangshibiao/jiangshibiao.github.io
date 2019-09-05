@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
-<meta property="og:updated_time" content="2019-09-04T09:17:07.865Z">
+<meta property="og:updated_time" content="2019-09-05T07:08:11.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
 <meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-04 17:17:07" itemprop="dateModified" datetime="2019-09-04T17:17:07+08:00">2019-09-04</time>
+                <time title="修改时间：2019-09-05 15:08:11" itemprop="dateModified" datetime="2019-09-05T15:08:11+08:00">2019-09-05</time>
               </span>
             
           
@@ -569,7 +569,8 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
 &= \sum_{e:e=(u,v)}y_e(x_u+x_v) \\
 &\leq 2\sum_{e}y_e \\
 &\leq 2 OPT_{Dual} \\
-&= 2 OPT_{Primal}
+&= 2 OPT_{Primal} \\
+&\leq 2 OPT_{Primal(int)}
 \end{split}</script><p>因此近似度是2.</p>
 <h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 <img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
