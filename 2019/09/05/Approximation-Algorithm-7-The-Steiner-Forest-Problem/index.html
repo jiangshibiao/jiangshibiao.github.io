@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="f2MopcIYUE_Fr5pQ8Rep3fUF9Pe_obIDhqvtZCyQMrI">
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","width":250,"display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/blog/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Week 7: The Steiner Forest Problem Problem Definition给定联通无向图$(V, E)$和若干个terminals的集合$S_i = \{t_{i,1}, t_{i,2}, \cdots, t_{i, k_i} \}$, 要求选出边权和最小的边，使得任意$S_i$中的点联通。 Case Study: Steiner Tree考虑只有一个集合$S =">
+<meta name="keywords" content="Approximation Algorithms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Approximation Algorithm(7)-The Steiner Forest Problem">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/index.html">
+<meta property="og:site_name" content="zhenweiliu&#39;s blog">
+<meta property="og:description" content="Week 7: The Steiner Forest Problem Problem Definition给定联通无向图$(V, E)$和若干个terminals的集合$S_i = \{t_{i,1}, t_{i,2}, \cdots, t_{i, k_i} \}$, 要求选出边权和最小的边，使得任意$S_i$中的点联通。 Case Study: Steiner Tree考虑只有一个集合$S =">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/1.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/2.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/3.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/4.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/5.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/6.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/7.png">
+<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/8.png">
+<meta property="og:updated_time" content="2019-09-15T11:28:47.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Approximation Algorithm(7)-The Steiner Forest Problem">
+<meta name="twitter:description" content="Week 7: The Steiner Forest Problem Problem Definition给定联通无向图$(V, E)$和若干个terminals的集合$S_i = \{t_{i,1}, t_{i,2}, \cdots, t_{i, k_i} \}$, 要求选出边权和最小的边，使得任意$S_i$中的点联通。 Case Study: Steiner Tree考虑只有一个集合$S =">
+<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/1.png">
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="zhenweiliu's blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>Approximation Algorithm(7)-The Steiner Forest Problem | zhenweiliu's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhenweiliu's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhenweiliu's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(7)-The Steiner Forest Problem
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-05 15:25:57" itemprop="dateCreated datePublished" datetime="2019-09-05T15:25:57+08:00">2019-09-05</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-15 19:28:47" itemprop="dateModified" datetime="2019-09-15T19:28:47+08:00">2019-09-15</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+            <span id="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(7)-The Steiner Forest Problem">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Week 7: The Steiner Forest Problem</strong></p>
+<h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>给定联通无向图$(V, E)$和若干个terminals的集合$S_i = \{t_{i,1}, t_{i,2}, \cdots, t_{i, k_i} \}$, 要求选出边权和最小的边，使得任意$S_i$中的点联通。</p>
+<h4 id="Case-Study-Steiner-Tree"><a href="#Case-Study-Steiner-Tree" class="headerlink" title="Case Study: Steiner Tree"></a>Case Study: Steiner Tree</h4><p>考虑只有一个集合$S = \{t_1, t_2 \cdots t_k\}$, 要使得集合内部的点联通。</p>
+<p>这个问题在ACM/ICPC竞赛见过,一般用动态规划来解决。</p>
+<p>最终答案一定是一棵生成树，因此可以用动态规划的思想一步步构造出这棵树。</p>
+<p>$dp_{u,s}$表示以$u$为根，并且能使集合$s$中的点都联通的生成树的最小边权和，答案就是$\min_u dp_{u, S}$。实际coding的时候用$k$个bit来表示一个集合。</p>
+<p>分下面两种情况转移：</p>
+<ol>
+<li>$u$下面至少有2棵子树，$dp_{u,s} = \min_{s’}{(dp_{u,s’} + dp_{u,s\backslash s’})}$, 相当于枚举其中一棵子树的联通性$s’$来转移。</li>
+<li>$u$下面只有1棵子树，那么需要枚举$u$的儿子$v$, $dp_{u,s} = \min_v{(dp_{v, s} + w(u,v))}$, 这个过程本质上和最短路的松弛操作一样，可以用dijkstra算法来实现。</li>
+</ol>
+<p><strong>近似算法设计</strong></p>
+<p>如果$S=V$, 那么最优解就是最小生成树，所以我们可以从最小生成树的角度出发来设计近似算法。</p>
+<p><strong>Algorithm</strong></p>
+<ol>
+<li>构造新图$(V’, E’)$, 其中$V’ = S$, $E’ = \{(t_i, t_j, t_i和t_j之间最短路长度)\}$。</li>
+<li>求出新图的MST。</li>
+<li>输出新图MST对应的原图的边。</li>
+</ol>
+<p><strong>Analysis</strong></p>
+<p>正确性显然，只需要分析近似度。</p>
+<p>考虑最优解一定是一棵树，如果把这棵树的每条边复制一份，构成的新图是一个欧拉图(每个点的度都是偶数)。考虑这个新图的一条欧拉回路$P:=(t_{i,1}, t_{i,2}, \cdots, t_{i,m})$, 点$t_{i,j}$与点$t_{i,j+1}$之间的路，大于等于它们在 $V’$中对应的边长。$P$对应到$V’$中相当于选了一些边使得$V’$联通，因此$OPT = 2length(P) \geq MST(V’)$，也就是说近似比是2.</p>
+<h4 id="LP-Relaxation-for-Steiner-Forest"><a href="#LP-Relaxation-for-Steiner-Forest" class="headerlink" title="LP Relaxation for Steiner Forest"></a>LP Relaxation for Steiner Forest</h4><p>定义$\mathcal{S} := \{S: \exists i \exists u,v \in S_i: |S\cap\{u,v\}| = 1\}$, 也就是那些能把某两个同一个集合内的terminals分成两边的cut。$\delta(S) = \{e: |e\cap S| = 1\}$ 即跨过$S$和$V\backslash S$的边。</p>
+<p>显然，经过这些cut的那些边至少需要选一条。反过来，如果对于任意cut，穿过cut的边至少有一条被选中，那么一定合法解，只要验证$\forall i, \forall u,v\in S_i$, $u, v$之间有路。可以按照下面的算法来找到$u,v$之间的路:</p>
+<ol>
+<li>$A:=\{u\}$, $F:=\emptyset$.</li>
+<li>重复过程： 如果$v \notin A$, 那么$A \in \mathcal{S}$, 一定存在一条边$e=(x,y)$, 满足$x \in A, y \notin A$, 令 $A:= A \cup\{y\}$。</li>
+</ol>
+<p>上面的过程一定会在有限步结束，且$A$一直是一个联通块。 最终$u,v \in A$ 联通。</p>
+<p>根据上面的思路，容易得到线性规划的式子:</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&\min w_ex_e \\
+&\forall S\in \mathcal{S}, \sum_{e\in\delta(S)}{x_e} \geq 1 \\
+&\forall e \in E, x_e \geq 0
+\end{split}</script><p>然而约数个数是指数级别的，我们不可能去解这个线性规划。</p>
+<h4 id="Primal-Dual-Algorithm"><a href="#Primal-Dual-Algorithm" class="headerlink" title="Primal-Dual Algorithm"></a>Primal-Dual Algorithm</h4><p><a href="https://webdocs.cs.ualberta.ca/~mreza/courses/Approx15/lecture9.pdf" target="_blank" rel="noopener">参考资料</a></p>
+<p><strong>Dual LP</strong>:</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&\max y_S \\
+&\forall e \in E, \sum_{S: e \in \delta(S)}y_S \leq w_e \\
+&\forall S \in \mathcal{S}, y_S \geq 0
+\end{split}</script><p>类似上周顶点覆盖问题的primal-dual算法， 我们从初始解$y = \{0 \cdots 0\}$开始慢慢增加$y_S$, 并把达到约束条件$\sum_{S: e \in \delta(S)}y_S \leq w_e$的边加入答案。</p>
+<p>但是这样有一个问题，对偶的变量$y$太多了，不可能像顶点覆盖问题一样同时增加$y$的值, 需要设计更加有效的算法。</p>
+<p>定义一个集合$S$是active的当且仅当$\sum_{e\in\delta(S)}{x_e} \geq 1$这个条件还未被满足，并且$S$是minimal的, 即不存在一个$S$的子集$S’$仍未满足Primal LP的条件。</p>
+<p>为了解决变量$y_S$过多的问题，我们只增加active的$S$对应的变量$y_S$. 一开始active的集合只有那些terminals所在的集合$\{t_{i,j}\}$。</p>
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/1.png">
+<p>注意算法第6步还有一个去掉不必要的边的过程，这一步对近似度至关重要，之后会分析。</p>
+<p><strong>Lemma:</strong> 集合$S$是active的当且仅当$S$是$F$的诱导子图的一个联通块。</p>
+<p>证明： </p>
+<ul>
+<li>如果$S$包含了诱导子图中的某个联通块$T$的一部分。那么存在某条边$e =(u,v) \in F, u\in S, v \in T \backslash S$,  因此$\sum_{e\in\delta(S)}{x_e} \geq 1$, $S$不可能是active。</li>
+<li>排除上面的情况后，$S$只可能由$F$诱导子图的一个或者多个联通块构成。如果由多个联通块构成，取其中一个联通块$T$, $T \subset S$并且$T$也不满足LP的条件，因此$S$不是minimal。</li>
+</ul>
+<p>利用该引理很容易维护所有的active set。</p>
+<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h4><h5 id="Runtime-and-Correctness"><a href="#Runtime-and-Correctness" class="headerlink" title="Runtime and  Correctness"></a>Runtime and  Correctness</h5><p>每轮在active set的点都会增加一个，因此算法经过最多$|V|-1$轮就会结束。算法结束的时候，图中不存在active set，根据active set的定义当前解就是合法解。</p>
+<h5 id="Approximation-Ratio"><a href="#Approximation-Ratio" class="headerlink" title="Approximation Ratio"></a>Approximation Ratio</h5><p>首先下面的例子解释了为什么需要算法的第6步：</p>
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/2.png">
+<p>算法会把所有边加入到答案，而实际上只需要权值为18的那条边就够了。</p>
+<p>类似上面的方法，可以构造下面的边$1-w$, 右边一条边$w+1$, $OPT = w+1, output = \frac{w*(w+1)}{2}$, 近似比是$\frac{w}{2}$。</p>
+<script type="math/tex; mode=display">
+\begin{split} 
+value(output) &= \sum_{e\in F'}{w_e} \\
+&= \sum_{e\in F'}\sum_{S: e\in \delta(S)}{y_S} \\
+&= \sum_{S\in \mathcal{S}}{y_S}|\delta(S) \cap F'| \\
+&= \int_{0}^{\infty}{\sum_{S \text{ is active beteen time}(t, t+dt) } |\delta(S) \cap F'|dt}
+\end{split}</script><p>关键是如果处理$|\delta(S) \cap F’|$.</p>
+<p>因为算法的第6步去掉了无用的边，$F’$的导出子图$G’$(显然是森林)所有叶子一定都是terminals。</p>
+<p>考虑在时刻$t$, 如果把$G’$中每个active set缩成一个点，构成新的森林$G’’$, $|\delta(S) \cap F’|$就是$S$在$G’’$中对应的节点的度。</p>
+<p><strong>Lemma</strong>: 给定一棵树和包含树的所有叶子的某个顶点集合$X$, 那么有$\frac{\sum_{x \in X}{deg(x)}}{|X|} \leq 2$，即平均度数不超过2.</p>
+<p>证明可以用归纳法。$|X| = |V|$的时候成立。</p>
+<p>假设$|X| = k$的时候成立。考虑任意包含所有叶子的集合$X’, |X’|= k-1$. </p>
+<p>考虑任意internal node $u$,  $\sum_{x \in X’\cup\{u\}}{deg(x)} = deg(u)+\sum_{x \in X’}{deg(x)}\leq 2k$.</p>
+<p>因为$deg(u) \geq 2$, $\sum_{x \in X’}{deg(x)} \leq 2k-deg(u)\leq2k-2$</p>
+<p>其实也可以从另一个角度来想: 除了叶子之外每个点的度数都至少是2，要使得平均度数超过2，那么极限情况是把所有点都取过来，结果也没超过2. </p>
+<p>显然引理可以扩展到森林的情况。</p>
+<p>根据引理 </p>
+<script type="math/tex; mode=display">
+\sum_{S \text{ is active beteen time}(t, t+dt) }{ |\delta(S) \cap F'| \leq 2\times \# (\text{active sets}) }</script><p>因此</p>
+<script type="math/tex; mode=display">
+\begin{split} 
+value(output) &= \int_{0}^{\infty}{\sum_{S \text{ is active beteen time}(t, t+dt) } |\delta(S) \cap F'|dt} \\
+&\leq \int_{0}^{\infty}{2 \times \#(\text{active sets})dt} \\
+&= 2 \sum_{S \in \mathcal{S}}y_S \\
+&\leq 2OPT 
+\end{split}</script><p>近似比是2.</p>
+<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><p>一个从线性规划角度做无向图单源最短路的题，最终得到的primal-dual算法本质上和Dijkstra算法异曲同工，可以证明近似比是1，也就是最优算法，挺有意思的。</p>
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/3.png">
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/4.png">
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/5.png">
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/6.png">
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/7.png">
+<img src="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/8.png">
+<h5 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h5><p><strong>Question 1</strong></p>
+<script type="math/tex; mode=display">
+\begin{array}
+& \max \sum_{S \in \mathcal{S}}y_S \\
+\forall e \in E, \quad \sum_{S:e\in    \delta(S)}y_S \leq w_e\\
+\forall S \in \mathcal{S}, \quad y_S \geq 0
+\end{array}</script><p><strong>Question 2</strong></p>
+<p>Since when some $y_C$ is increased, a new edge which is in $\delta(C)$ is added into $F$, by the definition of $C$, $C$ will never be chosen in the future loops since it’s expanded in each loop. Thus a given dual variable be increased at most once.</p>
+<p><strong>Question 3</strong></p>
+<p>Initially, $C = \{s\}$.</p>
+<p>Then after each iteration, some edge $e = (u, v)\in \delta(C)$ is added into $F$,  without loss of generality, assume $u \in C, v \in V \backslash C$.  Then by the definition of $C$, in the next iteration we will have $C’ = C \cup\{v\}$, which means the cardinality of $C$ is increased by 1 after each iteration.  Thus the algorithm terminates in no more then $|V|-1$ iterations.</p>
+<p><strong>Lemma 1</strong>. At any step of the algorithm, the set $F$ is a tree that contains $S$..</p>
+<p><strong>Proof of Lemma 1</strong>:</p>
+<p>Denote the set $C$ after the $i^{th}$ iteration as $C_i$, the set $F$  after the $i^{th}$ iteration as $F_i$.</p>
+<p>When $i=1$, some edge $e_1 = (s, v)$ is added into $F$, $F_1 = \{(s, v)\}$ is certainly a tree.</p>
+<p>Assume the lemma holds for $i-1$. </p>
+<p>Suppose $e_i = (u, v) \in \delta(C_{i-1})$ is added into $F_{i-1}$ in the $i$ the iteration($F_i := F_{i-1}\cup\{(u, v)\}$) and without loss of generality we can assume $u \in C_{i-1}, v \in V \backslash C_{i-1}$and $C_{i} = C_{i-1} \cup \{v\}$. </p>
+<p>Since $ F_{i-1}$ is a tree, and $u$ is a tree node of $F_{i-1}$ but $v$ is not, $ F_i $ must also be a tree.</p>
+<p><strong>Question 4</strong></p>
+<p>First we argue that $val(P^*)$ is the optimal solution of the integer version of the primal LP(i.e. ILP) .</p>
+<p>As weights of edges are positive, $P^{*}$must be a simple path.  Then it’s easy to check that $x_e = 1, \forall e\in P^{*}$ is a feasible solution of $ILP_{primal}$.  Thus $OPT(ILP_{primal}) \leq val(P^{*}) $.</p>
+<p>Then we prove $OPT(ILP_{primal}) \geq val(P^{*}) $ by arguing that $ILP_{primal}$ can be translated into a simple path from $s$ to $t$.</p>
+<p>Consider the set of edges $E’:= \{e_i: x_i= 1 \text{ for } OPT(ILP_{primal})\}$, it must include some simple path from $s$ to $t$, otherwise it cannot be a feasible solution of $ILP_{primal}$.  Then, since it’s optimal, it cannot include other edges except edges from the path(If it includes other edges, by removing these edges we can get a cheaper feasible solution for $ILP_{primal} $. </p>
+<p>In all we have $OPT(ILP_{Primal}) = val(P^{*})$</p>
+<p>Thus it’s easy to get $val(y^{*}) = val(x^{*}) \leq OPT(ILP_{Primal}) = val(P^{*})$</p>
+<p><strong>Question 5</strong><br>Initially $y$ is feasible.</p>
+<p>In each iteration, we will never violate any constraint, so $y$ is always feasible.</p>
+<p><strong>Question 6</strong></p>
+<p>$val(y) \leq val(y^{*}) \leq val(P^{*})$</p>
+<p><strong>Question 7</strong></p>
+<p>$e$ is added into $F$ if and only if  $w_e = \sum_{S \in \mathcal{S}: e \in \delta(S)}{y_S}$.</p>
+<p><strong>Question 8</strong><br>$\sum_{e \in P}{w_e} = \sum_{e \in P}\sum_{S \in \mathcal{S}: e \in \delta(S)}{y_S} $</p>
+<p><strong>Question 9</strong></p>
+<script type="math/tex; mode=display">
+\begin {split}
+\sum_{e \in P}\sum_{S \in \mathcal{S}: e \in \delta(S)}{y_S} &= 
+\sum_{S \in \mathcal{S}}{y_S}\sum_{e \in P \cap \delta(S)}{1} \\ 
+&= \sum_{S \in \mathcal{S}}{y_S}|P \cap \delta(S)| \\
+&= \sum_{S \in \mathcal{S} \\ y_S\gt 0}{y_S}|P \cap \delta(S)|
+\end {split}</script><p><strong>Question 10</strong></p>
+<p>If $y_S \gt 0$, then $|P \cap \delta(S)| \geq 1$, otherwise $P\cap \delta(S) = \emptyset$ and $S = V$, but $y_V = 0$.</p>
+<p>If $y_S \gt 0$ and $|P \cap \delta(S)| \geq 2$,  then $P$ crosses $S$ and $V \backslash S$ multiple times.</p>
+<p>Since $y_S \gt 0$, $S$ must be some $C_i$ during the algorithm, which means $S$ is connected by the edges in $F_i$.</p>
+<p>$P:= (v_1, v_2, \cdots, v_i, \cdots, v_j, \cdots)$</p>
+<p>Let $i$ be the least index such that $v_i \in S, v_{i+1} \notin S$, and $j$ be the least index such that $j \gt i, v_{j-1} \notin S, v_{j} \in S$.  </p>
+<p>Since $S$ is connected by the edges in $F_i$, there must be some path $P_1$ from $v_j$ to $v_i$, passing all vertices in $S$.</p>
+<p>Let path $P_2$ be the subpath of $P$, going from $v_i$ to $v_j$. </p>
+<p>If we concatenate $P_2$ and $P_1$, we get a cycle consisting of edges in $F$, but $F$ is a tree, leading to contradiction.</p>
+<p>In conclusion, If $y_S \gt 0$, then  $|P \cap \delta(S)| = 1$.</p>
+<p><strong>Question 11</strong></p>
+<script type="math/tex; mode=display">
+\begin {split}
+val(P) = \sum_{e \in P}{w_e} &=
+\sum_{e \in P}\sum_{S \in \mathcal{S}: e \in \delta(S)}{y_S}  \\
+&=\sum_{S \in \mathcal{S}}{y_S}\sum_{e \in P \cap \delta(S)}{1} \\ 
+&= \sum_{S \in \mathcal{S}}{y_S}|P \cap \delta(S)| \\
+&= \sum_{S \in \mathcal{S} \\ y_S\gt 0}{y_S}|P \cap \delta(S)| \\
+&= \sum_{S \in \mathcal{S} \\ y_S\gt 0}{y_S} \\
+&= val(y) \\
+&\leq val(y^*)
+\end {split}</script><p>On the other hand, $val(y^*) = val(x^*) \leq val(P)$</p>
+<p>Therefore,  $val(P) = val(x^*) \leq OPT(ILP_{primal})$.</p>
+<p>$P$ is a feasible solution of $ILP_{primal}$, $val(P) \geq OPT(ILP_{primal})$.</p>
+<p>In all, $val(P) = OPT(ILP_{primal})$</p>
+<p>Amazingly, $P$ is just the shortest path from $s$ to $t$ !!</p>
+<p><strong>Question 12</strong></p>
+<p>The key to the proof is  that if $y_S \gt 0$, then  $|P \cap \delta(S)| = 1$.</p>
+<p>In this part, we get rid off edges that are not in $P$.</p>
+<p><strong>Question 13</strong></p>
+<p>Edge $(s, i)$ is added into $F$ if and only if $w(s, i) = \min\limits_{v \text{ is incident to }  s}{w(s,v)}$.</p>
+<p>Also $i$ is the second vertex added to $D$ if and only if $w(s, i) = \min\limits_{v \text{ is incident to }  s}{w(s,v)}$.</p>
+<p><strong>Question 14</strong></p>
+<p>Vertex $j$ that $j \notin C_0, l(j) = \min\limits_{k \notin C_0}{l(k)}$</p>
+<p><strong>Question 15</strong></p>
+<p>$(j, k)$ such that $k \notin S$</p>
+<p><strong>Question 16</strong></p>
+<p>$l(k):= \min(l(k), l(j)+w(j,k))$</p>
+<p><strong>Question 17</strong></p>
+<p>Initially, $D = C = \{s\}$ and $d(s) = 0, l(s) = 0$.</p>
+<p>In each iteration, $d(x)$ and $l(x)$ are modified in the same way, and a new vertex $u$ is chosen to be added if and only if $x$ is not currently in the set and $d(x)$ or $l(x)$ is minimum. </p>
+<p>By induction we can conclude that the primal-dual algorithm is exactly the same with Dijkstra Algorithm.</p>
+<p><strong>Question 18</strong></p>
+<p>$O(|E|+|V|\log(\frac{|E|}{|V|})\log(|V|))$ using Fibonacci heaps.</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" rel="next" title="Approximation Algorithm(6)-Linear Programming Duality">
+                <i class="fa fa-chevron-left"></i> Approximation Algorithm(6)-Linear Programming Duality
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/blog/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/blog/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/blog/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://tigertang.cn" title="http://tigertang.cn" rel="noopener" target="_blank">tigertang</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://www.cnblogs.com/jiangshibiao/" title="http://www.cnblogs.com/jiangshibiao/" rel="noopener" target="_blank">jiangshibiao</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/tsreaper/" title="https://www.cnblogs.com/tsreaper/" rel="noopener" target="_blank">Tsreaper</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/vb4896/" title="https://www.cnblogs.com/vb4896/" rel="noopener" target="_blank">我的旧博客</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-Study-Steiner-Tree"><span class="nav-number">2.</span> <span class="nav-text">Case Study: Steiner Tree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LP-Relaxation-for-Steiner-Forest"><span class="nav-number">3.</span> <span class="nav-text">LP Relaxation for Steiner Forest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Primal-Dual-Algorithm"><span class="nav-number">4.</span> <span class="nav-text">Primal-Dual Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Analysis"><span class="nav-number">5.</span> <span class="nav-text">Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Runtime-and-Correctness"><span class="nav-number">5.1.</span> <span class="nav-text">Runtime and  Correctness</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Approximation-Ratio"><span class="nav-number">5.2.</span> <span class="nav-text">Approximation Ratio</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise"><span class="nav-number">6.</span> <span class="nav-text">Exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem"><span class="nav-number">6.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution"><span class="nav-number">6.2.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/blog/js/utils.js?v=7.2.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
+<script src="/blog/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+    
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'yXO6KJNmXhErdElfzCTM0LbB-gzGzoHsz',
+    appKey: 'FFFdwO3D1mtNv8A34KbbisJz',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+  
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/blog/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+
