@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/6.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/7.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/8.png">
-<meta property="og:updated_time" content="2019-09-15T11:28:47.075Z">
+<meta property="og:updated_time" content="2019-09-16T10:13:36.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(7)-The Steiner Forest Problem">
 <meta name="twitter:description" content="Week 7: The Steiner Forest Problem Problem Definition给定联通无向图$(V, E)$和若干个terminals的集合$S_i = \{t_{i,1}, t_{i,2}, \cdots, t_{i, k_i} \}$, 要求选出边权和最小的边，使得任意$S_i$中的点联通。 Case Study: Steiner Tree考虑只有一个集合$S =">
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-15 19:28:47" itemprop="dateModified" datetime="2019-09-15T19:28:47+08:00">2019-09-15</time>
+                <time title="修改时间：2019-09-16 18:13:36" itemprop="dateModified" datetime="2019-09-16T18:13:36+08:00">2019-09-16</time>
               </span>
             
           
@@ -501,7 +501,7 @@
 </ol>
 <p><strong>Analysis</strong></p>
 <p>正确性显然，只需要分析近似度。</p>
-<p>考虑最优解一定是一棵树，如果把这棵树的每条边复制一份，构成的新图是一个欧拉图(每个点的度都是偶数)。考虑这个新图的一条欧拉回路$P:=(t_{i,1}, t_{i,2}, \cdots, t_{i,m})$, 点$t_{i,j}$与点$t_{i,j+1}$之间的路，大于等于它们在 $V’$中对应的边长。$P$对应到$V’$中相当于选了一些边使得$V’$联通，因此$OPT = 2length(P) \geq MST(V’)$，也就是说近似比是2.</p>
+<p>考虑最优解一定是一棵树，如果把这棵树的每条边复制一份，构成的新图是一个欧拉图(每个点的度都是偶数)。考虑这个新图的一条欧拉回路$P:=(t_{i_1}, t_{i_2}, \cdots, t_{i_m})$, 点$t_{i,j}$与点$t_{i,j+1}$之间的路，大于等于它们在 $V’$中对应的边长。$P$对应到$V’$中相当于选了一些边使得$V’$联通，因此$2OPT = length(P) \geq MST(V’)$，也就是说近似比是2.</p>
 <h4 id="LP-Relaxation-for-Steiner-Forest"><a href="#LP-Relaxation-for-Steiner-Forest" class="headerlink" title="LP Relaxation for Steiner Forest"></a>LP Relaxation for Steiner Forest</h4><p>定义$\mathcal{S} := \{S: \exists i \exists u,v \in S_i: |S\cap\{u,v\}| = 1\}$, 也就是那些能把某两个同一个集合内的terminals分成两边的cut。$\delta(S) = \{e: |e\cap S| = 1\}$ 即跨过$S$和$V\backslash S$的边。</p>
 <p>显然，经过这些cut的那些边至少需要选一条。反过来，如果对于任意cut，穿过cut的边至少有一条被选中，那么一定合法解，只要验证$\forall i, \forall u,v\in S_i$, $u, v$之间有路。可以按照下面的算法来找到$u,v$之间的路:</p>
 <ol>
