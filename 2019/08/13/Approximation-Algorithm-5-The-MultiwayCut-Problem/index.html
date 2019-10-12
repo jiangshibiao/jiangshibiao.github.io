@@ -108,7 +108,7 @@
 <meta property="og:description" content="Week 5: The MultiwayCut Problem Problem Definition给出一个边权非负的无向图$G = (V, E)$, 其中有$k$个顶点是terminals(之后记为$a_1 \cdots a_k, A := \{a_i\}$)。删掉边集$E’ \subset E$, 使得这$k$个顶点互相不连通，要求$weight(E’)$尽可能小。 Trivial Case:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/2.jpg">
-<meta property="og:updated_time" content="2019-08-28T03:01:43.570Z">
+<meta property="og:updated_time" content="2019-10-12T06:56:43.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(5)-The MultiwayCut Problem">
 <meta name="twitter:description" content="Week 5: The MultiwayCut Problem Problem Definition给出一个边权非负的无向图$G = (V, E)$, 其中有$k$个顶点是terminals(之后记为$a_1 \cdots a_k, A := \{a_i\}$)。删掉边集$E’ \subset E$, 使得这$k$个顶点互相不连通，要求$weight(E’)$尽可能小。 Trivial Case:">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-28 11:01:43" itemprop="dateModified" datetime="2019-08-28T11:01:43+08:00">2019-08-28</time>
+                <time title="修改时间：2019-10-12 14:56:43" itemprop="dateModified" datetime="2019-10-12T14:56:43+08:00">2019-10-12</time>
               </span>
             
           
@@ -502,7 +502,7 @@ value(output) \leq 2(1-\frac{1}{k})OPT</script><p>特别地, $k=2$时$value(outp
 <li>Contraints: $x_{u,i} \in [0,1], \sum_i{x_{u,i}=1}$   </li>
 <li>Objective: $\frac{1}{2} \sum\limits_{(u,v)\in E}w(u,v)(\sum\limits_i{|x_{u, i} - x_{v, i}|})$</li>
 </ul>
-<p>比较巧妙的地方是用$\sum\limits_i{|x_{u, i} - x_{v, i}|}$将$u,v$属于不同集合的条件表达出来了。</p>
+<p>比较巧妙的地方是用$\sum\limits_i{|x_{u, i} - x_{v, i}|}$将$u,v$属于不同集合的条件表达出来了。<br>注意上面不是标准的LP, 可以令$d_{uvi} \geq x_{u, i} - x_{v, i}, d_{uvi} \geq x_{v, i} - x_{u, i}$, 然后将$|x_{u, i} - x_{v, i}|用d_{uvi}$替代, 转化为标准的LP。</p>
 <h5 id="Geometric-Interpretation"><a href="#Geometric-Interpretation" class="headerlink" title="Geometric Interpretation"></a>Geometric Interpretation</h5><p>将每个点的信息看成一个$k$维向量: $\vec{X_u} := (x_{u,1}, x_{u,2} \cdots x_{u, k})$</p>
 <p>$\sum\limits_i{|x_{u, i} - x_{v, i}|}=|X_u - X_v|_1$, 即$X_u, X_v$的$L_1$距离。</p>
 <p>令$d(u,v) := \frac{1}{2}|X_u-X_v|$, 那么总的cost就是$ \sum\limits_{(u,v)\in E}w(u,v)(\frac{1}{2}\sum\limits_i{|x_{u, i} - x_{v, i}|}) = \sum\limits_{(u,v)\in E}w(u,v)d(u,v)$</p>
