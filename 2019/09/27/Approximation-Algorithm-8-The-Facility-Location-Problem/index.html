@@ -108,7 +108,7 @@
 <meta property="og:description" content="Week 8: The Facility Location Problem Problem Definition小区里要建某种公共设施, 可以建造设施的位置集合为$\mathcal{F}$, 在第$i$个位置建造设施的花费是$f_i$. 设顾客集合为$\mathcal{C}$, $c_{ij}$表示顾客$j$与设施$i$之间的距离, 且约定这个距离满足三角形不等式(即$c_{ij}$就是设施$i$">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png">
-<meta property="og:updated_time" content="2019-10-13T07:25:25.286Z">
+<meta property="og:updated_time" content="2019-10-19T06:06:00.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(8)-The Facility Location Problem">
 <meta name="twitter:description" content="Week 8: The Facility Location Problem Problem Definition小区里要建某种公共设施, 可以建造设施的位置集合为$\mathcal{F}$, 在第$i$个位置建造设施的花费是$f_i$. 设顾客集合为$\mathcal{C}$, $c_{ij}$表示顾客$j$与设施$i$之间的距离, 且约定这个距离满足三角形不等式(即$c_{ij}$就是设施$i$">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-13 15:25:25" itemprop="dateModified" datetime="2019-10-13T15:25:25+08:00">2019-10-13</time>
+                <time title="修改时间：2019-10-19 14:06:00" itemprop="dateModified" datetime="2019-10-19T14:06:00+08:00">2019-10-19</time>
               </span>
             
           
@@ -506,7 +506,7 @@
 <p>另一部分费用是建造设施的费用。</p>
 <script type="math/tex; mode=display">f_{i_k} \leq \sum_{i \in \mathcal{F}}{x_{ij_k}^{*}f_{i_k}} = \sum_{i: x^{*}_{ij_k} \gt 0}{x^{*}_{ij_k}f_{i_k}} \leq \sum_{i: x^{*}_{ij_k} \gt 0}{x^{*}_{ij_k}f_{i}} \leq \sum_{i: x^{*}_{ij_k} \gt 0}{y^{*}_if_{i}}</script><p>第一个不等号利用了Primal的第一个约束，第二个不等号用了算法2.2步的最小性，最后一个不等号用了Primal的第二个约束。<br>因为算法2.3步把距离$j_k$小于等于2的顾客都满足了，所以$\sum_{i: x^{*}_{ij_{p}} \gt 0}{y^{*}_if_{i}}$和$\sum_{i: x^{*}_{ij_{q}} \gt 0}{y^{*}_if_{i}}$是没有公共部分的。<br>综上$\sum_k f_{i_k} \leq \sum_{i \in \mathcal{F}}{y^{*}_i f_i} \leq OPT$.</p>
 <p>两部分费用结合一下得出算法近似比是4.</p>
-<h4 id="An-3-approximation-Algorithm"><a href="#An-3-approximation-Algorithm" class="headerlink" title="An 3-approximation Algorithm"></a>An 3-approximation Algorithm</h4><p>这一部分感觉coursera上讲的不是很好, 不如直接读原作者的<a href="https://gitee.com/zhenweiliu/blog/raw/master/papers/approximation_algo_8.pdf" target="_blank" rel="noopener">paper</a><br>这个算法本质就是原始对偶算法, 和之前的问题不同的是, 对偶问题中的约数条件$\alpha_j-\beta_{ij} \leq c_{ij}$, 对偶变量的系数有正有负，因此不能简单地像之前一样同时增加对偶变量。</p>
+<h4 id="An-3-approximation-Algorithm"><a href="#An-3-approximation-Algorithm" class="headerlink" title="An 3-approximation Algorithm"></a>An 3-approximation Algorithm</h4><p>这一部分感觉coursera上讲的不是很好, 不如直接读原作者的<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/facilitylocation.pdf" target="_blank" rel="noopener">paper</a><br>这个算法本质就是原始对偶算法, 和之前的问题不同的是, 对偶问题中的约数条件$\alpha_j-\beta_{ij} \leq c_{ij}$, 对偶变量的系数有正有负，因此不能简单地像之前一样同时增加对偶变量。</p>
 <h5 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm"></a>Algorithm</h5><p><strong>Phase 1:</strong><br>初始$\alpha_j = 0, \beta_{ij} = 0$, 所以$\alpha_j$都是<strong>free</strong>的, 所有$\beta_{ij}$都是<strong>frozen</strong>的。所有的顾客都是<strong>unconnected</strong>.<br>同时以单位速度增加所有free的变量, 直到所有变量都是frozen.<br>一开始只会增加$\alpha_j$, 当对于某个$i$, $\alpha_j = c_{ij}$的时候, 为了保持$\alpha_j-\beta_{ij} \leq c_{ij}$仍然被满足, 把$\beta_{ij}$设成free, 即让它和$\alpha_j$一起以单位速度增加。 另一方面，随着$\beta_{ij}$的增加, 某些$\sum_{j \in \mathcal{C}}{\beta_{ij}} \leq f_i$等号会成立, 这时$\beta_{ij}$就不能再接着增加了, 将其置为frozen, 同时将设施$i$设为<strong>temporarily open</strong>. 显然这个时候和它一起增加的$\alpha_j$也不可以再增加了, 同样置为frozen。<br>为了之后方便分析, 称满足$\alpha_j \geq c_{ij}$的边是<strong>tight</strong>的, 称$\beta_{ij} \gt 0$的边是<strong>special</strong>的(根据算法过程, special的边一定是tight的)。在算法执行过程中, 一旦某个unconnected的顾客$j$的某条边变成了tight, 且这条边连着的设施$i$是temporarily open的, 那么把这个顾客置为<strong>connected</strong>, 并称设施$i$是顾客$j$的<strong>connecting witness</strong>。显然算法结束的时候每个顾客都会变成connected, 并且有唯一的connecting witness。<br>如果同一时间发生了多个时间, temporarily open事件优先于connected事件。如果某个顾客的多条边同时变成tight, 且连出去的设施都是temporarily open的，那么任选一个作为connecting witness。</p>
 <p><strong>Phase 2:</strong><br>定义新图$G’$, 顶点是所有temporarily open的设施, 两个设施有边当且仅当原图中两个设施可以通过两条special的边到达。 $G’$一个极大独立集$I$, 确定这些设施是最终<strong>open</strong>的设施。对于顾客$j$, 如果有一条special的边连接他和某个open的设施, 那么顾客$j$就去这个设施($\sigma(j):=i$), 记为第一类顾客。否则, 假设顾客$j$的connecting witness是设施$i$, 如果$i$是open的, 那么令$\sigma(j):=i$, 记为第二类顾客。如果$i$不是open的，那么$G’$中必定有$i$的邻居$i’ \in I$, 令$\sigma(j):= i’$, 记为第三类顾客.<br>三类顾客的集合分别记为$I_1, I_2, I_3$.</p>
 <h5 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h5><p><strong>Key Observation</strong>：</p>
@@ -579,6 +579,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/" rel="prev" title="Approximation Algorithm(9)-The Maxcut Problem">
+                Approximation Algorithm(9)-The Maxcut Problem <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -648,7 +652,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
