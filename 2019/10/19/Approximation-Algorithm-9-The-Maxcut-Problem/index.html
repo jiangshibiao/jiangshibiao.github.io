@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="Week 9: Maximum Cut and Semi-Definite Programming Problem Definition给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$. Simple 2-approximation Algorithms">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-19T06:47:15.848Z">
+<meta property="og:updated_time" content="2019-10-19T07:15:03.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(9)-The Maxcut Problem">
 <meta name="twitter:description" content="Week 9: Maximum Cut and Semi-Definite Programming Problem Definition给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$. Simple 2-approximation Algorithms">
@@ -379,7 +379,7 @@
                 
               
 
-              <time title="创建时间：2019-10-19 13:46:06 / 修改时间：14:47:15" itemprop="dateCreated datePublished" datetime="2019-10-19T13:46:06+08:00">2019-10-19</time>
+              <time title="创建时间：2019-10-19 13:46:06 / 修改时间：15:15:03" itemprop="dateCreated datePublished" datetime="2019-10-19T13:46:06+08:00">2019-10-19</time>
             </span>
           
 
@@ -474,6 +474,9 @@ E(output) &= \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} \
 &= \sum_{e:=(u, v)}{\frac{1}{2}w_e} \\
 &\geq \frac{1}{2}OPT
 \end{split}</script><p>这里用到了结论$Pr[\boldsymbol{r} \cdot (\boldsymbol{x_u-x_v}) \neq 0] = \frac{1}{2}$, 因为对于任意$\boldsymbol{w} \in \mathbb{F_2^k}$, 满足$\boldsymbol{v} \cdot \boldsymbol{w} = 0$的向量$\boldsymbol{v}$构成了维度为$k-1$的子空间, 因此有$2^{k-1}$个满足要求的$\boldsymbol{v}$, 恰好是一半。<br>如果随机取一个$\boldsymbol{r}$, 期望是$OPT$的一半。而$\boldsymbol{r}$的取值只有$2^k = O(|V|)$种, 可以穷举所有的$\boldsymbol{r}$然后取最优的，肯定比期望要好，这样就把算法从期望一半变成了确定的一半。</p>
+<p>还有一个更加简单的贪心做法：<br>初始化集合$A=B=\emptyset$. 依次考虑每个点, 如果把它加入$A$集合收益大，就加入，否则加入$B$集合。<br>容易证明在这个过程中始终满足下面的性质:</p>
+<script type="math/tex; mode=display">
+\sum_{e \in (A,B)}{w_e} \geq \sum_{e \in (A,A)}{w_e} + \sum_{e \in (B,B)}{w_e}</script><p>从而得出$\sum_{e \in (A,B)}{w_e} \geq \frac{1}{2}\sum_{e}{w_e} \geq \frac{1}{2}OPT$ </p>
 
       
     </div>

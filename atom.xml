@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://zhenweiliu.gitee.io/blog/"/>
-  <updated>2019-10-19T06:47:15.848Z</updated>
+  <updated>2019-10-19T07:15:03.180Z</updated>
   <id>http://zhenweiliu.gitee.io/blog/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -16,9 +16,9 @@
     <link href="http://zhenweiliu.gitee.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/"/>
     <id>http://zhenweiliu.gitee.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/</id>
     <published>2019-10-19T05:46:06.000Z</published>
-    <updated>2019-10-19T06:47:15.848Z</updated>
+    <updated>2019-10-19T07:15:03.180Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>Week 9: Maximum Cut and Semi-Definite Programming</strong></p><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$.</p><h4 id="Simple-2-approximation-Algorithms"><a href="#Simple-2-approximation-Algorithms" class="headerlink" title="Simple 2-approximation Algorithms"></a>Simple 2-approximation Algorithms</h4><p>假设对于每个点, 有$p$的概率选入集合$S$, 那么</p><script type="math/tex; mode=display">E(output) = \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} =  2p(1-p) \sum_{e:=(u, v)}{w_e} \geq 2p(1-p) OPT</script><p>显然取$p=0.5$结果最好, 此时$E(output) \geq \frac{1}{2}OPT$. </p><p>偶然看到<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/maxcut.pdf" target="_blank" rel="noopener">一篇资料</a>讲了如何把随机去掉，挺有意思的。在资料的3.1节部分, 过程如下：<br>给每个点分配不同的向量$\boldsymbol{x_u} \in \mathbb{F_2^k}$, 取$k = \lceil \log_2(|V|) \rceil$即可保证存在这样的分配。<br>然后随机一个向量$\boldsymbol{r} \in \mathbb{F_2^k}$, 令$S:= \{u | \boldsymbol{r} \cdot \boldsymbol{x_u} = 1 \}$。</p><script type="math/tex; mode=display">\begin{split}E(output) &= \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} \\&=  \sum_{e:=(u, v)}{w_e Pr[\boldsymbol{r} \cdot (\boldsymbol{x_u-x_v}) \neq 0 ]} \\&= \sum_{e:=(u, v)}{\frac{1}{2}w_e} \\&\geq \frac{1}{2}OPT\end{split}</script><p>这里用到了结论$Pr[\boldsymbol{r} \cdot (\boldsymbol{x_u-x_v}) \neq 0] = \frac{1}{2}$, 因为对于任意$\boldsymbol{w} \in \mathbb{F_2^k}$, 满足$\boldsymbol{v} \cdot \boldsymbol{w} = 0$的向量$\boldsymbol{v}$构成了维度为$k-1$的子空间, 因此有$2^{k-1}$个满足要求的$\boldsymbol{v}$, 恰好是一半。<br>如果随机取一个$\boldsymbol{r}$, 期望是$OPT$的一半。而$\boldsymbol{r}$的取值只有$2^k = O(|V|)$种, 可以穷举所有的$\boldsymbol{r}$然后取最优的，肯定比期望要好，这样就把算法从期望一半变成了确定的一半。</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>Week 9: Maximum Cut and Semi-Definite Programming</strong></p><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$.</p><h4 id="Simple-2-approximation-Algorithms"><a href="#Simple-2-approximation-Algorithms" class="headerlink" title="Simple 2-approximation Algorithms"></a>Simple 2-approximation Algorithms</h4><p>假设对于每个点, 有$p$的概率选入集合$S$, 那么</p><script type="math/tex; mode=display">E(output) = \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} =  2p(1-p) \sum_{e:=(u, v)}{w_e} \geq 2p(1-p) OPT</script><p>显然取$p=0.5$结果最好, 此时$E(output) \geq \frac{1}{2}OPT$. </p><p>偶然看到<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/maxcut.pdf" target="_blank" rel="noopener">一篇资料</a>讲了如何把随机去掉，挺有意思的。在资料的3.1节部分, 过程如下：<br>给每个点分配不同的向量$\boldsymbol{x_u} \in \mathbb{F_2^k}$, 取$k = \lceil \log_2(|V|) \rceil$即可保证存在这样的分配。<br>然后随机一个向量$\boldsymbol{r} \in \mathbb{F_2^k}$, 令$S:= \{u | \boldsymbol{r} \cdot \boldsymbol{x_u} = 1 \}$。</p><script type="math/tex; mode=display">\begin{split}E(output) &= \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} \\&=  \sum_{e:=(u, v)}{w_e Pr[\boldsymbol{r} \cdot (\boldsymbol{x_u-x_v}) \neq 0 ]} \\&= \sum_{e:=(u, v)}{\frac{1}{2}w_e} \\&\geq \frac{1}{2}OPT\end{split}</script><p>这里用到了结论$Pr[\boldsymbol{r} \cdot (\boldsymbol{x_u-x_v}) \neq 0] = \frac{1}{2}$, 因为对于任意$\boldsymbol{w} \in \mathbb{F_2^k}$, 满足$\boldsymbol{v} \cdot \boldsymbol{w} = 0$的向量$\boldsymbol{v}$构成了维度为$k-1$的子空间, 因此有$2^{k-1}$个满足要求的$\boldsymbol{v}$, 恰好是一半。<br>如果随机取一个$\boldsymbol{r}$, 期望是$OPT$的一半。而$\boldsymbol{r}$的取值只有$2^k = O(|V|)$种, 可以穷举所有的$\boldsymbol{r}$然后取最优的，肯定比期望要好，这样就把算法从期望一半变成了确定的一半。</p><p>还有一个更加简单的贪心做法：<br>初始化集合$A=B=\emptyset$. 依次考虑每个点, 如果把它加入$A$集合收益大，就加入，否则加入$B$集合。<br>容易证明在这个过程中始终满足下面的性质:</p><script type="math/tex; mode=display">\sum_{e \in (A,B)}{w_e} \geq \sum_{e \in (A,A)}{w_e} + \sum_{e \in (B,B)}{w_e}</script><p>从而得出$\sum_{e \in (A,B)}{w_e} \geq \frac{1}{2}\sum_{e}{w_e} \geq \frac{1}{2}OPT$ </p>]]></content>
     
     <summary type="html">
     
@@ -163,11 +163,11 @@
       <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
     
     
+      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
+    
       <category term="Game Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Game-Theory/"/>
     
       <category term="Dynamic Programming" scheme="http://zhenweiliu.gitee.io/blog/tags/Dynamic-Programming/"/>
-    
-      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
     
   </entry>
   
@@ -219,9 +219,9 @@
       <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
     
     
-      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
-    
       <category term="Number Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Number-Theory/"/>
+    
+      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
     
   </entry>
   
