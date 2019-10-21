@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="Week 9: Maximum Cut and Semi-Definite Programming Problem Definition给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$. Simple 2-approximation Algorithms">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-19T07:15:03.180Z">
+<meta property="og:updated_time" content="2019-10-21T12:55:14.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(9)-The Maxcut Problem">
 <meta name="twitter:description" content="Week 9: Maximum Cut and Semi-Definite Programming Problem Definition给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$. Simple 2-approximation Algorithms">
@@ -379,13 +379,23 @@
                 
               
 
-              <time title="创建时间：2019-10-19 13:46:06 / 修改时间：15:15:03" itemprop="dateCreated datePublished" datetime="2019-10-19T13:46:06+08:00">2019-10-19</time>
+              <time title="创建时间：2019-10-19 13:46:06" itemprop="dateCreated datePublished" datetime="2019-10-19T13:46:06+08:00">2019-10-19</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-21 20:55:14" itemprop="dateModified" datetime="2019-10-21T20:55:14+08:00">2019-10-21</time>
+              </span>
             
           
 
@@ -474,9 +484,61 @@ E(output) &= \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} \
 &= \sum_{e:=(u, v)}{\frac{1}{2}w_e} \\
 &\geq \frac{1}{2}OPT
 \end{split}</script><p>这里用到了结论$Pr[\boldsymbol{r} \cdot (\boldsymbol{x_u-x_v}) \neq 0] = \frac{1}{2}$, 因为对于任意$\boldsymbol{w} \in \mathbb{F_2^k}$, 满足$\boldsymbol{v} \cdot \boldsymbol{w} = 0$的向量$\boldsymbol{v}$构成了维度为$k-1$的子空间, 因此有$2^{k-1}$个满足要求的$\boldsymbol{v}$, 恰好是一半。<br>如果随机取一个$\boldsymbol{r}$, 期望是$OPT$的一半。而$\boldsymbol{r}$的取值只有$2^k = O(|V|)$种, 可以穷举所有的$\boldsymbol{r}$然后取最优的，肯定比期望要好，这样就把算法从期望一半变成了确定的一半。</p>
-<p>还有一个更加简单的贪心做法：<br>初始化集合$A=B=\emptyset$. 依次考虑每个点, 如果把它加入$A$集合收益大，就加入，否则加入$B$集合。<br>容易证明在这个过程中始终满足下面的性质:</p>
+<p>还有一个更加简单的贪心做法：<br>初始化集合$A=B=\emptyset$. 依次考虑每个点, 如果把它加入$A$集合收益大(收益指$\sum_{e \in (A,B)}{w_e}$增加的量)，就加入，否则加入$B$集合。<br>容易证明在这个过程中始终满足下面的性质:</p>
 <script type="math/tex; mode=display">
 \sum_{e \in (A,B)}{w_e} \geq \sum_{e \in (A,A)}{w_e} + \sum_{e \in (B,B)}{w_e}</script><p>从而得出$\sum_{e \in (A,B)}{w_e} \geq \frac{1}{2}\sum_{e}{w_e} \geq \frac{1}{2}OPT$ </p>
+<h4 id="Integer-Programming-Formulation"><a href="#Integer-Programming-Formulation" class="headerlink" title="Integer Programming Formulation"></a>Integer Programming Formulation</h4><p>如果用每个点是否在集合$S$中作为变量, 目标函数就不是线性的了, 而是后面会提到的Semi-Definite Programming.<br>这里用$x_{ij} \in \{0, 1\}$表示点$i$和点$j$是否属于同一个集合, 那么目标函数就是$\sum_{ij}{w_{ij}x_{ij}}$。</p>
+<p>给定一组$\{x_{ij} \}$, 取$S:=\{v|x_{1v} = 0\}$为其对应的解。<br>先来看$\{x_{ij}\}$合法的一些必要条件:</p>
+<ol>
+<li>考虑三个点$i, j, k$, 显然不可能$x_{ij}, x_{ik}, x_{jk}$都是1, 因此$x_{ij}+x_{ik}+x{jk} \geq 2$.</li>
+<li>考虑三个点$i, j, k$, 如果有两条边对应的变量是0, 说明这三个点属于同一个集合, 那么第三条边对应的变量也必须是0, 因此有$x_{ij} \leq x_{ik} + x_{jk}$.</li>
+</ol>
+<p>下面证明如果$\{x_{ij}\}$满足这两个条件, 其对应的解$S:=\{v|x_{1v} = 0\}$是合法的:</p>
+<p>需要证明$u, v$在不同集合当且仅当$x_{uv} = 1$.</p>
+<ul>
+<li>如果$u, v \in S$, 那么取$V \backslash S$中的一点$w$(如果不存在，说明所有点都在$S$中，所有变量都是0), $x_{uv} + x_{uw} + x_{vw} = x_{uv} + 1 + 1 \geq 2$,  因此$x_{uv} = 0$. </li>
+<li>如果$u,v \notin S$, 那么$x_{1u}+x_{1v}+x_{uv} = 1 + 1 + x_{uv} \leq 2$, 即$x_{uv} = 0$.</li>
+<li>如果$u \in S, v \notin S$, 那么$x_{1v} \leq x_{1u} + x_{uv}$, 即$1 \leq 0 + x_{uv}$, 所以$x_{uv} = 1$.</li>
+</ul>
+<p>因此得到Maxcut问题的一个线性规划模型：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\text{maximize} & \sum_{i \lt j}{w_{ij}x_{ij}}  \\
+\text{subjects to} \ &x_{ij} + x_{ik} + x_{jk} &\leq 2 \quad &\forall i,j,k \in V \\
+&x_{ij} - x_{ik} - x_{jk} &\leq 0 \quad &\forall i,j,k \in V \\
+&x_{ij} \in \{0, 1\} \quad & &\forall i, j \in V
+\end{split}</script><h4 id="Integrality-Gap-of-LP-Model"><a href="#Integrality-Gap-of-LP-Model" class="headerlink" title="Integrality Gap of LP Model"></a>Integrality Gap of LP Model</h4><p>上面提出的线性规划模型虽然很有道理，然而下面要证明一个悲惨的事实: 基于上面线性规划的近似算法不可能做到比2更好的近似比。<br>integrality gap指的是线性规划的实数最优解和整数最优解的比值。下面假设解决的是一个求最大值的问题。<br>如果有常数$\beta$, 对问题的任意instance $I$,恒有 $\frac{LP(I)}{IP(I)} \geq \beta$, 那么称$\beta$的最大值为这个问题的integrality gap。<br>在借助线性规划模型设计近似算法并证明近似度的时候，我们需要证明$\frac{IP(I)}{output} \leq \alpha$。但是谁也不知道$IP(I)$是多少，我们只能用$\frac{LP(I)}{output}$ 来bound $\frac{IP(I)}{output}$。 而$\frac{LP(I)}{output} \geq \frac{LP(I)}{IP(I)} \geq \beta$, 因此我们不可能设计近似算法做到比$\beta$更好的近似度。<br>对于maxcut问题, 可以证明integrality gap是2. </p>
+<p>coursera上的证明非常不完整，我找了很多paper都指向了这篇：<br><em>Svatopluk Poljak. Polyhedral and eigenvalue approximations of the max-cut problem. Sets, Graphs and Numbers, Colloquia Mathematica Societatis Janos Bolyai, 60:569–581, 1992</em>.<br>遗憾的是这好像是一本书，没法免费下载。</p>
+<p>coursera上提到了大致思想是: 考虑图$G(n, p)$, 每条边有$p$的概率在这个图内。边权都是1.<br>定义事件A: 图$G$包含于某个长度不大于$k$的环中的边数不超过$|V|^{0.5}$.<br>定义事件B: 把图$G$包含于某个长度不大于$k$的环中的边全删掉得到的图$G’$满足$maxcut(G’) \leq (\frac{1}{2}+o(1)) |E|$<br>根据<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/poljak1994.pdf" target="_blank" rel="noopener">paper1</a>如果一个图G不存在长度小于$k$($k$比较小)的环, 那么$LP(G)$非常接近边的数量。从而推出$LP(G’) \geq (1-o(1))|E|$.<br>paper1中把我们的LP转化为另一个LP, 并说明两个LP的最优解是一样的，证明在<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/cut-lp.pdf" target="_blank" rel="noopener">paper2</a>中, 我花了大概1h看了下，感觉证明思路挺新奇的。<br>最后通过证明$Pr[A \cap B] \gt 0$, 说明存在某个图$G’$, $\frac{LP(G’)}{maxcut(G’)} = 2-o(1)$.</p>
+<h4 id="Semi-Definite-Programming"><a href="#Semi-Definite-Programming" class="headerlink" title="Semi-Definite Programming"></a>Semi-Definite Programming</h4><p>其实刚拿到maxcut这个问题，更自然地会想到用每个点是否在集合$S$中作为变量来写出一个规划方程:</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\text{maximize} \quad &\frac{1}{2} \sum_{i \lt j}{w_{ij}(1-x_ix_j)} \\
+\text{subjects to} \quad &x_i \in \{-1, 1\} \quad \forall i \in V 
+\end{split}</script><p>同样地, 我们希望把变量是整数的限制去掉, 做一个relaxation。<br>注意到$x_i^2 = 1$, 开一下脑洞, 把$x_i$看做是一个$d$维向量, 之后记为$\boldsymbol{v_i} \in \mathbb{R^d}$, 满足$||\boldsymbol{v_i}||_2 = 1$.</p>
+<p>我们得到一个向量规划:</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\text{maximize} \quad &\frac{1}{2} \sum_{i \lt j}{w_{ij}(1-\boldsymbol{v_i}\cdot \boldsymbol{v_j})} \\
+\text{subjects to} \quad &||\boldsymbol{v_i}||_2=1 \quad \forall i \in V 
+\end{split}</script><p>观察到上面的规划式子只和向量$\boldsymbol{v_i}\cdot \boldsymbol{v_j}$有关, 对应一个对称的实矩阵$A$, 满足$A_{ij}:= \boldsymbol{v_i}\cdot \boldsymbol{v_j}$。可以证明这个矩阵是半正定的(positive semi-definite):<br>证明: $V:=(\boldsymbol{v_1}, \boldsymbol{v_2}, \cdots, \boldsymbol{v_n}) \rightarrow A=V^TV \rightarrow \forall \boldsymbol{x}\in \mathbb{R^n}, \boldsymbol{x}^TA\boldsymbol{x} = (Vx)^T(Vx) = ||Vx||_2 \geq 0$.<br>反过来, 如果取向量$\boldsymbol{v_i}$的维度$d = n$, 那么任意一个半正定的矩阵也对应了一组$\boldsymbol{v_i}$, 因为任意半正定矩阵$A$可以分解为$U^TU$的形式, $U$是特征向量构成的矩阵, 让$\boldsymbol{v_i}$对应$U$的每一列即可。</p>
+<p>因此上面的向量规划的可行解和下面的半正定规划的可行解对应：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\text{maximize} \quad &\frac{1}{2} \sum_{i \lt j}{w_{ij}(1-A_{ij})} \\
+\text{subjects to} \quad &A_{ii}=1 \quad \forall 1\leq i \leq n \\
+&A \text{ is positive semi-definite}
+\end{split}</script><p>这个规划是个凸优化, 用椭球法可以在多项式时间内获得任意接近最优解的解(最优解可能是无理数, 只能无限逼近)。<br>之后, 我们假定已经求出了最优解对应的向量$\boldsymbol{v_1}, \boldsymbol{v_2}, \cdots, \boldsymbol{v_n}$, 定义$\theta_{ij}$为$\boldsymbol{v_i}, \boldsymbol{v_j}$之间的夹角.<br>显然</p>
+<script type="math/tex; mode=display">
+OPT \leq \frac{1}{2} \sum_{i \lt j}{w_{ij}(1-\boldsymbol{v_i}\cdot \boldsymbol{v_j})} = \frac{1}{2} \sum_{i \lt j}{w_{ij}(1-\cos\theta_{ij})}</script><p>考虑rounding: 随机取一个单位向量$\boldsymbol{r}$, $||\boldsymbol{r}||_2 = 1$, 如果$\boldsymbol{v_i} \cdot \boldsymbol{r} \gt 0$, $x_i := 1$, 否则$x_i := 0$。考虑解的期望值:</p>
+<script type="math/tex; mode=display">
+E[output] =  \sum_{i \lt j}{w_{ij}E[\frac{1-\boldsymbol{v_i}\cdot \boldsymbol{v_j}}{2}]} = \sum_{i \lt j}{w_{ij}Pr[\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}]}</script><p>关键是分析$Pr[\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}]$.<br>设过原点并与$\boldsymbol{v_i}$垂直的平面$F_1$, 过原点并与$\boldsymbol{v_j}$垂直的平面$F_2$, $\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}$当且仅当$\boldsymbol{r}$落在$F_1, F_2$的夹角中间(小于等于90度的角), 因此概率就是$\frac{\theta_{ij}}{\pi}$.<br>再利用一个lemma: $\frac{\theta}{\pi} \geq 0.878\frac{1-\cos\theta_{ij}}{2}$</p>
+<script type="math/tex; mode=display">
+E[output] = \sum_{i \lt j}{w_{ij}\frac{\theta_{ij}}{\pi}} \geq 0.878\sum_{i \lt j}{w_{ij}\frac{1-\cos\theta_{ij}}{2}}</script><p>因此$\frac{E[output]}{OPT} \geq 0.878$.<br>lemma的证明只需要求$\frac{\pi(1-\cos \theta){2\theta}}$的最大值就好了。</p>
+<p>可以证明在<strong>Unique Games Conjecture</strong>成立的情况下, 不可能做到比0.878更好。 </p>
+<p>最后还有一个有趣的小问题: 如何随机一个向量$\boldsymbol{r}$?<br>只要令$r_i \sim N(0, 1)$, 即每一维的取值独立地服从标准正态分布, 最后做一次正规化让它的模变成1即可。<br>证明: </p>
+<script type="math/tex; mode=display">p(x_1, \cdots, x_n) = \int_0^{\infty}{\prod_{i=1}^n \frac{e^{x_i^2}}{\sqrt{2 \pi}}dt} = 
+\int_{0}^{\infty}{\frac{e^{\sum_{i=1}^n{x_i^2}}}{(2\pi)^{n/2}}dt} = \int_0^{\infty}{\frac{e}{(2\pi)^{n/2}}dt}</script><p>和具体$x_i$的取值无关。</p>
 
       
     </div>
@@ -716,7 +778,7 @@ E(output) &= \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} \
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-2-approximation-Algorithms"><span class="nav-number">2.</span> <span class="nav-text">Simple 2-approximation Algorithms</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-2-approximation-Algorithms"><span class="nav-number">2.</span> <span class="nav-text">Simple 2-approximation Algorithms</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integer-Programming-Formulation"><span class="nav-number">3.</span> <span class="nav-text">Integer Programming Formulation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integrality-Gap-of-LP-Model"><span class="nav-number">4.</span> <span class="nav-text">Integrality Gap of LP Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Semi-Definite-Programming"><span class="nav-number">5.</span> <span class="nav-text">Semi-Definite Programming</span></a></li></ol></div>
             
 
           </div>
