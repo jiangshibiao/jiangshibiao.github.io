@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="Week 9: Maximum Cut and Semi-Definite Programming Problem Definition给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$. Simple 2-approximation Algorithms">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-21T12:55:14.619Z">
+<meta property="og:updated_time" content="2019-10-22T02:04:36.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(9)-The Maxcut Problem">
 <meta name="twitter:description" content="Week 9: Maximum Cut and Semi-Definite Programming Problem Definition给定边权非负的无向图$G=(V,E)$, 将其分成两个点集$(S, G \backslash S)$, 最大化$\sum_{e \in cut(S, G \backslash S)}{w_e}$. Simple 2-approximation Algorithms">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-21 20:55:14" itemprop="dateModified" datetime="2019-10-21T20:55:14+08:00">2019-10-21</time>
+                <time title="修改时间：2019-10-22 10:04:36" itemprop="dateModified" datetime="2019-10-22T10:04:36+08:00">2019-10-22</time>
               </span>
             
           
@@ -532,13 +532,13 @@ E(output) &= \sum_{e:=(u, v)}{w_e Pr[u, v \text{ belong to different parts }]} \
 <script type="math/tex; mode=display">
 OPT \leq \frac{1}{2} \sum_{i \lt j}{w_{ij}(1-\boldsymbol{v_i}\cdot \boldsymbol{v_j})} = \frac{1}{2} \sum_{i \lt j}{w_{ij}(1-\cos\theta_{ij})}</script><p>考虑rounding: 随机取一个单位向量$\boldsymbol{r}$, $||\boldsymbol{r}||_2 = 1$, 如果$\boldsymbol{v_i} \cdot \boldsymbol{r} \gt 0$, $x_i := 1$, 否则$x_i := 0$。考虑解的期望值:</p>
 <script type="math/tex; mode=display">
-E[output] =  \sum_{i \lt j}{w_{ij}E[\frac{1-\boldsymbol{v_i}\cdot \boldsymbol{v_j}}{2}]} = \sum_{i \lt j}{w_{ij}Pr[\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}]}</script><p>关键是分析$Pr[\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}]$.<br>设过原点并与$\boldsymbol{v_i}$垂直的平面$F_1$, 过原点并与$\boldsymbol{v_j}$垂直的平面$F_2$, $\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}$当且仅当$\boldsymbol{r}$落在$F_1, F_2$的夹角中间(小于等于90度的角), 因此概率就是$\frac{\theta_{ij}}{\pi}$.<br>再利用一个lemma: $\frac{\theta}{\pi} \geq 0.878\frac{1-\cos\theta_{ij}}{2}$</p>
+E[output] =  \sum_{i \lt j}{w_{ij}E[\frac{1-\boldsymbol{v_i}\cdot \boldsymbol{v_j}}{2}]} = \sum_{i \lt j}{w_{ij}Pr[\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}]}</script><p>关键是分析$Pr[\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}]$.<br>设过原点并与$\boldsymbol{v_i}$垂直的平面$F_1$, 过原点并与$\boldsymbol{v_j}$垂直的平面$F_2$, $\boldsymbol{v_i} \cdot \boldsymbol{r} \neq \boldsymbol{v_j} \cdot \boldsymbol{r}$当且仅当$\boldsymbol{r}$落在$F_1, F_2$的夹角中间(小于等于90度的角), 因此概率就是$\frac{\theta_{ij}}{\pi}$. (从三维几何的角度很容易想明白, 但是更高维感觉就不怎么显然了, 我尝试寻找一个代数的证明, 然而网上的资料包括算法的原论文都是从几何的角度一笔带过, 暂时留个坑吧)<br>再利用一个lemma: $\frac{\theta}{\pi} \geq 0.878\frac{1-\cos\theta_{ij}}{2}$</p>
 <script type="math/tex; mode=display">
-E[output] = \sum_{i \lt j}{w_{ij}\frac{\theta_{ij}}{\pi}} \geq 0.878\sum_{i \lt j}{w_{ij}\frac{1-\cos\theta_{ij}}{2}}</script><p>因此$\frac{E[output]}{OPT} \geq 0.878$.<br>lemma的证明只需要求$\frac{\pi(1-\cos \theta){2\theta}}$的最大值就好了。</p>
+E[output] = \sum_{i \lt j}{w_{ij}\frac{\theta_{ij}}{\pi}} \geq 0.878\sum_{i \lt j}{w_{ij}\frac{1-\cos\theta_{ij}}{2}}</script><p>因此$\frac{E[output]}{OPT} \geq 0.878$.<br>lemma的证明只需要求$\frac{\pi(1-\cos \theta)}{2\theta}$的最大值就好了。</p>
 <p>可以证明在<strong>Unique Games Conjecture</strong>成立的情况下, 不可能做到比0.878更好。 </p>
 <p>最后还有一个有趣的小问题: 如何随机一个向量$\boldsymbol{r}$?<br>只要令$r_i \sim N(0, 1)$, 即每一维的取值独立地服从标准正态分布, 最后做一次正规化让它的模变成1即可。<br>证明: </p>
-<script type="math/tex; mode=display">p(x_1, \cdots, x_n) = \int_0^{\infty}{\prod_{i=1}^n \frac{e^{x_i^2}}{\sqrt{2 \pi}}dt} = 
-\int_{0}^{\infty}{\frac{e^{\sum_{i=1}^n{x_i^2}}}{(2\pi)^{n/2}}dt} = \int_0^{\infty}{\frac{e}{(2\pi)^{n/2}}dt}</script><p>和具体$x_i$的取值无关。</p>
+<script type="math/tex; mode=display">p(x_1, \cdots, x_n) = \int_0^{\infty}{\prod_{i=1}^n \frac{ e^{-\frac{(tx_i)^2}{2}} }{\sqrt{2 \pi}}dt} = 
+\int_{0}^{\infty}{\frac{e^{-\frac{1}{2}t^2\sum_{i=1}^n{x_i^2}}}{(2\pi)^{n/2}}dt} = \int_0^{\infty}{\frac{e^{-\frac{1}{2}t^2}}{(2\pi)^{n/2}}dt}</script><p>和具体$x_i$的取值无关。</p>
 
       
     </div>
