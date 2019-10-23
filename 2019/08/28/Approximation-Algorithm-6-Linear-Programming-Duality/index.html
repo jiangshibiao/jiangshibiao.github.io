@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
-<meta property="og:updated_time" content="2019-09-05T07:08:11.448Z">
+<meta property="og:updated_time" content="2019-10-23T12:14:23.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
 <meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 15:08:11" itemprop="dateModified" datetime="2019-09-05T15:08:11+08:00">2019-09-05</time>
+                <time title="修改时间：2019-10-23 20:14:23" itemprop="dateModified" datetime="2019-10-23T20:14:23+08:00">2019-10-23</time>
               </span>
             
           
@@ -524,8 +524,7 @@
 <p>从矩阵的角度也很容易证明：</p>
 <script type="math/tex; mode=display">
 b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theorem"><a href="#Strong-Duality-Theorem" class="headerlink" title="Strong Duality Theorem"></a>Strong Duality Theorem</h5><script type="math/tex; mode=display">
-\max b^Ty = \min c^Tx</script><p>证明：</p>
-<p>先留个坑。</p>
+\max b^Ty = \min c^Tx</script><p>证明可以从单纯形算法导出，利用单纯形算法最终检验数非负的性质强行构造出一个对偶解和原始解的值一样。可以看单纯形算法的各种资料。</p>
 <h5 id="Complementary-Slackness-Conditions"><a href="#Complementary-Slackness-Conditions" class="headerlink" title="Complementary Slackness Conditions"></a>Complementary Slackness Conditions</h5><p>根据<strong>Strong Duality Theorem</strong>, <strong>Weak Duality Theorem</strong>中$b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx$所有不等式等号都应该成立。</p>
 <p>要使得$b^Ty \leq (Ax)^Ty$的等号成立, 必须有$y_i = 0$或者$b^T_i = (Ax)^T_i$即$b_i = \sum_ja_{ij}x_j$</p>
 <p>要使得$x^TA^Ty \leq x^Tc$的等号成立, 必须有$x_i = 0$或者$c_i = (A^Ty)_i$即$c_i = \sum_ja_{ji}y_i$</p>
