@@ -99,22 +99,18 @@
   };
 </script>
 
-  <meta name="description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
-<meta name="keywords" content="Approximation Algorithms">
+  <meta name="description" content="Introduction编码的目的：将信息通过某种方式编码后传输(比如ASCII码将字母变成8位01串)，使之满足下面的某些性质：  编码速度快。 编码结果易于传输。 解码速度快。 极大化信息传输率(可以理解为用尽可能少的长度表示尽可能多的信息)。 检测/纠正传输错误。  Basic ConceptsNotations code alphabet. 用于编码的字符集, 字符集中的元素成为code">
+<meta name="keywords" content="Algebra,Coding Theory">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Approximation Algorithm(6)-Linear Programming Duality">
-<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/index.html">
+<meta property="og:title" content="Coding Theory-Linear Code">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/12/22/Coding-Theory-Linear-Code/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
-<meta property="og:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
+<meta property="og:description" content="Introduction编码的目的：将信息通过某种方式编码后传输(比如ASCII码将字母变成8位01串)，使之满足下面的某些性质：  编码速度快。 编码结果易于传输。 解码速度快。 极大化信息传输率(可以理解为用尽可能少的长度表示尽可能多的信息)。 检测/纠正传输错误。  Basic ConceptsNotations code alphabet. 用于编码的字符集, 字符集中的元素成为code">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
-<meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
-<meta property="og:updated_time" content="2019-10-23T12:14:23.331Z">
+<meta property="og:updated_time" content="2019-12-22T14:47:34.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
-<meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
-<meta name="twitter:image" content="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
+<meta name="twitter:title" content="Coding Theory-Linear Code">
+<meta name="twitter:description" content="Introduction编码的目的：将信息通过某种方式编码后传输(比如ASCII码将字母变成8位01串)，使之满足下面的某些性质：  编码速度快。 编码结果易于传输。 解码速度快。 极大化信息传输率(可以理解为用尽可能少的长度表示尽可能多的信息)。 检测/纠正传输错误。  Basic ConceptsNotations code alphabet. 用于编码的字符集, 字符集中的元素成为code">
 
 
 
@@ -124,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/12/22/Coding-Theory-Linear-Code/">
 
 
 
@@ -135,7 +131,7 @@
 </script>
 
   
-  <title>Approximation Algorithm(6)-Linear Programming Duality | zhenweiliu's blog</title>
+  <title>Coding Theory-Linear Code | zhenweiliu's blog</title>
   
 
 
@@ -340,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/12/22/Coding-Theory-Linear-Code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -357,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(6)-Linear Programming Duality
+          <h1 class="post-title" itemprop="name headline">Coding Theory-Linear Code
 
               
             
@@ -383,23 +379,13 @@
                 
               
 
-              <time title="创建时间：2019-08-28 11:01:20" itemprop="dateCreated datePublished" datetime="2019-08-28T11:01:20+08:00">2019-08-28</time>
+              <time title="创建时间：2019-12-22 22:42:05 / 修改时间：22:47:34" itemprop="dateCreated datePublished" datetime="2019-12-22T22:42:05+08:00">2019-12-22</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-23 20:14:23" itemprop="dateModified" datetime="2019-10-23T20:14:23+08:00">2019-10-23</time>
-              </span>
             
           
 
@@ -412,7 +398,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Coding-Theory/" itemprop="url" rel="index"><span itemprop="name">Coding Theory</span></a></span>
 
                 
                 
@@ -422,7 +408,7 @@
 
           
           
-            <span id="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(6)-Linear Programming Duality">
+            <span id="/blog/2019/12/22/Coding-Theory-Linear-Code/" class="post-meta-item leancloud_visitors" data-flag-title="Coding Theory-Linear Code">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -447,8 +433,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" itemprop="commentCount"></span>
+    <a href="/blog/2019/12/22/Coding-Theory-Linear-Code/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/12/22/Coding-Theory-Linear-Code/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -475,129 +461,99 @@
       
 
       
-        <p><strong>Week 6: Linear Programming Duality</strong></p>
-<p>本周学习的内容是利用线性规划的对偶来设计近似算法。</p>
-<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>考虑下面一个线性规划问题：</p>
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>编码的目的：将信息通过某种方式编码后传输(比如ASCII码将字母变成8位01串)，使之满足下面的某些性质：</p>
+<ul>
+<li>编码速度快。</li>
+<li>编码结果易于传输。</li>
+<li>解码速度快。</li>
+<li>极大化信息传输率(可以理解为用尽可能少的长度表示尽可能多的信息)。</li>
+<li>检测/纠正传输错误。</li>
+</ul>
+<h3 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><h4 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h4><ul>
+<li><strong>code alphabet</strong>. 用于编码的字符集, 字符集中的元素成为<strong>code symbol</strong>, 一般用$q$表示字符集的大小。</li>
+<li>通常用字母<strong>C</strong>表示编码的集合，其中的元素成为<strong>codeword</strong>, 每个codeword可以看做是长度为$n$的向量, 向量的每个分量取值来自code alphabet。</li>
+<li><strong>(n, M) code</strong>. 长度为$n$, 元素个数为$M$的编码集合。</li>
+<li><strong>Information rate</strong>.  $\frac{\log_q{|C|}}{n}$</li>
+</ul>
+<h4 id="Hamming-Distance"><a href="#Hamming-Distance" class="headerlink" title="Hamming Distance"></a>Hamming Distance</h4><p>Hamming distance $d(x, y)$：逐位比较$x, y$的每一位, 有多少位不同, 即$d(x, y) = \sum_{i=1}^n[x_i\neq y_i]$。</p>
+<p>最重要的一点，Hamming距离是满足三角形不等式的, 即$d(x, y) \leq d(x, z) +d(z, y)$.</p>
+<p>证明: </p>
+<p>实际上Hamming distance对应向量的一范式($d(x, y)=||x-y||_1$), 可以参考关于向量范式的三角形不等式的证明。不过我们没有定义两个码的减法操作。</p>
+<p>因为</p>
 <script type="math/tex; mode=display">
-\begin{split}
-&\min 7x_1 + x_2 + 5x_3 \\
-&x_1-x_2+3x_3 &\geq 10 \ \ &(1)\\
-&5x_1 + 2x_2 - x_3 &\geq 6  &(2) \\
-&x_1, x_2, x_3 &\geq 0 &(3,4,5)
-\end{split}</script><p>$2*(1) + (2)$ 可以得到$7x_1 + 5x_3 \geq 26$。</p>
-<p>因此目标函数$7x_1+x_2+5x_3\geq 7x_1+5x_3 \geq 26$</p>
-<p>从上面的例子受到启发，我们可以通过构造线性规划的约数不等式的凸组合来得到目标函数的下界。</p>
-<p>那么要如何构造凸组合使得这个下界尽可能紧呢？</p>
-<p>考虑凸组合$y_1*(1) + y_2*(2)$:</p>
+d(x, y) = \sum_{i=1}^n[x_i\neq y_i]</script><script type="math/tex; mode=display">
+d(x, z) +d(z, y)=\sum_{i=1}^n ([x_i\neq z_i] + [y_i \neq z_i])</script><p>所以只要证明$[x_i \neq y_i] \leq [x_i\neq z_i] + [y_i \neq z_i]$.</p>
+<p>如果$x_i = y_i$显然成立。</p>
+<p>如果$x_i \neq y_i$, 左边是1，右边不管$z_i$取0还是1，总有一个是1.</p>
+<p>定义编码的距离</p>
 <script type="math/tex; mode=display">
-(y_1+5y_2)x_1 + (-y_1+2y_2)x_2 + (3y_1-y_2)x_3 \geq 10y_1+6y_2</script><p>需要满足</p>
-<script type="math/tex; mode=display">
-\begin{split}
-&\max 10y_1 + 6y_2 \\
-& y_1+5y_2 &\leq 7 \ \ \ &(1')\\
-& -y1+2y_2 &\leq 1 &(2')\\
-& 3y_1 -y_2 & \leq 5 &(3')\\
-& y_1, y_2 &\geq 0 &(4',5')
-\end{split}</script><p>于是又转换成了一个线性规划问题。</p>
-<p>写成矩阵的形式：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Primal</th>
-<th style="text-align:center">Dual </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><script type="math/tex">\begin{split} \min c^Tx  \\ Ax \geq b \\x \geq 0 \end{split}</script></td>
-<td style="text-align:center"><script type="math/tex">\begin{split} \max b^Ty \\ A^Ty \leq c \\ y \geq 0 \end{split}</script></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>上面两个线性规划问题互为对偶，以前学过的对偶问题还有最大流最小割，平面图的对偶等。</p>
-<h4 id="Properties-of-LP-Duality"><a href="#Properties-of-LP-Duality" class="headerlink" title="Properties of LP Duality"></a>Properties of LP Duality</h4><p>在上一节的例子中，我们通过构造线性规划的约数不等式的凸组合来得到目标函数的下界，为了使得得到的下界尽可能紧，又转化为一个与原问题对偶的线性规划问题。问题是，通过这样得出的最紧的下界，是不是就是原问题的解呢？</p>
-<h5 id="Weak-Duality-Theorem"><a href="#Weak-Duality-Theorem" class="headerlink" title="Weak Duality Theorem"></a>Weak Duality Theorem</h5><p>从例子也容易知道</p>
-<script type="math/tex; mode=display">
-\max b^Ty \leq \min c^Tx</script><p>因为 $ \max b^Ty $ 就是我们要求的最紧的$ \min c^Tx$的下界。</p>
-<p>从矩阵的角度也很容易证明：</p>
-<script type="math/tex; mode=display">
-b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theorem"><a href="#Strong-Duality-Theorem" class="headerlink" title="Strong Duality Theorem"></a>Strong Duality Theorem</h5><script type="math/tex; mode=display">
-\max b^Ty = \min c^Tx</script><p>证明可以从单纯形算法导出，利用单纯形算法最终检验数非负的性质强行构造出一个对偶解和原始解的值一样。可以看单纯形算法的各种资料。</p>
-<h5 id="Complementary-Slackness-Conditions"><a href="#Complementary-Slackness-Conditions" class="headerlink" title="Complementary Slackness Conditions"></a>Complementary Slackness Conditions</h5><p>根据<strong>Strong Duality Theorem</strong>, <strong>Weak Duality Theorem</strong>中$b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx$所有不等式等号都应该成立。</p>
-<p>要使得$b^Ty \leq (Ax)^Ty$的等号成立, 必须有$y_i = 0$或者$b^T_i = (Ax)^T_i$即$b_i = \sum_ja_{ij}x_j$</p>
-<p>要使得$x^TA^Ty \leq x^Tc$的等号成立, 必须有$x_i = 0$或者$c_i = (A^Ty)_i$即$c_i = \sum_ja_{ji}y_i$</p>
-<h4 id="Vertex-Cover-by-LP-Duality"><a href="#Vertex-Cover-by-LP-Duality" class="headerlink" title="Vertex Cover by LP Duality"></a>Vertex Cover by LP Duality</h4><p>下面以顶点覆盖问题为例介绍如何利用LP Duality来设计近似算法。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Primal</th>
-<th style="text-align:center">Dual </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><script type="math/tex">\begin{split} &\min w_ux_u\\ x_u+x_v &\geq 1  \ \forall  (u, v)\in E \\ \ x_u &\geq 0 \ \forall u \in V \end{split}</script></td>
-<td style="text-align:center"><script type="math/tex">\begin{split}&\max y_e \\  \sum_{e: u \in e}y_e &\leq w_u\ \forall u \in V \\ y_e &\geq 0  \ \forall e \in E\end{split}</script> </td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Dual的组合意义：</p>
-<p>相当于要给每条边加”能量”，每个点的能量是与它关联的边的能量之和，每个点限制$w_u$,表示这个点的能量不能超过$ w_u $. </p>
-<h5 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h5><p>令 $x:= (0, 0 \cdots, 0)^T, y := (0, 0, \cdots, 0)^T$</p>
-<p>重复以下过程:</p>
-<p>选取某条边 $e = (u, v)$ 满足 $e_u + e_v \lt 1$</p>
-<p>将$y_e$增大, 直到$u$或者$v$的”能量”到达瓶颈，$\sum_{e’: u\in e’}y_{e’} = w_u$或者$\sum_{e’:v \in e’} y_{e’} = w_v$</p>
-<p>将先到达瓶颈的那个端点的x置为1，同时到达的话任选一个。</p>
-<h5 id="Correctness"><a href="#Correctness" class="headerlink" title="Correctness"></a>Correctness</h5><p>一开始$x$不是可行解，$y$是可行解，但代价太大。</p>
-<p>每次迭代都会使得$x$更加可行，因为至少会让一条未覆盖的边被覆盖(让Primal一个未被满足的限制被满足)。最终$x$是可行解。而且每次迭代不会破坏Dual的任意一个限制，只会让$y$的代价减少，因此最终$y$也是可行解。</p>
-<h5 id="Approximation-Ratio"><a href="#Approximation-Ratio" class="headerlink" title="Approximation Ratio"></a>Approximation Ratio</h5><p>先发现一些小性质：</p>
-<p>算法最终返回的$x, y$满足:</p>
-<p>$x_u = 0$或$x_u \neq 0, \sum_{e: u \in e}{y_e} = w_u$.</p>
-<p>$y_e = 0$或$y_e \neq 0, x_u + x_v = 1,2$($e = (u, v)$).</p>
-<p>对比<strong>Complementary Slackness Conditions</strong>，只不过是$x_u+x_v = 1$的条件变成了$x_u + x_v = 1, 2$, 放宽了2倍，可以根据这个2倍入手来证明近似度。</p>
-<p><strong>Proof</strong>:</p>
-<script type="math/tex; mode=display">
-\begin{split}
-&\sum_u{w_ux_u} = \sum_{u:x_u \neq 0}{x_u}\sum_{e:u \in e}y_e \\ \\
-&= \sum_{u:x_u \neq 0}{x_u}\sum_{e:u \in e}y_e \\
-&= \sum_{u}{x_u}\sum_{e:u \in e}y_e \\
-&= \sum_{e:e=(u,v)}y_e(x_u+x_v) \\
-&\leq 2\sum_{e}y_e \\
-&\leq 2 OPT_{Dual} \\
-&= 2 OPT_{Primal} \\
-&\leq 2 OPT_{Primal(int)}
-\end{split}</script><p>因此近似度是2.</p>
-<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
-<img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
-<img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
-<h5 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h5><p><strong>Question 1</strong></p>
-<p>$\max \sum\limits_{j=1}^{n}{y_i}$</p>
-<p>$\forall i \in \{1,\cdots,m\}, \sum_{j:e_j \in S_i}{y_j} \leq w_i$</p>
-<p>$\forall i \in \{1,\cdots,n\}, y_i \geq 0$</p>
-<p><strong>Question 2</strong></p>
-<p>1</p>
-<p><strong>Question 3</strong></p>
-<p>The algorithm terminates in at most $n$ iterations. When it terminates, every element is covered, so it’s a feasible solution.</p>
-<p><strong>Question 4</strong></p>
-<p>$OPT \geq val(x^{*}) = val(y^*)$</p>
-<p><strong>Question 5</strong></p>
-<p>Initially, $y = 0$ and $y$ is feasible.</p>
-<p>In each iteration, the algorithm only increases $y_i$ until some constraint is reached, which means we will never violate any constraint, so  the final solution $y$ is also feasible.</p>
-<p><strong>Question 6</strong></p>
-<p>$val(y) \leq val(y^*) \leq OPT$</p>
-<p><strong>Question 7</strong></p>
-<p>$\sum_{i:e_i\in S_j}{y_i} = w_j$</p>
-<p><strong>Question 8</strong></p>
-<p>$\sum_{j\in I}{w_j} = \sum_{j \in I}{\sum_{i:e_i\in S_j}{y_i}}$</p>
-<p><strong>Question 9</strong></p>
-<p>$\sum_{j\in I}{w_j} = \sum_{j \in I}{\sum_{i:e_i\in S_j}{y_i}} = \sum_iy_i|\{j : e_i \in S_j\}| \leq \sum_ify_i = f\cdot val(y)$</p>
-<p><strong>Question 10</strong></p>
-<p>$\sum_{j\in I}{w_j} \leq f \cdot val(y) \leq f \cdot OPT$</p>
-<p>Thus the approximation ratio of the algorithm is $f$.</p>
+d(C) := \min_{x,y \in C}{d(x,y)}</script><h3 id="Linear-Code"><a href="#Linear-Code" class="headerlink" title="Linear Code"></a>Linear Code</h3><p>线性码就是说$C$是一个线性空间, $C$中的codeword满足线性空间的加法减法数乘的封闭性等。</p>
+<p>一般的, 我们默认取线性空间$V:=F_q^n$, 也就是说$C$中的codeword是$n$维向量，向量的每一维取自有限域$F_q$. </p>
+<p>$C$是线性码当且仅当满足线性空间的八条性质。$\forall u, v, w\in C, \lambda, \mu \in F_q$ 满足:</p>
+<ol>
+<li>$u+v \in C$.</li>
+<li>$(u+v)+w = u+(v+w)$.</li>
+<li>存在零元$0 \in C$, $0+v=v+0=v$.</li>
+<li>$u+v=v+u$.</li>
+<li>$\lambda u \in C$.</li>
+<li>$\lambda(u+v) = \lambda u + \lambda v$.</li>
+<li>$(\lambda \mu) u = \lambda (\mu u)$.</li>
+<li>设$1$是$F_q$的单位元, $1u=u$.</li>
+</ol>
+<p>另外有一个小定理，在之后经常会用到:</p>
+<p>设$C$是定义在$F_q$上的线性空间$V$的一个非空集合，$C$是 $V$的子空间当且仅当</p>
+<p>​                                  $\forall \lambda,\mu \in F_q, u,v\in C$, 有$\lambda u+ \mu v \in C$ .</p>
+<h4 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h4><ol>
+<li><p>定义$C$的正交补码$C^{\perp}:= \{v \in F_q^n, v\cdot u = 0   \forall s \in C\}$. 容易验证$C^{\perp}$也是线性码, 且$(C^{\perp})^{\perp} = C$</p>
+</li>
+<li><p>${&lt;}S{&gt;}$表示$S$生成的子空间。 用线性代数的知识很容易证明$dim({&lt;}S{&gt;})+dim(S^{\perp}) = n$.</p>
+</li>
+<li><p>定义某个codeword的重量$w(x)$为$x$非0的分量个数。容易证明$d(C):= \min_{x \in C}{w(x)}$. </p>
+<p>证明:  </p>
+<ul>
+<li>若$d(C) = d(x, y)$, 那么$x-y \in C$, 因此$d(C) = w(x-y) \geq \min_{x \in C}{w(x)}$.</li>
+<li>反过来,  设$w(x_0) = \min_{x \in C}{w(x)}$, $ d(C) \leq d(x_0, 0) = w(x_0) = \min_{x \in C}{w(x)}$.</li>
+</ul>
+</li>
+<li><p>用<script type="math/tex">[n, k]</script>-linear code表示长度为$n$, 维度为$k$的线性码。</p>
+</li>
+</ol>
+<p>​    </p>
+<h4 id="Generator-Matrix-Check-Matrix"><a href="#Generator-Matrix-Check-Matrix" class="headerlink" title="Generator Matrix, Check Matrix"></a>Generator Matrix, Check Matrix</h4><ul>
+<li><p>线性码$C$的<strong>generator matrix  </strong>$G$: 大小为$k*n$, $k=dim(C)$, $k$行恰好是$C$的一组基。</p>
+</li>
+<li><p>线性码$C$的<strong>check matrix </strong> $H$, 大小为$(n-k)*n, k = dim(C)$, $n-k$行恰好是$C^{\perp}$的一组基。容易验证$HG^T = GH^T = 0$.</p>
+</li>
+</ul>
+<p>下面是一些有用的性质，有些证明我个人认为比较简单，就略去了。</p>
+<p><strong>性质1:</strong></p>
+<p>$v \in C^{\perp}  \Longleftrightarrow vG^T = 0$. </p>
+<p>简单地说，就是一个向量和$C$中所有向量点积为0当且仅当它和一组基里的所有向量点积为0.</p>
+<p>同理有$v \in C  \Longleftrightarrow vH^T = 0$. </p>
+<p><strong>性质2：</strong></p>
+<p>一个$(n-k)*n$的矩阵$H$是check matrix当且仅当$H$的行线性无关，并且$HG^T = 0$.</p>
+<p><strong>性质3：</strong></p>
+<p>假设$H$是线性码$C$的check matrix。$d(C) = d$当且仅当$H$的任意$d-1$列线性无关, 存在$d$列线性相关。</p>
+<p>证明：</p>
+<p> 设$h_i$表示$H$的第$i$, $v\in C$, $w(v)=e$,  $\{i_1, i_2, \cdots, i_e\}$是$v$非零分量的下标。</p>
+<p>根据性质1有$0 = vH^T = \sum_{j=1}^e v_{i_j}h_{i_j}^T$, 这意味着$\{h_{i_j}\}$是线性相关的。</p>
+<p>因为$d(C) = \min_{v \in C}{w(v)}$, 因此$H$存在$d(C)$列线性相关.</p>
+<p>假设$H$的第 $\{i_1, i_2, \cdots, i_e\}$列线性无关,  即存在一组数$\{a_j\}$, $\sum_{j=1}^e a_jh_{i_j} = 0$. 容易构造一个向量$v$, 使$v_{i_j} = a_j$, 其它分量为0. $v \in C, w(v) = e$.   由此可以推出$H$的任意少于$d(C)$列都是线性无关的, 否则按我们的方法就可以构造出相应的$v \in C$ , $w(v) \lt d(C)$.</p>
+<p>反过来，假设$H$的任意$d-1$列线性无关, 存在$d$列线性相关。因为任意$d(C)-1$列线性无关, 所以$d(C)-1 \leq d-1$, 即$d(C)\leq d$.  因为存在$d(C)$列线性相关，所以$d(C) \gt d-1$, 即$d(C) \geq d$.</p>
+<h4 id="Encoding-and-Decoding-with-a-Linear-Code"><a href="#Encoding-and-Decoding-with-a-Linear-Code" class="headerlink" title="Encoding and Decoding with a Linear Code"></a>Encoding and Decoding with a Linear Code</h4><h5 id="Encoding"><a href="#Encoding" class="headerlink" title="Encoding"></a>Encoding</h5><p>取$k*n$的generator matrix $G$, 定义线性码的加密是映射$F^k_q \rightarrow F_q^n$, 将$k$维向量$u$映射到$n$维向量$uG$. 可以看做是用$G$的各行的线性组合来表示。  </p>
+<p>值得一提的是，一般取$G=(I|X)$这样的矩阵(<strong>generator matrix in standard form</strong>)。这样$uG = (u, uX)$, 前面$k$位就是原来的信息(<strong>message digits</strong>)，后面$n-k$位是冗余信息(<strong>check digits</strong>)，可以用来修正传输时候的噪声。注意编码学不同于密码学，密码学注重信息的安全性，而编码学关注去除传输时出现的噪声 (某些位在传输过程中出现了变化)。</p>
+<h5 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h5><p>解码稍微要复杂一些，因为要考虑到传输过程中出现的错误。</p>
+<p>假设传输的是$u$, 收到的是$v$.  定义错误向量$e = v-u$。 根据最近邻居解码原则, 我们认为$e$是使得$v+e\in C$并且$w(e)$最小的(出错的位数最少)。</p>
+<p>在这个原则下，提出下面的算法。</p>
+<p><strong>算法1：</strong></p>
+<p>预处理出所有的coset(涉及一些抽象代数),  即形如$u+C$的集合, $u \in F_q^n$.</p>
+<p>$e = v-u \in v + C$, 因此我们查表找到$v$所在的coset中权值最小的向量就是$e$.利用$u = v-e$复原。</p>
+<p>这样做需要很大的空间，因为得把$F_q^n$里$q^n$这么多向量全部存下来，只有当$q^n$比较小的时候才可行。</p>
+<p><strong>算法2:</strong></p>
+<p>终于轮到我们之前提了半天的check matrix $H$出场了。</p>
+<p>因为$\forall v \in u+C, vH^T = (u+w)H^T = uH^T+vH^T = uH^T$. 也就是说，同一个coset里的向量，右乘上$H^T$的结果是一样的。</p>
+<p>所以我们只要保存每个coset权值最小的向量, 以及coset中的元素右乘$H^T$的结果就可以用算法1的方法解码。存储的空间之和coset个数有关，而根据每个coset的大小都是$q^k$, coset的个数就是$q^{n-k}$，比算法1的$q^n $要好。 </p>
+<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><p>记录一些我个人认为比较有趣的课后练习题(可能我的答案是错误的).</p>
 
       
     </div>
@@ -628,7 +584,9 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+            <a href="/blog/tags/Algebra/" rel="tag"># Algebra</a>
+          
+            <a href="/blog/tags/Coding-Theory/" rel="tag"># Coding Theory</a>
           
         </div>
       
@@ -641,8 +599,8 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/" rel="next" title="Approximation Algorithm(5)-The MultiwayCut Problem">
-                <i class="fa fa-chevron-left"></i> Approximation Algorithm(5)-The MultiwayCut Problem
+              <a href="/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/" rel="next" title="Approximation Algorithm(9)-The Maxcut Problem">
+                <i class="fa fa-chevron-left"></i> Approximation Algorithm(9)-The Maxcut Problem
               </a>
             
           </div>
@@ -650,10 +608,6 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" rel="prev" title="Approximation Algorithm(7)-The Steiner Forest Problem">
-                Approximation Algorithm(7)-The Steiner Forest Problem <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -847,7 +801,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties-of-LP-Duality"><span class="nav-number">2.</span> <span class="nav-text">Properties of LP Duality</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Weak-Duality-Theorem"><span class="nav-number">2.1.</span> <span class="nav-text">Weak Duality Theorem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Strong-Duality-Theorem"><span class="nav-number">2.2.</span> <span class="nav-text">Strong Duality Theorem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Complementary-Slackness-Conditions"><span class="nav-number">2.3.</span> <span class="nav-text">Complementary Slackness Conditions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vertex-Cover-by-LP-Duality"><span class="nav-number">3.</span> <span class="nav-text">Vertex Cover by LP Duality</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Algorithm"><span class="nav-number">3.1.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Correctness"><span class="nav-number">3.2.</span> <span class="nav-text">Correctness</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Approximation-Ratio"><span class="nav-number">3.3.</span> <span class="nav-text">Approximation Ratio</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise"><span class="nav-number">4.</span> <span class="nav-text">Exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem"><span class="nav-number">4.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#My-Solution"><span class="nav-number">4.2.</span> <span class="nav-text">My Solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts"><span class="nav-number">2.</span> <span class="nav-text">Basic Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Notations"><span class="nav-number">2.1.</span> <span class="nav-text">Notations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hamming-Distance"><span class="nav-number">2.2.</span> <span class="nav-text">Hamming Distance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Code"><span class="nav-number">3.</span> <span class="nav-text">Linear Code</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition"><span class="nav-number">3.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generator-Matrix-Check-Matrix"><span class="nav-number">3.2.</span> <span class="nav-text">Generator Matrix, Check Matrix</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Encoding-and-Decoding-with-a-Linear-Code"><span class="nav-number">3.3.</span> <span class="nav-text">Encoding and Decoding with a Linear Code</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Encoding"><span class="nav-number">3.3.1.</span> <span class="nav-text">Encoding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Decoding"><span class="nav-number">3.3.2.</span> <span class="nav-text">Decoding</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise"><span class="nav-number">3.4.</span> <span class="nav-text">Exercise</span></a></li></ol></li></ol></div>
             
 
           </div>
