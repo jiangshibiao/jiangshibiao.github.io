@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="IntroductionExpander Code是一种特殊的Linear Code, 特殊之处在于它的check matrix对应某个(bipartite) expander graph的临接矩阵.  这样一来，编码的一些性质(如距离、解码)就可以和图的性质对应起来。 为了只会阐述方便，我们先约定一些记号:  用$G(L \cup R, E)$表示一个二分图, $L, R$分别表示左右两个点集。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-29T11:48:42.742Z">
+<meta property="og:updated_time" content="2019-12-29T11:50:48.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Coding Theory-Expander Codes">
 <meta name="twitter:description" content="IntroductionExpander Code是一种特殊的Linear Code, 特殊之处在于它的check matrix对应某个(bipartite) expander graph的临接矩阵.  这样一来，编码的一些性质(如距离、解码)就可以和图的性质对应起来。 为了只会阐述方便，我们先约定一些记号:  用$G(L \cup R, E)$表示一个二分图, $L, R$分别表示左右两个点集。">
@@ -379,7 +379,7 @@
                 
               
 
-              <time title="创建时间：2019-12-29 19:47:05 / 修改时间：19:48:42" itemprop="dateCreated datePublished" datetime="2019-12-29T19:47:05+08:00">2019-12-29</time>
+              <time title="创建时间：2019-12-29 19:47:05 / 修改时间：19:50:48" itemprop="dateCreated datePublished" datetime="2019-12-29T19:47:05+08:00">2019-12-29</time>
             </span>
           
 
@@ -470,21 +470,15 @@
 <li><strong>$d$-regular graph</strong>: 每个点的度都是$d$的图。</li>
 <li><strong>$d$-left-regular graph</strong>:二分图的左边每个点的度都是$d$. 同理有<strong>$d$-right-regular graph</strong>.</li>
 </ol>
-<h3 id="Factor-Graph-of-Linear-Code"><a href="#Factor-Graph-of-Linear-Code" class="headerlink" title="Factor Graph of Linear Code"></a>Factor Graph of Linear Code</h3><p>给定一个$[n, k]$ <strong>Binary</strong> Linear Code $C \subset F_2^n$和它的一个check matrix $H$, 我们可以按照下面的方式构造一个二分图:</p>
-<p>$|L|=n, |R| = n-k$. 左边的每个点对应codeword的一个bit。右边的每个点对应check matrix的一行。为方便起见，左边的点集记作$\{u_1, u_2 \cdots, u_n\}$, 右边的点集记作$\{v_1, v_2 \cdots v_{n-k}\}$</p>
-<p>要判断一个向量$x$是否属于$C$, 只需要给左边的点集分配一个权重: $w(u_i) = x_i$。 $x \in C$当且仅当</p>
+<h3 id="Factor-Graph-of-Linear-Code"><a href="#Factor-Graph-of-Linear-Code" class="headerlink" title="Factor Graph of Linear Code"></a>Factor Graph of Linear Code</h3><p>给定一个$[n, k]$ <strong>Binary</strong> Linear Code $C \subset F_2^n$和它的一个check matrix $H$, 我们可以按照下面的方式构造一个二分图:<br>$|L|=n, |R| = n-k$. 左边的每个点对应codeword的一个bit。右边的每个点对应check matrix的一行。为方便起见，左边的点集记作$\{u_1, u_2 \cdots, u_n\}$, 右边的点集记作$\{v_1, v_2 \cdots v_{n-k}\}$<br>要判断一个向量$x$是否属于$C$, 只需要给左边的点集分配一个权重: $w(u_i) = x_i$。 $x \in C$当且仅当</p>
 <script type="math/tex; mode=display">
 \forall v_i \in R, \sum_{u_j \in N(v_i)}{w(u_j)} = 0</script><p>这个过程本质上就是$u$和$H$的每行的点积都是0.   如上构造的图称为$C$的 <strong>Factor Graph</strong>.</p>
-<h3 id="Expander-Graphs-and-Expander-Codes"><a href="#Expander-Graphs-and-Expander-Codes" class="headerlink" title="Expander Graphs and Expander Codes"></a>Expander Graphs and Expander Codes</h3><p>定义$(n, m, d, \gamma, \alpha)$ <strong>Bipatite Expander</strong> 是一个$d$-left-regular的二分图, 满足$|L|=n, |R|=m$并且$\forall S \subset L$, 如果$|S| \leq \gamma n$, 那么有$ N(S) \geq \alpha |S|$.<br>也就是说，从左边取一个”足够小”的集合，它的邻居集合一定”足够大”. </p>
-<p><strong>Expand Codes</strong>就是一种特殊的线性码，它的factor graph正好是一个bipatite expander。因为其特殊的结构，我们更加容易分析它的最小距离，以及可以更快的编码/解码。</p>
+<h3 id="Expander-Graphs-and-Expander-Codes"><a href="#Expander-Graphs-and-Expander-Codes" class="headerlink" title="Expander Graphs and Expander Codes"></a>Expander Graphs and Expander Codes</h3><p>定义$(n, m, d, \gamma, \alpha)$ <strong>Bipatite Expander</strong> 是一个$d$-left-regular的二分图, 满足$|L|=n, |R|=m$并且$\forall S \subset L$, 如果$|S| \leq \gamma n$, 那么有$ N(S) \geq \alpha |S|$.<br>也就是说，从左边取一个”足够小”的集合，它的邻居集合一定”足够大”.<br><strong>Expand Codes</strong>就是一种特殊的线性码，它的factor graph正好是一个bipatite expander。因为其特殊的结构，我们更加容易分析它的最小距离，以及可以更快的编码/解码。</p>
 <p>下面先证明一个引理:</p>
-<p><strong>引理1:</strong> 如果$G$是一个$(n, m, d, \gamma, (1-\epsilon)d)$的bipartite expander($\epsilon \lt 0.5$), 那么$\forall S\subset L$, 如果$|S| \leq \gamma n$, 那么有$|U(S)| \geq d(1-2\epsilon)|S| \gt 0$ 。 </p>
-<p>后面估计expander code的最小距离的时候会用到$|U(S)| \neq 0$这个性质。</p>
-<p>证明: </p>
-<p>首先根据bipartite expander的定义有$N(S) \geq (1-\epsilon)d|S|$. 因为$S$中每个点都和右边的$d$个点相连, 一共有$d|S|$条边, 其中有$|N(S)|$条为增加邻居数做出了贡献, 剩下的$d|S|- |U(S)|$条边, 每条边可能使得某个邻居变得不”唯一”(见introduction里唯一邻居的定义).<br>因此$|U(S)|\geq |N(S)|- (|d|S|-|N(S)|) = 2|N(S)|-d|S| \geq d(1-2\epsilon)|S|$.</p>
+<p><strong>引理1:</strong> 如果$G$是一个$(n, m, d, \gamma, (1-\epsilon)d)$的bipartite expander($\epsilon \lt 0.5$), 那么$\forall S\subset L$, 如果$|S| \leq \gamma n$, 那么有$|U(S)| \geq d(1-2\epsilon)|S| \gt 0$ 。<br>后面估计expander code的最小距离的时候会用到$|U(S)| \neq 0$这个性质。</p>
+<p>证明:<br>首先根据bipartite expander的定义有$N(S) \geq (1-\epsilon)d|S|$. 因为$S$中每个点都和右边的$d$个点相连, 一共有$d|S|$条边, 其中有$|N(S)|$条为增加邻居数做出了贡献, 剩下的$d|S|- |U(S)|$条边, 每条边可能使得某个邻居变得不”唯一”(见introduction里唯一邻居的定义).<br>因此$|U(S)|\geq |N(S)|- (|d|S|-|N(S)|) = 2|N(S)|-d|S| \geq d(1-2\epsilon)|S|$.</p>
 <p>利用上面的引理, 可以给出expander code的最小距离的一个下界。<br><strong>定理1:</strong> 如果线性码$C$的factor graph $G$是一个$(n, m, d, \gamma, (1-\epsilon)d)$的bipartite expander, 那么$d(C) \geq 2\gamma (1-\epsilon)n$.</p>
-<p>证明:</p>
-<p>根据线性码的性质，只需要证明重量最小的codeword重量不会小于$2\gamma (1-\epsilon)n$.<br>假设有一个codeword $r \in C$, $wt(r) \lt 2\gamma (1-\epsilon)n$.  按之前判断向量是否属于$C$的方法给左边的点分配权值:$w(u_i) = r_i$.  令$S := \{u_i| r_i = 1 \}$, $U(S)$中的parity check条件不可能被满足，因为每个条件只对应左边一个1。所以我们只要证明$U(S)$非空，即可推出矛盾。</p>
+<p>证明:<br>根据线性码的性质，只需要证明重量最小的codeword重量不会小于$2\gamma (1-\epsilon)n$.<br>假设有一个codeword $r \in C$, $wt(r) \lt 2\gamma (1-\epsilon)n$.  按之前判断向量是否属于$C$的方法给左边的点分配权值:$w(u_i) = r_i$.  令$S := \{u_i| r_i = 1 \}$, $U(S)$中的parity check条件不可能被满足，因为每个条件只对应左边一个1。所以我们只要证明$U(S)$非空，即可推出矛盾。</p>
 <ul>
 <li>如果$|S| \leq \gamma n$, 根据上面的引理直接可以推出$U(S)$非空。</li>
 <li>如果$|S| \gt \gamma n$, 那么可以找到$S$的一个子集$S’$, $|S’| = \gamma n$, 根据引理$|U(S’)| \geq d(1-2\epsilon)\gamma n$.  考虑$U(S’)$中的哪些点不属于$U(S)$, 一定是因为有些 $S \backslash S’$中的那些点又连边到$U(S’)$中的点, 破坏了它们的”唯一性”.  因为$|S| = wt(r) \lt 2\gamma(1-\epsilon)n$, 所以$|S\backslash S’| \lt (1-2\epsilon)n$。最多破坏$d|S\backslash S’|\lt d(1-2\epsilon)\gamma n \leq |U(S’)|$这么多点的”唯一性”,  因此至少还存在一些$U(S’)$中的点属于$U(S)$. </li>
