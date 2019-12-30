@@ -43,9 +43,9 @@
     <link href="http://zhenweiliu.gitee.io/blog/2019/12/26/Coding-Theory-Some-Bounds/"/>
     <id>http://zhenweiliu.gitee.io/blog/2019/12/26/Coding-Theory-Some-Bounds/</id>
     <published>2019-12-26T02:26:55.000Z</published>
-    <updated>2019-12-26T03:55:22.865Z</updated>
+    <updated>2019-12-30T06:58:22.498Z</updated>
     
-    <content type="html"><![CDATA[<p>本节主要介绍关于编码的一些上下界。</p><h3 id="The-Main-Coding-Theory-Problem"><a href="#The-Main-Coding-Theory-Problem" class="headerlink" title="The Main Coding Theory Problem"></a>The Main Coding Theory Problem</h3><p>定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为<strong>The Main Coding Theory Problem</strong>.</p><p>首先是几个非常trivial的bound:</p><ol><li>$B_q(n, d) \leq A_q(n, d) \leq q^n$.</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>本节主要介绍关于编码的一些上下界。</p><h3 id="The-Main-Coding-Theory-Problem"><a href="#The-Main-Coding-Theory-Problem" class="headerlink" title="The Main Coding Theory Problem"></a>The Main Coding Theory Problem</h3><p>定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为<strong>The Main Coding Theory Problem</strong>.</p><p>首先是几个非常trivial的bound:</p><ol><li>$B_q(n, d) \leq A_q(n, d) \leq q^n$.</li><li>$B_q(n, 1) = A_q(n, 1) = 1$.</li><li>$B_q(n, n) = A_q(n, n) = n$.</li></ol><p>前两个非常显然, 最后一个因为$d=n$, 那么每个codeword的任意位互不相同。 只考虑第一位互不相同，最多就只能选$n$个codeword。因此上界是$n$. 而$\{(a, a, \cdots, a) \mid a \in F_q\}$就可以达到$n$.</p><p>下面引入一个<strong>extended code</strong>的概念:</p><script type="math/tex; mode=display">\overline{C} := \{(c_1, c_2, \cdots, c_n, -\sum_{i=1}^n{c_i}) \mid (c_1, c_2, \cdots, c_n) \in C\}</script><p>就是在最后增加一位, 是前面的所有位的和取负。</p><p><strong>Theorem:</strong> 假设$d$是一个奇数。</p><ol><li>存在$(n, M, d)_2$-code当且仅当存在$(n+1, M, d+1)_2$-code. $A_2(n, d) = A_2(n+1,d+1)$.<br>证明：<br>假设$C$是$(n, M, d)_2$-code, 考虑它的extended code $\overline{C}$. 显然$d \leq d(\overline{C}) \leq d+1$. 考虑任意$u,v \in C, d(u, v) = d$. 由于$d$是奇数, $\overline{u}, \overline{v}$除了$u,v$不同的位置不同, 最后一位扩展位也不同。因此$d(\overline{u}, \overline{v}) = d+1$.  从而说明$\overline{C}$是$(n+1, M, d+1)_2$-code.<br>反过来，如果$C$是$(n+1, M, d+1)_2$-code, 那么存在$u,v \in C, d(u, v)=d+1$. 找到$u,v$不相同的某一位， 把$C$中所有codeword删去这一位, 得到新的码$C’$。 因为只删去了一位，那么距离最多减少1，因此$d(C’) \geq d$, 而$d(u’, v’)=d$, 所以$d(C’) = d$.  </li><li>存在$[n, M,d]_2$-code当且仅当存在$[n+1, M, d+1]$-code.  $B_2(n, d) = B_2(n+1,d+1)$.<br>证明：<br>如果$C$是linear code, 那么$\overline{C}$也是，必要性得证。<br>如果$C$是$[n+1, M, d+1]_2$-code, 那么存在$x \in C, wt(x) = d+1$. 选择$x$非0的某一位, 把$C$中所有codeword删去这一位, 得到新的码$C’$, 显然$C’$也是linear code. 之后同上一条去掉某一位的论证。</li></ol><h3 id="Some-Lower-Bounds"><a href="#Some-Lower-Bounds" class="headerlink" title="Some Lower Bounds"></a>Some Lower Bounds</h3><p>本节主要讨论关于$A_q(n, d), B_q(n, d)$的一些下界。</p><h4 id="Sphere-Covering-Bound"><a href="#Sphere-Covering-Bound" class="headerlink" title="Sphere-Covering Bound"></a>Sphere-Covering Bound</h4><p>定义$S(u, r):= \{v \in C \mid d(u,v) \leq r \}$. 显然$|S(u, r)| = \sum_{i=0}^{r} \binom{n}{i}(q-1)^i$. 也就是以$u$为圆心，$r$为半径的球。<br>考虑达到最优大小$A_q(n,d)$的码$C$, $|C| = A_q(n, d)$, 有$\bigcup_{u \in C}{S(u, d)} = F_q^n$. 因为如果这些球并起来不是整个空间，那么存在一个点不在任意一个球内，这个点和$C$内的任意codeword距离都超过$d$, 那么这个点加入$C$可以得到更大的码。所以有</p><script type="math/tex; mode=display">A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d} \binom{n}{i}(q-1)^i}</script><h4 id="Gilbert–Varshamov-Bound"><a href="#Gilbert–Varshamov-Bound" class="headerlink" title="Gilbert–Varshamov Bound"></a>Gilbert–Varshamov Bound</h4><p><strong>Theorem:</strong><br>如果</p><script type="math/tex; mode=display">\sum_{i=0}^{d-2} \binom{n-1}{i}(q-1)^i \lt q^{n-k}</script><p>那么存在$[n, k]$ linear code $C$, $d(C) \geq d$.<br>证明:<br>考虑构造一个$(n-k) \times n$的”check matrix” $H$, 这里加引号是因为并不要求$H$的行是线性无关的, 但是任意$d-1$列是线性无关的。那么$H$的null space对应的就是一个维数至少是$k$, 距离至少是$d$的线性码。任取generator matrix $G$的$k$行就可以得到维数恰好是$k$, 距离至少是$d$的线性码。<br>下面考虑一列一列构造这样的$H$:</p><ol><li>随便选一个$u_1 \in F_q^{n-k}$, 作为第1列。</li><li>对$2\leq i \leq n$, 选取$u_i$作为第$i$列, 要求$u_i$不能使$\{u_1, u_2, \cdots, u_{i-1}\}$中任意$d-2$个的线性组合。<br>显然如果构造顺利, 我们就找到了符合要求的$H$, 但是我们还得证明第二步中一定存在一个符合要求的$u_i$.<br>因为$\{u_1, u_2, \cdots, u_{i-1}\}$中任意$d-2$个的线性组合构成的空间大小不超过<script type="math/tex; mode=display">\sum_{j=0}^{d-2} \binom{i-1}{j}(q-1)^j \leq \sum_{j=0}^{d-2} \binom{n-1}{j}(q-1)^j \lt q^{n-k}</script>所以每次总能找到符合要求的$u_i$.</li></ol>]]></content>
     
     <summary type="html">
     
@@ -245,11 +245,11 @@
       <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
     
     
-      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
-    
       <category term="Game Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Game-Theory/"/>
     
       <category term="Dynamic Programming" scheme="http://zhenweiliu.gitee.io/blog/tags/Dynamic-Programming/"/>
+    
+      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
     
   </entry>
   
@@ -301,9 +301,9 @@
       <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
     
     
-      <category term="Number Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Number-Theory/"/>
-    
       <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
+    
+      <category term="Number Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Number-Theory/"/>
     
   </entry>
   
