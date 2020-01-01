@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://zhenweiliu.gitee.io/blog/"/>
-  <updated>2020-01-01T08:59:41.355Z</updated>
+  <updated>2020-01-01T09:05:08.938Z</updated>
   <id>http://zhenweiliu.gitee.io/blog/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -16,37 +16,38 @@
     <link href="http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/"/>
     <id>http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/</id>
     <published>2020-01-01T08:59:41.000Z</published>
-    <updated>2020-01-01T08:59:41.355Z</updated>
+    <updated>2020-01-01T09:05:08.938Z</updated>
     
     <summary type="html">
     
     </summary>
     
+      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+    
+      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+    
+    
+      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
-    <title></title>
+    <title>Coding Theory-Cyclic Codes</title>
     <link href="http://zhenweiliu.gitee.io/blog/2020/01/01/Coding-Theory-Cyclic-Codes/"/>
     <id>http://zhenweiliu.gitee.io/blog/2020/01/01/Coding-Theory-Cyclic-Codes/</id>
-    <published>2020-01-01T07:42:10.189Z</published>
-    <updated>2020-01-01T08:58:57.365Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p>title: Coding Theory-Cyclic Codes<br>date: 2020-01-01 15:42:10<br>tags: </p><ul><li>Algebra</li><li>Coding Theory<br>categories:</li><li>Coding Theory<br>mathjax: true<br>hidepage: false</li></ul>]]></content>
+    <published>2020-01-01T07:42:10.000Z</published>
+    <updated>2020-01-01T09:04:55.261Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;hr&gt;
-&lt;p&gt;title: Coding Theory-Cyclic Codes&lt;br&gt;date: 2020-01-01 15:42:10&lt;br&gt;tags: &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Algebra&lt;/li&gt;
-&lt;li&gt;Coding Theory&lt;br&gt;categories:&lt;
-      
-    
     </summary>
     
+      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/categories/Coding-Theory/"/>
+    
+    
+      <category term="Algebra" scheme="http://zhenweiliu.gitee.io/blog/tags/Algebra/"/>
+    
+      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Coding-Theory/"/>
     
   </entry>
   

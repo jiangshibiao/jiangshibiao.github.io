@@ -99,12 +99,13 @@
   };
 </script>
 
-  <meta property="og:type" content="article">
+  <meta name="keywords" content="Approximation Algorithms">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Binpacking-First Fit">
 <meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-01T08:59:41.355Z">
+<meta property="og:updated_time" content="2020-01-01T09:05:08.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binpacking-First Fit">
 
@@ -375,12 +376,38 @@
                 
               
 
-              <time title="创建时间：2020-01-01 16:59:41" itemprop="dateCreated datePublished" datetime="2020-01-01T16:59:41+08:00">2020-01-01</time>
+              <time title="创建时间：2020-01-01 16:59:41 / 修改时间：17:05:08" itemprop="dateCreated datePublished" datetime="2020-01-01T16:59:41+08:00">2020-01-01</time>
             </span>
           
 
           
+            
 
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -463,6 +490,15 @@
 
     <footer class="post-footer">
       
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+          
+        </div>
+      
 
       
       
@@ -472,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2020/01/01/Coding-Theory-Cyclic-Codes/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/blog/2020/01/01/Coding-Theory-Cyclic-Codes/" rel="next" title="Coding Theory-Cyclic Codes">
+                <i class="fa fa-chevron-left"></i> Coding Theory-Cyclic Codes
               </a>
             
           </div>
@@ -801,6 +837,53 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
