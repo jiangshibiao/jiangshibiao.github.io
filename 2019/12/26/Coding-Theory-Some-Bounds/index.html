@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-01T07:34:14.600Z">
+<meta property="og:updated_time" content="2020-01-03T03:34:57.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Coding Theory-Some Bounds">
 <meta name="twitter:description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-01 15:34:14" itemprop="dateModified" datetime="2020-01-01T15:34:14+08:00">2020-01-01</time>
+                <time title="修改时间：2020-01-03 11:34:57" itemprop="dateModified" datetime="2020-01-03T11:34:57+08:00">2020-01-03</time>
               </span>
             
           
@@ -507,7 +507,24 @@ A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d} \binom{n}{i}(q-1)^i}</script><h4 id="Gi
 </ol>
 <p>Binary Hamming Code的Decoding也可以沿用linear code的Syndrome Decoding那一套。<br>$e_j := (0,\cdots ,0, \underbrace{1}_{j^{th} bit}, 0, \cdots, 0)$, $H = (h_1, h_2, \cdots, h_{2^r-1})$, 则$e_j H^T = h_j$.<br>如果收到的$w$只有$1$个错误, 那么$wH^T$恰好就是$H$的某一列，假设是第$k$列, 那么出错的就是第$k$位。</p>
 <h4 id="Extended-Binary-Hamming-Code"><a href="#Extended-Binary-Hamming-Code" class="headerlink" title="Extended Binary Hamming Code"></a>Extended Binary Hamming Code</h4><p>扩展海明码记作$\overline{Ham(r, 2)}$, 定义见线性码的扩展，就是在最后增加一位parity check位。<br>因为$Ham(r, 2)$是$(n, M, 3)$-code, 所以根据Theorem 1的证明, $Ham(r, 2)$是$(n+1, M, 4)$-code, $d(\overline{Ham(r, 2)}) = 4$.</p>
-
+<h4 id="Weight-Distribution-Of-Hamming-Code"><a href="#Weight-Distribution-Of-Hamming-Code" class="headerlink" title="Weight Distribution Of Hamming Code"></a>Weight Distribution Of Hamming Code</h4><p><a href="http://oeis.org/wiki/List_of_weight_distributions#Hamming_codes" target="_blank" rel="noopener">部分重量分布表</a><br>如何计算？<br>我们知道Hamming Code的check matrix $H$, 可以计算出$C^{\perp}$的重量分布，再利用<a href="https://www.encyclopediaofmath.org/index.php/MacWilliams_identities" target="_blank" rel="noopener">MacWilliams’ Identity</a>计算出$C$的分布.<br>也可以通过$Hx = 0$计算出generator matrix $G$, 直接计算$C$的重量分布。<br>通过观察可以发现$A_i = A_{n-i}$. 因为$H$的每行都有偶数个$1$, 如果$uH^T = 0$, 那么$\overline{u}H^T = 0$, $\overline{u}$是$u$的每一位取反。</p>
+<h3 id="Singleton-Bound-and-MDS-Codes"><a href="#Singleton-Bound-and-MDS-Codes" class="headerlink" title="Singleton Bound and MDS Codes"></a>Singleton Bound and MDS Codes</h3><h4 id="Singleton-Bound"><a href="#Singleton-Bound" class="headerlink" title="Singleton Bound"></a>Singleton Bound</h4><p>Singleton Bound: $A_q(n, d) \leq q^{n-d+1}$.<br>证明: 任意编码$C$, 满足$d(C) = d$, 考虑删掉所有codeword的最后$d-1$位, 那么它们还是互不相同的. 而长度为$n-d+1$的codeword只有$q^{n-d+1}$个, 所以$|C| \leq q^{n-d+1}$.<br>另外, 如果$C$是$[n, k, d]$-linear code, 可以推出$|C|=q^k \leq q^{n-d+1} \rightarrow k+d \leq n+1$.</p>
+<h4 id="MDS-Codes"><a href="#MDS-Codes" class="headerlink" title="MDS Codes"></a>MDS Codes</h4><p>MDS Codes就是使得Singleton Bound取等号的编码。</p>
+<p>Theorem 2:<br>设$C$是$[n, k, d]$-linear code, 以下几条等价:</p>
+<ol>
+<li>$C$是MDS Code.</li>
+<li>check matrix $H$的任意$n-k$列线性无关。</li>
+<li>generator matrix $G$的任意$k$行线性无关。</li>
+<li>$C^{\perp}$是MDS code.</li>
+</ol>
+<p>证明:</p>
+<ul>
+<li>(1),(2)显然等价。</li>
+<li>把$G$看做$C^{perp}$的check matrix, 推出(3),(4)等价。</li>
+<li>(1)推出(4). 只要证明$d(C^{\perp})=k+1$. 假设存在$u \in C^{\perp}, wt(u) \leq k$. 也就是说$u$至少有$n-k$个分量是0. 因为$H$是$C^{\perp}$的generator matrix, 所以存在$(n-k) \times 1$的向量$v$, 满足$u = vH$. 设$J := \{j \mid u_j = 0\}$, 令$J’$是$J$的一个大小为$n-k$的子集, $H_{J’}$是取出$J’$对应的那些列的构成的矩阵($(n-k) \times (n-k)$ ). 由(2)$H_{J’}$是满秩的, $0 = u_{J’} = vH_{J’}$, 可以推出$v = 0$, 从而$u = 0$.  因此不存在$u, wt(u) \leq k$, 也就是说$d(C^{\perp}) \geq k+1$.</li>
+<li>$C=(C^{\perp})^{\perp}$, 同上(4)可以推出(1).</li>
+</ul>
+<h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3>
       
     </div>
 
@@ -760,7 +777,7 @@ A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d} \binom{n}{i}(q-1)^i}</script><h4 id="Gi
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Main-Coding-Theory-Problem"><span class="nav-number">1.</span> <span class="nav-text">The Main Coding Theory Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Lower-Bounds"><span class="nav-number">2.</span> <span class="nav-text">Some Lower Bounds</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sphere-Covering-Bound"><span class="nav-number">2.1.</span> <span class="nav-text">Sphere-Covering Bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gilbert–Varshamov-Bound"><span class="nav-number">2.2.</span> <span class="nav-text">Gilbert–Varshamov Bound</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamming-Bound"><span class="nav-number">3.</span> <span class="nav-text">Hamming Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Binary-Hamming-Code"><span class="nav-number">3.1.</span> <span class="nav-text">Binary Hamming Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extended-Binary-Hamming-Code"><span class="nav-number">3.2.</span> <span class="nav-text">Extended Binary Hamming Code</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Main-Coding-Theory-Problem"><span class="nav-number">1.</span> <span class="nav-text">The Main Coding Theory Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Lower-Bounds"><span class="nav-number">2.</span> <span class="nav-text">Some Lower Bounds</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sphere-Covering-Bound"><span class="nav-number">2.1.</span> <span class="nav-text">Sphere-Covering Bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gilbert–Varshamov-Bound"><span class="nav-number">2.2.</span> <span class="nav-text">Gilbert–Varshamov Bound</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamming-Bound"><span class="nav-number">3.</span> <span class="nav-text">Hamming Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Binary-Hamming-Code"><span class="nav-number">3.1.</span> <span class="nav-text">Binary Hamming Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extended-Binary-Hamming-Code"><span class="nav-number">3.2.</span> <span class="nav-text">Extended Binary Hamming Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weight-Distribution-Of-Hamming-Code"><span class="nav-number">3.3.</span> <span class="nav-text">Weight Distribution Of Hamming Code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Singleton-Bound-and-MDS-Codes"><span class="nav-number">4.</span> <span class="nav-text">Singleton Bound and MDS Codes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Singleton-Bound"><span class="nav-number">4.1.</span> <span class="nav-text">Singleton Bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MDS-Codes"><span class="nav-number">4.2.</span> <span class="nav-text">MDS Codes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise"><span class="nav-number">5.</span> <span class="nav-text">Exercise</span></a></li></ol></div>
             
 
           </div>
