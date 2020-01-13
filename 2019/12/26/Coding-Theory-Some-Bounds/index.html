@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-03T03:34:57.715Z">
+<meta property="og:updated_time" content="2020-01-13T15:03:13.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Coding Theory-Some Bounds">
 <meta name="twitter:description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-03 11:34:57" itemprop="dateModified" datetime="2020-01-03T11:34:57+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-13 23:03:13" itemprop="dateModified" datetime="2020-01-13T23:03:13+08:00">2020-01-13</time>
               </span>
             
           
@@ -489,9 +489,9 @@
 <li>存在$[n, M,d]_2$-code当且仅当存在$[n+1, M, d+1]$-code.  $B_2(n, d) = B_2(n+1,d+1)$.<br>证明：<br>如果$C$是linear code, 那么$\overline{C}$也是，必要性得证。<br>如果$C$是$[n+1, M, d+1]_2$-code, 那么存在$x \in C, wt(x) = d+1$. 选择$x$非0的某一位, 把$C$中所有codeword删去这一位, 得到新的码$C’$, 显然$C’$也是linear code. 之后同上一条去掉某一位的论证。</li>
 </ol>
 <h3 id="Some-Lower-Bounds"><a href="#Some-Lower-Bounds" class="headerlink" title="Some Lower Bounds"></a>Some Lower Bounds</h3><p>本节主要讨论关于$A_q(n, d), B_q(n, d)$的一些下界。</p>
-<h4 id="Sphere-Covering-Bound"><a href="#Sphere-Covering-Bound" class="headerlink" title="Sphere-Covering Bound"></a>Sphere-Covering Bound</h4><p>定义$S(u, r):= \{v \in C \mid d(u,v) \leq r \}$. 显然$|S(u, r)| = \sum_{i=0}^{r} \binom{n}{i}(q-1)^i$. 也就是以$u$为圆心，$r$为半径的球。<br>考虑达到最优大小$A_q(n,d)$的码$C$, $|C| = A_q(n, d)$, 有$\bigcup_{u \in C}{S(u, d)} = F_q^n$. 因为如果这些球并起来不是整个空间，那么存在一个点不在任意一个球内，这个点和$C$内的任意codeword距离都超过$d$, 那么这个点加入$C$可以得到更大的码。所以有</p>
+<h4 id="Sphere-Covering-Bound"><a href="#Sphere-Covering-Bound" class="headerlink" title="Sphere-Covering Bound"></a>Sphere-Covering Bound</h4><p>定义$S(u, r):= \{v \in C \mid d(u,v) \leq r \}$. 显然$|S(u, r)| = \sum_{i=0}^{r} \binom{n}{i}(q-1)^i$. 也就是以$u$为圆心，$r$为半径的球。<br>考虑达到最优大小$A_q(n,d)$的码$C$, $|C| = A_q(n, d)$, 有$\bigcup_{u \in C}{S(u, d-1)} = F_q^n$. 因为如果这些球并起来不是整个空间，那么存在一个点不在任意一个球内，这个点和$C$内的任意codeword距离都至少是$d$, 那么这个点加入$C$可以得到更大的码。所以有</p>
 <script type="math/tex; mode=display">
-A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d} \binom{n}{i}(q-1)^i}</script><h4 id="Gilbert–Varshamov-Bound"><a href="#Gilbert–Varshamov-Bound" class="headerlink" title="Gilbert–Varshamov Bound"></a>Gilbert–Varshamov Bound</h4><p><strong>Theorem:</strong><br>如果</p>
+A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d-1} \binom{n}{i}(q-1)^i}</script><h4 id="Gilbert–Varshamov-Bound"><a href="#Gilbert–Varshamov-Bound" class="headerlink" title="Gilbert–Varshamov Bound"></a>Gilbert–Varshamov Bound</h4><p><strong>Theorem:</strong><br>如果</p>
 <script type="math/tex; mode=display">
 \sum_{i=0}^{d-2} \binom{n-1}{i}(q-1)^i \lt q^{n-k}</script><p>那么存在$[n, k]$ linear code $C$, $d(C) \geq d$.<br>证明:<br>考虑构造一个$(n-k) \times n$的”check matrix” $H$, 这里加引号是因为并不要求$H$的行是线性无关的, 但是任意$d-1$列是线性无关的。那么$H$的null space对应的就是一个维数至少是$k$, 距离至少是$d$的线性码。任取generator matrix $G$的$k$行就可以得到维数恰好是$k$, 距离至少是$d$的线性码。<br>下面考虑一列一列构造这样的$H$:</p>
 <ol>
