@@ -6,10 +6,64 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://zhenweiliu.gitee.io/blog/"/>
-  <updated>2020-01-04T06:26:19.589Z</updated>
+  <updated>2020-02-15T14:53:49.809Z</updated>
   <id>http://zhenweiliu.gitee.io/blog/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Combinatorial Optimization-Matroid</title>
+    <link href="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/"/>
+    <id>http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/</id>
+    <published>2020-02-15T09:41:11.000Z</published>
+    <updated>2020-02-15T14:53:49.809Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/combinatorial_book.pdf" target="_blank" rel="noopener">Combinatorial Optimization-Algorithms and Complexity</a>第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。</p><h3 id="独立集系统和拟阵"><a href="#独立集系统和拟阵" class="headerlink" title="独立集系统和拟阵"></a>独立集系统和拟阵</h3><p>定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E}$, $\mathcal{G}$中的元素称为独立集。<br>$\mathcal{G}$需要满足遗传性: 如果$A \in \mathcal{G}, B \subseteq A$, 那么$B \in \mathcal{G}$.</p><p>举例:<br>定义在无向图$G(V, E)$上的独立集系统, $\mathcal{G}$是不构成环的边集合, 显然满足遗传性。<br>求无向图的最大生成树, 实际上是先给$E$中每个元素赋予一个权值(边权), 然后求一个权值最大的独立集。<br>回忆一下kruskal算法, 每次选一条边权最大的边, 如果把它加入答案不形成环，就把它加入答案。<br>推广一下，给定任意独立系统，任意给每个元素一个非负的权值，要求权值最大的独立集，容易得到下面的贪心算法:</p><ol><li>将元素按权值从大到小排序.</li><li>按顺序依次考虑每个元素, 如果把这个元素加入答案后仍然是一个独立集，就加入答案。</li></ol><p>不幸的是, 这个算法只有在特定条件下才会给出最优解。<br>比如考虑求二分图图的最大权值匹配, 定义独立集为可以形成匹配的边集。考虑一个4个点3条边的图$V=\{u_1, u_2, u_3, u_4\}, w(u_1,u_2)=w(u_3, u_4)=5, w(u_1, u_4)=8, w(u_2, u_3) = 1$, 贪心算法会选择边$(u_1, u_4), (u_2, u_3)$, 权值是9, 最优解是$(u_1, u_2), (u_3,u_4)$, 权值是10.<br>我们把贪心算法能够使用的独立集系统称为<strong>拟阵(matroid)</strong>, 比如上面定义在无向图边集上的独立集系统，贪心算法实际上就是kruskal算法, 为了方便, 给它一个名字叫<strong>图拟阵(graphic matroid)</strong>。</p><h3 id="拟阵的性质"><a href="#拟阵的性质" class="headerlink" title="拟阵的性质"></a>拟阵的性质</h3><p>那么如何判定一个独立集系统$M$是不是拟阵呢？下面三条定义是等价的:</p><ol><li>$M$是拟阵, 任意给元素分配非负的权值, 贪心算法能得到最优解。</li><li>假设有2个独立集$I_1, I_2, |I_2| = |I_1|+1$, 那么$\exists e \in I_1\backslash I_2, I_1 \cup e \in \mathcal{G}$. 通俗地讲，就是如果2个独立集大小相差1, 那么一定可以从大的独立集那里拿一个给小的, 使新的集合还是独立集。</li><li>若$A \subseteq E$, $I_1, I_2 \subseteq A$是$A$上的极大独立集, 那么$|I_1|=|I_2|$. 也就是$E$的任意子集上的极大独立集大小相同。</li></ol><p>证明:<br>$1 \rightarrow 2:$<br>设$|I_1|=k, |I_2| = k+1$, 只要令</p><script type="math/tex; mode=display">w(e) = \begin{cases}    k+2 & e \in I_1 \\     k+1 & e \in I_1 \backslash I_2 \\     0  & e \notin I_1 \cup I_2\end{cases}</script><p>假设$\forall e \in I_1\backslash I_2, I_1 \cup e \notin \mathcal{G}$, 按照贪心算法会选择$I_1$, 权值是$k(k+1)$, 实际上$I_2$的权值是$(k+1)(k+1)$更大，贪心算法就挂了。</p><p>$2 \rightarrow 3:$<br>显然, 如果$|I_1| \lt |I_2|$, 考虑$I_3 \subseteq I_2, |I_3|=|I_1|+1$, 根据(2)可以从$I_3$那里拿一个元素给$I_1$构成一个更大的独立集, 与$I_1$是极大的矛盾。</p><p>$3 \rightarrow 1:$<br>假设$w(e_1) \geq w(e_2) \geq w(e_3) \geq \cdots$, 贪心算法求出的权值最大独立集是$I=\{e_{i_1}, e_{i_2}, \cdots, e_{i_m} \}$, 最优解是$J=\{e_{j_1}, e_{j_2}, \cdots, e_{j_m} \}$.<br>设$k$是最小的正整数满足$i_k \gt j_k$. (让$I$和$J$的元素一一对应, 前面$k-1$个都是$I$中编号小, 第$k$个是$J$中编号小, 因为$J$的权值比$I$大, $k$一定存在). 利用(3), 令$A:=\{e_1, e_2, \cdots, e_{j_k}\}$, 根据贪心算法的过程 $I \cap A$是 $A$上的极大独立集, 大小为$k-1$, 而$J \cap A$也是$A$上的独立集, 甚至还不是极大的，大小却是$k$. 违反了(3). </p><p>另外(2)还可以推出只要两个独立集大小不一样, 就可以从大集合里拿一个给小的, 新集合还是独立集。</p><p>接下来引入几个概念:</p><ol><li>秩(Rank). 根据上面第3条, $E$的任意子集$A$上的极大独立集大小相等。这个大小就是$A$的秩, 记为$r(A)$.</li><li>基(Basis). $A$的基上的任意极大独立集称为$A$的基.</li><li>回路(Circuit). 极小的非独立集(相关集), 即它本身不是独立集，但删掉任意一个元素后都是独立集。</li></ol><p>为了方便理解, 我们以图拟阵为例子.<br>图拟阵中任意边集$A \subseteq E$, $r(A)$是其生成子图的生成森林边数(也就是生成子图的顶点数-联通块个数), 基就是任意生成森林, 回路就是一个简单环。</p><p>再看一个独立集系统, 它的元素集合是一些维数相同的向量, 独立集的定义就是线性无关的向量集合。根据线性代数的知识, 任意向量集合的极大线性无关组大小相同，即满足上面的判断独立集是否是拟阵的第3条，所以该独立集系统是一个拟阵，之后我们称它为<strong>线性拟阵</strong>。<br>线性拟阵的秩, 基都和线性代数中吻合, 回路就是极小的线性相关组。<br>参加过算法竞赛的同学可以去拿BZOJ2460练练手, 就是求一个定义域在$F_2^n$下的线性拟阵权值最大的独立集, 用贪心算法解决即可。</p><p>下面是关于回路的一个有用的定理:<br><strong>定理一</strong>:<br>如果往独立集$I$中加入一个元素$e$后, $I+e$不独立了, 那么$I+e$中包含唯一的一个回路。并且这个回路就是$\{c \mid I+e-c \in \mathcal{G}\}$</p><p>可以拿图拟阵来理解这个定理: 考虑不成环的一些边(独立), 往里面加了一条, 如果成环(不独立), 那么会有唯一的一个简单环(回路), 这个回路就是新的边集($I+e$)里面那些去掉后会使得图没有环的边。</p><p>我们首先证明$C=\{c \mid I+e-c \in \mathcal{G}\}$确实是$I+e$中的回路。</p><ul><li>显然$C \subseteq I+e$, 先证明$C$不是独立集。 假设$C$是独立集, 那么一定可以往$C$里面加元素将它扩充成$I+e$的一个基$C’$. 因为$r(I+e) = r(I) = |I|$, 因此$|C’|=|I|$, 所以$C’ = I+e-c, c \notin C’$, 而根据$C$的定义, $c \in C$, 导致矛盾。   </li><li>再证明$C$去掉任意一个元素后都是独立集. $\forall c \in C, I+e-c \in \mathcal{G}$,而$ C-e \subseteq I+e-c$, 根据遗传性$C-e \in \mathcal{G}$.</li></ul><p>唯一性证明:<br>假设还有另一个回路$D$. 考虑$c \in C \backslash D$, 容易发现$ D \subseteq I+e-c$, 根据$C$的定义, $I+e-c \in \mathcal{G}$, 从而根据遗传性推出$D$是独立集,导致矛盾。</p><p>为了之后解释2拟阵交的算法，还需要引入一个span的概念。<br>考虑$A \subseteq E, S(A):=\{B \mid A \subseteq B, r(A)=r(B)\}$.<br>先来验证$S(A)$关于集合的并操作封闭, 即$\forall B_1,B_2 \in S(A), B_1 \cup B_2 \in S(A)$.<br>证明:<br>设$\mathcal{B}$是$A$的基, 那么显然它也是$ B_1,  B_2$的基。 我们证明它还是$ B_1 \cup B_2$的基: 如果它不是，那么它是非极大的独立集, 那么可以往里面加一个元素使它还是独立集, 但是它已经是$ B_1,  B_2$的基了，所以又不可能往它里面加$B_1$或者$B_2$的元素, 导致矛盾。</p><p>定义$span(A):=\bigcup\limits_{B_i \in S(A)} B_i$, 显然$span(A) \in S(A)$, 等价地, $span(A)$就是极大的(也是最大的)$A$的超集, 满足秩和$A$的秩一样。<br>还容易验证$span(span(A)) = span(A)$.</p><p>在图拟阵中, 如果$A$是某个边集, $span(A)$ 就是往$A$中加入尽可能多的边, 使得生成子图的顶点数不会增多。</p><p>下面的定理更加简洁的表示出了$span(A)$.</p><script type="math/tex; mode=display">span(A) = \{e \mid r(A+e)=r(A)\}</script><p>证明:</p><ul><li>记$K=\{e \mid r(A+e)=r(A)\}$, 那么$K$可以写作<script type="math/tex; mode=display">\bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (A+e)</script>而$\forall e \in E \backslash A, r(A+e)=r(A)$, 有$A+e \in S(A)$, 故$K \in S(A), K \subseteq span(A)$.</li><li>反过来, 考虑$e \in span(A) \backslash A$, 显然$r(A+e) = r(A)$. 因此$span(A)$可以写成<script type="math/tex; mode=display">\bigcup\limits_{e \in span(A) \backslash A: r(A+e)=r(A)} (A+e)</script>容易看到$span(A) \subseteq K$.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材&lt;a href=&quot;https://gitee.com/zh
+      
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+    
+      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+    
+    
+      <category term="Textbook Reading" scheme="http://zhenweiliu.gitee.io/blog/tags/Textbook-Reading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Combinatorial Optimization-Linear Programming And Simplex Method</title>
+    <link href="http://zhenweiliu.gitee.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/"/>
+    <id>http://zhenweiliu.gitee.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/</id>
+    <published>2020-02-14T05:41:36.000Z</published>
+    <updated>2020-02-14T07:58:23.802Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/combinatorial_book.pdf" target="_blank" rel="noopener">电子书下载</a><br>书的一些内容比较晦涩难懂, 刚开始读的时候心里想的“这tmd怎么写的是啥玩意”, 弄懂了之后又不得不感慨“写得真好”。由于我自己精力有限，在此只记录主要内容，并且略去了很多例子。 实际上书本的内容组织模式是先给例子再给算法，如果跳过例子直接看算法往往会一头雾水。<br>为了防止误解，我使用的符号尽量和书本一致，并且涉及的向量默认都是列向量。本篇就从最基础的线性规划开始介绍, 涉及书本的Chapter 2,3,5。</p><h3 id="线性规划的形式"><a href="#线性规划的形式" class="headerlink" title="线性规划的形式"></a>线性规划的形式</h3><p>一般式:</p><script type="math/tex; mode=display">\begin{matrix}\min\limits_{x} c^Tx &\ \\a_i^Tx = b_i & i \in M \\a_i^Tx \geq b_i & i \in \overline{M}  \\x_j \geq 0 & j \in N \\x_j \text{ free}& j  \in \overline{N} \end{matrix}</script><p>标准式:</p><script type="math/tex; mode=display">\begin{matrix}\min\limits_{x} c^Tx \\Ax = b \\b \geq 0\end{matrix}</script><p>注意标准式是特殊的一般式。 一般式也很容易转化成标准式，只需要把$a_i^Tx \geq b_i$ 写成$a_i^Tx - \hat{x_k}= b_i$, 没有非负限制的变量$x_j$拆成$x_j^+ - x_j^-$. 因此之后我们只考虑如何求解标准式的线性规划。</p><h3 id="单纯形法"><a href="#单纯形法" class="headerlink" title="单纯形法"></a>单纯形法</h3><p>个人感觉线性规划的求解都比较繁琐，不感兴趣的可以先不看, 实际应用也很少真的去直接求解，而是用组合的方法。目前已经有多项式的算法可以解决线性规划，而单纯形最坏时间是指数级的。不过，在大多数情况下，它的运行效率很高，甚至比多项式算法要快。</p><h4 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h4><ol><li>线性规划有可行解. (无可行解的情况可以用书中CH2.8的方法判断, 见下文)</li><li>矩阵$A$的规模是$m \times n$, 且$rank(A)=m$, 即行满秩. (不满秩的情况会在书中CH2.8涉及, 见下文)</li><li>$b_i \geq 0$. (如果不满足，只要第$i$行乘$-1$)</li><li>最优解不是无穷小. (下文会介绍怎么判断会不会是无穷小) </li></ol><h4 id="基本可行解"><a href="#基本可行解" class="headerlink" title="基本可行解"></a>基本可行解</h4><p>基本可行解$x$的定义如下:</p><ol><li>取$A$线性无关的$m列$, 记为方阵$B$, 对应的列标集合记为$\mathcal{B}$. </li><li>$x_j = 0(x_j \notin \mathcal{B})$.</li><li>$x_{\mathcal{B}} = B^{-1}b$.</li></ol><p>通俗点说就是取$A$线性无关的$m列$, 让剩余列对应的$x_j=0$, 就变成了解方程$Bx_{\mathcal{B}} = b$.<br>容易证明, 在上面的约定1,2下, 基本可行解一定存在。(证明见书Theorem 2.1, 另外CH2.8的方法其实暗含了基本可行解一定存在)<br>为什么要基本可行解这个概念呢？因为一定有一个基本可行解就是最优解。这个证明就比较复杂了, 不感兴趣可以略过。</p><ol><li>首先容易证明线性规划对应的可行解区域是一个convex polytope。</li><li>基本可行解和polytope的顶点一一对应。(证明见书Theorem 2.4)</li><li>polytope的任意点是其顶点的凸组合(书Theorem 2.3提到, 不过也没有证明, 直接引用的别人的结论)</li><li>由1,2,3容易推出某个基本可行解就是最优解。假设不是，即polytope的某个内点是最优解, 那么考虑把它表示成顶点的凸组合，凸组合里一定有一个顶点比它优。</li></ol><p>由此我们得到一个很暴力的算法：枚举所有的基本可行解, 最多$\binom{n}{m}$种可能。<br>单纯形法稍微取巧有点，本质上是基于local search, 从polytope的某个顶点出发，不断走到相邻的一个更优的顶点。 最坏情况下，仍然需要计算$\binom{n}{m}$次基本可行解(例子见书CH8.6)。</p><h4 id="基本可行解的切换"><a href="#基本可行解的切换" class="headerlink" title="基本可行解的切换"></a>基本可行解的切换</h4><p>假设当前基本可行解是$\mathcal{B}$, 定义它的neibourhood:$\{\mathcal{B’} \mid \mathcal{B’}  = \mathcal{B} \backslash i \cup j, i \in \mathcal{B}, j \notin \mathcal{B}\}$.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。&lt;a href=&quot;https://gitee.com/zhenweil
+      
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+    
+      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+    
+    
+      <category term="Textbook Reading" scheme="http://zhenweiliu.gitee.io/blog/tags/Textbook-Reading/"/>
+    
+  </entry>
   
   <entry>
     <title>Binpacking-First Fit</title>

@@ -99,18 +99,18 @@
   };
 </script>
 
-  <meta name="description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
-<meta name="keywords" content="Algebra,Coding Theory">
+  <meta name="description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
+<meta name="keywords" content="Textbook Reading">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coding Theory-Some Bounds">
-<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2019/12/26/Coding-Theory-Some-Bounds/index.html">
+<meta property="og:title" content="Combinatorial Optimization-Matroid">
+<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/index.html">
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
-<meta property="og:description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
+<meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-13T15:05:43.667Z">
+<meta property="og:updated_time" content="2020-02-15T14:53:49.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Coding Theory-Some Bounds">
-<meta name="twitter:description" content="本节主要介绍关于编码的一些上下界。 The Main Coding Theory Problem定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为The Main Coding Theory Problem. 首先是几个非常trivial的">
+<meta name="twitter:title" content="Combinatorial Optimization-Matroid">
+<meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
 
 
 
@@ -120,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2019/12/26/Coding-Theory-Some-Bounds/">
+  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/">
 
 
 
@@ -131,7 +131,7 @@
 </script>
 
   
-  <title>Coding Theory-Some Bounds | zhenweiliu's blog</title>
+  <title>Combinatorial Optimization-Matroid | zhenweiliu's blog</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2019/12/26/Coding-Theory-Some-Bounds/">
+    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2020/02/15/combinatorial-optimization-matroid/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Coding Theory-Some Bounds
+          <h1 class="post-title" itemprop="name headline">Combinatorial Optimization-Matroid
 
               
             
@@ -379,23 +379,13 @@
                 
               
 
-              <time title="创建时间：2019-12-26 10:26:55" itemprop="dateCreated datePublished" datetime="2019-12-26T10:26:55+08:00">2019-12-26</time>
+              <time title="创建时间：2020-02-15 17:41:11 / 修改时间：22:53:49" itemprop="dateCreated datePublished" datetime="2020-02-15T17:41:11+08:00">2020-02-15</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-01-13 23:05:43" itemprop="dateModified" datetime="2020-01-13T23:05:43+08:00">2020-01-13</time>
-              </span>
             
           
 
@@ -408,7 +398,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Coding-Theory/" itemprop="url" rel="index"><span itemprop="name">Coding Theory</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
 
                 
                 
@@ -418,7 +415,7 @@
 
           
           
-            <span id="/blog/2019/12/26/Coding-Theory-Some-Bounds/" class="post-meta-item leancloud_visitors" data-flag-title="Coding Theory-Some Bounds">
+            <span id="/blog/2020/02/15/combinatorial-optimization-matroid/" class="post-meta-item leancloud_visitors" data-flag-title="Combinatorial Optimization-Matroid">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -443,8 +440,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/12/26/Coding-Theory-Some-Bounds/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/12/26/Coding-Theory-Some-Bounds/" itemprop="commentCount"></span>
+    <a href="/blog/2020/02/15/combinatorial-optimization-matroid/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/blog/2020/02/15/combinatorial-optimization-matroid/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -471,60 +468,59 @@
       
 
       
-        <p>本节主要介绍关于编码的一些上下界。</p>
-<h3 id="The-Main-Coding-Theory-Problem"><a href="#The-Main-Coding-Theory-Problem" class="headerlink" title="The Main Coding Theory Problem"></a>The Main Coding Theory Problem</h3><p>定义$A_q(n, d)$为长度为$n$, 最小距离是$d$的编码, size最大能是多少。$B_q(n, d)$为长度为$n$, 最小距离是$d$的线性码, size最大能是多少。 确定它们的值或者上下界成为<strong>The Main Coding Theory Problem</strong>.</p>
-<p>首先是几个非常trivial的bound:</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材<a href="https://gitee.com/zhenweiliu/papers/raw/master/papers%20in%20blog/combinatorial_book.pdf" target="_blank" rel="noopener">Combinatorial Optimization-Algorithms and Complexity</a>第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。</p>
+<h3 id="独立集系统和拟阵"><a href="#独立集系统和拟阵" class="headerlink" title="独立集系统和拟阵"></a>独立集系统和拟阵</h3><p>定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E}$, $\mathcal{G}$中的元素称为独立集。<br>$\mathcal{G}$需要满足遗传性: 如果$A \in \mathcal{G}, B \subseteq A$, 那么$B \in \mathcal{G}$.</p>
+<p>举例:<br>定义在无向图$G(V, E)$上的独立集系统, $\mathcal{G}$是不构成环的边集合, 显然满足遗传性。<br>求无向图的最大生成树, 实际上是先给$E$中每个元素赋予一个权值(边权), 然后求一个权值最大的独立集。<br>回忆一下kruskal算法, 每次选一条边权最大的边, 如果把它加入答案不形成环，就把它加入答案。<br>推广一下，给定任意独立系统，任意给每个元素一个非负的权值，要求权值最大的独立集，容易得到下面的贪心算法:</p>
 <ol>
-<li>$B_q(n, d) \leq A_q(n, d) \leq q^n$.</li>
-<li>$B_q(n, 1) = A_q(n, 1) = 1$.</li>
-<li>$B_q(n, n) = A_q(n, n) = n$.</li>
+<li>将元素按权值从大到小排序.</li>
+<li>按顺序依次考虑每个元素, 如果把这个元素加入答案后仍然是一个独立集，就加入答案。</li>
 </ol>
-<p>前两个非常显然, 最后一个因为$d=n$, 那么每个codeword的任意位互不相同。 只考虑第一位互不相同，最多就只能选$n$个codeword。因此上界是$n$. 而$\{(a, a, \cdots, a) \mid a \in F_q\}$就可以达到$n$.</p>
-<p>下面引入一个<strong>extended code</strong>的概念:</p>
+<p>不幸的是, 这个算法只有在特定条件下才会给出最优解。<br>比如考虑求二分图图的最大权值匹配, 定义独立集为可以形成匹配的边集。考虑一个4个点3条边的图$V=\{u_1, u_2, u_3, u_4\}, w(u_1,u_2)=w(u_3, u_4)=5, w(u_1, u_4)=8, w(u_2, u_3) = 1$, 贪心算法会选择边$(u_1, u_4), (u_2, u_3)$, 权值是9, 最优解是$(u_1, u_2), (u_3,u_4)$, 权值是10.<br>我们把贪心算法能够使用的独立集系统称为<strong>拟阵(matroid)</strong>, 比如上面定义在无向图边集上的独立集系统，贪心算法实际上就是kruskal算法, 为了方便, 给它一个名字叫<strong>图拟阵(graphic matroid)</strong>。</p>
+<h3 id="拟阵的性质"><a href="#拟阵的性质" class="headerlink" title="拟阵的性质"></a>拟阵的性质</h3><p>那么如何判定一个独立集系统$M$是不是拟阵呢？下面三条定义是等价的:</p>
+<ol>
+<li>$M$是拟阵, 任意给元素分配非负的权值, 贪心算法能得到最优解。</li>
+<li>假设有2个独立集$I_1, I_2, |I_2| = |I_1|+1$, 那么$\exists e \in I_1\backslash I_2, I_1 \cup e \in \mathcal{G}$. 通俗地讲，就是如果2个独立集大小相差1, 那么一定可以从大的独立集那里拿一个给小的, 使新的集合还是独立集。</li>
+<li>若$A \subseteq E$, $I_1, I_2 \subseteq A$是$A$上的极大独立集, 那么$|I_1|=|I_2|$. 也就是$E$的任意子集上的极大独立集大小相同。</li>
+</ol>
+<p>证明:<br>$1 \rightarrow 2:$<br>设$|I_1|=k, |I_2| = k+1$, 只要令</p>
 <script type="math/tex; mode=display">
-\overline{C} := \{(c_1, c_2, \cdots, c_n, -\sum_{i=1}^n{c_i}) \mid (c_1, c_2, \cdots, c_n) \in C\}</script><p>就是在最后增加一位, 是前面的所有位的和取负。设$H$是$C$的check matrix, 容易验证$\overline{C}$的一个check matrix $\overline{H}=<br>\begin{pmatrix}<br>          &amp; 0  \\<br>H         &amp; \vdots \\<br>         &amp; 0  \\<br>1  \cdots 1       &amp; 1<br>\end{pmatrix}$</p>
-<p><strong>Theorem 1:</strong> 假设$d$是一个奇数。</p>
+w(e) = \begin{cases}
+    k+2 & e \in I_1 \\ 
+    k+1 & e \in I_1 \backslash I_2 \\ 
+    0  & e \notin I_1 \cup I_2
+\end{cases}</script><p>假设$\forall e \in I_1\backslash I_2, I_1 \cup e \notin \mathcal{G}$, 按照贪心算法会选择$I_1$, 权值是$k(k+1)$, 实际上$I_2$的权值是$(k+1)(k+1)$更大，贪心算法就挂了。</p>
+<p>$2 \rightarrow 3:$<br>显然, 如果$|I_1| \lt |I_2|$, 考虑$I_3 \subseteq I_2, |I_3|=|I_1|+1$, 根据(2)可以从$I_3$那里拿一个元素给$I_1$构成一个更大的独立集, 与$I_1$是极大的矛盾。</p>
+<p>$3 \rightarrow 1:$<br>假设$w(e_1) \geq w(e_2) \geq w(e_3) \geq \cdots$, 贪心算法求出的权值最大独立集是$I=\{e_{i_1}, e_{i_2}, \cdots, e_{i_m} \}$, 最优解是$J=\{e_{j_1}, e_{j_2}, \cdots, e_{j_m} \}$.<br>设$k$是最小的正整数满足$i_k \gt j_k$. (让$I$和$J$的元素一一对应, 前面$k-1$个都是$I$中编号小, 第$k$个是$J$中编号小, 因为$J$的权值比$I$大, $k$一定存在). 利用(3), 令$A:=\{e_1, e_2, \cdots, e_{j_k}\}$, 根据贪心算法的过程 $I \cap A$是 $A$上的极大独立集, 大小为$k-1$, 而$J \cap A$也是$A$上的独立集, 甚至还不是极大的，大小却是$k$. 违反了(3). </p>
+<p>另外(2)还可以推出只要两个独立集大小不一样, 就可以从大集合里拿一个给小的, 新集合还是独立集。</p>
+<p>接下来引入几个概念:</p>
 <ol>
-<li>存在$(n, M, d)_2$-code当且仅当存在$(n+1, M, d+1)_2$-code. $A_2(n, d) = A_2(n+1,d+1)$.<br>证明：<br>假设$C$是$(n, M, d)_2$-code, 考虑它的extended code $\overline{C}$. 显然$d \leq d(\overline{C}) \leq d+1$. 考虑任意$u,v \in C, d(u, v) = d$. 由于$d$是奇数, $\overline{u}, \overline{v}$除了$u,v$不同的位置不同, 最后一位扩展位也不同。因此$d(\overline{u}, \overline{v}) = d+1$.  从而说明$\overline{C}$是$(n+1, M, d+1)_2$-code.<br>反过来，如果$C$是$(n+1, M, d+1)_2$-code, 那么存在$u,v \in C, d(u, v)=d+1$. 找到$u,v$不相同的某一位， 把$C$中所有codeword删去这一位, 得到新的码$C’$。 因为只删去了一位，那么距离最多减少1，因此$d(C’) \geq d$, 而$d(u’, v’)=d$, 所以$d(C’) = d$.  </li>
-<li>存在$[n, M,d]_2$-code当且仅当存在$[n+1, M, d+1]$-code.  $B_2(n, d) = B_2(n+1,d+1)$.<br>证明：<br>如果$C$是linear code, 那么$\overline{C}$也是，必要性得证。<br>如果$C$是$[n+1, M, d+1]_2$-code, 那么存在$x \in C, wt(x) = d+1$. 选择$x$非0的某一位, 把$C$中所有codeword删去这一位, 得到新的码$C’$, 显然$C’$也是linear code. 之后同上一条去掉某一位的论证。</li>
+<li>秩(Rank). 根据上面第3条, $E$的任意子集$A$上的极大独立集大小相等。这个大小就是$A$的秩, 记为$r(A)$.</li>
+<li>基(Basis). $A$的基上的任意极大独立集称为$A$的基.</li>
+<li>回路(Circuit). 极小的非独立集(相关集), 即它本身不是独立集，但删掉任意一个元素后都是独立集。</li>
 </ol>
-<h3 id="Some-Lower-Bounds"><a href="#Some-Lower-Bounds" class="headerlink" title="Some Lower Bounds"></a>Some Lower Bounds</h3><p>本节主要讨论关于$A_q(n, d), B_q(n, d)$的一些下界。</p>
-<h4 id="Sphere-Covering-Bound"><a href="#Sphere-Covering-Bound" class="headerlink" title="Sphere-Covering Bound"></a>Sphere-Covering Bound</h4><p>定义$S(u, r):= \{v \in C \mid d(u,v) \leq r \}$. 显然$|S(u, r)| = \sum_{i=0}^{r} \binom{n}{i}(q-1)^i$. 也就是以$u$为圆心，$r$为半径的球。<br>考虑达到最优大小$A_q(n,d)$的码$C$, $|C| = A_q(n, d)$, 有$\bigcup_{u \in C}{S(u, d-1)} = F_q^n$. 因为如果这些球并起来不是整个空间，那么存在一个点不在任意一个球内，这个点和$C$内的任意codeword距离都至少是$d$, 那么这个点加入$C$可以得到更大的码。所以有</p>
-<script type="math/tex; mode=display">
-A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d-1} \binom{n}{i}(q-1)^i}</script><h4 id="Gilbert–Varshamov-Bound"><a href="#Gilbert–Varshamov-Bound" class="headerlink" title="Gilbert–Varshamov Bound"></a>Gilbert–Varshamov Bound</h4><p><strong>Theorem:</strong><br>如果</p>
-<script type="math/tex; mode=display">
-\sum_{i=0}^{d-2} \binom{n-1}{i}(q-1)^i \lt q^{n-k}</script><p>那么存在$[n, k]$ linear code $C$, $d(C) \geq d$.<br>证明:<br>考虑构造一个$(n-k) \times n$的”check matrix” $H$, 这里加引号是因为并不要求$H$的行是线性无关的, 但是任意$d-1$列是线性无关的。那么$H$的null space对应的就是一个维数至少是$k$, 距离至少是$d$的线性码。任取generator matrix $G$的$k$行就可以得到维数恰好是$k$, 距离至少是$d$的线性码。<br>下面考虑一列一列构造这样的$H$:</p>
-<ol>
-<li>随便选一个$u_1 \in F_q^{n-k}$, 作为第1列。</li>
-<li>对$2\leq i \leq n$, 选取$u_i$作为第$i$列, 要求$u_i$不能使$\{u_1, u_2, \cdots, u_{i-1}\}$中任意$d-2$个的线性组合。<br>显然如果构造顺利, 我们就找到了符合要求的$H$, 但是我们还得证明第二步中一定存在一个符合要求的$u_i$.<br>因为$\{u_1, u_2, \cdots, u_{i-1}\}$中任意$d-2$个的线性组合构成的空间大小不超过<script type="math/tex; mode=display">
-\sum_{j=0}^{d-2} \binom{i-1}{j}(q-1)^j \leq \sum_{j=0}^{d-2} \binom{n-1}{j}(q-1)^j \lt q^{n-k}</script>所以每次总能找到符合要求的$u_i$.</li>
-</ol>
-<h3 id="Hamming-Bound"><a href="#Hamming-Bound" class="headerlink" title="Hamming Bound"></a>Hamming Bound</h3><h4 id="Binary-Hamming-Code"><a href="#Binary-Hamming-Code" class="headerlink" title="Binary Hamming Code"></a>Binary Hamming Code</h4><p><strong>Binary Hamming Code</strong>是一种特殊的linear code, 它的长度是$2^r-1$, check matrix $H$大小是$r \times (2^r-1)$每一列恰好是$1, 2 \cdots (2^r-1)$的二进制表示。<br>首先我们验证一下$H$的行线性无关: 一共$r$行, 考虑$(0, \cdots, 0, \underbrace{1}_{i^{th} bit}, 0, \cdots, 0)^T$所在的列, 这一列只有一个$1$. 一共有$r$由单个$1$组成的列，且这些列的$1$所在的行都不一样。显然这$r$行线性无关。</p>
-<p>下面是Binary Hamming Code的一些性质。<br>如果$C$是Binary Hamming Code, check matrix $H$大小是$r \times (2^r-1)$, 记作$Ham(r, 2)$.</p>
-<ol>
-<li>$dim(Ham(r, 2)) = 2^r-1-r$。</li>
-<li>$d(Ham(r, 2)) = 3$. 因此只能恢复一个错误。<br>证明:<br>根据linear code的性质, 只要证明$H$任意$2$列线性无关，存在$3$列线性相关。前者显然, 因为任意两列互不相同。后者只要取$(1, 0, 0, \cdots ,0)^T, (0, 1, 0, \cdots ,0)^T, (1, 1, 0, \cdots, 0)^T$所在的列。</li>
-</ol>
-<p>Binary Hamming Code的Decoding也可以沿用linear code的Syndrome Decoding那一套。<br>$e_j := (0,\cdots ,0, \underbrace{1}_{j^{th} bit}, 0, \cdots, 0)$, $H = (h_1, h_2, \cdots, h_{2^r-1})$, 则$e_j H^T = h_j$.<br>如果收到的$w$只有$1$个错误, 那么$wH^T$恰好就是$H$的某一列，假设是第$k$列, 那么出错的就是第$k$位。</p>
-<h4 id="Extended-Binary-Hamming-Code"><a href="#Extended-Binary-Hamming-Code" class="headerlink" title="Extended Binary Hamming Code"></a>Extended Binary Hamming Code</h4><p>扩展海明码记作$\overline{Ham(r, 2)}$, 定义见线性码的扩展，就是在最后增加一位parity check位。<br>因为$Ham(r, 2)$是$(n, M, 3)$-code, 所以根据Theorem 1的证明, $Ham(r, 2)$是$(n+1, M, 4)$-code, $d(\overline{Ham(r, 2)}) = 4$.</p>
-<h4 id="Weight-Distribution-Of-Hamming-Code"><a href="#Weight-Distribution-Of-Hamming-Code" class="headerlink" title="Weight Distribution Of Hamming Code"></a>Weight Distribution Of Hamming Code</h4><p><a href="http://oeis.org/wiki/List_of_weight_distributions#Hamming_codes" target="_blank" rel="noopener">部分重量分布表</a><br>如何计算？<br>我们知道Hamming Code的check matrix $H$, 可以计算出$C^{\perp}$的重量分布，再利用<a href="https://www.encyclopediaofmath.org/index.php/MacWilliams_identities" target="_blank" rel="noopener">MacWilliams’ Identity</a>计算出$C$的分布.<br>也可以通过$Hx = 0$计算出generator matrix $G$, 直接计算$C$的重量分布。<br>通过观察可以发现$A_i = A_{n-i}$. 因为$H$的每行都有偶数个$1$, 如果$uH^T = 0$, 那么$\overline{u}H^T = 0$, $\overline{u}$是$u$的每一位取反。</p>
-<h3 id="Singleton-Bound-and-MDS-Codes"><a href="#Singleton-Bound-and-MDS-Codes" class="headerlink" title="Singleton Bound and MDS Codes"></a>Singleton Bound and MDS Codes</h3><h4 id="Singleton-Bound"><a href="#Singleton-Bound" class="headerlink" title="Singleton Bound"></a>Singleton Bound</h4><p>Singleton Bound: $A_q(n, d) \leq q^{n-d+1}$.<br>证明: 任意编码$C$, 满足$d(C) = d$, 考虑删掉所有codeword的最后$d-1$位, 那么它们还是互不相同的. 而长度为$n-d+1$的codeword只有$q^{n-d+1}$个, 所以$|C| \leq q^{n-d+1}$.<br>另外, 如果$C$是$[n, k, d]$-linear code, 可以推出$|C|=q^k \leq q^{n-d+1} \rightarrow k+d \leq n+1$.</p>
-<h4 id="MDS-Codes"><a href="#MDS-Codes" class="headerlink" title="MDS Codes"></a>MDS Codes</h4><p>MDS Codes就是使得Singleton Bound取等号的编码。</p>
-<p>Theorem 2:<br>设$C$是$[n, k, d]$-linear code, 以下几条等价:</p>
-<ol>
-<li>$C$是MDS Code.</li>
-<li>check matrix $H$的任意$n-k$列线性无关。</li>
-<li>generator matrix $G$的任意$k$行线性无关。</li>
-<li>$C^{\perp}$是MDS code.</li>
-</ol>
-<p>证明:</p>
+<p>为了方便理解, 我们以图拟阵为例子.<br>图拟阵中任意边集$A \subseteq E$, $r(A)$是其生成子图的生成森林边数(也就是生成子图的顶点数-联通块个数), 基就是任意生成森林, 回路就是一个简单环。</p>
+<p>再看一个独立集系统, 它的元素集合是一些维数相同的向量, 独立集的定义就是线性无关的向量集合。根据线性代数的知识, 任意向量集合的极大线性无关组大小相同，即满足上面的判断独立集是否是拟阵的第3条，所以该独立集系统是一个拟阵，之后我们称它为<strong>线性拟阵</strong>。<br>线性拟阵的秩, 基都和线性代数中吻合, 回路就是极小的线性相关组。<br>参加过算法竞赛的同学可以去拿BZOJ2460练练手, 就是求一个定义域在$F_2^n$下的线性拟阵权值最大的独立集, 用贪心算法解决即可。</p>
+<p>下面是关于回路的一个有用的定理:<br><strong>定理一</strong>:<br>如果往独立集$I$中加入一个元素$e$后, $I+e$不独立了, 那么$I+e$中包含唯一的一个回路。并且这个回路就是$\{c \mid I+e-c \in \mathcal{G}\}$</p>
+<p>可以拿图拟阵来理解这个定理: 考虑不成环的一些边(独立), 往里面加了一条, 如果成环(不独立), 那么会有唯一的一个简单环(回路), 这个回路就是新的边集($I+e$)里面那些去掉后会使得图没有环的边。</p>
+<p>我们首先证明$C=\{c \mid I+e-c \in \mathcal{G}\}$确实是$I+e$中的回路。</p>
 <ul>
-<li>(1),(2)显然等价。</li>
-<li>把$G$看做$C^{\perp}$的check matrix, 推出(3),(4)等价。</li>
-<li>(1)推出(4). 只要证明$d(C^{\perp})=k+1$. 假设存在$u \in C^{\perp}, wt(u) \leq k$. 也就是说$u$至少有$n-k$个分量是0. 因为$H$是$C^{\perp}$的generator matrix, 所以存在$(n-k) \times 1$的向量$v$, 满足$u = vH$. 设$J := \{j \mid u_j = 0\}$, 令$J’$是$J$的一个大小为$n-k$的子集, $H_{J’}$是取出$J’$对应的那些列的构成的矩阵($(n-k) \times (n-k)$ ). 由(2)$H_{J’}$是满秩的, $0 = u_{J’} = vH_{J’}$, 可以推出$v = 0$, 从而$u = 0$.  因此不存在$u, wt(u) \leq k$, 也就是说$d(C^{\perp}) \geq k+1$.</li>
-<li>$C=(C^{\perp})^{\perp}$, 同上(4)可以推出(1).</li>
+<li>显然$C \subseteq I+e$, 先证明$C$不是独立集。 假设$C$是独立集, 那么一定可以往$C$里面加元素将它扩充成$I+e$的一个基$C’$. 因为$r(I+e) = r(I) = |I|$, 因此$|C’|=|I|$, 所以$C’ = I+e-c, c \notin C’$, 而根据$C$的定义, $c \in C$, 导致矛盾。   </li>
+<li>再证明$C$去掉任意一个元素后都是独立集. $\forall c \in C, I+e-c \in \mathcal{G}$,而$ C-e \subseteq I+e-c$, 根据遗传性$C-e \in \mathcal{G}$.</li>
 </ul>
-<h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3>
+<p>唯一性证明:<br>假设还有另一个回路$D$. 考虑$c \in C \backslash D$, 容易发现$ D \subseteq I+e-c$, 根据$C$的定义, $I+e-c \in \mathcal{G}$, 从而根据遗传性推出$D$是独立集,导致矛盾。</p>
+<p>为了之后解释2拟阵交的算法，还需要引入一个span的概念。<br>考虑$A \subseteq E, S(A):=\{B \mid A \subseteq B, r(A)=r(B)\}$.<br>先来验证$S(A)$关于集合的并操作封闭, 即$\forall B_1,B_2 \in S(A), B_1 \cup B_2 \in S(A)$.<br>证明:<br>设$\mathcal{B}$是$A$的基, 那么显然它也是$ B_1,  B_2$的基。 我们证明它还是$ B_1 \cup B_2$的基: 如果它不是，那么它是非极大的独立集, 那么可以往里面加一个元素使它还是独立集, 但是它已经是$ B_1,  B_2$的基了，所以又不可能往它里面加$B_1$或者$B_2$的元素, 导致矛盾。</p>
+<p>定义$span(A):=\bigcup\limits_{B_i \in S(A)} B_i$, 显然$span(A) \in S(A)$, 等价地, $span(A)$就是极大的(也是最大的)$A$的超集, 满足秩和$A$的秩一样。<br>还容易验证$span(span(A)) = span(A)$.</p>
+<p>在图拟阵中, 如果$A$是某个边集, $span(A)$ 就是往$A$中加入尽可能多的边, 使得生成子图的顶点数不会增多。</p>
+<p>下面的定理更加简洁的表示出了$span(A)$.</p>
+<script type="math/tex; mode=display">
+span(A) = \{e \mid r(A+e)=r(A)\}</script><p>证明:</p>
+<ul>
+<li>记$K=\{e \mid r(A+e)=r(A)\}$, 那么$K$可以写作<script type="math/tex; mode=display">
+\bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (A+e)</script>而$\forall e \in E \backslash A, r(A+e)=r(A)$, 有$A+e \in S(A)$, 故$K \in S(A), K \subseteq span(A)$.</li>
+<li>反过来, 考虑$e \in span(A) \backslash A$, 显然$r(A+e) = r(A)$. 因此$span(A)$可以写成<script type="math/tex; mode=display">
+\bigcup\limits_{e \in span(A) \backslash A: r(A+e)=r(A)} (A+e)</script>容易看到$span(A) \subseteq K$.</li>
+</ul>
+
       
     </div>
 
@@ -554,9 +550,7 @@ A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d-1} \binom{n}{i}(q-1)^i}</script><h4 id="
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Algebra/" rel="tag"># Algebra</a>
-          
-            <a href="/blog/tags/Coding-Theory/" rel="tag"># Coding Theory</a>
+            <a href="/blog/tags/Textbook-Reading/" rel="tag"># Textbook Reading</a>
           
         </div>
       
@@ -569,8 +563,8 @@ A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d-1} \binom{n}{i}(q-1)^i}</script><h4 id="
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/12/22/Coding-Theory-Linear-Code/" rel="next" title="Coding Theory-Linear Code">
-                <i class="fa fa-chevron-left"></i> Coding Theory-Linear Code
+              <a href="/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" rel="next" title="Combinatorial Optimization-Linear Programming And Simplex Method">
+                <i class="fa fa-chevron-left"></i> Combinatorial Optimization-Linear Programming And Simplex Method
               </a>
             
           </div>
@@ -578,10 +572,6 @@ A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d-1} \binom{n}{i}(q-1)^i}</script><h4 id="
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/12/29/Coding-Theory-Expander-Codes/" rel="prev" title="Coding Theory-Expander Codes">
-                Coding Theory-Expander Codes <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -779,7 +769,7 @@ A_q(n, d) \geq \frac{q^n}{\sum_{i=0}^{d-1} \binom{n}{i}(q-1)^i}</script><h4 id="
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Main-Coding-Theory-Problem"><span class="nav-number">1.</span> <span class="nav-text">The Main Coding Theory Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Lower-Bounds"><span class="nav-number">2.</span> <span class="nav-text">Some Lower Bounds</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sphere-Covering-Bound"><span class="nav-number">2.1.</span> <span class="nav-text">Sphere-Covering Bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gilbert–Varshamov-Bound"><span class="nav-number">2.2.</span> <span class="nav-text">Gilbert–Varshamov Bound</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamming-Bound"><span class="nav-number">3.</span> <span class="nav-text">Hamming Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Binary-Hamming-Code"><span class="nav-number">3.1.</span> <span class="nav-text">Binary Hamming Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extended-Binary-Hamming-Code"><span class="nav-number">3.2.</span> <span class="nav-text">Extended Binary Hamming Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weight-Distribution-Of-Hamming-Code"><span class="nav-number">3.3.</span> <span class="nav-text">Weight Distribution Of Hamming Code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Singleton-Bound-and-MDS-Codes"><span class="nav-number">4.</span> <span class="nav-text">Singleton Bound and MDS Codes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Singleton-Bound"><span class="nav-number">4.1.</span> <span class="nav-text">Singleton Bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MDS-Codes"><span class="nav-number">4.2.</span> <span class="nav-text">MDS Codes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise"><span class="nav-number">5.</span> <span class="nav-text">Exercise</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#独立集系统和拟阵"><span class="nav-number">2.</span> <span class="nav-text">独立集系统和拟阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟阵的性质"><span class="nav-number">3.</span> <span class="nav-text">拟阵的性质</span></a></li></ol></div>
             
 
           </div>
