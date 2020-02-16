@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="前言入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。电子书下载书的一些内容比较晦涩难懂, 刚开始读的时候心里想的“这tmd怎么写的是啥玩意”, 弄懂了之后又不得不感慨“写得真好”。由于我自己精力有限，在此只记录主要内容，并且略去了很多例子。 实际上书本的内容组织模式是先给例子再给算法，如果跳过例子直接看算法往往会一头雾水。为了防止误解，我使用的符号尽量和书本一致，并且涉及的向">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-14T07:58:23.802Z">
+<meta property="og:updated_time" content="2020-02-16T14:20:55.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Linear Programming And Simplex Method">
 <meta name="twitter:description" content="前言入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。电子书下载书的一些内容比较晦涩难懂, 刚开始读的时候心里想的“这tmd怎么写的是啥玩意”, 弄懂了之后又不得不感慨“写得真好”。由于我自己精力有限，在此只记录主要内容，并且略去了很多例子。 实际上书本的内容组织模式是先给例子再给算法，如果跳过例子直接看算法往往会一头雾水。为了防止误解，我使用的符号尽量和书本一致，并且涉及的向">
@@ -379,13 +379,23 @@
                 
               
 
-              <time title="创建时间：2020-02-14 13:41:36 / 修改时间：15:58:23" itemprop="dateCreated datePublished" datetime="2020-02-14T13:41:36+08:00">2020-02-14</time>
+              <time title="创建时间：2020-02-14 13:41:36" itemprop="dateCreated datePublished" datetime="2020-02-14T13:41:36+08:00">2020-02-14</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-16 22:20:55" itemprop="dateModified" datetime="2020-02-16T22:20:55+08:00">2020-02-16</time>
+              </span>
             
           
 
@@ -482,7 +492,7 @@ x_j \text{ free}& j  \in \overline{N}
 \begin{matrix}
 \min\limits_{x} c^Tx \\
 Ax = b \\
-b \geq 0
+x \geq 0
 \end{matrix}</script><p>注意标准式是特殊的一般式。 一般式也很容易转化成标准式，只需要把$a_i^Tx \geq b_i$ 写成$a_i^Tx - \hat{x_k}= b_i$, 没有非负限制的变量$x_j$拆成$x_j^+ - x_j^-$. 因此之后我们只考虑如何求解标准式的线性规划。</p>
 <h3 id="单纯形法"><a href="#单纯形法" class="headerlink" title="单纯形法"></a>单纯形法</h3><p>个人感觉线性规划的求解都比较繁琐，不感兴趣的可以先不看, 实际应用也很少真的去直接求解，而是用组合的方法。目前已经有多项式的算法可以解决线性规划，而单纯形最坏时间是指数级的。不过，在大多数情况下，它的运行效率很高，甚至比多项式算法要快。</p>
 <h4 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h4><ol>
