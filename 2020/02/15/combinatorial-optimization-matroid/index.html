@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-15T14:53:49.809Z">
+<meta property="og:updated_time" content="2020-02-16T13:50:26.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
@@ -379,13 +379,23 @@
                 
               
 
-              <time title="创建时间：2020-02-15 17:41:11 / 修改时间：22:53:49" itemprop="dateCreated datePublished" datetime="2020-02-15T17:41:11+08:00">2020-02-15</time>
+              <time title="创建时间：2020-02-15 17:41:11" itemprop="dateCreated datePublished" datetime="2020-02-15T17:41:11+08:00">2020-02-15</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-16 21:50:26" itemprop="dateModified" datetime="2020-02-16T21:50:26+08:00">2020-02-16</time>
+              </span>
             
           
 
@@ -500,7 +510,7 @@ w(e) = \begin{cases}
 </ol>
 <p>为了方便理解, 我们以图拟阵为例子.<br>图拟阵中任意边集$A \subseteq E$, $r(A)$是其生成子图的生成森林边数(也就是生成子图的顶点数-联通块个数), 基就是任意生成森林, 回路就是一个简单环。</p>
 <p>再看一个独立集系统, 它的元素集合是一些维数相同的向量, 独立集的定义就是线性无关的向量集合。根据线性代数的知识, 任意向量集合的极大线性无关组大小相同，即满足上面的判断独立集是否是拟阵的第3条，所以该独立集系统是一个拟阵，之后我们称它为<strong>线性拟阵</strong>。<br>线性拟阵的秩, 基都和线性代数中吻合, 回路就是极小的线性相关组。<br>参加过算法竞赛的同学可以去拿BZOJ2460练练手, 就是求一个定义域在$F_2^n$下的线性拟阵权值最大的独立集, 用贪心算法解决即可。</p>
-<p>下面是关于回路的一个有用的定理:<br><strong>定理一</strong>:<br>如果往独立集$I$中加入一个元素$e$后, $I+e$不独立了, 那么$I+e$中包含唯一的一个回路。并且这个回路就是$\{c \mid I+e-c \in \mathcal{G}\}$</p>
+<p>下面是关于回路的一个有用的定理:<br><strong>定理1</strong>:<br>如果往独立集$I$中加入一个元素$e$后, $I+e$不独立了, 那么$I+e$中包含唯一的一个回路。并且这个回路就是$\{c \mid I+e-c \in \mathcal{G}\}$</p>
 <p>可以拿图拟阵来理解这个定理: 考虑不成环的一些边(独立), 往里面加了一条, 如果成环(不独立), 那么会有唯一的一个简单环(回路), 这个回路就是新的边集($I+e$)里面那些去掉后会使得图没有环的边。</p>
 <p>我们首先证明$C=\{c \mid I+e-c \in \mathcal{G}\}$确实是$I+e$中的回路。</p>
 <ul>
@@ -508,8 +518,10 @@ w(e) = \begin{cases}
 <li>再证明$C$去掉任意一个元素后都是独立集. $\forall c \in C, I+e-c \in \mathcal{G}$,而$ C-e \subseteq I+e-c$, 根据遗传性$C-e \in \mathcal{G}$.</li>
 </ul>
 <p>唯一性证明:<br>假设还有另一个回路$D$. 考虑$c \in C \backslash D$, 容易发现$ D \subseteq I+e-c$, 根据$C$的定义, $I+e-c \in \mathcal{G}$, 从而根据遗传性推出$D$是独立集,导致矛盾。</p>
+<p>下面的内容和书上不完全一致, 因为我自己看书的时候在这些地方卡了好几天, 所以我尝试用自己的方法来解释, 因此可能会有一些错误, 希望发现的兄弟指出来。</p>
 <p>为了之后解释2拟阵交的算法，还需要引入一个span的概念。<br>考虑$A \subseteq E, S(A):=\{B \mid A \subseteq B, r(A)=r(B)\}$.<br>先来验证$S(A)$关于集合的并操作封闭, 即$\forall B_1,B_2 \in S(A), B_1 \cup B_2 \in S(A)$.<br>证明:<br>设$\mathcal{B}$是$A$的基, 那么显然它也是$ B_1,  B_2$的基。 我们证明它还是$ B_1 \cup B_2$的基: 如果它不是，那么它是非极大的独立集, 那么可以往里面加一个元素使它还是独立集, 但是它已经是$ B_1,  B_2$的基了，所以又不可能往它里面加$B_1$或者$B_2$的元素, 导致矛盾。</p>
-<p>定义$span(A):=\bigcup\limits_{B_i \in S(A)} B_i$, 显然$span(A) \in S(A)$, 等价地, $span(A)$就是极大的(也是最大的)$A$的超集, 满足秩和$A$的秩一样。<br>还容易验证$span(span(A)) = span(A)$.</p>
+<p>定义$span(A):=\bigcup\limits_{B_i \in S(A)} B_i$, 显然$span(A) \in S(A)$, 等价地, $span(A)$就是极大的(也是最大的)$A$的超集, 满足秩和$A$的秩一样。</p>
+<p><strong>引理1</strong>: $\forall B \in S(A), span(B) = span(A)$.<br>证明:<br>$B \in S(A) \rightarrow B \subseteq span(A) \rightarrow span(A) \in S(B) \rightarrow span(A) \subseteq span(B)$<br>$A \subseteq span(A) \subseteq span(B) \rightarrow span(B) \in S(A) \rightarrow span(B) \subseteq span(A)$.<br>所以$span(A)=span(B)$.<br>根据上面的引理, 容易验证$span(span(A)) = span(A)$.</p>
 <p>在图拟阵中, 如果$A$是某个边集, $span(A)$ 就是往$A$中加入尽可能多的边, 使得生成子图的顶点数不会增多。</p>
 <p>下面的定理更加简洁的表示出了$span(A)$.</p>
 <script type="math/tex; mode=display">
@@ -519,6 +531,24 @@ span(A) = \{e \mid r(A+e)=r(A)\}</script><p>证明:</p>
 \bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (A+e)</script>而$\forall e \in E \backslash A, r(A+e)=r(A)$, 有$A+e \in S(A)$, 故$K \in S(A), K \subseteq span(A)$.</li>
 <li>反过来, 考虑$e \in span(A) \backslash A$, 显然$r(A+e) = r(A)$. 因此$span(A)$可以写成<script type="math/tex; mode=display">
 \bigcup\limits_{e \in span(A) \backslash A: r(A+e)=r(A)} (A+e)</script>容易看到$span(A) \subseteq K$.</li>
+</ul>
+<p>下面为拟阵交做铺垫的两个引理:</p>
+<p><strong>引理2</strong>: $span(A) = A \cup \{C \mid \text{C is circuit with all but one element in } A \}$<br>证明:</p>
+<ul>
+<li>首先证明$span(A)$可以表示成$A$和若干特殊回路的并, 特殊回路指的是只有一个元素不在$A$内的回路。根据上面的定理<script type="math/tex; mode=display">
+\begin {split}
+ span(A) &= \bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (A+e) \\
+ &= A \cup \bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (A+e)  \\
+ &= A \cup \bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (\text{Basis of } A +e) \\
+ &= A \cup \bigcup\limits_{e \in E \backslash A: r(A+e)=r(A)} (\text{Circuit consists of basis of } A \text{ and } e) 
+\end{split}</script></li>
+<li>再证明任意特殊回路$\subseteq span(A)$. 给定某个特殊回路, 我们把它表示成$I+e, I \in \mathcal{G}$, 我们只要证明$r(A+e)=r(A)$. 假设$r(A+e) \gt r(A)$, 那么存在一个$A$的基$B, B+e \in \mathcal{G}$. 考虑$I$, 如果它不是$A$的基, 那么可以先把它扩充成$A$的基, 记作$I’$. 比较$I’$和$B+e$, 后者大小比前者大1, 因此可以从后者拿一个元素给前者, 但是这个元素不可能来自$B$, 否则$I’$就不是集了。所以这个元素只能是$e$, 因此$I’+e \in \mathcal{G}$, 而它的子集$I+e$却是一个回路, 导致矛盾。   </li>
+</ul>
+<p><strong>引理3</strong>: 若$I \in \mathcal{G}, I+e \notin \mathcal{G}$, $C$是$I+e$中唯一的circuit, 则$forall c \in C, span(I) = span(I+e-c)$.<br>证明:</p>
+<ul>
+<li>$r(I+e)=r(I) \rightarrow I+e \in S(I)$, 根据引理1, $span(I) = S(I+e)$.</li>
+<li>根据定理1, $r(I+e-c)=r(I)$, 因为$I+e-c \subseteq I+e$, 所以$I+e \in S(I+e-c)$, 从而有$span(I+e-c) = span(I+e)$.</li>
+<li>综上$span(I+e-c) = span(I)$.</li>
 </ul>
 
       
