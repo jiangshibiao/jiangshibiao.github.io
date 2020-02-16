@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-16T13:50:26.365Z">
+<meta property="og:updated_time" content="2020-02-16T14:09:23.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-16 21:50:26" itemprop="dateModified" datetime="2020-02-16T21:50:26+08:00">2020-02-16</time>
+                <time title="修改时间：2020-02-16 22:09:23" itemprop="dateModified" datetime="2020-02-16T22:09:23+08:00">2020-02-16</time>
               </span>
             
           
@@ -544,9 +544,9 @@ span(A) = \{e \mid r(A+e)=r(A)\}</script><p>证明:</p>
 \end{split}</script></li>
 <li>再证明任意特殊回路$\subseteq span(A)$. 给定某个特殊回路, 我们把它表示成$I+e, I \in \mathcal{G}$, 我们只要证明$r(A+e)=r(A)$. 假设$r(A+e) \gt r(A)$, 那么存在一个$A$的基$B, B+e \in \mathcal{G}$. 考虑$I$, 如果它不是$A$的基, 那么可以先把它扩充成$A$的基, 记作$I’$. 比较$I’$和$B+e$, 后者大小比前者大1, 因此可以从后者拿一个元素给前者, 但是这个元素不可能来自$B$, 否则$I’$就不是集了。所以这个元素只能是$e$, 因此$I’+e \in \mathcal{G}$, 而它的子集$I+e$却是一个回路, 导致矛盾。   </li>
 </ul>
-<p><strong>引理3</strong>: 若$I \in \mathcal{G}, I+e \notin \mathcal{G}$, $C$是$I+e$中唯一的circuit, 则$forall c \in C, span(I) = span(I+e-c)$.<br>证明:</p>
+<p><strong>引理3</strong>: 若$I \in \mathcal{G}, I+e \notin \mathcal{G}$, $C$是$I+e$中唯一的circuit, 则$\forall c \in C, span(I) = span(I+e-c)$.<br>证明:</p>
 <ul>
-<li>$r(I+e)=r(I) \rightarrow I+e \in S(I)$, 根据引理1, $span(I) = S(I+e)$.</li>
+<li>$r(I+e)=r(I) \rightarrow I+e \in S(I)$, 根据引理1, $span(I) = span(I+e)$.</li>
 <li>根据定理1, $r(I+e-c)=r(I)$, 因为$I+e-c \subseteq I+e$, 所以$I+e \in S(I+e-c)$, 从而有$span(I+e-c) = span(I+e)$.</li>
 <li>综上$span(I+e-c) = span(I)$.</li>
 </ul>
