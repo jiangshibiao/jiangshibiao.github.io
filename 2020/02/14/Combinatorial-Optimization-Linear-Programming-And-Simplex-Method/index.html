@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="前言入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。电子书下载书的一些内容比较晦涩难懂, 刚开始读的时候心里想的“这tmd怎么写的是啥玩意”, 弄懂了之后又不得不感慨“写得真好”。由于我自己精力有限，在此只记录主要内容，并且略去了很多例子。 实际上书本的内容组织模式是先给例子再给算法，如果跳过例子直接看算法往往会一头雾水。为了防止误解，我使用的符号尽量和书本一致，并且涉及的向">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-16T14:20:55.124Z">
+<meta property="og:updated_time" content="2020-02-16T14:21:39.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Linear Programming And Simplex Method">
 <meta name="twitter:description" content="前言入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。电子书下载书的一些内容比较晦涩难懂, 刚开始读的时候心里想的“这tmd怎么写的是啥玩意”, 弄懂了之后又不得不感慨“写得真好”。由于我自己精力有限，在此只记录主要内容，并且略去了很多例子。 实际上书本的内容组织模式是先给例子再给算法，如果跳过例子直接看算法往往会一头雾水。为了防止误解，我使用的符号尽量和书本一致，并且涉及的向">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-16 22:20:55" itemprop="dateModified" datetime="2020-02-16T22:20:55+08:00">2020-02-16</time>
+                <time title="修改时间：2020-02-16 22:21:39" itemprop="dateModified" datetime="2020-02-16T22:21:39+08:00">2020-02-16</time>
               </span>
             
           
@@ -504,7 +504,7 @@ x \geq 0
 <h4 id="基本可行解"><a href="#基本可行解" class="headerlink" title="基本可行解"></a>基本可行解</h4><p>基本可行解$x$的定义如下:</p>
 <ol>
 <li>取$A$线性无关的$m列$, 记为方阵$B$, 对应的列标集合记为$\mathcal{B}$. </li>
-<li>$x_j = 0(x_j \notin \mathcal{B})$.</li>
+<li>$x_j = 0(j \notin \mathcal{B})$.</li>
 <li>$x_{\mathcal{B}} = B^{-1}b$.</li>
 </ol>
 <p>通俗点说就是取$A$线性无关的$m列$, 让剩余列对应的$x_j=0$, 就变成了解方程$Bx_{\mathcal{B}} = b$.<br>容易证明, 在上面的约定1,2下, 基本可行解一定存在。(证明见书Theorem 2.1, 另外CH2.8的方法其实暗含了基本可行解一定存在)<br>为什么要基本可行解这个概念呢？因为一定有一个基本可行解就是最优解。这个证明就比较复杂了, 不感兴趣可以略过。</p>
