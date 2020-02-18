@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="zhenweiliu&#39;s blog">
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-16T14:09:23.502Z">
+<meta property="og:updated_time" content="2020-02-18T13:18:40.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{G})$, $E$是基本元素的集合, $\mathcal{G} \subseteq 2^{E">
@@ -394,7 +394,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-16 22:09:23" itemprop="dateModified" datetime="2020-02-16T22:09:23+08:00">2020-02-16</time>
+                <time title="修改时间：2020-02-18 21:18:40" itemprop="dateModified" datetime="2020-02-18T21:18:40+08:00">2020-02-18</time>
               </span>
             
           
@@ -550,6 +550,26 @@ span(A) = \{e \mid r(A+e)=r(A)\}</script><p>证明:</p>
 <li>根据定理1, $r(I+e-c)=r(I)$, 因为$I+e-c \subseteq I+e$, 所以$I+e \in S(I+e-c)$, 从而有$span(I+e-c) = span(I+e)$.</li>
 <li>综上$span(I+e-c) = span(I)$.</li>
 </ul>
+<h3 id="两个拟阵的交"><a href="#两个拟阵的交" class="headerlink" title="两个拟阵的交"></a>两个拟阵的交</h3><p>许多时候, 一个组合优化问题并不能表示成一个拟阵, 但是却可以表示成两个拟阵甚至更多拟阵的交。比如二分图匹配, 在最开始我们已经举了一个反例说明它虽然是个独立集系统，但并不是一个拟阵。然而，我们可以把它表示成两个拟阵的交:<br>我们用$G(L, R, E)$表示一个二分图, $L, R$分别是两边的顶点集合, $E$是边集, 也是拟阵的基本元素集合。<br>定义拟阵$M(E, \mathcal{G})$: 边集$A \in \mathcal{G}$ 当且仅当$A$中边的左端点互不相同。<br>定义拟阵$N(E, \mathcal{K})$: 边集$A \in \mathcal{K}$ 当且仅当$A$中边的右端点互不相同。<br>容易验证$A$是合法的匹配当且仅当$A \in \mathcal{G} \cap \mathcal{K}$.<br>如果一个独立集能表示成$K$个拟阵的交的形式, 能给我们带来什么方便之处呢?</p>
+<p><strong>我们先讨论拟阵的每个元素权值都是单位1的情况</strong>:</p>
+<p>首先有一个奇妙的性质: 任意两个极大独立集$A, B$, 不妨设$|A| \leq |B|$, 一定满足$|B| \leq K|A|$.<br>从近似算法的角度, 随便取一个极大独立集就可以做到$K$的近似比, 比如上面的不带权的二分图匹配问题, 随便取一个极大匹配, 它大小就至少是最优解的一半。</p>
+<p>证明: </p>
+<ul>
+<li>设$A_i$是第$i$个拟阵中$A\cup B$包含$A$的极大独立集。用反证法容易证明$\forall e \in B\backslash A, e \notin \bigcap A_i \backslash A$, (如果属于, 那么$A+e$也是独立集), 也就是说, $e$最多出现在$K-1$个$Ai \backslash A$里。因为$A_i \backslash A$里面的元素只能在$B\backslash A$里, 进一步可以推出$\sum\limits_{i=1}^{K} |A_i \backslash A| \leq (K-1)|B\backslash A| \leq (K-1)|B|$. </li>
+<li>同样地, 定义$B_i$是第$i$个拟阵中$A\cup B$包含$B$的极大独立集, 根据拟阵的性质$|A_i| = |B_i|$.</li>
+<li><script type="math/tex; mode=display">
+  \begin{split}
+  K|B| &\leq \sum\limits_{i=1}^K{|B_i|} \\
+  &= \sum\limits_{i=1}^K{|A_i|} \\
+  &= \sum\limits_{i=1}^K{(|A|+|A_i \backslash A|)} \\
+  &= K|A| + \sum\limits_{i=1}^K{|A_i \backslash A|} \\
+  &\leq K|A| + (K-1)|B| 
+ \end{split}</script> 从而推出$B \leq K|A|$.</li>
+</ul>
+<p>三个及以上的拟阵的交似乎是NPC问题, 这里主要介绍2个拟阵的交算法(还是只考虑元素权重都是单位1的情况, 即只需要求最大独立集)。</p>
+<p>为了更好地理解2拟阵交, 我们先回忆一下不带权二分图最大匹配的过程:<br>假设当前已经求得匹配$A$, 定义相对于$A$的增广路为长度为奇数的边的序列$S=[e_1, e_2 \cdots e_{2n-1}]$, 其中$e_{2k-1} \notin A, e_{2k} \in A$, 容易验证$A \oplus S$也是一个匹配, 且大小相比$M$增加了1. 增广路定理表明如果当前匹配是$A$, 且不存在相对于$A$的增广路，那么它就是最大匹配。</p>
+<p>我们从拟阵的角度来看这个过程:<br>假设我们每次是从左边($M$)的点出发找增广路.<br>$A \oplus S = A + e_1 - e_2 + e_3 \cdots -e_{2n-2} + e_{2n-1}$.<br>$A+e_1$让独立集大小增加1, 且$A+e_1 \in \mathcal{G}$, 但是多了一条边之后, 右边的某个点就会和2条边相关, $A+e_1 \notin \mathcal{K}$.<br>$A+e_1-e_2$这一步去掉$e_2$, 又让右边满足独立, 即$A+e_1-e_2 \in \mathcal{K}$。<br>…<br>这个过程本质上是在奇数步尝试增加一个元素, 并且保持$M$中的独立性，然而这可能会导致$N$中的独立性被破坏, 所以在偶数步又去掉一个元素, 使得重新满足$N$中的独立性。 注意去掉的这个元素必须在某个circuit中。</p>
+<p>拟阵交算法就是从中受到启发得出的。</p>
 
       
     </div>
@@ -799,7 +819,7 @@ span(A) = \{e \mid r(A+e)=r(A)\}</script><p>证明:</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#独立集系统和拟阵"><span class="nav-number">2.</span> <span class="nav-text">独立集系统和拟阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟阵的性质"><span class="nav-number">3.</span> <span class="nav-text">拟阵的性质</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#独立集系统和拟阵"><span class="nav-number">2.</span> <span class="nav-text">独立集系统和拟阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟阵的性质"><span class="nav-number">3.</span> <span class="nav-text">拟阵的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个拟阵的交"><span class="nav-number">4.</span> <span class="nav-text">两个拟阵的交</span></a></li></ol></div>
             
 
           </div>
