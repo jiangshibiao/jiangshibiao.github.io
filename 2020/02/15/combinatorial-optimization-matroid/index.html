@@ -108,7 +108,7 @@
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/1.png">
-<meta property="og:updated_time" content="2020-02-21T04:05:08.478Z">
+<meta property="og:updated_time" content="2020-02-21T04:14:16.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-21 12:05:08" itemprop="dateModified" datetime="2020-02-21T12:05:08+08:00">2020-02-21</time>
+                <time title="修改时间：2020-02-21 12:14:16" itemprop="dateModified" datetime="2020-02-21T12:14:16+08:00">2020-02-21</time>
               </span>
             
           
@@ -594,8 +594,8 @@ w(e) = \begin{cases}
 </ul>
 <p>定义:</p>
 <ul>
-<li>$X_1 := \{e \mid e \notin I, I+e \in I_1 \}$.</li>
-<li>$X_2 := \{e \mid e \notin I, I+e \in I_2 \}$.</li>
+<li>$X_1 := \{e \mid e \notin I, I+e \in \mathcal{I}_1 \}$.</li>
+<li>$X_2 := \{e \mid e \notin I, I+e \in \mathcal{I}_2 \}$.</li>
 <li>辅助图$G$(有向图, 而且是二分图), 点是独立集基本元素, 两个点$e_x \in E \backslash I$, $e_y \in I$:<ul>
 <li>如果$I-e_y+e_x \in \mathcal{I}_2$, 那么$e_x$向$e_y$连边。</li>
 <li>如果$I-e_y+e_x \in \mathcal{I}_1$, 那么$e_y$向$e_x$连边。</li>
@@ -611,7 +611,7 @@ w(e) = \begin{cases}
 <li>用宽度优先搜索(BFS)找到从$X_1$到$X_2$最短路$L$, 令$I:= I \oplus L$, 返回第2步。如果从$X_1$到$X_2$没路, 算法结束。</li>
 </ol>
 <p>幸运的是，这个算法就是对的。下面给出证明, 不关心证明的大哥们可以直接用上面的算法, <a href="https://www.codechef.com/OCT19A/problems/CNNCT2" target="_blank" rel="noopener">练手题</a>。</p>
-<p>首先来证明最短的广义增广路是增广路, 设最短的广义增广路$L=\{e_1, e_2 \cdots e_{2k+1}\}$(k&gt;=1), $k=0$的情况, 说明$e_1 \in X_1 \cap X_2$, 显然合法。<br>因为$L$是最短路, $e_2, e_3,  \cdots e_{2k+1} \notin X_1$, $e_1, e_2, \cdots e_{2k} \notin X_2$, 为了方便, 我们用$L_{i,j}$来表示$[e_i, e_2 \cdots e_j]$. </p>
+<p>首先来证明最短的广义增广路是增广路, 设最短的广义增广路$L=\{e_1, e_2 \cdots e_{2k+1}\}(k&gt;=1)$, $k=0$的情况, 说明$e_1 \in X_1 \cap X_2$, 显然合法。<br>因为$L$是最短路, $e_2, e_3,  \cdots e_{2k+1} \notin X_1$, $e_1, e_2, \cdots e_{2k} \notin X_2$, 为了方便, 我们用$L_{i,j}$来表示$[e_i, e_2 \cdots e_j]$. </p>
 <ul>
 <li>$I \oplus L \in \mathcal{I}_1$:<ul>
 <li>我们通过归纳法证明$\forall 0 \leq i \leq k, span_1(I+e_1) = span_1(I\oplus L_{1, 2i+1})$, $span_i$表示第$i$个拟阵的span, 显然这个结论比$I+e_1-e_2 \cdots + e_{2i+1}\in \mathcal{I}_1$更强。   </li>
