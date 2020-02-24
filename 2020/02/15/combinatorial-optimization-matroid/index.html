@@ -108,7 +108,7 @@
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/1.png">
-<meta property="og:updated_time" content="2020-02-21T09:58:29.853Z">
+<meta property="og:updated_time" content="2020-02-24T01:26:52.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-21 17:58:29" itemprop="dateModified" datetime="2020-02-21T17:58:29+08:00">2020-02-21</time>
+                <time title="修改时间：2020-02-24 09:26:52" itemprop="dateModified" datetime="2020-02-24T09:26:52+08:00">2020-02-24</time>
               </span>
             
           
@@ -602,7 +602,7 @@ w(e) = \begin{cases}
 </ul>
 </li>
 </ul>
-<p>容易验证放宽条件后的增广路(为了方便, 把它叫做”广义增光路”好了)就是辅助图中从$X_1$出发到$X_2$的一条简单路径。<br>看下面图中的例子, (a)是定义在有向图边集上的一个独立集系统, 将它表示成2个拟阵的交, $M_1$是图拟阵(独立条件是不考虑边的方向无环), $M_2$独立集的条件是每个点最多有一条入边, 当前已经选择的独立集$I=\{e_2, e_4, e_6\}$, 即圈起来的边, 图(b)是相应的辅助图:<br><img src="/blog/2020/02/15/combinatorial-optimization-matroid/1.png"><br>一条广义增广路对应$e_1$到$e_5$的一条简单路。观察发现, $L_1=[e_1, e_2, e_3, e_4, e_5]$就是一条广义增广路, 但是$I \oplus L_1=\{e_1, e_3, e_5, e_6\}$并不是原问题的独立集($\{e_1, e_3, e_6\}$构成环)。<br>再看$L_2= \{e_1, e_4, e_5\}$, 观察发现$I \oplus L_2 = \{e_1, e_2, e_5, e_6\} $是独立集。说明广义增广路不一定是增广路, 即$I \oplus L \in \mathcal{I}_1 \cap \mathcal{I}_2$不一定被满足。<br>注意$L_2$的长度要比$L_1$短, 因此我们大胆猜测, 如果我们找的是一条从$X_1$到$X_2$最短路, 那么这条广义增广路是增广路。</p>
+<p>容易验证放宽条件后的增广路(为了方便, 把它叫做”广义增广路”好了)就是辅助图中从$X_1$出发到$X_2$的一条简单路径。<br>看下面图中的例子, (a)是定义在有向图边集上的一个独立集系统, 将它表示成2个拟阵的交, $M_1$是图拟阵(独立条件是不考虑边的方向无环), $M_2$独立集的条件是每个点最多有一条入边, 当前已经选择的独立集$I=\{e_2, e_4, e_6\}$, 即圈起来的边, 图(b)是相应的辅助图:<br><img src="/blog/2020/02/15/combinatorial-optimization-matroid/1.png"><br>一条广义增广路对应$e_1$到$e_5$的一条简单路。观察发现, $L_1=[e_1, e_2, e_3, e_4, e_5]$就是一条广义增广路, 但是$I \oplus L_1=\{e_1, e_3, e_5, e_6\}$并不是原问题的独立集($\{e_1, e_3, e_6\}$构成环)。<br>再看$L_2= \{e_1, e_4, e_5\}$, 观察发现$I \oplus L_2 = \{e_1, e_2, e_5, e_6\} $是独立集。说明广义增广路不一定是增广路, 即$I \oplus L \in \mathcal{I}_1 \cap \mathcal{I}_2$不一定被满足。<br>注意$L_2$的长度要比$L_1$短, 因此我们大胆猜测, 如果我们找的是一条从$X_1$到$X_2$最短路, 那么这条广义增广路是增广路。</p>
 <p>因此我们得到下面的算法:</p>
 <ol>
 <li>初始化$I:=\emptyset$.</li>
