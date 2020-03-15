@@ -108,7 +108,7 @@
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/1.png">
-<meta property="og:updated_time" content="2020-02-24T01:26:52.559Z">
+<meta property="og:updated_time" content="2020-03-15T13:00:45.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-24 09:26:52" itemprop="dateModified" datetime="2020-02-24T09:26:52+08:00">2020-02-24</time>
+                <time title="修改时间：2020-03-15 21:00:45" itemprop="dateModified" datetime="2020-03-15T21:00:45+08:00">2020-03-15</time>
               </span>
             
           
@@ -660,7 +660,16 @@ w(e) = \begin{cases}
 <li>如何遍历一个环: 我的做法是将森林预处理成有根树的集合, 边$(u,v)$加入后如果形成环, 那么让$u, v$沿着父亲边向上走直到他们在最近公共祖先相遇。</li>
 </ul>
 <p><a href="https://www.codechef.com/viewsolution/29825505" target="_blank" rel="noopener">参考代码</a></p>
-<p>还有几个练习题据说也是拟阵交：<br><a href="https://codeforces.com/gym/102156/problem/D?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">https://codeforces.com/gym/102156/problem/D?tdsourcetag=s_pctim_aiomsg</a><br><a href="https://codeforces.com/contest/1284/problem/G?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">https://codeforces.com/contest/1284/problem/G?tdsourcetag=s_pctim_aiomsg</a><br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6636&amp;tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=6636&amp;tdsourcetag=s_pctim_aiomsg</a></p>
+<p>还有几个练习题也是拟阵交：</p>
+<ol>
+<li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=3792" target="_blank" rel="noopener">2011-2012 ACM/ICPC, Asia, Dhaka. E. Game of Connect</a></li>
+<li><a href="https://codeforces.com/contest/1284/problem/G" target="_blank" rel="noopener">Hello 2020. G. Seollal</a></li>
+<li><a href="https://naipc18.kattis.com/problems/rainbowgraph" target="_blank" rel="noopener">NAIPC 2018. G. Rainbow Graph</a></li>
+<li><a href="https://codingcompetitions.withgoogle.com/codejam/round/0000000000051707/0000000000158f1c" target="_blank" rel="noopener">Google Code Jam 2019. Round 3. Datacenter Duplex</a></li>
+<li><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6636" target="_blank" rel="noopener">2019 Multi-University Training Contest 6. C. Milk Candy</a></li>
+<li><a href="https://contest.yandex.com/contest/7636/problems/F/" target="_blank" rel="noopener">Yandex Algorithm 2018. Round 1. F. Yet Another Binary Matrix</a></li>
+<li><a href="https://codeforces.com/gym/102156/problem/D" target="_blank" rel="noopener">2019 Petrozavodsk Winter Camp Yandex Cup. D. Pick Your Own Nim</a></li>
+</ol>
 
       
     </div>
