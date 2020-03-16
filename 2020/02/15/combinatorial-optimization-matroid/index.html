@@ -108,7 +108,7 @@
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/1.png">
-<meta property="og:updated_time" content="2020-03-15T13:00:45.850Z">
+<meta property="og:updated_time" content="2020-03-16T13:48:37.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-15 21:00:45" itemprop="dateModified" datetime="2020-03-15T21:00:45+08:00">2020-03-15</time>
+                <time title="修改时间：2020-03-16 21:48:37" itemprop="dateModified" datetime="2020-03-16T21:48:37+08:00">2020-03-16</time>
               </span>
             
           
@@ -500,7 +500,7 @@ w(e) = \begin{cases}
     k+2 & e \in I_1 \\ 
     k+1 & e \in I_1 \backslash I_2 \\ 
     0  & e \notin I_1 \cup I_2
-\end{cases}</script><p>假设$\forall e \in I_1\backslash I_2, I_1 \cup e \notin \mathcal{I}$, 按照贪心算法会选择$I_1$, 权值是$k(k+1)$, 实际上$I_2$的权值是$(k+1)(k+1)$更大，贪心算法就挂了。</p>
+\end{cases}</script><p>假设$\forall e \in I_1\backslash I_2, I_1 \cup e \notin \mathcal{I}$, 按照贪心算法会选择$I_1$, 权值是$k(k+2)$, 实际上$I_2$的权值是$(k+1)(k+1)$更大，贪心算法就挂了。</p>
 <p>$2 \rightarrow 3:$<br>显然, 如果$|I_1| \lt |I_2|$, 考虑$I_3 \subseteq I_2, |I_3|=|I_1|+1$, 根据(2)可以从$I_3$那里拿一个元素给$I_1$构成一个更大的独立集, 与$I_1$是极大的矛盾。</p>
 <p>$3 \rightarrow 1:$<br>假设$w(e_1) \geq w(e_2) \geq w(e_3) \geq \cdots$, 贪心算法求出的权值最大独立集是$I=\{e_{i_1}, e_{i_2}, \cdots, e_{i_m} \}$, 最优解是$J=\{e_{j_1}, e_{j_2}, \cdots, e_{j_m} \}$.<br>设$k$是最小的正整数满足$i_k \gt j_k$. (让$I$和$J$的元素一一对应, 前面$k-1$个都是$I$中编号小, 第$k$个是$J$中编号小, 因为$J$的权值比$I$大, $k$一定存在). 利用(3), 令$A:=\{e_1, e_2, \cdots, e_{j_k}\}$, 根据贪心算法的过程 $I \cap A$是 $A$上的极大独立集, 大小为$k-1$, 而$J \cap A$也是$A$上的独立集, 甚至还不是极大的，大小却是$k$. 违反了(3). </p>
 <p>另外(2)还可以推出只要两个独立集大小不一样, 就可以从大集合里拿一个给小的, 新集合还是独立集。</p>
