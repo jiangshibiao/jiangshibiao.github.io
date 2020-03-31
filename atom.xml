@@ -5,16 +5,16 @@
   
   <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="http://zhenweiliu.gitee.io/blog/"/>
+  <link href="https://jiangshibiao.github.io/blog/"/>
   <updated>2020-03-16T13:48:37.402Z</updated>
-  <id>http://zhenweiliu.gitee.io/blog/</id>
+  <id>https://jiangshibiao.github.io/blog/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>Combinatorial Optimization-Matroid</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2020/02/15/combinatorial-optimization-matroid/</id>
+    <link href="https://jiangshibiao.github.io/blog/2020/02/15/combinatorial-optimization-matroid/"/>
+    <id>https://jiangshibiao.github.io/blog/2020/02/15/combinatorial-optimization-matroid/</id>
     <published>2020-02-15T09:41:11.000Z</published>
     <updated>2020-03-16T13:48:37.402Z</updated>
     
@@ -29,19 +29,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Textbook Reading" scheme="http://zhenweiliu.gitee.io/blog/tags/Textbook-Reading/"/>
+      <category term="Textbook Reading" scheme="https://jiangshibiao.github.io/blog/tags/Textbook-Reading/"/>
     
   </entry>
   
   <entry>
     <title>Combinatorial Optimization-Linear Programming And Simplex Method</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/</id>
+    <link href="https://jiangshibiao.github.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/"/>
+    <id>https://jiangshibiao.github.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/</id>
     <published>2020-02-14T05:41:36.000Z</published>
     <updated>2020-02-20T07:49:52.234Z</updated>
     
@@ -56,46 +56,46 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Textbook Reading" scheme="http://zhenweiliu.gitee.io/blog/tags/Textbook-Reading/"/>
+      <category term="Textbook Reading" scheme="https://jiangshibiao.github.io/blog/tags/Textbook-Reading/"/>
     
   </entry>
   
   <entry>
     <title>Binpacking-First Fit</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/</id>
+    <link href="https://jiangshibiao.github.io/blog/2020/01/01/Binpacking-First-Fit/"/>
+    <id>https://jiangshibiao.github.io/blog/2020/01/01/Binpacking-First-Fit/</id>
     <published>2020-01-01T08:59:41.000Z</published>
     <updated>2020-01-04T06:26:18.621Z</updated>
     
-    <content type="html"><![CDATA[<p>有关Binpacking问题的定义和其他近似算法见我<a href="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/">之前的文章</a>, 本篇主要补充Binpacking问题First Fit算法可以做到1.7的渐进近似比。<br>First Fit算法: 依次考虑每个物品, 逐个检查当前已经开着的箱子, 发现第一个能装下它的箱子就装。如果都装不下，开一个新的箱子装它。</p><h4 id="证明框架"><a href="#证明框架" class="headerlink" title="证明框架"></a>证明框架</h4><p>设第$i$个物品的体积是$s_i$.<br>设计一个权函数$w(x)$, $w(S):= \sum_{i \in S}{w(s_i)}$.<br>我们用$w(I)$作为桥梁，证明$ALG(I) - \epsilon \leq w(I) \leq 1.7 OPT(I)$, 从而证明1.7的渐进近似比。<br>权函数$w(x)$的定义如下(数学家们凑出来的):</p><script type="math/tex; mode=display">w(x) = \frac{6}{5}x + bonus(x) \\bonus(x) = \begin{cases} 0 & x \le \frac{1}{6} \\ \frac{3}{5}(x - \frac{1}{6}) & \frac{1}{6} < x \le \frac{1}{3} \\ \frac{1}{10} & \frac{1}{3} < x \le \frac{1}{2} \\ \frac{2}{5} & x > \frac{1}{2} \end{cases}</script><p>注意, $bonus(x)$是单调不减的。<br>第一个不等号的意思是, 算法解除掉少数几个箱子, 剩余的箱子的平均权重至少是1.<br>第二个不等号实际上是由更强的结论 任意一个箱子$B_j$, $w(B_j) \leq 1.7$ 得到的。</p><h4 id="Part1-w-B-j-leq-1-7"><a href="#Part1-w-B-j-leq-1-7" class="headerlink" title="Part1: $w(B_j) \leq 1.7$"></a>Part1: $w(B_j) \leq 1.7$</h4><p>只要证明$bonus(B_j) \leq 0.5$.<br>将物品按照bonus函数的4段分成4类。</p><ul><li>如果箱子里含有第4类($\gt \frac{1}{2}$)的物品, 那么已经有0.4的bonus, 只要证明剩下的不会超过0.1.<ul><li>如果含有第3类, 那么再也装不下第1类和第2类。 这时候bonus刚好是0.5.</li><li>如果不含第3类, 最多装2个第2类。显然只装1个第2类最多凑到0.1. 如果装2个第2类, 设体积分别是$x, y$. $\frac{3}{5}(x-\frac{1}{6}) + \frac{3}{5}(y-\frac{1}{6}) = 0.6(x+y)-0.2 \lt 0.1$.</li></ul></li><li>如果箱子里面不含有第4类。第2,3类每个物品的bonus最多是0.1, 最多装5个, 因此总的bonus不会超过0.5.</li></ul><h4 id="Part2-算法解除掉最后2个箱子-剩下的箱子平均权重至少是1"><a href="#Part2-算法解除掉最后2个箱子-剩下的箱子平均权重至少是1" class="headerlink" title="Part2: 算法解除掉最后2个箱子, 剩下的箱子平均权重至少是1."></a>Part2: 算法解除掉最后2个箱子, 剩下的箱子平均权重至少是1.</h4><p>首先我们拿掉算法解中本来权重就至少是1的箱子, 剩下箱子$B_1 \cdots B_m$, 那么剩下的箱子满足:</p><ol><li>不含第4类物品。 因为第四类物品的权重至少是1.</li><li>不会同时含2个第3类物品。 因为任意2个第3类物品的权重之和至少是1.</li><li>$s(B_i) \lt \frac{5}{6}$, 否则权重不算bonus部分就至少是1了。</li><li>除了最后1个箱子, 剩下的箱子里面至少装了2个物品。 因为First Fit优先放前面的箱子，而物品体积都不超过0.5, 一个箱子至少可以放2个物品。</li><li>除了最后2个箱子, 剩下的箱子装的物品总体积$\gt \frac{2}{3}$. 假设有一个箱子$\geq \frac{2}{3}$, 那么在它后面的箱子里面装的物品体积都$\in(\frac{1}{3}, \frac{1}{2})$, 也就是都是第3类物品。 根据(4)它后面的箱子除了最后一个箱子每个箱子至少装了2个物品，且都是第3类物品，那么就违反了(2). </li></ol><p><strong>Lemma</strong>: $\forall 1 \leq i \leq m-2, s(B_i) + bonus(B_{i+1}) \geq 1$.<br>证明:<br>设$B_{i+1}$中体积最小的物品体积是$x$, 根据first fit有$s(B_i) + x \gt 1$.</p><ul><li>因为$s(B_i) \lt \frac{5}{6}$, $x \gt \frac{1}{6}$。</li><li>因为$B_{i+1}$中不能有2个$\geq \frac{1}{3}$的物品, 且$B_{i+1}$装了至少2个物品, $x \lt \frac{1}{3}$. </li><li>综合上面2条有<script type="math/tex; mode=display">\begin{split} &\quad \frac{6}{5}s(B_i) + bonus(B_{i+1}) \\ &\geq  \frac{6}{5}s(B_i) + 2bonus(x) \\ &= \frac{6}{5}s(B_i) + \frac{6}{5}(x-\frac{1}{6})\\ &= \frac{6}{5}(s(B_i)+x) - \frac{1}{5} \gt 1\end{split}</script></li></ul><p>利用上面的引理</p><script type="math/tex; mode=display">\begin{split}\sum_{i=1}^m{w(B_i)}  &= \sum_{i=1}^m{(\frac{6}{5}s(B_i)+ bonus(B_i))} \\&= bouns(B_1) + \sum_{i=1}^{m-2} {(\frac{6}{5}s(B_i) + bonus(B_{i+1}))} + \frac{6}{5}(s(B_{m-1}) + s(B_{m})) + bouns(B_m) \\&\geq m-2 + \frac{6}{5}\end{split}</script><p>因此有$\sum_{i=1}^m{w(B_i)}+0.8 \geq m$.</p><p>结合两个part, 得到$ALG-0.8 \leq w(I) \leq 1.7OPT$, 也就证明了 $ALG \leq 1.7OPT+0.8$.</p>]]></content>
+    <content type="html"><![CDATA[<p>有关Binpacking问题的定义和其他近似算法见我<a href="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/" target="_blank" rel="noopener">之前的文章</a>, 本篇主要补充Binpacking问题First Fit算法可以做到1.7的渐进近似比。<br>First Fit算法: 依次考虑每个物品, 逐个检查当前已经开着的箱子, 发现第一个能装下它的箱子就装。如果都装不下，开一个新的箱子装它。</p><h4 id="证明框架"><a href="#证明框架" class="headerlink" title="证明框架"></a>证明框架</h4><p>设第$i$个物品的体积是$s_i$.<br>设计一个权函数$w(x)$, $w(S):= \sum_{i \in S}{w(s_i)}$.<br>我们用$w(I)$作为桥梁，证明$ALG(I) - \epsilon \leq w(I) \leq 1.7 OPT(I)$, 从而证明1.7的渐进近似比。<br>权函数$w(x)$的定义如下(数学家们凑出来的):</p><script type="math/tex; mode=display">w(x) = \frac{6}{5}x + bonus(x) \\bonus(x) = \begin{cases} 0 & x \le \frac{1}{6} \\ \frac{3}{5}(x - \frac{1}{6}) & \frac{1}{6} < x \le \frac{1}{3} \\ \frac{1}{10} & \frac{1}{3} < x \le \frac{1}{2} \\ \frac{2}{5} & x > \frac{1}{2} \end{cases}</script><p>注意, $bonus(x)$是单调不减的。<br>第一个不等号的意思是, 算法解除掉少数几个箱子, 剩余的箱子的平均权重至少是1.<br>第二个不等号实际上是由更强的结论 任意一个箱子$B_j$, $w(B_j) \leq 1.7$ 得到的。</p><h4 id="Part1-w-B-j-leq-1-7"><a href="#Part1-w-B-j-leq-1-7" class="headerlink" title="Part1: $w(B_j) \leq 1.7$"></a>Part1: $w(B_j) \leq 1.7$</h4><p>只要证明$bonus(B_j) \leq 0.5$.<br>将物品按照bonus函数的4段分成4类。</p><ul><li>如果箱子里含有第4类($\gt \frac{1}{2}$)的物品, 那么已经有0.4的bonus, 只要证明剩下的不会超过0.1.<ul><li>如果含有第3类, 那么再也装不下第1类和第2类。 这时候bonus刚好是0.5.</li><li>如果不含第3类, 最多装2个第2类。显然只装1个第2类最多凑到0.1. 如果装2个第2类, 设体积分别是$x, y$. $\frac{3}{5}(x-\frac{1}{6}) + \frac{3}{5}(y-\frac{1}{6}) = 0.6(x+y)-0.2 \lt 0.1$.</li></ul></li><li>如果箱子里面不含有第4类。第2,3类每个物品的bonus最多是0.1, 最多装5个, 因此总的bonus不会超过0.5.</li></ul><h4 id="Part2-算法解除掉最后2个箱子-剩下的箱子平均权重至少是1"><a href="#Part2-算法解除掉最后2个箱子-剩下的箱子平均权重至少是1" class="headerlink" title="Part2: 算法解除掉最后2个箱子, 剩下的箱子平均权重至少是1."></a>Part2: 算法解除掉最后2个箱子, 剩下的箱子平均权重至少是1.</h4><p>首先我们拿掉算法解中本来权重就至少是1的箱子, 剩下箱子$B_1 \cdots B_m$, 那么剩下的箱子满足:</p><ol><li>不含第4类物品。 因为第四类物品的权重至少是1.</li><li>不会同时含2个第3类物品。 因为任意2个第3类物品的权重之和至少是1.</li><li>$s(B_i) \lt \frac{5}{6}$, 否则权重不算bonus部分就至少是1了。</li><li>除了最后1个箱子, 剩下的箱子里面至少装了2个物品。 因为First Fit优先放前面的箱子，而物品体积都不超过0.5, 一个箱子至少可以放2个物品。</li><li>除了最后2个箱子, 剩下的箱子装的物品总体积$\gt \frac{2}{3}$. 假设有一个箱子$\geq \frac{2}{3}$, 那么在它后面的箱子里面装的物品体积都$\in(\frac{1}{3}, \frac{1}{2})$, 也就是都是第3类物品。 根据(4)它后面的箱子除了最后一个箱子每个箱子至少装了2个物品，且都是第3类物品，那么就违反了(2). </li></ol><p><strong>Lemma</strong>: $\forall 1 \leq i \leq m-2, s(B_i) + bonus(B_{i+1}) \geq 1$.<br>证明:<br>设$B_{i+1}$中体积最小的物品体积是$x$, 根据first fit有$s(B_i) + x \gt 1$.</p><ul><li>因为$s(B_i) \lt \frac{5}{6}$, $x \gt \frac{1}{6}$。</li><li>因为$B_{i+1}$中不能有2个$\geq \frac{1}{3}$的物品, 且$B_{i+1}$装了至少2个物品, $x \lt \frac{1}{3}$. </li><li>综合上面2条有<script type="math/tex; mode=display">\begin{split} &\quad \frac{6}{5}s(B_i) + bonus(B_{i+1}) \\ &\geq  \frac{6}{5}s(B_i) + 2bonus(x) \\ &= \frac{6}{5}s(B_i) + \frac{6}{5}(x-\frac{1}{6})\\ &= \frac{6}{5}(s(B_i)+x) - \frac{1}{5} \gt 1\end{split}</script></li></ul><p>利用上面的引理</p><script type="math/tex; mode=display">\begin{split}\sum_{i=1}^m{w(B_i)}  &= \sum_{i=1}^m{(\frac{6}{5}s(B_i)+ bonus(B_i))} \\&= bouns(B_1) + \sum_{i=1}^{m-2} {(\frac{6}{5}s(B_i) + bonus(B_{i+1}))} + \frac{6}{5}(s(B_{m-1}) + s(B_{m})) + bouns(B_m) \\&\geq m-2 + \frac{6}{5}\end{split}</script><p>因此有$\sum_{i=1}^m{w(B_i)}+0.8 \geq m$.</p><p>结合两个part, 得到$ALG-0.8 \leq w(I) \leq 1.7OPT$, 也就证明了 $ALG \leq 1.7OPT+0.8$.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;有关Binpacking问题的定义和其他近似算法见我&lt;a href=&quot;http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/&quot;&gt;之前的文
+        &lt;p&gt;有关Binpacking问题的定义和其他近似算法见我&lt;a href=&quot;http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/&quot; targ
       
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Coding Theory-Cyclic Codes</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2020/01/01/Coding-Theory-Cyclic-Codes/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2020/01/01/Coding-Theory-Cyclic-Codes/</id>
+    <link href="https://jiangshibiao.github.io/blog/2020/01/01/Coding-Theory-Cyclic-Codes/"/>
+    <id>https://jiangshibiao.github.io/blog/2020/01/01/Coding-Theory-Cyclic-Codes/</id>
     <published>2020-01-01T07:42:10.000Z</published>
     <updated>2020-01-01T09:04:55.533Z</updated>
     
@@ -103,19 +103,19 @@
     
     </summary>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/categories/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/categories/Coding-Theory/"/>
     
     
-      <category term="Algebra" scheme="http://zhenweiliu.gitee.io/blog/tags/Algebra/"/>
+      <category term="Algebra" scheme="https://jiangshibiao.github.io/blog/tags/Algebra/"/>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/tags/Coding-Theory/"/>
     
   </entry>
   
   <entry>
     <title>Coding Theory-Expander Codes</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/12/29/Coding-Theory-Expander-Codes/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/12/29/Coding-Theory-Expander-Codes/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/12/29/Coding-Theory-Expander-Codes/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/12/29/Coding-Theory-Expander-Codes/</id>
     <published>2019-12-29T11:47:05.000Z</published>
     <updated>2019-12-29T11:50:48.047Z</updated>
     
@@ -130,19 +130,19 @@
     
     </summary>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/categories/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/categories/Coding-Theory/"/>
     
     
-      <category term="Algebra" scheme="http://zhenweiliu.gitee.io/blog/tags/Algebra/"/>
+      <category term="Algebra" scheme="https://jiangshibiao.github.io/blog/tags/Algebra/"/>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/tags/Coding-Theory/"/>
     
   </entry>
   
   <entry>
     <title>Coding Theory-Some Bounds</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/12/26/Coding-Theory-Some-Bounds/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/12/26/Coding-Theory-Some-Bounds/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/12/26/Coding-Theory-Some-Bounds/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/12/26/Coding-Theory-Some-Bounds/</id>
     <published>2019-12-26T02:26:55.000Z</published>
     <updated>2020-01-13T15:05:42.547Z</updated>
     
@@ -158,19 +158,19 @@
     
     </summary>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/categories/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/categories/Coding-Theory/"/>
     
     
-      <category term="Algebra" scheme="http://zhenweiliu.gitee.io/blog/tags/Algebra/"/>
+      <category term="Algebra" scheme="https://jiangshibiao.github.io/blog/tags/Algebra/"/>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/tags/Coding-Theory/"/>
     
   </entry>
   
   <entry>
     <title>Coding Theory-Linear Code</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/12/22/Coding-Theory-Linear-Code/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/12/22/Coding-Theory-Linear-Code/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/12/22/Coding-Theory-Linear-Code/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/12/22/Coding-Theory-Linear-Code/</id>
     <published>2019-12-22T14:42:05.000Z</published>
     <updated>2020-01-03T03:39:50.724Z</updated>
     
@@ -185,19 +185,19 @@
     
     </summary>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/categories/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/categories/Coding-Theory/"/>
     
     
-      <category term="Algebra" scheme="http://zhenweiliu.gitee.io/blog/tags/Algebra/"/>
+      <category term="Algebra" scheme="https://jiangshibiao.github.io/blog/tags/Algebra/"/>
     
-      <category term="Coding Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Coding-Theory/"/>
+      <category term="Coding Theory" scheme="https://jiangshibiao.github.io/blog/tags/Coding-Theory/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(9)-The Maxcut Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/</id>
     <published>2019-10-19T05:46:06.000Z</published>
     <updated>2020-01-01T09:01:42.589Z</updated>
     
@@ -213,19 +213,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(8)-The Facility Location Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/</id>
     <published>2019-09-27T08:50:43.000Z</published>
     <updated>2020-01-01T09:02:40.738Z</updated>
     
@@ -241,19 +241,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(7)-The Steiner Forest Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/</id>
     <published>2019-09-05T07:25:57.000Z</published>
     <updated>2020-01-01T09:02:51.351Z</updated>
     
@@ -269,19 +269,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(6)-Linear Programming Duality</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/</id>
     <published>2019-08-28T03:01:20.000Z</published>
     <updated>2020-01-01T09:02:18.308Z</updated>
     
@@ -298,19 +298,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(5)-The MultiwayCut Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/</id>
     <published>2019-08-13T03:39:39.000Z</published>
     <updated>2020-01-01T09:02:13.366Z</updated>
     
@@ -326,19 +326,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Project Euler Problem 550-Divisor Game</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/09/Project-Euler-Problem-550-Divisor-Game/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/09/Project-Euler-Problem-550-Divisor-Game/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/09/Project-Euler-Problem-550-Divisor-Game/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/09/Project-Euler-Problem-550-Divisor-Game/</id>
     <published>2019-08-09T10:53:02.000Z</published>
     <updated>2019-08-28T03:03:09.648Z</updated>
     
@@ -353,21 +353,21 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
     
-      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="https://jiangshibiao.github.io/blog/tags/Project-Euler/"/>
     
-      <category term="Game Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Game-Theory/"/>
+      <category term="Game Theory" scheme="https://jiangshibiao.github.io/blog/tags/Game-Theory/"/>
     
-      <category term="Dynamic Programming" scheme="http://zhenweiliu.gitee.io/blog/tags/Dynamic-Programming/"/>
+      <category term="Dynamic Programming" scheme="https://jiangshibiao.github.io/blog/tags/Dynamic-Programming/"/>
     
   </entry>
   
   <entry>
     <title>Stoer–Wagner Algorithm</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/07/Stoer%E2%80%93Wagner-Algorithm/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/07/Stoer–Wagner-Algorithm/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/07/Stoer%E2%80%93Wagner-Algorithm/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/07/Stoer–Wagner-Algorithm/</id>
     <published>2019-08-07T02:46:32.000Z</published>
     <updated>2019-08-09T14:48:55.244Z</updated>
     
@@ -382,19 +382,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
     
-      <category term="Graph Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Graph-Theory/"/>
+      <category term="Graph Theory" scheme="https://jiangshibiao.github.io/blog/tags/Graph-Theory/"/>
     
-      <category term="Paper Reading" scheme="http://zhenweiliu.gitee.io/blog/tags/Paper-Reading/"/>
+      <category term="Paper Reading" scheme="https://jiangshibiao.github.io/blog/tags/Paper-Reading/"/>
     
   </entry>
   
   <entry>
     <title>Project Euler Problem 379-Least common multiple count</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/05/Project-Euler-Problem-379-Least-common-multiple-count/</id>
     <published>2019-08-05T14:52:51.000Z</published>
     <updated>2019-08-28T03:03:00.232Z</updated>
     
@@ -409,19 +409,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
     
-      <category term="Number Theory" scheme="http://zhenweiliu.gitee.io/blog/tags/Number-Theory/"/>
+      <category term="Number Theory" scheme="https://jiangshibiao.github.io/blog/tags/Number-Theory/"/>
     
-      <category term="Project Euler" scheme="http://zhenweiliu.gitee.io/blog/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="https://jiangshibiao.github.io/blog/tags/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title>Interesting Ideas</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/05/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E4%B8%9C%E8%A5%BF/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/05/一些有趣的东西/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/05/%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E4%B8%9C%E8%A5%BF/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/05/一些有趣的东西/</id>
     <published>2019-08-05T14:52:51.000Z</published>
     <updated>2019-08-05T15:42:09.033Z</updated>
     
@@ -442,8 +442,8 @@
   
   <entry>
     <title>Approximation Algorithm(4)-The Set Cover Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/08/01/Approximation-Algorithm-4-The-Set-Cover-Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/08/01/Approximation-Algorithm-4-The-Set-Cover-Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/08/01/Approximation-Algorithm-4-The-Set-Cover-Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/08/01/Approximation-Algorithm-4-The-Set-Cover-Problem/</id>
     <published>2019-08-01T08:46:18.000Z</published>
     <updated>2020-01-01T09:02:06.308Z</updated>
     
@@ -459,19 +459,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(3)-The Binpacking Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The Binpacking Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/07/28/Approximation-Algorithm-3-The Binpacking Problem/</id>
     <published>2019-07-28T12:16:22.000Z</published>
     <updated>2020-01-01T09:02:02.561Z</updated>
     
@@ -487,19 +487,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(2)-The Knapsack Problem</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/</id>
     <published>2019-07-27T10:36:41.000Z</published>
     <updated>2020-01-01T09:01:57.352Z</updated>
     
@@ -515,19 +515,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>Approximation Algorithm(1)-Vertex Cover</title>
-    <link href="http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/"/>
-    <id>http://zhenweiliu.gitee.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/</id>
+    <link href="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/"/>
+    <id>https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/</id>
     <published>2019-07-26T08:27:55.000Z</published>
     <updated>2020-01-01T09:01:54.147Z</updated>
     
@@ -542,12 +542,12 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/"/>
     
-      <category term="Combinatorial Optimization" scheme="http://zhenweiliu.gitee.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
+      <category term="Combinatorial Optimization" scheme="https://jiangshibiao.github.io/blog/categories/Algorithm/Combinatorial-Optimization/"/>
     
     
-      <category term="Approximation Algorithms" scheme="http://zhenweiliu.gitee.io/blog/tags/Approximation-Algorithms/"/>
+      <category term="Approximation Algorithms" scheme="https://jiangshibiao.github.io/blog/tags/Approximation-Algorithms/"/>
     
   </entry>
   

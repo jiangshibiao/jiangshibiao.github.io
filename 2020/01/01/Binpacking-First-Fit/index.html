@@ -103,7 +103,7 @@
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binpacking-First Fit">
-<meta property="og:url" content="http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/index.html">
+<meta property="og:url" content="https://jiangshibiao.github.io/blog/2020/01/01/Binpacking-First-Fit/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
 <meta property="og:description" content="有关Binpacking问题的定义和其他近似算法见我之前的文章, 本篇主要补充Binpacking问题First Fit算法可以做到1.7的渐进近似比。First Fit算法: 依次考虑每个物品, 逐个检查当前已经开着的箱子, 发现第一个能装下它的箱子就装。如果都装不下，开一个新的箱子装它。 证明框架设第$i$个物品的体积是$s_i$.设计一个权函数$w(x)$, $w(S):= \sum_{i">
 <meta property="og:locale" content="zh-CN">
@@ -120,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://zhenweiliu.gitee.io/blog/2020/01/01/Binpacking-First-Fit/">
+  <link rel="canonical" href="https://jiangshibiao.github.io/blog/2020/01/01/Binpacking-First-Fit/">
 
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhenweiliu.gitee.io/blog/blog/2020/01/01/Binpacking-First-Fit/">
+    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/blog/blog/2020/01/01/Binpacking-First-Fit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
@@ -478,7 +478,7 @@
       
 
       
-        <p>有关Binpacking问题的定义和其他近似算法见我<a href="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/">之前的文章</a>, 本篇主要补充Binpacking问题First Fit算法可以做到1.7的渐进近似比。<br>First Fit算法: 依次考虑每个物品, 逐个检查当前已经开着的箱子, 发现第一个能装下它的箱子就装。如果都装不下，开一个新的箱子装它。</p>
+        <p>有关Binpacking问题的定义和其他近似算法见我<a href="http://zhenweiliu.gitee.io/blog/2019/07/28/Approximation-Algorithm-3-The%20Binpacking%20Problem/" target="_blank" rel="noopener">之前的文章</a>, 本篇主要补充Binpacking问题First Fit算法可以做到1.7的渐进近似比。<br>First Fit算法: 依次考虑每个物品, 逐个检查当前已经开着的箱子, 发现第一个能装下它的箱子就装。如果都装不下，开一个新的箱子装它。</p>
 <h4 id="证明框架"><a href="#证明框架" class="headerlink" title="证明框架"></a>证明框架</h4><p>设第$i$个物品的体积是$s_i$.<br>设计一个权函数$w(x)$, $w(S):= \sum_{i \in S}{w(s_i)}$.<br>我们用$w(I)$作为桥梁，证明$ALG(I) - \epsilon \leq w(I) \leq 1.7 OPT(I)$, 从而证明1.7的渐进近似比。<br>权函数$w(x)$的定义如下(数学家们凑出来的):</p>
 <script type="math/tex; mode=display">
 w(x) = \frac{6}{5}x + bonus(x) \\
