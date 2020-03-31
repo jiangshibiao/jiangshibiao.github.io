@@ -1,104 +1,12 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
   
 
-
-<html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="f2MopcIYUE_Fr5pQ8Rep3fUF9Pe_obIDhqvtZCyQMrI">
-
-
-
-
-
-
-
-
-
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.2.0',
-    sidebar: {"position":"left","width":250,"display":"always","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: ''
-    },
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
+  
+  <title>Approximation Algorithm(1)-Vertex Cover | jiangshibiao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
@@ -116,372 +24,77 @@
 <meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
 <meta name="twitter:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-
-
-
-  <link rel="alternate" href="/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
-
-
-
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao&#39;s blog" type="application/atom+xml">
   
   
-  <link rel="canonical" href="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
+    <link rel="icon" href="/favicon.png">
   
-  <title>Approximation Algorithm(1)-Vertex Cover | jiangshibiao's blog</title>
   
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">jiangshibiao's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">jiangshibiao&#39;s blog</a>
+      </h1>
+      
     </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jiangshibiao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Approximation-Algorithm-1-Vertex-Cover" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="article-date">
+  <time datetime="2019-07-26T08:27:55.000Z" itemprop="datePublished">2019-07-26</time>
+</a>
     
-    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>►<a class="article-category-link" href="/categories/Algorithm/Combinatorial-Optimization/">Combinatorial Optimization</a>
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-
-      
-      
-    </ul>
+    <h1 class="article-title" itemprop="name">
+      Approximation Algorithm(1)-Vertex Cover
+    </h1>
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-      
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content>
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jiangshibiao's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Approximation Algorithm(1)-Vertex Cover
-
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-26 16:27:55" itemprop="dateCreated datePublished" datetime="2019-07-26T16:27:55+08:00">2019-07-26</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-01-01 17:01:54" itemprop="dateModified" datetime="2020-01-01T17:01:54+08:00">2020-01-01</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-          
-            <span id="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(1)-Vertex Cover">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-entry" itemprop="articleBody">
       
         <p><strong>前言</strong><br>最近开始学习近似算法，在Coursera上找到了一门课：<a href="https://www.coursera.org/learn/approximation-algorithms-part-1/home/welcome" target="_blank" rel="noopener">地址</a>。<br>在此按照课程每周的内容，各写一篇blog来总结、分享。</p>
 <p><strong>Week 1: Vertex Cover</strong></p>
@@ -575,539 +188,140 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 
       
     </div>
-
-    
-
-    
-      
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        
-          
-        
-        <div class="post-tags">
-          
-            <a href="/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" data-id="ck8fe6n02000030vyrrs1qjq2" class="article-share-link">Share</a>
       
       
-      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Approximation-Algorithms/">Approximation Algorithms</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="prev" title="Approximation Algorithm(2)-The Knapsack Problem">
-                Approximation Algorithm(2)-The Knapsack Problem <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-  
     
-    <div class="comments" id="comments"></div>
+<nav id="article-nav">
   
-
-
-
-        </div>
+    <a href="/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  
-  <p class="site-author-name" itemprop="name"></p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-
-
-  <nav class="site-state motion-element">
-    
-      <div class="site-state-item site-state-posts">
+          Approximation Algorithm(2)-The Knapsack Problem
         
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">20</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
-    
-
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-
-
-
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
     </a>
-  </div>
+  
+  
+</nav>
 
+  
+</article>
 
-
-
-
-
-
-
-
-
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Combinatorial-Optimization/">Combinatorial Optimization</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-Theory/">Coding Theory</a></li></ul>
     </div>
-    <ul class="links-of-blogroll-list">
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://www.cnblogs.com/jiangshibiao/" title="http://www.cnblogs.com/jiangshibiao/" rel="noopener" target="_blank">jiangshibiao</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/tsreaper/" title="https://www.cnblogs.com/tsreaper/" rel="noopener" target="_blank">Tsreaper</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://jtjl.github.io/" title="https://jtjl.github.io/" rel="noopener" target="_blank">JTJL</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="/dailongao.github.io" title="dailongao.github.io">dailongao</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://www.reku.me/" title="http://www.reku.me/" rel="noopener" target="_blank">reku</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://heyshb.github.io/" title="https://heyshb.github.io/" rel="noopener" target="_blank">shb</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://tigertang.cn" title="http://tigertang.cn" rel="noopener" target="_blank">tigertang</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/vb4896/" title="https://www.cnblogs.com/vb4896/" rel="noopener" target="_blank">我的旧博客</a>
-        </li>
-      
-    </ul>
   </div>
 
 
-          
-          
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition："><span class="nav-number">1.</span> <span class="nav-text">Problem Definition：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已有知识："><span class="nav-number">2.</span> <span class="nav-text">已有知识：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课程内容："><span class="nav-number">3.</span> <span class="nav-text">课程内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">4.</span> <span class="nav-text">练习题:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互评作业："><span class="nav-number">5.</span> <span class="nav-text">互评作业：</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algebra/">Algebra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Approximation-Algorithms/">Approximation Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Theory/">Coding Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game-Theory/">Game Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph-Theory/">Graph Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Number-Theory/">Number Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper-Reading/">Paper Reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project-Euler/">Project Euler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Textbook-Reading/">Textbook Reading</a></li></ul>
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </div>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder"></span>
 
   
-
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algebra/" style="font-size: 16.67px;">Algebra</a> <a href="/tags/Approximation-Algorithms/" style="font-size: 20px;">Approximation Algorithms</a> <a href="/tags/Coding-Theory/" style="font-size: 16.67px;">Coding Theory</a> <a href="/tags/Dynamic-Programming/" style="font-size: 10px;">Dynamic Programming</a> <a href="/tags/Game-Theory/" style="font-size: 10px;">Game Theory</a> <a href="/tags/Graph-Theory/" style="font-size: 10px;">Graph Theory</a> <a href="/tags/Number-Theory/" style="font-size: 10px;">Number Theory</a> <a href="/tags/Paper-Reading/" style="font-size: 10px;">Paper Reading</a> <a href="/tags/Project-Euler/" style="font-size: 13.33px;">Project Euler</a> <a href="/tags/Textbook-Reading/" style="font-size: 13.33px;">Textbook Reading</a>
+    </div>
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-
-
-  <script src="/js/utils.js?v=7.2.0"></script>
-
-  <script src="/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/schemes/muse.js?v=7.2.0"></script>
-
-
-
-  
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
-
-
-
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
-
-  
-
-  
-
-
-  
-  
-
-  
-  
-
-  
     
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
-
-window.addEventListener("message", function(e) {
-  var data = e.data;
-  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
-    var featureID = data.split(':')[1];
-    var height = data.split(':')[2];
-    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
-  }
-}, false);
-</script>
-
-
-
-
-
-
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
 
 
   
     
-
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-<script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'yXO6KJNmXhErdElfzCTM0LbB-gzGzoHsz',
-    appKey: 'FFFdwO3D1mtNv8A34KbbisJz',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: true,
-    lang: '' || 'zh-cn'
-  });
-</script>
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/15/combinatorial-optimization-matroid/">Combinatorial Optimization-Matroid</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/">Combinatorial Optimization-Linear Programming And Simplex Method</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/01/Binpacking-First-Fit/">Binpacking-First Fit</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/01/Coding-Theory-Cyclic-Codes/">Coding Theory-Cyclic Codes</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/29/Coding-Theory-Expander-Codes/">Coding Theory-Expander Codes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 jiangshibiao&#39;s blog<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-miku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
-
-
