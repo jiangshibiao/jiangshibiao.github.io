@@ -32,30 +32,30 @@
 
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -67,7 +67,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Muse',
     version: '7.2.0',
     sidebar: {"position":"left","width":250,"display":"always","offset":12,"onmobile":false},
@@ -86,7 +86,7 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     search: {
-      root: '/blog/',
+      root: '/',
       path: ''
     },
     tabs: true,
@@ -103,7 +103,7 @@
 <meta name="keywords" content="Textbook Reading">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Combinatorial Optimization-Linear Programming And Simplex Method">
-<meta property="og:url" content="https://jiangshibiao.github.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/index.html">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
 <meta property="og:description" content="前言入坑组合优化，花了一学期才读了大半本书，收获很大，写点东西总结一下吧。电子书下载书的一些内容比较晦涩难懂, 刚开始读的时候心里想的“这tmd怎么写的是啥玩意”, 弄懂了之后又不得不感慨“写得真好”。由于我自己精力有限，在此只记录主要内容，并且略去了很多例子。 实际上书本的内容组织模式是先给例子再给算法，如果跳过例子直接看算法往往会一头雾水。为了防止误解，我使用的符号尽量和书本一致，并且涉及的向">
 <meta property="og:locale" content="zh-CN">
@@ -114,13 +114,13 @@
 
 
 
-  <link rel="alternate" href="/blog/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="https://jiangshibiao.github.io/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/">
+  <link rel="canonical" href="https://jiangshibiao.github.io/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/">
 
 
 
@@ -188,7 +188,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">jiangshibiao's blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -226,7 +226,7 @@
 
     
 
-    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -242,7 +242,7 @@
 
     
 
-    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -258,7 +258,7 @@
 
     
 
-    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -274,7 +274,7 @@
 
     
 
-    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -290,7 +290,7 @@
 
     
 
-    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -336,12 +336,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/blog/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/">
+    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -408,14 +408,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
 
                 
                 
@@ -425,7 +425,7 @@
 
           
           
-            <span id="/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" class="post-meta-item leancloud_visitors" data-flag-title="Combinatorial Optimization-Linear Programming And Simplex Method">
+            <span id="/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" class="post-meta-item leancloud_visitors" data-flag-title="Combinatorial Optimization-Linear Programming And Simplex Method">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -450,8 +450,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" itemprop="commentCount"></span>
+    <a href="/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -546,7 +546,7 @@ x \geq 0
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Textbook-Reading/" rel="tag"># Textbook Reading</a>
+            <a href="/tags/Textbook-Reading/" rel="tag"># Textbook Reading</a>
           
         </div>
       
@@ -559,7 +559,7 @@ x \geq 0
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2020/01/01/Binpacking-First-Fit/" rel="next" title="Binpacking-First Fit">
+              <a href="/2020/01/01/Binpacking-First-Fit/" rel="next" title="Binpacking-First Fit">
                 <i class="fa fa-chevron-left"></i> Binpacking-First Fit
               </a>
             
@@ -569,7 +569,7 @@ x \geq 0
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2020/02/15/combinatorial-optimization-matroid/" rel="prev" title="Combinatorial Optimization-Matroid">
+              <a href="/2020/02/15/combinatorial-optimization-matroid/" rel="prev" title="Combinatorial Optimization-Matroid">
                 Combinatorial Optimization-Matroid <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -640,7 +640,7 @@ x \geq 0
     
       <div class="site-state-item site-state-posts">
         
-          <a href="/blog/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
@@ -654,7 +654,7 @@ x \geq 0
       <div class="site-state-item site-state-categories">
         
           
-            <a href="/blog/categories/">
+            <a href="/categories/">
           
         
         
@@ -677,7 +677,7 @@ x \geq 0
       <div class="site-state-item site-state-tags">
         
           
-            <a href="/blog/tags/">
+            <a href="/tags/">
           
         
         
@@ -712,7 +712,7 @@ x \geq 0
 
 
   <div class="feed-link motion-element">
-    <a href="/blog/atom.xml" rel="alternate">
+    <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
   </div>
@@ -746,7 +746,7 @@ x \geq 0
         </li>
       
         <li class="links-of-blogroll-item">
-          <a href="/blog/dailongao.github.io" title="dailongao.github.io">dailongao</a>
+          <a href="/dailongao.github.io" title="dailongao.github.io">dailongao</a>
         </li>
       
         <li class="links-of-blogroll-item">
@@ -890,38 +890,38 @@ x \geq 0
 
 
   
-  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
 
 
-  <script src="/blog/js/utils.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="/blog/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
-<script src="/blog/js/post-details.js?v=7.2.0"></script>
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
-  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1055,7 +1055,7 @@ window.addEventListener("message", function(e) {
 </script>
 
   
-<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 
 

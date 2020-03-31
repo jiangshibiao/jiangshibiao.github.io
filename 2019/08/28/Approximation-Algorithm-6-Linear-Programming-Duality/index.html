@@ -32,30 +32,30 @@
 
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -67,7 +67,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Muse',
     version: '7.2.0',
     sidebar: {"position":"left","width":250,"display":"always","offset":12,"onmobile":false},
@@ -86,7 +86,7 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     search: {
-      root: '/blog/',
+      root: '/',
       path: ''
     },
     tabs: true,
@@ -103,28 +103,28 @@
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Approximation Algorithm(6)-Linear Programming Duality">
-<meta property="og:url" content="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/index.html">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
 <meta property="og:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
 <meta property="og:updated_time" content="2020-01-01T09:02:18.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(6)-Linear Programming Duality">
 <meta name="twitter:description" content="Week 6: Linear Programming Duality 本周学习的内容是利用线性规划的对偶来设计近似算法。 Introduction考虑下面一个线性规划问题：  \begin{split} &amp;\min 7x_1 + x_2 + 5x_3 \\ &amp;x_1-x_2+3x_3 &amp;\geq 10 \ \ &amp;(1)\\ &amp;5x_1 + 2x_2 - x_3 &amp;\geq 6  &amp;(2) \\ &amp;">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
 
 
 
-  <link rel="alternate" href="/blog/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="https://jiangshibiao.github.io/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
+  <link rel="canonical" href="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
 
 
 
@@ -192,7 +192,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">jiangshibiao's blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -230,7 +230,7 @@
 
     
 
-    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -246,7 +246,7 @@
 
     
 
-    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -262,7 +262,7 @@
 
     
 
-    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -278,7 +278,7 @@
 
     
 
-    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -294,7 +294,7 @@
 
     
 
-    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -340,12 +340,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/blog/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
+    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -412,14 +412,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
 
                 
                 
@@ -429,7 +429,7 @@
 
           
           
-            <span id="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(6)-Linear Programming Duality">
+            <span id="/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(6)-Linear Programming Duality">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -454,8 +454,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" itemprop="commentCount"></span>
+    <a href="/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -578,9 +578,9 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
 &= 2 OPT_{Primal} \\
 &\leq 2 OPT_{Primal(int)}
 \end{split}</script><p>因此近似度是2.</p>
-<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
-<img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
-<img src="/blog/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
+<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><img src="/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/1.png">
+<img src="/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/2.png">
+<img src="/2019/08/28/Approximation-Algorithm-6-Linear-Programming-Duality/3.png">
 <h5 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h5><p><strong>Question 1</strong></p>
 <p>$\max \sum\limits_{j=1}^{n}{y_i}$</p>
 <p>$\forall i \in \{1,\cdots,m\}, \sum_{j:e_j \in S_i}{y_j} \leq w_i$</p>
@@ -635,7 +635,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+            <a href="/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
           
         </div>
       
@@ -648,7 +648,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/" rel="next" title="Approximation Algorithm(5)-The MultiwayCut Problem">
+              <a href="/2019/08/13/Approximation-Algorithm-5-The-MultiwayCut-Problem/" rel="next" title="Approximation Algorithm(5)-The MultiwayCut Problem">
                 <i class="fa fa-chevron-left"></i> Approximation Algorithm(5)-The MultiwayCut Problem
               </a>
             
@@ -658,7 +658,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" rel="prev" title="Approximation Algorithm(7)-The Steiner Forest Problem">
+              <a href="/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" rel="prev" title="Approximation Algorithm(7)-The Steiner Forest Problem">
                 Approximation Algorithm(7)-The Steiner Forest Problem <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -729,7 +729,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
     
       <div class="site-state-item site-state-posts">
         
-          <a href="/blog/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
@@ -743,7 +743,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
       <div class="site-state-item site-state-categories">
         
           
-            <a href="/blog/categories/">
+            <a href="/categories/">
           
         
         
@@ -766,7 +766,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
       <div class="site-state-item site-state-tags">
         
           
-            <a href="/blog/tags/">
+            <a href="/tags/">
           
         
         
@@ -801,7 +801,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
 
 
   <div class="feed-link motion-element">
-    <a href="/blog/atom.xml" rel="alternate">
+    <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
   </div>
@@ -835,7 +835,7 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
         </li>
       
         <li class="links-of-blogroll-item">
-          <a href="/blog/dailongao.github.io" title="dailongao.github.io">dailongao</a>
+          <a href="/dailongao.github.io" title="dailongao.github.io">dailongao</a>
         </li>
       
         <li class="links-of-blogroll-item">
@@ -979,38 +979,38 @@ b^Ty \leq (Ax)^Ty = x^TA^Ty \leq x^Tc = c^Tx</script><h5 id="Strong-Duality-Theo
 
 
   
-  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
 
 
-  <script src="/blog/js/utils.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="/blog/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
-<script src="/blog/js/post-details.js?v=7.2.0"></script>
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
-  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1144,7 +1144,7 @@ window.addEventListener("message", function(e) {
 </script>
 
   
-<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 
 

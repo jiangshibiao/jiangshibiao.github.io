@@ -32,30 +32,30 @@
 
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -67,7 +67,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Muse',
     version: '7.2.0',
     sidebar: {"position":"left","width":250,"display":"always","offset":12,"onmobile":false},
@@ -86,7 +86,7 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     search: {
-      root: '/blog/',
+      root: '/',
       path: ''
     },
     tabs: true,
@@ -103,26 +103,26 @@
 <meta name="keywords" content="Textbook Reading">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Combinatorial Optimization-Matroid">
-<meta property="og:url" content="https://jiangshibiao.github.io/blog/2020/02/15/combinatorial-optimization-matroid/index.html">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/02/15/combinatorial-optimization-matroid/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
 <meta property="og:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2020/02/15/combinatorial-optimization-matroid/1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/02/15/combinatorial-optimization-matroid/1.png">
 <meta property="og:updated_time" content="2020-03-16T13:48:37.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Combinatorial Optimization-Matroid">
 <meta name="twitter:description" content="前言拟阵这个概念在各个场合听了很多遍了，一直没有系统地整理过。本篇基于组合优化经典教材Combinatorial Optimization-Algorithms and Complexity第12章, 主要介绍拟阵的一些基本性质和两拟阵交算法。 独立集系统和拟阵定义独立集系统$S=(E, \mathcal{I})$, $E$是基本元素的集合, $\mathcal{I} \subseteq 2^{E">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/blog/2020/02/15/combinatorial-optimization-matroid/1.png">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/02/15/combinatorial-optimization-matroid/1.png">
 
 
 
-  <link rel="alternate" href="/blog/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="https://jiangshibiao.github.io/blog/2020/02/15/combinatorial-optimization-matroid/">
+  <link rel="canonical" href="https://jiangshibiao.github.io/2020/02/15/combinatorial-optimization-matroid/">
 
 
 
@@ -190,7 +190,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">jiangshibiao's blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +228,7 @@
 
     
 
-    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -244,7 +244,7 @@
 
     
 
-    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -260,7 +260,7 @@
 
     
 
-    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -276,7 +276,7 @@
 
     
 
-    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -292,7 +292,7 @@
 
     
 
-    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -338,12 +338,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/blog/blog/2020/02/15/combinatorial-optimization-matroid/">
+    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/2020/02/15/combinatorial-optimization-matroid/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -410,14 +410,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
 
                 
                 
@@ -427,7 +427,7 @@
 
           
           
-            <span id="/blog/2020/02/15/combinatorial-optimization-matroid/" class="post-meta-item leancloud_visitors" data-flag-title="Combinatorial Optimization-Matroid">
+            <span id="/2020/02/15/combinatorial-optimization-matroid/" class="post-meta-item leancloud_visitors" data-flag-title="Combinatorial Optimization-Matroid">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -452,8 +452,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2020/02/15/combinatorial-optimization-matroid/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2020/02/15/combinatorial-optimization-matroid/" itemprop="commentCount"></span>
+    <a href="/2020/02/15/combinatorial-optimization-matroid/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/15/combinatorial-optimization-matroid/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -602,7 +602,7 @@ w(e) = \begin{cases}
 </ul>
 </li>
 </ul>
-<p>容易验证放宽条件后的增广路(为了方便, 把它叫做”广义增广路”好了)就是辅助图中从$X_1$出发到$X_2$的一条简单路径。<br>看下面图中的例子, (a)是定义在有向图边集上的一个独立集系统, 将它表示成2个拟阵的交, $M_1$是图拟阵(独立条件是不考虑边的方向无环), $M_2$独立集的条件是每个点最多有一条入边, 当前已经选择的独立集$I=\{e_2, e_4, e_6\}$, 即圈起来的边, 图(b)是相应的辅助图:<br><img src="/blog/2020/02/15/combinatorial-optimization-matroid/1.png"><br>一条广义增广路对应$e_1$到$e_5$的一条简单路。观察发现, $L_1=[e_1, e_2, e_3, e_4, e_5]$就是一条广义增广路, 但是$I \oplus L_1=\{e_1, e_3, e_5, e_6\}$并不是原问题的独立集($\{e_1, e_3, e_6\}$构成环)。<br>再看$L_2= \{e_1, e_4, e_5\}$, 观察发现$I \oplus L_2 = \{e_1, e_2, e_5, e_6\} $是独立集。说明广义增广路不一定是增广路, 即$I \oplus L \in \mathcal{I}_1 \cap \mathcal{I}_2$不一定被满足。<br>注意$L_2$的长度要比$L_1$短, 因此我们大胆猜测, 如果我们找的是一条从$X_1$到$X_2$最短路, 那么这条广义增广路是增广路。</p>
+<p>容易验证放宽条件后的增广路(为了方便, 把它叫做”广义增广路”好了)就是辅助图中从$X_1$出发到$X_2$的一条简单路径。<br>看下面图中的例子, (a)是定义在有向图边集上的一个独立集系统, 将它表示成2个拟阵的交, $M_1$是图拟阵(独立条件是不考虑边的方向无环), $M_2$独立集的条件是每个点最多有一条入边, 当前已经选择的独立集$I=\{e_2, e_4, e_6\}$, 即圈起来的边, 图(b)是相应的辅助图:<br><img src="/2020/02/15/combinatorial-optimization-matroid/1.png"><br>一条广义增广路对应$e_1$到$e_5$的一条简单路。观察发现, $L_1=[e_1, e_2, e_3, e_4, e_5]$就是一条广义增广路, 但是$I \oplus L_1=\{e_1, e_3, e_5, e_6\}$并不是原问题的独立集($\{e_1, e_3, e_6\}$构成环)。<br>再看$L_2= \{e_1, e_4, e_5\}$, 观察发现$I \oplus L_2 = \{e_1, e_2, e_5, e_6\} $是独立集。说明广义增广路不一定是增广路, 即$I \oplus L \in \mathcal{I}_1 \cap \mathcal{I}_2$不一定被满足。<br>注意$L_2$的长度要比$L_1$短, 因此我们大胆猜测, 如果我们找的是一条从$X_1$到$X_2$最短路, 那么这条广义增广路是增广路。</p>
 <p>因此我们得到下面的算法:</p>
 <ol>
 <li>初始化$I:=\emptyset$.</li>
@@ -700,7 +700,7 @@ w(e) = \begin{cases}
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Textbook-Reading/" rel="tag"># Textbook Reading</a>
+            <a href="/tags/Textbook-Reading/" rel="tag"># Textbook Reading</a>
           
         </div>
       
@@ -713,7 +713,7 @@ w(e) = \begin{cases}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" rel="next" title="Combinatorial Optimization-Linear Programming And Simplex Method">
+              <a href="/2020/02/14/Combinatorial-Optimization-Linear-Programming-And-Simplex-Method/" rel="next" title="Combinatorial Optimization-Linear Programming And Simplex Method">
                 <i class="fa fa-chevron-left"></i> Combinatorial Optimization-Linear Programming And Simplex Method
               </a>
             
@@ -790,7 +790,7 @@ w(e) = \begin{cases}
     
       <div class="site-state-item site-state-posts">
         
-          <a href="/blog/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
@@ -804,7 +804,7 @@ w(e) = \begin{cases}
       <div class="site-state-item site-state-categories">
         
           
-            <a href="/blog/categories/">
+            <a href="/categories/">
           
         
         
@@ -827,7 +827,7 @@ w(e) = \begin{cases}
       <div class="site-state-item site-state-tags">
         
           
-            <a href="/blog/tags/">
+            <a href="/tags/">
           
         
         
@@ -862,7 +862,7 @@ w(e) = \begin{cases}
 
 
   <div class="feed-link motion-element">
-    <a href="/blog/atom.xml" rel="alternate">
+    <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
   </div>
@@ -896,7 +896,7 @@ w(e) = \begin{cases}
         </li>
       
         <li class="links-of-blogroll-item">
-          <a href="/blog/dailongao.github.io" title="dailongao.github.io">dailongao</a>
+          <a href="/dailongao.github.io" title="dailongao.github.io">dailongao</a>
         </li>
       
         <li class="links-of-blogroll-item">
@@ -1040,38 +1040,38 @@ w(e) = \begin{cases}
 
 
   
-  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
 
 
-  <script src="/blog/js/utils.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="/blog/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
-<script src="/blog/js/post-details.js?v=7.2.0"></script>
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
-  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1205,7 +1205,7 @@ window.addEventListener("message", function(e) {
 </script>
 
   
-<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 
 

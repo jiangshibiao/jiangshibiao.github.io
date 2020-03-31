@@ -32,30 +32,30 @@
 
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -67,7 +67,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Muse',
     version: '7.2.0',
     sidebar: {"position":"left","width":250,"display":"always","offset":12,"onmobile":false},
@@ -86,7 +86,7 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     search: {
-      root: '/blog/',
+      root: '/',
       path: ''
     },
     tabs: true,
@@ -103,29 +103,29 @@
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Approximation Algorithm(1)-Vertex Cover">
-<meta property="og:url" content="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/index.html">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
 <meta property="og:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
 <meta property="og:updated_time" content="2020-01-01T09:01:54.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(1)-Vertex Cover">
 <meta name="twitter:description" content="前言最近开始学习近似算法，在Coursera上找到了一门课：地址。在此按照课程每周的内容，各写一篇blog来总结、分享。 Week 1: Vertex Cover Problem Definition：最小点覆盖，即给出一个无向图，求一个最小的点集$S$，使得每条边都至少有一个顶点在这个点集里。 已有知识： 树的最小点覆盖很容易用$O(|V|)$的时间求出: 动态规划：$dp[v][0/1]$ 表">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 
 
 
-  <link rel="alternate" href="/blog/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="https://jiangshibiao.github.io/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+  <link rel="canonical" href="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
 
 
 
@@ -193,7 +193,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">jiangshibiao's blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -231,7 +231,7 @@
 
     
 
-    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -247,7 +247,7 @@
 
     
 
-    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -263,7 +263,7 @@
 
     
 
-    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -279,7 +279,7 @@
 
     
 
-    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -295,7 +295,7 @@
 
     
 
-    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -341,12 +341,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/blog/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
+    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
 
                 
                 
@@ -430,7 +430,7 @@
 
           
           
-            <span id="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(1)-Vertex Cover">
+            <span id="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(1)-Vertex Cover">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -455,8 +455,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" itemprop="commentCount"></span>
+    <a href="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -513,7 +513,7 @@
 </ul>
 <h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题:"></a>练习题:</h4><p>官方没有提供答案，以下是我个人答案：</p>
 <ul>
-<li>习题1.  分析下面的点覆盖算法：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
+<li>习题1.  分析下面的点覆盖算法：  <img src="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/1.png">
 <ul>
 <li><strong>Algorithm</strong>: 求出图的一个极大匹配, 然后把匹配边的2个端点都加入点覆盖的集合$S$。</li>
 <li><strong>Proof of Correctness</strong>： 只要证明每条边都会被求出的点集覆盖。假设某条边没被覆盖，那么这条边的两个端点都是未配点，那么把这条边加入匹配可以让匹配数+1，与极大匹配矛盾。</li>
@@ -521,7 +521,7 @@
 <li><strong>Tightness</strong>: 考虑一个四元环，最大匹配数是2，因此求出的点集大小是4， 而最优解显然是2，恰好是2倍关系。</li>
 </ul>
 </li>
-<li>习题2：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
+<li>习题2：  <img src="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/2.png">
 <ul>
 <li><strong>Algorithm</strong>: 给出一个无向图，要删除最少的点，使得剩下的点构成的图不含三元环。</li>
 <li><strong>Linear Program</strong>:  从线性规划的角度考虑，每个点删还是不删对应一个$0/1$变量，每个原图中的三元环$(a, b, c)$对应一个条件$x_a +x_b + x_c \geq 1$.</li>
@@ -551,7 +551,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 \right. \end{equation}</script>check一下容易发现$\{y_i\}, \{z_i\}$也是线性规划的解。<br>因为$\{x_i\}$是最优解，所以有$\sum{w_ix_i} \leq \sum{w_iy_i}, \sum{w_ix_i} \leq \sum{w_iz_i}$<br>又有$\sum{w_iy_i} + \sum{w_iz_i} = 2 \sum{w_ix_i}$.<br>因此$\sum{w_ix_i} = \sum{w_iy_i} = \sum{w_iz_i}$, 即$\{y_i\}, \{z_i\}$也是最优解。<br>考虑$\epsilon$从0开始不断变大，直到本来不是0,0.5,1的某个变量变成了0,0.5,1， 称这样的操作为一次松弛操作。不断重复这个过程，最终所有变量都会变成0或者0.5或者1.  因为变量一旦变成了0,0.5,1，就再也不会改变它。所以最多只需要重复 $|V|$次松弛操作。<br>综上，我们可以在多项式时间内把任意最优解改造成任意$x_i$满足$x_i \in \{0, \frac{1}{2}, 1\}$的形式。</li>
 </ul>
 </li>
-<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
+<li>考虑一个可以四染色的图，下面给出一个近似度为$\frac{3}{2}$的点覆盖算法。  <img src="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/3.png">
 <ul>
 <li><strong>Algorithm</strong>：<ol>
 <li>将图四染色。</li>
@@ -567,7 +567,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 <li>剩下一种$x_u = x_v = \frac{1}{2}$的情况。因为它们相邻，所以颜色不同，因此不会都在$V_3^{\frac{1}{2}}$里，所以至少有一个点在$S$中。</li>
 </ol>
 </li>
-<li><strong>Approximation Ratio</strong>：  <img src="/blog/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
+<li><strong>Approximation Ratio</strong>：  <img src="/2019/07/26/Approximation-Algorithm-1-Vertex-Cover/4.png">
 </li>
 </ul>
 </li>
@@ -602,7 +602,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+            <a href="/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
           
         </div>
       
@@ -621,7 +621,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="prev" title="Approximation Algorithm(2)-The Knapsack Problem">
+              <a href="/2019/07/27/Approximation-Algorithm-2-Knapsack-Problem/" rel="prev" title="Approximation Algorithm(2)-The Knapsack Problem">
                 Approximation Algorithm(2)-The Knapsack Problem <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -692,7 +692,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
     
       <div class="site-state-item site-state-posts">
         
-          <a href="/blog/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
@@ -706,7 +706,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
       <div class="site-state-item site-state-categories">
         
           
-            <a href="/blog/categories/">
+            <a href="/categories/">
           
         
         
@@ -729,7 +729,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
       <div class="site-state-item site-state-tags">
         
           
-            <a href="/blog/tags/">
+            <a href="/tags/">
           
         
         
@@ -764,7 +764,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 
 
   <div class="feed-link motion-element">
-    <a href="/blog/atom.xml" rel="alternate">
+    <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
   </div>
@@ -798,7 +798,7 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
         </li>
       
         <li class="links-of-blogroll-item">
-          <a href="/blog/dailongao.github.io" title="dailongao.github.io">dailongao</a>
+          <a href="/dailongao.github.io" title="dailongao.github.io">dailongao</a>
         </li>
       
         <li class="links-of-blogroll-item">
@@ -942,38 +942,38 @@ x_i + \epsilon, & 0.5\lt x_i\lt 1 &
 
 
   
-  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
 
 
-  <script src="/blog/js/utils.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="/blog/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
-<script src="/blog/js/post-details.js?v=7.2.0"></script>
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
-  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1107,7 +1107,7 @@ window.addEventListener("message", function(e) {
 </script>
 
   
-<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 
 

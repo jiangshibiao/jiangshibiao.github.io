@@ -32,30 +32,30 @@
 
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -67,7 +67,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Muse',
     version: '7.2.0',
     sidebar: {"position":"left","width":250,"display":"always","offset":12,"onmobile":false},
@@ -86,7 +86,7 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     search: {
-      root: '/blog/',
+      root: '/',
       path: ''
     },
     tabs: true,
@@ -103,26 +103,26 @@
 <meta name="keywords" content="Approximation Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Approximation Algorithm(8)-The Facility Location Problem">
-<meta property="og:url" content="https://jiangshibiao.github.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/index.html">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
 <meta property="og:description" content="Week 8: The Facility Location Problem Problem Definition小区里要建某种公共设施, 可以建造设施的位置集合为$\mathcal{F}$, 在第$i$个位置建造设施的花费是$f_i$. 设顾客集合为$\mathcal{C}$, $c_{ij}$表示顾客$j$与设施$i$之间的距离, 且约定这个距离满足三角形不等式(即$c_{ij}$就是设施$i$">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png">
 <meta property="og:updated_time" content="2020-01-01T09:02:40.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Approximation Algorithm(8)-The Facility Location Problem">
 <meta name="twitter:description" content="Week 8: The Facility Location Problem Problem Definition小区里要建某种公共设施, 可以建造设施的位置集合为$\mathcal{F}$, 在第$i$个位置建造设施的花费是$f_i$. 设顾客集合为$\mathcal{C}$, $c_{ij}$表示顾客$j$与设施$i$之间的距离, 且约定这个距离满足三角形不等式(即$c_{ij}$就是设施$i$">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png">
 
 
 
-  <link rel="alternate" href="/blog/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="jiangshibiao's blog" type="application/atom+xml">
 
 
 
   
   
-  <link rel="canonical" href="https://jiangshibiao.github.io/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/">
+  <link rel="canonical" href="https://jiangshibiao.github.io/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/">
 
 
 
@@ -190,7 +190,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">jiangshibiao's blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +228,7 @@
 
     
 
-    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -244,7 +244,7 @@
 
     
 
-    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -260,7 +260,7 @@
 
     
 
-    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -276,7 +276,7 @@
 
     
 
-    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -292,7 +292,7 @@
 
     
 
-    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -338,12 +338,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/blog/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/">
+    <link itemprop="mainEntityOfPage" href="https://jiangshibiao.github.io/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content>
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -410,14 +410,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Combinatorial-Optimization/" itemprop="url" rel="index"><span itemprop="name">Combinatorial Optimization</span></a></span>
 
                 
                 
@@ -427,7 +427,7 @@
 
           
           
-            <span id="/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(8)-The Facility Location Problem">
+            <span id="/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/" class="post-meta-item leancloud_visitors" data-flag-title="Approximation Algorithm(8)-The Facility Location Problem">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -452,8 +452,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/" itemprop="commentCount"></span>
+    <a href="/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -531,7 +531,7 @@
 \sum_{i \in I}{\sum_{ <i, j> \text{ is special }}{\beta_{ij} + c_{ij}}} = \sum_{i \in I}{\sum_{ <i, j> \text{ is special }}{\alpha_j}} = \sum_{j \in \mathcal{C}_1}{\alpha_j}</script><p><strong>第二类顾客的费用</strong>:</p>
 <script type="math/tex; mode=display">
 \sum_{j \in \mathcal{C}_2}{c_{\sigma(j)j}} = \sum_{j \in \mathcal{C}_2}{\alpha_j}</script><p>因为根据定义, 边$ &lt;\sigma(j), j&gt; $是tight的, 并且不是special的。</p>
-<p><strong>第三类顾客的费用</strong>:<br>考虑顾客$j \in \mathcal{C}_3$, 他的connecting witness是$i$, $\sigma(j) = i$, $i$和$i’$在$G’$中是邻居, 因此还存在一个顾客边$j’$, $ &lt; i, j’&gt;, &lt; i’, j’&gt;$都是special的. 注意边$&lt; i’, j&gt;$是tight但不是special的。如下图所示：<br> <img src="/blog/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png"><br>根据三角形不等式得到$c_{ij} \leq c_{i’j} + c_{i’j’} + c_{ij’} \leq \alpha_j + 2\alpha_{j’}$。<br>接下来一步是我个人感觉整个证明最难理解的一步：因为$i’$是$j$的connecting witness, 所以当边$&lt; i’, j&gt;$变成tight的瞬间, $i’$已经是temporarily open了, 也就是说$\sum_{j \in \mathcal{C}}{\beta_{i’j}} = f_{i’}$, 这时$\beta_{i’j’}$和$\alpha_{j’}$都会变成frozen, 且$\alpha_j = \alpha_{j’}$. 而之后$\alpha_{j’}$再也不会增加, $\alpha_j$还可能增加。因此有$\alpha_{j’} \leq \alpha_{j}$.<br>所以$c_{ij} \leq c_{i’j} + c_{i’j’} + c_{ij’} \leq \alpha_j + 2\alpha_{j’} \leq 3 \alpha_j$。</p>
+<p><strong>第三类顾客的费用</strong>:<br>考虑顾客$j \in \mathcal{C}_3$, 他的connecting witness是$i$, $\sigma(j) = i$, $i$和$i’$在$G’$中是邻居, 因此还存在一个顾客边$j’$, $ &lt; i, j’&gt;, &lt; i’, j’&gt;$都是special的. 注意边$&lt; i’, j&gt;$是tight但不是special的。如下图所示：<br> <img src="/2019/09/27/Approximation-Algorithm-8-The-Facility-Location-Problem/1.png"><br>根据三角形不等式得到$c_{ij} \leq c_{i’j} + c_{i’j’} + c_{ij’} \leq \alpha_j + 2\alpha_{j’}$。<br>接下来一步是我个人感觉整个证明最难理解的一步：因为$i’$是$j$的connecting witness, 所以当边$&lt; i’, j&gt;$变成tight的瞬间, $i’$已经是temporarily open了, 也就是说$\sum_{j \in \mathcal{C}}{\beta_{i’j}} = f_{i’}$, 这时$\beta_{i’j’}$和$\alpha_{j’}$都会变成frozen, 且$\alpha_j = \alpha_{j’}$. 而之后$\alpha_{j’}$再也不会增加, $\alpha_j$还可能增加。因此有$\alpha_{j’} \leq \alpha_{j}$.<br>所以$c_{ij} \leq c_{i’j} + c_{i’j’} + c_{ij’} \leq \alpha_j + 2\alpha_{j’} \leq 3 \alpha_j$。</p>
 <p>综合四种费用, 容易得到$cost \leq 3\sum_{j \in \mathcal{C}}{\alpha_j} \leq 3OPT$.</p>
 
       
@@ -563,7 +563,7 @@
         
         <div class="post-tags">
           
-            <a href="/blog/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
+            <a href="/tags/Approximation-Algorithms/" rel="tag"># Approximation Algorithms</a>
           
         </div>
       
@@ -576,7 +576,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" rel="next" title="Approximation Algorithm(7)-The Steiner Forest Problem">
+              <a href="/2019/09/05/Approximation-Algorithm-7-The-Steiner-Forest-Problem/" rel="next" title="Approximation Algorithm(7)-The Steiner Forest Problem">
                 <i class="fa fa-chevron-left"></i> Approximation Algorithm(7)-The Steiner Forest Problem
               </a>
             
@@ -586,7 +586,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/" rel="prev" title="Approximation Algorithm(9)-The Maxcut Problem">
+              <a href="/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/" rel="prev" title="Approximation Algorithm(9)-The Maxcut Problem">
                 Approximation Algorithm(9)-The Maxcut Problem <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -657,7 +657,7 @@
     
       <div class="site-state-item site-state-posts">
         
-          <a href="/blog/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
@@ -671,7 +671,7 @@
       <div class="site-state-item site-state-categories">
         
           
-            <a href="/blog/categories/">
+            <a href="/categories/">
           
         
         
@@ -694,7 +694,7 @@
       <div class="site-state-item site-state-tags">
         
           
-            <a href="/blog/tags/">
+            <a href="/tags/">
           
         
         
@@ -729,7 +729,7 @@
 
 
   <div class="feed-link motion-element">
-    <a href="/blog/atom.xml" rel="alternate">
+    <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
   </div>
@@ -763,7 +763,7 @@
         </li>
       
         <li class="links-of-blogroll-item">
-          <a href="/blog/dailongao.github.io" title="dailongao.github.io">dailongao</a>
+          <a href="/dailongao.github.io" title="dailongao.github.io">dailongao</a>
         </li>
       
         <li class="links-of-blogroll-item">
@@ -907,38 +907,38 @@
 
 
   
-  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
 
 
-  <script src="/blog/js/utils.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="/blog/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="/blog/js/scrollspy.js?v=7.2.0"></script>
-<script src="/blog/js/post-details.js?v=7.2.0"></script>
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
-  <script src="/blog/js/next-boot.js?v=7.2.0"></script>
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1072,7 +1072,7 @@ window.addEventListener("message", function(e) {
 </script>
 
   
-<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 
 
