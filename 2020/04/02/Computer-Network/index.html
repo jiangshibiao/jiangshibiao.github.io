@@ -3,23 +3,29 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>about me | jiangshibiao&#39;s blog</title>
+  <title>《计算机网络》知识整理 | jiangshibiao&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="Course ReviewComputer Network">
   
   
   
-  <meta name="description" content="ResumeEnglish Version 个人简介 浙江大学本科 CS 专业在读 退役算法竞赛狗（大一~大二），目前（大三）从事科研方面的工作。  一些链接 初高中的 OI 博客（代码风格丑陋不值得学习）：戳这里。 大学里的博客：戳这里，记录了 ACM-ICPC 的刷题记录和一些生活随感。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About Me">
-<meta property="og:url" content="https://jiangshibiao.github.io/about/index.html">
+  
+  <meta name="description" content="物理层 Signal (信号)：数据的电气/电磁表现，是数据在传输过程中的存在形式。 Bandwidth (带宽)：The range of frequencies transmitted without being strongly attenuated. Symbol (码元)：one of several voltage, frequency, or phase changes.  $1$">
+<meta name="keywords" content="Course Review,Computer Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/index.html">
 <meta property="og:site_name" content="jiangshibiao&#39;s blog">
-<meta property="og:description" content="ResumeEnglish Version 个人简介 浙江大学本科 CS 专业在读 退役算法竞赛狗（大一~大二），目前（大三）从事科研方面的工作。  一些链接 初高中的 OI 博客（代码风格丑陋不值得学习）：戳这里。 大学里的博客：戳这里，记录了 ACM-ICPC 的刷题记录和一些生活随感。">
+<meta property="og:description" content="物理层 Signal (信号)：数据的电气/电磁表现，是数据在传输过程中的存在形式。 Bandwidth (带宽)：The range of frequencies transmitted without being strongly attenuated. Symbol (码元)：one of several voltage, frequency, or phase changes.  $1$">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-02T03:18:45.226Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png">
+<meta property="og:updated_time" content="2020-04-02T04:02:26.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About Me">
-<meta name="twitter:description" content="ResumeEnglish Version 个人简介 浙江大学本科 CS 专业在读 退役算法竞赛狗（大一~大二），目前（大三）从事科研方面的工作。  一些链接 初高中的 OI 博客（代码风格丑陋不值得学习）：戳这里。 大学里的博客：戳这里，记录了 ACM-ICPC 的刷题记录和一些生活随感。">
+<meta name="twitter:title" content="《计算机网络》知识整理">
+<meta name="twitter:description" content="物理层 Signal (信号)：数据的电气/电磁表现，是数据在传输过程中的存在形式。 Bandwidth (带宽)：The range of frequencies transmitted without being strongly attenuated. Symbol (码元)：one of several voltage, frequency, or phase changes.  $1$">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao&#39;s blog" type="application/atom+xml">
   
@@ -60,8 +66,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css">
-  
   
   
 
@@ -69,7 +73,7 @@
 </html>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -92,7 +96,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
               </a>
             
@@ -157,111 +161,11 @@
 
 
 
-  
-    <section class="awSlider">
-      <div class="carousel slide carousel-fade " data-ride="carousel">
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-           
-              
-                <div class="item active" style="max-height:600px; overflow: hidden;">
-              
-                <img id="carousel-img0" src="/css/images/pose.jpg">
-              </div>
-
-              <!-- 自适应大图 -->
-              <script>
-              	  var carouselResize = function() {
-              	  	  var h = document.body.clientHeight / 3;
-	                  var img0 = new Image();
-	                  var imageTag0 = document.getElementById("carousel-img0");
-	                  img0.src = imageTag0.src;
-	                  img0.onload=function(){
-	                    if (img0.width / img0.height <= document.body.clientWidth / h) {
-	                      imageTag0.style.width = document.body.clientWidth + "px";
-	                    } else {
-	                      imageTag0.style.height = h + "px";
-	                      imageTag0.style.marginLeft = -(h * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
-	                    }
-	                  };
-              	  };
-                  carouselResize();
-              </script>
-            
-              
-                <div class="item" style="max-height:600px; overflow: hidden;">
-              
-                <img id="carousel-img1" src="/css/images/sample.jpg">
-              </div>
-
-              <!-- 自适应大图 -->
-              <script>
-              	  var carouselResize = function() {
-              	  	  var h = document.body.clientHeight / 3;
-	                  var img1 = new Image();
-	                  var imageTag1 = document.getElementById("carousel-img1");
-	                  img1.src = imageTag1.src;
-	                  img1.onload=function(){
-	                    if (img1.width / img1.height <= document.body.clientWidth / h) {
-	                      imageTag1.style.width = document.body.clientWidth + "px";
-	                    } else {
-	                      imageTag1.style.height = h + "px";
-	                      imageTag1.style.marginLeft = -(h * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
-	                    }
-	                  };
-              	  };
-                  carouselResize();
-              </script>
-            
-              
-                <div class="item" style="max-height:600px; overflow: hidden;">
-              
-                <img id="carousel-img2" src="https://source.unsplash.com/collection/954550/1920x1080">
-              </div>
-
-              <!-- 自适应大图 -->
-              <script>
-              	  var carouselResize = function() {
-              	  	  var h = document.body.clientHeight / 3;
-	                  var img2 = new Image();
-	                  var imageTag2 = document.getElementById("carousel-img2");
-	                  img2.src = imageTag2.src;
-	                  img2.onload=function(){
-	                    if (img2.width / img2.height <= document.body.clientWidth / h) {
-	                      imageTag2.style.width = document.body.clientWidth + "px";
-	                    } else {
-	                      imageTag2.style.height = h + "px";
-	                      imageTag2.style.marginLeft = -(h * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
-	                    }
-	                  };
-              	  };
-                  carouselResize();
-              </script>
-            
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Geri</span>
-        </a>
-        <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">İleri</span>
-        </a>
-      </div>
-    </section>
-    
-  
-
-
-
       
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-Computer-Network" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -269,7 +173,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      About Me
+      《计算机网络》知识整理
     </h1>
   
 
@@ -277,23 +181,126 @@
     
     <div class="article-meta">
       
+	<a href="/2020/04/02/Computer-Network/" class="article-date">
+	  <time datetime="2020-04-02T03:37:53.000Z" itemprop="datePublished">2020-04-02</time>
+	</a>
+
       
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
       
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
       
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h4><p><a href="/download/Curriculum Vitae.pdf">English Version</a></p>
-<h4 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h4><ul>
-<li>浙江大学本科 CS 专业在读</li>
-<li>退役算法竞赛狗（大一~大二），目前（大三）从事科研方面的工作。</li>
+        <h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><ul>
+<li>Signal (信号)：数据的电气/电磁表现，是数据在传输过程中的存在形式。</li>
+<li>Bandwidth (带宽)：The range of <strong>frequencies</strong> transmitted without being strongly attenuated.</li>
+<li>Symbol (码元)：one of several voltage, frequency, or phase changes. <ul>
+<li>$1$ Symbol/s  = $1$ Baud</li>
 </ul>
-<h4 id="一些链接"><a href="#一些链接" class="headerlink" title="一些链接"></a>一些链接</h4><ul>
-<li>初高中的 OI 博客（代码风格丑陋不值得学习）：<a href="https://blog.csdn.net/jiangshibiao" target="_blank" rel="noopener">戳这里</a>。</li>
-<li>大学里的博客：<a href="https://www.cnblogs.com/jiangshibiao/" target="_blank" rel="noopener">戳这里</a>，记录了 ACM-ICPC 的刷题记录和一些生活随感。</li>
+</li>
 </ul>
-
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>通信方式</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simplex system（单工通信）</td>
+<td>只有一个方向</td>
+</tr>
+<tr>
+<td>half-duplex system（半双工通信）</td>
+<td>通信双方都能发送和接受，但不能同时发送</td>
+</tr>
+<tr>
+<td>full-duplex system（全双工通信）</td>
+<td>通信双方可以<strong>同时</strong>发送和接受信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Nyquist Limit+ Max data rate: $\mathrm{2H\log_2V~bit/sec}$ <ul>
+<li>where $V$ is the discrete levels.</li>
+<li>Max symbol rate: $\mathrm{2H}$</li>
+</ul>
+</li>
+<li>Shannon Limit<ul>
+<li>Max data rate: $\mathrm{2H\log_2(1+S/N)}$<ul>
+<li>where $\mathrm{S/N}$ is the signal to noise ratio and $\mathrm{dB=10\log_2(S/N)}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>信道<ul>
+<li>按传输信号的离散或连续划分为 <strong>数字信号</strong>（Digital Signal）和 <strong>模拟信号</strong>（Analog Signal）</li>
+<li>按信道传输方式划分为 <strong>基带传输</strong>（Baseband Transmission）和 <strong>通带传输</strong>（Passband Transmission）</li>
+</ul>
+</li>
+<li>编码和调制<ul>
+<li>设备<ul>
+<li>调制解调器（<strong>mo</strong>dulator <strong>dem</strong>odulator）<ul>
+<li>调制：数字信号翻译成可沿普通电话线传送的模拟信号</li>
+<li>解调：将模拟信号转回数字信号</li>
+</ul>
+</li>
+<li>编码解码器 (<strong>co</strong>der <strong>dec</strong>oder）：对一个信号或者一个数据流进行变换的设备或者程序。</li>
+</ul>
+</li>
+<li>位数据转为数字信号<ul>
+<li><strong>N</strong>on-<strong>R</strong>eturn-to-<strong>Z</strong>ero：高 $1$ 低 $0$</li>
+<li><strong>NRZI</strong>：翻转表示 $0$，不变表示 $1$</li>
+<li>Manchester Encoding：由 $1$ 变 $0$ 表示 $1$，由 $0$ 变 $1$ 表示 $0$</li>
+<li>Differential Manchester Encoding：异 $0$ 同 $1$<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png" alt></li>
+<li>4B/5B：不存在三个连续 $0$</li>
+</ul>
+</li>
+<li>模拟数据编码为数字信号：PCM (<strong>P</strong>ulse <strong>C</strong>ode <strong>M</strong>odulation) 编码器<ul>
+<li>抽样（$f_{采样频率} \geq 2f_{最高频率}$），量化，编码</li>
+</ul>
+</li>
+<li>数字信号转为模拟信号<ul>
+<li>Constellation diagrams (星座图)</li>
+<li>调振幅、频率、相位<br>  <img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png" alt></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据传输<ul>
+<li>GUIDED TRANSMISSION MEDIA 有线数据传输<ul>
+<li>Magnetic media 磁介质</li>
+<li>Twisted pair 双绞线：可以同时传播数字信号和模拟信号。</li>
+<li>Coaxial cable 同轴电缆：抗干扰性比双绞线好，传输距离远，费用较贵。</li>
+<li>Fiber optics 光纤<ul>
+<li>Multimode (多模): many different rays. Using LED.</li>
+<li>Unimode (单模): single rays, longer distance. Using Semiconductor laser</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WIRELESS TRANSMISSION 无线传输<ul>
+<li>The Electromagnetic Spectrum 电磁波谱：频带越宽，速率越高。</li>
+<li>Microwave transmission 微波传输：发射塔越高，传播距离越远；广泛应用。</li>
+<li>Infrared and millimeter waves/Lightwave transmission 红外线和毫米波/激光</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4>
       
     </div>
     <footer class="article-footer">
@@ -306,7 +313,7 @@
           </li>
           <li class="post-copyright-link">
           <strong>本文链接:  </strong>
-          <a href="/about/index.html" target="_blank" title="About Me">https://jiangshibiao.github.io/about/index.html</a>
+          <a href="/2020/04/02/Computer-Network/" target="_blank" title="《计算机网络》知识整理">https://jiangshibiao.github.io/2020/04/02/Computer-Network/</a>
           </li>
           <li class="post-copyright-license">
             <strong>版权声明:   </strong>
@@ -345,15 +352,38 @@
 
       
       
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computer-Network/">Computer Network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li></ul>
+
+      
 
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/31/Life-is-a-Moment-Primary-School/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">朝花夕拾</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#物理层"><span class="nav-number">1.</span> <span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据链路层"><span class="nav-number">2.</span> <span class="nav-text">数据链路层</span></a></li></ol>
+    
+    </div>
+  </aside>
 
 </section>
         
@@ -451,6 +481,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 
@@ -534,6 +566,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

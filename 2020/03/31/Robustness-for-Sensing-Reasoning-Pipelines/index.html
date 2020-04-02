@@ -20,7 +20,7 @@
 <meta property="og:description" content="论文简介 Arxiv 地址  什么是 Sensing-Reasoning pipelines 对于 Sensing 层面，我们用若干种不同的模型去感知，得到很多组 $01$ 的随机变量。 对于 Reasoning 层面，我们把之前的若干个结果汇总，利用领域知识（domain knowledge）和概率模型去矫正和逼近真实答案。常见的概率模型有： 基于无向图的 Markov logic networ">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/MLN_example.png">
-<meta property="og:updated_time" content="2020-03-31T17:10:17.752Z">
+<meta property="og:updated_time" content="2020-04-02T03:29:01.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robustness-for-Sensing-Reasoning-Pipelines">
 <meta name="twitter:description" content="论文简介 Arxiv 地址  什么是 Sensing-Reasoning pipelines 对于 Sensing 层面，我们用若干种不同的模型去感知，得到很多组 $01$ 的随机变量。 对于 Reasoning 层面，我们把之前的若干个结果汇总，利用领域知识（domain knowledge）和概率模型去矫正和逼近真实答案。常见的概率模型有： 基于无向图的 Markov logic networ">
@@ -211,8 +211,7 @@
 </li>
 <li>论文里介绍了一个有趣的例子：假设我们想判断一张图 $X$ 的信息。<ul>
 <li>我们在 Sensing 层面设了 Dog Sensor，Cat Sensor 和 Animial Sensor 三个神经网络模型去感知，从而能得到三个概率 $p_1, p_2, p_3$，$p_i$ 表示该图 <strong>是</strong> 物体 $i$ 的概率。</li>
-<li>由知识和经验，我们知道猫和狗都是动物，该规律可以在 Reasoning 层面帮我们去矫正之前的概率。<img src="/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/MLN_example.png">
-</li>
+<li>由知识和经验，我们知道猫和狗都是动物，该规律可以在 Reasoning 层面帮我们去矫正之前的概率。<br><img src="//jiangshibiao.github.io/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/MLN_example.png" alt></li>
 </ul>
 </li>
 </ul>
@@ -542,5 +541,21 @@
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-miku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
