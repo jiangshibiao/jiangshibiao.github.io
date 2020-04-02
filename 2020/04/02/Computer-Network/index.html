@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png">
-<meta property="og:updated_time" content="2020-04-02T14:56:28.306Z">
+<meta property="og:updated_time" content="2020-04-02T15:09:39.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。 物理层 THE PHYSICS LAYER Signal (信号)：数据的电气/电磁表现，是数据在传输过程中的存在形式。 Bandwidth (带宽)：The range of frequencies transmitted without being strongly attenuated.">
@@ -353,7 +353,7 @@
 <li>Hamming Code 海明码<ul>
 <li>添加的 $r$ 位校验位必然要满足：$m+r+1 \leq 2^r$</li>
 <li>在所有 $2$ 的幂次的位置处插入校验位，剩余的位置按顺序摆放数据位。</li>
-<li>第 $k$ 个校验位的取值由所有下标里带 $2^k$ 的数据位决定。要求那些位和这个校验位的异或值等于 $0$。</li>
+<li>第 $k$ 个校验位的取值由所有下标里带 $2^k$ 的数据位决定。要求那些位和校验位的异或值等于 $0$。</li>
 <li>接收方依次检查每一个 $k$ 的异或值，如果非 $0$ 就记下来。出错位就是非 $0$ 位的叠加态。</li>
 </ul>
 </li>
@@ -378,8 +378,7 @@
 </li>
 </ul>
 </li>
-<li><p>The Medium Access Control 介质访问子层</p>
-<ul>
+<li>The Medium Access Control 介质访问子层<ul>
 <li>这层可以视为数据链路层的子层（sublayer）</li>
 <li>两种网络类型：点对点（point-to-point），广播式（broadcast）</li>
 <li>在广播式类型里，需要考虑信道分配问题，涉及到多路复用技术。</li>
@@ -393,19 +392,14 @@
 </li>
 </ul>
 </li>
-<li><p>动态信道划分</p>
-<ul>
-<li><p>Pure ALOHA：不监听信道，不按时间槽发送，随机重发。</p>
-</li>
-<li><p>Slotted ALOHA：时间被切成等长的片，要等到下一个时间片开始才能发送。</p>
-</li>
-<li><p><strong>C</strong>arrier <strong>S</strong>ense <strong>M</strong>ultiple <strong>A</strong>ccess  载波侦听多路访问协议<br>|          | Persistent CSMA | Non-persistent CSMA |     $p$ - persistent CSMA      |<br>| ———— | ———————- | :————————-: | :——————————————: |<br>| 信道空闲 | 马上发          |       马上发        | $p$ 概率马上发，$1-p$ 概率等待 |<br>| 信道忙   | 继续监听        |  一段时间后再监听   |        一段时间后再监听        |</p>
-</li>
-<li><p>CSMA with <strong>C</strong>ollision <strong>D</strong>etection  载波侦听多路访问协议</p>
-<ul>
+<li>动态信道划分<ul>
+<li>Pure ALOHA：不监听信道，不按时间槽发送，随机重发。</li>
+<li>Slotted ALOHA：时间被切成等长的片，要等到下一个时间片开始才能发送。</li>
+<li><strong>C</strong>arrier <strong>S</strong>ense <strong>M</strong>ultiple <strong>A</strong>ccess  载波侦听多路访问协议（见下面表格）</li>
+<li>CSMA with <strong>C</strong>ollision <strong>D</strong>etection  载波侦听多路访问协议<ul>
 <li>在半双工网络中考虑问题（冲突仅为发送接收双方的碰撞）</li>
 <li>若传播时延是 $\tau$，则最坏在 $2\tau$ 检测到冲突。</li>
-<li>CSMACD 就是来考虑检测到冲突后选择何时重传的。基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^k-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 后放弃。</li>
+<li>CSMACD 就是来考虑检测到冲突后选择何时重传的。基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^k-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 放弃。</li>
 <li>当帧长过短的时候 CSMACD 可能不会有用。能确保有用的最小帧长是 $2\tau \times speed$</li>
 </ul>
 </li>
@@ -414,6 +408,32 @@
 </ul>
 </li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>CSMA 类型</th>
+<th>Persistent CSMA</th>
+<th>Non-persistent CSMA</th>
+<th>$p$-persistent CSMA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信道空闲</td>
+<td>马上发</td>
+<td>马上发</td>
+<td>$p$ 概率马上发，$1-p$ 概率等待</td>
+</tr>
+<tr>
+<td>信道忙</td>
+<td>继续监听</td>
+<td>一段时间后再监听</td>
+<td>一段时间后再监听</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
