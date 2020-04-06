@@ -126,11 +126,11 @@ html{
 .homelogo{
 	max-width: 400px;
 	height: auto;
-	padding: 10px;
+	padding: 5px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -100px;
+	margin-top: -250px;
 	backdrop-filter: saturate(180%) blur(20px);
 	-webkit-backdrop-filter: saturate(180%) blur(20px);
 	-webkit-background-size: cover;
