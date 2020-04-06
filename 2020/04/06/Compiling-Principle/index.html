@@ -6,7 +6,7 @@
   <title>《编译原理》知识整理 | jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Course ReviewCompiling Principle">
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
   
   
   
@@ -19,10 +19,13 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-06T02:41:45.717Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR(0">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png">
+<meta property="og:updated_time" content="2020-04-06T08:21:09.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR(0">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -65,6 +68,8 @@
   
   
   
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
 
 </head>
 </html>
@@ -94,7 +99,7 @@
               <a class="brand" style="
                  margin-top: 0px;"  
                 href="#" data-toggle="modal" data-target="#myModal" >
-                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
               </a>
             
             
@@ -254,16 +259,34 @@
 <h4 id="LR-k"><a href="#LR-k" class="headerlink" title="LR(k)"></a>LR(k)</h4><ul>
 <li>$\mathrm{LR(k)}$ 代表从左至右分析（Left-to-right parse）、最右推导（Rightmost-derivation）、超前查看 $k$ 个单词（$k$-token lookahead）。</li>
 <li>$\mathrm{LR(k)}$ 有一个栈和一个输入，输入中前 $k$ 个单词是超前查看的单词。共有两种动作：<ol>
-<li>移进：将第一个输入单词压入至栈顶</li>
-<li>规约：选择一个文法规则 $X \to ABC$，依次从栈顶弹出 $C,B,A$，然后将 $X$ 压入栈。</li>
+<li>移进（shift）：将第一个输入单词压入至栈顶</li>
+<li>规约（reduce）：选择一个文法规则 $X \to ABC$，依次从栈顶弹出 $C,B,A$，然后将 $X$ 压入栈。</li>
 </ol>
 </li>
-<li></li>
+<li>$\mathrm{LR(k)}$ 的分析引擎<ul>
+<li>我们可以对所有可能的 <strong>状态</strong> 建立 DFA，边即为字符集。<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR(0" alt>.png)</li>
+<li>用原点（<code>.</code>）表示当前分析器的位置</li>
+</ul>
+</li>
+<li>定义两个基本操作 <strong>Closure(I)</strong> 和 <strong>Goto(I,X)</strong>：<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png" alt></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img01.sogoucdn.com/net/a/04/link?appid=100520145&url=http%3A%2F%2Fimg02.sogoucdn.com%2Fapp%2Fa%2F100520146%2Fe5082c167a1e04bd68d8754e0e70ad0f',
+  alipayImage: 'https://img01.sogoucdn.com/net/a/04/link?appid=100520145&url=http%3A%2F%2Fimg03.sogoucdn.com%2Fapp%2Fa%2F100520146%2F41FE94686F96781935F86CB65A67C56D'
+});
+</script>
       
       
       <div>
@@ -531,21 +554,5 @@
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
