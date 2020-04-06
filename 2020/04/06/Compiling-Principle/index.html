@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR0.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png">
-<meta property="og:updated_time" content="2020-04-06T08:23:00.068Z">
+<meta property="og:updated_time" content="2020-04-06T09:51:48.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
@@ -263,12 +263,13 @@
 <li>规约（reduce）：选择一个文法规则 $X \to ABC$，依次从栈顶弹出 $C,B,A$，然后将 $X$ 压入栈。</li>
 </ol>
 </li>
-<li>$\mathrm{LR(k)}$ 的分析引擎<ul>
-<li>我们可以对所有可能的 <strong>状态</strong> 建立 DFA，边即为字符集。<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR0.png" alt></li>
+<li>$\mathrm{LR(0)}$ 的分析引擎<ul>
+<li>我们可以对所有可能的 <strong>状态</strong> 建立 DFA，边即为字符集。</li>
+<li>注意我们维护了一个<strong>栈</strong>，记录了解析到现在曾到过那些状态。每次转移时要不是读入一个 <strong>终结字符</strong> 跳到一个新状态（将这些信息也压入栈），要不进行规约弹栈得到一个 <strong>非终结字符</strong>，并依据这个非终结字符在 DFA 上跳到新的状态并压栈。<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR0.png" alt></li>
 <li>用原点（<code>.</code>）表示当前分析器的位置</li>
+<li>两个形式化的基本操作 <strong>Closure(I)</strong> 和 <strong>Goto(I,X)</strong>：<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png" alt></li>
 </ul>
 </li>
-<li>定义两个基本操作 <strong>Closure(I)</strong> 和 <strong>Goto(I,X)</strong>：<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png" alt></li>
 </ul>
 
       
@@ -283,8 +284,8 @@ var a = new Donate({
   title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
   btnText: '打赏支持', // 可选参数，打赏按钮文字
   el: document.getElementById('donation_div'),
-  wechatImage: 'https://img01.sogoucdn.com/net/a/04/link?appid=100520145&url=http%3A%2F%2Fimg02.sogoucdn.com%2Fapp%2Fa%2F100520146%2Fe5082c167a1e04bd68d8754e0e70ad0f',
-  alipayImage: 'https://img01.sogoucdn.com/net/a/04/link?appid=100520145&url=http%3A%2F%2Fimg03.sogoucdn.com%2Fapp%2Fa%2F100520146%2F41FE94686F96781935F86CB65A67C56D'
+  wechatImage: 'https://github.com/jiangshibiao/jiangshibiao.github.io/tree/master/about/wechatpay.png',
+  alipayImage: 'https://github.com/jiangshibiao/jiangshibiao.github.io/tree/master/about/aplipay.png'
 });
 </script>
       
