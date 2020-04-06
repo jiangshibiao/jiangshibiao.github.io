@@ -3,21 +3,21 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>jiangshibiao&#39;s blog</title>
+  <title>jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
   <meta property="og:type" content="website">
-<meta property="og:title" content="jiangshibiao&#39;s blog">
+<meta property="og:title" content="jiangshibiao">
 <meta property="og:url" content="https://jiangshibiao.github.io/index.html">
-<meta property="og:site_name" content="jiangshibiao&#39;s blog">
+<meta property="og:site_name" content="jiangshibiao">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jiangshibiao&#39;s blog">
+<meta name="twitter:title" content="jiangshibiao">
   
-    <link rel="alternate" href="/atom.xml" title="jiangshibiao&#39;s blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
 
   
@@ -84,7 +84,7 @@
                   
                     <div class="item active">
                   
-                    <img id="carousel-img0" src="/css/images/home-bg.jpg">
+                    <img id="carousel-img0" src="/css/images/home1.jpg">
                   </div>
 
                   <!-- 自适应大图 -->
@@ -105,7 +105,7 @@
                   
                     <div class="item">
                   
-                    <img id="carousel-img1" src="/css/images/sample.jpg">
+                    <img id="carousel-img1" src="/css/images/home2.jpg">
                   </div>
 
                   <!-- 自适应大图 -->
@@ -126,7 +126,7 @@
                   
                     <div class="item">
                   
-                    <img id="carousel-img2" src="https://source.unsplash.com/collection/954550/1920x1080">
+                    <img id="carousel-img2" src="/css/images/home3.jpg">
                   </div>
 
                   <!-- 自适应大图 -->
@@ -140,6 +140,27 @@
                         } else {
                           imageTag2.style.height = document.body.clientHeight + "px";
                           imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+                  
+                    <div class="item">
+                  
+                    <img id="carousel-img3" src="/css/images/home4.jpg">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img3 = new Image();
+                      var imageTag3 = document.getElementById("carousel-img3");
+                      img3.src = imageTag3.src;
+                      img3.onload=function(){
+                        if (img3.width / img3.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag3.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag3.style.height = document.body.clientHeight + "px";
+                          imageTag3.style.marginLeft = -(document.body.clientHeight * img3.width / img3.height - document.body.clientWidth) / 2 + "px";
                         }
                       };
                   </script>
@@ -204,7 +225,7 @@
 
         
           <div class="homelogoback"  style="border: 1px solid #404040;" >
-            <h1><a href="#content" id="logo">jiangshibiao&#39;s blog</a></h1>
+            <h1><a href="#content" id="logo">jiangshibiao</a></h1>
             <h3></h3>
             <h5></h5>
             <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
@@ -256,6 +277,67 @@
       <div id="content" class="outer">
         
           <section id="main" style="float:none;">
+  
+    <article id="post-Compiling-Principle"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/06/Compiling-Principle/">《编译原理》知识整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/04/06/Compiling-Principle/" class="article-date">
+	  <time datetime="2020-04-06T02:39:45.000Z" itemprop="datePublished">2020-04-06</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。
+LL(1)
+参考资料
+就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。
+一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。 
+
+
+LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$
+不存在 $a$ 同时存在于 $First(A)$ 和 $First(B)$ 中。
+$A$ 和 $B$ 最多只能有一个能导出 $\ep...
+        </p>
+        <p class="article-more-link">
+          <a href="/2020/04/06/Compiling-Principle/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
   
     <article id="post-Computer-Network"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
@@ -510,7 +592,7 @@ Arxiv 地址
   <div class="container">
       	<div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2013 - 2020 jiangshibiao&#39;s blog All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2020 jiangshibiao All Rights Reserved.</p>
 	      
 	      
     		<p class="busuanzi_uv">
@@ -661,10 +743,10 @@ Arxiv 地址
         </div>
          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
           <div class="panel-body">
-            jiangshibiao&#39;s blog
+            jiangshibiao
           </div>
           <div class="panel-body">
-            Copyright © 2020 jiangshibiao&#39;s blog All Rights Reserved.
+            Copyright © 2020 jiangshibiao All Rights Reserved.
           </div>
         </div>
       </div>

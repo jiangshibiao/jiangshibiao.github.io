@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>jiangshibiao&#39;s blog</title>
+  <title>jiangshibiao</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jiangshibiao.github.io/"/>
-  <updated>2020-04-03T03:04:01.215Z</updated>
+  <updated>2020-04-06T02:41:45.717Z</updated>
   <id>https://jiangshibiao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《编译原理》知识整理</title>
+    <link href="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/"/>
+    <id>https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/</id>
+    <published>2020-04-06T02:39:45.000Z</published>
+    <updated>2020-04-06T02:41:45.717Z</updated>
+    
+    <content type="html"><![CDATA[<p>在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。</p><h4 id="LL-1"><a href="#LL-1" class="headerlink" title="LL(1)"></a>LL(1)</h4><ul><li><a href="https://www.cnblogs.com/yuanting0505/p/3761411.html" target="_blank" rel="noopener">参考资料</a></li><li>就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。<ul><li>一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。 </li></ul></li><li><strong>LL(1)文法的充要条件</strong>：对于任意 $U \rightarrow A|B$<ol><li>不存在 $a$ 同时存在于 $First(A)$ 和 $First(B)$ 中。</li><li>$A$ 和 $B$ 最多只能有一个能导出 $\epsilon$。</li><li>如果 $B \stackrel{*}{\Rightarrow} \epsilon$，那么 $Follow(U)$ 与 $First(A)$ 不能有交；反之亦然。</li></ol></li><li>LL(1)文法也可以定义成：其 Parsing table 每一格不存在多个转移。</li><li>First 集合<ul><li>$First(A)$ 表示能出现在 $A$ 开头的非终结字符的集合。</li><li>统计规则<ul><li>直接收取：若存在 $T \rightarrow a…$，则将 $a$ 放入 $First(T)$</li><li>反复推送：若 $T \rightarrow E…$，把 $First(E)$ 的所有元素加入 $First(T)$</li></ul></li></ul></li><li>Follow 集合<ul><li>专门为了空操作而设计的。</li><li>$Follow(A)$ 是可能在某些句型中紧跟在 $A$ 右边的终结符号的集合。</li><li>统计规则<ul><li>若 $A \rightarrow …UP$，$First(P)$ 中除了 $\epsilon$ 都放入 $Follow(U)$（直接根据定义）</li><li>若 $A \rightarrow …U$ 或 $A \rightarrow …UP$ 且 $First(P)$ 中包含 $\epsilon$ ，则 $Follow(A)$ 的所有元素加入 $Follow(U)$</li><li>$\$ \in Follow(S)$</li></ul></li></ul></li><li>Parsing table M[N,T]（N 是非终结符，T 是终结符）<ul><li>构建规则：考虑 $U \rightarrow A$ 的转移<ol><li>对于 $First(U)$ 中的每个元素 $a$，都将 $U \rightarrow A$ 添加到 M[U, a] 中。</li><li>若 $\epsilon \in First(A)$ 中，对于 $Follow(U)$ 中的每个元素 $a$ 都将 $U \rightarrow A$ 添加到项目 M[U, a] 中。</li></ol></li></ul></li><li>消除左递归<ul><li>若转移形如 $A \rightarrow A\alpha_1|A\alpha_2|\dots|A\alpha_n|\beta_1|\beta_2|\dots|\beta_m$</li><li>则化简后的转移为<ul><li>$A \rightarrow \beta_1A’|\beta_2A’|\dots|\beta_mA’$</li><li>$A’ \rightarrow \alpha_1A’|\alpha_2A’|\dots|\alpha_nA’|\epsilon$</li></ul></li></ul></li></ul><h4 id="LR-k"><a href="#LR-k" class="headerlink" title="LR(k)"></a>LR(k)</h4><ul><li>$\mathrm{LR(k)}$ 代表从左至右分析（Left-to-right parse）、最右推导（Rightmost-derivation）、超前查看 $k$ 个单词（$k$-token lookahead）。</li><li>$\mathrm{LR(k)}$ 有一个栈和一个输入，输入中前 $k$ 个单词是超前查看的单词。共有两种动作：<ol><li>移进：将第一个输入单词压入至栈顶</li><li>规约：选择一个文法规则 $X \to ABC$，依次从栈顶弹出 $C,B,A$，然后将 $X$ 压入栈。</li></ol></li><li></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。&lt;/p&gt;
+&lt;h4 id=&quot;LL-1&quot;&gt;&lt;a href=&quot;#LL-1&quot; class=&quot;headerlink&quot; title=&quot;LL(1)&quot;&gt;&lt;/a&gt;LL(1)&lt;/h4&gt;&lt;ul&gt;
+      
+    
+    </summary>
+    
+      <category term="Course Review" scheme="https://jiangshibiao.github.io/categories/Course-Review/"/>
+    
+    
+      <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
+    
+      <category term="Compiling Principle" scheme="https://jiangshibiao.github.io/tags/Compiling-Principle/"/>
+    
+  </entry>
   
   <entry>
     <title>《计算机网络》知识整理</title>
