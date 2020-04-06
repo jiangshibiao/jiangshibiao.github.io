@@ -130,7 +130,7 @@ html{
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -250px;
+	margin-top: -300px;
 	backdrop-filter: saturate(180%) blur(20px);
 	-webkit-backdrop-filter: saturate(180%) blur(20px);
 	-webkit-background-size: cover;
