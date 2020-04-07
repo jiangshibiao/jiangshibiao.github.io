@@ -24,7 +24,8 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1DFA.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LALR1.png">
-<meta property="og:updated_time" content="2020-04-07T07:24:02.649Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png">
+<meta property="og:updated_time" content="2020-04-07T07:53:45.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
@@ -260,10 +261,8 @@
 </li>
 </ul>
 <h4 id="LR-k"><a href="#LR-k" class="headerlink" title="LR(k)"></a>LR(k)</h4><ul>
-<li><p>$\mathrm{LR(k)}$ 代表从左至右分析（Left-to-right parse）、最右推导（Rightmost-derivation）、超前查看 $k$ 个单词（$k$-token lookahead）。</p>
-</li>
-<li><p>$\mathrm{LR(k)}$ 有一个栈和一个输入，输入中前 $k$ 个单词是超前查看的单词。共有两种动作：</p>
-<ol>
+<li>$\mathrm{LR(k)}$ 代表从左至右分析（Left-to-right parse）、最右推导（Rightmost-derivation）、超前查看 $k$ 个单词（$k$-token lookahead）。</li>
+<li>$\mathrm{LR(k)}$ 有一个栈和一个输入，输入中前 $k$ 个单词是超前查看的单词。共有两种动作：<ol>
 <li>移进（shift）：将第一个输入单词压入至栈顶</li>
 <li>规约（reduce）：选择一个文法规则 $X \to ABC$，依次从栈顶弹出 $C,B,A$，然后将 $X$ 压入栈。</li>
 </ol>
@@ -281,19 +280,17 @@
 <li><p>$\mathrm{SLR}$ 的分析引擎（Simple LR）</p>
 <ul>
 <li>为了解决上述的冲突问题，我们引入范围更大的 $\mathrm{SLR}$。它提出了一个简单而有效的方案。 </li>
-<li>自动机状态的表示、移进和规约的操作都和 $\mathrm{LR(0)}$ 差不多，但让规约变得<strong>更严格了</strong>：若状态中存在已经结束的表达式 $A \to …\cdot$，<strong>只有当下一个字符 $\alpha$ 满足 $\alpha \in Follow(A)$ 时才规约</strong>。</li>
+<li>自动机状态的表示、移进和规约的操作都和 $\mathrm{LR(0)}$ 差不多，但让规约变得<strong>更严格了</strong>：若状态中存在已经结束的表达式 $A \to …\cdot$，只有当下一个字符 $\alpha$满足 $\alpha \in Follow(A)$ 时才规约。</li>
 </ul>
 </li>
-<li><p>$\mathrm{LR(1)}$ 的分析引擎</p>
-<ul>
-<li>$\alpha \in Follow(A)$ 只是一个必要条件而非充分条件，$\mathrm{LR(1)}$ 试图通过复杂的定义找到更紧的规约条件。</li>
+<li>$\mathrm{LR(1)}$ 的分析引擎<ul>
+<li>$\alpha \in Follow(A)$ 只是一个必要条件而非充分条件，$\mathrm{LR(1)}$ 试图找到更紧的规约条件。</li>
 <li>定义项目 $(A \to \alpha \cdot \beta,x)$ （$\alpha,\beta$ 是序列，$x$ 是终结符，称为搜索符）：目前序列 $\alpha$ 在栈顶，且输入序列的开头可以解析成 $\beta x$。<strong>和 Follow 集合的思路类似</strong>，但是非终结符不再共享同一个集合。</li>
 <li>一个状态依然对应了若干个项目，但闭包求法也变复杂了：<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1.png" alt></li>
 <li>DFA 的构建、分析表的构建和 $\mathrm{LR(0)}$ 类似，但是移进字符等于产生式对应的搜索符才能规约。<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1DFA.png" alt></li>
 </ul>
 </li>
-<li><p>$\mathrm{LALR(1)}$ 的分析引擎</p>
-<ul>
+<li>$\mathrm{LALR(1)}$ 的分析引擎<ul>
 <li>$\mathrm{LALR(1)}$ 的意思是超前查看（Look  Ahead）的 $\mathrm{LR(1)}$</li>
 <li>$\mathrm{LR(1)}$ 的表太大了不方便，$\mathrm{LALR(1)}$ 会把产生式和圆点完全一样的状态 <strong>合并</strong> 成同一个，对应的搜索符合并。这样状态减少很多，可能会导致冲突。</li>
 <li>以下是上面那个文法对应的 $\mathrm{LR(1)}$ 分析表和 $\mathrm{LALR(1)}$ 分析表的比较。<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LALR1.png" alt></li>
@@ -301,6 +298,7 @@
 </ul>
 </li>
 </ul>
+<h4 id="LL-和-LR-的关系总结"><a href="#LL-和-LR-的关系总结" class="headerlink" title="LL 和 LR 的关系总结"></a>LL 和 LR 的关系总结</h4><p><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png" alt></p>
 
       
     </div>
@@ -394,7 +392,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-1"><span class="nav-number">1.</span> <span class="nav-text">LL(1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LR-k"><span class="nav-number">2.</span> <span class="nav-text">LR(k)</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-1"><span class="nav-number">1.</span> <span class="nav-text">LL(1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LR-k"><span class="nav-number">2.</span> <span class="nav-text">LR(k)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-和-LR-的关系总结"><span class="nav-number">3.</span> <span class="nav-text">LL 和 LR 的关系总结</span></a></li></ol>
     
     </div>
   </aside>
