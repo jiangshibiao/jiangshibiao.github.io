@@ -11,13 +11,13 @@
   
   
   
-  <meta name="description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
+  <meta name="description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。">
 <meta name="keywords" content="Course Review,Compiling Principle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《编译原理》知识整理">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
+<meta property="og:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR0.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1DFA.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LALR1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png">
-<meta property="og:updated_time" content="2020-04-07T07:53:45.824Z">
+<meta property="og:updated_time" content="2020-04-07T08:33:47.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
-<meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 LL(1) 参考资料 就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。 一个自然的需求是，每当我们看见一个非终结字符，需要知道它是属于哪个产生式的。    LL(1)文法的充要条件：对于任意 $U \rightarrow A|B$ 不存在 $a$ 同时存在于 $Firs">
+<meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -209,6 +209,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。</p>
+<a id="more"></a>
 <h4 id="LL-1"><a href="#LL-1" class="headerlink" title="LL(1)"></a>LL(1)</h4><ul>
 <li><a href="https://www.cnblogs.com/yuanting0505/p/3761411.html" target="_blank" rel="noopener">参考资料</a></li>
 <li>就是从左向右扫描输入，维护一个栈，每次都把最左边的非终结字符用产生式代替。<ul>
@@ -267,8 +268,7 @@
 <li>规约（reduce）：选择一个文法规则 $X \to ABC$，依次从栈顶弹出 $C,B,A$，然后将 $X$ 压入栈。</li>
 </ol>
 </li>
-<li><p>$\mathrm{LR(0)}$ 的分析引擎</p>
-<ul>
+<li>$\mathrm{LR(0)}$ 的分析引擎<ul>
 <li>一个 <strong>状态</strong> 包含所有可能的（解析当下输入的）产生式，产生式右边用圆点（<code>.</code>）表示解析到的位置。</li>
 <li>定义两个基本操作 <strong>Closure(I)</strong> 和 <strong>Goto(I,X)</strong>：<br><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR.png" alt></li>
 <li>我们试图对所有可能的 <strong>状态</strong> 建立 DFA，边即为字符集（包含终结符和非终结符）。</li>
@@ -277,8 +277,7 @@
 <li>如果一个状态某个时刻既可以移进当前字符、又可以规约（存在已经结束的产生式），就产生了 <strong>冲突</strong>。我们称这样的文法不是 $\mathrm{LR(0)}$ 文法。</li>
 </ul>
 </li>
-<li><p>$\mathrm{SLR}$ 的分析引擎（Simple LR）</p>
-<ul>
+<li>$\mathrm{SLR}$ 的分析引擎（Simple LR）<ul>
 <li>为了解决上述的冲突问题，我们引入范围更大的 $\mathrm{SLR}$。它提出了一个简单而有效的方案。 </li>
 <li>自动机状态的表示、移进和规约的操作都和 $\mathrm{LR(0)}$ 差不多，但让规约变得<strong>更严格了</strong>：若状态中存在已经结束的表达式 $A \to …\cdot$，只有当下一个字符 $\alpha$满足 $\alpha \in Follow(A)$ 时才规约。</li>
 </ul>
@@ -374,6 +373,15 @@ var a = new Donate({
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/04/07/Interesting-Problems/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          趣题摘记
+        
+      </div>
+    </a>
   
   
     <a href="/2020/04/02/Computer-Network/" id="article-nav-older" class="article-nav-link-wrap">
