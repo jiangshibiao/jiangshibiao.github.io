@@ -6,10 +6,37 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jiangshibiao.github.io/"/>
-  <updated>2020-04-07T16:11:58.152Z</updated>
+  <updated>2020-04-15T04:30:35.628Z</updated>
   <id>https://jiangshibiao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何优雅地使用 Python</title>
+    <link href="https://jiangshibiao.github.io/2020/04/14/Use-Python-Gracefully/"/>
+    <id>https://jiangshibiao.github.io/2020/04/14/Use-Python-Gracefully/</id>
+    <published>2020-04-14T15:12:55.000Z</published>
+    <updated>2020-04-15T04:30:35.628Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><p>每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。很多基础的函数不会调用，要现场百度起来；更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。于是我就开了这篇博客，记录一下一些反复用到的 Python 相关的工具，也希望能带给我更多的 Python 的思维习惯。</p><h4 id="Conda-和-Pip"><a href="#Conda-和-Pip" class="headerlink" title="Conda 和 Pip"></a>Conda 和 Pip</h4><div class="table-container"><table><thead><tr><th>需求</th><th>指令</th></tr></thead><tbody><tr><td>查看当前所有环境</td><td><code>conda info --env</code></td></tr><tr><td>新建一个环境</td><td><code>conda create --name &lt;name&gt; python=3.5</code></td></tr><tr><td>激活环境</td><td><code>conda activate&lt;name&gt;</code></td></tr><tr><td>关闭环境</td><td><code>deactivate &lt;name&gt;</code></td></tr><tr><td>删除环境</td><td><code>conda remove -n python35 --all</code></td></tr><tr><td>pip 换源</td><td><code>pip install -i &lt;url&gt; &lt;package_name&gt;</code></td></tr><tr><td></td><td><code>http://mirrors.aliyun.com/pypi/simple/</code></td></tr><tr><td></td><td><code>https://pypi.tuna.tsinghua.edu.cn/simple/</code></td></tr></tbody></table></div><h4 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h4><h4 id="简化编程"><a href="#简化编程" class="headerlink" title="简化编程"></a>简化编程</h4><ul><li><p><strong>namedtuple </strong> 具名元组：在元组的基础上，支持用属性名去访问元素。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections.namedtuple</span><br><span class="line"></span><br><span class="line">User = namedtuple(<span class="string">'User'</span>, [<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'id'</span>])</span><br><span class="line">User = namedtuple(<span class="string">'User'</span>, <span class="string">'name age id'</span>)</span><br><span class="line"></span><br><span class="line">user = User(<span class="string">'tester'</span>, <span class="string">'22'</span>, <span class="string">'001'</span>)</span><br><span class="line">user = User._make([<span class="string">'Runoob'</span>, <span class="string">'male'</span>, <span class="number">12</span>])</span><br><span class="line">user = user._replace(age = <span class="number">22</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (user) <span class="comment"># User(name='user1', sex='male', age=21)</span></span><br><span class="line"><span class="keyword">print</span> (user._asdict) <span class="comment"># 将其转化为字典</span></span><br><span class="line"><span class="keyword">print</span> (user._fields) <span class="comment"># 获取所有字段名</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;p&gt;每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。很多基础的函数不会调用，要现场百度起来；更糟糕的是，没有掌握
+      
+    
+    </summary>
+    
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
+    
+    
+      <category term="Python" scheme="https://jiangshibiao.github.io/tags/Python/"/>
+    
+      <category term="Coding" scheme="https://jiangshibiao.github.io/tags/Coding/"/>
+    
+  </entry>
   
   <entry>
     <title>趣题摘记</title>
