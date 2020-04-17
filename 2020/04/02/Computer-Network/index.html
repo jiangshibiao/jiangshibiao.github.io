@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png">
-<meta property="og:updated_time" content="2020-04-16T15:28:18.396Z">
+<meta property="og:updated_time" content="2020-04-17T10:03:30.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -453,16 +453,17 @@
 </ul>
 </li>
 <li><strong>C</strong>arrier <strong>S</strong>ense <strong>M</strong>ultiple <strong>A</strong>ccess  载波侦听多路访问协议（见上面表格）</li>
-<li>CSMA with <strong>C</strong>ollision <strong>A</strong>voidance 载波侦听多路访问／冲突避免<ul>
-<li>主动避免冲突</li>
-<li>监听到信道空闲时，并不是立即发送，而是等待一段时间再发送数据。 </li>
-<li>先发送一个很小的信道侦测帧RTS，如果收到最近的接入点返回的CTS，就认为信道是空闲的，然后再发送数据</li>
+<li>CSMA with <strong>C</strong>ollision <strong>A</strong>voidance <ul>
+<li>主动避免冲突，主要应用于无线网络。</li>
+<li>监听到信道空闲（<strong>idle</strong>）时，并不是立即发送，而是等待一段时间再发送数据。 </li>
+<li>缺陷： hidden problem。</li>
+<li>IEEE 802.11：监听到信道空闲的时候，先发送一个很小的信道侦测帧 <strong>R</strong>equest-<strong>T</strong>o-<strong>S</strong>end ，如果收到 目标地址的 <strong>C</strong>lear-<strong>T</strong>o-<strong>S</strong>end 再发送数据。一定程度上缓解 hidden problem。</li>
 </ul>
 </li>
 <li>CSMA with <strong>C</strong>ollision <strong>D</strong>etection  载波侦听多路访问协议<ul>
-<li>在半双工网络中考虑问题（冲突仅为发送接收双方的碰撞）</li>
+<li>在半双工网络中考虑问题（冲突仅为发送接收双方的碰撞），主要应用于有线网络。</li>
 <li>若传播时延是 $\tau$，则最坏在 $2\tau$ 检测到冲突。</li>
-<li>CSMACD 就是来考虑检测到冲突后选择何时重传的。基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^k-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 放弃。</li>
+<li>binary exponential backoff 二进制指数退避算法：基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^{\min(k,10)}-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 放弃。</li>
 <li>当帧长过短的时候 CSMACD 可能不会有用。能确保有用的最小帧长是 $2\tau \times speed$</li>
 </ul>
 </li>
@@ -470,7 +471,7 @@
 <li>如果想发送数据，Station $i$ 在 slot $i$ 时插入一个 $1$。</li>
 <li>按 bitmap 1的顺序发送数据。</li>
 <li>设 $N$ 是 slot 的长度，$d$ 是数据帧大小。<ul>
-<li>At  low load，$E=\frac{d}{N+d}$</li>
+<li>At  low load,  $E=\frac{d}{N+d}$</li>
 <li>At high load, $E=\frac{d}{d+1}$</li>
 </ul>
 </li>
@@ -504,12 +505,21 @@
 <li>令牌坏：用于环形局域网。</li>
 </ul>
 </li>
-<li>局域网的分类<ul>
 <li>Ethernet 以太网：应用最广泛的局域网。<ul>
 <li>使用 IEEE802.3 规范，使用CSMA/CD</li>
 <li>逻辑拓扑总线型，物理拓扑星型或拓展星型</li>
+<li>造价低廉，应用最广泛；能满足网络速率的要求：10Mb/s-10Gb/s</li>
+<li>无连接，不可靠。只实现无差错接受，不实现可靠传输。</li>
+<li>使用CSMA/CD。两个标准：DIX Ethernet V2 或 IEEE 802.3</li>
+<li>10BASE-T 以太网：传送基带信号的双绞线以太网。<ul>
+<li>每段双绞线最长100m</li>
+<li>采用曼彻斯特编码和CSMA/CD</li>
 </ul>
 </li>
+<li>每一个适配器对应一个唯一的MAC地址（48位）</li>
+</ul>
+</li>
+<li>其他局域网<ul>
 <li><strong>F</strong>iber <strong>D</strong>istributed Data Interface<ul>
 <li>使用IEEE 802.8（光纤技术咨询组）</li>
 <li>物理双环拓扑，逻辑环形拓扑</li>
@@ -521,16 +531,20 @@
 </li>
 </ul>
 </li>
-<li>以太网 Ethernet<ul>
-<li>造价低廉，应用最广泛；能满足网络速率的要求：10Mb/s-10Gb/s</li>
-<li>无连接，不可靠。只实现无差错接受，不实现可靠传输。</li>
-<li>使用CSMA/CD。两个标准：DIX Ethernet V2 或 IEEE 802.3</li>
-<li>10BASE-T 以太网：传送基带信号的双绞线以太网。<ul>
-<li>每段双绞线最长100m</li>
-<li>采用曼彻斯特编码和CSMA/CD</li>
+<li>Data Link Layer Switching: Uses of Bridges<ul>
+<li>Operation of a LAN bridge from 802.11 to 802.3. </li>
+<li>The first 802 bridge is a learning bridge or transparent bridge.</li>
+<li>使用 <strong>backward learning</strong> 算法。<ul>
+<li>初始时有一张空的哈希表。</li>
+<li>若 Station A 请求 Station B 时到了目前的 Bridge，查看 B 是否在哈希表里。<ul>
+<li>如果不在，采用 Flooding 遍历每个除消息源的端口，把消息都传一遍。</li>
+<li>如果在，直接Forward 到目标端口。</li>
+<li>同时把 Station A 的端口信息记录在哈希表里。</li>
 </ul>
 </li>
-<li>每一个适配器对应一个唯一的MAC地址（48位）</li>
+</ul>
+</li>
+<li>缺点：如果有环就会出问题，一般会搭 spanning tree 来工作。</li>
 </ul>
 </li>
 </ul>
