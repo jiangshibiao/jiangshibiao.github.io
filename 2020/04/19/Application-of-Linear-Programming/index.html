@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>&#39;线性规划应用&#39; | jiangshibiao</title>
+  <title>线性规划应用 | jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
@@ -14,7 +14,7 @@
   <meta name="description" content="我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。 张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。 我本来是在 TSR 学长的博客 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。 这篇文章是系列之二，还有两个系列分别是： 线性规划理论 近似算法选讲">
 <meta name="keywords" content="Linear Programming,Math,Algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&#39;线性规划应用&#39;">
+<meta property="og:title" content="线性规划应用">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/index.html">
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。 张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。 我本来是在 TSR 学长的博客 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。 这篇文章是系列之二，还有两个系列分别是： 线性规划理论 近似算法选讲">
@@ -23,9 +23,9 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/dij.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/dij_sample.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/vertex_cover.png">
-<meta property="og:updated_time" content="2020-04-19T15:57:45.600Z">
+<meta property="og:updated_time" content="2020-04-19T16:52:01.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&#39;线性规划应用&#39;">
+<meta name="twitter:title" content="线性规划应用">
 <meta name="twitter:description" content="我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。 张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。 我本来是在 TSR 学长的博客 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。 这篇文章是系列之二，还有两个系列分别是： 线性规划理论 近似算法选讲">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/dual2.png">
   
@@ -179,7 +179,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      &#39;线性规划应用&#39;
+      线性规划应用
     </h1>
   
 
@@ -188,7 +188,7 @@
     <div class="article-meta">
       
 	<a href="/2020/04/19/Application-of-Linear-Programming/" class="article-date">
-	  <time datetime="2020-04-19T15:23:20.000Z" itemprop="datePublished">2020-04-19</time>
+	  <time datetime="2020-04-19T15:23:19.000Z" itemprop="datePublished">2020-04-19</time>
 	</a>
 
       
@@ -262,7 +262,8 @@
 </li>
 </ul>
 <h2 id="整数线性规划"><a href="#整数线性规划" class="headerlink" title="整数线性规划"></a>整数线性规划</h2><ul>
-<li>TSP 问题<ul>
+<li><p>TSP 问题</p>
+<ul>
 <li>考虑如何用线性规划表示<ul>
 <li>$\min{\sum \limits_{e=(i,j)} c_{i,j}x_{i,j}}$</li>
 <li>其中 $x_{i,j} \in \{0,1\}$，$x_{i,j}=1$ 当且仅当 $(i,j)$ 是环上的相邻两点。</li>
@@ -283,7 +284,8 @@
 </li>
 </ul>
 </li>
-<li>01 背包<ul>
+<li><p>01 背包</p>
+<ul>
 <li>线性规划模型<ul>
 <li>$\max \limits \sum_{i=1}^{n} v_{i} x_{i}$</li>
 <li>$\text { s.t. } x_{i} \in\{0,1\},\sum_{i=1}^{n} w_{i} x_{i} \leq C$</li>
@@ -315,7 +317,8 @@
 </li>
 </ul>
 </li>
-<li>匹配问题<ul>
+<li><p>匹配问题</p>
+<ul>
 <li>设图的点集为 $V$，边集为 $E$， $(i, j) \in E$ 表示从第 $i$ 个点连到第 $j$ 个点的一条有向边，$x_{i, j}$ 表示这条边是否为匹配边。那么一般无向图的最大匹配问题可以写成：<ul>
 <li>$\max \sum\limits_{(i, j) \in E} x_{i, j}$</li>
 <li>$\text{s.t.} \quad \sum\limits_{(i, j) \in E} x_{i, j} \le 1 \quad  \forall i \in V$ 且 $\sum\limits_{(i, j) \in E} x_{i, j} \le 1 \quad \forall j \in V$</li>
@@ -331,7 +334,8 @@
 <li>二分图最大匹配的对偶问题是<strong>二分图的最小点覆盖</strong>。</li>
 </ul>
 </li>
-<li><strong>Gomory 割平面法</strong><ul>
+<li><p><strong>Gomory 割平面法</strong></p>
+<ul>
 <li>基本思想：不断增加限制平面，直到某一次求得的最优解为整数。</li>
 <li>若我们用单纯形法求解后获得的不全是整数解，选择一个<strong>非整数的变量 $x_i$</strong>，其必然满足：<br>  $x_i + \sum\limits_{j=m+1}^n \bar{a_{i,j}}x_j = \bar{b_i} \quad \text{①}$ <ul>
 <li>既然 $x_i$ 不是整数且 $x_{m+1 \sim n} = \pmb{0}$，说明 $\bar{b_i}$ 一定不是整数，则加入以下限制不会影响原来的整数解空间：<br>$x_i + \sum\limits_{j=m+1}^n \left\lfloor \bar{a_{i,j}} \right\rfloor x_j \le \left\lfloor\bar{b_i}\right\rfloor \quad \text{②}$</li>
@@ -340,9 +344,8 @@
 <li>现在我们就多了②这个限制，把它加进约束里进一步求解即可。一般我们会加入①-②，这样限制更简单些：<br>  $\sum\limits_{j=m+1}^n(\bar{a_{i,j}} - \left\lfloor \bar{a_{i,j}} \right\rfloor) x_j \ge \bar{b_i} - \left\lfloor \bar{b_i} \right\rfloor \quad \text{①}-\text{②}$</li>
 </ul>
 </li>
-</ul>
+<li><p><strong>分枝定界法</strong></p>
 <ul>
-<li><strong>分枝定界法</strong><ul>
 <li>分枝定界法的思想和最优性剪枝或者 min-max 搜索树类似。</li>
 <li>我们先解实数线性规划，得到了整数规划最优解的<strong>上界</strong>。假设最优解中 $x_i(k &lt; x_i &lt; k+1)$ 不是整数，就会有两种可能：$x_i \le k$ 或 $x_i \ge k+1$，对两种情况分别进行搜索。</li>
 <li>如果在某一枝内算出了一个整数解，我们就得到了原整数规划最优解的<strong>下界</strong>。</li>
@@ -354,10 +357,13 @@
 </li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><a href="https://www.cnblogs.com/tsreaper/p/aop6.html" target="_blank" rel="noopener">tsr 讲解割平面法和分枝定界法</a></li>
 </ul>
 <h2 id="基于线性规划的近似算法"><a href="#基于线性规划的近似算法" class="headerlink" title="基于线性规划的近似算法"></a>基于线性规划的近似算法</h2><ul>
-<li>带权点覆盖问题的LP解法<ul>
+<li><p>带权点覆盖问题的LP解法</p>
+<ul>
 <li>设 $x_i$ 表示第 $i$ 个点是否选，我们可以列出一个整数线性规划问题；每条边 $(u,v)$ 即为一个限制 $x_u+x_v \ge 1$，目标函数即为 $W=\sum v_i x_i$.</li>
 <li>将这个线性规划一般化: $0 \le x_i \le 1$。这样能在多项式内求出一个最优解 $W^*$，其优于原来的最优解。</li>
 <li>现在我们把 $W^*$ 对应的 $\pmb{x}$ 做这样的改动：$x’_i=[x_i]$（四舍五入）。</li>
@@ -447,7 +453,7 @@ var a = new Donate({
           </li>
           <li class="post-copyright-link">
           <strong>本文链接:  </strong>
-          <a href="/2020/04/19/Application-of-Linear-Programming/" target="_blank" title="&#39;线性规划应用&#39;">https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/</a>
+          <a href="/2020/04/19/Application-of-Linear-Programming/" target="_blank" title="线性规划应用">https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming/</a>
           </li>
           <li class="post-copyright-license">
             <strong>版权声明:   </strong>
@@ -497,10 +503,19 @@ var a = new Donate({
     
 <nav id="article-nav">
   
+    <a href="/2020/04/19/Selection-of-Approximation-Algorithm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          近似算法选讲
+        
+      </div>
+    </a>
   
-    <a href="/2020/04/19/Selection-of-Approximation-Algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2020/04/14/Use-Python-Gracefully/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">&#39;近似算法选讲&#39;</div>
+      <div class="article-nav-title">如何优雅地使用 Python</div>
     </a>
   
 </nav>
