@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>&#39;线性规划的基本理论&#39; | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。 张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。 我本来是在 TSR 学长的博客 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。 这篇文章是系列之一，还有两个系列分别是： 线性规划应用 近似算法选讲">
+<meta name="keywords" content="Linear Programming,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;线性规划的基本理论&#39;">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。 张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。 我本来是在 TSR 学长的博客 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。 这篇文章是系列之一，还有两个系列分别是： 线性规划应用 近似算法选讲">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/LP.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/Tabuleau.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/dual.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/dual_properties.png">
+<meta property="og:updated_time" content="2020-04-19T15:45:10.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;线性规划的基本理论&#39;">
+<meta name="twitter:description" content="我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。 张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。 我本来是在 TSR 学长的博客 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。 这篇文章是系列之一，还有两个系列分别是： 线性规划应用 近似算法选讲">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/LP.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<script type="text/javascript" src="\js\snow.js"></script>
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Linear-Programming-Theory" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      &#39;线性规划的基本理论&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/04/19/Linear-Programming-Theory/" class="article-date">
+	  <time datetime="2020-04-19T15:23:20.000Z" itemprop="datePublished">2020-04-19</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。</li>
+<li>张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。</li>
+<li>我本来是在 <a href="https://www.cnblogs.com/tsreaper" target="_blank" rel="noopener">TSR 学长的博客</a> 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。</li>
+<li>这篇文章是系列之一，还有两个系列分别是：<ul>
+<li><a href="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming">线性规划应用</a></li>
+<li><a href="https://jiangshibiao.github.io/2020/04/19/Selection-of-Approximation-Algorithm">近似算法选讲</a></li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="凸集、凸函数、凸优化"><a href="#凸集、凸函数、凸优化" class="headerlink" title="凸集、凸函数、凸优化"></a>凸集、凸函数、凸优化</h2><ul>
+<li><strong>凸集</strong>：任取 $x, y \in S$ 和 $\forall \theta \in [0,1]$ 满足 $\theta x + (1-\theta)y \in S$，称集合 $S$ <strong>凸集（Convex Set）</strong>。<ul>
+<li>凸集的交仍然是凸集。</li>
+<li>如果没有 $\forall \theta \in [0,1]$ 的条件，称集合 $S$ <strong>仿射集（Affine set</strong>）。 </li>
+</ul>
+</li>
+<li><strong>凸函数</strong>：对于定义在凸集 $S$ 上的函数 $f(x)$，若对于 $\forall \theta \in [0,1]$ 有 $f(\theta x + (1-\theta) y) \le \theta f(x) + (1-\theta) f(y)$，那么称 $f(x)$ 是<strong>凸函数（Convex Function）</strong>。<ul>
+<li><strong>延森不等式（Jensen’s inequality）</strong>：若 $f(x)$ 是凸函数， $f(\sum_{i=1}^n \theta_ix_i) \le \sum_{i=1}^n \theta_i f(x_i)$</li>
+<li>定理：<strong>凸函数的局部最优就是全局最优</strong>。<ol>
+<li>假设 $\hat{x}$ 是局部最优点，$x^\ast$ 为全局最优点，则 $f(\hat{x}) &gt; f(x^\ast)$。</li>
+<li>由于 $f(x)$ 为凸函数，那么对于点 $x = \theta \hat{x} + (1-\theta)x^\ast$ 有 $f(x) \le \theta f(\hat{x}) + (1-\theta) f(x^\ast) &lt; f(\hat{x})$。</li>
+<li>取 $\theta = 1 - \frac{\epsilon}{2|\hat{x}-x^\ast|}$，就有 $|x - \hat{x}| = \frac{\epsilon}{2} &lt; \epsilon$，说明 $x$ 在 $\hat{x}$ 的邻域内且比它优，矛盾。</li>
+</ol>
+</li>
+<li>凸函数的判定条件：<ul>
+<li>一阶判定条件：设 $f(x)$ 在凸集 $C$ 上一阶可微，则该函数为凸的充要条件是：对于 $\forall x, y \in C$，都满足 $f(y) \ge f(x) + \nabla f(x)^T(y-x)$.</li>
+<li>二阶判定条件：设 $f(x)$ 在凸集 $C$ 上二阶可微，则该函数为凸的充要条件是：对 $\forall x \in C$，都满足 $\nabla^2(x) \succeq 0$。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>凸优化</strong>：优化 $\min  f(x) \quad \text{s.t.  } g_{i}(x) \leq 0,i \in [1..m] \quad h_{i}(x)=0, i \in [1..p]$。其中 $f(x),g_i(x)$ 是凸函数，$h_i(x)$ 是仿射函数。<ul>
+<li>定义拉格朗日函数  $L$：$ \mathbf{R}^{n} \times \mathbf{R}^{m} \times \mathbf{R}^{p} \mapsto \mathbf{R}$, $ L(x, \lambda, v)=f{0}(x)+\sum_{i=1}^{m} \lambda_{i} g_{i}(x)+\sum_{i=1}^{p} v_{i} h_{i}(x)$</li>
+<li>最优解 $\pmb{(x,\lambda,v)}$ 满足 <strong>KKT</strong> 条件<ul>
+<li>原始条件：$g_i(x) \le 0, h_i(x) =0$</li>
+<li>拉格朗日函数梯度为 $0$：$\nabla_x L = \pmb{0}$</li>
+<li>对偶约束：$\lambda_i \ge 0$</li>
+<li>互补松弛条件：$\lambda_ig_i(x)=0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="线性规划的定义"><a href="#线性规划的定义" class="headerlink" title="线性规划的定义"></a>线性规划的定义</h2><ul>
+<li>左边形式的问题被称为<strong>线性规划（Linear Programming）</strong><br>  <img src="//jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/LP.png" alt><ul>
+<li>由于仿射函数既是凸函数又是凹函数，所以优化问题是 min 还是 max 问题不大；常数 $d$ 对优化问题的解没有影响，一般也可以去掉。这就变成了中间的这个优化函数。</li>
+<li>对于 $Ax \le b$ 这个约束，可以通过添加非负变量将其松弛成等式。所以我们总能将线性规划转成右侧的形式。右式也称为线性规划的<strong>典则形式</strong>。</li>
+</ul>
+</li>
+<li><strong>极点</strong>：若 $x \in S$ 无法表示为凸集 $S$ 内某两个元素的凸组合，称 $x$ 是<strong>极点（extreme point）</strong>。<ul>
+<li>LP 问题的可行域实际上是很多超平面的交，最后组成的应该是一个超多面体。</li>
+<li>极点就是超多面体的“顶点”。可以证明，若最优解有解，必然取在极点上：<ol>
+<li>假设最优点 $O$ 严格在凸集里面。任取一条与凸集交在 $P$ 和 $Q$ 的直线。因为是线性规划问题，$O$ 点处的函数值一定是 $P$ 点和 $Q$ 点的线性组合。所以 $P$ 和 $Q$ 中，至少有一处的函数值是大于等于 $O$ 的。</li>
+<li>我们可以重复上述步骤，把最优点一步一步约束到顶点上。比如在三维中，我们先将其“规约”到凸壳的表面上，最后“规约”到凸壳的边和点上。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>基可行解</strong>：我们讨论 $Ax = b$ 有解且行满秩的情况（如果不满秩就去掉线性相关的限制条件）。设 $A$ 是一个 $m \times n$ 的矩阵，根据线性代数的知识，我们可以从 $A$ 中选出最多 $m$ 列线性无关的列向量，其它列向量都和它们线性相关。我们把这 $m$ 个列向量调整到前面去，把 $A$ 分成两部分：$A = \begin{bmatrix} A_B &amp; A_N \end{bmatrix}$.容易构造出 $Ax = b$ 的一个解：$x = \begin{bmatrix} A_B^{-1}b \quad 0 \end{bmatrix}^T$，称这种解为<strong>基可行解（Basic Feasible Solution）</strong>。显然，基可行解至多有 $C_n^m$ 种。<ul>
+<li>定理1：<strong>每个极点都对应着一个基可行解，且每个基可行解都对应着一个极点</strong>。</li>
+<li>定理2：<strong>最优解一定可以在基可行解处取到</strong>。</li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/tsreaper/p/aop1.html" target="_blank" rel="noopener">tsr 的概念讲解</a></li>
+</ul>
+<h2 id="单纯形法"><a href="#单纯形法" class="headerlink" title="单纯形法"></a>单纯形法</h2><ul>
+<li><strong>单纯形法（Simplex Method）</strong>（以 $\max$ 模型为例）<ol>
+<li>将 $A$ 中的<strong>基变量</strong>消成单位矩阵，并把目标函数<strong>基变量</strong>的系数都消成 $0$。</li>
+<li>以某种策略找一个 $c_j&gt;0$ 的非基变量 $j$ <strong>入基</strong>。</li>
+<li>依次考察 $b_i &gt; 0$ 的行，确定一行 $i$ 使得 $\frac{b_i}{A_{i,j}}$ 最小（对于 $j$ 最紧的限制）。</li>
+<li>拿第 $i$ 行去消，把每一行的 $A_{?,j}$ 以及目标函数的 $c_j$ 都消成 $0$。即第 $i$ 行的基变量<strong>出基</strong>。</li>
+<li>重复步骤 $2 \sim 4$ 直到检验数全大于 $0$.</li>
+</ol>
+</li>
+<li><strong>单纯形表（Simplex Tabuleau）</strong><ul>
+<li>变量分成基变量和非基变量：设 $c^T = \begin{bmatrix} c_B^T &amp; c_N^T \end{bmatrix}$， $A = \begin{bmatrix} A_B &amp; A_N \end{bmatrix}$，$x = \begin{bmatrix} x_B^T &amp; x_N^T \end{bmatrix}^T$</li>
+<li>显然我们有 $A_Bx_B + A_Nx_N = b$ 且 $z = c_B^Tx_B + c_N^Tx_N$</li>
+<li>通过简单的线性变换有：<br>  <img src="//jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/Tabuleau.png" alt></li>
+<li>这其实就是单纯形法的形式化迭代过程</li>
+</ul>
+</li>
+<li>评价<ul>
+<li>变换的本质是：在满足约束的限制下，用不同的<strong>非基变量组合</strong>来表示目标函数。</li>
+<li>当非基变量的检验值均 $\le 0$ 时取到最大值。我们可以想象成，目标函数就是由这些非基变量决定的，它们目前都取了 $0$，而且任意变量的微小增长都会导致结果变劣。</li>
+<li><strong>单纯形正确性证明</strong><ol>
+<li>设最终的检验数是 $\hat{c}$（均小于 $0$），对应的解是 $x$，最优解是 $y$。</li>
+<li>令 $d=x-y$，我们有 $Ax - Ay = b - b = 0 = Ad = A_Bd_B + A_Nd_N$ </li>
+<li>那么 $d_B = -A_B^{-1}A_Nd_N$，则 $c^Td = c_B^Td_B + c_N^Td_N = (c_N^T-c_B^TA_B^{-1}A_N)d_N = \hat{c}d_N$</li>
+<li>我们知道 $x_N = 0$，又 $y \ge 0$，所以 $d_N \ge 0$；又 $\hat{c} \le 0$，所以 $c^Td = \hat{c}d_N \le 0$，那么 $c^Ty = c^Tx + c^Td \le c^Tx$，说明 $y$ 并没有比 $x$ 更优。</li>
+</ol>
+</li>
+<li><strong>在非退化情况下，单纯形法一定可以停止</strong>。因为每次迭代都会让答案更优一点，访问的基可行解空间是不会重复的。而基可行解数量又是有限的，所以算法一定可以停止。</li>
+<li>可以证明，如果按字典序的顺序选取 $j$，单纯形算法一定可以停止。</li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/tsreaper/p/aop3.html" target="_blank" rel="noopener">tsr 讲解单纯形法</a></li>
+</ul>
+<h2 id="单纯形法的初始可行解"><a href="#单纯形法的初始可行解" class="headerlink" title="单纯形法的初始可行解"></a>单纯形法的初始可行解</h2><ul>
+<li>初始可行解<ul>
+<li>若单纯形的约束是 $Ax \leq b$，初始可行解可以取 $x = \pmb{0}$.</li>
+<li>若约束是 $Ax = b$ 时，我们可以通过加入松弛变量 $\bar{x}$ 使得 $Ax + \bar{x} = b$，这样 $x = \pmb{0}, \bar{x} = b$ 是初始可行解。这里存在一个问题：$\bar{x}$ 是我们添加进去的变量——我们希望 $\bar{x}$ 能全部出基。</li>
+</ul>
+</li>
+<li><strong>大 M 法（Big M Method）</strong><ul>
+<li>对不为 $0$ 的 $\bar{x}$ 进行“惩罚”。将目标函数改为 $z = c^Tx - M\sum_{i=1}^m\bar{x}_i$。如果 $M$ 是一个足够大的正数，$\bar{x}$ 就会在 $-M$ 这个“严厉的惩罚”之下变成 $0$。</li>
+<li>$M$ 取多大很难说，且取得过大会影响精度。</li>
+</ul>
+</li>
+<li><strong>两阶段法（Two-Phase Method）</strong><ul>
+<li>添加了 $\bar{x}$ 后，我们考虑一个新的线性规划：约束不变，改成优化 $\min {\sum \bar{x}_i}$ 这个函数。一组显然的初始可行解是 $x = \pmb{0}, \bar{x} = b$.</li>
+<li>如果这个优化问题的最优解的目标函数值不为 $0$，则原问题无可行解；否则我们就找到了原问题的一组可行解。我们再以这个可行解为起点，利用单纯形法求出原问题的最优解即可。</li>
+<li>由此可以发现，<strong>线性规划的可行解和最优解求解难度相同</strong>。</li>
+</ul>
+</li>
+<li>思考：对于 $\max c^Tx,Ax \le b$ 这个模型，如果突然多了一个 $x_1 \ge 4$ 的条件怎么办？<ul>
+<li>添加一个松弛变量 $\overline{x}$： $-x_1+\overline{x} = -4$</li>
+<li>此时会发生一个问题：$\overline{x}$ 和 $b$ 至少有一个会取负号，不符合约束。</li>
+<li>怎么办呢？再引进一个变量 $\hat{x}$：$x_1-\overline{x}+\hat{x}=4$</li>
+<li>至此，$\hat{x}=4$ 是新问题的一个可行解，直接套大M法或二阶段法求解。</li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/tsreaper/p/aop3.html" target="_blank" rel="noopener">tsr 讲解初始可行解</a></li>
+</ul>
+<h2 id="对偶定理与对偶单纯形法"><a href="#对偶定理与对偶单纯形法" class="headerlink" title="对偶定理与对偶单纯形法"></a>对偶定理与对偶单纯形法</h2><ul>
+<li>线性规划的对偶<br>  <img src="//jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/dual.png" alt><br>  <img src="//jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/dual_properties.png" alt></li>
+<li>对偶定理<ul>
+<li><strong>弱对偶定理 (Weak Duality)：设 $x$ 和 $y$ 分别是原问题和对偶问题的可行解，则 $c^{\rm T}x \le b^{\rm T}y$</strong>。证明：由 $y$ 的可行性我们有 $A^{\rm T}y \ge c$，即 $y^{\rm T}A \ge c^{\rm T}$，两边同乘以 $x$ 有 $y^{\rm T}Ax \ge c^{\rm T}x$；由 $x$ 的可行性还有 $Ax \le b$，那么 $y^{\rm T}Ax \le y^{\rm T}b$，合起来就是 $c^{\rm T}x \le b^{\rm T}y$。<ul>
+<li>最优性：若 $x$ 和 $y$ 分别是原问题和对偶问题的可行解，而且 $c^\mathrm{T}x=b^\mathrm{T}y$，那么 $x$ 和 $y$ 分别是原问题和对偶问题的最优解。</li>
+<li>可行性：若原问题无最优解（可以取无穷大），则对偶问题无可行解；若对偶问题无最优解（可以去无穷小），则原问题无可行解。</li>
+<li><strong>强对偶定理 (Strong Duality)：若原问题（或对偶问题）有有限最优解，那么对偶问题（或原问题）也有有限最优解，且二者最优解相等</strong>。通过单纯形法的计算过程来辅助证明。</li>
+<li><strong>互补松弛定理 (Complementary Slackness)：若 $x^\ast$ 与 $y^\ast$ 分别是原问题和对偶问题的可行解，以下两点等价</strong>：</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>$x^\ast$ 和 $y^\ast$ 分别是原问题和对偶问题的最优解；</li>
+<li>$(y^{\ast {\rm T}}A - c^{\rm T})x^\ast = 0$ 且 $y^{\ast {\rm T}}(Ax^\ast-b) = 0$。</li>
+</ol>
+</li>
+<li>对偶单纯形法步骤（以 $\min$ 模型为例）<ol>
+<li>取一组检验数全都 $\ge 0$ 的基。</li>
+<li>找一个 $b_i &lt; 0$ （一般找绝对值最大的）行 $i$，将非基变量 $i$ 出基。</li>
+<li>我们想让某个非基变量从 $0$ 变成大于 $0$ 来增加 $b_i$。在这一行中，找一个 $A_{i,j}&lt; 0$ 的 $j$ 使得 $|\frac{c_j}{A_{i,j}}|$ 最小（这样 $j$ 消完目标函数后检验数依然全都 $\ge 0$），让 $j$ 入基。</li>
+<li>重复步骤 $2 \sim 3$ 直到约束右侧的值均 $\ge 0$ 。</li>
+</ol>
+</li>
+<li><a href="https://www.cnblogs.com/tsreaper/p/aop4.html" target="_blank" rel="noopener">tsr 讲解对偶单纯形</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'http://chuantu.xyz/t6/727/1586167074x992239403.png',
+  alipayImage: 'http://chuantu.xyz/t6/727/1586166978x989559058.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/04/19/Linear-Programming-Theory/" target="_blank" title="&#39;线性规划的基本理论&#39;">https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linear-Programming/">Linear Programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/19/Selection-of-Approximation-Algorithm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          &#39;近似算法选讲&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/14/Use-Python-Gracefully/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">如何优雅地使用 Python</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#凸集、凸函数、凸优化"><span class="nav-number">1.</span> <span class="nav-text">凸集、凸函数、凸优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性规划的定义"><span class="nav-number">2.</span> <span class="nav-text">线性规划的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单纯形法"><span class="nav-number">3.</span> <span class="nav-text">单纯形法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单纯形法的初始可行解"><span class="nav-number">4.</span> <span class="nav-text">单纯形法的初始可行解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶定理与对偶单纯形法"><span class="nav-number">5.</span> <span class="nav-text">对偶定理与对偶单纯形法</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
