@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-07T08:39:28.573Z">
+<meta property="og:updated_time" content="2020-04-22T08:47:46.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Geometry-Problem">
 <meta name="twitter:description" content="打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。">
@@ -205,7 +205,19 @@
 <a id="more"></a>
 <h4 id="Diagram-Understanding-in-Geometry-Questions"><a href="#Diagram-Understanding-in-Geometry-Questions" class="headerlink" title="Diagram Understanding in Geometry Questions"></a>Diagram Understanding in Geometry Questions</h4><ul>
 <li>AAAI 2014 <a href="https://ai2-website.s3.amazonaws.com/publications/diagram.pdf" target="_blank" rel="noopener">论文地址</a></li>
-<li>挖坑</li>
+<li>本文提出了一个叫做 G-ALIGNER 的 Image Parse 的工具，并证明了它使用的估价函数是次模函数。</li>
+<li>估价函数介绍<ul>
+<li>设 $T=\{T_1,T_2,\dots,T_m\}$ 表示题目文本中提到的元素集合，$L$ 是图片中初步提取后的所有 primitives 集合。本论文默认 $L$ 已经得到，现在要找一个最优的子集 $\hat{L}$ 以准确地表达图片信息。</li>
+<li>引入一个 $W \in \{0,1\}^{|L| \times |T|}$ 表示该图上的 primitive 是否与指定文本元素对应。 $\hat{L}=L \times (W \times 1_{|T| \times 1})$，可以将求一个最优子集 $\hat{L}$ 转化为求一个最优的矩阵 $\hat{W}$。</li>
+<li>对于一个可能的集合 $\hat L$，估价函数 $\mathcal{F}$ 设计成三个部分：所选 primitives 与实际的图像之间的重合程度 $\mathcal{P}=\frac{|D_{\hat L}|}{|D|}$，所选 primitives 能构成更高相关性 visual element 的程度 $\mathcal{C}=\frac{|C_{\hat L}|}{|C|}$，所选 primitives 与文本的对应关系 $\mathcal{S}=\frac{|T_{\hat L}|}{|T|}-r_{\hat W}$，其中 $r_{\hat W}$ 表示冗余成分。</li>
+<li>可以证明，$\mathcal{F=P+C+S}$ 是次模函数。</li>
+</ul>
+</li>
+<li>求解步骤<ul>
+<li>用 Hough transform 提取 primitives，用 Harris Corner detectors 检测 Corners。 </li>
+<li>优化时采用很暴力的方式：初始时设 $\hat {L}=\varnothing$，.每次枚举 $l \in L$，把 $\arg \max \limits_{l}F (\hat L \cup l)-F(\hat L)$ 的 $l$ 加入 $\hat L$，直到增量 $&lt; 0$ 为止。</li>
+</ul>
+</li>
 </ul>
 <h4 id="Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation"><a href="#Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation" class="headerlink" title="Solving Geometry Problems: Combining Text and Diagram Interpretation"></a>Solving Geometry Problems: Combining Text and Diagram Interpretation</h4><ul>
 <li>EMNLP 2015 <a href="https://www.aclweb.org/anthology/D15-1171.pdf" target="_blank" rel="noopener">论文地址</a></li>
