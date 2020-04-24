@@ -19,10 +19,12 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-22T08:47:46.233Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Interpretation.png">
+<meta property="og:updated_time" content="2020-04-23T14:22:03.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Geometry-Problem">
 <meta name="twitter:description" content="打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Interpretation.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -209,7 +211,12 @@
 <li>估价函数介绍<ul>
 <li>设 $T=\{T_1,T_2,\dots,T_m\}$ 表示题目文本中提到的元素集合，$L$ 是图片中初步提取后的所有 primitives 集合。本论文默认 $L$ 已经得到，现在要找一个最优的子集 $\hat{L}$ 以准确地表达图片信息。</li>
 <li>引入一个 $W \in \{0,1\}^{|L| \times |T|}$ 表示该图上的 primitive 是否与指定文本元素对应。 $\hat{L}=L \times (W \times 1_{|T| \times 1})$，可以将求一个最优子集 $\hat{L}$ 转化为求一个最优的矩阵 $\hat{W}$。</li>
-<li>对于一个可能的集合 $\hat L$，估价函数 $\mathcal{F}$ 设计成三个部分：所选 primitives 与实际的图像之间的重合程度 $\mathcal{P}=\frac{|D_{\hat L}|}{|D|}$，所选 primitives 能构成更高相关性 visual element 的程度 $\mathcal{C}=\frac{|C_{\hat L}|}{|C|}$，所选 primitives 与文本的对应关系 $\mathcal{S}=\frac{|T_{\hat L}|}{|T|}-r_{\hat W}$，其中 $r_{\hat W}$ 表示冗余成分。</li>
+<li>对于一个可能的集合 $\hat L$，估价函数 $\mathcal{F}$ 设计成三个部分：<ul>
+<li>所选 primitives 与实际的图像之间的重合程度 $\mathcal{P}=\frac{|D_{\hat L}|}{|D|}$</li>
+<li>所选 primitives 能构成更高相关性 visual element 的程度 $\mathcal{C}=\frac{|C_{\hat L}|}{|C|}$</li>
+<li>所选 primitives 与文本的对应关系 $\mathcal{S}=\frac{|T_{\hat L}|}{|T|}-r_{\hat W}$，其中 $r_{\hat W}$ 表示冗余成分。</li>
+</ul>
+</li>
 <li>可以证明，$\mathcal{F=P+C+S}$ 是次模函数。</li>
 </ul>
 </li>
@@ -221,7 +228,25 @@
 </ul>
 <h4 id="Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation"><a href="#Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation" class="headerlink" title="Solving Geometry Problems: Combining Text and Diagram Interpretation"></a>Solving Geometry Problems: Combining Text and Diagram Interpretation</h4><ul>
 <li>EMNLP 2015 <a href="https://www.aclweb.org/anthology/D15-1171.pdf" target="_blank" rel="noopener">论文地址</a></li>
-<li>挖坑</li>
+<li>提出了一个 GEOS 系统，把文本和图片变成 <strong>形式语言</strong>（logical expression）再推理。<br><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/Interpretation.png" alt></li>
+<li><p><strong>logical expression</strong> $\Omega$ 的定义</p>
+<ul>
+<li>它是一阶逻辑语言（first-order logic），包含以下四种内容：<ul>
+<li>constants ：已知的量或实体。例如 <code>5</code>。</li>
+<li>variables：未知的量或实体。例如 <code>x</code>，<code>CE</code>。</li>
+<li>predicates：几何或算术的关系。例如 <code>Equals</code>，<code>IsDiameter</code>，<code>IsTangent</code>。</li>
+<li>functions：几何物体的性质或者算术运算。例如 <code>LengthOf</code>，<code>SumOf</code>。</li>
+</ul>
+</li>
+<li>定义 <strong>Literal</strong> 是 predicates 的应用实例，如 <code>isTriangle(ABC)</code></li>
+<li><p>定义 <strong>Logical formulas</strong> 是以上内容和 existential quantifiers，conjunctions 的组合，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">∃x, IsTriangle(x)∧IsIsosceles(x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>飞</p>
+</li>
+</ul>
+</li>
+<li></li>
 </ul>
 <h4 id="Transformers-as-Soft-Reasoners-over-Language"><a href="#Transformers-as-Soft-Reasoners-over-Language" class="headerlink" title="Transformers as Soft Reasoners over Language"></a>Transformers as Soft Reasoners over Language</h4><ul>
 <li><a href="https://arxiv.org/pdf/2002.05867" target="_blank" rel="noopener">论文地址</a></li>

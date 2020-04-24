@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>jiangshibiao</title>
+  <title>django 学习笔记 | jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
@@ -11,13 +11,18 @@
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="jiangshibiao">
-<meta property="og:url" content="https://jiangshibiao.github.io/index.html">
+  <meta name="description" content="命令行操作12345django-admin startproject mysite                # 创建叫做 mysite 的 projectpython manage.py startapp learn                 # 创建叫做 learn 的应用python manage.py makemigrations                 # 生成迁移文">
+<meta name="keywords" content="Python,Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django 学习笔记">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/04/24/Django-Learning/index.html">
 <meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="命令行操作12345django-admin startproject mysite                # 创建叫做 mysite 的 projectpython manage.py startapp learn                 # 创建叫做 learn 的应用python manage.py makemigrations                 # 生成迁移文">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-24T15:28:34.285Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jiangshibiao">
+<meta name="twitter:title" content="Django 学习笔记">
+<meta name="twitter:description" content="命令行操作12345django-admin startproject mysite                # 创建叫做 mysite 的 projectpython manage.py startapp learn                 # 创建叫做 learn 的应用python manage.py makemigrations                 # 生成迁移文">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -48,11 +53,13 @@
   <link rel="stylesheet" href="/css/bootstrap.css">
 
   
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/dialog.css">
   
 
   
 
+  
+    <link rel="stylesheet" href="/css/header-post.css">
   
 
   
@@ -65,234 +72,109 @@
 </html>
 <script type="text/javascript" src="\js\snow.js"></script>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
-  
-    <header id="header">
-
-	<!-- 背景图模式 -->
-	
-
-    
-      <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
-
-      <!-- Support rolling -->  
-        
-        <section class="awSlider">
-          <div class="carousel slide carousel-fade " data-ride="carousel">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-               
-                  
-                    <div class="item active">
-                  
-                    <img id="carousel-img0" src="/css/images/home1.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img0 = new Image();
-                      var imageTag0 = document.getElementById("carousel-img0");
-                      img0.src = imageTag0.src;
-                      img0.onload=function(){
-                        if (img0.width / img0.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag0.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag0.style.height = document.body.clientHeight + "px";
-                          imageTag0.style.marginLeft = -(document.body.clientHeight * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img1" src="/css/images/home2.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img1 = new Image();
-                      var imageTag1 = document.getElementById("carousel-img1");
-                      img1.src = imageTag1.src;
-                      img1.onload=function(){
-                        if (img1.width / img1.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag1.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag1.style.height = document.body.clientHeight + "px";
-                          imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img2" src="/css/images/home3.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img2 = new Image();
-                      var imageTag2 = document.getElementById("carousel-img2");
-                      img2.src = imageTag2.src;
-                      img2.onload=function(){
-                        if (img2.width / img2.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag2.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag2.style.height = document.body.clientHeight + "px";
-                          imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img3" src="/css/images/home4.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img3 = new Image();
-                      var imageTag3 = document.getElementById("carousel-img3");
-                      img3.src = imageTag3.src;
-                      img3.onload=function(){
-                        if (img3.width / img3.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag3.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag3.style.height = document.body.clientHeight + "px";
-                          imageTag3.style.marginLeft = -(document.body.clientHeight * img3.width / img3.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Geri</span>
-            </a>
-            <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">İleri</span>
-            </a>
-          </div>
-        </section>
-        <script>
-          $('section.awSlider .carousel').carousel({
-              pause: '',
-              interval: 5000
-          });
-          var startImage = $('section.awSlider .item.active > img').attr('src');
-          $('section.awSlider .carousel').on('slid.bs.carousel', function () {
-              var bscn = $(this).find('.item.active > img').attr('src');
-              $('section.awSlider > img').attr('src', bscn);
-          });
-        </script>
-      
-
-    
- 
-
-
-    <canvas width="100%" height="100%"></canvas>
-    <script>
-      var c = document.getElementsByTagName('canvas')[0],
-          x = c.getContext('2d'),
-          w = window.innerWidth,
-          h = window.innerHeight,
-          pr = window.devicePixelRatio || 1,
-          f = 90,
-          q,
-          m = Math,
-          r = 0,
-          u = m.PI*2,
-          v = m.cos,
-          z = m.random
-      c.width = w*pr
-      c.height = h*pr
-      x.scale(pr, pr)
-      x.globalAlpha = 0.6
-
-      <!-- 折线Polyline背景 -->
-      
-    </script>
-    
-
-    
-      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
-    
-
-        
-          <div class="homelogoback"  style="border: 1px solid #404040;" >
-            <h1><a href="#content" id="logo">jiangshibiao</a></h1>
-            <h3></h3>
-            <h5></h5>
-            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
-          </div>
-        
-    
-    </div>
-  </div>
-
-  <!-- 自适应主页背景大图 -->
-  
-
- <!-- home_logo_image居中 -->
- 
-    <script>
-        var homelogodiv = document.getElementById("homelogo");
-        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
-          homelogodiv.style.width = document.body.clientWidth + "px";
-          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
-        } else {
-          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
-          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
-        }
-    </script>
-  
-
-  <div class="intro-navigate">
-      <p class="navigater-list">
-        
-          <a id="beautifont" class="main-nav-link" href="/">首页</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/archives">归档</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/categories">分类</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/tags">标签</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/about">关于</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/friendlink">友链</a>
-        
-      </p>
-  </div>
-
-</header>
   
   <div id="container">
     <div id="wrap">
       
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-    <article id="post-Django-Learning"  class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-Django-Learning" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/24/Django-Learning/">Django 学习笔记</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Django 学习笔记
     </h1>
   
 
@@ -308,6 +190,12 @@
     <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
 
       
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
       
 
     </div>
@@ -338,518 +226,102 @@
     </div>
     <footer class="article-footer">
       
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'http://chuantu.xyz/t6/727/1586167074x992239403.png',
+  alipayImage: 'http://chuantu.xyz/t6/727/1586166978x989559058.png'
+});
+</script>
       
       
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/04/24/Django-Learning/" target="_blank" title="Django 学习笔记">https://jiangshibiao.github.io/2020/04/24/Django-Learning/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
       
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Life-is-a-Moment-High-School"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+      
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/21/Life-is-a-Moment-High-School/">朝花夕拾·少年</a>
-    </h1>
-  
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/21/Life-is-a-Moment-High-School/" class="article-date">
-	  <time datetime="2020-04-21T15:55:15.000Z" itemprop="datePublished">2020-04-21</time>
-	</a>
+		       if (typeof LivereTower === 'function') { return; }
 
-      
-    <a class="article-category-link" href="/categories/Life/">Life</a>
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
 
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录了 <strong>初中</strong> 和 <strong>高中</strong> 的记忆片段。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
 
 
-  
-    <article id="post-Selection-of-Approximation-Algorithm"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+
+      
+      
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/19/Selection-of-Approximation-Algorithm/">近似算法选讲</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li></ul>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/19/Selection-of-Approximation-Algorithm/" class="article-date">
-	  <time datetime="2020-04-19T15:23:20.000Z" itemprop="datePublished">2020-04-19</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。</li>
-<li>张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。</li>
-<li>我本来是在 <a href="https://www.cnblogs.com/tsreaper" target="_blank" rel="noopener">TSR 学长的博客</a> 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。</li>
-<li>这篇文章是系列之三，还有两个系列分别是：<ul>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory">线性规划理论</a></li>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming">线性规划应用</a></li>
-</ul>
-</li>
-</ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
       
 
     </footer>
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Linear-Programming-Theory"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/19/Linear-Programming-Theory/">线性规划的基本理论</a>
-    </h1>
   
+    <a href="/2020/04/21/Life-is-a-Moment-High-School/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">朝花夕拾·少年</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/19/Linear-Programming-Theory/" class="article-date">
-	  <time datetime="2020-04-19T15:23:20.000Z" itemprop="datePublished">2020-04-19</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。</li>
-<li>张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。</li>
-<li>我本来是在 <a href="https://www.cnblogs.com/tsreaper" target="_blank" rel="noopener">TSR 学长的博客</a> 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。</li>
-<li>这篇文章是系列之一，还有两个系列分别是：<ul>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming">线性规划应用</a></li>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Selection-of-Approximation-Algorithm">近似算法选讲</a></li>
-</ul>
-</li>
-</ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-
-  
-    <article id="post-Application-of-Linear-Programming"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令行操作"><span class="nav-number">1.</span> <span class="nav-text">命令行操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的网页请求处理-views-py-amp-urls-py"><span class="nav-number">2.</span> <span class="nav-text">简单的网页请求处理 views.py &amp; urls.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态模板-html-的使用"><span class="nav-number">3.</span> <span class="nav-text">静态模板 html 的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与数据库交互-models-py"><span class="nav-number">4.</span> <span class="nav-text">与数据库交互 models.py</span></a></li></ol>
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/19/Application-of-Linear-Programming/">线性规划应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/19/Application-of-Linear-Programming/" class="article-date">
-	  <time datetime="2020-04-19T15:23:19.000Z" itemprop="datePublished">2020-04-19</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。</li>
-<li>张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。</li>
-<li>我本来是在 <a href="https://www.cnblogs.com/tsreaper" target="_blank" rel="noopener">TSR 学长的博客</a> 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。</li>
-<li>这篇文章是系列之二，还有两个系列分别是：<ul>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory">线性规划理论</a></li>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Selection-of-Approximation-Algorithm">近似算法选讲</a></li>
-</ul>
-</li>
-</ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Use-Python-Gracefully"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/14/Use-Python-Gracefully/">如何优雅地使用 Python</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/14/Use-Python-Gracefully/" class="article-date">
-	  <time datetime="2020-04-14T15:12:55.000Z" itemprop="datePublished">2020-04-14</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><p>每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。</p>
-<ul>
-<li>很多基础的函数不会调用，要现场百度起来。</li>
-<li>更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。</li>
-</ul>
-<p>于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Interesting-Problems"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/07/Interesting-Problems/">趣题摘记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/07/Interesting-Problems/" class="article-date">
-	  <time datetime="2020-04-07T08:41:36.000Z" itemprop="datePublished">2020-04-07</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录遇到的有趣的题和知识点。主要是数学和算法问题。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li>概率和期望<ul>
-<li><a href="#简单游走问题">简单游走问题</a></li>
-<li><a href="#构造固定概率的函数">构造固定概率的函数</a></li>
-<li><a href="#找号码牌的概率题">找号码牌的概率题</a></li>
-<li><a href="#抛硬币使得连续两次正面朝上">期望抛几次硬币使得连续两次正面朝上</a></li>
-<li><a href="#正面是反面两倍的概率">正面是反面两倍的概率</a></li>
-<li><a href="#最大化正好获得一个礼物的概率">最大化正好获得一个礼物的概率</a></li>
-</ul>
-</li>
-<li>奇思妙想<ul>
-<li><a href="#一道初中几何题">一道初中几何题</a></li>
-<li><a href="#求k组出现了奇数次的数字">求k组出现了奇数次的数字</a></li>
-<li><a href="#公平分蛋糕问题">公平分蛋糕问题</a></li>
-<li><a href="#非ww串的文法表达">非ww串的文法表达</a></li>
-<li><a href="#选数问题">选数问题</a></li>
-<li><a href="#翻纸牌">翻纸牌</a></li>
-<li><a href="环形取数游戏">环形取数游戏</a></li>
-</ul>
-</li>
-<li>计算理论方向<ul>
-<li><a href="#运筹学课程详细整理"><strong>运筹学课程详细整理</strong></a></li>
-<li><a href="#边权最小使指定顶点连通">边权最小使指定顶点连通</a></li>
-<li><a href="#最小生成树局部最优等于全局最优">最小生成树局部最优等于全局最优</a></li>
-<li><a href="#图的最大割问题">图的最大割问题</a></li>
-</ul>
-</li>
-<li>算法介绍<ul>
-<li><a href="#BP-算法">BP 算法</a></li>
-</ul>
-</li>
-</ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Compiling-Principle"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/06/Compiling-Principle/">《编译原理》知识整理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/06/Compiling-Principle/" class="article-date">
-	  <time datetime="2020-04-06T02:39:45.000Z" itemprop="datePublished">2020-04-06</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Computer-Network"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/02/Computer-Network/">《计算机网络》知识整理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/02/Computer-Network/" class="article-date">
-	  <time datetime="2020-04-02T03:37:53.000Z" itemprop="datePublished">2020-04-02</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Life-is-a-Moment-Primary-School"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/31/Life-is-a-Moment-Primary-School/">朝花夕拾·童年</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/03/31/Life-is-a-Moment-Primary-School/" class="article-date">
-	  <time datetime="2020-03-31T14:05:15.000Z" itemprop="datePublished">2020-03-31</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Life/">Life</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录了 <strong>幼儿园</strong> 和 <strong>小学</strong> 的记忆片段。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
+  </aside>
 
 </section>
         
       </div>
-      
-        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
       
       <footer id="footer">
   
@@ -943,9 +415,9 @@
 <script src="/js/scripts.js"></script>
 
 
-  <script src="/js/home.js"></script>
 
 
+  <script src="/js/dialog.js"></script>
 
 
 
@@ -1030,6 +502,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
