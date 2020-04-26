@@ -284,6 +284,55 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-Algorithm-Designs-and-Analysis"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/26/Algorithm-Designs-and-Analysis/">&#39;Algorithm-Designs-and-Analysisin&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/04/26/Algorithm-Designs-and-Analysis/" class="article-date">
+	  <time datetime="2020-04-26T02:16:48.000Z" itemprop="datePublished">2020-04-26</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。</p>
+<p>这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。</p>
+<p>可以和这篇 <a href="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems/">趣题摘记</a> 结合起来看。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-Django-Learning"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -316,7 +365,7 @@
         <h4 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject mysite                # 创建叫做 mysite 的 project</span><br><span class="line">python manage.py startapp learn                 # 创建叫做 learn 的应用</span><br><span class="line">python manage.py makemigrations                 # 生成迁移文件</span><br><span class="line">python manage.py migrate                        # 将结构变化应用到数据库</span><br><span class="line">python manage.py runserver &lt;ip:port&gt;            # 运行 urls.py 里指定的网页</span><br></pre></td></tr></table></figure>
 <h4 id="简单的网页请求处理-views-py-amp-urls-py"><a href="#简单的网页请求处理-views-py-amp-urls-py" class="headerlink" title="简单的网页请求处理 views.py &amp; urls.py"></a>简单的网页请求处理 views.py &amp; urls.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="string">'''views.py'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(request)</span>:</span></span><br><span class="line">a = request.GET.get(<span class="string">'a'</span>, <span class="number">0</span>)                               <span class="comment"># request.GET 相当于字典</span></span><br><span class="line"><span class="keyword">return</span> render(request, <span class="string">'home.html'</span>, &#123;<span class="string">'string'</span>: string&#125;)   <span class="comment"># 渲染一个静态页面</span></span><br><span class="line"><span class="keyword">return</span> HttpResponse(str(int(a)*<span class="number">2</span>))                        <span class="comment"># 返回一个响应</span></span><br><span class="line"><span class="keyword">return</span> HttpResponseRedirect(                              <span class="comment"># 返回一个新地址</span></span><br><span class="line">reverse(<span class="string">'add2'</span>, args=(a, b))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="string">'''urls.py'''</span></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line">urlpatterns = [</span><br><span class="line">path(<span class="string">'add/&lt;int:a&gt;/&lt;int:b&gt;/'</span>,   calc.views.add,  name = <span class="string">'add'</span>)</span><br><span class="line">url(<span class="string">r'^new_add/(\d+)/(\d+)/$'</span>, calc_views.add2, name = <span class="string">'add2'</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">django.urls.reverse(&lt;name&gt;, args=())                          <span class="comment"># 获得该函数所在地址</span></span><br></pre></td></tr></table></figure>
 <h4 id="静态模板-html-的使用"><a href="#静态模板-html-的使用" class="headerlink" title="静态模板 html 的使用"></a>静态模板 html 的使用</h4><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 使用某个 views 里的函数来决定网址 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> '&lt;name&gt;' &lt;arg1&gt; &lt;arg2&gt; ... %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span> content <span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 显示 List 参数里的内容 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> i <span class="keyword">in</span> TutorialList %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-variable">&#123;&#123; i &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 显示 Dict 参数里的内容 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> key, value <span class="keyword">in</span> info_dict.items %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-variable">&#123;&#123; key &#125;&#125;</span><span class="xml">: </span><span class="template-variable">&#123;&#123; value &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- If 语句 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> item <span class="keyword">in</span> List %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="template-variable">&#123;&#123; item &#125;&#125;</span><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> not forloop.last %&#125;</span><span class="xml">,</span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- If 嵌套（比较符号前后必须至少有一个空格） --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> var &gt;= 90%&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">成绩优秀</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">elif</span></span> var &gt;= 60 %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">成绩良好</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">else</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">不及格</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 连接符 and, or, not, in, not in --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> 'Li Guanglin' <span class="keyword">in</span> List %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">yes</span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 当前用户，当前网址，当前 GET 参数 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-variable">&#123;&#123; request.user &#125;&#125;</span><span class="xml">    </span><span class="template-variable">&#123;&#123; request.path &#125;&#125;</span><span class="xml">    </span><span class="template-variable">&#123;&#123; request.GET.urlencode &#125;&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
-<h4 id="与数据库交互-models-py"><a href="#与数据库交互-models-py" class="headerlink" title="与数据库交互 models.py"></a>与数据库交互 models.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    email = models.EmailField()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br></pre></td></tr></table></figure>
+<h4 id="与数据库交互-models-py"><a href="#与数据库交互-models-py" class="headerlink" title="与数据库交互 models.py"></a>与数据库交互 models.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    email = models.EmailField()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 <ol>
 <li><p>QuerySet 创建对象</p>
  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Author.objects.create(name = <span class="string">""</span>, email = <span class="string">""</span>)</span><br><span class="line">a = Author(name = <span class="string">""</span>); a.email = <span class="string">""</span>; save()</span><br><span class="line">Author.objects.get_or_create(name = <span class="string">""</span>, email = <span class="string">""</span>)   <span class="comment"># 返回 (object, True/False)</span></span><br></pre></td></tr></table></figure>
@@ -398,62 +447,6 @@
 
 
   
-    <article id="post-Selection-of-Approximation-Algorithm"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/19/Selection-of-Approximation-Algorithm/">近似算法选讲</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/04/19/Selection-of-Approximation-Algorithm/" class="article-date">
-	  <time datetime="2020-04-19T15:23:20.000Z" itemprop="datePublished">2020-04-19</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。</li>
-<li>张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。</li>
-<li>我本来是在 <a href="https://www.cnblogs.com/tsreaper" target="_blank" rel="noopener">TSR 学长的博客</a> 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。</li>
-<li>这篇文章是系列之三，还有两个系列分别是：<ul>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory">线性规划理论</a></li>
-<li><a href="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming">线性规划应用</a></li>
-</ul>
-</li>
-</ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-Linear-Programming-Theory"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -490,6 +483,62 @@
 <li>这篇文章是系列之一，还有两个系列分别是：<ul>
 <li><a href="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming">线性规划应用</a></li>
 <li><a href="https://jiangshibiao.github.io/2020/04/19/Selection-of-Approximation-Algorithm">近似算法选讲</a></li>
+</ul>
+</li>
+</ul>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Selection-of-Approximation-Algorithm"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/19/Selection-of-Approximation-Algorithm/">近似算法选讲</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/04/19/Selection-of-Approximation-Algorithm/" class="article-date">
+	  <time datetime="2020-04-19T15:23:20.000Z" itemprop="datePublished">2020-04-19</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>我在大三春夏学期上了张国川老师的《应用运筹学基础》这门课。</li>
+<li>张国川老师坚持板书讲解，课上干货满满，是不可多得的好老师。</li>
+<li>我本来是在 <a href="https://www.cnblogs.com/tsreaper" target="_blank" rel="noopener">TSR 学长的博客</a> 的基础上补充知识点的。张老师在期末时把“上课笔记整理”也作为了考核方式之一，于是我把 TSR 学长的部分内容也结合进来了。</li>
+<li>这篇文章是系列之三，还有两个系列分别是：<ul>
+<li><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory">线性规划理论</a></li>
+<li><a href="https://jiangshibiao.github.io/2020/04/19/Application-of-Linear-Programming">线性规划应用</a></li>
 </ul>
 </li>
 </ul>
@@ -569,16 +618,6 @@
     <article id="post-Use-Python-Gracefully"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/14/Use-Python-Gracefully/">如何优雅地使用 Python</a>
-    </h1>
-  
-
-      </header>
     
     <div class="article-meta">
       
@@ -774,53 +813,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。</p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Life-is-a-Moment-Primary-School"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/31/Life-is-a-Moment-Primary-School/">朝花夕拾·童年</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/03/31/Life-is-a-Moment-Primary-School/" class="article-date">
-	  <time datetime="2020-03-31T14:05:15.000Z" itemprop="datePublished">2020-03-31</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Life/">Life</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录了 <strong>幼儿园</strong> 和 <strong>小学</strong> 的记忆片段。</p>
       
     </div>
     <footer class="article-footer">
