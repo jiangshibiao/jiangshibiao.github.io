@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>归档: 2020/3 | jiangshibiao</title>
+  <title>cosql | jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
@@ -11,13 +11,21 @@
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="jiangshibiao">
-<meta property="og:url" content="https://jiangshibiao.github.io/archives/2020/03/index.html">
+  <meta name="description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
+<meta name="keywords" content="Knowledge Learning,Course Review,Machine Learning,Coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoSQL">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/index.html">
 <meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/DAT.png">
+<meta property="og:updated_time" content="2020-04-27T16:46:31.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jiangshibiao">
+<meta name="twitter:title" content="CoSQL">
+<meta name="twitter:description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -58,8 +66,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css">
-  
   
   
     <link rel="stylesheet" href="/css/vdonate.css">
@@ -69,7 +75,7 @@
 </html>
 <script type="text/javascript" src="\js\snow.js"></script>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -92,7 +98,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
               </a>
             
@@ -163,207 +169,167 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>嗯，目前共计14篇文章</span></blockquote>
-
-
-<!-- 分页显示 -->
-
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2020" class="archive-year">2020</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2020/03/31/Life-is-a-Moment-Primary-School/" class="archive-article-date">
-	  <time datetime="2020-03-31T14:05:15.000Z" itemprop="datePublished">2020-03-31</time>
-	</a>
-
-      
+          <section id="main" style="float:none;"><article id="post-CoSQL" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2020/03/31/Life-is-a-Moment-Primary-School/">朝花夕拾·童年</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CoSQL
     </h1>
   
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
+      </header>
+    
+    <div class="article-meta">
       
-	<a href="/2020/03/31/Geometry-Problem/" class="archive-article-date">
-	  <time datetime="2020-03-31T13:54:26.000Z" itemprop="datePublished">2020-03-31</time>
+	<a href="/2020/04/27/CoSQL/" class="article-date">
+	  <time datetime="2020-04-27T13:02:41.000Z" itemprop="datePublished">2020-04-27</time>
 	</a>
 
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2020/03/31/Geometry-Problem/">Geometry-Problem</a>
-    </h1>
-  
+    <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
       
-	<a href="/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/" class="archive-article-date">
-	  <time datetime="2020-03-31T05:27:50.000Z" itemprop="datePublished">2020-03-31</time>
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
 	</a>
 
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/">Robustness-for-Sensing-Reasoning-Pipelines</a>
-    </h1>
-  
 
-    </header>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。</p>
+<a id="more"></a>
+<h4 id="什么是-CoSQL"><a href="#什么是-CoSQL" class="headerlink" title="什么是 CoSQL"></a>什么是 CoSQL</h4><ul>
+<li>CoSQL 全称 <strong>Co</strong>nversational text-to-<strong>SQL</strong>，是耶鲁大学在 <a href="https://arxiv.org/abs/1909.05378" target="_blank" rel="noopener">EMNLP2019</a> 提出的 NLP 领域的数据集。</li>
+<li><a href="https://arxiv.org/pdf/1909.05378.pdf" target="_blank" rel="noopener">官方网站</a> 。与经典的 text-to-SQL 任务（如 Spider）相比，CoSQL 的难度增加了不少：<ul>
+<li>为了模拟现实场景，用户的询问可能有多轮，要求系统有整合信息的能力。</li>
+<li>系统生成 SQL 语句并得到查询结果后，要用自然语言反馈给用户。</li>
+<li>用户与系统的多轮对话之间，可能需要 clarify ambiguous questions（如下图 $Q3$ 和 $R3$）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png" alt></p>
+<ul>
+<li><p>CoSQL 包含到 3k+ 组对话（$2164$ Train，$292$ Dev，$551$ Test），平均每组对话有 $11.21$ 个turns。值得注意的是，CoSQL 的内容横跨 $200$ 个数据库，而且不同组数据所用到的数据库 <strong>没有交集</strong>（$140$ Train，$20$ Dev，$40$ Test），以考察模型的鲁棒性。</p>
+</li>
+<li><p>CoSQL 一共有三个任务：</p>
+<ol>
+<li><p><strong>SQL-grounded dialogue state tracking</strong>：给出 interaction history，转化成对应的 SQL 语句。可能会包含表述模糊的问题，此时会同时给出确认信息。以上图为例，给出 $(Q_1,Q_2,Q_3,Q_4,R_3)$ 求 $S_4$</p>
+</li>
+<li><p><strong>natural language response generation</strong>：以 SQL 语句和返回结果为基础，生成自然语言回答。</p>
+</li>
+<li><p><strong>user dialogue act prediction</strong>：对每一个用户的提问，判断属于以下哪个 DB user 标签。</p>
+<p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/DAT.png" alt></p>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/04/27/CoSQL/" target="_blank" title="CoSQL">https://jiangshibiao.github.io/2020/04/27/CoSQL/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding/">Coding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+
+      
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/26/Algorithm-Designs-and-Analysis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">算法的设计和分析</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
+<!-- Table of Contents -->
 
-
-
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-CoSQL"><span class="nav-number">1.</span> <span class="nav-text">什么是 CoSQL</span></a></li></ol>
+    
+    </div>
+  </aside>
 
 </section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">关注我</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/jiangshibiao" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="https://weibo.com/jiangshibiao" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:jiangshibiao1999@gmail.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Course-Review/">Course Review</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-Reading/">Paper Reading</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Adversarial-Attacks/">Adversarial Attacks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding/">Coding</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiling-Principle/">Compiling Principle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Network/">Computer Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Vision/">Computer Vision</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computing-Theory/">Computing Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Course-Review/">Course Review</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linear-Programming/">Linear Programming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Natural-Language-Processing/">Natural Language Processing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Adversarial-Attacks/" style="font-size: 10px;">Adversarial Attacks</a> <a href="/tags/Algorithm/" style="font-size: 17.5px;">Algorithm</a> <a href="/tags/Coding/" style="font-size: 12.5px;">Coding</a> <a href="/tags/Compiling-Principle/" style="font-size: 10px;">Compiling Principle</a> <a href="/tags/Computer-Network/" style="font-size: 10px;">Computer Network</a> <a href="/tags/Computer-Vision/" style="font-size: 10px;">Computer Vision</a> <a href="/tags/Computing-Theory/" style="font-size: 10px;">Computing Theory</a> <a href="/tags/Course-Review/" style="font-size: 20px;">Course Review</a> <a href="/tags/Knowledge-Learning/" style="font-size: 15px;">Knowledge Learning</a> <a href="/tags/Life/" style="font-size: 12.5px;">Life</a> <a href="/tags/Linear-Programming/" style="font-size: 12.5px;">Linear Programming</a> <a href="/tags/Machine-Learning/" style="font-size: 12.5px;">Machine Learning</a> <a href="/tags/Math/" style="font-size: 17.5px;">Math</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 10px;">Natural Language Processing</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/04/27/CoSQL/">CoSQL</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/Algorithm-Designs-and-Analysis/">算法的设计和分析</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/24/Django-Learning/">Django 学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/21/Life-is-a-Moment-High-School/">朝花夕拾·少年</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/19/Linear-Programming-Theory/">线性规划的基本理论</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       
@@ -461,6 +427,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 
@@ -544,6 +512,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
