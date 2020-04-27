@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jiangshibiao.github.io/"/>
-  <updated>2020-04-27T16:46:31.725Z</updated>
+  <updated>2020-04-27T16:50:26.219Z</updated>
   <id>https://jiangshibiao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -16,13 +16,14 @@
     <link href="https://jiangshibiao.github.io/2020/04/27/CoSQL/"/>
     <id>https://jiangshibiao.github.io/2020/04/27/CoSQL/</id>
     <published>2020-04-27T13:02:41.000Z</published>
-    <updated>2020-04-27T16:46:31.725Z</updated>
+    <updated>2020-04-27T16:50:26.219Z</updated>
     
-    <content type="html"><![CDATA[<p>$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。</p><a id="more"></a><h4 id="什么是-CoSQL"><a href="#什么是-CoSQL" class="headerlink" title="什么是 CoSQL"></a>什么是 CoSQL</h4><ul><li>CoSQL 全称 <strong>Co</strong>nversational text-to-<strong>SQL</strong>，是耶鲁大学在 <a href="https://arxiv.org/abs/1909.05378" target="_blank" rel="noopener">EMNLP2019</a> 提出的 NLP 领域的数据集。</li><li><a href="https://arxiv.org/pdf/1909.05378.pdf" target="_blank" rel="noopener">官方网站</a> 。与经典的 text-to-SQL 任务（如 Spider）相比，CoSQL 的难度增加了不少：<ul><li>为了模拟现实场景，用户的询问可能有多轮，要求系统有整合信息的能力。</li><li>系统生成 SQL 语句并得到查询结果后，要用自然语言反馈给用户。</li><li>用户与系统的多轮对话之间，可能需要 clarify ambiguous questions（如下图 $Q3$ 和 $R3$）。</li></ul></li></ul><p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png" alt></p><ul><li><p>CoSQL 包含到 3k+ 组对话（$2164$ Train，$292$ Dev，$551$ Test），平均每组对话有 $11.21$ 个turns。值得注意的是，CoSQL 的内容横跨 $200$ 个数据库，而且不同组数据所用到的数据库 <strong>没有交集</strong>（$140$ Train，$20$ Dev，$40$ Test），以考察模型的鲁棒性。</p></li><li><p>CoSQL 一共有三个任务：</p><ol><li><p><strong>SQL-grounded dialogue state tracking</strong>：给出 interaction history，转化成对应的 SQL 语句。可能会包含表述模糊的问题，此时会同时给出确认信息。以上图为例，给出 $(Q_1,Q_2,Q_3,Q_4,R_3)$ 求 $S_4$</p></li><li><p><strong>natural language response generation</strong>：以 SQL 语句和返回结果为基础，生成自然语言回答。</p></li><li><p><strong>user dialogue act prediction</strong>：对每一个用户的提问，判断属于以下哪个 DB user 标签。</p><p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/DAT.png" alt></p></li></ol></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。</p><p>于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。</p><a id="more"></a><h4 id="什么是-CoSQL"><a href="#什么是-CoSQL" class="headerlink" title="什么是 CoSQL"></a>什么是 CoSQL</h4><ul><li>CoSQL 全称 <strong>Co</strong>nversational text-to-<strong>SQL</strong>，是耶鲁大学在 <a href="https://arxiv.org/abs/1909.05378" target="_blank" rel="noopener">EMNLP2019</a> 提出的 NLP 领域的数据集。</li><li><a href="https://arxiv.org/pdf/1909.05378.pdf" target="_blank" rel="noopener">官方网站</a> 。与经典的 text-to-SQL 任务（如 Spider）相比，CoSQL 的难度增加了不少：<ul><li>为了模拟现实场景，用户的询问可能有多轮，要求系统有整合信息的能力。</li><li>系统生成 SQL 语句并得到查询结果后，要用自然语言反馈给用户。</li><li>用户与系统的多轮对话之间，可能需要 clarify ambiguous questions（如下图 $Q3$ 和 $R3$）。</li></ul></li></ul><p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png" alt></p><ul><li>CoSQL 包含到 3k+ 组对话（$2164$ Train，$292$ Dev，$551$ Test），平均每组对话有 $11.21$ 个turns。值得注意的是，CoSQL 的内容横跨 $200$ 个数据库，而且不同组数据所用到的数据库 <strong>没有交集</strong>（$140$ Train，$20$ Dev，$40$ Test），以考察模型的鲁棒性。</li><li>CoSQL 一共有三个任务：<ol><li><strong>SQL-grounded dialogue state tracking</strong>：给出 interaction history，转化成对应的 SQL 语句。可能会包含表述模糊的问题，此时会同时给出确认信息。以上图为例，给出 $(Q_1,Q_2,Q_3,Q_4,R_3)$ 求 $S_4$</li><li><strong>natural language response generation</strong>：以 SQL 语句和返回结果为基础，生成自然语言回答。</li><li><strong>user dialogue act prediction</strong>：对每一个用户的提问，判断属于以下哪个 DB user 标签。<br><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/DAT.png" alt></li></ol></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。&lt;/p&gt;
+      &lt;p&gt;$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。&lt;/p&gt;
+&lt;p&gt;于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。&lt;/p&gt;
     
     </summary>
     
@@ -31,11 +32,11 @@
     
       <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
-      <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
-    
       <category term="Machine Learning" scheme="https://jiangshibiao.github.io/tags/Machine-Learning/"/>
     
       <category term="Coding" scheme="https://jiangshibiao.github.io/tags/Coding/"/>
+    
+      <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
     
   </entry>
   
