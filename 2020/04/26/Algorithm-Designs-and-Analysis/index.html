@@ -20,7 +20,7 @@
 <meta property="og:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Insertion-Merge-Sort.png">
-<meta property="og:updated_time" content="2020-04-28T04:51:00.021Z">
+<meta property="og:updated_time" content="2020-04-30T07:53:26.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法的设计和分析">
 <meta name="twitter:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
@@ -290,8 +290,15 @@
 </table>
 </div>
 <h2 id="Adversary-Argument"><a href="#Adversary-Argument" class="headerlink" title="Adversary Argument"></a>Adversary Argument</h2><p>除了 Decision Tree 外，我们有一个强有力的工具 Adversary 来分析一个算法的<strong>下界</strong>。它的核心思想是：Release the least information and change the scenario to make the algorithm work hard.</p>
-<p>先来考虑一个 <strong>Find Second Maximum Element</strong> 问题。我们都知道，找最大值至少需要也仅需要 $N-1$ 步。那么如果我们重复这个过程，在剩下数里面再找到一个最大值，得到该问题的比较次数上界：$2N-3$</p>
-<p>那么如何分析出一个紧的下界呢？就要靠 Adversary 分析了。对于任何一个算法，如果其询问的数对 $(x,y)$ ，设计 Adversary 的回答是：若 $g(x) \ge g(y)$，那么回答 $x&gt;y$，且执行 $g(x) = g(x)+g(y)$，反之亦然（初始时 $w(x)=0$）。这个策略有点像并查集的按秩合并。每次比完一组数后，$g(x)$ 不可能超过原来的 $2$ 倍，所以最大值至少经过了 $\lceil \log N \rceil$ 次比较后才能确认。要确定次大值，必须把这些曾经输掉的数字之间再比试一次。所以得 <strong>Find Second Maximum Element 问题的比较次数下界是 $N+\lceil \log N \rceil-2$</strong>。</p>
+<p>先来考虑一个 <strong>Find Second Maximum Element</strong> 问题。我们都知道，找最大值至少需要也仅需要 $N-1$ 次比较；如果我们重复这个过程，在剩下数里面再找一个最大值，得到该问题的比较次数上界：$2N-3$</p>
+<p>那么如何分析出下界呢？首先我们观察一个很有趣的结论：<strong>次大值只能在那些与最大值比较过的数字里产生</strong>。所以该问题的下界其实是 $N-1+M-1$，其中 $M$ 是曾经与最大值比较过的数字。</p>
+<p>假设回答的策略已经确定，那么最终对下界分析产生影响的 $M$ 其实是该策略面对所有算法后取得的最小值，即 $M_{min}=\min\limits_{a \in A}M_a$。为了分析出原问题 <strong>更紧</strong> 的下界，我们要找到一种策略，使得它的 $M_{min}$ 尽可能大 。</p>
+<p>现在我们要借助 Adversary 分析出尽量大的 $M_{min}$ 。考虑这样一种策略：</p>
+<ol>
+<li>给每一个数字 $x$ 一个“战胜指数” $g(x)$，初始时 $g(x)=1$。</li>
+<li>假设某一次询问的数对是 $(x,y)$ ，Adversary 采用的回答是：若 $g(x) \ge g(y)$，那么回答 $x&gt;y$，且执行 $g(x) = g(x)+g(y),g(y)=0$，反之亦然（这个策略有点像并查集的按秩合并）。</li>
+</ol>
+<p>注意到，无论你用什么算法来给出 $(x,y)$，每次比完一组后，$g(x)$ 都不可能超过原来的 $2$ 倍，而最终时候最大值 $z$ 必然满足 $g(z)=N$，所以 $z$ 至少经过了 $\lceil \log N \rceil$ 次比较后才能确认。即该策略的 $M_{min}=\lceil \log N \rceil$。顺着之前的思路，要确定次大值，必须把这些曾经输掉的数字之间再比试一次。所以得 <strong>Find Second Maximum Element 问题的比较次数下界是 $N+\lceil \log N \rceil-2$</strong>。</p>
 <p>下面再来考虑一个 <strong>Median</strong> 问题：有 $N$ 个互不相同的数，最少比较几次可以知道这些数里的中位数？ </p>
 <p>显然排序问题的比较次数是其上界。那么下界是什么样的呢？想象一棵 $N$ 个点的树，树边表示我们已知的大小关系。我们幻想的最优情况是：median 这个点成功地把其他点区分开了。即对于一个小于它的邻居，它子树下面也是递减关系；对于一个大于它的邻居，它子树下面也是递增关系。</p>
 <p>称 $(x,y)$ 为 <strong>Crucial Comparison</strong>，如果它满足 $x&gt;y \ge median$，或者 $x&lt;y\le median$ 。反之就是 <strong>Non-Crucial Comparison</strong>。可以发现，如果去对应那 $N$ 个点的树，CC 是树边而 NCC 是非树边。</p>
@@ -301,14 +308,14 @@
 <li>如果状态是 $(N,L)$ 或者 $(N,S)$，将 $N$ 分配成余下那种状态。</li>
 </ul>
 <p>重复这样的分配方案，直到 $(N-1)/2$ 个 $L$ 或者 $S$ 被分配出去了为止。如果按这种方式分配，最终得到的树里至少有 $(N-1)/2$ 条非树边。再加上 $N-1$ 条树边，得 <strong>Median 问题的比较次数下界是 $3(N-1)/2$</strong></p>
-<p>考虑一个实际的 $N=5$ 的 Median 的例子。之前说过，排序的下界是 $7$ 次，但 Adversary 提供更紧的 $6$ 次的下界。事实上，只需 $6$ 次比较的算法确实能构造出来：</p>
+<p>来看 Median 问题里 $N=5$ 的例子。之前说过，排序的下界是 $7$ 次，但 Adversary 提供更紧的 $6$ 次的下界。事实上，只需 $6$ 次比较的算法确实能构造出来：</p>
 <ol>
 <li>先花 $3$ 步决策出 $(a&lt;b&lt;d,c&lt;d)$。</li>
 <li>此时我们知道 $d$ 必然比中位数大，丢掉 $d$。</li>
 <li>把 $e$ 和 $c$ 拿去比较，再把大者和 $b$ 去比较。花了 $2$ 步可得 $a&lt;b&lt;e,c&lt;e$。</li>
 <li>最后花 $1$ 步比较 $b$ 和 $c$，大者就是中位数。</li>
 </ol>
-<p>现在我们来设计一种 <strong>普适的算法</strong> 求解 Median 问题，使得比较次数尽量少。一般化问题，设 $Select(S,k)$ 表示集合 $S$ 里第 $k$ 小的数，同时设 $W(N)$ 表示 $|S|=N$ 时的  $Select(S,k)$ 比较次数。</p>
+<p>我们再来设计一种 <strong>普适的算法</strong> 求解 Median 问题，使得比较次数尽量少。一般化问题，设 $Select(S,k)$ 表示集合 $S$ 里第 $k$ 小的数，同时设 $W(N)$ 表示 $|S|=N$ 时的  $Select(S,k)$ 比较次数。</p>
 <ol>
 <li>将 $S$ 按每组 $5$ 个划分，分别求中位数。这一步比较次数是 $6(N/5)$ 的。</li>
 <li>递归调用 $W$ 求这 $N/5$ 个中位数的中位数 $m^\ast$，比较次数 $W(N/5)$。</li>
@@ -319,7 +326,14 @@
 </li>
 <li>任何情况下 $|S_1|,|S_2| \le 7N/10$，所以 $W(N)=6N/5+W(N/5)+2N/5+W(7N/10)$</li>
 </ol>
-<p>可以用数学归纳法证明 $W(N) \le 16N$。也就是说，<strong>Median 问题比较次数上界是 $16N$</strong>。</p>
+<p>可以用数学归纳法证明 $W(N) \le 16N$。也就是说，<strong>Median 问题的比较次数上界是 $16N$</strong>。</p>
+<p>最后来看一个 <strong>Find Max and Min</strong> 问题。 一个很优秀的分治做法是：</p>
+<ol>
+<li>设 $f(S)$ 表示 $S$ 集合的最大值和最小值。</li>
+<li>如果 $|S|=2$，只要比较一次就能返回结果。</li>
+<li>若 $|S| &gt; 2$，将其划分为 $S_1$ 和 $S_2$ 两个集合，分别求 $f(S_1)$ 和 $f(S_2)$，把两者的最大值求一个 $\max$，把两者的最小值求一个 $\min$。所以步数 $T(N)=2T(N/2)+2$。</li>
+</ol>
+<p>最后解得 $T(N)=\lceil \frac{3}{2}N \rceil-2$。值得注意的是，可以用 Adversary 证明这是下界。</p>
 <h2 id="待整理"><a href="#待整理" class="headerlink" title="待整理"></a>待整理</h2><p>Preliminary Algorithm: Binary Search</p>
 <p>Double Binary Search</p>
 <ol>
@@ -327,8 +341,6 @@
 <li>现在我们已经知道 $2^{m-1} \le n \le 2^m-1$，重复之前的二分查找。</li>
 </ol>
 <p>如何决定 $k$ 呢？</p>
-<p>同时求最大值和最小值的</p>
-<p>$T(N)=2T(N/2)+2=3N/2-2$</p>
 
       
     </div>
