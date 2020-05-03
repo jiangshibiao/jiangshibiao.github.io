@@ -20,7 +20,8 @@
 <meta property="og:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Insertion-Merge-Sort.png">
-<meta property="og:updated_time" content="2020-04-30T10:21:31.143Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Find-max-and-min.png">
+<meta property="og:updated_time" content="2020-05-03T13:49:24.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法的设计和分析">
 <meta name="twitter:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
@@ -333,7 +334,8 @@
 <li>若 $|S| &gt; 2$，将其划分为 $S_1$ 和 $S_2$ 两个集合，分别求 $f(S_1)$ 和 $f(S_2)$，把两者的最大值求一个 $\max$，把两者的最小值求一个 $\min$。所以步数 $T(N)=2T(N/2)+2$。</li>
 </ol>
 <p>最后解得 $T(N)=\lceil \frac{3}{2}N \rceil-2$。现在我们用 Adversary 证明这是下界。</p>
-<p>定义四种状态 $\mathrm{(N,Win,Loss,Both)}$。其中所有数字都会经过 $\mathrm{N}$ 到 $\mathrm{W/L}$ 的转变，还有 $N-2$ 个数字会经过从 $\mathrm{W/L}$ 到 $\mathrm{B}$ 的转变，总信息量是 $2N-2$。我们希望询问者知道的信息量尽量得少：</p>
+<p>定义四种状态 $\mathrm{(N,Win,Loss,Both)}$。其中所有数字都会经过 $\mathrm{N}$ 到 $\mathrm{W/L}$ 的转变，还有 $N-2$ 个数字会经过从 $\mathrm{W/L}$ 到 $\mathrm{B}$ 的转变，总信息量是 $2N-2$。我们希望询问者知道的信息量尽量得少，具体决策如图：</p>
+<p><img src="//jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Find-max-and-min.png" alt></p>
 <ul>
 <li>如果比较 $\mathrm{(N,N)}$，被迫让其获得 $2$ 信息量变成变成 $\mathrm{(W,L)}$</li>
 <li>如果比较 $\mathrm{(N,W)}$，持续让 $\mathrm{W}$ 赢，获得 $1$ 信息量变成 $\mathrm{(L,W)}$</li>

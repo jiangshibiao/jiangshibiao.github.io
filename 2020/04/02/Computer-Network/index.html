@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png">
-<meta property="og:updated_time" content="2020-04-17T10:03:30.713Z">
+<meta property="og:updated_time" content="2020-05-01T16:06:32.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -517,6 +517,7 @@
 </ul>
 </li>
 <li>每一个适配器对应一个唯一的MAC地址（48位）</li>
+<li><strong>M</strong>aximum <strong>T</strong>ransmission <strong>U</strong>nit 最大传输单元</li>
 </ul>
 </li>
 <li>其他局域网<ul>
@@ -531,7 +532,8 @@
 </li>
 </ul>
 </li>
-<li>Data Link Layer Switching: Uses of Bridges<ul>
+<li><p>Data Link Layer Switching: Uses of Bridges</p>
+<ul>
 <li>Operation of a LAN bridge from 802.11 to 802.3. </li>
 <li>The first 802 bridge is a learning bridge or transparent bridge.</li>
 <li>使用 <strong>backward learning</strong> 算法。<ul>
@@ -544,11 +546,93 @@
 </li>
 </ul>
 </li>
-<li>缺点：如果有环就会出问题，一般会搭 spanning tree 来工作。</li>
+<li><p>缺点：如果有环就会出问题，一般会搭 spanning tree 来工作。</p>
+<h2 id="网络层-THE-NETWORK-LAYER"><a href="#网络层-THE-NETWORK-LAYER" class="headerlink" title="网络层 THE NETWORK LAYER"></a>网络层 THE NETWORK LAYER</h2></li>
+</ul>
+</li>
+<li><p>DESIGN ISSUES</p>
+<ul>
+<li>Store-and-Forward Packet Switching 分组交换技术<ul>
+<li>收到 packet 后，进行验证、存储和转发，然后再送往下一个 router。</li>
+</ul>
+</li>
+<li>Services Provided to the Transport Layer 为传输层提供的服务<ul>
+<li>路由技术与传输层独立；路由的数量、状态和拓扑结构对传输层隐藏。</li>
+<li>The network addresses made available to the transport layer should use a uniform numbering plan, even cross LANs and WANs</li>
+</ul>
+</li>
+<li>Connection-less service 无连接服务<ul>
+<li>不需要提前建立连接。</li>
+<li>Packets are injected into the subnet individually and routed independently of each other. </li>
+<li>每一个 packet 被称为 <strong>datagrams</strong> 数据报。子网络叫做 datagram subnet。</li>
+</ul>
+</li>
+<li>Connection-oriented service 面向连接的服务<ul>
+<li>用 <strong>Virtual Circuit</strong>  虚电路技术 实现。子网络叫做 virtual-circuit subnet。</li>
+<li>建立虚电路 $\to$ 数据传输（全双工通信）$\to$ 释放连接</li>
+<li>仅在建立阶段需要用到目的地址，后续每个节点会用虚电路号代替。保证分组有序转发。</li>
 </ul>
 </li>
 </ul>
-<p>​        </p>
+</li>
+<li><p>ROUTING ALGORITHMS 路由算法</p>
+<ul>
+<li><p>按传播范围分类</p>
+<ul>
+<li>Unicast: point-to-point, one-to-one. <em>eg. DV routing, LS routing</em></li>
+<li>Broadcast: one-to-all. <em>eg. Flooding, Reverse path forwarding</em></li>
+<li>Multicast: one to many</li>
+<li>Anycast: one to any</li>
+<li>Collection: all-to-one. <em>Used in sensor network</em></li>
+</ul>
+</li>
+<li><p>按是否动态分类</p>
+<ul>
+<li>Nonadaptive algorithms 非自适应算法：手动配置路由。应用于军事网络和小部分商业网络。</li>
+<li>Adaptive algorithms 自适应算法：按照路由算法实时优化路由表项。</li>
+</ul>
+</li>
+<li><p>一些指标：Hops 跳数，physical distance 物理距离，bandwidth 带宽，traffic 流量，cost，measured delay，mean queue length 平均队列长度</p>
+</li>
+<li><p><strong>D</strong>istance <strong>V</strong>ector routing 距离矢量路由算法</p>
+<ol>
+<li>每一个路由器都维护一张表，记录了到所有目的地的最短路以及对应的邻居（下一跳路由）。</li>
+<li>这些表会通过邻居之间交换信息得到更新。</li>
+</ol>
+<ul>
+<li>DV算法对 good news 的反应迅速，但是对 bad news 收敛慢。</li>
+<li>改进：Poisoned reverse 毒性逆转：如果 $C$ 是通过 $B$ 到达 $A$ 的，$C$ 给 $B$ 传信息时把到 $A$ 的距离设为无穷大。不能完全解决坏消息收敛慢的问题；在链上可以解决。</li>
+<li>对应 RIP 协议。</li>
+</ul>
+</li>
+<li><p>Link State routing 链路状态路由算法</p>
+<ol>
+<li>给邻居发 Hello packet，期望邻居回复。</li>
+<li>给邻居发 ECHO packet，要求快速返回消息，用 RTT 来度量 metric。</li>
+<li>每个路由器建立 link state packet，依次包括 identity of the sender, sequence number, age, a list of neighbors (and costs to them)。每新建一个 pkt，sequence number 都会增加；age 表示有效时间，每隔一秒会减一，减到 $0$ 后就无效。</li>
+<li>用 Flooding 方式把 packet 传播到自治系统里的所有节点。</li>
+<li>每个节点都能建立一张全网拓扑图，用 Dijkstra 算法来计算最短路。</li>
+</ol>
+<ul>
+<li>对应 <strong>O</strong>pen <strong>S</strong>hortest <strong>P</strong>ath <strong>F</strong>irst 协议。</li>
+</ul>
+</li>
+<li><p>Hierarchical routing</p>
+<ul>
+<li>理论最优的层级结构是：$N$ 个 router 设置 $\ln N$ 层，平均每个路由器有 $e \ln N$ 个连接。</li>
+</ul>
+</li>
+<li><p>Broadcast routing</p>
+<ul>
+<li>Sink-tree based broadcast 汇集树</li>
+<li>Reverse path forwarding 逆向路径转发：当一个广播分组到达一个路由器的时候，观察该线路是否就是该路由器往广播源发送的最优线路，如果是就保留转发，不是就丢弃。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>d </p>
+</li>
+</ul>
 
       
     </div>
@@ -651,7 +735,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层-THE-PHYSICS-LAYER"><span class="nav-number">1.</span> <span class="nav-text">物理层 THE PHYSICS LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层-THE-DATA-LINK-LAYER"><span class="nav-number">2.</span> <span class="nav-text">数据链路层 THE DATA LINK LAYER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介质访问子层-The-Medium-Access-Control"><span class="nav-number">2.0.1.</span> <span class="nav-text">介质访问子层 The Medium Access Control</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层-THE-PHYSICS-LAYER"><span class="nav-number">1.</span> <span class="nav-text">物理层 THE PHYSICS LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层-THE-DATA-LINK-LAYER"><span class="nav-number">2.</span> <span class="nav-text">数据链路层 THE DATA LINK LAYER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介质访问子层-The-Medium-Access-Control"><span class="nav-number">2.0.1.</span> <span class="nav-text">介质访问子层 The Medium Access Control</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层-THE-NETWORK-LAYER"><span class="nav-number">3.</span> <span class="nav-text">网络层 THE NETWORK LAYER</span></a></li></ol>
     
     </div>
   </aside>
