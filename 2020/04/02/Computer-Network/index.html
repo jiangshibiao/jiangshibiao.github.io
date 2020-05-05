@@ -21,7 +21,12 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png">
-<meta property="og:updated_time" content="2020-05-01T16:06:32.380Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Classful-and-special-addressing.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/protocol-and-ICMP.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv6.png">
+<meta property="og:updated_time" content="2020-05-05T09:40:58.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -532,8 +537,7 @@
 </li>
 </ul>
 </li>
-<li><p>Data Link Layer Switching: Uses of Bridges</p>
-<ul>
+<li>Data Link Layer Switching: Uses of Bridges<ul>
 <li>Operation of a LAN bridge from 802.11 to 802.3. </li>
 <li>The first 802 bridge is a learning bridge or transparent bridge.</li>
 <li>使用 <strong>backward learning</strong> 算法。<ul>
@@ -546,10 +550,11 @@
 </li>
 </ul>
 </li>
-<li><p>缺点：如果有环就会出问题，一般会搭 spanning tree 来工作。</p>
-<h2 id="网络层-THE-NETWORK-LAYER"><a href="#网络层-THE-NETWORK-LAYER" class="headerlink" title="网络层 THE NETWORK LAYER"></a>网络层 THE NETWORK LAYER</h2></li>
+<li>缺点：如果有环就会出问题，一般会搭 spanning tree 来工作。</li>
 </ul>
 </li>
+</ul>
+<h2 id="网络层-THE-NETWORK-LAYER"><a href="#网络层-THE-NETWORK-LAYER" class="headerlink" title="网络层 THE NETWORK LAYER"></a>网络层 THE NETWORK LAYER</h2><ul>
 <li><p>DESIGN ISSUES</p>
 <ul>
 <li>Store-and-Forward Packet Switching 分组交换技术<ul>
@@ -577,8 +582,7 @@
 </li>
 <li><p>ROUTING ALGORITHMS 路由算法</p>
 <ul>
-<li><p>按传播范围分类</p>
-<ul>
+<li>按传播范围分类<ul>
 <li>Unicast: point-to-point, one-to-one. <em>eg. DV routing, LS routing</em></li>
 <li>Broadcast: one-to-all. <em>eg. Flooding, Reverse path forwarding</em></li>
 <li>Multicast: one to many</li>
@@ -586,15 +590,13 @@
 <li>Collection: all-to-one. <em>Used in sensor network</em></li>
 </ul>
 </li>
-<li><p>按是否动态分类</p>
-<ul>
+<li>按是否动态分类<ul>
 <li>Nonadaptive algorithms 非自适应算法：手动配置路由。应用于军事网络和小部分商业网络。</li>
 <li>Adaptive algorithms 自适应算法：按照路由算法实时优化路由表项。</li>
 </ul>
 </li>
-<li><p>一些指标：Hops 跳数，physical distance 物理距离，bandwidth 带宽，traffic 流量，cost，measured delay，mean queue length 平均队列长度</p>
-</li>
-<li><p><strong>D</strong>istance <strong>V</strong>ector routing 距离矢量路由算法</p>
+<li>一些指标：Hops 跳数，physical distance 物理距离，bandwidth 带宽，traffic 流量，cost，measured delay，mean queue length 平均队列长度</li>
+<li><p><strong>Distance Vector routing</strong> 距离矢量路由算法</p>
 <ol>
 <li>每一个路由器都维护一张表，记录了到所有目的地的最短路以及对应的邻居（下一跳路由）。</li>
 <li>这些表会通过邻居之间交换信息得到更新。</li>
@@ -602,10 +604,10 @@
 <ul>
 <li>DV算法对 good news 的反应迅速，但是对 bad news 收敛慢。</li>
 <li>改进：Poisoned reverse 毒性逆转：如果 $C$ 是通过 $B$ 到达 $A$ 的，$C$ 给 $B$ 传信息时把到 $A$ 的距离设为无穷大。不能完全解决坏消息收敛慢的问题；在链上可以解决。</li>
-<li>对应 RIP 协议。</li>
+<li>对应 Routing Information Protocol <strong>RIP</strong> 协议，通过广播 UDP 报文交换路由信息。</li>
 </ul>
 </li>
-<li><p>Link State routing 链路状态路由算法</p>
+<li><p><strong>Link State routing</strong> 链路状态路由算法</p>
 <ol>
 <li>给邻居发 Hello packet，期望邻居回复。</li>
 <li>给邻居发 ECHO packet，要求快速返回消息，用 RTT 来度量 metric。</li>
@@ -614,7 +616,7 @@
 <li>每个节点都能建立一张全网拓扑图，用 Dijkstra 算法来计算最短路。</li>
 </ol>
 <ul>
-<li>对应 <strong>O</strong>pen <strong>S</strong>hortest <strong>P</strong>ath <strong>F</strong>irst 协议。</li>
+<li>对应 Open Shortest Path First <strong>OSPF</strong> 协议，直接采用 IP 交换信息。</li>
 </ul>
 </li>
 <li><p>Hierarchical routing</p>
@@ -622,15 +624,110 @@
 <li>理论最优的层级结构是：$N$ 个 router 设置 $\ln N$ 层，平均每个路由器有 $e \ln N$ 个连接。</li>
 </ul>
 </li>
-<li><p>Broadcast routing</p>
-<ul>
+<li>Broadcast routing<ul>
 <li>Sink-tree based broadcast 汇集树</li>
 <li>Reverse path forwarding 逆向路径转发：当一个广播分组到达一个路由器的时候，观察该线路是否就是该路由器往广播源发送的最优线路，如果是就保留转发，不是就丢弃。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>d </p>
+<li><p>Internetworking</p>
+<ul>
+<li>Autonamous System 自治系统</li>
+<li>Fragmentation 分片；不能超过 MTU，每个必须是 $8$ 字节的倍数。</li>
+</ul>
+</li>
+<li><p>IPv4 Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png" alt></p>
+<ul>
+<li><strong>Version</strong>：IPv4/6</li>
+<li><strong>IHL</strong>：表示首部长度，单位是 4B。$5 \le \text{IHL} \le 15$，即表示的最小长度是 20B。</li>
+<li><strong>differentiated services </strong>：优先级。</li>
+<li><strong>Total length</strong>：header 和 data 的总长度，单位是 1B。理论最大值是 65535，不过并达不到。</li>
+<li><strong>Identification</strong>：当前 telegram 的 ID 号。被分片的数据拥有同一个数值。</li>
+<li><strong>D</strong>on’t <strong>F</strong>ragment：DF=1 禁止分片；DF=0 允许分片。</li>
+<li><strong>M</strong>ore <strong>F</strong>ragment：MF=1 后面还有分片；MF=0 最后一片/未分片。</li>
+<li><strong>Fragment offset</strong>：目前分片在电报中的相对位置。单位是 8B。</li>
+</ul>
+</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Classful-and-special-addressing.png" alt></p>
+<ul>
+<li>IP addressing<ul>
+<li>Prefixes：Splitting an IP prefix into separate networks with subnetting.</li>
+<li>Classful and Special Addressing（见上图）</li>
+<li>Classless Inter-Domain Routing (<strong>CIDR</strong>)：<ul>
+<li>用 IP/Mask 表示一个地址。</li>
+<li>IP 地址可以进行 Aggregation。</li>
+<li>路由器寻址时使用 Longest matching prefix。</li>
+</ul>
+</li>
+<li>Network Address Translation（<strong>NAT</strong>）<ul>
+<li>To assign each company a single IP address for Internet traffic.</li>
+<li>reserved private IPs:<ul>
+<li>10.0.0.0/8</li>
+<li>172.16.0.0/12</li>
+<li>192.168.0.0/16</li>
+</ul>
+</li>
+<li>对 NAT box 负责内外的 IP+Port 的翻译工作。</li>
+<li>NAT tranversal problem：Since the mapping in the NAT box is set up by outgoing packets, incoming packets cannot be accepted until after outgoing ones.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/protocol-and-ICMP.png" alt></p>
+<ul>
+<li><p>Relevant Protocols（左上图）</p>
+<ul>
+<li><p>Internet Control Message Protocol <strong>ICMP</strong> 网际控制报文协议</p>
+<ul>
+<li>路由器在处理 packets 时如果遭遇差错，会给 sender 一个 ICMP 错误报文（右上图）。</li>
+</ul>
+</li>
+<li><p>The Address Resolution Protocol <strong>ARP</strong> 协议</p>
+<ul>
+<li>从 IP 地址到 MAC 地址的转换。</li>
+<li>子网内：在子网内广播 ARP 请求分组，对应目标地址单播响应请求。</li>
+<li>非子网内：先用 ARP 协议获得网关地址，路由器跳到目标网络，再用一次 ARP 获取目标地址。</li>
+</ul>
+</li>
+<li><p>Dynamic Host Configuration Protocol <strong>DHCP </strong>动态主机配置协议</p>
+<ul>
+<li>即插即用的机制，主机可以从服务器动态获取 IP地址、子网掩码、默认网关。</li>
+<li>属于应用层协议，使用客户/服务器方式，通过广播交互，基于 UDP。</li>
+</ul>
+<ol>
+<li>host broadcasts “DHCP discover” msg </li>
+<li>DHCP server responds with “DHCP offer” msg</li>
+<li>host requests IP address: “DHCP request” msg </li>
+<li>DHCP server sends address: “DHCP ack” msg</li>
+</ol>
+</li>
+<li><p>Border Gateway Protocol <strong>BGP</strong> 协议</p>
+<ul>
+<li><p>Exterior Gateway Routing Protocol</p>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png" alt></p>
+</li>
+<li><p>为保证可靠传输，采用 TCP 协议（放入 TCP 报文的字段里面）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv6.png" alt></p>
+<ul>
+<li>IPv6<ul>
+<li>将地址从 $32$ 位或占到 $128$ 位，增加了扩展首部（提高路由器效率），校验和子段被移除（加速）。</li>
+<li>IPv6 支持即插即用，不需要 DHCP 协议。</li>
+<li>IPv4 的首部是 4B 整数倍，IPv6的首部是 8B 整数倍。</li>
+<li>只能再主机处分片，不能在路由器分片了。</li>
+<li>使用冒号十六进制记法。可以省略首位 $0$。连续的十六进制 0 可以被压缩成两个冒号（最多一次）。<ul>
+<li>8000:0000:0000:0000:0123:4567:89AB:CDEF 或 8000::123:4567:89AB:CDEF</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 
