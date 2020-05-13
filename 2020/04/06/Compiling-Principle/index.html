@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1DFA.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LALR1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png">
-<meta property="og:updated_time" content="2020-05-13T03:02:52.878Z">
+<meta property="og:updated_time" content="2020-05-13T04:35:55.207Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 整一个编译的流程包括如下两个阶段：  front end: scanner $\to$ parser  $\to$ semantic analyzer $\to$ source code optimizer  back end:  code generator $\to$ target code">
@@ -246,7 +246,7 @@
 </ol>
 </li>
 <li>RE 转 NFA：关注最外层的 RE 的 Rule，然后递归地转化 NFA</li>
-<li>DFA 的最小化原理</li>
+<li>DFA 的最小化原理：把原有状态划分为一些不想交的子集， 使得任何两个不同子集的状态是可区别的，而同一子集的任何两个状态是等价的。最后，让每个子集选一个代表，同时消去其他状态。</li>
 </ul>
 <h2 id="语法分析-Syntax-Analysis"><a href="#语法分析-Syntax-Analysis" class="headerlink" title="语法分析 Syntax Analysis"></a>语法分析 Syntax Analysis</h2><h4 id="Context-Free-Grammar"><a href="#Context-Free-Grammar" class="headerlink" title="Context Free Grammar"></a>Context Free Grammar</h4><ul>
 <li><strong>Derivatrion</strong><ul>
@@ -284,8 +284,8 @@
 </ol>
 </li>
 <li>LL(1)文法也可以定义成：其 Parsing table 每一格不存在多个转移。</li>
-<li>First 集合<ul>
-<li>$First(A)$ 表示能出现在 $A$ 开头的非终结字符的集合。</li>
+<li><strong>First 集合</strong><ul>
+<li>$First(A)$ 表示能出现在 $A$ 开头的终结字符的集合。</li>
 <li>统计规则<ul>
 <li>直接收取：若存在 $T \rightarrow a…$，则将 $a$ 放入 $First(T)$</li>
 <li>反复推送：若 $T \rightarrow E…$，把 $First(E)$ 的所有元素加入 $First(T)$</li>
@@ -293,13 +293,12 @@
 </li>
 </ul>
 </li>
-<li>Follow 集合<ul>
-<li>专门为了空操作而设计的。</li>
+<li>为了处理 $\epsilon$  的情况，再引入 <strong>Follow 集合</strong>：<ul>
 <li>$Follow(A)$ 是可能在某些句型中紧跟在 $A$ 右边的终结符号的集合。</li>
 <li>统计规则<ul>
+<li>$\$ \in Follow(S)$</li>
 <li>若 $A \rightarrow …UP$，$First(P)$ 中除了 $\epsilon$ 都放入 $Follow(U)$（直接根据定义）</li>
 <li>若 $A \rightarrow …U$ 或 $A \rightarrow …UP$ 且 $First(P)$ 中包含 $\epsilon$ ，则 $Follow(A)$ 的所有元素加入 $Follow(U)$</li>
-<li>$\$ \in Follow(S)$</li>
 </ul>
 </li>
 </ul>
@@ -307,7 +306,7 @@
 <li>Parsing table M[N,T]（N 是非终结符，T 是终结符）<ul>
 <li>构建规则：考虑 $U \rightarrow A$ 的转移<ol>
 <li>对于 $First(U)$ 中的每个元素 $a$，都将 $U \rightarrow A$ 添加到 M[U, a] 中。</li>
-<li>若 $\epsilon \in First(A)$ 中，对于 $Follow(U)$ 中的每个元素 $a$ 都将 $U \rightarrow A$ 添加到 M[U, a] 中。</li>
+<li>若 $\epsilon \in First(A)$，对于 $Follow(U)$ 中的每个元素 $a$ 都将 $U \rightarrow A$ 添加到 M[U, a] 中。</li>
 </ol>
 </li>
 </ul>
