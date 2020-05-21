@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/SyntaxSQL2.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/EditSQL.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/Encoder.png">
-<meta property="og:updated_time" content="2020-05-21T06:31:29.634Z">
+<meta property="og:updated_time" content="2020-05-21T08:13:43.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CoSQL">
 <meta name="twitter:description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。 于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
@@ -310,16 +310,46 @@
 </ul>
 <h4 id="IRNet-RatSQL"><a href="#IRNet-RatSQL" class="headerlink" title="IRNet, RatSQL"></a>IRNet, RatSQL</h4><ul>
 <li><a href="https://arxiv.org/abs/1905.08205" target="_blank" rel="noopener">IRNet</a>，<a href="https://arxiv.org/abs/1911.04942" target="_blank" rel="noopener">RatSQL</a> 是 Spider 数据集里 SOTA 的两个模型。目前还未深入阅读论文。</li>
-<li>估计这两个模型也能直接应用在 CoSQL 上。为了解决 CoSQL 里多轮对话的机制，我觉得可以把每轮对话都拆开来当做独立的来训练。比如一轮 interaction 里有 $3$ 组对话 $\{Q_1,A_1,Q_2,A_2,Q_3,A_3\}$，我们可以拆成三组来训练，即 $\{Q_1,A_1\}$，$\{Q_1+Q_2,A_1+A_2\}$，$\{Q_1+,Q_2+Q_3,A_1+A_2+A_3\}$。</li>
-<li>目前还未尝试，估计准确率不会太高（模型预测时，我们每次要解出上一轮的结果才能带入预测下一轮，每迭代一次准确率都会降低好多）。</li>
+<li>估计这两个模型也能直接应用在 CoSQL 上，<strong>目前还未尝试</strong>。为了解决 CoSQL 里多轮对话的机制，我觉得 <strong>可以把每轮对话都拆开来当做独立的来训练</strong>。具体地，如果有一轮 interaction 里有 $3$ 组对话 $\{Q_1,A_1,Q_2,A_2,Q_3,A_3\}$，我们拆成三组来训练，即 $\{Q_1,A_1\}$，$\{Q_1+Q_2,A_1+A_2\}$ 和 $\{Q_1+,Q_2+Q_3,A_1+A_2+A_3\}$。注意模型预测时我们只有 $\{Q_1,Q_2,Q_3 \}$，我们每次要解出上一轮的结果才能带入预测下一轮，每迭代一次准确率都会降低好多。</li>
 </ul>
 <h4 id="CD-Seq2Seq"><a href="#CD-Seq2Seq" class="headerlink" title="CD-Seq2Seq"></a>CD-Seq2Seq</h4><ul>
 <li><a href="http://arxiv.org/abs/1804.06868" target="_blank" rel="noopener">CD-Seq2Seq</a> 是 NAACL2018 的 Outstanding Papers，提出了一种基于上下文的 seq2seq 模型将自然语言转换为SQL查询语句。记录交互的历史，模型中维持着一个交互对话级别的编码器，在每轮对话结束后更新它，把之前曾经预测过的查询语句中的子序列加入到之后的预测中，精简预测过程。</li>
 <li>CD-Seq2Seq 在 SParC 的论文里被优化，加入了 cross-domain 和 multiple turns 的信息。这个做法被 CoSQL 官方设为 baseline，<strong>所以也是我们实验的 baseline</strong>。我们重新训练了 CD-Seq2Seq，并用了官方 evaluation 工具测试其正确率和性能。</li>
-<li><p>得到</p>
+<li><strong>普通 Seq2Seq 模型</strong><ul>
+<li>Seq2Seq 模型是解决 Text2SQL 一个直接的方案。</li>
+<li>Encoder 阶段，正向 LSTM： $\mathbf{h}_{j}^{\vec{E}}=\mathrm{L} \mathrm{STM}^{\vec{E}}\left(\phi^{x}\left(x_{i, j}\right) ; \mathbf{h}_{j-1}^{\vec{E}}\right)$</li>
+<li>引入 Attention 机制：$s_{k}(j) =\mathbf{h}_{j}^{E} \mathbf{W}^{\mathbf{A}} \mathbf{h}_{k}^{D}, \alpha_{k}=\operatorname{softmax}\left(\mathbf{s}_{k}\right), \mathbf{c}_{k} =\sum_{j=1}^{\left|x_{i}\right|} \mathbf{h}_{j}^{E} \alpha_{k}(j)$</li>
+<li>Decoder 阶段，用 Attention vector 更新：$\mathbf{h}_{k}^{D}=\mathrm{LSTM}^{D}\left(\left[\phi^{y}\left(y_{i, k-1}\right) ; \mathbf{c}_{k-1}\right] ; \mathbf{h}_{k-1}^{D}\right)$</li>
+<li>对 $\mathbf{h}_k^D$ 求每种 token 的概率分布<ul>
+<li>设 $\mathbf{m}_{k} =\tanh \left(\left[\mathbf{h}_{k}^{D} ; \mathbf{c}_{k}\right] \mathbf{W}^{m}\right)$</li>
+<li>$P\left(y_{i, k}=w | \bar{x}_{i}, \bar{y}_{i, 1: k-1}\right) \propto \exp \left(\mathbf{m}_{k} \mathbf{W}_{w}^{o}+\mathbf{b}_{w}^{o}\right)$</li>
+</ul>
 </li>
-<li><p>总体结果如下（$P$ 表示 CoSQL paper 里的结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）</p>
+</ul>
 </li>
+<li><strong>CD-seq2seq模型</strong><ul>
+<li>在原本的基础上加入历史交互信息。引入 dicourse state：$\mathbf{h}_{i}^{I}=\mathrm{LSTM}^{I}\left(\mathbf{h}_{i,\left|\bar{x}_{i}\right|}^{E} ; \mathbf{h}_{i-1}^{I}\right)$</li>
+<li>在 Hidden state 的预测中加入 discourse state：$\mathbf{h}_{i, j}^{\vec{E}}=\mathrm{LSTM}^{\vec{E}}\left(\left[\phi^{x}\left(x_{i, j}\right) ; \mathbf{h}_{i-1}^{I}\right] ; \mathbf{h}_{i, j-1}^{\vec{E}}\right)$</li>
+<li>在 Attention vector 的预测中也加入 discourse state<ul>
+<li>$s_{k}(t, j)=\left[\mathbf{h}_{t, j}^{E} ; \phi^{I}(i-t)\right] \mathbf{W}^{\mathbf{A}} \mathbf{h}_{k}^{D}$</li>
+<li>$\mathbf{c}_{k}=\sum_{t=i-h}^{i} \sum_{j=1}^{\left|\bar{x}_{t}\right|}\left[\mathbf{h}_{t, j}^{E} ; \phi^{I}(i-t)\right] \alpha_{k}(t, j)$</li>
+</ul>
+</li>
+<li>现在的 token 预测概率分布如下：<ul>
+<li>$<br>P\left(y_{i, k}=w | \bar{x}_{i}, \bar{y}_{i, 1: k-1}, \bar{I}[: i-1]\right) \propto \exp \left(\mathbf{m}_{k} \mathbf{W}_{w}^{o}+\mathbf{b}_{w}^{o}\right)$</li>
+</ul>
+</li>
+<li>将之前对话的一些 Segment 加入到当前对话中，可以缩短预测过程。<ul>
+<li>将第 $l$ 次到第 $r$ 次交互过程中出现的 segment 进行预测 $\mathbf{h}^{S}=\left[\mathbf{h}_{l}^{Q} ; \mathbf{h}_{r}^{Q} ; \phi^{g}(\min (g, i-a))\right]$</li>
+<li>segment预测概率分布 $P\left(y_{i, k}=\bar{s} | \bar{x}_{i}, \bar{y}_{i, 1: k-1}, \bar{I}[: i-1]\right) \propto \exp \left(\mathbf{m}_{k} \mathbf{W}^{S} \mathbf{h}^{S}\right)$</li>
+</ul>
+</li>
+<li>正则化 embedding function $\phi^{y}(\bar{s}=\langle a, b, l, r\rangle)=\frac{1}{r-l} \sum_{k=l} \phi^{y}\left(y_{b, k}\right)$</li>
+<li>token 预测交叉熵 $\mathcal{L}\left(y_{i, k}^{(l)}\right)=-\log P\left(y_{i, k}^{(l)} | \bar{x}_{i}^{(l)}, \bar{y}_{i, 1: k-1}^{(l)}, \bar{I}^{(l)}[: i-1]\right)$</li>
+<li>定义 interaction loss：$\mathcal{L}=\frac{n}{B} \frac{1}{\sum_{i=1}^{n}\left|\bar{y}_{i}^{(j)}\right|} \sum_{i=1}^{n} \sum_{k=1}^{\left|y_{i}^{(j)}\right|} \mathcal{L}\left(y_{i, k}^{(j)}\right)$</li>
+</ul>
+</li>
+<li>训练结果如下（$P$ 表示 CoSQL paper 里的结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）</li>
 </ul>
 <div class="table-container">
 <table>
@@ -399,17 +429,33 @@
 <li>EditSQL 并没有提出 fancy 的 backbone，而是多次利用基于Attention 的 LSTM 搭模型。<br><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/EditSQL.png" alt></li>
 <li>Utterance-Table Encoder and  Interaction Encoder<ul>
 <li>注意查询可能会涉及多个表，所有的 column header 均用 <code>&lt;table_name&gt;.&lt;column_name&gt;</code> 表示。</li>
-<li>对于 Utterance Encoder 的处理比较常（bao）规（li）。先用 bi-LSTM 把用户的每个 token 都连起来，再用 hidden state 对所有 column header 做一遍 Attention。最后，把每个 token 的 hidden state 和对应的 Attention Vector 连接起来，再套一层 bi-LSTM。记最终的状态为 $h^E$。</li>
-<li>注意在 turn $t$ 时不仅要用到 $h^E_t$ 的信息，可能还会用到 $h^E_{i(i&lt;t)}$ 的信息。作者提到了一个 <strong>Turn Attention</strong> 机制。训一个 $W_{turn-att}$，把当前的 $h^E_t$ 和和之前的 $h^E_{i(i&lt;t)}$ 都做一遍点乘并 $\mathrm{softmax}$ 一下。最终的 $h^{E’}_i$ 是由前几个 Utterance Encoder 复合而成，即 $h^{E’}_t=h^E_t+\sum \limits_{i=1}^{t-1}\alpha_ih^E_i$。<br><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/Encoder.png" alt></li>
-<li>对于 Table Encoder 的处理略复杂一些。注意到 column header 彼此可能会产生关系（<strong>foreign-key</strong>），所以先对 Columns 做一个 Self-Attention，再对 Utterance 做一个 Attention。记为 $h^C$。</li>
+<li>对于 Utterance Encoder 的处理比较常（bao）规（li）。先用 bi-LSTM 把用户的每个 token 都连起来，再用 hidden state 对所有 column header 做一遍 Attention。最后，把每个 token 的 hidden state 和对应的 Attention Vector 连接起来，再套一层 bi-LSTM。记最终的状态为 $\mathbf{h}^E$。</li>
+<li>注意在 turn $t$ 时不仅要用到 $h^E_t$ 的信息，可能还会用到 $h^E_{i(i&lt;t)}$ 的信息。作者提到了一个 <strong>Turn Attention</strong> 机制。训一个 $W_{turn-att}$，把当前的 $h^E_t$ 和和之前的 $h^E_{i(i&lt;t)}$ 都做一遍点乘并 $\mathrm{softmax}$ 一下。最终的 $\mathbf{h}^{E’}_i$ 是由前几个 Utterance Encoder 复合而成，即 $\mathbf{h}^{E’}_t=\mathbf{h}^E_t+\sum \limits_{i=1}^{t-1}\alpha_i\mathbf{h}^E_i$。<br><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/Encoder.png" alt></li>
+<li>对于 Table Encoder 的处理略复杂一些。注意到 column header 彼此可能会产生关系（<strong>foreign-key</strong>），所以先对 Columns 做一个 Self-Attention，再对 Utterance 做一个 Attention。记为 $\mathbf{h}^C$。</li>
 <li>Utterance 和 Table 在代入前可以先用 <strong>BERT</strong> 处理一下。</li>
 </ul>
 </li>
 <li>Table-aware Decoder<ul>
-<li>123</li>
+<li>用 $\mathbf{q}$ 表示要求的 SQL 语句。我们再套一层 LSTM 来预测 $\mathbf{q}$。具体地，假设已预测好前 $k$ 个词，则下一个 LSTM 节点满足 $\mathbf{h}_{k+1}^{D}=\operatorname{LSTM}^{D}\left(\left[\mathbf{q}_{k} ; \mathbf{c}_{k}\right], \mathbf{h}_{k}^{D}\right)$ 。其中 $\mathbf{c}_{k}$ 综合了之前的 $\mathbf{h}^E, \mathbf{h}^C$ 等上下文信息；$\mathbf{q}_k$ 对应答案第 $k$ 个 token 的 embedding（可能是 Table Header 也可能是 SQL Keyword）。</li>
+<li>那么怎么用 $\mathbf{h}^D_k$ 来预测 $\mathbf{q}_k$ 呢？在所有  Table Header 和 SQL Keyword 后训一层全连接网络。</li>
 </ul>
 </li>
-<li>总体结果如下（$P$ 表示 editSQL github 里的官方结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）</li>
+<li><strong>Query Editing Mechanism</strong><ul>
+<li>除了 Utterance Encoder 和 Table Encoder $(\mathbf{h}^E, \mathbf{h}^C)$，作者还用了一个 $\mathbf{h}^Q$ 去影响 $\mathbf{c}$ 。</li>
+<li>这个机制的初衷是：通过统计发现，从第二个 turn 开始，SQL 答案里有一半以上的 tokens 是从上一个 turn 里复制过来的。所以作者想更好地利用上一轮答案的信息。</li>
+<li>称上一轮复制过来的 token 是 copy，新增加的 token 是 insert。在 Decode SQL 结果的每一步，都去计算一下本次 token 的类别分布。即： $P_{copy}=\sigma(\mathbf{c}_k\mathbf{W}_{copy}+\mathbf{b}_{copy}),P_{insert}=1-P_{copy}$。</li>
+<li>知道了 $P_{copy}$ 和 $P_{insert}$ 后，针对之前预测 $\mathbf{q}_k$ 的概率分布，可以乘上各自的类别概率来修正。 </li>
+</ul>
+</li>
+<li>复现和测试<ol>
+<li>与 baseline 相比，该做法用到大量 LSTM 结构，产生了 <strong>大量</strong> 的参数，对内存的要求很大。</li>
+<li>我在 NVIDIA TESLA 16G 上开 <code>batch_size = 1</code> 训练依然 <code>out of memory</code>。</li>
+<li>给原作者提了一个 <a href="https://github.com/ryanzhumich/editsql/issues/19" target="_blank" rel="noopener">issue</a>  目前还未被答复。</li>
+<li>为了先复现出结果，先在服务器上用 CPU 训练。跑了 1.5 周，测试结果见下。</li>
+<li><strong>后续两个方向的改进：1. 减少模型参数，使其能在 GPU 上训练；2. 数据增强，减少过拟合</strong>。</li>
+</ol>
+</li>
+<li>总体结果（$P$ 是 editSQL github 里的官方结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）</li>
 </ul>
 <div class="table-container">
 <table>
@@ -423,15 +469,35 @@
 <tbody>
 <tr>
 <td>39.9</td>
-<td><strong>43.5</strong></td>
+<td><strong>43.54</strong></td>
 <td>13.3</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li>11</li>
+<li>观察训练后的一些 log 信息，发现 <strong>过拟合现象</strong> 十分严重。</li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>T: Train Token Match</th>
+<th>T: Dev Token Match</th>
+<th>T: Train String Match</th>
+<th>T: Dev String Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>99.81</td>
+<td>88.66</td>
+<td>99.14</td>
+<td>43.54</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -725,21 +791,5 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
