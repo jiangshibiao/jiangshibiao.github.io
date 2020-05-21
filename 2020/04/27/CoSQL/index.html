@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/SyntaxSQL2.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/EditSQL.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/Encoder.png">
-<meta property="og:updated_time" content="2020-05-21T06:20:44.994Z">
+<meta property="og:updated_time" content="2020-05-21T06:31:29.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CoSQL">
 <meta name="twitter:description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。 于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
@@ -318,11 +318,81 @@
 <li>CD-Seq2Seq 在 SParC 的论文里被优化，加入了 cross-domain 和 multiple turns 的信息。这个做法被 CoSQL 官方设为 baseline，<strong>所以也是我们实验的 baseline</strong>。我们重新训练了 CD-Seq2Seq，并用了官方 evaluation 工具测试其正确率和性能。</li>
 <li><p>得到</p>
 </li>
-<li><p>总体结果如下（$P$ 表示 CoSQL paper 里的结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）<br>| P: Question Match | P: Interaction Match | P: Interaction Match | T: Interaction Match |<br>| ————————- | —————————— | —————————— | —————————— |<br>| <strong>13.8</strong>          | 12.6                 | 2.1                  | <strong>2.4</strong>              |</p>
+<li><p>总体结果如下（$P$ 表示 CoSQL paper 里的结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）</p>
 </li>
-<li>在不同难度的 Dev 数据上的正确率。<br>| T: easy | T: medium | T: hard | T: extra | T: all | T: joint all |<br>| ———- | ————- | ———- | ———— | ——— | —————— |<br>| 25.5    | 4.4       | 3.7     | 0.9      | 12.6   | 2.4          |</li>
-<li>对于轮数的正确率统计如下。可以发现，从第二轮开始正确率就大幅下降，因为要基于第一轮的结果。<br>| T: turn 1 | T: turn 2 | T: turn 3 | T: turn 4 | T: turn &gt; 4 |<br>| ————- | ————- | ————- | ————- | —————- |<br>| 21.6      | 10.9      | 8.2       | 6.1       | 8.5         |</li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>P: Question Match</th>
+<th>P: Interaction Match</th>
+<th>P: Interaction Match</th>
+<th>T: Interaction Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>13.8</strong></td>
+<td>12.6</td>
+<td>2.1</td>
+<td><strong>2.4</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>在不同难度的 Dev 数据上的正确率。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>T: easy</th>
+<th>T: medium</th>
+<th>T: hard</th>
+<th>T: extra</th>
+<th>T: all</th>
+<th>T: joint all</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25.5</td>
+<td>4.4</td>
+<td>3.7</td>
+<td>0.9</td>
+<td>12.6</td>
+<td>2.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>对于轮数的正确率统计如下。可以发现，从第二轮开始正确率就大幅下降，因为要基于第一轮的结果。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>T: turn 1</th>
+<th>T: turn 2</th>
+<th>T: turn 3</th>
+<th>T: turn 4</th>
+<th>T: turn &gt; 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21.6</td>
+<td>10.9</td>
+<td>8.2</td>
+<td>6.1</td>
+<td>8.5</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h4 id="EditSQL"><a href="#EditSQL" class="headerlink" title="EditSQL"></a>EditSQL</h4><ul>
 <li><a href="https://arxiv.org/abs/1909.00786" target="_blank" rel="noopener">EditSQL</a> 是耶鲁大学在 EMNLP2019 提出的多轮对话的 Text2SQL 解决方案。</li>
 <li>EditSQL 最开始是针对 SParC 的任务进行设计的（CoSQL 也是刚发表在 EMNLP2019 上的，所以论文并没有测在 CoSQL 上的正确率）。目前它是 SParC 和 CoSQL 的 SOTA，在两个数据集的 Question Match 上均达到了 $40+\%$ 的成绩。<strong>本次实验我们主要基于 EditSQL 进行一些修改和调优</strong>。</li>
@@ -335,15 +405,32 @@
 <li>Utterance 和 Table 在代入前可以先用 <strong>BERT</strong> 处理一下。</li>
 </ul>
 </li>
-<li><p>Table-aware Decoder</p>
-<ul>
+<li>Table-aware Decoder<ul>
 <li>123</li>
 </ul>
 </li>
-<li><p>总体结果如下（$P$ 表示 editSQL github 里的官方结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）<br>| P: Question Match | T: Question Match | P: Interaction Match |<br>| ————————- | ————————- | —————————— |<br>| 39.9              | <strong>43.5</strong>          | 13.3                 |</p>
-</li>
-<li><p>11</p>
-</li>
+<li>总体结果如下（$P$ 表示 editSQL github 里的官方结果，$T$ 表示我们重新训练后的结果；针对 Dev 数据集）</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>P: Question Match</th>
+<th>T: Question Match</th>
+<th>P: Interaction Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>39.9</td>
+<td><strong>43.5</strong></td>
+<td>13.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>11</li>
 </ul>
 
       
