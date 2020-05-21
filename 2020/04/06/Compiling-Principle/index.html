@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1DFA.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LALR1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png">
-<meta property="og:updated_time" content="2020-05-13T04:35:55.207Z">
+<meta property="og:updated_time" content="2020-05-13T05:39:59.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 整一个编译的流程包括如下两个阶段：  front end: scanner $\to$ parser  $\to$ semantic analyzer $\to$ source code optimizer  back end:  code generator $\to$ target code">
@@ -339,7 +339,7 @@
 </li>
 <li>$\mathrm{SLR}$ 的分析引擎（Simple LR）<ul>
 <li>为了解决上述的冲突问题，我们引入范围更大的 $\mathrm{SLR}$。它提出了一个简单而有效的方案。 </li>
-<li>自动机状态的表示、移进和规约的操作都和 $\mathrm{LR(0)}$ 差不多，但让规约变得<strong>更严格了</strong>：若状态中存在已经结束的表达式 $A \to …\cdot$，只有当下一个字符 $\alpha$满足 $\alpha \in Follow(A)$ 时才规约。</li>
+<li>自动机状态的表示、移进和规约的操作都和 $\mathrm{LR(0)}$ 差不多，但让规约变得<strong>更严格了</strong>：若状态中存在已经结束的表达式 $A \to …\cdot$，只有当下一个字符 $\alpha$ 满足 $\alpha \in Follow(A)$ 时才规约。</li>
 </ul>
 </li>
 <li>$\mathrm{LR(1)}$ 的分析引擎<ul>

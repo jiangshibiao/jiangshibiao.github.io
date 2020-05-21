@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-12T16:01:09.036Z">
+<meta property="og:updated_time" content="2020-05-15T14:55:45.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地使用 Python">
 <meta name="twitter:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
@@ -223,18 +223,28 @@
 </li>
 </ul>
 <h4 id="美化代码"><a href="#美化代码" class="headerlink" title="美化代码"></a>美化代码</h4><ul>
+<li><p><strong>itertools</strong> 库里有很多实用的枚举姿势</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> permutations, combinations, product</span><br><span class="line"></span><br><span class="line">permutations(list, r = len(list))        <span class="comment"># list 里长度为 r 的所有排列</span></span><br><span class="line">combinations(list, r)                    <span class="comment"># list 里长度为 r 的所有组合</span></span><br><span class="line">product(list1, list2, ...)               <span class="comment"># 所有 list 的笛卡尔积</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
 <li><p><strong>namedtuple </strong> 具名元组：在元组的基础上，支持用属性名去访问元素。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections.namedtuple</span><br><span class="line"></span><br><span class="line">User = namedtuple(<span class="string">'User'</span>, [<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'id'</span>])</span><br><span class="line">User = namedtuple(<span class="string">'User'</span>, <span class="string">'name age id'</span>)</span><br><span class="line"></span><br><span class="line">user = User(<span class="string">'tester'</span>, <span class="string">'22'</span>, <span class="string">'001'</span>)</span><br><span class="line">user = User._make([<span class="string">'Runoob'</span>, <span class="string">'male'</span>, <span class="number">12</span>])</span><br><span class="line">user = user._replace(age = <span class="number">22</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (user)          <span class="comment"># User(name='user1', sex='male', age=21)</span></span><br><span class="line"><span class="keyword">print</span> (user._asdict)  <span class="comment"># 将其转化为字典</span></span><br><span class="line"><span class="keyword">print</span> (user._fields)  <span class="comment"># 获取所有字段名</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>partial</strong>：灵活设置函数的默认参数，使其变成新函数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line">double = partial(multiply, y=<span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> (double(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+</ul>
+<ul>
+<li><strong>partial</strong>：灵活设置函数的默认参数，使其变成新函数。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line">double = partial(multiply, y=<span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> (double(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="第三方库推荐"><a href="#第三方库推荐" class="headerlink" title="第三方库推荐"></a>第三方库推荐</h4><ul>
 <li><strong>pyparsing</strong>：可以用来定制小型的解析器，比起枯燥死板的正则的语法，更加贴近思维习惯。</li>
-<li><strong>tesserocr &amp; pytesseract</strong>：对给定图片进行文本检测，并返回识别后的字符串。<ul>
+<li><p><strong>tesserocr &amp; pytesseract</strong>：对给定图片进行文本检测，并返回识别后的字符串。</p>
+<ul>
 <li>不太适合很小的图（比如只包括一个字符），进行适当的缩放和重复会有更好的识别效果。</li>
 </ul>
+</li>
+<li><p><strong>Symbol</strong>：一个很厉害的数学表达式运算的库！<a href="https://www.jianshu.com/p/339c91ae9f41" target="_blank" rel="noopener">中文链接</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = sympy.Symbol(<span class="string">'x'</span>)                   <span class="comment"># 定义一个量 x</span></span><br><span class="line">fx = <span class="number">5</span> * x + <span class="number">4</span>                          <span class="comment"># 可以正常放入表达式运算</span></span><br><span class="line">fx.free_symbols                         <span class="comment"># 返回 fx 里的 Symbol 集合</span></span><br><span class="line">y1 = fx.evalf(subs=&#123;x:<span class="number">6</span>&#125;)               <span class="comment"># 计算表达式的数值结果</span></span><br><span class="line">y = sympy.pi * sympy.Symbol(<span class="string">'y'</span>)        <span class="comment"># 注意 sin, pi 等要用 sympy 库里的</span></span><br><span class="line">dx = sympy.diff(fx, x)                  <span class="comment"># fx 关于 x 求导</span></span><br><span class="line">sympy.integrate(fx, (x,<span class="number">0</span>,<span class="number">1</span>))            <span class="comment"># fx 关于 x 定积分（只传一个 x 就是不定积分）</span></span><br><span class="line">sympy.solve([fx, <span class="number">2</span>*y<span class="number">-1</span>], (x, y), dict = <span class="literal">True</span>)   </span><br><span class="line"><span class="comment"># 解方程；未知数列表可不写；返回的 list 记录多解信息，list 里的每个元素是一个表示解的 dict</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="常见的私有方法"><a href="#常见的私有方法" class="headerlink" title="常见的私有方法"></a>常见的私有方法</h4><div class="table-container">

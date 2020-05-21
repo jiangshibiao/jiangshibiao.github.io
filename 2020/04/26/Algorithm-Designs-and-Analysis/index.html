@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Insertion-Merge-Sort.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Find-max-and-min.png">
-<meta property="og:updated_time" content="2020-05-03T13:49:24.479Z">
+<meta property="og:updated_time" content="2020-05-15T15:56:54.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法的设计和分析">
 <meta name="twitter:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
@@ -373,7 +373,29 @@
 <p>那么对于 <strong>k-Binary Search</strong> $B_k$：$S_{B_k}(N) = L^1(N) + L^2 (N) + \dots + L^{k-1}(N) + 2L^k (N) +1$</p>
 <p>现在还有一个问题：如何找出我们想要的 $k$ ？设 $g(n)$ 满足：</p>
 <script type="math/tex; mode=display">g(n)=\left\{ \begin{aligned} & 2 \quad &n=1 \\ & 2^{g(n-1)}-1 \quad &n \ge 2 \end{aligned} \right.</script><p>我们从小到大尝试 $g$ 数列直到 $F(g(k))=1$</p>
-
+<h2 id="Reduction"><a href="#Reduction" class="headerlink" title="Reduction"></a>Reduction</h2><p>Reduction 是个经典的话题。比如：<strong>3-SUM $\propto$ Collinearity $\propto$ Segment Splitting</strong>。  </p>
+<ul>
+<li>3-SUM 问题：有 $N$ 个不同的数，是否能选出三个数  $(a,b,c)$ 使得 $a+b+c=0$</li>
+<li>Collinearity 问题：平面上有 $N$ 个点，是否能选出三个共线的点。</li>
+<li>Segment Splitting 问题：平面上有 $N$ 条线段，是否存在一条直线能将不触碰地将他们划成非空两部分。</li>
+</ul>
+<p>3-SUM $\propto$ Collinearity 有两种证明方法。一是把原来 3-SUM 里的每个点 $a$ 对应到平面上 $(a,a^3)$ 这个点。 如果 $a+b+c=0$，充要于 $(b^3-a^3,b-a) \times (c^3-a^3,c-a)=0$，反之亦然。二是把原来 3-SUM 里的每个点 $a$ 对应到平面上的 $(a,0),(a,2),(-\frac{a}{2},1)$ 三个点。如果 $a+b+c=0$，则 $(a,2),(-\frac{b}{2},1),(c,0)$ 共线，反之亦然。注意这两个方法都要用到斜率，所以都有 $(a,b,c)$ 三个数互不相同的前提。 </p>
+<p>Collinearity $\propto$ Segment Splitting 可以沿用上面的证明二。我们在 $y=0,1,2$ 上画三条线，对于每个 $a$，在对应三个点处“开一个小洞”。这样如果 Collinearity 有解，我们就得到了穿过所有小洞的直线，反之亦然。</p>
+<p>再来看一个厉害的 Reduction：<strong>矩阵乘法和矩阵求逆是可以相互规约的</strong>。这里只证明前者规约后者。对于矩阵乘法 $A \times B$，我们可以花 $O(N^2)$ 的时间构造出以下 $3N \times 3N$ 的矩阵。注意矩阵求逆后包含 $AB$ 这一项。</p>
+<script type="math/tex; mode=display">
+D=
+\begin{pmatrix}
+I_n & A & 0 \\
+0 & I_n & B \\
+0 & 0 & I_n
+\end{pmatrix}
+\quad 
+D^{-1}=
+\begin{pmatrix}
+I_n & -A & AB \\
+0 & I_n & -B \\
+0 & 0 & I_n
+\end{pmatrix}</script>
       
     </div>
     <footer class="article-footer">
@@ -475,7 +497,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-Insertion-Sort"><span class="nav-number">1.</span> <span class="nav-text">Merge-Insertion-Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adversary-Argument"><span class="nav-number">2.</span> <span class="nav-text">Adversary Argument</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbound-Searching"><span class="nav-number">3.</span> <span class="nav-text">Unbound Searching</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-Insertion-Sort"><span class="nav-number">1.</span> <span class="nav-text">Merge-Insertion-Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adversary-Argument"><span class="nav-number">2.</span> <span class="nav-text">Adversary Argument</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbound-Searching"><span class="nav-number">3.</span> <span class="nav-text">Unbound Searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reduction"><span class="nav-number">4.</span> <span class="nav-text">Reduction</span></a></li></ol>
     
     </div>
   </aside>
