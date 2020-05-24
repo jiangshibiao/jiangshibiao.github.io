@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-23T17:20:26.030Z">
+<meta property="og:updated_time" content="2020-05-24T06:23:19.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地使用 Python">
 <meta name="twitter:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
@@ -209,17 +209,28 @@
 <p>于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。</p>
 <a id="more"></a>
 <h4 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h4><ul>
-<li><code>any(&lt;list&gt;)</code>，<code>all(&lt;list&gt;)</code></li>
+<li><p><code>any(&lt;list&gt;)</code>，<code>all(&lt;list&gt;)</code></p>
+</li>
 <li><p>用 <code>enumerate()</code> 来带序号遍历 <code>list</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> id, element <span class="keyword">in</span> enumerate():</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<ul>
 <li><p>取 <code>dict</code> 里的元素最大值：<code>max(vote, key = vote.get)</code></p>
 </li>
 <li><p>字符串相关的函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.isalpha(), s.isalnum(), s.islower(), s.isupper(), s.isdigit()</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<ul>
 <li><p>正则表达式</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">re.compile(pattern[, flags])    <span class="comment"># 编译一个正则表达式；调用以下函数时可以减少 pattern 这个参数</span></span><br><span class="line">re.search(pattern, string)      <span class="comment"># 扫描整个字符串并返回第一个成功的</span></span><br><span class="line">re.match (pattern, string)      <span class="comment"># 从字符串起始位置开始匹配</span></span><br><span class="line">re.findall(pattern, string)     <span class="comment"># 扫描整个字符串并返回所有匹配成功的子串的 list</span></span><br><span class="line">re.sub(pattern, repl, string)   <span class="comment"># 把 string 里所有极大 pattern 的改成 repl</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda 函数</p>
+<ul>
+<li>注意：<strong>lambda 函数会绑定全局变量地址而非其值</strong>。以下代码的解决方案 <a href="https://docs.python.org/3/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result" target="_blank" rel="noopener">见此</a>。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">funcs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    funcs.append(<span class="keyword">lambda</span> x: x + i)</span><br><span class="line"><span class="comment"># 最后 funcs 里的十个函数都变成了：f(x) = x +10</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 </li>
 </ul>
 <h4 id="美化代码"><a href="#美化代码" class="headerlink" title="美化代码"></a>美化代码</h4><ul>
@@ -330,6 +341,7 @@
 </ul>
 </li>
 <li><p>numpy 的 IO 操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ny.save(file, a, allow_pickle=<span class="literal">True</span>)        <span class="comment"># 将 a 保存至二进制文件（后缀名为 npy）</span></span><br><span class="line">np.savez(<span class="string">"runoob.npz"</span>, *args, **kwds)      <span class="comment"># 保存多个数组，如果非字典形式会被自动标号</span></span><br><span class="line">b = np.load(file)                          <span class="comment"># 如果读入的是 savez 后的文件会得到 dict</span></span><br><span class="line">np.savetxt(file, a, fmt=<span class="string">"%d"</span>)              <span class="comment"># 保存至普通 txt 文件</span></span><br><span class="line">np.loadtxt(file, delimiter=<span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -616,21 +628,5 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

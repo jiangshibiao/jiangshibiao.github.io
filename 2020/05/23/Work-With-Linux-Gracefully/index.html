@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="导语用惯了傻瓜式的 Windows 环境，在 Linux 服务器上跑任务总是磕磕绊绊的。 于是我就开了这篇博客，整理一些经典的操作，例如 Linux 命令行、Git 的用法等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-23T17:03:57.703Z">
+<meta property="og:updated_time" content="2020-05-24T07:12:10.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地在 Linux 下工作">
 <meta name="twitter:description" content="导语用惯了傻瓜式的 Windows 环境，在 Linux 服务器上跑任务总是磕磕绊绊的。 于是我就开了这篇博客，整理一些经典的操作，例如 Linux 命令行、Git 的用法等。">
@@ -204,7 +204,64 @@
         <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><p>用惯了傻瓜式的 Windows 环境，在 Linux 服务器上跑任务总是磕磕绊绊的。</p>
 <p>于是我就开了这篇博客，整理一些经典的操作，例如 Linux 命令行、Git 的用法等。</p>
 <a id="more"></a>
-<h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p>占坑。</p>
+<h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">推荐中文教程</a></li>
+<li>创建，更新和丢弃<ul>
+<li><code>git init</code>：将一个普通文件夹变为接受 git 管理的文件夹。</li>
+<li><code>git add &lt;file1&gt; &lt;file2&gt;...</code>：将文件从 <strong>工作区</strong> 移入 <strong>暂存区</strong>。<code>git add .</code> 表示移入所有。</li>
+<li><code>git commit -m &quot;commit message&quot;</code>：将 <strong>暂存区</strong> 里的文件提交到当前分支。</li>
+<li><code>git status</code>：查看所有改动后的文件的状态。</li>
+<li><code>git checkout -- &lt;file&gt;</code>：丢弃工作区里 file 文件的改动。<ul>
+<li>如果 file 还未被移入暂存区，就恢复成原先版本的样子。</li>
+<li>如果 file 被移入暂存区但是又修改了，就恢复成移入暂存区的样子。</li>
+</ul>
+</li>
+<li><code>git rm &lt;file&gt;</code>：删除 file 文件。可以通过上一条操作找回。</li>
+</ul>
+</li>
+<li>版本回退<ul>
+<li><code>git log</code>：查看 commit 记录和历次版本信息。加上 <code>--pretty=oneline</code> 后一行显示一个。</li>
+<li><code>git reset --hard &lt;edition&gt;</code>：将文件夹转变到 edition 版本。<ul>
+<li>当前版本称为 <code>HEAD</code>，每往前一个加一个 <code>^</code>，所以上上个版本可以用 <code>HEAD^^</code> 表示。</li>
+<li>也可以用 <code>commit id</code> 表示版本（在 log 信息里可查看），无须写完整（前缀唯一匹配）。</li>
+</ul>
+</li>
+<li><code>git reflog</code>：查看你的操作（命令）记录</li>
+<li>注意：回退至之前某个版本后， <code>git log</code> 看不到之后的 commit 记录了。但是依然可以通过 <code>git reset --hard &lt;commit-id&gt;</code> 回到之后的版本。如果忘记了之后的版本号，可以先用 <code>git reflog</code> 查看。 </li>
+</ul>
+</li>
+<li>和远程仓库的交互<ul>
+<li><code>git remote</code>：查看远程仓库的信息。</li>
+<li><code>git push [origin master]</code>：将本地 commit 后的 master 版本合并入远程仓库。</li>
+<li><code>git pull</code></li>
+</ul>
+</li>
+<li>分支管理<ul>
+<li><code>git checkout -b dev</code> ：创建并切换到 dev 分支。它是以下两句的缩写：<ul>
+<li><code>git branch dev</code>：创建新的分支 dev。</li>
+<li><code>git checkout dev</code>：切换至分支 dev。</li>
+</ul>
+</li>
+<li><code>git branch</code>：查看所有分支（当前分支前面会有一个 <code>*</code>）。</li>
+<li><code>git merge dev</code>：把 dev 分支合并到 master 上。<ul>
+<li>若 file 有冲突，修改好后先 <code>git add &lt;file&gt;</code>  再 merge。</li>
+<li>用 <code>--no-ff</code> 可以为 merge 后的结果创建一个新的 commit（当然也要设定一下 commit 信息），即：<code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></li>
+</ul>
+</li>
+<li><code>git branch -d dev</code>：删除 dev 分支。</li>
+</ul>
+</li>
+<li>储藏和恢复工作区<ul>
+<li><code>git stash</code> ：暂时把当前工作区 stash 起来并回到 HEAD 版本。<ul>
+<li>此时用 <code>git status</code> 查看是干净的。</li>
+</ul>
+</li>
+<li><code>git stash list</code>：查看之前的 stash 记录。</li>
+<li><code>git stash apply</code>：恢复 stash 前的状态，但是保留 stash 记录。</li>
+<li><code>git stash pop</code>：恢复 stash 前的状态，并删除 stash 记录。</li>
+</ul>
+</li>
+</ul>
 <h4 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h4><div class="table-container">
 <table>
 <thead>
@@ -546,21 +603,5 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
