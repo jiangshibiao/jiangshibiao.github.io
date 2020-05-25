@@ -11,21 +11,21 @@
   
   
   
-  <meta name="description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括但不限于以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
+  <meta name="description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
 <meta name="keywords" content="Knowledge Learning,Course Review,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data-Mining">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括但不限于以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
+<meta property="og:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation-Example.png">
-<meta property="og:updated_time" content="2020-05-11T13:01:52.063Z">
+<meta property="og:updated_time" content="2020-05-25T07:13:16.214Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-Mining">
-<meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括但不限于以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
+<meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -206,7 +206,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。</p>
-<p>课程内容涉及机器学习入门的 topic，包括但不限于以下内容：</p>
+<p>课程内容涉及机器学习入门的 topic，包括以下内容：</p>
 <ul>
 <li>贝叶斯模型和线性分类器 </li>
 <li>神经网络</li>
@@ -264,6 +264,60 @@
 </li>
 <li>注意：因为条件独立的假设，数据量不足时可能会因为某个特征的 $P(x_i|\omega_j)=0$，导致 $P(\pmb{x}|\omega_j)$ 被强制计算成 $0$ 了。对此我们可以用 <strong>Laplace smoothing</strong>，把 $P(x_{i} | \omega_{k})$ 的估计从 $\frac{|x_{ik}|}{N_{\omega_k}}$ 变成 $\frac{|x_{i k}|+1}{N_{\omega_{k}}+K}$</li>
 </ol>
+<h2 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h2><p>所谓 linear，就是对于训练数据 $(\pmb{x}_i,y_i)$，我们要学一个向量 $\pmb{w}$ 使得预测函数为 $f(x)=w_0+\pmb{w}^T\pmb{x}$。</p>
+<p>我们一般用 MSE 去估计一个模型的好坏，即最小化 $J_n=\frac{1}{n} \sum (y_i-f(\pmb{x}_i))^2$。</p>
+<p>这就是 <strong>Linear Regression</strong> 的主要思路。注意到 $\min J_n$ 是能求出解析解：</p>
+<ol>
+<li>设 $X=[\pmb{x}_1,\pmb{x}_2,\dots,\pmb{x}_n]$，$\pmb{y}=[y_1,\dots,y_n]^T$。</li>
+<li>我们要优化 $\pmb{w}$ 使得 $J_n(w)=(\pmb{y}-X^T\pmb{w})^T(y-X^T\pmb{w})$ 取到最小。</li>
+<li>$J_n$ 对 $\pmb{w}$ 求导，有 $\nabla J_n=-2X(y-X^T\pmb{w})$</li>
+<li>若 $\nabla J_n=0$，解得 $\pmb{\hat w}=(XX^T)^{-1}X\pmb{y}$。</li>
+</ol>
+<p>从上面的结果也可以推得，如果样本数小于特征数，$XX^T$ 一定不满秩，也就推不出最优解。</p>
+<p>下面我们来证明，为什么用 MSE 估价是合理的。</p>
+<ol>
+<li>一个线性模型的实际效果往往是 $y=f(\pmb{x},\pmb{w})+\epsilon$，其中 $\epsilon$ 是噪声。</li>
+<li>我们假设 $\epsilon$ 服从高斯分布 $N(0,\sigma^2)$（根据概率知识，样本量充足时任何分布都是趋向高斯分布） </li>
+<li>如果我们已经有了个模型，那么当前标签分布出现的概率是 $L=\prod \limits_{i=1}^n P(y_i|\pmb{x}_i,\pmb{w}_i,\sigma)$</li>
+<li>我们总希望找到一个模型使得 $L$ 尽可能得大，所以用最大似然那套理论去估计。</li>
+<li>$\log L=-\frac{1}{2\sigma^2}\sum(y-f(\pmb{x},\pmb{w})^2)+c(\sigma)$，所以极大化 $L$ 等价于极小化 MSE。 </li>
+</ol>
+<p>线性模型会有一个缺点。维度足够高时总能学出一个很接近的模型，但是它的过拟合现象十分严重。所以我们用 <strong>Ridge Regression</strong> 来限制模型的复杂程度。它会对 $\pmb{w}$ 做一个 regularize 操作。</p>
+<p>即估价函数改成 $J’_n=\sum \limits_{i=1}^n(y_i-\pmb{x}_i^T\pmb{w})^2+\lambda \sum \limits_{i=1}^p a_j^2$</p>
+<p>注意到 $\min J’_n$ 也是可以求出解析解的。$\nabla J’_n=-2X(y-X^T\pmb{w})+2\lambda \pmb{w}$ 所以 $\pmb{\hat w}=(XX^T+\lambda\pmb{I})^{-1}X\pmb{y}$。Ridge Regression 还有一个好处：$XX^T+\lambda \pmb{I}$ 是正定矩阵，所以 <strong>不会出现不满秩无法求解</strong> 的情况。</p>
+<p>一个更 general 的正则化方法是，加上 $\lambda |\pmb{a}|_q$ 这一项。 当 $q=1,2,3 \dots$ 时优化函数是凸的（定义域当然也是凸的），由于凸优化的良好性质，我们总能解出最优的解（即使是数值解）。但是当 $q=0.5$ 时就没有那么好的性质了。注意 $q=1$ 的情况被称为 <strong>LASSO</strong>（Least Absolute Selection and Shrinkage Operator）。LASSO 是一个重要的优化方法，因为它找到的解是 Sparse 的（很多 $\pmb{w}_i$ 容易取为 $0$）。</p>
+<p>下面再介绍一下 <strong>Logistic Regression</strong>：在线性变换的基础上又套了一个 $\text{Sigmoid}$ 函数。</p>
+<script type="math/tex; mode=display">
+P(y_i=\pm 1|\pmb{x},\pmb{a})=\frac{1}{1+e^{-y_i\pmb{a}^T\pmb{x}}}</script><p>由于 $\text{Sigmoid}$ 可以把 $(-\infty,+\infty)$ 转化到 $(0,1)$，我们可以认为 LR 学到的就是标签的分布概率。</p>
+<p>之前说的贝叶斯模型被称为 <strong>Generative Modeling</strong> （生成模型），因为该模型表示了从给定输入 $X$ 到概率分布 $Y$ 之间的生成关系。而 Logistic Regression 是正好与之对应的 <strong>Discriminative Modeling</strong>（判别模型），它会直接学习概率分布，但是不能反映训练数据本身的特性。</p>
+<p>现在我们想找一组参数 $\pmb{a}$，使得以下式子取到最大（又是最大似然的套路）。</p>
+<script type="math/tex; mode=display">
+E(\pmb{a})=\prod \limits_{i \in I} \frac{1}{1+e^{-y_i\pmb{a}^T\pmb{x}_i}}</script><p>当然在具体训练时，我们会对 $E(\pmb{a})$ 取对数，即使得下列式子取到最小。</p>
+<script type="math/tex; mode=display">
+\ln E(\pmb{a})=\sum \limits_{i \in I} \ln (1+e^{-y_i\pmb{a}^T\pmb{x}_i})</script><p>下面我们来简要证明 $\ln E(\pmb{a})$ 是凸函数（所以可以直接用 Gradient Descent 解）。</p>
+<ol>
+<li>先把 $\sum$ 拆开，证明每个部分都是凸函数，凸函数的和还是凸函数。</li>
+<li>设 $\theta_i=\pmb{a}^T\pmb{x}_i$。根据凸函数的定义，证明 $\ln E(\pmb{a})$ 凸性等价于证明 $\ln E(\theta_i)$。</li>
+<li>所以我们现在想证明 $J(\theta)=\ln(1+e^{-y_i\theta})$ 是凸函数。</li>
+<li>求一阶导 $J’(\theta)=-\frac{y_i}{e^{y_i\theta}+1}$，二阶导 $J’’(\theta)=\frac{e^{y_i\theta}}{(e^{y_i\theta}+1)^2}=\frac{e^\theta}{(e^\theta+1)^2} \ge 0$</li>
+<li>所以 $J(\theta_i)$ 是凸的，即 $\ln E(\pmb{a})$ 也是凸的。</li>
+</ol>
+<h2 id="Model-Assessment-and-Selection"><a href="#Model-Assessment-and-Selection" class="headerlink" title="Model Assessment and Selection"></a>Model Assessment and Selection</h2><p><strong>Bias &amp; Variance Decomposition</strong> 是模型评价的理论基石。</p>
+<p>对于有一个有监督学习 $(\pmb{x}_i,y_i)$ ，假设我们的模型是 $f(\pmb{x})$，那么期望的损失函数为：</p>
+<script type="math/tex; mode=display">
+E(L)=\iint L(y,f(\pmb{x}))~p(\pmb{x},y) d\pmb{x}dy</script><p>假设损失函数使用平方误差，那么得到的 Expected Prediction Error 是：</p>
+<script type="math/tex; mode=display">
+EPE(f)=\iint (y-f(\pmb{x}))^2~p(\pmb{x},y)dxdy</script><p>现在我们想化简这个积分式。把 $(y-f(\pmb{x}))^2$ 换成 $(y-E(y|\pmb{x})+E(y|\pmb{x})-f(\pmb{x}))^2$ 展开化简</p>
+<script type="math/tex; mode=display">
+EPE(f)=\int (f(\pmb{x})-E(y|\pmb{x}))^2p(\pmb{x})d\pmb{x} + \int var(y|\pmb{x})p(\pmb{x})d\pmb{x}</script><p>我们会发现，无论我们怎么选择模型都不可能让 EPE 变为 $0$。</p>
+<p>虽然最优的 $f(\pmb{x})$ 满足 $f(\pmb{x})=E(y|\pmb{x})$，但是实际操作时我们只能从训练数据里构建模型，所以我们学到的 $f(\pmb{x})$ 其实是 $f(\pmb{x}|D)$。重新推导式子后，可以将 EPE 分成以下三个部分：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\text{bias} &= \int \{E_D(f(\pmb{x};D)-E(y|\pmb{x}))\}^2p(\pmb{x})d\pmb{x} \\
+\text{variance} &= \int E_D\{[f(\pmb{x};D)-E_D(\pmb{x};D)]^2\}p(\pmb{x})d\pmb{x} \\
+\text{noise} &= \int var(y|\pmb{x})p(\pmb{x})d\pmb{x}
+\end{align}</script><p>之前说的正则化操作，大的 $\lambda$ 会导致更大的 bias，小的 $\lambda$ 会导致更大的 variance。</p>
+<p>在模型选择时，常用 <strong>Cross-Validation</strong> 的方法。将训练数据集划成 $k$ 份，每次留一份 $i$ 作为 Validation，其它$k-1$ 份用来训练，挑选 bias 或者 variance 比较小的模型。不同的 Validation 能重复 $k$ 次。当训练数据比较少时，可能会用到比较极端的 leave-one-out 方法，即取 $k=N$。 </p>
 
       
     </div>
@@ -366,7 +420,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li></ol>
     
     </div>
   </aside>
@@ -557,5 +611,21 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
