@@ -26,7 +26,10 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/protocol-and-ICMP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv6.png">
-<meta property="og:updated_time" content="2020-05-20T03:56:51.890Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png">
+<meta property="og:updated_time" content="2020-05-27T04:29:24.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -730,7 +733,67 @@
 </ul>
 </li>
 </ul>
-<h2 id="传输层-THE-TRANSPORT-LAYER"><a href="#传输层-THE-TRANSPORT-LAYER" class="headerlink" title="传输层 THE TRANSPORT LAYER"></a>传输层 THE TRANSPORT LAYER</h2><h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2>
+<h2 id="传输层-THE-TRANSPORT-LAYER"><a href="#传输层-THE-TRANSPORT-LAYER" class="headerlink" title="传输层 THE TRANSPORT LAYER"></a>传输层 THE TRANSPORT LAYER</h2><ul>
+<li><p>The Transport Service</p>
+<ul>
+<li>与网络层的服务类似，都是 Establishment $\to$ data transfer $\to$ release 的过程，都有 Addressing 和 Flow control。</li>
+<li>区别：传输层完全应用于主机上，而网络层还应用于路由器上；传输层比网络层 <strong>更可靠</strong>。</li>
+</ul>
+</li>
+<li><p>Primitives</p>
+<ul>
+<li><p><strong>Hypothetical Primitives</strong> 见左图；现在广泛应用的 API 的是右图的 <strong>Berkeley Socket</strong>。</p>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>Elements of Transport Protocols</p>
+<ul>
+<li>Addressing<ul>
+<li>NSAP: Network service access point $\to$ <strong>IP</strong> (32 bit)</li>
+<li>TSAP: Transport service access point $\to$ <strong>Port</strong> (16 bit)</li>
+</ul>
+</li>
+<li>Connection Establishment<ul>
+<li>…</li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>RPC (Remote Procedure Call) : make a remote procedure call look as much as possible like a local one. </p>
+</li>
+<li><p>User Datagram Protocol <strong>UDP协议</strong></p>
+<ul>
+<li><p>发送封装后的 IP 数据报，无连接服务。没有 flow control, error control 和 retransmission。</p>
+</li>
+<li><p>UDP 协议首部的大小是 8 B。注意 UDP Length 是包括首部的（最小 20 B）。</p>
+</li>
+<li><p>主要应用有：RTP, DNS……</p>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png" alt></p>
+</li>
+<li><p>Real-time Transport Protocol <strong>RTP协议</strong>：RTP is to multiplex several real-time data streams onto a single stream of UDP packets and unicast or multicast the UDP packets.</p>
+</li>
+</ul>
+</li>
+<li><p>Transmission Control Protocol <strong>TCP协议</strong></p>
+<ul>
+<li><p>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</p>
+</li>
+<li><p>无结构的字节流：A TCP connection is a byte stream, not a message queue。</p>
+</li>
+<li><p>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。</p>
+<ul>
+<li>Window size: tell how many bytes may be sent starting at the byte acknowledged.</li>
+<li>Urgent pointer: indicate a byte offset at which urgent data are to be found. </li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png" alt></p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2>
       
     </div>
     <footer class="article-footer">

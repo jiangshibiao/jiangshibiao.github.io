@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-24T06:23:19.916Z">
+<meta property="og:updated_time" content="2020-05-29T17:00:06.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地使用 Python">
 <meta name="twitter:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
@@ -209,7 +209,7 @@
 <p>于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。</p>
 <a id="more"></a>
 <h4 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h4><ul>
-<li><p><code>any(&lt;list&gt;)</code>，<code>all(&lt;list&gt;)</code></p>
+<li><p><code>any(&lt;list&gt;)</code>，<code>all(&lt;list&gt;)</code>，<code>sum(&lt;list&gt;)</code></p>
 </li>
 <li><p>用 <code>enumerate()</code> 来带序号遍历 <code>list</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> id, element <span class="keyword">in</span> enumerate():</span><br></pre></td></tr></table></figure>
@@ -310,6 +310,17 @@
 </tbody>
 </table>
 </div>
+<h4 id="Jupyter-Notebook"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</h4><ul>
+<li>优点：即写即用，一直缓存结果，适合开发。</li>
+<li>缺点：不支持代码补全和跳转；需要额外开一个命令行。</li>
+<li>把 Block 从代码转为标记后，可以写 markdown 源代码（”运行“后显示效果）。</li>
+<li>展示图片<ul>
+<li>用 <code>cv2.imshow(&quot;WindowsName&quot;, a)</code>  无法正常显示图片，需要再后面加 <code>cv2.waitKey(delay)</code>，如 <code>delay=0</code> 则跳出一张图片（鼠标关闭后才会继续运行）。</li>
+<li>用 <code>plt.imshow(a)</code> 可以画出 <code>a</code>，但是会在代码运行完后再画。</li>
+<li>用 <code>plt.imshow(a); plt.show()</code> 后可以立即输出图片（也可以连续画出多张图片）。</li>
+</ul>
+</li>
+</ul>
 <h4 id="Numpy-专题"><a href="#Numpy-专题" class="headerlink" title="Numpy 专题"></a>Numpy 专题</h4><ul>
 <li><p>numpy 的初始化</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>), (<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)])</span><br><span class="line"><span class="comment"># 元组也会变成一个维度，即 a = [[1, 2, 3], [4, 5, 6]]</span></span><br><span class="line">a = np.zeros((<span class="number">3</span>,<span class="number">4</span>), order = <span class="string">'F'</span>)        <span class="comment"># 列优先</span></span><br><span class="line">a = np.full((<span class="number">3</span>,<span class="number">5</span>), <span class="number">3.14</span>, order = <span class="string">'C'</span>)   <span class="comment"># 行优先</span></span><br><span class="line">a = np.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>), dtype = np.int16)</span><br><span class="line">a = np.identity(<span class="number">4</span>)                      <span class="comment"># 生成大小为 4 的单位矩阵</span></span><br><span class="line">a = p.arange(<span class="number">0</span>, <span class="number">3</span>, <span class="number">0.1</span>)                 <span class="comment"># 和 range 用法类似</span></span><br><span class="line">lst = a.tolist()                        <span class="comment"># 转换成 list</span></span><br><span class="line">b = a.copy()                            <span class="comment"># deep_copy</span></span><br></pre></td></tr></table></figure>
@@ -437,7 +448,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用函数"><span class="nav-number">2.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#美化代码"><span class="nav-number">3.</span> <span class="nav-text">美化代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三方库推荐"><span class="nav-number">4.</span> <span class="nav-text">第三方库推荐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的私有方法"><span class="nav-number">5.</span> <span class="nav-text">常见的私有方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numpy-专题"><span class="nav-number">6.</span> <span class="nav-text">Numpy 专题</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用函数"><span class="nav-number">2.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#美化代码"><span class="nav-number">3.</span> <span class="nav-text">美化代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三方库推荐"><span class="nav-number">4.</span> <span class="nav-text">第三方库推荐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的私有方法"><span class="nav-number">5.</span> <span class="nav-text">常见的私有方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jupyter-Notebook"><span class="nav-number">6.</span> <span class="nav-text">Jupyter Notebook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numpy-专题"><span class="nav-number">7.</span> <span class="nav-text">Numpy 专题</span></a></li></ol>
     
     </div>
   </aside>
