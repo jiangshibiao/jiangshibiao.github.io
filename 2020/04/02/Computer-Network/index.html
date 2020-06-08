@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png">
-<meta property="og:updated_time" content="2020-05-27T04:29:24.432Z">
+<meta property="og:updated_time" content="2020-06-02T04:44:52.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -640,8 +640,7 @@
 <li>Fragmentation 分片；不能超过 MTU，每个必须是 $8$ 字节的倍数。</li>
 </ul>
 </li>
-<li><p>IPv4 Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png" alt></p>
-<ul>
+<li>IPv4 Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png" alt><ul>
 <li><strong>Version</strong>：IPv4/6</li>
 <li><strong>IHL</strong>：表示首部长度，单位是 4B。$5 \le \text{IHL} \le 15$，即表示的最小长度是 20B。</li>
 <li><strong>differentiated services </strong>：优先级。</li>
@@ -688,15 +687,13 @@
 <li>路由器在处理 packets 时如果遭遇差错，会给 sender 一个 ICMP 错误报文（右上图）。</li>
 </ul>
 </li>
-<li><p>The Address Resolution Protocol <strong>ARP</strong> 协议</p>
-<ul>
+<li>The Address Resolution Protocol <strong>ARP</strong> 协议<ul>
 <li>从 IP 地址到 MAC 地址的转换。</li>
 <li>子网内：在子网内广播 ARP 请求分组，对应目标地址单播响应请求。</li>
 <li>非子网内：先用 ARP 协议获得网关地址，路由器跳到目标网络，再用一次 ARP 获取目标地址。</li>
 </ul>
 </li>
-<li><p>Dynamic Host Configuration Protocol <strong>DHCP </strong>动态主机配置协议</p>
-<ul>
+<li>Dynamic Host Configuration Protocol <strong>DHCP </strong>动态主机配置协议<ul>
 <li>即插即用的机制，主机可以从服务器动态获取 IP地址、子网掩码、默认网关。</li>
 <li>属于应用层协议，使用客户/服务器方式，通过广播交互，基于 UDP。</li>
 </ul>
@@ -707,13 +704,9 @@
 <li>DHCP server sends address: “DHCP ack” msg</li>
 </ol>
 </li>
-<li><p>Border Gateway Protocol <strong>BGP</strong> 协议</p>
-<ul>
-<li><p>Exterior Gateway Routing Protocol</p>
-<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png" alt></p>
-</li>
-<li><p>为保证可靠传输，采用 TCP 协议（放入 TCP 报文的字段里面）</p>
-</li>
+<li>Border Gateway Protocol <strong>BGP</strong> 协议<ul>
+<li>Exterior Gateway Routing Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png" alt></li>
+<li>为保证可靠传输，采用 TCP 协议（放入 TCP 报文的字段里面）</li>
 </ul>
 </li>
 </ul>
@@ -734,21 +727,16 @@
 </li>
 </ul>
 <h2 id="传输层-THE-TRANSPORT-LAYER"><a href="#传输层-THE-TRANSPORT-LAYER" class="headerlink" title="传输层 THE TRANSPORT LAYER"></a>传输层 THE TRANSPORT LAYER</h2><ul>
-<li><p>The Transport Service</p>
-<ul>
+<li>The Transport Service<ul>
 <li>与网络层的服务类似，都是 Establishment $\to$ data transfer $\to$ release 的过程，都有 Addressing 和 Flow control。</li>
 <li>区别：传输层完全应用于主机上，而网络层还应用于路由器上；传输层比网络层 <strong>更可靠</strong>。</li>
 </ul>
 </li>
-<li><p>Primitives</p>
-<ul>
-<li><p><strong>Hypothetical Primitives</strong> 见左图；现在广泛应用的 API 的是右图的 <strong>Berkeley Socket</strong>。</p>
-<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png" alt></p>
-</li>
+<li>Primitives<ul>
+<li><strong>Hypothetical Primitives</strong> 见左图；现在广泛应用的 API 的是右图的 <strong>Berkeley Socket</strong>。<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png" alt></li>
 </ul>
 </li>
-<li><p>Elements of Transport Protocols</p>
-<ul>
+<li>Elements of Transport Protocols<ul>
 <li>Addressing<ul>
 <li>NSAP: Network service access point $\to$ <strong>IP</strong> (32 bit)</li>
 <li>TSAP: Transport service access point $\to$ <strong>Port</strong> (16 bit)</li>
@@ -761,35 +749,58 @@
 <li>…</li>
 </ul>
 </li>
-<li><p>RPC (Remote Procedure Call) : make a remote procedure call look as much as possible like a local one. </p>
-</li>
-<li><p>User Datagram Protocol <strong>UDP协议</strong></p>
-<ul>
-<li><p>发送封装后的 IP 数据报，无连接服务。没有 flow control, error control 和 retransmission。</p>
-</li>
-<li><p>UDP 协议首部的大小是 8 B。注意 UDP Length 是包括首部的（最小 20 B）。</p>
-</li>
-<li><p>主要应用有：RTP, DNS……</p>
-<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png" alt></p>
-</li>
-<li><p>Real-time Transport Protocol <strong>RTP协议</strong>：RTP is to multiplex several real-time data streams onto a single stream of UDP packets and unicast or multicast the UDP packets.</p>
-</li>
+<li>RPC (Remote Procedure Call) : make a remote procedure call look as much as possible like a local one. </li>
+<li>User Datagram Protocol <strong>UDP协议</strong><ul>
+<li>发送封装后的 IP 数据报，无连接服务。没有 flow control, error control 和 retransmission。</li>
+<li>UDP 协议首部的大小是 8 B。注意 UDP Length 是包括首部的（最小 20 B）。</li>
+<li>主要应用：RTP, DNS<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png" alt></li>
+<li>Real-time Transport Protocol <strong>RTP协议</strong>：RTP is to multiplex several real-time data streams onto a single stream of UDP packets and unicast or multicast the UDP packets.</li>
 </ul>
 </li>
 <li><p>Transmission Control Protocol <strong>TCP协议</strong></p>
 <ul>
-<li><p>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</p>
-</li>
-<li><p>无结构的字节流：A TCP connection is a byte stream, not a message queue。</p>
-</li>
-<li><p>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。</p>
-<ul>
+<li>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</li>
+<li>无结构的字节流：A TCP connection is a byte stream, not a message queue。</li>
+<li>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。<ul>
 <li>Window size: tell how many bytes may be sent starting at the byte acknowledged.</li>
-<li>Urgent pointer: indicate a byte offset at which urgent data are to be found. </li>
+<li>Urgent pointer: indicate a byte offset at which urgent data are to be found.<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png" alt></li>
 </ul>
-<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png" alt></p>
 </li>
-<li></li>
+<li>Nagle’s algorithm: When data come into the sender one byte at a time, just send the first byte and buffer all the rest until the outstanding byte is acknowledged. </li>
+<li>Connection Management<ul>
+<li>Establishment:  Three-way Handshake<ol>
+<li>SYN=1, SEQ=x</li>
+<li>SYN=1, SEQ=y, ACK=x+1</li>
+<li>SEQ=x, ACK=y+1</li>
+</ol>
+</li>
+<li>Two-army problem: 若消息可能会被拦截，两军无法真正确认对方是否收到消息。</li>
+<li>Release: Four-Way Wavehand<ol>
+<li>FIN=1, SEQ=u，此后发送方不再发送数据，并进入等待状态。</li>
+<li>ACK=u+1, SEQ=v，接收方可能还会正常发送消息。</li>
+<li>FIN=1, ACK=1, SEQ=w，接收方也发送了断开连接的请求。</li>
+<li>ACK=1, SEQ=u+1, ACK=w+1，发送方发送收到断开请求的确认信息。为了避免 Two-army problem，在等待一段时间后直接关机。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>采用 Sliding Windows 机制，</li>
+<li>Timer Management<ul>
+<li>Retransmission Timer 重传计时器<ul>
+<li>Smoothed Round-Trip Time. $\text{SRTT}’=\alpha \text{SRTT}+(1-\alpha)\text{RTT}$ （和历史加权，一般 $\alpha=\frac{7}{8}$）</li>
+<li>Round-Trip Time VARiation. $\text{RTTVAR}=\beta \text{TRRVAR}+(1-\beta)|\text{SRTT}-\text{RTT}|$ （一般 $\beta=\frac{3}{4}$）</li>
+<li>Retransmission TimeOut. $\text{RTO}=\text{SRTT}+4 \text{RTTVAR}$</li>
+</ul>
+</li>
+<li>Persistent Timer 坚持计时器。如果接收端从 $0$ 窗口（禁止发送端发送）变回正常窗口的报文丢失，发送端会一直等待这个报文导致死锁。所以发送端被限制为 $0$ 后，每隔一段时间发送一个确认信息。</li>
+<li>Keeplive Timer 保活计时器。</li>
+</ul>
+</li>
+<li><p>Congestion Control 拥塞控制</p>
+<ul>
+<li>1</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

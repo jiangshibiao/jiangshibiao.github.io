@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation-Example.png">
-<meta property="og:updated_time" content="2020-05-25T07:13:16.214Z">
+<meta property="og:updated_time" content="2020-06-07T12:04:34.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-Mining">
 <meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
@@ -318,6 +318,14 @@ EPE(f)=\int (f(\pmb{x})-E(y|\pmb{x}))^2p(\pmb{x})d\pmb{x} + \int var(y|\pmb{x})p
 \text{noise} &= \int var(y|\pmb{x})p(\pmb{x})d\pmb{x}
 \end{align}</script><p>之前说的正则化操作，大的 $\lambda$ 会导致更大的 bias，小的 $\lambda$ 会导致更大的 variance。</p>
 <p>在模型选择时，常用 <strong>Cross-Validation</strong> 的方法。将训练数据集划成 $k$ 份，每次留一份 $i$ 作为 Validation，其它$k-1$ 份用来训练，挑选 bias 或者 variance 比较小的模型。不同的 Validation 能重复 $k$ 次。当训练数据比较少时，可能会用到比较极端的 leave-one-out 方法，即取 $k=N$。 </p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>决策树是一个简单而有效的分类问题的解决方案。它的大致想法是：每次从当前（带标签的）数据中选择“方差”最大的一个属性，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前节点的所有标签相同。</p>
+<p><strong>熵</strong> 是随机变量不确定性的度量。设 $D$ 是离散随机变量，其概率分布为 $P(X=x_k) = p_k$，则它的熵：</p>
+<script type="math/tex; mode=display">
+Ent(D)=-\sum \limits_{k=1}^{|D|} -p_k\log(p_k)</script><p> 注意到 $\lim \limits_{p\to 0^+} p_k\log(p_k)=0$，所以额外定义 $0 \log 0=0$。</p>
+<p>$Ent(D)$ 值越小，则 $D$ 的纯度越高，也即当前决策树节点的样本确定性越高。</p>
+<p>回到决策树。一个节点如果选了属性 $a$ 作为分支属性，设其不同取值有 $V$ 个，定义 <strong>信息增益</strong>：</p>
+<script type="math/tex; mode=display">
+Gain(D,a)=Ent(D)-\sum \limits_{v=1}^V \frac{|D_v|}{|D|}Ent(D_v)</script><p>显然，$Gain(D,a)$ 越大说明使用属性 $a$ 进行划分所获得的“纯度提升”越大，<strong>ID3 决策树</strong> 就是按这个来决定属性的。注意，准则对可取值数目较多的属性有所偏好，这种偏好可能带来不良影响。</p>
 
       
     </div>
@@ -420,7 +428,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树"><span class="nav-number">4.</span> <span class="nav-text">决策树</span></a></li></ol>
     
     </div>
   </aside>
