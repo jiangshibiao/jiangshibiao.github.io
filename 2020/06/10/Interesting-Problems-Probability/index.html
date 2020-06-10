@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>趣题摘记 | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。 这一篇主要介绍一些与概率和期望有关的趣题。 目录 简单游走问题 构造固定概率的函数 找号码牌的概率题 期望抛几次硬币使得连续两次正面朝上 正面是反面两倍的概率 最大化正好获得一个礼物的概率 不放回随机采样的实现">
+<meta name="keywords" content="Knowledge Learning,Algorithm,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="趣题摘记">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/06/10/Interesting-Problems-Probability/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。 这一篇主要介绍一些与概率和期望有关的趣题。 目录 简单游走问题 构造固定概率的函数 找号码牌的概率题 期望抛几次硬币使得连续两次正面朝上 正面是反面两倍的概率 最大化正好获得一个礼物的概率 不放回随机采样的实现">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-10T07:57:08.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="趣题摘记">
+<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。 这一篇主要介绍一些与概率和期望有关的趣题。 目录 简单游走问题 构造固定概率的函数 找号码牌的概率题 期望抛几次硬币使得连续两次正面朝上 正面是反面两倍的概率 最大化正好获得一个礼物的概率 不放回随机采样的实现">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<script type="text/javascript" src="\js\snow.js"></script>
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Interesting-Problems-Probability" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      趣题摘记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/06/10/Interesting-Problems-Probability/" class="article-date">
+	  <time datetime="2020-06-10T08:41:36.000Z" itemprop="datePublished">2020-06-10</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这一系列文章记录了我遇到过的一些 <strong>趣题</strong>——过小小思考后能豁然开朗的那种。</p>
+<p>这一篇主要介绍一些与概率和期望有关的趣题。</p>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li><a href="#简单游走问题">简单游走问题</a></li>
+<li><a href="#构造固定概率的函数">构造固定概率的函数</a></li>
+<li><a href="#找号码牌的概率题">找号码牌的概率题</a></li>
+<li><a href="#抛硬币使得连续两次正面朝上">期望抛几次硬币使得连续两次正面朝上</a></li>
+<li><a href="#正面是反面两倍的概率">正面是反面两倍的概率</a></li>
+<li><a href="#最大化正好获得一个礼物的概率">最大化正好获得一个礼物的概率</a></li>
+<li><a href="#不放回随机采样的实现">不放回随机采样的实现</a></li>
+</ul>
+<a id="more"></a>
+<h4 id="简单游走问题"><a href="#简单游走问题" class="headerlink" title="简单游走问题"></a>简单游走问题</h4><ul>
+<li>初始时你在数轴的位置 $0$ 处。每单位时间你能向左或者向右走一格。问第一次走到 $1$ 的期望步数。</li>
+<li>解法一：<ul>
+<li>设 $f_i$ 表示正好向右走了 $i$ 步的期望。得 $f_i=\frac{1}{2}(f_{i-1}+f_{i+1})+1$ 且 $f_0=0$，联立化简后得 $f_i = 2f_{i-1}-f_{i-2}-2(i \geq 2)$。继续化简得 $f_i=(3i-4)f_1-(i-1)i$。</li>
+<li>我们要求的是 $f_1$。假设 $f_1=x$，则 $f_n=(3n-4)x-(n-1)n$，当 $n \rightarrow +\infty$ 时 $f_n \rightarrow -\infty$，显然矛盾。所以 $f_1=+\infty$</li>
+</ul>
+</li>
+<li>上述做法太麻烦了。解法二：<ul>
+<li>设 $f_1$ 表示正好向右走了一步的期望。注意期望是有可加性的，所以$f_1=\frac{1}{2}(0+2f_1)+1$，化简得 $f_1=f_1+1$。显然 $f_1=+\infty$。</li>
+</ul>
+</li>
+</ul>
+<h4 id="构造固定概率的函数"><a href="#构造固定概率的函数" class="headerlink" title="构造固定概率的函数"></a>构造固定概率的函数</h4><ul>
+<li><p><a href="https://www.zhihu.com/question/304075115" target="_blank" rel="noopener">知乎</a> 上有详细讨论。</p>
+<ul>
+<li>一个函数 $f()$ 会以 $p$ 的概率返回 $1$，以 $1-p$ 的概率返回0。</li>
+<li>要构造一个函数 $g()$，以正好 $0.5$ 的概率返回 $0$ 和 $1$。</li>
+<li>注意：$p$ 是一个固定但是未知的概率。</li>
+</ul>
+</li>
+<li><p>解法一：</p>
+<ul>
+<li>连续调用两次 $f()$，显然返回 $01$ 和 $10$ 的概率相同，我们可以根据这个来决定 $g()$ 的返回，如果返回值相同，就继续这么操作。显然，当 $p \rightarrow 0/1$ 时，这个的期望步数趋于无穷大。</li>
+</ul>
+</li>
+<li><p>解法二（改进）：</p>
+<ul>
+<li>我们可以设计算法使期望步数进一步下降。</li>
+<li>对于询问序列的一个前缀长度 $n$，一旦 $C_n^m$ 是偶数（$m$ 是返回的 $1$ 的个数），其实我们就能立即结束并得到返回值（总能分成两半）。</li>
+<li>如何决定返回什么呢？每次看当前01序列和它的回文哪个字典序小，一样就递归一半，复杂度 $O(N)$ 。</li>
+</ul>
+</li>
+</ul>
+<h4 id="找号码牌的概率题"><a href="#找号码牌的概率题" class="headerlink" title="找号码牌的概率题"></a>找号码牌的概率题</h4><ul>
+<li><p>题目</p>
+<ul>
+<li>有 $100$ 个人编号为 $1 \sim 100$，对应他们编号的 $100$ 个号码牌被打乱放在了$100$ 个抽屉里。</li>
+<li>每个人可以打开至多半数的抽屉，并从中找出对应自己编号的号码牌。</li>
+<li>只有所有人都找到了自己的号码牌，任务才算成功（所有人会依次独立地操作，彼此不能交流，操作完后所有抽屉都会复原）。<strong>假设抽屉的各种放置状态出现的概率均等</strong>，设计一种固定的策略，所有人都成功的概率尽可能的大。</li>
+</ul>
+</li>
+<li><p>分析和策略</p>
+<ul>
+<li>成功的概率比直觉上要高很多。</li>
+<li>策略：<strong>首先打开自己号码的抽屉，如果没中，继续打开抽屉里号码牌对应的抽屉……重复50次。</strong></li>
+</ul>
+</li>
+<li><p>证明：</p>
+<ul>
+<li>显然，所有人都能找到自己，当且仅当所有圆环的长度不超过 $50$。</li>
+<li>下面就是要计算，对于一个随机排列，置换环长度全都不超过 $50$ 的概率是多少。</li>
+<li>容斥。从 $100$ 个数中选出 $m(&gt; 50)$ 个数构成大环（剩下的随便排）的方案数是：$C_{100}^m \cdot (m-1)! \cdot (100-m)!$</li>
+<li>所以最终答案为 $P=1-\sum \limits_{m=51}^{100} \frac{1}{m}$。且当 $n \rightarrow \infty$ 时，$P \rightarrow 1-\ln{2}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="抛硬币使得连续两次正面朝上"><a href="#抛硬币使得连续两次正面朝上" class="headerlink" title="抛硬币使得连续两次正面朝上"></a>抛硬币使得连续两次正面朝上</h4><ul>
+<li>抛一枚质地均匀的硬币。问期望多少次抛出连续两个向上。</li>
+<li>解法：这一类期望问题都不宜直接在序列上计算，可以直接根据概率的意义计算。设 $f_i$ 表示连续抛出 $i$ 个向上的期望抛硬币次数。显然 $f_1=2,f_i=f_{i-1}+1+\frac{1}{2}f_i$，化简得 $f_i=2f_{i-1}+2$，原问题里 $f_2=6$。</li>
+</ul>
+<h4 id="正面是反面两倍的概率"><a href="#正面是反面两倍的概率" class="headerlink" title="正面是反面两倍的概率"></a>正面是反面两倍的概率</h4><ul>
+<li>抛一枚质地均匀的硬币，一旦正面朝上次数不低于反面朝上次数的两倍就停止，求能无限进行的概率。</li>
+<li>解法：<ul>
+<li>转化问题：考虑一个初始在 $x=-1$ 的质点，每次有 $\frac{1}{2}$ 的概率向右移动一步，还有 $\frac{1}{2}$ 的概率向左移动两步。在 $x=0$ 处有一个吸收壁，求小球不被吸收的概率。</li>
+<li>假设小球被吸收的概率是 $p$，则 $p=\frac{1}{2}+\frac{1}{2}p^3$，解得 $p=\frac{\sqrt 5-1}{2}$。</li>
+</ul>
+</li>
+</ul>
+<h4 id="最大化正好获得一个礼物的概率"><a href="#最大化正好获得一个礼物的概率" class="headerlink" title="最大化正好获得一个礼物的概率"></a>最大化正好获得一个礼物的概率</h4><ul>
+<li>有 $N$ 个包裹，第 $i$ 个包裹有 $p_i$ 的概率存放着礼物。现在要选择一个包裹的子集，<strong>使得全打开后正好获得一个礼物的概率尽量的大</strong>。</li>
+<li>解法<ul>
+<li>如果已经知道选择的集合，答案显然是 $\sum \limits_k p_k \prod \limits_{i \ne k} (1-p_i)$</li>
+<li>记已经打开的包裹中没有礼物的概率是 $s_0$，恰好有一个礼物的概率为 $s_1$。那么，再打开一个概率为 $p$ 的包裹会使 $(s_0, s_1) \rightarrow (s_0 (1 - p), s_1 + (s_0 - s_1) p)$。</li>
+<li>显然，当 $s_0 \leq s_1$ 时加入任何包裹都不会使答案变优。类似地，如果删除一个礼物之后 $s_0 \leq s_1$，那么删除这个包裹不会使答案变得更差。因此，任意一个最优解对应的非空包裹集合 $G$ 都满足 $s_0 \leq s_1$，且该集合每个真子集均有 $s_0 &gt; s_1$，也即 $\forall T \subsetneqq G, \frac{s_1}{s_0} = \sum \limits_{p \in T}{\frac{p}{1 - p}} &lt; 1$。</li>
+<li>不难发现 $\frac{p}{1 - p}$ 和 $p$ 的单调性相同，因此，如果一个满足上述条件的非空包裹集合 $G$ 不是由包含礼物概率最大的那些包裹构成，那么可以把集合内概率最小的包裹 $a$ 换成集合外概率最大的包裹 $b$，从而得到一个答案不会更劣的包裹集合 $(G - \lbrace a \rbrace) \cup \lbrace b \rbrace$。设新集合中概率最小的包裹为 $c$，新集合的真子集 $((G - \lbrace a \rbrace) \cup \lbrace b \rbrace) - \lbrace c \rbrace$ 可能不满足 $s_0 &gt; s_1$，此时可以不断地删去集合中概率最小的包裹，直到该集合满足条件。这个过程不会使答案变劣，不断地替换和删除包裹可以得到最优解。</li>
+<li>结论：按照概率从大到小的顺序打开包裹直到 $s_0 \le s_1$ 或者全部打开为止，可得到一个最优解。</li>
+</ul>
+</li>
+</ul>
+<h4 id="不放回随机采样的实现"><a href="#不放回随机采样的实现" class="headerlink" title="不放回随机采样的实现"></a>不放回随机采样的实现</h4><ul>
+<li>有 $N$ 个物品，分别有权重 $w_i$，现在要不放回地选取其中的 $K$ 个物品，设计一种采样方法。</li>
+<li>每轮每个物品被选中概率是它的权重与剩余所有物品权重和的比值。</li>
+<li>模拟解法<ul>
+<li>具体地，每一轮我们在 $[0,\sum \limits_{i \in rest}w_i)$ 随机一个数，然后去定位这个数字所在的前缀和位置。</li>
+<li>可以用树状数组来加速模拟这一过程。复杂度 $O(N+K\log N)$。</li>
+</ul>
+</li>
+<li><a href="https://utopia.duth.gr/~pefraimi/research/data/2007EncOfAlg.pdf" target="_blank" rel="noopener">牛逼的等价转化</a><ul>
+<li>对于每一个物品开一个随机变量 $u_i \sim (0,1)$，注意不同物品的 $u_i$ 条件独立。</li>
+<li>对于每个物品，它的概率估价值 $p_i=u_i^{1/w_i}$。</li>
+<li>如果要不放回地选取其中的 $K$ 个物品，我们直接把 $u_i$ 按从大到小排，取前 $K$ 大即可。</li>
+<li>简略证明：只考虑两个物品，假设他们的权重分别是 $a$ 和 $b$ 。<script type="math/tex; mode=display">
+\begin{align}
+\mathcal{P}(x=a)&=\int_{0}^1 \int_0^1 [x^{1/a} \ge y^{1/b}]~dx~dy \\
+&=\int_{0}^1 dx \int_{0}^{1} [y \le x^{b/a}]dy \\
+&=\int_{0}^1 x^{b/a}dx \\
+&=\frac{a}{a+b}
+\end{align}</script></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/06/10/Interesting-Problems-Probability/" target="_blank" title="趣题摘记">https://jiangshibiao.github.io/2020/06/10/Interesting-Problems-Probability/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/03/Interesting-Problems-Theory-and-Algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">趣题摘记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单游走问题"><span class="nav-number">2.</span> <span class="nav-text">简单游走问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造固定概率的函数"><span class="nav-number">3.</span> <span class="nav-text">构造固定概率的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#找号码牌的概率题"><span class="nav-number">4.</span> <span class="nav-text">找号码牌的概率题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛硬币使得连续两次正面朝上"><span class="nav-number">5.</span> <span class="nav-text">抛硬币使得连续两次正面朝上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正面是反面两倍的概率"><span class="nav-number">6.</span> <span class="nav-text">正面是反面两倍的概率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大化正好获得一个礼物的概率"><span class="nav-number">7.</span> <span class="nav-text">最大化正好获得一个礼物的概率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不放回随机采样的实现"><span class="nav-number">8.</span> <span class="nav-text">不放回随机采样的实现</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

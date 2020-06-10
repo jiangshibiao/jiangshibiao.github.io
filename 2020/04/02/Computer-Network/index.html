@@ -29,7 +29,11 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png">
-<meta property="og:updated_time" content="2020-06-02T04:44:52.552Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/TCP_tahoe_reno.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DNS.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Email_head.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/HTTP.png">
+<meta property="og:updated_time" content="2020-06-09T08:47:38.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -759,15 +763,20 @@
 </li>
 <li><p>Transmission Control Protocol <strong>TCP协议</strong></p>
 <ul>
-<li>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</li>
-<li>无结构的字节流：A TCP connection is a byte stream, not a message queue。</li>
-<li>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。<ul>
+<li><p>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</p>
+</li>
+<li><p>无结构的字节流：A TCP connection is a byte stream, not a message queue。</p>
+</li>
+<li><p>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。</p>
+<ul>
 <li>Window size: tell how many bytes may be sent starting at the byte acknowledged.</li>
 <li>Urgent pointer: indicate a byte offset at which urgent data are to be found.<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png" alt></li>
 </ul>
 </li>
-<li>Nagle’s algorithm: When data come into the sender one byte at a time, just send the first byte and buffer all the rest until the outstanding byte is acknowledged. </li>
-<li>Connection Management<ul>
+<li><p>Nagle’s algorithm: When data come into the sender one byte at a time, just send the first byte and buffer all the rest until the outstanding byte is acknowledged. </p>
+</li>
+<li><p>Connection Management</p>
+<ul>
 <li>Establishment:  Three-way Handshake<ol>
 <li>SYN=1, SEQ=x</li>
 <li>SYN=1, SEQ=y, ACK=x+1</li>
@@ -784,27 +793,117 @@
 </li>
 </ul>
 </li>
-<li>采用 Sliding Windows 机制，</li>
-<li>Timer Management<ul>
+<li><p>采用 Sliding Windows 机制，</p>
+</li>
+<li><p>Timer Management</p>
+<ul>
 <li>Retransmission Timer 重传计时器<ul>
-<li>Smoothed Round-Trip Time. $\text{SRTT}’=\alpha \text{SRTT}+(1-\alpha)\text{RTT}$ （和历史加权，一般 $\alpha=\frac{7}{8}$）</li>
-<li>Round-Trip Time VARiation. $\text{RTTVAR}=\beta \text{TRRVAR}+(1-\beta)|\text{SRTT}-\text{RTT}|$ （一般 $\beta=\frac{3}{4}$）</li>
+<li>Smoothed Round-Trip Time. $\text{SRTT’}=\alpha \text{SRTT}+(1-\alpha)\text{RTT}$ （$\alpha=\frac{7}{8}$）</li>
+<li>Round-Trip Time VARiation. $\text{RTTVAR’}=\beta \text{RTTVAR}+(1-\beta)|\text{SRTT}-\text{RTT}|$ （ $\beta=\frac{3}{4}$）</li>
 <li>Retransmission TimeOut. $\text{RTO}=\text{SRTT}+4 \text{RTTVAR}$</li>
 </ul>
 </li>
 <li>Persistent Timer 坚持计时器。如果接收端从 $0$ 窗口（禁止发送端发送）变回正常窗口的报文丢失，发送端会一直等待这个报文导致死锁。所以发送端被限制为 $0$ 后，每隔一段时间发送一个确认信息。</li>
-<li>Keeplive Timer 保活计时器。</li>
+<li>Keeplive Timer 保活计时器：检测另外一端是否是 live 状态。</li>
 </ul>
 </li>
-<li><p>Congestion Control 拥塞控制</p>
+<li>TCP Tahoe Congestion Control <ul>
+<li>cwnd, Threshold, slow-start, congestion-avoidance<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/TCP_tahoe_reno.png" alt></li>
+</ul>
+</li>
+<li>TCP Reno Congestion Control <ul>
+<li><strong>slow start</strong>: When cwnd is below Threshold, window grows exponentially.</li>
+<li><strong>congestion-avoidance</strong>: When cwnd is above Threshold, window grows linearly.</li>
+<li>When a triple duplicate ACK occurs, Threshold set to cwnd/2 and cwnd set to Threshold. </li>
+<li>When timeout occurs, Threshold set to cwnd/2 and cwnd is set to 1 MSS. </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="应用层-THE-APPLICATION-LAYER"><a href="#应用层-THE-APPLICATION-LAYER" class="headerlink" title="应用层 THE APPLICATION LAYER"></a>应用层 THE APPLICATION LAYER</h2><ul>
+<li><p>Domain Name System 域名服务</p>
 <ul>
-<li>1</li>
+<li>Domain names are case insensitive, $|component| \le 63, |full| \le 255$.</li>
+<li>The top-level domains come in two flavors<ul>
+<li>generic (com, edu, gov, int, mil, net, org, biz, info, pro, aero, coop, museum, …) </li>
+<li>countries (cn, uk, …).</li>
+</ul>
+</li>
+<li>A resource record is a five-tuple (Domain_name, Time_to_live, Class, Type, Value). <ul>
+<li>An <strong>authoritative record</strong> is one that comes from the authority that manages the record and is thus always correct $\to$ authoritative server. </li>
+</ul>
+</li>
+<li><strong>Cached records</strong> may be out of date.</li>
+<li><strong>root name servers</strong>: There are $13$ root DNS servers, unimaginatively called <em>a-root-servers.net</em> through <em>m.root-servers.net</em>. They have information about each top-level domain.</li>
+<li>Example of a resolver looking up a remote name robot.cs.washington.edu in $10$ steps.<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/DNS.png" alt></li>
+</ul>
+</li>
+<li><p>Email</p>
+<ul>
+<li>Message Format<ul>
+<li>RFC 5322: The Internet Message format<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Email_head.png" alt></li>
+<li>MIME (Multipurpose Internet Mail Extensions) message format<ul>
+<li><em>international languages</em> and <em>media file</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Message Transfer: <strong>SMTP</strong> = Simple Mail Transfer Protocol</li>
+<li>Final Delivery<ul>
+<li><strong>POP3</strong> (Post Office Protocol v3): simlple</li>
+<li><strong>IMAP 4</strong> (Internet Message Access Protocol v4): complex</li>
+<li>Webmail</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>WORLD WIDE WEB</p>
+<ul>
+<li>Architectural overview: Browser<ul>
+<li>What is the page called? (Filename)</li>
+<li>Where is the page located? (DNS Name)</li>
+<li>How can the page be accessed? (HTTP, FTP, …)</li>
+</ul>
+</li>
+<li><strong>URL</strong>: Universal Resource Locator<ul>
+<li>URL = protocol (http) + DNS name + path name</li>
+</ul>
+</li>
+<li><strong>URI</strong> (Uniform Resource Identifier)</li>
+<li>What does the browser do when one link is selected:<ol>
+<li>The browser determines the URL (by seeing what was selected).</li>
+<li>The browser asks DNS for the IP address of www.zju.edu.cn.</li>
+<li>DNS replies with 210.32.0.9.</li>
+<li>The browser makes a TCP connection to port 80 on 210.32.0.9.</li>
+<li>It then sends over a request asking for file /home/index.html.</li>
+<li>The www.zju.edu.cn server sends the file /home/index.html.</li>
+<li>The TCP connection is released.</li>
+<li>The browser displays all the text in /home/index.html.</li>
+<li>The browser fetches and displays all images in this file.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>HTTP</strong> (HyperText Transfer Protocol)</p>
+<ul>
+<li>RTT (<strong>ping time</strong>):  the time it takes for a small packet to travel from client to server and then back to the client.</li>
+<li>HTTP: Connections<ul>
+<li>HTTP 1.0 with multiple connections: 每个 TCP 只进行一次请求和回复。</li>
+<li>HTTP 1.1 with persistent connections (sequential requests) : 同一个 TCP 里请求和回复。</li>
+<li>HTTP 1.1 with persistent connections and pipeline requests: 一次可以多个请求回复。</li>
+</ul>
+</li>
+<li>HTTP: Methods <strong>case sensitive</strong><br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/HTTP.png" alt></li>
+<li>HTTP has built-in caching support.<ul>
+<li>First strategy: page validation.</li>
+<li>Second strategy: send a GET to server to ask.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2>
+
       
     </div>
     <footer class="article-footer">
@@ -906,7 +1005,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层-THE-PHYSICS-LAYER"><span class="nav-number">1.</span> <span class="nav-text">物理层 THE PHYSICS LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层-THE-DATA-LINK-LAYER"><span class="nav-number">2.</span> <span class="nav-text">数据链路层 THE DATA LINK LAYER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介质访问子层-The-Medium-Access-Control"><span class="nav-number">2.0.1.</span> <span class="nav-text">介质访问子层 The Medium Access Control</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层-THE-NETWORK-LAYER"><span class="nav-number">3.</span> <span class="nav-text">网络层 THE NETWORK LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层-THE-TRANSPORT-LAYER"><span class="nav-number">4.</span> <span class="nav-text">传输层 THE TRANSPORT LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层"><span class="nav-number">5.</span> <span class="nav-text">应用层</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层-THE-PHYSICS-LAYER"><span class="nav-number">1.</span> <span class="nav-text">物理层 THE PHYSICS LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层-THE-DATA-LINK-LAYER"><span class="nav-number">2.</span> <span class="nav-text">数据链路层 THE DATA LINK LAYER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介质访问子层-The-Medium-Access-Control"><span class="nav-number">2.0.1.</span> <span class="nav-text">介质访问子层 The Medium Access Control</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层-THE-NETWORK-LAYER"><span class="nav-number">3.</span> <span class="nav-text">网络层 THE NETWORK LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层-THE-TRANSPORT-LAYER"><span class="nav-number">4.</span> <span class="nav-text">传输层 THE TRANSPORT LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层-THE-APPLICATION-LAYER"><span class="nav-number">5.</span> <span class="nav-text">应用层 THE APPLICATION LAYER</span></a></li></ol>
     
     </div>
   </aside>
