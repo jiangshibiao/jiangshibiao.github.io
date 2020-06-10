@@ -11,22 +11,22 @@
   
   
   
-  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。 这一篇主要介绍一些计算理论和算法方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题  BP 算法">
-<meta name="keywords" content="Math,Algorithm,Knowledge Learning">
+  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
+<meta name="keywords" content="Knowledge Learning,Algorithm,Math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="趣题摘记-理论和算法">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。 这一篇主要介绍一些计算理论和算法方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题  BP 算法">
+<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-2.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-3.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-4.png">
-<meta property="og:updated_time" content="2020-06-10T08:02:05.881Z">
+<meta property="og:updated_time" content="2020-06-10T08:12:23.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="趣题摘记-理论和算法">
-<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。 这一篇主要介绍一些计算理论和算法方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题  BP 算法">
+<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -207,18 +207,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这一系列文章记录了我遇到过的一些 <strong>趣题</strong>——过小小思考后能豁然开朗的那种。</p>
-<p>这一篇主要介绍一些计算理论和算法方向的题。</p>
+<ul>
+<li><a href="https://jiangshibiao.github.io/2020/06/10/Interesting-Problems-Probability/">概率和期望</a></li>
+<li><a href="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/">理论和算法</a></li>
+<li><a href="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/">奇思妙想</a></li>
+</ul>
+<p>这一篇主要介绍一些 <strong>计算理论和算法</strong> 方向的题。</p>
 <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
 <li><a href="#运筹学课程详细整理"><strong>运筹学课程详细整理</strong></a></li>
 <li><a href="#边权最小使指定顶点连通">边权最小使指定顶点连通</a></li>
 <li><a href="#最小生成树局部最优等于全局最优">最小生成树局部最优等于全局最优</a></li>
-<li><p><a href="#图的最大割问题">图的最大割问题</a></p>
-</li>
-<li><p><a href="#BP-算法">BP 算法</a></p>
-</li>
+<li><a href="#图的最大割问题">图的最大割问题</a></li>
+<li><a href="#BP-算法">BP 算法</a></li>
 </ul>
 <a id="more"></a>
-<h4 id="运筹学课程详细整理"><a href="#运筹学课程详细整理" class="headerlink" title="运筹学课程详细整理"></a>运筹学课程详细整理</h4><p><a href="https://github.com/jiangshibiao/Course-Review/blob/master/Operations-Research/Operations-Research.md" target="_blank" rel="noopener">包含线性规划、近似算法等众多有趣内容</a></p>
+<h4 id="运筹学课程详细整理"><a href="#运筹学课程详细整理" class="headerlink" title="运筹学课程详细整理"></a>运筹学课程详细整理</h4><p><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/">包含线性规划、近似算法等众多有趣内容</a></p>
 <h4 id="边权最小使指定顶点连通"><a href="#边权最小使指定顶点连通" class="headerlink" title="边权最小使指定顶点连通"></a>边权最小使指定顶点连通</h4><ul>
 <li><p>题目描述</p>
 <ul>
@@ -421,7 +424,7 @@ var a = new Donate({
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          趣题摘记
+          趣题摘记-概率和期望
         
       </div>
     </a>
