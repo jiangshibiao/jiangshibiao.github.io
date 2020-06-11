@@ -11,23 +11,24 @@
   
   
   
-  <meta name="description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
+  <meta name="description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多有趣的算法，我会挑一些新奇有趣的、以前没见过的 topic 分享。 可以把这篇文章和 趣题摘记 系列结合起来看。">
 <meta name="keywords" content="Knowledge Learning,Course Review,Algorithm,Math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法的设计和分析">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
+<meta property="og:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多有趣的算法，我会挑一些新奇有趣的、以前没见过的 topic 分享。 可以把这篇文章和 趣题摘记 系列结合起来看。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/PCP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Insertion-Merge-Sort.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Find-max-and-min.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Ford-Fulkerson.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/V-Diagram.png">
-<meta property="og:updated_time" content="2020-06-08T13:41:15.012Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/art_museum.png">
+<meta property="og:updated_time" content="2020-06-11T06:34:46.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法的设计和分析">
-<meta name="twitter:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。 可以和这篇 趣题摘记 结合起来看。">
+<meta name="twitter:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多有趣的算法，我会挑一些新奇有趣的、以前没见过的 topic 分享。 可以把这篇文章和 趣题摘记 系列结合起来看。">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/PCP.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -208,8 +209,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。</p>
-<p>这门课介绍了很多计算机科学方面的算法，我会挑一些我觉得新奇有趣的 topic 分享。</p>
-<p>可以和这篇 <a href="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems/">趣题摘记</a> 结合起来看。</p>
+<p>这门课介绍了很多有趣的算法，我会挑一些新奇有趣的、以前没见过的 topic 分享。</p>
+<p>可以把这篇文章和 <a href="https://jiangshibiao.github.io/2020/06/10/Interesting-Problems-Probability/">趣题摘记</a> 系列结合起来看。</p>
 <a id="more"></a>
 <h2 id="Undecidable-Problems"><a href="#Undecidable-Problems" class="headerlink" title="Undecidable Problems"></a>Undecidable Problems</h2><p>罗素悖论（Russell’s Paradox）是一个很著名的悖论：设集合 $S$ 是由一切不属于自身的集合所组成（即 $S=\{x|x \notin x\}$），那 $S$ 属于 $S$ 吗？</p>
 <p>我们通常用理发师悖论（The Barber paradox）去解释罗素悖论。假设城里只有一个理发师，且任何一个不能自己理发的人会由理发师帮他理发。定义 $S(x)$ 为所有被 $x$ 理发的人的集合，则 $S(barber)=\{x|x \notin S(x)\}$ 。但是 $barber \in S(barber)$ 是否成立呢？成立和不成立都会导致矛盾。</p>
@@ -356,7 +357,6 @@
 <p>考虑这样一个算法：从右上角开始询问，假设当前的数字是 $e$。若 $e &lt; x$ 就向下走，若 $e &gt; x$ 就向左走，这样总能找到 $x$。可以发现，最坏情况下要走 $2N-1$ 次。</p>
 <p>现在用 Adversary 证明这就是下界。</p>
 <script type="math/tex; mode=display">\begin{matrix}   1 & 2 & 3 & 4 & 5 & 6 & 8 \\  2 & 3 & 4 & 5 & 6 & 8 & 6 \\  3 & 4 & 5 & 6 & 8 & 6 & 5 \\  4 & 5 & 6 & 8 & 6 & 5 & 4 \\ 5 & 6 & 8 & 6 & 5 & 4 & 3 \\ 6 & 8 & 6 & 5 & 4 & 3 & 2 \\ 8 & 6 & 5 & 4 & 3 & 2 & 1\end{matrix}</script><p>上述矩阵给出了一个形式化构造（以 $N=7$ 举例）。任何一个 $6$ 或者 $8$ 都有可能被替换成 $7$ ，所以 $x$ 必须和这些数字都比较一遍。那么如果是 $N \times N$ 的，得出下界是 $2N-1$。</p>
-<p>再来看一个 <strong>Merge Sorted Sequence</strong> 问题。将两个长度为 $N$ 的有序序列合并成一个有序序列，最少需要几次比较？直觉告诉我们，归并排序的 $2N−1$ 次比较最少。下面我们用 Adversary 来证明这一点。</p>
 <p>再来看一个 <strong>Merge Sorted Sequence</strong> 问题。将两个长度为 $N$ 的有序序列合并成一个有序序列，最少需要几次比较？直觉告诉我们，归并排序的 $2N-1$ 次比较最少。下面用 Adversary 来证明这一点。</p>
 <p>构造数列 $X,Y$ 使得 $Y_i&lt;X_j$ 当且仅当 $i&lt;j$（比如 $X_i=2i-1,Y_i=2i$）。最终合并完后的序列是 $X_1,Y_1,X_2,\dots,X_n,Y_n$，假设存在一个算法能在 $2N-2$ 步（或更少）完成，那么至少存在一个 $i$ 满足：</p>
 <ul>
@@ -419,12 +419,19 @@ I_n & -A & AB \\
 \end{pmatrix}</script><h2 id="Flow-and-Match"><a href="#Flow-and-Match" class="headerlink" title="Flow and Match"></a>Flow and Match</h2><p><strong>Ford-Fulkerson</strong> 算法是最朴素的最大流算法：每次任意找一条增广路进行增广。值得注意的是，该算法可能永远也不会停止，下图就是一个例子。$r^2 = 1 - r, r=\frac{\sqrt 5 – 1}{2}\simeq 0.618$。更糟糕的是，该算法甚至没有收敛到最大流，因为 $1 + 2(r^1 + r^2+ r^3 + …)=3+2r&lt;5$ </p>
 <p><img src="//jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Ford-Fulkerson.png" alt></p>
 <p><strong>Edmonds-Karp Algorithm</strong> 算法改进了上述过程。它先用 BFS 对点进行标号，每次选择最短的增广路。一条增广路上至少存在一条边 $e=(u,v)$ 满足它的流量等于本次新增的流量，我们称之为 critical edge（其实就是增广路上残余流量最少的那些边）。critical edge 会使边完全反向（不存在原方向的流量了），当它下一次又成为 critical edge 时，增广路的长度至少增加 $1$。每条边最多只会成为 critical edge $N$ 次，一共有 $M$ 条边，每次增广复杂度是 $O(M)$，所以总复杂度是 $O(NM^2)$</p>
-<p>我们熟知的 <strong>Dinic</strong> 算法其实是 EK 算法的多路增广版本，使得复杂度降成 $O(N^2M)$。<a href="https://www.zhihu.com/question/266149721" target="_blank" rel="noopener">知乎里</a> 讨论了如何构造出让 Dinic 跑 $\Theta(N^2M)$ 的图。</p>
-<p>霍尔定理</p>
-<p>证明：构出当前二分图对应的矩阵。</p>
-<p>$|A \cap R|+|B \cap L|=\text{mincut}$</p>
-<p>$N(L’) \subseteq \{A \cap R\}$</p>
-<p>$|N(L’)| \leq |\{A \cap R\}|=cap(A,B)-|red|&lt;|L|-|red in B|=green$</p>
+<p>我们熟知的 <strong>Dinic</strong> 算法其实是 EK 算法的多路增广版本，使得复杂度降成 $O(N^2M)$。<a href="https://www.zhihu.com/question/266149721" target="_blank" rel="noopener">知乎里</a> 讨论了如何构造出让 Dinic 跑 $\Theta(N^2M)$ 的图。下面我们来证明一下，把 Dinic 应用到匹配问题上，最多只有 $\sqrt N$ 个 Stage。待续。</p>
+<p>说起匹配问题，不得不提到一个 <strong>霍尔定理</strong>。待续。</p>
+<h2 id="Computational-Geometry"><a href="#Computational-Geometry" class="headerlink" title="Computational Geometry"></a>Computational Geometry</h2><p>凸包这个话题想必大家都不陌生。</p>
+<p>通过构造点 $(x_i,x_i^2)$，我们可以把排序问题规约到求凸包，也就证明了其下界是 $O(N\log N)$。</p>
+<p>因为凸包的计算几何里的应用很广，如何构建凸包是一个脍炙人口的话题。在算法竞赛里，我们一般用 sort +扫两遍分别求上下凸壳的方法，速度快代码短。下面再来介绍几种有趣的构建方法：</p>
+<ol>
+<li>Jarvis March - <strong>gift wrapping</strong>：从下面的点 $s$ 开始，每次枚举一个点 $t$  使得 $(s,t)$ 这条线段在所有点的右侧。把 $t$ 加入集合并重复这一过程。这个算法很是直观啊，复杂度就是 $O(Nh)$。</li>
+<li>我们同样熟悉的 <strong>Graham Scan</strong> 其实就是对上述算法的优化，用极角排序把复杂度降为 $O(N \log N)$。</li>
+<li><strong>Quickhull</strong>：初始时找到 $x$ 最小和最大的两个点连上一条线 $(p,q)$。线的两侧分别做一遍，每次找到一个距离线最远的点 $r$，连上 $(p,r)$ 和 $(q,r)$ 并重复这个过程。平均复杂度 $O(N\log N)$，最坏复杂度 $O(N^2)$。</li>
+<li><strong>分治算法</strong>：每次按 $x$ 大小关系分成两半，各自求凸包并把凸包合并。复杂度 $O(N \log N)$。</li>
+</ol>
+<p>下面我们再来看一个 <strong>Line Segment Intersection</strong> 问题：给出平面上的 $N$ 条线段，求它们两两的交点（如果有的话）。直接暴力是 $O(N^2)$ 的，但是如果交点很少，我们就想要找一个更快的做法。</p>
+<p>维护一条垂直于 X 轴的 <strong>sweeping line</strong>（扫描线）。从左往右扫，保证扫描线左边的交点已经全找到了。这里有一个小结论：最近相交的两条线段，它们一定会与扫描线都有交点，而且这两个交点是 <strong>相邻</strong> 的。所以我们用平衡树按顺序维护所有与扫描线产生交点的线段。我们再用一个堆维护一些关键节点，包括 一条线段的终点位置 和 两条在扫描线上相邻线段的交点。每次弹出最近的关键节点（把扫描线移到那里），更新扫描线上（平衡树里）的点，同时也更新堆里的点。总复杂度是 $O((N+K)\log N)$，$K$ 是交点个数。</p>
 <h2 id="Voronoi-Diagram"><a href="#Voronoi-Diagram" class="headerlink" title="Voronoi Diagram"></a>Voronoi Diagram</h2><p>V 图是分析和处理平面图的一个有力的工具，而且他的定义也十分自然。</p>
 <p>所谓 <strong>V图</strong>，就是把平面（无限或者有限）分割成若干个部分。初始时有 $N$ 个互不相同的点 $s_k$，每一个区域 $C_k$ 就是由所有到 $s_k$ 最近的点构成。这个定义比较拗口，我们来看个直观的例子。</p>
 <p><img src="//jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/V-Diagram.png" alt></p>
@@ -441,7 +448,16 @@ I_n & -A & AB \\
 <li>$O(N)$ 找到 $N$ 个点里最近的 Pair：直接枚举 V 图三角剖分里的那些边。</li>
 <li>$O(N)$ 求 $N$ 个点的凸包：把外围的无限区域里的点顺次连接起来即可。</li>
 </ul>
-<p>所以问题的关键是：我们如何高效地建出 $N$ 个点 $s_i$ 对应的 V 图？</p>
+<p>所以问题的关键是：我们如何高效地建出 $N$ 个点 $s_i$ 对应的 V 图？还是用我们的万金油：分治算法。每次合并都是线性的，所以 V 图可以 $O(N \log N)$ 建出来。具体合并细节有点麻烦。</p>
+<p>下面我们来看一个经典的 <strong>Art Gallery Problems</strong>：（凹）多边形内最少布置多少守卫才能看到所有位置。</p>
+<p>注意这个问题已被证明是 NP-Hard 的，所以我们尝试求一些紧的界。首先一个显然的上界是 $N-2$，因为我们可以在三角剖分后每个三角形的中心放一个守卫。至于为什么 $N$ 个点的（凹）多边形能剖分成 $N-2$ 个三角形呢？可以用归纳法证明：</p>
+<ol>
+<li>$N=3$ 时是 $1$ 个。</li>
+<li>$N&gt;3$ 时，设 $u$ 是最左边的点，$v,w$ 是它相邻的点。如果连接 $(v,w)$ 后不与别的边相交，就把三角形 $(u,v,w)$ 切下来归纳。否则我们在相交侧的点里找一个与 $u$ 最近的点 $u’$，用 $(u,u’)$ 把多边形切割成两半，每一半调用结论归纳。</li>
+</ol>
+<p>现在我们再来证明一个更紧的上界。如果把多边形（任意一个）三角形剖分后的边也连上去，我们可以用对偶证明，新图的顶点是可以三染色的。更厉害的是，如果我们在三染色的任意一种颜色处放置守卫，均能覆盖整个多边形！那么挑一种出现次数最少的颜色，我们可以得到 Art Gallery Problems 的上界：$\lfloor \frac{N}{3} \rfloor$。</p>
+<p><img src="//jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/art_museum.png" alt></p>
+<p>事实上我们还能构造出达到这一上界的多边形，见右图。</p>
 
       
     </div>
@@ -544,7 +560,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Undecidable-Problems"><span class="nav-number">1.</span> <span class="nav-text">Undecidable Problems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-Insertion-Sort"><span class="nav-number">2.</span> <span class="nav-text">Merge-Insertion-Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adversary-Argument"><span class="nav-number">3.</span> <span class="nav-text">Adversary Argument</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbound-Searching"><span class="nav-number">4.</span> <span class="nav-text">Unbound Searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reduction"><span class="nav-number">5.</span> <span class="nav-text">Reduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flow-and-Match"><span class="nav-number">6.</span> <span class="nav-text">Flow and Match</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Voronoi-Diagram"><span class="nav-number">7.</span> <span class="nav-text">Voronoi Diagram</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Undecidable-Problems"><span class="nav-number">1.</span> <span class="nav-text">Undecidable Problems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-Insertion-Sort"><span class="nav-number">2.</span> <span class="nav-text">Merge-Insertion-Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adversary-Argument"><span class="nav-number">3.</span> <span class="nav-text">Adversary Argument</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbound-Searching"><span class="nav-number">4.</span> <span class="nav-text">Unbound Searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reduction"><span class="nav-number">5.</span> <span class="nav-text">Reduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flow-and-Match"><span class="nav-number">6.</span> <span class="nav-text">Flow and Match</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computational-Geometry"><span class="nav-number">7.</span> <span class="nav-text">Computational Geometry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Voronoi-Diagram"><span class="nav-number">8.</span> <span class="nav-text">Voronoi Diagram</span></a></li></ol>
     
     </div>
   </aside>
