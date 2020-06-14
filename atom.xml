@@ -6,10 +6,32 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jiangshibiao.github.io/"/>
-  <updated>2020-06-10T08:11:29.399Z</updated>
+  <updated>2020-06-12T08:31:48.031Z</updated>
   <id>https://jiangshibiao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue-Js-Css-Html胡乱入门</title>
+    <link href="https://jiangshibiao.github.io/2020/06/11/Vue-Js-Css-Html/"/>
+    <id>https://jiangshibiao.github.io/2020/06/11/Vue-Js-Css-Html/</id>
+    <published>2020-06-11T15:06:56.000Z</published>
+    <updated>2020-06-12T08:31:48.031Z</updated>
+    
+    <content type="html"><![CDATA[<p>$2020.3 \sim 2020.6$ 上了《BS体系软件设计》这门课，最终决定用 Django + Vue 的架构完成课程设计。不要说 Vue 了，js 和 css 我都一知半解，于是决定开坑速成。</p><a id="more"></a><h4 id="vue-的基本函数"><a href="#vue-的基本函数" class="headerlink" title="vue 的基本函数"></a>vue 的基本函数</h4><ul><li><code>v-bind</code> 属性绑定：<code>&lt;a v-bind:href=&quot;url&quot;&gt; ... &lt;/a&gt;</code><ul><li>也可以动态地绑定一个类 <code>v-bind:class=&quot;{‘textColor‘:isColor}</code></li><li>因为很常用，可以完全省略这个词。</li></ul></li><li><code>v-if</code> 条件语句：<code>v-if=&quot;seen&quot;</code> <ul><li>后面可以接 <code>v-else</code>，<code>v-else-if</code></li></ul></li><li><code>v-on</code> 事件绑定：<code>&lt;button v-on:click=&quot;myclick&quot;&gt;click me&lt;/button&gt;</code><ul><li>可以绑定多个：<code>&lt;v-on=&quot;{mouseenter:onenter,mouseleave:leave}&quot;&gt;</code></li><li>可以用 <code>@</code> 来简写。</li></ul></li><li><code>v-model</code> 在一些表单控件元素上创建双向数据绑定<ul><li><code>&lt;input v-model=&quot;message&quot;&gt;</code> 一开始显示 message 内容，message 也会绑定用户输入。</li></ul></li><li><code>v-for</code> 循环语句：<code>&lt;li v-for=&quot;site in sites&quot;&gt;</code><ul><li>也可以迭代字典（第三个表示索引）<code>&lt;li v-for=&quot;(value, key, index) in object&quot;&gt;</code></li><li>也可以直接循环整数 <code>&lt;li v-for=&quot;n in 10&quot;&gt;</code></li></ul></li><li>过滤操作  <ul><li>调用：<code></code> 和 <code>&lt;div v-bind:id=&quot;rawId | formatId&quot;&gt;&lt;/div&gt;</code></li><li>注意 vue 里定义的是 <code>filter</code></li></ul></li></ul><h4 id="Vue-应用"><a href="#Vue-应用" class="headerlink" title="Vue 应用"></a>Vue 应用</h4><ul><li><code>computed</code> 和 <code>method</code> 功能相同，前者会利用缓存，而后者每次渲染时会重新计算。</li><li><p><code>watch</code> 监听相应数据的变化</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm.$watch(<span class="string">'counter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">nval, oval</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'计数器值的变化 :'</span> + oval + <span class="string">' 变为 '</span> + nval + <span class="string">'!'</span>);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></li><li><p><code>v-model</code> 支持多个绑定，会以数组的形式呈现。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>多个复选框：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"runoob"</span> <span class="attr">value</span>=<span class="string">"Runoob"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"runoob"</span>&gt;</span>Runoob<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"google"</span> <span class="attr">value</span>=<span class="string">"Google"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"google"</span>&gt;</span>Google<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"taobao"</span> <span class="attr">value</span>=<span class="string">"Taobao"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"taobao"</span>&gt;</span>taobao<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 选择的值为: [ "Runoob", "Taobao", "Google" ] --&gt;</span></span><br></pre></td></tr></table></figure></li></ul><h4 id="Vue-组件"><a href="#Vue-组件" class="headerlink" title="Vue 组件"></a>Vue 组件</h4><ul><li>组件系统让我们可以用独立可复用的小组件来构建大型应用。</li><li>全局组件<ul><li>用 <code>Vue.component(tagName, options)</code> 定义</li><li>用 <code>&lt;tagName&gt;&lt;/tagName&gt;</code> 调用</li></ul></li><li><p>局部组件：在 Vue 创建时开一个 <code>components</code> 关键词。</p><ul><li><p><strong>prop</strong> 是子组件用来接受父组件传递过来的数据的一个自定义属性。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child</span> <span class="attr">message</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">Vue.component(<span class="string">'child'</span>, &#123;</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 声明 props</span></span></span><br><span class="line"><span class="actionscript">  props: [<span class="string">'message'</span>], <span class="comment">// 可以在 vm 实例中像 “this.message” 这样使用</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  template: '<span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123; message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span>'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>在调用组件的时，可以用 <code>v-on</code> 把组件 <strong>emit</strong> 出来的返回值当做事件绑定到其他属性值 </p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 使用</span><br><span class="line"><span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span> </span><br><span class="line">// 定义组件</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">Vue.component(<span class="string">'button-counter'</span>, &#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">  template: '<span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"incrementHandler"</span>&gt;</span></span><span class="template-variable">&#123;&#123; counter &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span>',</span></span></span><br><span class="line"><span class="actionscript">  data: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      counter: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line"><span class="actionscript">    incrementHandler: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.counter += <span class="number">1</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.$emit(<span class="string">'increment'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>注意到上述代码的 data 里返回的是函数。如果返回的是对象，不同调用者会共享。</p></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;$2020.3 \sim 2020.6$ 上了《BS体系软件设计》这门课，最终决定用 Django + Vue 的架构完成课程设计。不要说 Vue 了，js 和 css 我都一知半解，于是决定开坑速成。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
+    
+    
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>趣题摘记-概率和期望</title>
@@ -44,11 +66,11 @@
       <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
     
     
-      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
+      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
     
       <category term="Algorithm" scheme="https://jiangshibiao.github.io/tags/Algorithm/"/>
     
-      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
   </entry>
   
@@ -83,11 +105,11 @@
       <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
     
     
-      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
+      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
     
       <category term="Algorithm" scheme="https://jiangshibiao.github.io/tags/Algorithm/"/>
     
-      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
   </entry>
   
@@ -172,9 +194,9 @@
       <category term="Course Review" scheme="https://jiangshibiao.github.io/categories/Course-Review/"/>
     
     
-      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
-    
       <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
+    
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
       <category term="Machine Learning" scheme="https://jiangshibiao.github.io/tags/Machine-Learning/"/>
     
@@ -199,9 +221,9 @@
       <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
     
     
-      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
-    
       <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
+    
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
       <category term="Machine Learning" scheme="https://jiangshibiao.github.io/tags/Machine-Learning/"/>
     
@@ -229,13 +251,13 @@
       <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
     
     
-      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
-    
       <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
+    
+      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
     
       <category term="Algorithm" scheme="https://jiangshibiao.github.io/tags/Algorithm/"/>
     
-      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
   </entry>
   
@@ -312,11 +334,11 @@
       <category term="Course Review" scheme="https://jiangshibiao.github.io/categories/Course-Review/"/>
     
     
+      <category term="Linear Programming" scheme="https://jiangshibiao.github.io/tags/Linear-Programming/"/>
+    
       <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
     
       <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
-    
-      <category term="Linear Programming" scheme="https://jiangshibiao.github.io/tags/Linear-Programming/"/>
     
   </entry>
   
@@ -382,13 +404,13 @@
       <category term="Course Review" scheme="https://jiangshibiao.github.io/categories/Course-Review/"/>
     
     
-      <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
+      <category term="Linear Programming" scheme="https://jiangshibiao.github.io/tags/Linear-Programming/"/>
     
-      <category term="Algorithm" scheme="https://jiangshibiao.github.io/tags/Algorithm/"/>
+      <category term="Course Review" scheme="https://jiangshibiao.github.io/tags/Course-Review/"/>
     
       <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
     
-      <category term="Linear Programming" scheme="https://jiangshibiao.github.io/tags/Linear-Programming/"/>
+      <category term="Algorithm" scheme="https://jiangshibiao.github.io/tags/Algorithm/"/>
     
   </entry>
   
@@ -425,11 +447,11 @@
       <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/categories/Knowledge-Learning/"/>
     
     
-      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
+      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
     
       <category term="Algorithm" scheme="https://jiangshibiao.github.io/tags/Algorithm/"/>
     
-      <category term="Math" scheme="https://jiangshibiao.github.io/tags/Math/"/>
+      <category term="Knowledge Learning" scheme="https://jiangshibiao.github.io/tags/Knowledge-Learning/"/>
     
   </entry>
   
