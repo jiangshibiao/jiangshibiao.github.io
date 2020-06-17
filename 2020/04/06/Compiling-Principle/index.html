@@ -27,7 +27,9 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LR1DFA.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LALR1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png">
-<meta property="og:updated_time" content="2020-05-13T05:39:59.651Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/AR.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/Parameter.png">
+<meta property="og:updated_time" content="2020-06-17T06:15:30.653Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 整一个编译的流程包括如下两个阶段：  front end: scanner $\to$ parser  $\to$ semantic analyzer $\to$ source code optimizer  back end:  code generator $\to$ target code">
@@ -369,20 +371,173 @@
 <li>$X_i.a_j=f_{i,j}(X_0.a_1,\dots,X_0.a_k,X_1.a_1,\dots,X_1.a_k, \dots, X_n.a_1, \dots, X_n.a_k)$</li>
 </ul>
 </li>
-<li>Dependency Graphs<ul>
+<li>Dependency Graphs：必须是 DAG<ul>
 <li>在语法树（虚线）上画出属性的决定关系（实线）</li>
-<li>必须是 DAG</li>
 </ul>
 </li>
 <li>属性分为两种：<ul>
 <li>synthesized attributes 综合属性：“自下而上”传递信息，由其子结点的属性值确定。</li>
 <li>inherited attributes 继承属性：“自上而下”传递信息，一个结点的继承属性由此结点的父结点和/或兄弟结点的。</li>
+<li>几条约束<ul>
+<li>不允许 $N$ 的继承属性通过 $N$ 的子节点来定义</li>
+<li>允许 $N$ 的综合属性依赖于它本身的继承属性来定义</li>
+<li>终结符号有综合属性（来自词法分析）但是没有继承属性。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>L-attributed attribute grammar<ul>
 <li>对于所有产生式 $X_0 \to X_1X_2\dots X_n$ 满足：$X_i.a_j$ 只由 $X_0 \sim X_{i-1}$ 决定。</li>
+<li>显然 S-attributed（仅由综合属性决定）属于 L-attributed。</li>
 <li>对于 Top-down parser 来说，它可以有效决定所有属性（把继承属性放在参数里，把综合属性当做返回值传递上来）。</li>
 <li>对于 Bottom-up parser 来说，LR parsers 只适合处理综合属性，但不能处理继承属性。</li>
+</ul>
+</li>
+<li>LR parser 在解析属性文法时<ul>
+<li>在 parsing stack 基础上额外维护 <strong>Value stack</strong>: store synthesized attributes.</li>
+</ul>
+</li>
+<li>Knuth [1968]：经过等价的语法修改后，任何继承属性都能转化成综合属性。</li>
+</ul>
+<h4 id="符号表-Symbol-Table"><a href="#符号表-Symbol-Table" class="headerlink" title="符号表 Symbol Table"></a>符号表 Symbol Table</h4><ul>
+<li>Symbol Table: Store the information about identifiers, like their scope or type.</li>
+<li>维护方法<ul>
+<li>linear list</li>
+<li>search tree (binary search trees, AVL trees, B trees) </li>
+<li>hash tables (most frequently in practice)<ul>
+<li><strong>open addressing</strong>：冲突时放到下一个格子。</li>
+<li><strong>separate chaining</strong>：哈希挂链。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>符号寻找方式：the most closely nested rule for block structure</li>
+</ul>
+<h4 id="Type-check"><a href="#Type-check" class="headerlink" title="Type check"></a>Type check</h4><ul>
+<li><p>type equivalence</p>
+<ol>
+<li><p>Structural equivalence：递归地检查，每一层的两个 type 的类型和组成（属性顺序）必须一致。</p>
+</li>
+<li><p>Name equivalence：他们的类型名（基本类型，自定义类型）完全一样才算一致。</p>
+<ul>
+<li><code>t1:int; t2:int</code>：则 <code>t1</code> 和 <code>t2</code> 算不同的类型。</li>
+</ul>
+</li>
+<li><p>Declaration equivalence 是 Name 的弱化版。<code>t2=t1</code> establishing type aliases, rather than new types. </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1 = <span class="built_in">array</span> [<span class="number">10</span>]  of  <span class="keyword">int</span>;</span><br><span class="line">t2 = <span class="built_in">array</span> [<span class="number">10</span>]  of  <span class="keyword">int</span>;</span><br><span class="line">t3 = t1;</span><br><span class="line"><span class="comment">// t1 = t3,但是都不等于t2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="Runtime-Environments"><a href="#Runtime-Environments" class="headerlink" title="Runtime Environments"></a>Runtime Environments</h4><ul>
+<li>三种运行环境<ul>
+<li>Fully static environment <strong>FORTRAN77</strong></li>
+<li>stack-based environment <strong>C/C++</strong></li>
+<li>fully dynamic environment <strong>LISP</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="Activation-Records"><a href="#Activation-Records" class="headerlink" title="Activation Records"></a>Activation Records</h4><ul>
+<li>用于 Stack-based runtime environments，可以用 Activation tree 来分析</li>
+<li>在不允许函数嵌套的语言（比如 C）中<ul>
+<li><strong>Frame pointer</strong>: a pointer to the current activation record to allow access to local variable.<ul>
+<li>在大多数编程语言中，可以通过 fp + static offset 来 access variables.</li>
+</ul>
+</li>
+<li><strong>Control(Dynamic) Link</strong>: a point to a record of the immediately preceding activation.</li>
+<li><strong>Stack Pointer</strong>: a point to the last location allocated on the call stack. </li>
+</ul>
+</li>
+<li><strong>The calling sequence</strong><ol>
+<li>计算函数参数，将它们放入新的 AR 里。</li>
+<li>把新 AR 的 control link 设为当前 fp，再把当前 fp 移动到新 AR 里。</li>
+<li>在新 AR 里保存 return address，调用函数。</li>
+</ol>
+</li>
+<li>当函数调用结束时<ol>
+<li>把新的 sp 设为 fp，把新的 fp 设为 control link </li>
+<li>根据 return address 跳转到原 AR，并用 sp 不断弹栈。</li>
+</ol>
+</li>
+<li>注意有些函数可能会接受不同长度的参数。<ul>
+<li>C 语言的策略是：将参数逆序放入 AR。这样我们总能用固定的 fp + offset 去访问每个参数。</li>
+</ul>
+</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/AR.png" alt></p>
+<ul>
+<li>在允许函数嵌套的语言（比如 Pascal）中<ul>
+<li>增设 <strong>Access(static) Link</strong>：the defining environment of the procedure.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Heap-Management"><a href="#Heap-Management" class="headerlink" title="Heap Management"></a>Heap Management</h4><ul>
+<li><p>In most language, needs some dynamic capabilities in order to handle pointer allocation and de-allocation. $\to$ Heap</p>
+<ul>
+<li>allocate and free</li>
+</ul>
+</li>
+<li><p>A standard method</p>
+<ul>
+<li>a circular linked list of free blocks</li>
+<li>用 malloc 新建，用 free 释放</li>
+<li>缺点：无法判断 free 是否合法；很容易变成一段一段的。</li>
+</ul>
+</li>
+<li><p>Automatic Management</p>
+<ul>
+<li>manual method：用户手动新建和释放</li>
+<li>garbage collection：回收那些没有被指的量</li>
+</ul>
+</li>
+<li><p>mark and sweep garbage collection</p>
+<ul>
+<li>no memory is freed until a call to malloc fails, which does this in two passes.</li>
+</ul>
+<ol>
+<li>Follows all pointers recursively,starting with all currently accessible pointer values and marks each block of storage reached.</li>
+<li>Sweeps linearly through memory.</li>
+</ol>
+<ul>
+<li>returning unmarked blocks to free memory.</li>
+<li>perform memory compaction to leave only one large block of contiguous free space at the other end.</li>
+</ul>
+</li>
+<li><p>stop-and-copy (two-space) garbage collection</p>
+</li>
+</ul>
+<h4 id="Parameter-Passing-Mechanisms"><a href="#Parameter-Passing-Mechanisms" class="headerlink" title="Parameter Passing Mechanisms"></a>Parameter Passing Mechanisms</h4><ul>
+<li>pass by value：传值引用</li>
+<li>pass by reference：传地址引用</li>
+<li>pass by value-result：传值进去，函数结束后再绑定回参数。</li>
+<li>pass by name：直接把参数的表达式传进去。</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/Parameter.png" alt></p>
+<h2 id="Code-Generation"><a href="#Code-Generation" class="headerlink" title="Code Generation"></a>Code Generation</h2><ul>
+<li><p><strong>Intermediate Representation</strong>A data structure that represents the source program during translation. Intermediate code can be very high level.</p>
+</li>
+<li><p><strong>Three-Address Code</strong> 三地址码</p>
+<ul>
+<li>4 fields are necessary: one for the operation and three for the addresses</li>
+<li>Such a representation of three-address code is called a <strong>quadruple.</strong> </li>
+<li>三地址码还有一种实现是：把 Instruction 编号也作为 temporary 存计算结果（这样就可以少开一个地址了）。缺点是，这样一段代码位移起来还要修改。</li>
+</ul>
+</li>
+<li><p><strong>P-Code</strong></p>
+<ul>
+<li>在 P-machine 上运行的码</li>
+<li>The <strong>P-machine</strong> consists of a code memory, an unspecified data memory for named variables, and a stack for temporary data, together with whatever registers are needed to maintain the stack and support execution. </li>
+<li><p>一个 <code>2*a+(b-3)</code> 的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ldc 2;  load constant 2 (pushes 2 onto the temporary)</span><br><span class="line">lod a;  load variable a (pushes a onto the temporary)</span><br><span class="line">mpi;    integer multiplication  (pops these two values from the stack, multiplies them (in reverse order), and pushes the result onto the stack.)</span><br><span class="line">lod b;   load value of variable b</span><br><span class="line">ldc 3;   load constant 3</span><br><span class="line">sbi;   integer subtraction (subtracts the first from the second)</span><br><span class="line">adi;   integer addition</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>P-code instructions require fewer addresses than Three-Address Code, less compact, and closer to actual machine code.</p>
+</li>
+</ul>
+</li>
+<li><p>From Intermediate Code to Target Code</p>
+<ul>
+<li>Macro expansion：逐句翻译</li>
+<li>Static simulation：等效替换</li>
 </ul>
 </li>
 </ul>
@@ -488,7 +643,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法分析-lexical-analysis"><span class="nav-number">1.</span> <span class="nav-text">词法分析 lexical analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Regular-Expression"><span class="nav-number">1.0.1.</span> <span class="nav-text">Regular Expression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Finite-Automata"><span class="nav-number">1.0.2.</span> <span class="nav-text">Finite Automata</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法分析-Syntax-Analysis"><span class="nav-number">2.</span> <span class="nav-text">语法分析 Syntax Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Context-Free-Grammar"><span class="nav-number">2.0.1.</span> <span class="nav-text">Context Free Grammar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-1-Top-Down-Parsing"><span class="nav-number">2.0.2.</span> <span class="nav-text">LL(1): Top Down Parsing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LR-k-Bottom-Up-Parsing"><span class="nav-number">2.0.3.</span> <span class="nav-text">LR(k): Bottom-Up Parsing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-和-LR-的关系总结"><span class="nav-number">2.0.4.</span> <span class="nav-text">LL 和 LR 的关系总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语义分析-Semantic-Analysis"><span class="nav-number">3.</span> <span class="nav-text">语义分析 Semantic Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性文法-Attribute-Grammars"><span class="nav-number">3.0.1.</span> <span class="nav-text">属性文法 Attribute Grammars</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法分析-lexical-analysis"><span class="nav-number">1.</span> <span class="nav-text">词法分析 lexical analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Regular-Expression"><span class="nav-number">1.0.1.</span> <span class="nav-text">Regular Expression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Finite-Automata"><span class="nav-number">1.0.2.</span> <span class="nav-text">Finite Automata</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法分析-Syntax-Analysis"><span class="nav-number">2.</span> <span class="nav-text">语法分析 Syntax Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Context-Free-Grammar"><span class="nav-number">2.0.1.</span> <span class="nav-text">Context Free Grammar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-1-Top-Down-Parsing"><span class="nav-number">2.0.2.</span> <span class="nav-text">LL(1): Top Down Parsing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LR-k-Bottom-Up-Parsing"><span class="nav-number">2.0.3.</span> <span class="nav-text">LR(k): Bottom-Up Parsing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LL-和-LR-的关系总结"><span class="nav-number">2.0.4.</span> <span class="nav-text">LL 和 LR 的关系总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语义分析-Semantic-Analysis"><span class="nav-number">3.</span> <span class="nav-text">语义分析 Semantic Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性文法-Attribute-Grammars"><span class="nav-number">3.0.1.</span> <span class="nav-text">属性文法 Attribute Grammars</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号表-Symbol-Table"><span class="nav-number">3.0.2.</span> <span class="nav-text">符号表 Symbol Table</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-check"><span class="nav-number">3.0.3.</span> <span class="nav-text">Type check</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Runtime-Environments"><span class="nav-number">3.0.4.</span> <span class="nav-text">Runtime Environments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activation-Records"><span class="nav-number">3.0.5.</span> <span class="nav-text">Activation Records</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Heap-Management"><span class="nav-number">3.0.6.</span> <span class="nav-text">Heap Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parameter-Passing-Mechanisms"><span class="nav-number">3.0.7.</span> <span class="nav-text">Parameter Passing Mechanisms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Generation"><span class="nav-number">4.</span> <span class="nav-text">Code Generation</span></a></li></ol>
     
     </div>
   </aside>
