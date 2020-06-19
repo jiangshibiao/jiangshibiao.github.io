@@ -11,21 +11,21 @@
   
   
   
-  <meta name="description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
+  <meta name="description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
 <meta name="keywords" content="Knowledge Learning,Course Review,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《数据挖掘》知识整理">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
+<meta property="og:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation-Example.png">
-<meta property="og:updated_time" content="2020-06-10T08:17:36.953Z">
+<meta property="og:updated_time" content="2020-06-19T12:44:04.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据挖掘》知识整理">
-<meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  神经网络 KNN，决策树和随机森林 聚类问题 降维、主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
+<meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -209,10 +209,10 @@
 <p>课程内容涉及机器学习入门的 topic，包括以下内容：</p>
 <ul>
 <li>贝叶斯模型和线性分类器 </li>
-<li>神经网络</li>
+<li>非线性方法，包括 Kernel 和 神经网络</li>
 <li>KNN，决策树和随机森林</li>
-<li>聚类问题</li>
-<li>降维、主题模型和矩阵分解</li>
+<li>聚类和降维</li>
+<li>主题模型和矩阵分解</li>
 </ul>
 <p>于是撰写此文，试图把一些 solid 的知识点总结下来。</p>
 <a id="more"></a>
@@ -318,7 +318,7 @@ EPE(f)=\int (f(\pmb{x})-E(y|\pmb{x}))^2p(\pmb{x})d\pmb{x} + \int var(y|\pmb{x})p
 \text{noise} &= \int var(y|\pmb{x})p(\pmb{x})d\pmb{x}
 \end{align}</script><p>之前说的正则化操作，大的 $\lambda$ 会导致更大的 bias，小的 $\lambda$ 会导致更大的 variance。</p>
 <p>在模型选择时，常用 <strong>Cross-Validation</strong> 的方法。将训练数据集划成 $k$ 份，每次留一份 $i$ 作为 Validation，其它$k-1$ 份用来训练，挑选 bias 或者 variance 比较小的模型。不同的 Validation 能重复 $k$ 次。当训练数据比较少时，可能会用到比较极端的 leave-one-out 方法，即取 $k=N$。 </p>
-<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>决策树是一个简单而有效的分类问题的解决方案。它的大致想法是：每次从当前（带标签的）数据中选择“方差”最大的一个属性，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前节点的所有标签相同。</p>
+<h2 id="Decision-Tree-决策树"><a href="#Decision-Tree-决策树" class="headerlink" title="Decision Tree 决策树"></a>Decision Tree 决策树</h2><p>决策树是一个简单而有效的分类问题的解决方案。它的大致想法是：每次从当前（带标签的）数据中选择“方差”最大的一个属性，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前节点的所有标签相同。</p>
 <p><strong>熵</strong> 是随机变量不确定性的度量。设 $D$ 是离散随机变量，其概率分布为 $P(X=x_k) = p_k$，则它的熵：</p>
 <script type="math/tex; mode=display">
 Ent(D)=-\sum \limits_{k=1}^{|D|} -p_k\log(p_k)</script><p> 注意到 $\lim \limits_{p\to 0^+} p_k\log(p_k)=0$，所以额外定义 $0 \log 0=0$。</p>
@@ -326,6 +326,55 @@ Ent(D)=-\sum \limits_{k=1}^{|D|} -p_k\log(p_k)</script><p> 注意到 $\lim \limi
 <p>回到决策树。一个节点如果选了属性 $a$ 作为分支属性，设其不同取值有 $V$ 个，定义 <strong>信息增益</strong>：</p>
 <script type="math/tex; mode=display">
 Gain(D,a)=Ent(D)-\sum \limits_{v=1}^V \frac{|D_v|}{|D|}Ent(D_v)</script><p>显然，$Gain(D,a)$ 越大说明使用属性 $a$ 进行划分所获得的“纯度提升”越大，<strong>ID3 决策树</strong> 就是按这个来决定属性的。注意，准则对可取值数目较多的属性有所偏好，这种偏好可能带来不良影响。</p>
+<h2 id="Topic-Model-主题模型"><a href="#Topic-Model-主题模型" class="headerlink" title="Topic Model 主题模型"></a>Topic Model 主题模型</h2><p>主题模型多用于文本分析，比如判断一篇文档的主题。或者说给出一个文档集合和一些 queries，每次要回答与当前 query 最相近的页面（搜索引擎）。</p>
+<p>注意，我们在这里探讨的主题模型属于 Bag‐of‐Words（词袋模型），即我们不考虑单词出现的顺序问题，只考虑整篇文档里单词的概率分布。这样可以简化问题。</p>
+<p>一个最直接的做法是 <strong>Salton’s Vector Space Model</strong>。对于每一个文档，统计各个单词出现的次数，并用一个向量去描述它——该向量的长度就是字典大小。我们可以开一个 $weight$ 向量去给每个单词加权，最后用 cos 相似度去衡量两个文档之间的相似程度。</p>
+<p>这样做有什么问题呢？topics 和 words 之间可能会存在不匹配的现象！</p>
+<ul>
+<li>一词多义会让两个远离向量的距离变小</li>
+<li>同义词会让两个相近向量的距离变大</li>
+</ul>
+<p>在 <strong>Language Model Paradigm</strong> 里，我们应用贝叶斯公式去完成文档查询。设 $R_d \in \{0,1\}$ 表示文档 $d$ 和当前询问 $q$ 是否有关。我们知道 $P(R_d=1|q) \propto P(q|R_d=1)P(R_d=1)$，所以可以用后两者去估计前者。</p>
+<ul>
+<li>Prior $P(R_d=1)$ 对应搜索引擎技术里的一个重要概念——<strong>Page Rank</strong>。</li>
+<li>Likelihood $P(q|R_d=1)$ 就是我们要从数据中训练出来的。</li>
+</ul>
+<p>一次询问 $q$  通常包含若干个词，即 $q=(w_1,w_2,\dots,w_q)$。此时我们又要像以前那样，假设词和词之间是独立同分布的 ，所以 $P(q|R_d=1)=\prod \limits_{w \in q}P(w|d)$，我们要估计的核心就是 $P(w|d)$。</p>
+<p>一个 Naive 的尝试是：取 $\hat P(w|d)=\frac{n(d,w)}{\sum _{w’} n(d,w’)}$，即直接用每个单词（在训练数据）出现的频率去估计。但是这会遇到严重的 zero frequency 问题，当我们训练数据不足时会有很大的影响。</p>
+<p>下面介绍一下经典的 <strong>Probabilistic Latent Semantic Analysis</strong> 方法。在 Document 和 Vocabulary 之间添加一个新的关系 Topic。我们认为一篇文档里的 $n$ 个单词是按这样的方法独立生成的：每次带权随机一个和这个文档有关的 Topic $z$，然后再带权随机一个该 Topic 下的单词 $w$，即 $P(w|d)=\sum \limits_z{P(w|z)P(z|d)}$。</p>
+<p>这样做有什么好处呢？本来我们需要求一个 $N \times M$ 的参数矩阵，表示文档 $i$ 下单词 $j$ 出现的概率，但是这个矩阵可能很大。现在我们引入了 $K$ 个 Topic，只要分别估计 $N \times K$ 和 $K \times M$ 两个参数矩阵就行。</p>
+<p>考虑用最大似然估计去求参数。对于一篇文档，当前单词集合出现的概率是：</p>
+<script type="math/tex; mode=display">
+P(w|d)=\sum \limits_{z} P(w|z;\theta)P(z|d;\pi)</script><p>我们需要估计参数 $\theta$ 和 $\pi$。它的对数似然函数如下：</p>
+<script type="math/tex; mode=display">
+l(\theta,\pi;N)=\sum \limits_{d,w}n(d,w)\log(\sum \limits_{z=1}^K P(w|z;\theta)P(z|d;\pi))</script><p>注意这个 $l(\theta,\pi;N)$ 不是凸函数，我们要使用 <strong>Expectation Maximization</strong> 方法来求、EM 算法采用迭代的方式，专门用来求解包含“隐含变量”或者“缺失数据”的概率模型参数估计问题。</p>
+<p>首先我们要明白，估计参数 $\theta$ 和 $\pi$，本质上就是求 $N\times K$ 和 $K \times M$ 两个矩阵里的参数。在 EM 算法开始前，我们先随机生成这些参数，然后通过重复以下两个步骤来不断迭代。</p>
+<ul>
+<li><p><strong>E-step</strong>：我们可以利用当前的结果计算最新的后验：</p>
+<script type="math/tex; mode=display">
+P\left(z_{k} | d_{i}, w_{j}\right)=\frac{P\left(w_{j} | z_{k}\right) P\left(z_{k} | d_{i}\right)}{\sum_{l=1}^{K} P\left(w_{j} | z_{l}\right) P\left(z_{l} | d_{i}\right)}</script></li>
+<li><p><strong>M-step</strong></p>
+<ol>
+<li><p>利用这些后验概率修正最大化函数。</p>
+<script type="math/tex; mode=display">
+E(d_i,w_j,z_k)=\sum_{i=1}^{N} \sum_{j=1}^{M} n\left(d_{i}, w_{j}\right) \sum_{k=1}^{K} P\left(z_{k} | d_{i}, w_{j}\right) \log \left[P\left(w_{j} | z_{k}\right) P\left(z_{k} | d_{i}\right)\right] \\
+\text{s.t.}
+\sum_{j=1}^{M} p\left(w_{j} | z_{k}\right)=1,\sum_{k=1}^{K} p\left(z_{k} | d_{i}\right)=1</script></li>
+<li><p>用拉格朗日乘子法，拉格朗日函数为：</p>
+<script type="math/tex; mode=display">
+\mathcal{H}=E(d_i,w_j,z_k)+\sum_{k=1}^{K} \tau_{k}\left(1-\sum_{j=1}^{M} P\left(w_{j} | z_{k}\right)\right)+\sum_{i=1}^{N} \rho_{i}\left(1-\sum_{k=1}^{K} P\left(z_{k} | d_{i}\right)\right)</script></li>
+<li><p>对 $NK+MK$ 个变量分别求偏导，得：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=1}^{N} n\left(d_{i}, w_{j}\right) P\left(z_{k} | d_{i}, w_{j}\right)-\alpha_{k} P\left(w_{j} | z_{k}\right)&=0\\
+\sum_{j=1}^{M} n\left(d_{i}, w_{j}\right) P\left(z_{k} | d_{i}, w_{j}\right)-\beta_{i} P\left(z_{k} | d_{i}\right)&=0
+\end{align}</script></li>
+<li><p>最终解得新的迭代方程为：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}P\left(w_{j} | z_{k}\right)=\frac{\sum_{i=1}^{N} n\left(d_{i}, w_{j}\right) P\left(z_{k} | d_{i}, w_{j}\right)}{\sum_{m=1}^{M} \sum_{i=1}^{N} n\left(d_{i}, w_{m}\right) P\left(z_{k} | d_{i}, w_{m}\right)} \\P\left(z_{k} | d_{i}\right)=\frac{\sum_{j=1}^{M} n\left(d_{i}, w_{j}\right) P\left(z_{k} | d_{i}, w_{j}\right)}{n\left(d_{i}\right)}\end{array}</script></li>
+</ol>
+</li>
+</ul>
 
       
     </div>
@@ -428,7 +477,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树"><span class="nav-number">4.</span> <span class="nav-text">决策树</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-决策树"><span class="nav-number">4.</span> <span class="nav-text">Decision Tree 决策树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-Model-主题模型"><span class="nav-number">5.</span> <span class="nav-text">Topic Model 主题模型</span></a></li></ol>
     
     </div>
   </aside>

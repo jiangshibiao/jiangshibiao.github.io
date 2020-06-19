@@ -33,7 +33,8 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DNS.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Email_head.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/HTTP.png">
-<meta property="og:updated_time" content="2020-06-09T08:47:38.943Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Digital-Signature.png">
+<meta property="og:updated_time" content="2020-06-19T08:13:53.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -218,15 +219,21 @@
       
         <p>在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。</p>
 <a id="more"></a>
-<h2 id="物理层-THE-PHYSICS-LAYER"><a href="#物理层-THE-PHYSICS-LAYER" class="headerlink" title="物理层 THE PHYSICS LAYER"></a>物理层 THE PHYSICS LAYER</h2><ul>
-<li>Signal (信号)：数据的电气/电磁表现，是数据在传输过程中的存在形式。</li>
-<li>Bandwidth (带宽)：The range of <strong>frequencies</strong> transmitted without being strongly attenuated.</li>
-<li>Symbol (码元)：one of several voltage, frequency, or phase changes. <ul>
-<li>$1$ Symbol/s  = $1$ Baud</li>
+<h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><ul>
+<li>A <strong>protocol</strong>  is an agreement between the communicating parties on how communication is to proceed. <ul>
+<li>A protocol is a set of rules governing the format and meaning of the packets, or messages that are exchanged by the peer entities within a layer. </li>
 </ul>
 </li>
+<li>A <strong>service</strong> is a set of primitives (operations) that a layer provides to the layer above it.<ul>
+<li>Service interface defines which primitive operations and services the lower layer makes available to the upper one.</li>
+<li>Connection-oriented service 面向连接的服务</li>
+<li>Connectionless service 无连接的服务</li>
 </ul>
-<div class="table-container">
+</li>
+<li>The <strong>OSI</strong> (Open Systems Interconnection) Reference Model OSI 七层模型</li>
+<li>The <strong>TCP/IP</strong> Reference Model 五层模型</li>
+</ul>
+<h2 id="物理层-THE-PHYSICS-LAYER"><a href="#物理层-THE-PHYSICS-LAYER" class="headerlink" title="物理层 THE PHYSICS LAYER"></a>物理层 THE PHYSICS LAYER</h2><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -251,25 +258,36 @@
 </table>
 </div>
 <ul>
-<li><strong>Nyquist Limit</strong><ul>
-<li>Max data rate: $\mathrm{2H\log_2V}$ ，单位是 $\mathrm{bit/sec}$</li>
-<li>where $V$ is the discrete levels.</li>
-<li>Max symbol rate: $\mathrm{2H}$</li>
+<li>Signal 信号：数据的电气/电磁表现，是数据在传输过程中的存在形式。</li>
+<li>Bandwidth 带宽：The range of <strong>frequencies</strong> transmitted without being strongly attenuated.</li>
+<li>Symbol 码元：one of several voltage, frequency, or phase changes. $1$ Symbol/s  = $1$ Baud<ul>
+<li>data rate = symbol rate * bits per symbol</li>
+<li>Manchester encoding: data rate = $\frac{1}{2}$ symbol rate</li>
 </ul>
 </li>
-<li><strong>Shannon Limit</strong><ul>
-<li>Max data rate: $\mathrm{2H\log_2(1+S/N)}$<ul>
-<li>where $\mathrm{S/N}$ is the signal to noise ratio and $\mathrm{dB=10\log_2(S/N)}$</li>
+<li><strong>Nyquist Limit</strong> (noiseless)<ul>
+<li>Max data rate: $B \le \mathrm{2H\log_2V}$ ，单位是 $\mathrm{bit/sec}$，$V$ 是 discrete levels.</li>
+<li>Max symbol rate: $S \le \mathrm{2H}$</li>
+</ul>
+</li>
+<li><strong>Shannon Limit</strong> (random noise)<ul>
+<li>Max data rate: $B \le \mathrm{2H\log_2(1+S/N)}$<ul>
+<li>where $\mathrm{S/N}$ is the signal to noise ratio.</li>
+<li>$\mathrm{dB=10\log_2(S/N)}$</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>信道<ul>
 <li>按传输信号的离散或连续划分为 <strong>数字信号</strong>（Digital Signal）和 <strong>模拟信号</strong>（Analog Signal）</li>
-<li>按信道传输方式划分为 <strong>基带传输</strong>（Baseband Transmission）和 <strong>通带传输</strong>（Passband Transmission）</li>
+<li>按信道传输方式划分为 <strong>基带传输</strong>（Baseband Transmission）和 <strong>通带传输</strong>（Passband Transmission）<ul>
+<li>Baseband: signal occupies frequencies from zero up to a maximum</li>
+<li>Passband: signal occupies a band of frequencies around the frequency of the carrier signal</li>
 </ul>
 </li>
-<li>编码和调制<ul>
+</ul>
+</li>
+<li>编码和调制 Digital Modulation<ul>
 <li>设备<ul>
 <li>调制解调器（<strong>mo</strong>dulator <strong>dem</strong>odulator）<ul>
 <li>调制：数字信号翻译成可沿普通电话线传送的模拟信号</li>
@@ -279,7 +297,8 @@
 <li>编码解码器 (<strong>co</strong>der <strong>dec</strong>oder）：对一个信号或者一个数据流进行变换的设备或者程序。</li>
 </ul>
 </li>
-<li>位数据转为数字信号<ul>
+<li>PCM (<strong>P</strong>ulse <strong>C</strong>ode <strong>M</strong>odulation) </li>
+<li>Baseband Transmission<ul>
 <li><strong>N</strong>on-<strong>R</strong>eturn-to-<strong>Z</strong>ero：高 $1$ 低 $0$</li>
 <li><strong>NRZI</strong>：翻转表示 $0$，不变表示 $1$</li>
 <li>Manchester Encoding：由 $1$ 变 $0$ 表示 $1$，由 $0$ 变 $1$ 表示 $0$</li>
@@ -287,13 +306,15 @@
 <li>4B/5B：不存在三个连续 $0$</li>
 </ul>
 </li>
-<li>模拟数据编码为数字信号：PCM (<strong>P</strong>ulse <strong>C</strong>ode <strong>M</strong>odulation) 编码器<ul>
-<li>抽样（$f_{采样频率} \geq 2f_{最高频率}$），量化，编码</li>
+<li>Passband Transmission<ul>
+<li>振幅、频率、相位</li>
+<li>Constellation diagrams 星座图<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png" alt></li>
 </ul>
 </li>
-<li>数字信号转为模拟信号<ul>
-<li>Constellation diagrams (星座图)</li>
-<li>调振幅、频率、相位<br>  <img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png" alt></li>
+<li>Digital Modulation and Multiplexing: Code Division Multiplexing <ul>
+<li>每一个 Station 有一个 $\pm 1$ 的序列，任意两个序列正交。</li>
+<li>编码时直接把发送信号的 Station 求和 $S$。</li>
+<li>解码时用当前 Station 的序列点乘 $S$。</li>
 </ul>
 </li>
 </ul>
@@ -316,6 +337,12 @@
 <li>Infrared and millimeter waves/Lightwave transmission 红外线和毫米波/激光</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>PUBLIC SWITCHED TELEPHONE SYSTEM 公用交换电话系统<ul>
+<li>Switching offices</li>
+<li><strong>Local loops</strong>: the wires between the customers and the switching offices</li>
+<li><strong>Trunks</strong>: the long-distance connections between the switching offices</li>
 </ul>
 </li>
 </ul>
@@ -384,7 +411,8 @@
 <li>流量控制和传输机制<ul>
 <li>Stop-wait Control 停止-等待协议：每发送完一组数据就停止发送，收到对方确认再继续发送。<ul>
 <li>发送方设置一个 timer（超时计时器），若到期后仍未收到 ACK 就重新发送。</li>
-<li>接收方会丢弃重复收到的帧，但是依然会发送 ACK。</li>
+<li>接收方会丢弃重复收到的帧，但是依然会发送 ACK（因为可能上一次 ACK 丢了）。</li>
+<li>Utilization：$U=\frac{T_{frame}}{T_frame+RTT},T_{frame}=\frac{frame_size}{bit_rate}$</li>
 </ul>
 </li>
 <li>go back N Control 后退 N 帧协议：发送方用 Sliding Windows 发消息，接收方只有一个接受窗口。<ul>
@@ -400,8 +428,15 @@
 </li>
 </ul>
 </li>
+<li>Example Data Link Protocols:  <strong>P</strong>oint to <strong>P</strong>oint <strong>P</strong>rotocol<ul>
+<li>send packets over the links, including the SONET fiber optic links and ADSL links</li>
+<li>A framing method</li>
+<li>A link control protocol 链路控制协议</li>
+<li>have a different <strong>NCP</strong> (Network Control Protocol, 网络控制协议) </li>
 </ul>
-<h4 id="介质访问子层-The-Medium-Access-Control"><a href="#介质访问子层-The-Medium-Access-Control" class="headerlink" title="介质访问子层 The Medium Access Control"></a>介质访问子层 The Medium Access Control</h4><ul>
+</li>
+</ul>
+<h2 id="介质访问子层-The-Medium-Access-Control"><a href="#介质访问子层-The-Medium-Access-Control" class="headerlink" title="介质访问子层 The Medium Access Control"></a>介质访问子层 The Medium Access Control</h2><ul>
 <li>这层可以视为数据链路层的子层（sublayer）<ul>
 <li>LLC子层：负责识别网络层协议，进行封装；为网络层提供 services。</li>
 <li>MAC子层：数据帧的封装卸撞，帧的寻址识别；屏蔽了不同物理链路的差异。</li>
@@ -475,7 +510,7 @@
 <li>CSMA with <strong>C</strong>ollision <strong>D</strong>etection  载波侦听多路访问协议<ul>
 <li>在半双工网络中考虑问题（冲突仅为发送接收双方的碰撞），主要应用于有线网络。</li>
 <li>若传播时延是 $\tau$，则最坏在 $2\tau$ 检测到冲突。</li>
-<li>binary exponential backoff 二进制指数退避算法：基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^{\min(k,10)}-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 放弃。</li>
+<li><strong>binary exponential backoff</strong> 二进制指数退避算法：基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^{\min(k,10)}-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 放弃。</li>
 <li>当帧长过短的时候 CSMACD 可能不会有用。能确保有用的最小帧长是 $2\tau \times speed$</li>
 </ul>
 </li>
@@ -518,18 +553,17 @@
 </ul>
 </li>
 <li>Ethernet 以太网：应用最广泛的局域网。<ul>
-<li>使用 IEEE802.3 规范，使用CSMA/CD</li>
 <li>逻辑拓扑总线型，物理拓扑星型或拓展星型</li>
 <li>造价低廉，应用最广泛；能满足网络速率的要求：10Mb/s-10Gb/s</li>
 <li>无连接，不可靠。只实现无差错接受，不实现可靠传输。</li>
 <li>使用CSMA/CD。两个标准：DIX Ethernet V2 或 IEEE 802.3</li>
 <li>10BASE-T 以太网：传送基带信号的双绞线以太网。<ul>
 <li>每段双绞线最长100m</li>
-<li>采用曼彻斯特编码和CSMA/CD</li>
+<li>采用曼彻斯特编码和 CSMA/CD</li>
 </ul>
 </li>
 <li>每一个适配器对应一个唯一的MAC地址（48位）</li>
-<li><strong>M</strong>aximum <strong>T</strong>ransmission <strong>U</strong>nit 最大传输单元</li>
+<li><strong>M</strong>aximum <strong>T</strong>ransmission <strong>U</strong>nit 最大传输单元：1500</li>
 </ul>
 </li>
 <li>其他局域网<ul>
@@ -644,7 +678,8 @@
 <li>Fragmentation 分片；不能超过 MTU，每个必须是 $8$ 字节的倍数。</li>
 </ul>
 </li>
-<li>IPv4 Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png" alt><ul>
+<li><p>IPv4 Protocol：无连接、不可靠<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png" alt></p>
+<ul>
 <li><strong>Version</strong>：IPv4/6</li>
 <li><strong>IHL</strong>：表示首部长度，单位是 4B。$5 \le \text{IHL} \le 15$，即表示的最小长度是 20B。</li>
 <li><strong>differentiated services </strong>：优先级。</li>
@@ -676,7 +711,7 @@
 </ul>
 </li>
 <li>对 NAT box 负责内外的 IP+Port 的翻译工作。</li>
-<li>NAT tranversal problem：Since the mapping in the NAT box is set up by outgoing packets, incoming packets cannot be accepted until after outgoing ones.</li>
+<li>NAT traversal problem: Since the mapping in the NAT box is set up by outgoing packets, incoming packets cannot be accepted until after outgoing ones.</li>
 </ul>
 </li>
 </ul>
@@ -903,6 +938,33 @@
 </ul>
 </li>
 </ul>
+<h2 id="NETWORK-SECURITY"><a href="#NETWORK-SECURITY" class="headerlink" title="NETWORK SECURITY"></a>NETWORK SECURITY</h2><ul>
+<li>Network security problems can be divided roughly into four intertwined areas<ul>
+<li>Secrecy 机密性</li>
+<li>Authentication 认证</li>
+<li>Nonrepudiation 不可否认性 e.g. personal signature)</li>
+<li>Integrity 完整性</li>
+</ul>
+</li>
+<li>Cryptography<ul>
+<li>Substitution Ciphers &amp; Transposition Ciphers</li>
+<li>One-Time Pads + quantum cryptography</li>
+<li>Kerchoff’s principle: all algorithms must be public while the key is secret. </li>
+<li>Two principles: Redundancy, Freshness</li>
+</ul>
+</li>
+<li>SYMMETRIC-KEY ALGORITHMS</li>
+<li>PUBLIC-KEY ALGORITHMS: RSA</li>
+<li>DIGITAL SIGNATURES<ul>
+<li>use Symmetric-Key Signatures：每一个人掌握一个私钥，有一个权力中心 <strong>BB</strong> (Big Brother) 知道所有人的私钥。$A$ 给 $B$ 发送消息时，先加密传给 BB，它解密再加密传给 $B$.</li>
+<li>use Public key signatures：<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Digital-Signature.png" alt><ul>
+<li>可以再套一个 <strong>message digest</strong>，即 $D_A(MD(P))$。</li>
+<li>message digest 消息摘要：对任意长度的序列生成对应哈希值，可以认为不同输入的哈希值不同。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -1005,7 +1067,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层-THE-PHYSICS-LAYER"><span class="nav-number">1.</span> <span class="nav-text">物理层 THE PHYSICS LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层-THE-DATA-LINK-LAYER"><span class="nav-number">2.</span> <span class="nav-text">数据链路层 THE DATA LINK LAYER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介质访问子层-The-Medium-Access-Control"><span class="nav-number">2.0.1.</span> <span class="nav-text">介质访问子层 The Medium Access Control</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层-THE-NETWORK-LAYER"><span class="nav-number">3.</span> <span class="nav-text">网络层 THE NETWORK LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层-THE-TRANSPORT-LAYER"><span class="nav-number">4.</span> <span class="nav-text">传输层 THE TRANSPORT LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层-THE-APPLICATION-LAYER"><span class="nav-number">5.</span> <span class="nav-text">应用层 THE APPLICATION LAYER</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络概述"><span class="nav-number">1.</span> <span class="nav-text">计算机网络概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层-THE-PHYSICS-LAYER"><span class="nav-number">2.</span> <span class="nav-text">物理层 THE PHYSICS LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层-THE-DATA-LINK-LAYER"><span class="nav-number">3.</span> <span class="nav-text">数据链路层 THE DATA LINK LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介质访问子层-The-Medium-Access-Control"><span class="nav-number">4.</span> <span class="nav-text">介质访问子层 The Medium Access Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层-THE-NETWORK-LAYER"><span class="nav-number">5.</span> <span class="nav-text">网络层 THE NETWORK LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层-THE-TRANSPORT-LAYER"><span class="nav-number">6.</span> <span class="nav-text">传输层 THE TRANSPORT LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层-THE-APPLICATION-LAYER"><span class="nav-number">7.</span> <span class="nav-text">应用层 THE APPLICATION LAYER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NETWORK-SECURITY"><span class="nav-number">8.</span> <span class="nav-text">NETWORK SECURITY</span></a></li></ol>
     
     </div>
   </aside>
