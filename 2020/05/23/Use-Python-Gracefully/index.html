@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-10T08:31:21.481Z">
+<meta property="og:updated_time" content="2020-06-20T17:30:42.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地使用 Python">
 <meta name="twitter:description" content="导语每当我在用 python 做一些 task 的时候，对这门语言总有强烈的距离感。  很多基础的函数不会调用，要现场百度起来。 更糟糕的是，没有掌握 Python 灵巧的编程思想，还是一味用 C++ 的思路去写代码。  于是我就开了这篇博客，记录一些反复用到的技巧和方法，培养 Python 的思维习惯。">
@@ -212,6 +212,7 @@
 <li><code>any(&lt;list&gt;)</code>，<code>all(&lt;list&gt;)</code>，<code>sum(&lt;list&gt;)</code></li>
 <li>取 <code>dict</code> 里的元素最大值：<code>max(vote, key = vote.get)</code></li>
 <li>用 <code>enumerate()</code> 来带序号遍历 <code>list</code>：<code>for id, element in enumerate()</code></li>
+<li>开十个 $0$：<code>[0] * 10</code>。注意他们的地址是相同的，<code>[{}]*10</code> 也如此。</li>
 <li><p>怎么求一个 list 里出现次数最多的数呢？</p>
 <ul>
 <li>简短但是暴力（$n^2$）的做法：<code>max(set(lst), key=lst.count)</code></li>
@@ -232,6 +233,9 @@
 </li>
 </ul>
 </li>
+<li><p>常用的打包和序列化操作</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">json.load(open(<span class="string">'demo.json'</span>,<span class="string">'r'</span>))</span><br><span class="line">json.loads(<span class="string">'&#123;'</span>a<span class="string">':'</span><span class="number">1111</span><span class="string">','</span><span class="string">b':'</span><span class="number">2222</span><span class="string">'&#125;'</span>)</span><br><span class="line">json.dump(dict_or_list, open(<span class="string">'demo.json'</span>, <span class="string">'w'</span>), indent = <span class="number">2</span>)</span><br><span class="line">a_str = json.dumps(a_dict)</span><br><span class="line"></span><br><span class="line">pickle.load(open(<span class="string">'a.txt'</span>, <span class="string">'rb'</span>))</span><br><span class="line">pickle.dump(a, open(<span class="string">'a.txt'</span>, <span class="string">'wb'</span>))</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <h4 id="美化代码"><a href="#美化代码" class="headerlink" title="美化代码"></a>美化代码</h4><ul>
 <li><p><strong>itertools</strong> 库里有很多实用的枚举姿势</p>
@@ -246,7 +250,8 @@
 </ul>
 <h4 id="第三方库推荐"><a href="#第三方库推荐" class="headerlink" title="第三方库推荐"></a>第三方库推荐</h4><ul>
 <li><strong>pyparsing</strong>：可以用来定制小型的解析器，比起枯燥死板的正则的语法，更加贴近思维习惯。</li>
-<li><strong>tesserocr &amp; pytesseract</strong>：对给定图片进行文本检测，并返回识别后的字符串。<ul>
+<li><p><strong>tesserocr &amp; pytesseract</strong>：对给定图片进行文本检测，并返回识别后的字符串。</p>
+<ul>
 <li>不太适合很小的图（比如只包括一个字符），进行适当的缩放和重复会有更好的识别效果。</li>
 </ul>
 </li>
