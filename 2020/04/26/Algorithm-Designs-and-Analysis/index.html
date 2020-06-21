@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Ford-Fulkerson.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/V-Diagram.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/art_museum.png">
-<meta property="og:updated_time" content="2020-06-11T06:34:46.081Z">
+<meta property="og:updated_time" content="2020-06-21T11:23:07.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法的设计和分析">
 <meta name="twitter:description" content="在此分享一下我在 $2020.4 \sim 2020.6$ 在浙江大学上的《算法设计与分析》这门课的内容。 这门课介绍了很多有趣的算法，我会挑一些新奇有趣的、以前没见过的 topic 分享。 可以把这篇文章和 趣题摘记 系列结合起来看。">
@@ -419,8 +419,18 @@ I_n & -A & AB \\
 \end{pmatrix}</script><h2 id="Flow-and-Match"><a href="#Flow-and-Match" class="headerlink" title="Flow and Match"></a>Flow and Match</h2><p><strong>Ford-Fulkerson</strong> 算法是最朴素的最大流算法：每次任意找一条增广路进行增广。值得注意的是，该算法可能永远也不会停止，下图就是一个例子。$r^2 = 1 - r, r=\frac{\sqrt 5 – 1}{2}\simeq 0.618$。更糟糕的是，该算法甚至没有收敛到最大流，因为 $1 + 2(r^1 + r^2+ r^3 + …)=3+2r&lt;5$ </p>
 <p><img src="//jiangshibiao.github.io/2020/04/26/Algorithm-Designs-and-Analysis/Ford-Fulkerson.png" alt></p>
 <p><strong>Edmonds-Karp Algorithm</strong> 算法改进了上述过程。它先用 BFS 对点进行标号，每次选择最短的增广路。一条增广路上至少存在一条边 $e=(u,v)$ 满足它的流量等于本次新增的流量，我们称之为 critical edge（其实就是增广路上残余流量最少的那些边）。critical edge 会使边完全反向（不存在原方向的流量了），当它下一次又成为 critical edge 时，增广路的长度至少增加 $1$。每条边最多只会成为 critical edge $N$ 次，一共有 $M$ 条边，每次增广复杂度是 $O(M)$，所以总复杂度是 $O(NM^2)$</p>
-<p>我们熟知的 <strong>Dinic</strong> 算法其实是 EK 算法的多路增广版本，使得复杂度降成 $O(N^2M)$。<a href="https://www.zhihu.com/question/266149721" target="_blank" rel="noopener">知乎里</a> 讨论了如何构造出让 Dinic 跑 $\Theta(N^2M)$ 的图。下面我们来证明一下，把 Dinic 应用到匹配问题上，最多只有 $\sqrt N$ 个 Stage。待续。</p>
-<p>说起匹配问题，不得不提到一个 <strong>霍尔定理</strong>。待续。</p>
+<p>我们熟知的 <strong>Dinic</strong> 算法其实是 EK 算法的多路增广版本。Dinic 引入了分层机制——每次把到终点距离相同的最短路径同时增广，使得复杂度降成 $O(N^2M)$，而实际速度也很快。下面我们来证明一下：把 Dinic 应用到匹配问题上最多只有 $\sqrt N$ 个 Stage。</p>
+<ul>
+<li>我们用 $V_i$ 表示从起点开始顺着流走 $i$ 步能到的点的集合。</li>
+<li>假设最终的最大流是 $f$，我们有 $|V_i| \ge f$（想要流这么多，每一层至少需要这么多点）。</li>
+<li>对以上不等式求和。假设起点到终点的距离是 $D$，则 $D \le |V|/f$。</li>
+<li>如果 $f \le \sqrt {|V|}$ 就已经证完了，因为每个阶段至少增加 $1$ 的流量。</li>
+<li>如果 $f &gt; \sqrt{|V|}$，根据以上性质，$D \le \sqrt{|V|}$。每轮增广完后下次距离至少加 $1$，所以最多加 $\sqrt{|V|}$ 次。</li>
+</ul>
+<p><a href="https://www.zhihu.com/question/266149721" target="_blank" rel="noopener">知乎里</a> 讨论了如何构造出让 Dinic 跑 $\Theta(N^2M)$ 的图。</p>
+<p>说起匹配问题，还不得不提到一个 <strong>霍尔定理</strong>。对于左右各 $N$ 个点的匹配问题来说：</p>
+<script type="math/tex; mode=display">
+\forall_{P \in L}|Right(P)| \ge |P| \Leftrightarrow \text{|Match(L,R)|=|L|=|R|}</script><p>右推左是显然。左推右可以反证：考虑网络流跑完的残量网络，取 $P$ 为 $S$ 割里所有左侧点 。</p>
 <h2 id="Computational-Geometry"><a href="#Computational-Geometry" class="headerlink" title="Computational Geometry"></a>Computational Geometry</h2><p>凸包这个话题想必大家都不陌生。</p>
 <p>通过构造点 $(x_i,x_i^2)$，我们可以把排序问题规约到求凸包，也就证明了其下界是 $O(N\log N)$。</p>
 <p>因为凸包的计算几何里的应用很广，如何构建凸包是一个脍炙人口的话题。在算法竞赛里，我们一般用 sort +扫两遍分别求上下凸壳的方法，速度快代码短。下面再来介绍几种有趣的构建方法：</p>
