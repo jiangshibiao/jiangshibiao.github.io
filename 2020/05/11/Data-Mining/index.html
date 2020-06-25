@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation-Example.png">
-<meta property="og:updated_time" content="2020-06-19T12:44:04.705Z">
+<meta property="og:updated_time" content="2020-06-25T07:32:56.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据挖掘》知识整理">
 <meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
@@ -319,13 +319,23 @@ EPE(f)=\int (f(\pmb{x})-E(y|\pmb{x}))^2p(\pmb{x})d\pmb{x} + \int var(y|\pmb{x})p
 \end{align}</script><p>之前说的正则化操作，大的 $\lambda$ 会导致更大的 bias，小的 $\lambda$ 会导致更大的 variance。</p>
 <p>在模型选择时，常用 <strong>Cross-Validation</strong> 的方法。将训练数据集划成 $k$ 份，每次留一份 $i$ 作为 Validation，其它$k-1$ 份用来训练，挑选 bias 或者 variance 比较小的模型。不同的 Validation 能重复 $k$ 次。当训练数据比较少时，可能会用到比较极端的 leave-one-out 方法，即取 $k=N$。 </p>
 <h2 id="Decision-Tree-决策树"><a href="#Decision-Tree-决策树" class="headerlink" title="Decision Tree 决策树"></a>Decision Tree 决策树</h2><p>决策树是一个简单而有效的分类问题的解决方案。它的大致想法是：每次从当前（带标签的）数据中选择“方差”最大的一个属性，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前节点的所有标签相同。</p>
-<p><strong>熵</strong> 是随机变量不确定性的度量。设 $D$ 是离散随机变量，其概率分布为 $P(X=x_k) = p_k$，则它的熵：</p>
+<p><strong>熵</strong>（entropy）是随机变量不确定性的度量。设 $E$ 是离散随机变量，概率分布为 $P(X=x_k) = p_k$，则熵：</p>
 <script type="math/tex; mode=display">
-Ent(D)=-\sum \limits_{k=1}^{|D|} -p_k\log(p_k)</script><p> 注意到 $\lim \limits_{p\to 0^+} p_k\log(p_k)=0$，所以额外定义 $0 \log 0=0$。</p>
-<p>$Ent(D)$ 值越小，则 $D$ 的纯度越高，也即当前决策树节点的样本确定性越高。</p>
-<p>回到决策树。一个节点如果选了属性 $a$ 作为分支属性，设其不同取值有 $V$ 个，定义 <strong>信息增益</strong>：</p>
+Ent(E)=-\sum \limits_{k=1}^{K} p_k\log(p_k)</script><p> $Ent$ 越小，$E$ 就越稳定。注意到 $\lim \limits_{p\to 0^+} p_k\log(p_k)=0$，所以额外定义 $0 \log 0=0$。</p>
+<p>我们尝试把熵的概念应用到决策树上。对于样本 $D$，设 $K$ 是标签总数，$n_0$ 是样本总数，$n_1 \dots n_k$ 是每个标签对应的样本数。定义样本 $D$ 的熵  $H(D)$ 为：</p>
 <script type="math/tex; mode=display">
-Gain(D,a)=Ent(D)-\sum \limits_{v=1}^V \frac{|D_v|}{|D|}Ent(D_v)</script><p>显然，$Gain(D,a)$ 越大说明使用属性 $a$ 进行划分所获得的“纯度提升”越大，<strong>ID3 决策树</strong> 就是按这个来决定属性的。注意，准则对可取值数目较多的属性有所偏好，这种偏好可能带来不良影响。</p>
+H(D)=-\sum \limits_{k=1}^{K} \frac{n_k}{n_0}\log(\frac{n_k}{n_0})</script><p>$H(D)$ 越小，则决策树节点的“纯度”就越高。但是我们应该根据什么来决定用来划分的属性呢？</p>
+<p>如果样本 $D$ 选了属性 $a$ 作为分支属性，且不同取值有 $V$ 个，定义选 $a$ 对 $D$ 的 <strong>信息增益</strong>：</p>
+<script type="math/tex; mode=display">
+g(D,a)=H(D)-\sum \limits_{v=1}^V \frac{|D_v|}{|D|}H(D_v)</script><p>显然，$g(D,a)$ 越大说明使用属性 $a$ 进行划分所获得的“纯度提升”越大，著名的 <strong>ID3 决策树</strong> 就是靠这个决定属性的。注意，该准则对可取值数目较多的属性有所偏好，这种偏好可能带来不良影响。</p>
+<p>为了改进上述问题，<strong>C4.5算法</strong> 引入了 <strong>信息增益率</strong> 的新准则。</p>
+<script type="math/tex; mode=display">
+g_R(D,a)=\frac{g(D,a)}{H_a(D)}</script><p>这里的 $H_a(D)$ 和之前的 $H(D)$ 含义不一样：$H(D)$ 是针对标签的信息熵，而 $H_a(D)$ 是针对属性 $a$ 划分的信息熵。引入的 $H_a(D)$ 有点像平衡（惩罚）因子，因为分叉多了之后 $H(a)$ 也会偏高，可抑制原来的信息增益带来的负面效果。在实际测试中，信息增益率 比 信息增益 效果更好一些。</p>
+<p>此外，<strong>CART 算法</strong> 用 <strong>基尼不纯度</strong>（gini impurity） 来构建决策树的划分函数。基尼指数就是独立取值两次后不相等的概率。设 $E$ 是离散随机变量，概率分布为 $P(X=x_k) = p_k$，则：</p>
+<script type="math/tex; mode=display">
+I(E)=\sum \limits_{k=1}^K p_i \sum \limits_{k \ne i}p_k=1-\sum \limits_{k=1}^K p_k^2</script><p>推广到决策树，定义属性 $a$ 对样本 $D$ 的基尼指数增益为：</p>
+<script type="math/tex; mode=display">
+g_I(D,a)=I(D)-\sum \limits_{v=1}^V \frac{|D_v|}{|D|}I(D_v)</script><p>更加优美的是：<strong>基尼不纯度增益</strong> 和 <strong>信息熵增益</strong> 还有神秘的联系！当 $p$ 很小的时候，$\log(p) \sim p-1$，于是 $-p \log p \sim p(1-p)$！也就是说，我们可以用基尼指数近似熵里的对数来加速。</p>
 <h2 id="Topic-Model-主题模型"><a href="#Topic-Model-主题模型" class="headerlink" title="Topic Model 主题模型"></a>Topic Model 主题模型</h2><p>主题模型多用于文本分析，比如判断一篇文档的主题。或者说给出一个文档集合和一些 queries，每次要回答与当前 query 最相近的页面（搜索引擎）。</p>
 <p>注意，我们在这里探讨的主题模型属于 Bag‐of‐Words（词袋模型），即我们不考虑单词出现的顺序问题，只考虑整篇文档里单词的概率分布。这样可以简化问题。</p>
 <p>一个最直接的做法是 <strong>Salton’s Vector Space Model</strong>。对于每一个文档，统计各个单词出现的次数，并用一个向量去描述它——该向量的长度就是字典大小。我们可以开一个 $weight$ 向量去给每个单词加权，最后用 cos 相似度去衡量两个文档之间的相似程度。</p>

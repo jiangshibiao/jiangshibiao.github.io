@@ -20,11 +20,12 @@
 <meta property="og:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/AMI.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/machine.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Classful-and-special-addressing.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/protocol-and-ICMP.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Users/Jiang%20Shibiao/Desktop/routing-algorithm.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv6.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png">
@@ -34,7 +35,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Email_head.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/HTTP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Digital-Signature.png">
-<meta property="og:updated_time" content="2020-06-19T08:13:53.834Z">
+<meta property="og:updated_time" content="2020-06-23T08:58:14.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -230,7 +231,7 @@
 <li>Connectionless service 无连接的服务</li>
 </ul>
 </li>
-<li>The <strong>OSI</strong> (Open Systems Interconnection) Reference Model OSI 七层模型</li>
+<li>The <strong>OSI</strong> (Open Systems Interconnection) Reference Model OSI七层模型</li>
 <li>The <strong>TCP/IP</strong> Reference Model 五层模型</li>
 </ul>
 <h2 id="物理层-THE-PHYSICS-LAYER"><a href="#物理层-THE-PHYSICS-LAYER" class="headerlink" title="物理层 THE PHYSICS LAYER"></a>物理层 THE PHYSICS LAYER</h2><div class="table-container">
@@ -271,7 +272,7 @@
 </ul>
 </li>
 <li><strong>Shannon Limit</strong> (random noise)<ul>
-<li>Max data rate: $B \le \mathrm{2H\log_2(1+S/N)}$<ul>
+<li>Max data rate: $B \le \mathrm{H\log_2(1+S/N)}$<ul>
 <li>where $\mathrm{S/N}$ is the signal to noise ratio.</li>
 <li>$\mathrm{dB=10\log_2(S/N)}$</li>
 </ul>
@@ -298,12 +299,13 @@
 </ul>
 </li>
 <li>PCM (<strong>P</strong>ulse <strong>C</strong>ode <strong>M</strong>odulation) </li>
-<li>Baseband Transmission<ul>
+<li>Baseband Transmission 基带传输<ul>
 <li><strong>N</strong>on-<strong>R</strong>eturn-to-<strong>Z</strong>ero：高 $1$ 低 $0$</li>
 <li><strong>NRZI</strong>：翻转表示 $0$，不变表示 $1$</li>
 <li>Manchester Encoding：由 $1$ 变 $0$ 表示 $1$，由 $0$ 变 $1$ 表示 $0$</li>
 <li>Differential Manchester Encoding：异 $0$ 同 $1$  <img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/DME.png" alt></li>
 <li>4B/5B：不存在三个连续 $0$</li>
+<li>AMI：中间电平表示 $0$，高低表示 $1$ <img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/AMI.png" alt></li>
 </ul>
 </li>
 <li>Passband Transmission<ul>
@@ -341,8 +343,8 @@
 </li>
 <li>PUBLIC SWITCHED TELEPHONE SYSTEM 公用交换电话系统<ul>
 <li>Switching offices</li>
-<li><strong>Local loops</strong>: the wires between the customers and the switching offices</li>
-<li><strong>Trunks</strong>: the long-distance connections between the switching offices</li>
+<li><strong>Local loops</strong>: the wires between the customers and the switching offices: xDSL.</li>
+<li><strong>Trunks</strong>: the long-distance connections between the switching offices: TDM &amp; FDM.</li>
 </ul>
 </li>
 </ul>
@@ -373,15 +375,12 @@
 <li>从下到上，frame 就是在 bit stream 里分组截取出来的数据。</li>
 </ul>
 </li>
-<li>分装成帧的策略<ul>
+<li>数据链路层分装成帧的策略<ul>
 <li>Byte count 字符计数法：在 header 里声明总长度。</li>
-<li>Flag with Byte Stuffing 字符填充法：在比特流的开头和结尾填充上固定的 $01$ 串作为标识符。<ul>
-<li>解决方案一：在与终止符相同的数据前加上一个“转义”标志。</li>
-<li>解决方案二：假设起始和终止的标识符都是 $01111110$，那么对于比特流中的内容，每遇到连续的五个 $1$ 就在后面添一个 $0$。</li>
-</ul>
-</li>
-<li>physical layer coding violations 违规编码法：用不可能出现的电平变化方式作为开头结尾。<ul>
-<li>比如在曼彻斯特编码中，低-高 表示 $0$，高-低 表示 $1$，我们可以用 低-低 和 高-高 来声明。</li>
+<li>Flag bytes with Byte Stuffing 在比特流的开头和结尾填充上固定的 $\text{FLAG}$ 串作为标识符。如果传输数据里也有 $\text{FLAG}$，就在前面加上转义串 $\text{ESC}$。</li>
+<li>Flag bits with bit stuffing：假设起始和终止的标识符都是 $01111110$，那么对于比特流中的内容，每遇到连续的五个 $1$ 就在后面添一个 $0$。</li>
+<li>physical layer coding violations 违规编码法：用不可能出现的电平变化作为开头结尾<ul>
+<li>比如在曼彻斯特编码中，低-高 表示 $0$，高-低 表示 $1$，则用 低-低 和 高-高 来声明。</li>
 </ul>
 </li>
 </ul>
@@ -408,22 +407,24 @@
 </li>
 </ul>
 </li>
-<li>流量控制和传输机制<ul>
-<li>Stop-wait Control 停止-等待协议：每发送完一组数据就停止发送，收到对方确认再继续发送。<ul>
+<li>数据链路层流量控制和传输机制<ul>
+<li>Stop-wait Control 停止-等待协议：单工，每发完一组数据就停止发送，收到对方确认再继续发送。<ul>
+<li>接收方回复 ACK 表示已收到，回复 NCK 表示数据有误请求重传。</li>
 <li>发送方设置一个 timer（超时计时器），若到期后仍未收到 ACK 就重新发送。</li>
 <li>接收方会丢弃重复收到的帧，但是依然会发送 ACK（因为可能上一次 ACK 丢了）。</li>
-<li>Utilization：$U=\frac{T_{frame}}{T_frame+RTT},T_{frame}=\frac{frame_size}{bit_rate}$</li>
+<li>Utilization：$U=\frac{T_{frame}}{T_{frame}+RTT},T_{frame}=\frac{frame~size}{bit~rate}$</li>
 </ul>
 </li>
+<li>sliding windows protocol 滑动窗口协议，分为以下两种。Utilization：$U=\frac{NT_{frame}}{T_{frame}+RTT}$</li>
 <li>go back N Control 后退 N 帧协议：发送方用 Sliding Windows 发消息，接收方只有一个接受窗口。<ul>
 <li>采用 <strong>累计确认</strong> 的规则发送和接受 ACK。</li>
 <li>当发送方的超时计时器超时，会一次性重传所有未被确认的帧。</li>
-<li>若帧的编号序列大小是 $N$（最多有 $2^N$ 种帧），滑动窗口的大小不能超过 $2^N-1$</li>
+<li>若帧的编号的位数是 $N$（最多有 $2^N$ 种帧），滑动窗口的大小不能超过 $2^N-1$</li>
 </ul>
 </li>
 <li>Selective Repeat Control 选择重传协议：发送方和接收方都用 Sliding Windows 收发消息。<ul>
 <li>ACK 只会返回收到的帧的编号。发送方会保留所有还未被确认的帧，因为可能会重传。</li>
-<li>若帧的编号序列大小是 $N$（最多有 $2^N$ 种帧），滑动窗口的大小不能超过 $2^{N-1}$</li>
+<li>若帧的编号的位数是 $N$（最多有 $2^N$ 种帧），滑动窗口的大小不能超过 $2^{N-1}$</li>
 </ul>
 </li>
 </ul>
@@ -501,17 +502,16 @@
 </li>
 <li><strong>C</strong>arrier <strong>S</strong>ense <strong>M</strong>ultiple <strong>A</strong>ccess  载波侦听多路访问协议（见上面表格）</li>
 <li>CSMA with <strong>C</strong>ollision <strong>A</strong>voidance <ul>
-<li>主动避免冲突，主要应用于无线网络。</li>
+<li>主动避免冲突，主要应用于无线网络。缺陷： hidden problem。</li>
 <li>监听到信道空闲（<strong>idle</strong>）时，并不是立即发送，而是等待一段时间再发送数据。 </li>
-<li>缺陷： hidden problem。</li>
 <li>IEEE 802.11：监听到信道空闲的时候，先发送一个很小的信道侦测帧 <strong>R</strong>equest-<strong>T</strong>o-<strong>S</strong>end ，如果收到 目标地址的 <strong>C</strong>lear-<strong>T</strong>o-<strong>S</strong>end 再发送数据。一定程度上缓解 hidden problem。</li>
 </ul>
 </li>
-<li>CSMA with <strong>C</strong>ollision <strong>D</strong>etection  载波侦听多路访问协议<ul>
+<li>CSMA with <strong>C</strong>ollision <strong>D</strong>etection<ul>
 <li>在半双工网络中考虑问题（冲突仅为发送接收双方的碰撞），主要应用于有线网络。</li>
 <li>若传播时延是 $\tau$，则最坏在 $2\tau$ 检测到冲突。</li>
 <li><strong>binary exponential backoff</strong> 二进制指数退避算法：基本推迟时间是 $2\tau$，从小到大枚举正整数 $k$，每次从 $[0,1,\dots,2^{\min(k,10)}-1]$ 里选一个数 $r$，延迟 $2r\tau$ 后发送。$k&gt;16$ 放弃。</li>
-<li>当帧长过短的时候 CSMACD 可能不会有用。能确保有用的最小帧长是 $2\tau \times speed$</li>
+<li>当帧长过短的时候 CSMA/CD 可能不会有用。能确保有用的最小帧长是 $2\tau \times speed$</li>
 </ul>
 </li>
 <li>Collision free protocols: A Bit-Map Protocol<ul>
@@ -536,9 +536,8 @@
 </ul>
 </li>
 <li>Limited-Contention protocols: Adaptive Tree Walk Protocol 自适应树搜索协议<ul>
-<li>Station 是一棵 binary tree 的叶子</li>
-<li>从根开始。在每个时间槽，询问左右两个儿子的子树情况。</li>
-<li>每次决策往那边走，走 $\log N$ 层便可确定本次发送数据的 Station。</li>
+<li>Station 是一棵 binary tree 的叶子。从根开始，在每个时间槽询问左右两个子树的需求。</li>
+<li>每次决策往那边走（左右都有先左），走 $\log N$ 层便可确定本次发送数据的 Station。</li>
 </ul>
 </li>
 </ul>
@@ -552,30 +551,25 @@
 <li>令牌坏：用于环形局域网。</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>Ethernet 以太网：应用最广泛的局域网。<ul>
+<li>两个标准：DIX Ethernet V2 或 IEEE 802.3</li>
+<li>Destination address and source address: 6 bytes each<ul>
+<li>Unicast address, Broadcast address, Multicast address</li>
+</ul>
+</li>
+<li>传输字节： $46\sim 1500$，checksum 采用 32 位 CRC</li>
+<li>标准以太网 10Mbps，快速以太网 100Mbps。</li>
 <li>逻辑拓扑总线型，物理拓扑星型或拓展星型</li>
 <li>造价低廉，应用最广泛；能满足网络速率的要求：10Mb/s-10Gb/s</li>
-<li>无连接，不可靠。只实现无差错接受，不实现可靠传输。</li>
-<li>使用CSMA/CD。两个标准：DIX Ethernet V2 或 IEEE 802.3</li>
-<li>10BASE-T 以太网：传送基带信号的双绞线以太网。<ul>
-<li>每段双绞线最长100m</li>
-<li>采用曼彻斯特编码和 CSMA/CD</li>
-</ul>
-</li>
+<li>使用CSMA/CD。无连接，不可靠。只实现无差错接受，不实现可靠传输。</li>
 <li>每一个适配器对应一个唯一的MAC地址（48位）</li>
-<li><strong>M</strong>aximum <strong>T</strong>ransmission <strong>U</strong>nit 最大传输单元：1500</li>
 </ul>
 </li>
-<li>其他局域网<ul>
-<li><strong>F</strong>iber <strong>D</strong>istributed Data Interface<ul>
-<li>使用IEEE 802.8（光纤技术咨询组）</li>
-<li>物理双环拓扑，逻辑环形拓扑</li>
-</ul>
-</li>
-<li><strong>A</strong>synchronous <strong>T</strong>ransfer <strong>M</strong>ode：较新型的单元交换技术。</li>
-<li><strong>W</strong>ireless <strong>L</strong>ocal <strong>A</strong>rea <strong>N</strong>etwork：采用 IEEE 802.11 标准</li>
-</ul>
-</li>
+<li><strong>W</strong>ireless <strong>L</strong>ocal <strong>A</strong>rea <strong>N</strong>etwork<ul>
+<li>采用 IEEE 802.11 标准，p-persistent CSMA</li>
+<li>Sublayer Protocol：DCM 分布协调功能；PCF 集中协调功能</li>
 </ul>
 </li>
 <li>Data Link Layer Switching: Uses of Bridges<ul>
@@ -614,7 +608,7 @@
 </ul>
 </li>
 <li>Connection-oriented service 面向连接的服务<ul>
-<li>用 <strong>Virtual Circuit</strong>  虚电路技术 实现。子网络叫做 virtual-circuit subnet。</li>
+<li>用 <strong>Virtual Circuit</strong>  虚电路技术 实现。</li>
 <li>建立虚电路 $\to$ 数据传输（全双工通信）$\to$ 释放连接</li>
 <li>仅在建立阶段需要用到目的地址，后续每个节点会用虚电路号代替。保证分组有序转发。</li>
 </ul>
@@ -650,7 +644,7 @@
 </li>
 <li><p><strong>Link State routing</strong> 链路状态路由算法</p>
 <ol>
-<li>给邻居发 Hello packet，期望邻居回复。</li>
+<li>给邻居发 Hello packet，期望邻居回复以获取地址。</li>
 <li>给邻居发 ECHO packet，要求快速返回消息，用 RTT 来度量 metric。</li>
 <li>每个路由器建立 link state packet，依次包括 identity of the sender, sequence number, age, a list of neighbors (and costs to them)。每新建一个 pkt，sequence number 都会增加；age 表示有效时间，每隔一秒会减一，减到 $0$ 后就无效。</li>
 <li>用 Flooding 方式把 packet 传播到自治系统里的所有节点。</li>
@@ -666,7 +660,7 @@
 </ul>
 </li>
 <li>Broadcast routing<ul>
-<li>Sink-tree based broadcast 汇集树</li>
+<li>Sink-tree based broadcast 汇集树：只往生成树邻居 broadcast，最优。</li>
 <li>Reverse path forwarding 逆向路径转发：当一个广播分组到达一个路由器的时候，观察该线路是否就是该路由器往广播源发送的最优线路，如果是就保留转发，不是就丢弃。</li>
 </ul>
 </li>
@@ -674,7 +668,11 @@
 </li>
 <li><p>Internetworking</p>
 <ul>
-<li>Autonamous System 自治系统</li>
+<li>Tunneling 隧道：路由器不支持 IPv6，可以用 IPv4 包起来构成隧道。</li>
+<li>Autonamous System 自治系统：each network is operated independently of all the others<ul>
+<li>Internet (inter-AS) / Intranet (intra-AS) routing: Exterior/Interior gateway protocol</li>
+</ul>
+</li>
 <li>Fragmentation 分片；不能超过 MTU，每个必须是 $8$ 字节的倍数。</li>
 </ul>
 </li>
@@ -744,7 +742,7 @@
 </ol>
 </li>
 <li>Border Gateway Protocol <strong>BGP</strong> 协议<ul>
-<li>Exterior Gateway Routing Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png" alt></li>
+<li>Exterior Gateway Routing Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Users\Jiang Shibiao\Desktop\routing-algorithm.png" alt></li>
 <li>为保证可靠传输，采用 TCP 协议（放入 TCP 报文的字段里面）</li>
 </ul>
 </li>
@@ -791,8 +789,7 @@
 <li>RPC (Remote Procedure Call) : make a remote procedure call look as much as possible like a local one. </li>
 <li>User Datagram Protocol <strong>UDP协议</strong><ul>
 <li>发送封装后的 IP 数据报，无连接服务。没有 flow control, error control 和 retransmission。</li>
-<li>UDP 协议首部的大小是 8 B。注意 UDP Length 是包括首部的（最小 20 B）。</li>
-<li>主要应用：RTP, DNS<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png" alt></li>
+<li>UDP 协议首部的大小是 8 B。注意 UDP Length 是包括首部的（最小 20 B）。主要应用：RTP, DNS<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png" alt></li>
 <li>Real-time Transport Protocol <strong>RTP协议</strong>：RTP is to multiplex several real-time data streams onto a single stream of UDP packets and unicast or multicast the UDP packets.</li>
 </ul>
 </li>
@@ -886,7 +883,7 @@
 </li>
 <li>Message Transfer: <strong>SMTP</strong> = Simple Mail Transfer Protocol</li>
 <li>Final Delivery<ul>
-<li><strong>POP3</strong> (Post Office Protocol v3): simlple</li>
+<li><strong>POP3</strong> (Post Office Protocol v3): simple</li>
 <li><strong>IMAP 4</strong> (Internet Message Access Protocol v4): complex</li>
 <li>Webmail</li>
 </ul>
@@ -940,10 +937,8 @@
 </ul>
 <h2 id="NETWORK-SECURITY"><a href="#NETWORK-SECURITY" class="headerlink" title="NETWORK SECURITY"></a>NETWORK SECURITY</h2><ul>
 <li>Network security problems can be divided roughly into four intertwined areas<ul>
-<li>Secrecy 机密性</li>
-<li>Authentication 认证</li>
+<li>Secrecy 机密性，Authentication 认证，Integrity 完整性</li>
 <li>Nonrepudiation 不可否认性 e.g. personal signature)</li>
-<li>Integrity 完整性</li>
 </ul>
 </li>
 <li>Cryptography<ul>
@@ -953,17 +948,17 @@
 <li>Two principles: Redundancy, Freshness</li>
 </ul>
 </li>
-<li>SYMMETRIC-KEY ALGORITHMS</li>
+<li>SYMMETRIC-KEY ALGORITHMS: DES, 3DES, AES</li>
 <li>PUBLIC-KEY ALGORITHMS: RSA</li>
 <li>DIGITAL SIGNATURES<ul>
 <li>use Symmetric-Key Signatures：每一个人掌握一个私钥，有一个权力中心 <strong>BB</strong> (Big Brother) 知道所有人的私钥。$A$ 给 $B$ 发送消息时，先加密传给 BB，它解密再加密传给 $B$.</li>
-<li>use Public key signatures：<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Digital-Signature.png" alt><ul>
-<li>可以再套一个 <strong>message digest</strong>，即 $D_A(MD(P))$。</li>
+<li>use Public key signatures：传输前套 $A$ 私钥 $B$ 公钥，解密时套 $B$ 私钥 $A$ 公钥。<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Digital-Signature.png" alt></li>
+<li>Use of Message Digests: SHA, MD5</li>
 <li>message digest 消息摘要：对任意长度的序列生成对应哈希值，可以认为不同输入的哈希值不同。</li>
 </ul>
 </li>
-</ul>
-</li>
+<li>Management of Public Keys: X.509 is the standard for managing the certificates</li>
+<li>AUTHENTICATION PROTOCOLS</li>
 </ul>
 
       
