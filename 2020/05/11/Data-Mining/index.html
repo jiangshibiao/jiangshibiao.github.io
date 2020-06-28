@@ -12,7 +12,7 @@
   
   
   <meta name="description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
-<meta name="keywords" content="Knowledge Learning,Course Review,Machine Learning">
+<meta name="keywords" content="Course Review,Knowledge Learning,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《数据挖掘》知识整理">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/index.html">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation-Example.png">
-<meta property="og:updated_time" content="2020-06-25T07:32:56.337Z">
+<meta property="og:updated_time" content="2020-06-25T08:21:53.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据挖掘》知识整理">
 <meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
@@ -318,11 +318,11 @@ EPE(f)=\int (f(\pmb{x})-E(y|\pmb{x}))^2p(\pmb{x})d\pmb{x} + \int var(y|\pmb{x})p
 \text{noise} &= \int var(y|\pmb{x})p(\pmb{x})d\pmb{x}
 \end{align}</script><p>之前说的正则化操作，大的 $\lambda$ 会导致更大的 bias，小的 $\lambda$ 会导致更大的 variance。</p>
 <p>在模型选择时，常用 <strong>Cross-Validation</strong> 的方法。将训练数据集划成 $k$ 份，每次留一份 $i$ 作为 Validation，其它$k-1$ 份用来训练，挑选 bias 或者 variance 比较小的模型。不同的 Validation 能重复 $k$ 次。当训练数据比较少时，可能会用到比较极端的 leave-one-out 方法，即取 $k=N$。 </p>
-<h2 id="Decision-Tree-决策树"><a href="#Decision-Tree-决策树" class="headerlink" title="Decision Tree 决策树"></a>Decision Tree 决策树</h2><p>决策树是一个简单而有效的分类问题的解决方案。它的大致想法是：每次从当前（带标签的）数据中选择“方差”最大的一个属性，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前节点的所有标签相同。</p>
+<h2 id="Decision-Tree-amp-Random-Forest-决策树和随机森林"><a href="#Decision-Tree-amp-Random-Forest-决策树和随机森林" class="headerlink" title="Decision Tree &amp; Random Forest 决策树和随机森林"></a>Decision Tree &amp; Random Forest 决策树和随机森林</h2><p><strong>决策树</strong>（Decision Tree）是一个简单而有效的分类问题的解决方案。训练时，它每次从当前（带标签的）样本中选择一个“方差”最大的属性 $a$，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前样本的标签均相同或是特征均相同。预测时直接沿着对应分叉往下走。</p>
 <p><strong>熵</strong>（entropy）是随机变量不确定性的度量。设 $E$ 是离散随机变量，概率分布为 $P(X=x_k) = p_k$，则熵：</p>
 <script type="math/tex; mode=display">
 Ent(E)=-\sum \limits_{k=1}^{K} p_k\log(p_k)</script><p> $Ent$ 越小，$E$ 就越稳定。注意到 $\lim \limits_{p\to 0^+} p_k\log(p_k)=0$，所以额外定义 $0 \log 0=0$。</p>
-<p>我们尝试把熵的概念应用到决策树上。对于样本 $D$，设 $K$ 是标签总数，$n_0$ 是样本总数，$n_1 \dots n_k$ 是每个标签对应的样本数。定义样本 $D$ 的熵  $H(D)$ 为：</p>
+<p>我们尝试把熵应用到决策树的属性选择上。对于样本 $D$，设 $K$ 是标签总数，$n_0$ 是样本总数，$n_1 \dots n_k$ 是每个标签对应的样本数。定义样本 $D$ 的熵  $H(D)$ 为：</p>
 <script type="math/tex; mode=display">
 H(D)=-\sum \limits_{k=1}^{K} \frac{n_k}{n_0}\log(\frac{n_k}{n_0})</script><p>$H(D)$ 越小，则决策树节点的“纯度”就越高。但是我们应该根据什么来决定用来划分的属性呢？</p>
 <p>如果样本 $D$ 选了属性 $a$ 作为分支属性，且不同取值有 $V$ 个，定义选 $a$ 对 $D$ 的 <strong>信息增益</strong>：</p>
@@ -487,7 +487,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-决策树"><span class="nav-number">4.</span> <span class="nav-text">Decision Tree 决策树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-Model-主题模型"><span class="nav-number">5.</span> <span class="nav-text">Topic Model 主题模型</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-amp-Random-Forest-决策树和随机森林"><span class="nav-number">4.</span> <span class="nav-text">Decision Tree &amp; Random Forest 决策树和随机森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-Model-主题模型"><span class="nav-number">5.</span> <span class="nav-text">Topic Model 主题模型</span></a></li></ol>
     
     </div>
   </aside>

@@ -12,25 +12,25 @@
   
   
   <meta name="description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。 于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
-<meta name="keywords" content="Knowledge Learning,Course Review,Machine Learning,Coding">
+<meta name="keywords" content="Course Review,Knowledge Learning,Machine Learning,Coding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CoSQL">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/index.html">
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。 于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/DAT.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/Users/Jiang%20Shibiao/Desktop/CoSQL.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/Users/Jiang%20Shibiao/Desktop/DAT.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/SQLNet.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/SyntaxSQL1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/SyntaxSQL2.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/EditSQL.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/Encoder.png">
-<meta property="og:updated_time" content="2020-05-21T08:29:35.170Z">
+<meta property="og:updated_time" content="2020-06-28T02:50:40.668Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CoSQL">
 <meta name="twitter:description" content="$2020.3 \sim 2020.6$ 上了赵洲教授《机器学习》这门课，大作业是选择一个深度学习的排行榜去刷 rank。 于是撰写此文，介绍 NLP 领域的 CoSQL 数据集，并应用一些相关的深度学习方法测试准确率。">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/27/CoSQL/Users/Jiang%20Shibiao/Desktop/CoSQL.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -221,13 +221,13 @@
 </ul>
 </li>
 </ul>
-<p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/CoSQL.png" alt></p>
+<p><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/Users\Jiang Shibiao\Desktop\CoSQL.png" alt></p>
 <ul>
-<li>CoSQL 包含到 3k+ 组对话（$2164$ Train，$292$ Dev，$551$ Test），平均每组对话有 $11.21$ 个turns。值得注意的是，CoSQL 的内容横跨 $200$ 个数据库，而且不同组数据所用到的数据库 <strong>没有交集</strong>（$140$ Train，$20$ Dev，$40$ Test），以考察模型的鲁棒性。总共有 10k+ 标注过的 SQL 询问。</li>
+<li>CoSQL 包含到 3k+ 组对话（$2164$ Train，$292$ Dev，$551$ Test），共计 10k+ 标注过的 SQL 询问。值得注意的是，CoSQL 的内容横跨 $200$ 个数据库，而且不同组数据所用到的数据库 <strong>没有交集</strong>（$140$ Train，$20$ Dev，$40$ Test），以考察模型的鲁棒性。</li>
 <li>CoSQL 一共有三个任务：<ol>
 <li><strong>SQL-grounded dialogue state tracking</strong>：给出 interaction history，转化成对应的 SQL 语句。可能会包含表述模糊的问题，此时会同时给出确认信息。以上图为例，给出 $(Q_1,Q_2,Q_3,Q_4,R_3)$ 求 $S_4$。</li>
 <li><strong>natural language response generation</strong>：以 SQL 语句和返回结果为基础，生成自然语言回答。</li>
-<li><strong>user dialogue act prediction</strong>：对每一个用户的提问，判断属于以下哪个 DB user 标签。<br><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/DAT.png" alt></li>
+<li><strong>user dialogue act prediction</strong>：对每一个用户的提问，判断属于以下哪个 DB user 标签。<br><img src="//jiangshibiao.github.io/2020/04/27/CoSQL/Users\Jiang Shibiao\Desktop\DAT.png" alt></li>
 </ol>
 </li>
 <li><strong>我们组重点关注 DST 任务</strong>。原因如下：<ul>
@@ -237,7 +237,7 @@
 </ul>
 </li>
 <li>第二个任务与 Test2SQL 的关系不大，倒是更接近翻译任务。</li>
-<li>第三个任务其实就是一个做一个 $11-$分类器<ul>
+<li>第三个任务其实就是做一个 $11-$分类器<ul>
 <li>分类问题已经很成熟，加上部分标签很容易预测，baseline 算法已经有 60-80% 的准确率。</li>
 <li>准确率提高到上面应该会有个瓶颈，因为关键标签的预测还是要靠理解 Text 并转化为 SQL，而 CoSQL 的难度摆在那里。而且，最终的真实标签仅仅是一个类别，不利于模型的学习。</li>
 <li>由以上两条，我们发现该任务改进空间不大，难以大幅提高准确率。</li>
@@ -550,6 +550,85 @@
 </tbody>
 </table>
 </div>
+<h4 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h4><p>数据增强的思路和样例已经在 report 里介绍了。详细测试结果如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>N</th>
+<th>L</th>
+<th>问题准确率</th>
+<th>全对准确率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原方法1（没在天河跑）</td>
+<td>2157</td>
+<td>200</td>
+<td>19.4%</td>
+<td>5.5%</td>
+</tr>
+<tr>
+<td>原方法2</td>
+<td>2157</td>
+<td>200</td>
+<td>18.9%</td>
+<td>4.8%</td>
+</tr>
+<tr>
+<td>原方法3</td>
+<td>2157</td>
+<td>200</td>
+<td>19.3%</td>
+<td>3.8%</td>
+</tr>
+<tr>
+<td>Baseline（原方法取平均）</td>
+<td>2157</td>
+<td>200</td>
+<td>19.2%</td>
+<td>4.7%</td>
+</tr>
+<tr>
+<td>原方法 换限制</td>
+<td>2157</td>
+<td>250</td>
+<td>18.6%</td>
+<td>4.7%</td>
+</tr>
+<tr>
+<td>jsb 数据增强</td>
+<td>3276</td>
+<td>250</td>
+<td>19.0%</td>
+<td>4.1%</td>
+</tr>
+<tr>
+<td>jsb 数据增强</td>
+<td>3276</td>
+<td>200</td>
+<td>20.1%</td>
+<td>5.5%</td>
+</tr>
+<tr>
+<td>lgl 数据增强</td>
+<td>5457</td>
+<td>200</td>
+<td>18.2%</td>
+<td>3.8%</td>
+</tr>
+<tr>
+<td>lgl 数据增强</td>
+<td>5457</td>
+<td>150</td>
+<td>17.3%</td>
+<td>3.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -652,7 +731,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-CoSQL"><span class="nav-number">1.</span> <span class="nav-text">什么是 CoSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQLNet"><span class="nav-number">2.</span> <span class="nav-text">SQLNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SyntaxSQLNet"><span class="nav-number">3.</span> <span class="nav-text">SyntaxSQLNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IRNet-RatSQL"><span class="nav-number">4.</span> <span class="nav-text">IRNet, RatSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CD-Seq2Seq"><span class="nav-number">5.</span> <span class="nav-text">CD-Seq2Seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EditSQL"><span class="nav-number">6.</span> <span class="nav-text">EditSQL</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-CoSQL"><span class="nav-number">1.</span> <span class="nav-text">什么是 CoSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQLNet"><span class="nav-number">2.</span> <span class="nav-text">SQLNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SyntaxSQLNet"><span class="nav-number">3.</span> <span class="nav-text">SyntaxSQLNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IRNet-RatSQL"><span class="nav-number">4.</span> <span class="nav-text">IRNet, RatSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CD-Seq2Seq"><span class="nav-number">5.</span> <span class="nav-text">CD-Seq2Seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EditSQL"><span class="nav-number">6.</span> <span class="nav-text">EditSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据增强"><span class="nav-number">7.</span> <span class="nav-text">数据增强</span></a></li></ol>
     
     </div>
   </aside>
