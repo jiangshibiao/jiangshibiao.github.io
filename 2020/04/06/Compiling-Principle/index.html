@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/LL_LR.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/AR.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/06/Compiling-Principle/Parameter.png">
-<meta property="og:updated_time" content="2020-06-17T06:15:30.653Z">
+<meta property="og:updated_time" content="2020-06-29T10:12:37.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《编译原理》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《编译原理》这门课的知识点。 整一个编译的流程包括如下两个阶段：  front end: scanner $\to$ parser  $\to$ semantic analyzer $\to$ source code optimizer  back end:  code generator $\to$ target code">
@@ -414,17 +414,13 @@
 <li>符号寻找方式：the most closely nested rule for block structure</li>
 </ul>
 <h4 id="Type-check"><a href="#Type-check" class="headerlink" title="Type check"></a>Type check</h4><ul>
-<li><p>type equivalence</p>
-<ol>
-<li><p>Structural equivalence：递归地检查，每一层的两个 type 的类型和组成（属性顺序）必须一致。</p>
-</li>
-<li><p>Name equivalence：他们的类型名（基本类型，自定义类型）完全一样才算一致。</p>
-<ul>
+<li>type equivalence<ol>
+<li>Structural equivalence：递归地检查，每一层的两个 type 的类型和组成（属性顺序）必须一致。</li>
+<li>Name equivalence：他们的类型名（基本类型，自定义类型）完全一样才算一致。<ul>
 <li><code>t1:int; t2:int</code>：则 <code>t1</code> 和 <code>t2</code> 算不同的类型。</li>
 </ul>
 </li>
-<li><p>Declaration equivalence 是 Name 的弱化版。<code>t2=t1</code> establishing type aliases, rather than new types. </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1 = <span class="built_in">array</span> [<span class="number">10</span>]  of  <span class="keyword">int</span>;</span><br><span class="line">t2 = <span class="built_in">array</span> [<span class="number">10</span>]  of  <span class="keyword">int</span>;</span><br><span class="line">t3 = t1;</span><br><span class="line"><span class="comment">// t1 = t3,但是都不等于t2</span></span><br></pre></td></tr></table></figure>
+<li>Declaration equivalence 是 Name 的弱化版。<code>t2=t1</code> establishing type aliases, rather than new types. <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1 = <span class="built_in">array</span> [<span class="number">10</span>]  of  <span class="keyword">int</span>;</span><br><span class="line">t2 = <span class="built_in">array</span> [<span class="number">10</span>]  of  <span class="keyword">int</span>;</span><br><span class="line">t3 = t1;</span><br><span class="line"><span class="comment">// t1 = t3,但是都不等于t2</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
@@ -472,26 +468,22 @@
 </li>
 </ul>
 <h4 id="Heap-Management"><a href="#Heap-Management" class="headerlink" title="Heap Management"></a>Heap Management</h4><ul>
-<li><p>In most language, needs some dynamic capabilities in order to handle pointer allocation and de-allocation. $\to$ Heap</p>
-<ul>
+<li>In most language, needs some dynamic capabilities in order to handle pointer allocation and de-allocation. $\to$ Heap<ul>
 <li>allocate and free</li>
 </ul>
 </li>
-<li><p>A standard method</p>
-<ul>
+<li>A standard method<ul>
 <li>a circular linked list of free blocks</li>
 <li>用 malloc 新建，用 free 释放</li>
 <li>缺点：无法判断 free 是否合法；很容易变成一段一段的。</li>
 </ul>
 </li>
-<li><p>Automatic Management</p>
-<ul>
+<li>Automatic Management<ul>
 <li>manual method：用户手动新建和释放</li>
 <li>garbage collection：回收那些没有被指的量</li>
 </ul>
 </li>
-<li><p>mark and sweep garbage collection</p>
-<ul>
+<li>mark and sweep garbage collection<ul>
 <li>no memory is freed until a call to malloc fails, which does this in two passes.</li>
 </ul>
 <ol>
@@ -503,8 +495,7 @@
 <li>perform memory compaction to leave only one large block of contiguous free space at the other end.</li>
 </ul>
 </li>
-<li><p>stop-and-copy (two-space) garbage collection</p>
-</li>
+<li>stop-and-copy (two-space) garbage collection</li>
 </ul>
 <h4 id="Parameter-Passing-Mechanisms"><a href="#Parameter-Passing-Mechanisms" class="headerlink" title="Parameter Passing Mechanisms"></a>Parameter Passing Mechanisms</h4><ul>
 <li>pass by value：传值引用</li>
@@ -514,10 +505,8 @@
 </ul>
 <p><img src="//jiangshibiao.github.io/2020/04/06/Compiling-Principle/Parameter.png" alt></p>
 <h2 id="Code-Generation"><a href="#Code-Generation" class="headerlink" title="Code Generation"></a>Code Generation</h2><ul>
-<li><p><strong>Intermediate Representation</strong>A data structure that represents the source program during translation. Intermediate code can be very high level.</p>
-</li>
-<li><p><strong>Three-Address Code</strong> 三地址码</p>
-<ul>
+<li><strong>Intermediate Representation</strong>A data structure that represents the source program during translation. Intermediate code can be very high level.</li>
+<li><strong>Three-Address Code</strong> 三地址码<ul>
 <li>4 fields are necessary: one for the operation and three for the addresses</li>
 <li>Such a representation of three-address code is called a <strong>quadruple.</strong> </li>
 <li>三地址码还有一种实现是：把 Instruction 编号也作为 temporary 存计算结果（这样就可以少开一个地址了）。缺点是，这样一段代码位移起来还要修改。</li>
@@ -534,8 +523,7 @@
 </li>
 </ul>
 </li>
-<li><p>From Intermediate Code to Target Code</p>
-<ul>
+<li>From Intermediate Code to Target Code<ul>
 <li>Macro expansion：逐句翻译</li>
 <li>Static simulation：等效替换</li>
 </ul>
