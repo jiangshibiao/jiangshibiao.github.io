@@ -19,16 +19,16 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="$2019.3 \sim 2019.6$ 上了马德教授《计算机组成》这门课，讲得还是挺不错的。 我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。 本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 见此。 本文对《计算机组成》的知识点进行了随性的整理。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/Repositories/Course-Review/Computer-Organization/3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/3.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/4.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/5.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/2.png">
-<meta property="og:updated_time" content="2020-06-30T08:50:20.244Z">
+<meta property="og:updated_time" content="2020-06-30T08:55:31.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机组成》知识整理">
 <meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了马德教授《计算机组成》这门课，讲得还是挺不错的。 我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。 本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 见此。 本文对《计算机组成》的知识点进行了随性的整理。">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/Repositories/Course-Review/Computer-Organization/3.png">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/3.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -213,13 +213,11 @@
 <p>本文对《计算机组成》的知识点进行了随性的整理。</p>
 <a id="more"></a>
 <h2 id="MIPS相关"><a href="#MIPS相关" class="headerlink" title="MIPS相关"></a>MIPS相关</h2><ul>
-<li><p>移码（增码）：符号位取反的补码</p>
-<ul>
+<li>移码（增码）：符号位取反的补码<ul>
 <li>一般用指数的移码减一来做浮点数的阶码</li>
 </ul>
 </li>
-<li><p>IEEE754 标准</p>
-<ul>
+<li>IEEE754 标准<ul>
 <li><code>float</code>  （1位符号位 + 8位指数位 + 23位底数位）<ul>
 <li>其中，指数位 <code>实际值 = 显示值 - 127</code></li>
 </ul>
@@ -250,43 +248,210 @@
 </ul>
 </li>
 <li><p>寄存器表</p>
-<p>  | 编号  | 寄存器      | 作用               |<br>  | ——- | —————- | ————————— |<br>  | 0     | $zero       |                    |<br>  | 1     | $at         | 保留给汇编器       |<br>  | 2-3   | \$v0 , \$v1 | 函数调用返回值     |<br>  | 4-7   | \$a0 - \$a3 | 函数调用参数       |<br>  | 8-15  | \$t0 - \$t7 |                    |<br>  | 16-23 | \$s0 - \$s7 |                    |<br>  | 24-25 | \$t8 , \$t9 |                    |<br>  | 26,27 | \$k0 , \$k1 | 保留给异常处理函数 |<br>  | 28    | \$gp        | 全局指针           |<br>  | 29    | \$sp        | 堆栈指针           |<br>  | 30    | \$fp        | 帧指针             |<br>  | 31    | \$ra        | 返回地址           |</p>
-</li>
-<li><p>杂碎注意点</p>
-<ul>
-<li><strong>寄存器里的负数值都是用补码表示的。</strong></li>
-</ul>
 </li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>$zero</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>$at</td>
+<td>保留给汇编器</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>\$v0 , \$v1</td>
+<td>函数调用返回值</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>\$a0 - \$a3</td>
+<td>函数调用参数</td>
+</tr>
+<tr>
+<td>8-15</td>
+<td>\$t0 - \$t7</td>
+<td></td>
+</tr>
+<tr>
+<td>16-23</td>
+<td>\$s0 - \$s7</td>
+<td></td>
+</tr>
+<tr>
+<td>24-25</td>
+<td>\$t8 , \$t9</td>
+<td></td>
+</tr>
+<tr>
+<td>26,27</td>
+<td>\$k0 , \$k1</td>
+<td>保留给异常处理函数</td>
+</tr>
+<tr>
+<td>28</td>
+<td>\$gp</td>
+<td>全局指针</td>
+</tr>
+<tr>
+<td>29</td>
+<td>\$sp</td>
+<td>堆栈指针</td>
+</tr>
+<tr>
+<td>30</td>
+<td>\$fp</td>
+<td>帧指针</td>
+</tr>
+<tr>
+<td>31</td>
+<td>\$ra</td>
+<td>返回地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注意 <strong>寄存器里的负数值都是用补码表示的</strong>。</p>
 <h2 id="多周期"><a href="#多周期" class="headerlink" title="多周期"></a>多周期</h2><ul>
-<li><p>多周期的步数<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/Repositories/Course-Review/Computer-Organization/3.png" alt></p>
-</li>
-<li><p>ALU 译码表</p>
-</li>
-<li><p>多周期控制信号含义</p>
-<p>  | 信号名称    | = 0 时候的含义            | = 1 时候的含义                  |<br>  | —————- | ————————————- | ———————————————- |<br>  | RegDst      | 选 <code>rt[20:16]</code>            | 选 <code>rt[15:11]</code>                  |<br>  | RegWrite    |                           | 对寄存器执行写操作              |<br>  | ALUScrA     | ALU 第一个值是PC          | ALU第一个值来自寄存器 A         |<br>  | MemRead     |                           | 从 memory 中读入                |<br>  | MemWrite    |                           | 输出到 memory                   |<br>  | MemtoReg    | 写入 reg 数据从 ALUout 来 | 写入 reg 数据从MDA来            |<br>  | IorD        | PC 来做访问的内存地址     | ALUout 来做访问的内存地址       |<br>  | IRWrite     |                           | 内存输出到 IR 里去              |<br>  | PCWrite     |                           | J指令的强制跳转                 |<br>  | PCWriteCond |                           | 如果 <code>ALU = 0</code>，branch 强制跳转 |</p>
-<p>  | 信号名称 | 作用           | 00   | 01     | 10         | 11            |<br>  | ———— | ——————— | —— | ——— | ————— | ——————- |<br>  | ALUop    | 给 ALU 信息    | 加   | 减     | 其他       |               |<br>  | ALUScrB  | ALU 第二个值   | B    | 4      | 位拓展的IR | 位拓展的IR*4 |<br>  | PCSource | 新 PC 被什么写 | PC+4 | branch | Jump       |               |</p>
-</li>
+<li>多周期的步数<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/3.png" alt></li>
+<li>ALU 译码表</li>
+<li>多周期控制信号含义</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>信号名称</th>
+<th>= 0 时候的含义</th>
+<th>= 1 时候的含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RegDst</td>
+<td>选 <code>rt[20:16]</code></td>
+<td>选 <code>rt[15:11]</code></td>
+</tr>
+<tr>
+<td>RegWrite</td>
+<td></td>
+<td>对寄存器执行写操作</td>
+</tr>
+<tr>
+<td>ALUScrA</td>
+<td>ALU 第一个值是PC</td>
+<td>ALU第一个值来自寄存器 A</td>
+</tr>
+<tr>
+<td>MemRead</td>
+<td></td>
+<td>从 memory 中读入</td>
+</tr>
+<tr>
+<td>MemWrite</td>
+<td></td>
+<td>输出到 memory</td>
+</tr>
+<tr>
+<td>MemtoReg</td>
+<td>写入 reg 数据从 ALUout 来</td>
+<td>写入 reg 数据从MDA来</td>
+</tr>
+<tr>
+<td>IorD</td>
+<td>PC 来做访问的内存地址</td>
+<td>ALUout 来做访问的内存地址</td>
+</tr>
+<tr>
+<td>IRWrite</td>
+<td></td>
+<td>内存输出到 IR 里去</td>
+</tr>
+<tr>
+<td>PCWrite</td>
+<td></td>
+<td>J指令的强制跳转</td>
+</tr>
+<tr>
+<td>PCWriteCond</td>
+<td></td>
+<td>如果 <code>ALU = 0</code>，branch 强制跳转</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>信号名称</th>
+<th>作用</th>
+<th>00</th>
+<th>01</th>
+<th>10</th>
+<th>11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALUop</td>
+<td>给 ALU 信息</td>
+<td>加</td>
+<td>减</td>
+<td>其他</td>
+<td></td>
+</tr>
+<tr>
+<td>ALUScrB</td>
+<td>ALU 第二个值</td>
+<td>B</td>
+<td>4</td>
+<td>位拓展的IR</td>
+<td>位拓展的IR*4</td>
+</tr>
+<tr>
+<td>PCSource</td>
+<td>新 PC 被什么写</td>
+<td>PC+4</td>
+<td>branch</td>
+<td>Jump</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
 <li><p>多周期数据通路<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/4.png" alt></p>
 </li>
 <li><p>多周期状态机控制信号表<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/5.png" alt></p>
 </li>
 </ul>
 <h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><ul>
-<li><p>Locality</p>
-<ul>
+<li>Locality<ul>
 <li><code>temporal locality</code> (locality in time): If an item is referenced, it will tend to be referenced again soon.</li>
 <li><code>spatial locality</code> (locality in space): If an item is referenced, items whose addresses are close by will tend to be referenced soon.</li>
 </ul>
 </li>
-<li><p>Cache</p>
-<ul>
-<li>分类<pre><code>  - Direct Mapped：取最后几个二进制位直接映射。
-      + `TAG` 是前几个二进制位
-      + 一个我们需求的地址由 `TAG + Index + offset` 组成
-      + Cache里一个单位由 `Validbit + TAG + data` 组成
-  - Fully associative
-</code></pre><ul>
+<li>Cache<ul>
+<li>分类<ul>
+<li>Direct Mapped：取最后几个二进制位直接映射。<ul>
+<li><code>TAG</code> 是前几个二进制位</li>
+<li>一个我们需求的地址由 <code>TAG + Index + offset</code> 组成</li>
+<li>Cache里一个单位由 <code>Validbit + TAG + data</code> 组成</li>
+</ul>
+</li>
+<li>Fully associative</li>
 <li>Set associative<ul>
 <li>Direct Mapped 其实是一路组关联</li>
 </ul>
@@ -312,21 +477,18 @@
 </li>
 </ul>
 </li>
-<li><p>虚拟内存</p>
-<ul>
+<li>虚拟内存<ul>
 <li>blocks of memory (called <code>pages</code>) are mapped from <code>virtual addresses</code> to <code>physical address</code>.</li>
 <li><code>page number</code> 决定 <code>physical address</code> 的高位， <code>page offset</code> 决定低位。</li>
 <li>每个 <code>page</code> 的大小一般是 4KB $\sim$ 16KB</li>
 <li>采用 <code>write back</code> 策略（频繁写入）</li>
-<li><p><code>page table</code> is indexed with the page number from the virtual address to discover physical address.</p>
-<ul>
+<li><code>page table</code> is indexed with the page number from the virtual address to discover physical address.<ul>
 <li>由 <code>valid bit</code> 和 <code>page number</code> 两部分组成。</li>
 <li>位宽是 <code>physical page number</code> 的位宽加一（注意要向上填充）</li>
-<li>如果 <code>valid bit = 0</code>，会产生 <code>page fault</code>。`</li>
-</ul>
-<p><img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/1.png" alt></p>
-<ul>
+<li>如果 <code>valid bit = 0</code>，会产生 <code>page fault</code>。`<br><img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/1.png" alt><ul>
 <li>TLB (Translation-lookaside Buffer)：<br><img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/2.png" alt></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -408,11 +570,11 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/28/Python-Programming/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          《计算机视觉》知识整理
+          《Python 程序设计》知识整理
         
       </div>
     </a>
