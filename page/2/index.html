@@ -284,6 +284,54 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-Object-Oriented-Programming"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/28/Object-Oriented-Programming/">《面向对象程序设计》知识整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/28/Object-Oriented-Programming/" class="article-date">
+	  <time datetime="2019-06-28T06:38:51.000Z" itemprop="datePublished">2019-06-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$2019.3 \sim 2019.6$ 上了胡兰青老师的《面向对象程序设计》、说是面向对象，其实就是专讲 C++ 的面向对象。胡老师的专业能力很厉害，知识点讲得很严密。</p>
+<p>为了应付刁钻和故意设坑的期末考，特开此文复习（虽然最后期末考还是考砸了）。</p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-Python-Programming"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -315,263 +363,6 @@
       
         <p>$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。</p>
 <p>在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。</p>
-<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><ul>
-<li><code>Unicode</code> ：为每种语言中的每个字符设定了统一并且唯一的二进制编码。</li>
-<li><code>UTF-8</code>：<code>Unicode</code> 并不是存储器中的码，实际使用时将其转换为字节或位。<ul>
-<li>每一个 <code>ASCII</code> 字符都有一个与其相等的 8 位 <code>UTF-8</code> 编码。</li>
-<li>编写 <code>Python3</code> 程序，默认的是 <code>UTF-8</code>。</li>
-</ul>
-</li>
-<li><code>python</code> ：面向对象的解释型计算机程序设计语言。</li>
-<li><code>Python</code> 变量有一个非常重要的性质：变量是将名字和对象关联起来。<ul>
-<li>赋值操作并不会实际复制值，<strong>它只是为数据对象取个相关的名字</strong>。</li>
-<li>名字是对象的引用而不是对象本身。</li>
-<li><code>id</code>：Python的内置函数，用来显示对象的地址。</li>
-</ul>
-</li>
-</ul>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><ul>
-<li>进制表示<ul>
-<li><code>0x(X)</code>：十六进制。<code>hex</code> 转化为十六进制。</li>
-<li><code>0o(O)</code>：八进制。<code>oct</code> 转化为八进制。</li>
-<li><code>0b(B)</code>：二进制。<code>bin()</code> 转化为二进制。</li>
-<li><code>int(a, base = 10)</code></li>
-</ul>
-</li>
-<li>复数<ul>
-<li>虚树部分用 <code>j</code> 表示，比如 <code>2+3j</code></li>
-<li><code>complex()</code> 创建复数，<code>real</code>,<code>imag</code> 取出实部和虚部。</li>
-</ul>
-</li>
-<li><code>&#39;2&#39;*3</code>：<code>*</code> 用来重复 3 遍。</li>
-<li><code>type</code>：查询对象的类型信息。</li>
-<li>关系运算符可以连续连接，比如 <code>1&gt;6&lt;8</code>。</li>
-<li><code>ord</code>：返回 <code>Unicode</code> 字符对应的整数；<code>chr</code>：返回整数对应的 <code>Unicode</code>。</li>
-<li>数量不等的序列赋值<ul>
-<li><code>i, *j = [1, 2, 3]</code>。结果：<code>i = 1, j = [2, 3]</code></li>
-</ul>
-</li>
-<li>列表推导式：<code>sum([1/i if i%2==1 else -1/i  for i in range(1,n+1)])</code></li>
-<li><code>format</code>格式化输出：<ul>
-<li><code>print(&quot;{0:.2f}{1:20s}&quot;.format(1.2, &quot;123&quot;))</code></li>
-<li>字符串默认左对齐。<code>&lt;20s</code> 左对齐，<code>&gt;20s</code> 右对齐，<code>^20s</code> 居中，</li>
-<li><code>0:*&lt;10</code> ：<code>*</code> 表示填充字符（默认为空格）。</li>
-<li>{:,} 千分位格式化</li>
-</ul>
-</li>
-</ul>
-<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><ul>
-<li>切片 <code>[a:b:c]</code><ul>
-<li><code>a</code> ：起点，为空则为0</li>
-<li><code>b</code> ：终点（不包括），为空则切到最后</li>
-<li><code>c</code> ：步长，为空默认为1</li>
-<li>均可用负下标访问。<code>c=-1</code> 意为反向。</li>
-</ul>
-</li>
-<li>复制列表<ul>
-<li><strong>特别注意：直接 <code>b = a</code> 后复制的是地址，会同步修改原list里的值。</strong></li>
-<li>若希望各自拥有独立的序列，写成 <code>b = a[:]</code>。</li>
-</ul>
-</li>
-<li>字符串<ul>
-<li>长字符串：用三个引号<code>&#39;&#39;&#39;</code>嵌套或者加入<code>\</code>来跨行表示字符串。</li>
-<li>原始字符串：前面加 <code>r</code>，表示不接受转义字符，如<code>s = r&#39;hello\nworld&#39;</code></li>
-<li><strong>字符串里的数据不能修改。</strong></li>
-<li><code>s.title() s.upper() s.lower()</code> 每个单词首字母大写，全大写，全小写。</li>
-<li><code>s.replace(old,new)</code> 把 <code>old</code> 子串替换为 <code>new</code> 子串。</li>
-<li><code>format</code> 和 格式化运算符<code>%</code> 本质都是把一段表达式转化为字符串。</li>
-</ul>
-</li>
-<li>列表<ul>
-<li><code>del &lt;列表名&gt;[下标]</code> 删除列表指定位。</li>
-<li>切片表示列表的一部分，可以被赋值；接受另一个列表，替换对应元素。<br>如 <code>name = list(&#39;Perl)</code>，然后 <code>name[2:] = list(&#39;ar&#39;)</code></li>
-<li><code>a.index(val)</code> 查询 <code>val</code> 值在 <code>a</code> 里的下标。</li>
-<li><code>a.copy()</code> 列表的备份。</li>
-<li><code>a.insert(index,x)</code> 在 <code>index</code> 处插入 <code>x</code>。</li>
-<li><code>a.pop(index)</code> 返回并删除下标为index的元素，默认是最后一个。</li>
-<li><code>a.remove(val)</code> 删除值为 <code>val</code> 的元素。</li>
-<li>其他函数 <code>sort(), extaned(), reverse(), clear(), count()</code></li>
-</ul>
-</li>
-<li>随机库random<ul>
-<li><code>random()</code> 返回 <code>[0,1)</code> 之间的浮点数。</li>
-<li><code>uniform(a, b)</code> 返回 <code>[a,b]</code> 之间的浮点数。</li>
-<li><code>randint(a, b)</code> 返回 <code>[a,b]</code> 之间的整数。</li>
-<li><code>choice(seq)</code> 返回 <code>seq</code> 里随机的一个数。</li>
-<li><code>shuffle(seq)</code> 打乱列表 <code>seq</code>。</li>
-<li><code>sample(seq, k)</code> 从 <code>seq</code> 里随机获得 <code>k</code> 个数。</li>
-</ul>
-</li>
-</ul>
-<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><ul>
-<li><code>while (): else :</code> 一旦条件不成立，跳出循环并执行 <code>else</code>。</li>
-<li><code>for ... : else :</code> 只要所有循环结束（没有中途 <code>break</code>，就执行 <code>else</code>）。</li>
-<li><p>异常处理</p>
-<ul>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">1</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">2</span>:</span><br><span class="line">      <span class="keyword">except</span>:</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">finally</span>:</span><br></pre></td></tr></table></figure>
-<p>如果程序没有发生异常，执行 <code>else</code>。所有情况最终执行 <code>finally</code>。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><ul>
-<li><p>集合</p>
-<ul>
-<li>用 <code>add</code> 和 <code>remove</code> 添加或删除值。</li>
-<li>用 <code>issubset()</code> 和 <code>issuperset()</code> 判断是否是子集和超集（相同也算）。</li>
-<li>也可以直接用比较符来判断子集关系。</li>
-<li><code>union()</code> 或 <code>|</code>：并集</li>
-<li><code>intersection()</code> 或 <code>&amp;</code>：交集</li>
-<li><code>difference()</code> 或 <code>-</code>：差集</li>
-<li><code>symmertric_difference</code> 或 <code>^</code>：除了共同元素之外的所有元素。</li>
-<li>列表去重保持原有顺序  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mailto = [<span class="string">'cc'</span>, <span class="string">'bbbb'</span>, <span class="string">'afa'</span>, <span class="string">'sss'</span>, <span class="string">'bbbb'</span>, <span class="string">'cc'</span>, <span class="string">'shafa'</span>]</span><br><span class="line">addr_to = list(set(mailto))</span><br><span class="line">addr_to.sort(key = mailto.index)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>字典</p>
-<ul>
-<li><strong>可变对象不可以作为字典的键。</strong></li>
-<li>定义：<ul>
-<li><code>fac={1:&quot;0001&quot;, 2:&quot;0002&quot;, 3:&quot;0003&quot;}</code></li>
-<li><code>fac=dict(math=&quot;0001&quot;, python=&quot;0002&quot;, c=&quot;0003&quot;)</code><ul>
-<li>该方式左侧只支持字符串（去掉引号）；是纯数字会编译错误。</li>
-</ul>
-</li>
-<li><code>fac=dict([(&quot;math&quot;,&quot;0001&quot;),(&quot;python&quot;,&quot;0002&quot;),(&quot;c&quot;,&quot;0003&quot;)])</code></li>
-</ul>
-</li>
-<li>访问和修改：<code>&lt;字典&gt; [键] = ?</code></li>
-<li>删除： <code>del &lt;字典&gt; [键]</code> 或 <code>&lt;字典&gt;.pop([键])</code>（返回这个值并删除）</li>
-<li><code>keys()</code> 键值组成的序列；<code>values()</code> 值组成的序列；</li>
-<li><code>items()</code> 键值和键组成的元组组成的序列。</li>
-<li><code>get(key, defalut)</code> 获得键值 <code>key</code> 的值，若没找到返回 <code>default</code>（默认返回<code>None</code>）</li>
-</ul>
-</li>
-<li>可变对象和不可变对象<ul>
-<li>可变对象和不可变对象是Python语言的核心概念。</li>
-<li>不可变对象，该对象所指向的内存中的值不能被改变。当改变某个变量时候，由于其所指的值不能被改变，相当于把原来的值复制一份后再改变，这会开辟一个新的地址，变量再指向这个新的地址。</li>
-<li>可变对象，该对象所指向的内存中的值可以被改变。变量（准确的说是引用）改变后，实际上是其所指的值直接发生改变，并没有发生复制行为，也没有开辟新的出地址。</li>
-</ul>
-</li>
-</ul>
-<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><ul>
-<li>匿名函数 lamba 表达式</li>
-</ul>
-<ul>
-<li><code>g = lambda x,y,z : x+y+z</code></li>
-</ul>
-<ul>
-<li><p>函数参数</p>
-<ul>
-<li>分为位置参数、关键字参数、带默认值参数、可变数量参数。</li>
-<li>如果位置参数和关键字参数同时出现，必须先写前者，再写后者。</li>
-<li><p><strong>默认参数值在函数对象被创建时计算。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">( arg, result=[])</span>:</span></span><br><span class="line">     		result.append(arg)</span><br><span class="line">	print( result)</span><br><span class="line">init(<span class="string">'a'</span>)</span><br><span class="line">init(<span class="string">'b'</span>)</span><br><span class="line">   程序输出：</span><br><span class="line">	[<span class="string">'a'</span>]</span><br><span class="line">	[<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数参数数目不确定时，星号将一组可变数量的位置参数集合成参数值元组。</p>
-</li>
-<li><code>*</code> 或 <code>**</code> 都加在形参的前面，表示不定长参数，分别用来接收不带变量名的多余参数和带有变量名的多余参数，分别将它们以元组和字典的形式接收。<strong>字典的形式即为：键值是参数名，值是参数值。</strong></li>
-<li>与上述同理，当实参是不可变对象时，形参值改变不会影响实参；当实参是可变对象时，形参值改变可能会影响实参。</li>
-</ul>
-</li>
-<li><p>带默认值参数的list</p>
-<ul>
-<li>如果未传入，只会创建一次，之后都获得原来创建时的地址。</li>
-<li>如果先传入参数再不传入，不传入的时候依然会新建</li>
-</ul>
-</li>
-<li><p>如函数没有用 <code>return</code> 语句返回，返回值为 <code>None</code>。</p>
-</li>
-<li>函数的返回值可以是另一个函数。</li>
-<li>如希望在函数中使用全局变量，需要用 <code>global</code> 关键字声明。</li>
-<li>sort<ul>
-<li><code>sort</code>是应用在 <code>list</code> 上的方法，是过程。</li>
-<li><code>sorted</code> 可以对更多的数据类型进行排序操作，是函数。</li>
-<li><code>sorted(iterable[,key[, reverse]])</code></li>
-<li>双关键字排序<br><code>ans = sorted(counts.items(), key=lambda x:(-x[1], x[0]))</code></li>
-</ul>
-</li>
-<li><code>zip([iterable, ...])</code><ul>
-<li>按顺序取出每个容器的某一位打包，合成一个新容器。</li>
-<li>如字典键值和值互换： <code>d1 = dict(zip(d.values(), d.keys())</code></li>
-</ul>
-</li>
-<li><code>all</code> 和 <code>any</code><ul>
-<li><code>all()</code> 和 <code>any()</code> 函数将可迭代的对象作为参数。</li>
-<li><code>all()</code> 中所有参数都是 <code>True</code> 时才返回 <code>True</code>， <code>any()</code> 只要有一个。</li>
-</ul>
-</li>
-<li><p><code>sys</code></p>
-<ul>
-<li><code>sys.argv</code>：程序外向程序传递参数。</li>
-<li><code>sys.exit(arg = 0)</code>：程序中间的退出，<code>arg = 0</code> 为正常退出。<h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h2></li>
-</ul>
-</li>
-<li><p><code>open()</code></p>
-<ul>
-<li><code>t</code>（可省略）表示文本文件，<code>b</code> 表示二进制文件。</li>
-<li><code>r</code>,<code>w</code>,<code>a</code>,<code>+</code>。</li>
-<li><code>x</code> 表示创建写模式，如果本来存在就报错。</li>
-</ul>
-</li>
-<li>读入<ul>
-<li><code>read(size)</code>：读入 <code>size</code> 字节，默认读入全部。</li>
-<li><code>readline()</code>：动态读取每一行。</li>
-<li><code>readlines()</code>：读取所有行并放入列表里。</li>
-<li><code>write()/writelines()</code></li>
-<li><code>tell()</code> ：返回文件指针当前位置</li>
-<li><code>seek(off, whence = 0)</code>：设置文件当前位置。</li>
-</ul>
-</li>
-<li>`sys<ul>
-<li><code>sys.stdin</code>    标准输入</li>
-<li><code>sys.stdout</code>    标准输出</li>
-<li><code>sys.stderr</code>  标准错误输出</li>
-</ul>
-</li>
-</ul>
-<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><ul>
-<li>类和对象<ul>
-<li>面向对象特性：封装、继承、多态</li>
-<li>对象三个要素：<code>（id,type,value）</code></li>
-<li>Python中对象的概念很广泛，Python中的一切内容都是对象。</li>
-</ul>
-</li>
-<li>类的创建<ul>
-<li><code>__init__</code>：类的初始化函数（系统会自动调用）<ul>
-<li>不能有返回值（否则编译错误）</li>
-</ul>
-</li>
-<li>调用 <code>a = A(self, ...)</code> 来创建</li>
-<li><code>_</code>开头的变量：当做内部名，不应该在外部使用；<br>  不能用<code>from module import *</code>导入。</li>
-<li><code>__</code> 开头的变量是类内私有，外界不能调用（强制不能访问）<ul>
-<li>但是可以用 <code>对象名._类名__私有成员名</code> 访问</li>
-</ul>
-</li>
-<li>类变量和实例变量<ul>
-<li>实例的成员变量一般是指在构造方法 `<strong>init</strong>()· 中定义的，定义和使用时以self作为前缀。</li>
-<li>类的成员变量是在类中所有方法之外定义的</li>
-</ul>
-</li>
-<li>外界定义一个不存在的类内变量，会动态给当前 <strong>实例</strong> 增加这个变量（类不会）。</li>
-</ul>
-</li>
-<li>类内函数和方法<ul>
-<li>对象的成员函数第一个参数一般是 <code>self</code>，代表自身。<ul>
-<li>可以用 <code>a.f()</code> 或 <code>A.f(a)</code> 来调用</li>
-</ul>
-</li>
-<li><code>isinstance(a, A)</code>：<code>a</code> 是否是 <code>A</code> 的一个实例。</li>
-<li>类方法（class method）：作用于整个类，类似于 <code>C++</code> 里的 <code>static</code><ul>
-<li><code>def kids(cls)</code>: <code>cls</code> 修饰这个class（通过它访问和修改类的成员变量）</li>
-</ul>
-</li>
-<li>静态方法（@staticmethod）：既不影响类，也不影响对象。</li>
-</ul>
-</li>
-<li>继承：<code>class B(A)</code></li>
-</ul>
-
       
     </div>
     <footer class="article-footer">

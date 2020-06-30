@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。 第一章 Unicode ：为每种语言中的每">
+  <meta name="description" content="$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。">
 <meta name="keywords" content="Knowledge Learning,Course Review,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Python 程序设计》知识整理">
 <meta property="og:url" content="https://jiangshibiao.github.io/2019/06/28/Python-Programming/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。 第一章 Unicode ：为每种语言中的每">
+<meta property="og:description" content="$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-30T09:03:18.040Z">
+<meta property="og:updated_time" content="2020-06-30T09:11:32.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Python 程序设计》知识整理">
-<meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。 第一章 Unicode ：为每种语言中的每">
+<meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -203,6 +203,7 @@
       
         <p>$2019.3 \sim 2019.6$ 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。</p>
 <p>在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。</p>
+<a id="more"></a>
 <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><ul>
 <li><code>Unicode</code> ：为每种语言中的每个字符设定了统一并且唯一的二进制编码。</li>
 <li><code>UTF-8</code>：<code>Unicode</code> 并不是存储器中的码，实际使用时将其转换为字节或位。<ul>
@@ -295,11 +296,9 @@
 <li><code>while (): else :</code> 一旦条件不成立，跳出循环并执行 <code>else</code>。</li>
 <li><code>for ... : else :</code> 只要所有循环结束（没有中途 <code>break</code>，就执行 <code>else</code>）。</li>
 <li><p>异常处理</p>
-<ul>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">1</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">2</span>:</span><br><span class="line">      <span class="keyword">except</span>:</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">finally</span>:</span><br></pre></td></tr></table></figure>
-<p>如果程序没有发生异常，执行 <code>else</code>。所有情况最终执行 <code>finally</code>。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">1</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">2</span>:</span><br><span class="line">      <span class="keyword">except</span>:</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">finally</span>:</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>如果程序没有发生异常，执行 <code>else</code>。所有情况最终执行 <code>finally</code>。</p>
 </li>
 </ul>
 <h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><ul>
@@ -362,14 +361,12 @@
 <li>与上述同理，当实参是不可变对象时，形参值改变不会影响实参；当实参是可变对象时，形参值改变可能会影响实参。</li>
 </ul>
 </li>
-<li><p>带默认值参数的list</p>
-<ul>
+<li>带默认值参数的list<ul>
 <li>如果未传入，只会创建一次，之后都获得原来创建时的地址。</li>
 <li>如果先传入参数再不传入，不传入的时候依然会新建</li>
 </ul>
 </li>
-<li><p>如函数没有用 <code>return</code> 语句返回，返回值为 <code>None</code>。</p>
-</li>
+<li>如函数没有用 <code>return</code> 语句返回，返回值为 <code>None</code>。</li>
 <li>函数的返回值可以是另一个函数。</li>
 <li>如希望在函数中使用全局变量，需要用 <code>global</code> 关键字声明。</li>
 <li>sort<ul>
@@ -389,14 +386,14 @@
 <li><code>all()</code> 中所有参数都是 <code>True</code> 时才返回 <code>True</code>， <code>any()</code> 只要有一个。</li>
 </ul>
 </li>
-<li><p><code>sys</code></p>
-<ul>
+<li><code>sys</code><ul>
 <li><code>sys.argv</code>：程序外向程序传递参数。</li>
-<li><code>sys.exit(arg = 0)</code>：程序中间的退出，<code>arg = 0</code> 为正常退出。<h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h2></li>
+<li><code>sys.exit(arg = 0)</code>：程序中间的退出，<code>arg = 0</code> 为正常退出。</li>
 </ul>
 </li>
-<li><p><code>open()</code></p>
-<ul>
+</ul>
+<h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h2><ul>
+<li><code>open()</code><ul>
 <li><code>t</code>（可省略）表示文本文件，<code>b</code> 表示二进制文件。</li>
 <li><code>r</code>,<code>w</code>,<code>a</code>,<code>+</code>。</li>
 <li><code>x</code> 表示创建写模式，如果本来存在就报错。</li>
@@ -535,11 +532,11 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/28/Object-Oriented-Programming/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          《计算机视觉》知识整理
+          《面向对象程序设计》知识整理
         
       </div>
     </a>

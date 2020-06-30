@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>《面向对象程序设计》知识整理 | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="$2019.3 \sim 2019.6$ 上了胡兰青老师的《面向对象程序设计》、说是面向对象，其实就是专讲 C++ 的面向对象。胡老师的专业能力很厉害，知识点讲得很严密。 为了应付刁钻和故意设坑的期末考，特开此文复习（虽然最后期末考还是考砸了）。">
+<meta name="keywords" content="Knowledge Learning,Course Review,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《面向对象程序设计》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/06/28/Object-Oriented-Programming/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="$2019.3 \sim 2019.6$ 上了胡兰青老师的《面向对象程序设计》、说是面向对象，其实就是专讲 C++ 的面向对象。胡老师的专业能力很厉害，知识点讲得很严密。 为了应付刁钻和故意设坑的期末考，特开此文复习（虽然最后期末考还是考砸了）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-30T09:13:25.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《面向对象程序设计》知识整理">
+<meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了胡兰青老师的《面向对象程序设计》、说是面向对象，其实就是专讲 C++ 的面向对象。胡老师的专业能力很厉害，知识点讲得很严密。 为了应付刁钻和故意设坑的期末考，特开此文复习（虽然最后期末考还是考砸了）。">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<!--<script type="text/javascript" src="\js\snow.js"></script>-->
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Object-Oriented-Programming" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      《面向对象程序设计》知识整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/28/Object-Oriented-Programming/" class="article-date">
+	  <time datetime="2019-06-28T06:38:51.000Z" itemprop="datePublished">2019-06-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$2019.3 \sim 2019.6$ 上了胡兰青老师的《面向对象程序设计》、说是面向对象，其实就是专讲 C++ 的面向对象。胡老师的专业能力很厉害，知识点讲得很严密。</p>
+<p>为了应付刁钻和故意设坑的期末考，特开此文复习（虽然最后期末考还是考砸了）。</p>
+<a id="more"></a>
+<h2 id="类-amp-对象"><a href="#类-amp-对象" class="headerlink" title="类&amp;对象"></a>类&amp;对象</h2><ul>
+<li><p>类访问修饰符</p>
+<ul>
+<li><code>public</code>,<code>private</code>,<code>protected</code>。（默认 <code>private</code>）</li>
+</ul>
+</li>
+<li><p>构造函数和析构函数</p>
+<ul>
+<li><strong>离开函数时先销毁后定义的类。</strong></li>
+<li>构造函数先调用父类，析构函数先调用子类。</li>
+</ul>
+</li>
+<li><p>拷贝构造函数</p>
+<ul>
+<li>形如 <code>A::A(const A &amp;obj)</code>。（必须加引用，一般加上 <code>const</code>）</li>
+<li>以下两种初始化对于其他类型是等价的，对于类类型有区别：<ul>
+<li><code>A a(2)</code> 是直接初始化，调用构造函数。</li>
+<li><code>A b = a</code> 是拷贝初始化，调用拷贝构造函数（等价于 <code>A b(a)</code>）。</li>
+</ul>
+</li>
+<li>应用场景<ul>
+<li>函数的参数为类的对象时（将外层调用的值拷贝给参数）</li>
+<li>函数的返回值是类的对象时（将 <code>return</code> 来的值拷贝给一个临时对象）</li>
+<li>对象需要通过另外一个对象进行初始化（常见形式）</li>
+</ul>
+</li>
+<li>默认构造函数使用 <code>浅拷贝</code>：对于动态成员（比如指针），指向同一位置。</li>
+<li>如果想防止默认拷贝发生，可以声明（不定义）一个私有的拷贝构造函数。这样，一旦调用编译器就会报错。</li>
+</ul>
+</li>
+<li><p>静态成员</p>
+<ul>
+<li>无论创建多少个类的对象，静态成员都只有一个副本。</li>
+<li>静态成员<ul>
+<li>我们不能把静态成员变量的初始化放置在类的定义中。</li>
+<li>在类的外部必须用 <code>::</code> 重新定义一遍静态变量（分配地址）</li>
+</ul>
+</li>
+<li>静态成员函数<ul>
+<li>静态成员函数只能访问静态成员数据、静态成员函数和类外部的函数。</li>
+<li>静态成员函数没有 <code>this</code> 指针。</li>
+</ul>
+</li>
+<li>注意：<ol>
+<li><code>static</code> 成员函数不能为 <code>virtual</code></li>
+<li>不能存在 <code>static</code> 和 <code>non-static</code> 成员函数有相同的名字和参数</li>
+<li><code>static</code> 成员函数不能被声明成 <code>const</code>、<code>volatile</code>或者<code>const volatile</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>友元函数</p>
+<ul>
+<li>类的友元函数是定义在类外部，但有权访问类的所有私有成员和保护成员。</li>
+<li>尽管友元函数的原型有在类的定义中出现过，但是友元函数并不是成员函数。</li>
+<li><strong>友元也可以是一个类，该类被称为友元类。</strong></li>
+</ul>
+</li>
+<li><p>内联函数 <code>inline</code></p>
+<ul>
+<li>定义在类内的缺省函数都是内联的。</li>
+<li>类中如果未给定义默认不内联，但可以在类外定义时加上 <code>inline</code>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p>已有的类称为<strong>基类</strong>，新的类称为<strong>派生类</strong>。</p>
+<ul>
+<li>形式：<code>class &lt;派生类名&gt;: &lt;继承方式&gt; &lt;基类名&gt;</code></li>
+</ul>
+</li>
+<li><p>访问和控制继承</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>访问</th>
+<th>public</th>
+<th>protected</th>
+<th>private</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本类</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>派生类</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>类外</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>一个派生类继承了所有的基类方法，但下列情况除外：</p>
+<ul>
+<li>基类的构造函数、析构函数和拷贝构造函数。</li>
+<li>基类的重载运算符。</li>
+<li>基类的友元函数。</li>
+</ul>
+</li>
+<li><p>可以用 <code>A::</code> 在派生类里调用基类函数和数据。</p>
+<ul>
+<li>所以一个普通类成员函数里也可以用这个格式。</li>
+</ul>
+</li>
+<li><p>继承类型</p>
+<ul>
+<li>公有继承（常见继承）。</li>
+<li>保护继承：基类的公有和保护成员都变为派生类的保护成员。</li>
+<li>私有继承：基类的公有和保护成员都变为派生类的私有继承。</li>
+</ul>
+</li>
+<li><p>构造函数相关</p>
+<ul>
+<li>调用子类的构造函数时，需要在初始化列表里指定基类的构造函数。</li>
+<li>如果不指定，默认是基类的不带参构造。</li>
+<li>一定是先调用基类构造函数，再初始化派生类的数据。</li>
+<li>连续继承时，<code>A-&gt;B-&gt;C</code>，<code>C</code> 不指定 <code>A</code> 的构造。</li>
+<li>如果是多继承，按定义时顺序触发。</li>
+</ul>
+</li>
+<li><p>多继承</p>
+<ul>
+<li><code>class &lt;派生类名&gt;:&lt;继承方式1&gt;&lt;基类名1&gt;, &lt;继承方式2&gt;&lt;基类名2&gt;,…</code></li>
+</ul>
+</li>
+<li><p>基类和派生类的指针转化</p>
+<ul>
+<li><code>static_cast&lt;type-id&gt;(expression)</code> 上行转化安全，下行转化不安全。</li>
+<li><code>dynamic_cast&lt;type-id&gt;(expression)</code> 都安全。<ul>
+<li>指针类转化错误，指针值为 <code>nullptr</code></li>
+<li>引用类转化错误，会 <code>throw</code> 一个异常。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><ul>
+<li><p>运算符重载</p>
+<ul>
+<li><code>A operator &lt;运算符&gt;(const A &amp;a)const</code></li>
+<li>后一个 <code>const</code> 表示 <code>*this</code> 里的数据不能改。</li>
+</ul>
+</li>
+<li><p>强转重载</p>
+<ul>
+<li><code>operator int()const{}</code><ul>
+<li><strong>注意开头不跟类型；少了const会编译错误</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><ul>
+<li><p>虚函数</p>
+<ul>
+<li>虚函数 是在基类中使用关键字 <code>virtual</code> 声明的函数。</li>
+<li>虚函数是指一个类中你希望重载的成员函数，当你用一个基类指针或引用指向一个继承类对象的时候，你调用一个虚函数，实际调用的是继承类的版本。</li>
+<li>在基类的构造函数和析构函数里，只能调用基类的虚函数（不会动态联编）。</li>
+<li><strong>坑点1：函数定义必须完全一样才能触发此效果。</strong><ul>
+<li>比如基类和派生类函数中有一个加了 <code>const</code>，就无法重载了。</li>
+</ul>
+</li>
+<li><strong>坑点2：基类通过虚函数可以调用派生类，但无法获得派生类数据。</strong></li>
+<li><strong>如果基类指针指向派生类，如果基类函数 <code>F1()</code> 里调用了基类虚函数 <code>F2()</code>，<code>F2()</code>也会执行动态绑定。特别的，构造函数和析构函数内部调用的<code>F2()</code>不会动态绑定。</strong></li>
+<li>只有类的成员函数才能声明为虚函数。</li>
+<li>静态成员函数，内联函数和构造函数不能是虚函数。</li>
+<li>析构函数通常是虚函数。</li>
+<li>纯虚函数<ul>
+<li>在虚函数声明的结尾加上 <code>= 0</code>。</li>
+<li>派生类必须写出对应函数的定义。</li>
+<li>含有纯虚函数的类是抽象类，不能实例化。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>虚继承</p>
+<ul>
+<li>如遇到“环装继承”：形如 <code>A-&gt;B, A-&gt;C, (B,C)-&gt;D</code>。<ul>
+<li>可以在定义 <code>B</code> 和 <code>C</code> 时用:</li>
+<li><code>class &lt;派生类名&gt;: virtual &lt;继承方式&gt; &lt;基类名&gt;</code></li>
+<li>只生成 <code>A</code> 的一个副本。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><ul>
+<li>模板的声明或定义只能在全局、命名空间或类范围内进行，不能在局部范围内。</li>
+<li>模板函数调用时参数传递不具有隐式的类型转化。</li>
+<li><code>class</code> 和 <code>typename</code> 这两个关键词等价。</li>
+<li>C++ 对于重载函数的编译顺序<ol>
+<li>先找参数完全匹配的普通函数（非由模板实例化得到的函数）。</li>
+<li>再找参数完全匹配的模板函数。</li>
+<li>再找实参经过自动类型转换后能够匹配的普通函数。</li>
+</ol>
+</li>
+<li>函数模板<ul>
+<li><code>template &lt;class 形参名，class 形参名，...&gt; &lt;返回类型&gt; &lt;函数名&gt;(参数列表)</code></li>
+</ul>
+</li>
+<li>类模板<ul>
+<li>`template<class 形参名，class 形参名，...>   class 类名 { … };</class></li>
+</ul>
+</li>
+</ul>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
+<li><p><code>catch</code> 到后，先进行值传递，再进行子过程里的销毁</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">try</span>&#123;</span><br><span class="line">	A a;</span><br><span class="line">	e = Exception();</span><br><span class="line">       <span class="keyword">throw</span> e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(Exception&amp; m)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"catch exception"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>call A()</code></li>
+<li><code>exception()</code> 构造一个异常对象e，局部的。</li>
+<li><code>exception(const exception&amp;)</code> 复制一个异常对象（全局的匿名对象），m引用它。</li>
+<li><code>~exception()</code> 销毁局部的异常对象e</li>
+<li><code>~A()</code></li>
+<li>进入 <code>catch</code> 模块</li>
+<li><code>~exception()</code> 销毁全局的异常对象</li>
+</ol>
+</li>
+<li>标准库异常类<ul>
+<li><code>include&lt;stdexcept&gt;</code></li>
+</ul>
+</li>
+<li>在函数末尾加上 <code>throw(A)</code> 表示该函数只会抛出 <code>A</code> 类的异常。<ul>
+<li>如果为空，表明该函数不会抛出异常。</li>
+</ul>
+</li>
+<li>在构造函数和析构函数里加 <code>throw</code> 是危险行为，因为不会进行内存回收。</li>
+</ul>
+<h2 id="词汇翻译"><a href="#词汇翻译" class="headerlink" title="词汇翻译"></a>词汇翻译</h2><ul>
+<li>封装 encapsulation</li>
+<li>继承 inheritance</li>
+<li>声明 declaration</li>
+<li>定义 definition</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2019/06/28/Object-Oriented-Programming/" target="_blank" title="《面向对象程序设计》知识整理">https://jiangshibiao.github.io/2019/06/28/Object-Oriented-Programming/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          《计算机视觉》知识整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/28/Python-Programming/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">《Python 程序设计》知识整理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类-amp-对象"><span class="nav-number">1.</span> <span class="nav-text">类&amp;对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重载"><span class="nav-number">3.</span> <span class="nav-text">重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">4.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板"><span class="nav-number">5.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">6.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词汇翻译"><span class="nav-number">7.</span> <span class="nav-text">词汇翻译</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
