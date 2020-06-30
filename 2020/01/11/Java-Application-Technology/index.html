@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>《java应用技术》知识整理 | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《Java应用技术》这门课。翁老师在课程设计上用心良苦，不仅讲了 Java 的语法，还介绍了很多现代 Java 的理念和科技（比如各种设计模式）。 期末考试为了和其他班对齐，主要考的还是 Java 的基本语法。这也是本文关注的重点。">
+<meta name="keywords" content="Knowledge Learning,Course Review,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Java应用技术》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《Java应用技术》这门课。翁老师在课程设计上用心良苦，不仅讲了 Java 的语法，还介绍了很多现代 Java 的理念和科技（比如各种设计模式）。 期末考试为了和其他班对齐，主要考的还是 Java 的基本语法。这也是本文关注的重点。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/compiling%20order.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/layer.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/extends.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/Collection.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/swing.gif">
+<meta property="og:updated_time" content="2020-06-30T10:03:03.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Java应用技术》知识整理">
+<meta name="twitter:description" content="$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《Java应用技术》这门课。翁老师在课程设计上用心良苦，不仅讲了 Java 的语法，还介绍了很多现代 Java 的理念和科技（比如各种设计模式）。 期末考试为了和其他班对齐，主要考的还是 Java 的基本语法。这也是本文关注的重点。">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/compiling%20order.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<!--<script type="text/javascript" src="\js\snow.js"></script>-->
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Java-Application-Technology" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      《Java应用技术》知识整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/01/11/Java-Application-Technology/" class="article-date">
+	  <time datetime="2020-01-11T06:38:48.000Z" itemprop="datePublished">2020-01-11</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《Java应用技术》这门课。翁老师在课程设计上用心良苦，不仅讲了 Java 的语法，还介绍了很多现代 Java 的理念和科技（比如各种设计模式）。</p>
+<p>期末考试为了和其他班对齐，主要考的还是 Java 的基本语法。这也是本文关注的重点。</p>
+<a id="more"></a>
+<h2 id="Java-概述"><a href="#Java-概述" class="headerlink" title="Java 概述"></a>Java 概述</h2><ul>
+<li>Features<ul>
+<li>A compiled language</li>
+<li>A productive OOP language</li>
+<li>a type-safe and stable language</li>
+<li>No point</li>
+<li>Index check</li>
+<li>Auto memory management<br><img src="//jiangshibiao.github.io/2020/01/11/Java-Application-Technology/compiling order.png" alt><br><img src="//jiangshibiao.github.io/2020/01/11/Java-Application-Technology/layer.png" alt></li>
+</ul>
+</li>
+<li>Unique data type<ul>
+<li><code>char</code> 是 <code>Unicode</code> 存储的，每个占2字节。</li>
+<li><code>int</code> 是 4字节。</li>
+</ul>
+</li>
+<li>all objects should be constructed in runtime and be stored in <strong>heap</strong>.</li>
+<li>To “run a program” is to start a thread from one method of one class in the space.</li>
+<li>用户不需要主动释放对象。java有一个内存回收机制会释放。释放前会调用该对象的 <code>finalize()</code> 函数。</li>
+<li>所有 <code>primitive data</code> 都会被初始化成 <code>0</code>。</li>
+<li>天然地支持面向对象，但是比C++少了这些功能<ul>
+<li>Multi-inheritance </li>
+<li>Virtual inheritance</li>
+<li>Template</li>
+<li>Operator overloading</li>
+</ul>
+</li>
+<li>CLASSPATH: <ul>
+<li>Place all the .class files for a particular package into a single directory.</li>
+<li>Contains one or more directories that are used as roots for a search for .class files. </li>
+</ul>
+</li>
+</ul>
+<h2 id="基本知识点"><a href="#基本知识点" class="headerlink" title="基本知识点"></a>基本知识点</h2><ul>
+<li>字符串<ul>
+<li>字符串结束处没有 <code>\0</code> 修饰符。有一个长度方法 length()。</li>
+<li>字符串不能被修改，但字符串指针可以更换指向的对象。</li>
+<li><strong>直接 <code>==</code> 判的是是否指向同一个内存地址，<code>.equals()</code> 才是判内容相同</strong>。</li>
+<li><strong>字符</strong>比较大小可以用 <code>&lt;&gt;</code>，字符串比较必须用 <code>compareTo</code>（返回 <code>-1,0,1</code>）。</li>
+<li><code>charAt()</code> 定位某个位置。</li>
+<li><code>substring(st_index, end_index)</code></li>
+<li><code>String.valueOf()</code>： returns a string that contains the human-readable equivalent of the value with which it is called.<ul>
+<li>别的基本类型可以用 <code>valueOf()</code> 或者 <code>parse...()</code> 从 <code>String</code> 变化过来。</li>
+</ul>
+</li>
+<li>每个类都有<code>toString()</code> 方法（因为 <code>Object</code>对象有）</li>
+<li><code>String.format()</code> 格式化字符串</li>
+<li><code>StringBuilder</code> 提供字符串的修改、拼接，线程不安全；<code>stringBuffer</code> 线程安全。</li>
+</ul>
+</li>
+<li>变量初始化<ul>
+<li>基本类型要求初始化，如果没有初始化就使用它会报错。<strong>没用到不会报错。</strong></li>
+<li>类里的变量可以不初始化，默认是 $0$。</li>
+</ul>
+</li>
+<li>一维数组定义<ul>
+<li>新建一个数组（默认值为 0）：<code>int[] a=new int[5];</code></li>
+<li>初始化为给定值：<code>int[] a={1,2,3,4,5};</code> </li>
+<li>另一种初始化方法 <code>int[] a=new int[]{1,2,3,4,5}</code> </li>
+<li><strong>如果提供了数组初始化操作，则不能定义维表达式</strong>：<code>int[] a=new int[5]{1,2,3,4,5}</code> 是错的。</li>
+<li><code>int[] a; a=new int[5]</code> <strong>合法</strong> 但是 <code>int[] a; a={1,2,3,4,5};</code> <strong>不合法</strong>（该形式仅用于初始化）。</li>
+</ul>
+</li>
+<li>二维数组定义<ul>
+<li>每一维可以不等长。</li>
+<li>动态初始化：第二维可以省略。<ul>
+<li>举例：<code>int [ ][ ] arr = new int [5][]; arr[0] = new int[3];</code> </li>
+</ul>
+</li>
+<li>静态初始化（每一维可以不等长）。</li>
+<li><code>int[][] a = new int[2][]; a[0][1]=1;</code> <strong>错误</strong>。第二维没初始化， 报 NullPointerException 异常。</li>
+</ul>
+</li>
+</ul>
+<h2 id="更高效地编程"><a href="#更高效地编程" class="headerlink" title="更高效地编程"></a>更高效地编程</h2><ul>
+<li>实体和引用<ul>
+<li>对于基本类型的变量, <code>for each</code> 循环时不会对原数组做改动。</li>
+<li>对于对象类型的变量，<code>for each</code> 循环时会做改动。</li>
+</ul>
+</li>
+<li>Final关键词<ul>
+<li>修饰基本类型时，基本类型的值不能发生改变。</li>
+<li>修饰引用类型时，引用类型的地址值不能改变，但是该对象堆内存的值可以改变。</li>
+<li>private 隐式地加了 final 关键词。</li>
+</ul>
+</li>
+<li>三目运算符<ul>
+<li><code>System.out.println(true?1:2.0);</code>会输出 <code>1.0</code></li>
+</ul>
+</li>
+<li>Switch<ul>
+<li>case表达式既可以用字面值常量，也可以用final修饰且初始化过的变量。</li>
+<li>支持 <code>char, byte, int, short</code>, JAVA7 起支持 <code>String</code></li>
+<li>String常量判相等时，先计算 hashCode 再比较（所以不支持 null）..</li>
+</ul>
+</li>
+<li>循环语句的标号<ul>
+<li>可以在循环的头部加标号，形如 <code>label:statement</code>. 标号只为 <code>break</code> 和 <code>continue</code> 服务。</li>
+<li>循环里的 <code>break</code> 或 <code>continue</code> 后可以紧跟着标号，表示它们对被标号的循环起作用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
+<li><strong>Throwable</strong>（所有异常都是继承自它）<ul>
+<li><code>String getMessage()</code> ：返回此 throwable 的详细消息字符串</li>
+<li><code>String toString()</code> ： 返回此 throwable 的简短描述</li>
+<li><code>void printStackTrace()</code> ：打印异常的堆栈的跟踪信息</li>
+</ul>
+</li>
+<li>异常的类型<ul>
+<li>Error （编译时期的错误以及系统错误）</li>
+<li>Exception（程序本身可以处理的异常）<ul>
+<li>IOException</li>
+<li>RuntimeException（<strong>Unchecked Exception</strong>：异常是运行时发生，无法预先捕捉处理的）<ul>
+<li>非 RuntimeException 在编译时就会检查。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>throw-try-catch</code> 机制<ul>
+<li>抛出异常的时候，异常处理系统会安装代码书写顺序找出”最近”的处理程序。找到匹配的程序后，它就认为异常将得到清理，然后就不再继续查找。</li>
+<li>派生类的对象也可以配备其基类的处理程序。</li>
+<li>万能匹配： <code>catch (Exception e)</code></li>
+</ul>
+</li>
+<li><code>finally</code>：无论是否发生异常都会执行。非必须。<ul>
+<li>若 <code>catch</code> 和 <code>finally</code> 中都有 <code>return</code>，<code>catch</code> 时不会立即退出函数，依然会做 <code>finally</code>。</li>
+</ul>
+</li>
+<li><code>throws</code> ：<ul>
+<li>一个方法被覆盖时，覆盖它的方法必须拋出相同的异常或异常的子类。</li>
+<li>子类声明的抛出异常不允许比父类抛出的异常多。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><ul>
+<li>A “lambda expression” is a block of code that you can pass around so it can be executed later, once or multiple times. A lambda expression is a method without a name that is used to pass around behavior as if it were data. </li>
+<li>只能用来简化仅包含一个public方法的接口（<strong>函数式接口</strong>）的创建。</li>
+<li>要求外部变量是 <strong>final</strong>（可以是隐式的）。</li>
+<li>若只有一个参数，左边的小括号可以省略；若只有一条语句，右边的花括号可以省略。</li>
+<li>Lambda 表达式的参数列表的数据类型可以省略不写，因为JVM编译器通过上下文推断。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    btn.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"OK"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">btn.addActionListener(event -&gt; System.out.println(<span class="string">"OK"</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Runnable run = ()-&gt;System.out.println(<span class="string">"running"</span>);</span><br><span class="line">       <span class="keyword">new</span> Thread(run).start();</span><br><span class="line">       Runnable run2 = ()-&gt;&#123;</span><br><span class="line">       System.out.println(<span class="string">"running"</span>);</span><br><span class="line">       System.out.println(<span class="string">"end"</span>);</span><br><span class="line">   &#125;;</span><br><span class="line">   <span class="keyword">new</span> Thread(run2).start();</span><br><span class="line">   BinaryOperator&lt;Long&gt; add = (x,y) -&gt; x+y;</span><br><span class="line">  System.out.println(add.apply(<span class="number">100L</span>, <span class="number">200L</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="流计算"><a href="#流计算" class="headerlink" title="流计算"></a>流计算</h2><ul>
+<li><code>long count = allArtists.stream().filter(artist -&gt; artist.isFrom(&quot;London&quot;)).count();</code></li>
+<li>常用方法<ul>
+<li><code>collect(toList())</code> 将流里的内容转换成 <code>list</code></li>
+<li><code>map()</code>：<code>List&lt;String&gt; collected = Stream.of(&quot;a&quot;, &quot;b&quot;, &quot;hello&quot;).map(string -&gt; string.toUpperCase()).collect(toList())</code></li>
+<li><code>filter()</code>：<code>List&lt;String&gt; beginningWithNumbers = Stream.of(&quot;a&quot;, &quot;1abc&quot;, &quot;abc1&quot;).filter(value -&gt; isDigit(value.charAt(0))).collect(toList())</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="读入输出和流"><a href="#读入输出和流" class="headerlink" title="读入输出和流"></a>读入输出和流</h2><ul>
+<li><p>流在 Java 中是指计算中流动的缓冲区。</p>
+<ul>
+<li>字节流<ul>
+<li><strong>抽象基类：InputStream</strong><br>  <code>abstract int read()</code>：读入一个字节并返回。<br>  <code>int read(byte[] b [,int off, int len])</code>：读入一个字节数组。</li>
+<li>FileInputStream：此类用于从本地文件系统中读取文件内容。</li>
+<li>FilterInputStream：为基础流提供一些额外的功能。下列两个类都是它的子类。<ul>
+<li>BufferedInputStream：在读取数据时先放到缓冲区中，可以提高运行的效率。</li>
+<li>DataInputStream：该类提供一些基于多字节读取方法，从而可以读取基本数据类型的数据。</li>
+</ul>
+</li>
+<li>PrintStream：打印输出流，它继承于FilterOutputStream，为其他输出流添加了功能，永远不会抛出异常（异常在内部 catch 了）。</li>
+</ul>
+</li>
+<li>字符流：针对 Unicode 文本，多字节。<ul>
+<li><strong>抽象基类：Reader</strong></li>
+<li>FileReader：用来读取字符文件的便捷类。</li>
+<li>BufferedReader：Reader类的子类，为Reader对象添加字符缓冲器，为数据输入分配内存存储空间，存取数据更为有效</li>
+</ul>
+</li>
+<li>stream 是面向 <code>byte</code> 的, reader/writer是面向 <code>char</code> 的。</li>
+</ul>
+</li>
+<li><p>读入</p>
+<ul>
+<li><code>next()</code>：（过滤制表符和空格）下一个单词。</li>
+<li><code>nextLine()</code>：下一行，读完回车后返回，回车会被过滤掉。</li>
+</ul>
+</li>
+<li>序列化<ul>
+<li>实现 <code>Serializable</code> 接口</li>
+<li><code>writeObject()</code> will be used to serialize that object（用来重载输出函数，不是必须的）</li>
+<li>用 <code>ObjectIutputStream, ObjectOutputStream</code> 读入输出。</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ul>
+<li>创建线程（复写 <code>run()</code> 方法）<ul>
+<li>继承 Thread 类。</li>
+<li>实现 Runnable 接口。</li>
+</ul>
+</li>
+<li>方法<ul>
+<li><strong>静态方法</strong> sleep (long <strong>ms</strong>)：让线程进入阻塞态。会抛出异常。</li>
+<li>静态方法 yield()：让正在执行的线程暂停（进入就绪态）。</li>
+<li>join()：$B$ 线程里执行 <code>A.join()</code> 后，$B$ 会等到 $A$ 线程做完再做。</li>
+<li>stop(): 停止 $A$ 线程。会引起同步问题，不推荐使用。</li>
+<li>synchronize：修饰同步函数或方法。</li>
+</ul>
+</li>
+</ul>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ul>
+<li>每个类只能继承自一个类。<br>  <img src="//jiangshibiao.github.io/2020/01/11/Java-Application-Technology/extends.png" alt></li>
+<li>初始化顺序<ul>
+<li>父类静态块—&gt;子类静态块—&gt;父类非静态块—&gt;父类构造方法—&gt;子类非静态块—&gt;子类构造方法</li>
+<li>前两个部分可以理解为类的装载时完成的，后面是在创建具体对象。<strong>如果类已经装载过</strong>，自然没有前两步。</li>
+</ul>
+</li>
+<li><p>虚类</p>
+<ul>
+<li>All abstract methods must be implemented before the first concrete subclasses in the inheritance tree.</li>
+</ul>
+</li>
+<li><p><code>interface</code> 接口</p>
+<ul>
+<li>函数前面会被自动修饰成 <code>public abstract</code>（不能有静态方法）。</li>
+<li>变量会被隐式加上 <code>public static final</code>。</li>
+<li>一个类可以实现多个接口。</li>
+<li>接口继承接口要用 <code>extends</code>。</li>
+<li>类继承接口不一定要实现所有它方法（若未实现，这个类依然是虚类）。</li>
+<li>在接口的方法前加上 <code>default</code>，可以定义该方法的默认行为（JAVA 8引进）。<ul>
+<li>如果同时继承和实现了类和方法，类的默认优于方法的默认。</li>
+<li>继承链上后面的优于前面的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Class 类</p>
+<ul>
+<li>getClass() 的返回值是一个类，这个类就叫做 <code>Class</code>。</li>
+<li>我们可以用 <code>类名.class</code> 或者 <code>对象名.getClass()</code> 来取得一个对象或者类的类名。</li>
+<li><code>Class.forName(str)</code> ：把类名叫做 <code>str</code> 的类装载进来（必须用 <code>catch</code> 包起来）。</li>
+<li><code>a instanceof A</code> 或 <code>c.isInstance(a)</code> 。其中 <code>A</code> 是一个类，<code>a</code> 是对应的对象，<code>c</code> 是指向 <code>A</code> 类的 <code>Class</code> 类。</li>
+<li><code>isInterface()</code> 是否是接类。</li>
+<li><code>getName()</code> 获得类的名字。</li>
+<li><code>getSuperclass()</code> 获取父类的 <code>Class</code>。</li>
+</ul>
+</li>
+<li><p>Method</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method meth = c.getMethod(str, <span class="keyword">null</span>)</span><br><span class="line">meth.invoke(c, <span class="keyword">null</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Object类</p>
+<ul>
+<li>拥有 toString(), clone(), getClass(), equals() 等函数。</li>
+<li>拥有 hashCode() 方法，默认情况下每个类都不一样（key 可以理解为是它存放在 JAVA 堆里的地址），即使它们本身内容相同。若要实现 set，必须重写。</li>
+</ul>
+</li>
+<li><p>重写和重载</p>
+<ul>
+<li>重写（Override）是子类对父类的允许访问的方法的实现过程进行重新编写, 返回值和形参都不能改变。即参数不变，核心重写。<strong>父类方法的返回值如果是类，子类方法可返回它的子类。</strong></li>
+<li>重载 (overloading) 是在一个类里面，方法名字相同，而参数不同。返回类型可以相同也可以不同。</li>
+</ul>
+</li>
+<li><p><code>import static 类名.方法名</code>：导入静态变量或方法。如 <code>import static java.lang.Math.abs;</code></p>
+</li>
+<li><p><code>Inner class</code> 内部类</p>
+<ul>
+<li>外界定义内部类：<code>new Main().new Inner()</code></li>
+<li>内部类可以调用 <code>Outer class</code> 的所有内容（包括 <code>private</code>）；外部类也可以通过新建内部类来调用内部类里的所有信息。</li>
+<li>当成员内部类拥有和外部类同名的成员变量或这方法时， 默认情况下访问的是内部类的成员；如要访问外部类的同名成员， 需要使用以下形式：<code>外部类.this.成员变量</code>  或 <code>外部类.this.成员方法</code>。</li>
+<li>局部的内部类：<ul>
+<li>局部内部类：定义在一个方法或作用域中的类，它的访问权限仅限于方法内或作用域内。</li>
+<li>匿名内部类：</li>
+<li><strong>Argument must be final to use inside them</strong>. (1.8以后不再要求) </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java-API-调用"><a href="#Java-API-调用" class="headerlink" title="Java API 调用"></a>Java API 调用</h2><h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h4><ul>
+<li>导入：<code>import java.util.List;</code></li>
+<li><p>重载</p>
+<ol>
+<li><p>在排序的类里重载：定义类后面加上 <code>public class App implements Comparable&lt;App&gt;</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(App app)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新开一个类重载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o2-o1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="容器的普遍接口-Collection"><a href="#容器的普遍接口-Collection" class="headerlink" title="容器的普遍接口 Collection"></a>容器的普遍接口 Collection</h4><p><img src="//jiangshibiao.github.io/2020/01/11/Java-Application-Technology/Collection.png" alt></p>
+<ul>
+<li>只能放对象，不能放 <code>primitive data</code></li>
+<li>子类的 Collection 不能看做是继承了父类的 Collection（不能赋值）<ul>
+<li><code>Collection &lt;?&gt;</code></li>
+<li><code>Collection &lt;? extends father&gt;</code></li>
+<li><code>static &lt;T&gt; void fromArraytoCollection(T[]a, Collection&lt;T&gt;c)</code></li>
+</ul>
+</li>
+<li>用 <code>for each</code> 进行遍历</li>
+<li>用 <code>Iterator</code> 访问<ul>
+<li>iterator()</li>
+<li>next()</li>
+<li>hasNext()</li>
+</ul>
+</li>
+<li>函数和方法<ul>
+<li>add()</li>
+<li>addAll(Collecton)</li>
+<li>containsKey()</li>
+<li>remove()</li>
+<li>isEmpty()</li>
+<li>size()</li>
+<li>clear()</li>
+<li>toArray()</li>
+</ul>
+</li>
+<li>Collections 的静态方法 <ul>
+<li>max(Collection) , min(Collection) </li>
+<li>reverse( ) </li>
+<li>copy(List dest, List src)</li>
+<li>fill(List list, Object o)</li>
+</ul>
+</li>
+</ul>
+<h4 id="Generic-泛型"><a href="#Generic-泛型" class="headerlink" title="Generic 泛型"></a>Generic 泛型</h4><ul>
+<li>A generic type declaration is compiled once and for all, and turned into a single class file.</li>
+<li>In general, if <code>Foo</code> is a subtype (subclass or subinterface) of <code>Bar</code>, and <code>G</code> is some generic type declaration, it is not the case that <code>G</code> is a subtype of <code>G</code>.</li>
+<li><p>泛型可以在编译期进行类型检查，并且仅在编译期有效。<strong>所有泛型参数类型在编译后都会被清除</strong>。</p>
+<ul>
+<li><p>A Generic Class is Shared by all its Invocations.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List &lt;String&gt; l1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;Integer&gt; l2 = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">System.out.println(l1.getClass() == l2.getClass()); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>不能对确切的泛型类型使用 instanceof 操作</strong>。</p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cs <span class="keyword">instanceof</span> Collection&lt;String&gt;) &#123; ...&#125; <span class="comment">// illegal</span></span><br><span class="line"><span class="comment">//Error: Cannot perform instanceof check against parameterized type Collection&lt;String&gt;. Use the form Collection&lt;?&gt; instead since further generic type information will be erased at runtime</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>泛型数组初始化时不能声明泛型类型。 如下代码编译时通不过：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;[] list = <span class="keyword">new</span> List&lt;String&gt;[];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在这里可以声明一个带有泛型参数的数组，但是不能初始化该数组，因为执行了类型擦除操作后，List<object>[] 与 List<string>[] 就是同一回事了，编译器拒绝如此声明。</string></object></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Wildcards vs. Generic</p>
+<ul>
+<li>Wildcards are designed to support flexible subtyping. </li>
+<li>Generic methods allow type parameters to be used to express dependencies among the types of one or more arguments to a method and/or its return type.</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">copy</span> <span class="params">(List&lt;T&gt; dest, List&lt;? extends T&gt; src)</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h4><ul>
+<li>An iterator is an object whose job is to move through a sequence of objects and select each object in that sequence without the client programmer knowing or caring about the underlying structure of that sequence.<ul>
+<li>iterator(): Return the first element</li>
+<li>next(), hasNext()</li>
+<li>remove(): Removes from the underlying collection the last element returned by this iterator.</li>
+</ul>
+</li>
+</ul>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><ul>
+<li>分类<ul>
+<li>ArrayList<ul>
+<li>It keeps its own private count of how many items it is currently storing. </li>
+<li>Its size method returns the number of objects currently stored in it. </li>
+</ul>
+</li>
+<li>LinkedList</li>
+<li>List $\rightarrow$ Vector $\rightarrow$ Stack</li>
+<li>Queue</li>
+</ul>
+</li>
+</ul>
+<h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><ul>
+<li>分类<ul>
+<li>HashSet</li>
+<li>TreeSet</li>
+</ul>
+</li>
+<li>重载：复写类中的 hashCode() 函数和 equals() 函数。</li>
+</ul>
+<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><ul>
+<li>导入：<code>import java.util.List;</code></li>
+<li>定义： <code>HashMap&lt;String, String&gt; map = new HashMap&lt;&gt;();</code></li>
+<li>迭代  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">    String key = entry.getKey();</span><br><span class="line">    String value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Swing-和容器"><a href="#Swing-和容器" class="headerlink" title="Swing 和容器"></a>Swing 和容器</h2><p><img src="//jiangshibiao.github.io/2020/01/11/Java-Application-Technology/swing.gif" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Swing 提供了许多比 AWT 更好的屏幕显示元素，使用纯 Java 实现，能够更好的兼容跨平台运行。</li>
+<li>创建图形用户界面程序的第一步是创建一个容器类以容纳其他组件，常见的窗口就是一种容器。容器本身也是一种组件，它的作用就是用来组织、管理和显示其他组件。</li>
+<li>三种顶层容器<ul>
+<li>JFrame：用于框架窗口的类，此窗口带有边框、标题、关闭和最小化窗口的图标。带 GUI 的应用程序至少使用一个框架窗口。</li>
+<li>JDialog：用于对话框的类。</li>
+<li>JApplet：用于使用 Swing 组件的 Java Applet 类。</li>
+</ul>
+</li>
+<li>中间容器<ul>
+<li>JPanel：表示一个普通面板，是最灵活、最常用的中间容器。</li>
+<li>JScrollPane：与 JPanel 类似，但它可在大的组件或可扩展组件周围提供滚动条。</li>
+<li>JTabbedPane：表示选项卡面板，可以包含多个组件，但一次只显示一个组件，用户可在组件之间方便地切换。</li>
+<li>JToolBar：表示工具栏，按行或列排列一组组件（通常是按钮）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="JFrame"><a href="#JFrame" class="headerlink" title="JFrame"></a>JFrame</h2><ul>
+<li>新建 JFrame 对象<ul>
+<li>JFrame()：构造一个初始时不可见的新窗体。</li>
+<li>JFrame(String title)：创建一个具有 title 指定标题的不可见新窗体。</li>
+</ul>
+</li>
+<li>要通过内容窗格来添加组件：frame.getContentPane().add(b);</li>
+<li>常见方法<br>  | 方法名称                                                     | 功能                                                         |<br>| —————————————————————————————— | —————————————————————————————— |<br>  | getContentPane()                                             | 返回此窗体的 contentPane 对象                                |<br>  | getDefaultCloseOperation()                                   | 返回用户在此窗体上单击“关闭”按钮时执行的操作                 |<br>  | setContentPane(Container contentPane)                        | 设置 contentPane 属性                                        |<br>  | setDefaultCloseOperation(int operation)                      | 设置用户在此窗体上单击“关闭”按钮时默认执行的操作             |<br>  | setDefaultLookAndFeelDecorated (boolean defaultLookAndFeelDecorated) | 设置 JFrame 窗口使用的 Windows 外观（如边框、关闭窗口的 小部件、标题等） |<br>  | setIconImage(Image image)                                    | 设置要作为此窗口图标显不的图像                               |<br>  | setJMenuBar( JMenuBar menubar)                               | 设置此窗体的菜单栏                                           |<br>  | setLayout(LayoutManager manager)                             | 设置 LayoutManager 属性                                      |</li>
+</ul>
+<h2 id="Graphics"><a href="#Graphics" class="headerlink" title="Graphics"></a>Graphics</h2><ul>
+<li>The Graphics class contains the methods for drawing strings and shapes.</li>
+<li>drawString(s, x, y). (0, 0) is the left-up corner.</li>
+<li>drawLine(x1, y1, x2, y2)</li>
+<li>Draw shapes<ul>
+<li>drawRect(x, y, w, h) </li>
+<li>fillRect(x, y, w, h)</li>
+<li>drawRoundRect(x, y, w, h, aw, ah)</li>
+<li>drawOval(x, y, w, h)</li>
+<li>drawArc(int x, int y, int w, int h, int startAngle, int arcAngle)</li>
+<li>drawPolygon(Polygon polygon)<ul>
+<li>polygon.addPoint(40, 20);</li>
+<li>Polygon polygon = new Polygon();</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JPanel"><a href="#JPanel" class="headerlink" title="JPanel"></a>JPanel</h2><ul>
+<li><p>JPanel 是一种中间层容器，它能容纳组件并将组件组合在一起，但它本身必须添加到其他容器中使用</p>
+<ul>
+<li>JPanel()：使用默认的布局管理器<strong>FlowLayout</strong>创建新面板。</li>
+<li>JPanel(LayoutManagerLayout layout)：创建指定布局管理器的 JPanel 对象。</li>
+</ul>
+</li>
+<li><p>常用方法<br>  | 方法名及返回值类型                | 说明                           |<br>| ————————————————- | ——————————————— |<br>  | Component add(Component comp)     | 将指定的组件追加到此容器的尾部 |<br>  | void remove(Component comp)       | 从容器中移除指定的组件         |<br>  | void setFont(Font f)              | 设置容器的字体                 |<br>  | void setLayout(LayoutManager mgr) | 设置容器的布局管理器           |<br>  | void setBackground(Color c)       | 设置组件的背景色               |</p>
+</li>
+</ul>
+<h2 id="Layout-Manager"><a href="#Layout-Manager" class="headerlink" title="Layout Manager"></a>Layout Manager</h2><ul>
+<li><p>Each container must have a layout manager. </p>
+</li>
+<li><p>边框布局管理器 BorderLayout</p>
+<ul>
+<li>Window、JFrame 和 JDialog 的默认布局管理器。</li>
+<li>将窗口分为 5 个区域：North、South、East、West 和 Center。</li>
+<li>如果未指定位置，则缺省的位置是CENTER</li>
+<li><strong>不一定需要所有组件，自动填充</strong></li>
+</ul>
+</li>
+<li><p>流式布局管理器 FlowLayout</p>
+<ul>
+<li>JPanel 和 JApplet 的默认布局管理器。</li>
+<li>将组件按照从上到下、从左到右的放置规律逐行进行定位。</li>
+<li>不限制它所管理组件的大小，而是<strong>允许它们有自己的最佳大小</strong>。</li>
+<li>初始化：<code>FlowLayout([int align[, int hgap,int vgap]])</code>： align 表示组件的对齐方式（FlowLayoutLEFT、FlowLayout.RIGHT 和 FlowLayout.CENTER）；hgap 表示组件之间的横向间隔；vgap 表示组件之间的纵向间隔，单位是像素。</li>
+</ul>
+</li>
+<li><p>卡片布局管理器 CardLayout</p>
+<ul>
+<li>多个成员共享同一个显示空间，并且一次只显示一个容器组件的内容。</li>
+<li>将容器分成许多层，每层的显示空间占据整个容器的大小，但是每层只允许放置一个组件。</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JPanel cards = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> CardLayout());</span><br><span class="line">      JPanel t = <span class="keyword">new</span> JPanel();</span><br><span class="line">      cards.add(t, <span class="string">"name"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>网格布局管理器 GridLayout</p>
+<ul>
+<li>将区域分割成行数（rows）和列数（columns）的网格状布局，组件按照由左至右、由上而下的次序排列填充到各个单元格中。</li>
+<li><code>GridLayout(int rows,int cols[,int hgap,int vgap])</code>：创建一个指定行（rows）和列（cols）的网格布局，并且可以指定组件之间横向（hgap）和纵向（vgap）的间隔，单位是像素。</li>
+<li>GridLayout 布局管理器总是忽略组件的最佳大小，而是根据提供的行和列进行平分。该布局管理的所有单元格的宽度和高度都是一样的。</li>
+</ul>
+</li>
+<li><p>网格包布局管理器 GridBagLayout</p>
+<ul>
+<li>是在网格基础上提供复杂的布局，是最灵活、 最复杂的布局管理器。</li>
+<li>不需要组件的尺寸一致，<strong>允许组件扩展到多行多列</strong>。</li>
+</ul>
+</li>
+<li><p>盒布局管理器 BoxLayout</p>
+<ul>
+<li><code>BoxLayout(Container c,int axis)</code>：参数 Container 是一个容器对象，即该布局管理器在哪个容器中使用；第二个参数为 int 型，用来决定容器上的组件水平（X_AXIS）或垂直（Y_AXIS）放置，可以使用 BoxLayout 类访问这两个属性。</li>
+<li>createHorizontalBox()：返回一个 Box 对象，它采用水平 BoxLayout</li>
+<li>createVerticalBox()</li>
+<li>使用盒式布局可以像使用流式布局一样简单地将组件安排在一个容器内。包含盒式布局的容器可以嵌套使用，最终达到类似于无序网格布局那样的效果。</li>
+</ul>
+</li>
+</ul>
+<h2 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h2><ul>
+<li>事件处理<ul>
+<li>Event（事件）：用户对组件的一次操作称为一个事件，以类的形式出现。</li>
+<li>Event Source（事件源）：事件发生的场所，通常就是各个组件，例如按钮 Button。</li>
+<li>Event Handler（事件处理者）：接收事件对象并对其进行处理的对象事件处理器，通常就是某个 Java 类中负责处理事件的成员方法。</li>
+</ul>
+</li>
+<li>动作事件处理器<ul>
+<li>事件名称：ActionEvent。</li>
+<li>事件监听接口: ActionListener。</li>
+<li>相关方法：addActionListener() 添加监听，removeActionListener() 删除监听。</li>
+<li>涉及事件源：JButton、JList、JTextField 等。</li>
+</ul>
+</li>
+<li>焦点事件监听器<ul>
+<li>事件名称：FocusEvent。</li>
+<li>事件监听接口： FocusListener。</li>
+<li>相关方法：addFocusListener() 添加监听，removeFocusListener() 删除监听。</li>
+<li>涉及事件源：Component 以及派生类。</li>
+<li>FocusEvent 接口定义了两个方法，分别为 focusGained() 方法和 focusLost() 方法，其中 focusGained() 方法是在组件获得焦点时执行，focusLost() 方法是在组件失去焦点时执行。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/01/11/Java-Application-Technology/" target="_blank" title="《Java应用技术》知识整理">https://jiangshibiao.github.io/2020/01/11/Java-Application-Technology/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/12/Theory-of-Computation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Theory-of-Computation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/28/Object-Oriented-Programming/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">《面向对象程序设计》知识整理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-概述"><span class="nav-number">1.</span> <span class="nav-text">Java 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本知识点"><span class="nav-number">2.</span> <span class="nav-text">基本知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更高效地编程"><span class="nav-number">3.</span> <span class="nav-text">更高效地编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">4.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式"><span class="nav-number">5.</span> <span class="nav-text">Lambda 表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流计算"><span class="nav-number">6.</span> <span class="nav-text">流计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读入输出和流"><span class="nav-number">7.</span> <span class="nav-text">读入输出和流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">8.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">9.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-API-调用"><span class="nav-number">10.</span> <span class="nav-text">Java API 调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array"><span class="nav-number">10.0.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器的普遍接口-Collection"><span class="nav-number">10.0.2.</span> <span class="nav-text">容器的普遍接口 Collection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generic-泛型"><span class="nav-number">10.0.3.</span> <span class="nav-text">Generic 泛型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator"><span class="nav-number">10.0.4.</span> <span class="nav-text">Iterator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List"><span class="nav-number">10.0.5.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">10.0.6.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">10.0.7.</span> <span class="nav-text">Map</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swing-和容器"><span class="nav-number">11.</span> <span class="nav-text">Swing 和容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JFrame"><span class="nav-number">12.</span> <span class="nav-text">JFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphics"><span class="nav-number">13.</span> <span class="nav-text">Graphics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JPanel"><span class="nav-number">14.</span> <span class="nav-text">JPanel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout-Manager"><span class="nav-number">15.</span> <span class="nav-text">Layout Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听"><span class="nav-number">16.</span> <span class="nav-text">监听</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
