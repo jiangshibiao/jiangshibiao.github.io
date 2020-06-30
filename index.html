@@ -284,6 +284,271 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-Principle-of-Programming-Language/summary"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+    <div class="article-meta">
+      
+	<a href="/2020/06/30/Principle-of-Programming-Language/summary/" class="article-date">
+	  <time datetime="2020-06-30T10:08:46.134Z" itemprop="datePublished">2020-06-30</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Paper-summary"><a href="#Paper-summary" class="headerlink" title="Paper summary"></a>Paper summary</h2><h4 id="Brief-introduction-The-Seletor-Model"><a href="#Brief-introduction-The-Seletor-Model" class="headerlink" title="Brief introduction: The Seletor Model"></a>Brief introduction: The Seletor Model</h4><ul>
+<li>Selectors are an <strong>extension</strong> of the Actor model<ul>
+<li>like actors, a selector is an execution unit that has the capability to process incoming messages</li>
+</ul>
+</li>
+<li>Motivation: Backwards of Actors<ul>
+<li>doesn’t permit shared state</li>
+<li>All communication is <strong>asynchronous</strong>, difficult for concurrent coordination involving multiple actors</li>
+</ul>
+</li>
+<li>Features<ul>
+<li><strong>multiple mailboxes</strong> to receive messages<ul>
+<li>help to cope with messages of different priority or purpose</li>
+<li>can be executed concurrently or asynchronously by adding to different mailboxes<br><img src="//jiangshibiao.github.io/2020/06/30/Principle-of-Programming-Language/summary/SelectModel.png" alt></li>
+</ul>
+</li>
+<li>Each mailbox has a <strong>boolean condition</strong> (which is called <strong>guard</strong>)<ul>
+<li>It’s used to enable or disable a specific mailbox while processing a message</li>
+<li>Guard does not affect the mailbox’s ability to receive messages</li>
+</ul>
+</li>
+<li>More operations about multiple mailboxes<ul>
+<li>The message sender can directly <strong>specify the mailbox</strong> to send a message to</li>
+<li>If the messages come without targent mailbox, the receiver can <strong>determine where</strong> to put them, or even trigger some guards.</li>
+<li>Besides modified by the selector, guards can <strong>be declared with explicit expressions</strong> (just like expressions in digital logic circuits)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Life Cycle<ul>
+<li><strong>new</strong><ul>
+<li>not guaranteed to instantiate immediately after creation</li>
+<li>An access handle is immediately created and passed to the caller and any entity holding this handle can start sending messages to the selector.</li>
+</ul>
+</li>
+<li><strong>started</strong><ul>
+<li>processes messages one at a time from any enabled mailbox</li>
+<li>can enable or disable guards</li>
+<li>process messages in mailboxes of higher priority first</li>
+<li>rotates between mailboxes with same priority</li>
+</ul>
+</li>
+<li><strong>terminated</strong><ul>
+<li>terminate when <code>exit()</code> is called</li>
+<li>not process any messages in its mailbox and ignores all incoming messages</li>
+<li>The distributed runtime <strong>does not terminate this selector</strong> immediately <strong>until</strong> all new operations requested by this selector are observed to have completed and no outgoing messages remain in the local buffer.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Some-Example-Patterns"><a href="#Some-Example-Patterns" class="headerlink" title="Some Example Patterns"></a>Some Example Patterns</h4><ul>
+<li><p>Synchronous Request-Reply Pattern</p>
+<ul>
+<li>Task<ul>
+<li>The replier receives messages from the requestor and respones to it after processing messages.</li>
+<li>The requestor <strong>doesn’t do anything</strong> until receiving responsing messages.</li>
+</ul>
+</li>
+<li>Designs for Actor Models<ul>
+<li>The sender stalls all other computations until it receives the corresponding reply</li>
+<li>The incoming messages before the response message must be stashed and unstashed to the mailbox after processing the reply message</li>
+<li>hard to implement efficiently</li>
+</ul>
+</li>
+<li>Solutions for Selectors<ul>
+<li>Define <strong>two separate mailboxes</strong>, one to receive <strong>regular messages</strong> including all the request messages and another mailbox to receive <strong>only synchronous response messages</strong>.</li>
+<li>When a receiver expected to process a synchronous response message, disables the REGULAR mailbox (ensures that the next message to be processed will be from the REPLY mailbox) until finish it.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Join Patterns in Streaming Applications</p>
+<ul>
+<li>Task<ul>
+<li>Messages from two or more data streams are combined into a single message.</li>
+<li>Receivers need to match the data from all sources and wait for all the data to arrive before processing the messages.<br><img src="//jiangshibiao.github.io/2020/06/30/Principle-of-Programming-Language/summary/JoinPattern.png" alt></li>
+</ul>
+</li>
+<li>Designs for Actor Models<ul>
+<li><strong>The order of processing of messages is not guaranteed</strong> on the sender actors</li>
+<li>Keep a track of all the in-flight messages from various sequence numbers.</li>
+<li>Only when messages from all the source actors for the oldest sequence number is received by the aggregator actor, it can reduce the items into a single value.</li>
+</ul>
+</li>
+<li>Solutions 1 for Selectors: <strong>Any order</strong><ul>
+<li>The number of mailboxes the receiver has is just the number of sources.</li>
+<li>All mailboxes are enabled at first. When receiving a message from source $i$, disable mailbox $i$.</li>
+<li>If matchsized size reaches the specific number, process these messages and  enable all messages.</li>
+</ul>
+</li>
+<li>Solutions 2 for Selectors: <strong>Robin order</strong><ul>
+<li>Only mailbox $0$ is enabled at first. When receiving a message from source $i$, disable mailbox $i$ and enable mailbox $i+1$.</li>
+<li>If $matchsize$ reaches the specific number, process these messages. Then enable mailbox $0$ and repeat.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Producer-Consumer with Bounded Buffer</p>
+<ul>
+<li>Task<ul>
+<li>the producer pushes work into the buffer as work is produced and the consumer pulls work from the buffer when they are ready to execute.</li>
+</ul>
+</li>
+<li>Designs for Actor Models<ul>
+<li>Build three actors played each of role.</li>
+<li><strong>Lots of details should be considered</strong>.</li>
+<li>a) When the buffer is empty, and the consumer requests work, then the consumer is placed in a queue until work is available.</li>
+<li>b) When producers are ready to produce data, and the buffer is full, the producer is placed in a queue until the buffer is empty.</li>
+<li>Additional complexity is observed as the buffer actor also needs to maintain queues for the available producers and consumers.</li>
+</ul>
+</li>
+<li>Solutions for Selectors<ul>
+<li>The buffer handles two mailboxes, one for producer and other for consumer.</li>
+<li>Simply use the following <strong>explicit expressions</strong>:<br><code>guard(MBX_PRODUCER , dataBuffer .size () &lt; thresholdSize )</code><br><code>guard(MBX_CONSUMER ,!dataBuffer .isEmpty ())</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Design-Workflow"><a href="#Design-Workflow" class="headerlink" title="Design Workflow"></a>Design Workflow</h2><ul>
+<li><p>System Structure<br>  <img src="//jiangshibiao.github.io/2020/06/30/Principle-of-Programming-Language/summary/DSSystem.png" alt></p>
+<ul>
+<li>The structure in one unit (which is called <strong>place</strong> or <strong>node</strong>)<ul>
+<li>One <strong>System Actor</strong>: maintains the internal state, as well as communicating information with other places.</li>
+<li>One <strong>Proxy Actor</strong>: coordinating the messages between local and remote selectors</li>
+<li>A <strong>local registy</strong>: maintained by proxy actor, stores the address of selectors located in the same place.</li>
+<li>A series of Selectors</li>
+</ul>
+</li>
+<li>The distributed selector system<ul>
+<li>DS contains a collection of computering nodes (places).</li>
+<li>The user can choose to denote a specific place in the configuration file as the <strong>Master Node</strong>, which controls system bootstrap and the global termination.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Initialization and Bootstrap</p>
+<ul>
+<li>Each program is considered as a single DS. Many simple DS cound combine a large system</li>
+<li>Each node is set up with configuration file and SSH access for the initial master node.</li>
+<li><strong>Configuration files can be modified -&gt; dynamic addition of places</strong></li>
+<li>The System Actor on Master Node logs into each remote location through SSH, and starts up an idle HJ selector system there</li>
+<li>The system actors on each place will identify the Master Node from configuration.</li>
+<li>When initialized successfully, these system actors send state to the master. The Master Node collects ready messages for all known remote places and informs each place’s proxy actor to start program execution.</li>
+<li>Optionally, users can choose to manually start up each place when each place if it is correctly setup. <strong>This choice does not affect the automated global termination of the system</strong>.<br><img src="//jiangshibiao.github.io/2020/06/30/Principle-of-Programming-Language/summary/start.png" alt></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Communication among Selectors</p>
+<ul>
+<li>Any Selector is uniquely identified by 32-bit integer<ul>
+<li>an 8-bit value encoding the place p on which the selector is created</li>
+<li>an 8-bit value encoding the place q on which the selector instance resides</li>
+<li>a 16-bit integer value representing a unique identifier for the selector on p</li>
+</ul>
+</li>
+<li>Use Kryo serialization framework<ul>
+<li>A compromise way, which is faster than JAVA serializer and has less strictions than Google’s Protocol Buffers.</li>
+<li>In theory, a selector can send and receive any message that implements <code>java.serializable</code></li>
+</ul>
+</li>
+<li>When message is passing…<ul>
+<li>If the destination place matches the local place then the Proxy Actor looks up its local registry to find the selector and forwards the message.</li>
+<li>If local registry doesn’t have an entry yet, then the Proxy Actor buffers any message to the non-existing selector. (? not explict enough ?)</li>
+<li>If the destination place is remote then the Proxy Actor forwards the message to that specified place. The Proxy Actor at the destination place will further use the local registry to forward the message to the specific selector. </li>
+</ul>
+</li>
+<li>The implementation of building new selectors<ul>
+<li>If a new selector is asked to be created <strong>at the local place</strong>, use <strong>java reflections</strong> to create without Proxy Actor.</li>
+<li>If not, the Proxy Actor sends over this message, and same thing will be done in the destination place. <strong>The topology of the selector system is tightly coupled.</strong><br><img src="//jiangshibiao.github.io/2020/06/30/Principle-of-Programming-Language/summary/ProxyActor.png" alt></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Global Termination</p>
+<ul>
+<li>stage 1:<ul>
+<li>A System Actor detects its place to be <strong>idle</strong> if its local user-defined selectors have all been terminated by the user, and no pending selector creation.</li>
+<li>The System Actor sends this message to Master Node, but <strong>idle state will be reset</strong> by any new incoming request.</li>
+<li>Master Node attempts to initiate the termination process(moves to Stage 2) if it collects idle state from all places (although some places may be re-active).</li>
+</ul>
+</li>
+<li>stage 2:<ul>
+<li>The System Actor at the Master Node passes a signal to prepare termination. The path of signal passing forms a <strong>ring</strong> with a certain order. Every place confirms its idle state by signal down the ring, or short-circuit the ring and declare its active state, then the termination process halts.</li>
+<li>If signal competes the round trip, move to stage 3.</li>
+</ul>
+</li>
+<li>stage 3:<ul>
+<li>the Master Node sends a real termination signal down the place-ring.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="MICRO-BENCHMARKS"><a href="#MICRO-BENCHMARKS" class="headerlink" title="MICRO-BENCHMARKS"></a>MICRO-BENCHMARKS</h4><ul>
+<li><p>Introduction</p>
+<ul>
+<li>The selected benchmarks uses the master-worker parallelism to achieve both <strong>intra-node and inter-node parallelism</strong>.</li>
+<li>All implementations feature multiple mailboxes to differentiate control messages, and actual computational tasks, with control messages of higher priority.</li>
+</ul>
+</li>
+<li><p>Trapezoidal Approximation</p>
+<ul>
+<li>approximates $f(x)=\frac{1}{x+1}\sqrt{1+e^{\sqrt{2x}}} \times \sin(x^3-1)$ over intervals $[a,b]$.</li>
+<li>calculated in a master-worker style parallelism</li>
+<li>Each worker is a selector that computes the integral approximation in parallel and send their results back to the master selector. The master selector then collects the results from all the worker selectors, adds them up, and displays the final result.</li>
+<li>shows steady scalability over 2 to 12 nodes with increasing workload under minimal communication among selectors</li>
+</ul>
+</li>
+<li><p>Precise Pi Computation</p>
+<ul>
+<li>a master-worker style parallelism</li>
+<li>the master selector incrementally finds work and allocates fragments of the work to the worker selectors, while it collects partial results until reaching<br>the desired precision.</li>
+</ul>
+</li>
+<li><p>NQueens First K Solutions</p>
+<ul>
+<li>Each time a worker successfully place a non-attacking queen on the partial solution, the worker reports the partial board back to master as a new work item</li>
+<li>Each time a worker reports a board configuration to the Master Node selector, the master either <strong>assigns the partial solution to a worker in a round-robin fashion</strong> or records that a valid solution is found. (like BFS?)</li>
+<li>Exploits the priority feature in our DS implementation, places a higher priority on work items that contain complete partial solutions (i.e. <strong>with more safely placed queens</strong>).</li>
+<li>comparison<ul>
+<li>With a naive actor-based implementation, a solution limit to allow termination has no effect on the program, and the program has to exhaustively compute the solution space.</li>
+<li>Without using priority, depth-first search with a divide-and-conquer style is hard to implement, since messages are processed in their received order.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-Vue-Js-Css-Html"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -1257,54 +1522,6 @@
 <li>这是 Professor Bo Li 推荐我的一篇 paper，有关 Adversarial Attacks 的内容。</li>
 <li><a href="https://arxiv.org/abs/2003.00120" target="_blank" rel="noopener">Arxiv 传送门</a></li>
 </ul>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Computer-Vision"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/01/13/Computer-Vision/">《计算机视觉》知识整理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/01/13/Computer-Vision/" class="article-date">
-	  <time datetime="2020-01-13T06:38:48.000Z" itemprop="datePublished">2020-01-13</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。</p>
-<p>美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 <a href="https://blog.csdn.net/Dango_miracle/article/details/79049104" target="_blank" rel="noopener">这个网站</a> 已经做了我想做的事了，遂我不再重复造轮子。</p>
       
     </div>
     <footer class="article-footer">

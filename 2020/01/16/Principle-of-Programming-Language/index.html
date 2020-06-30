@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>《程序设计方法学》知识整理 | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《程序设计方法学》这门课。这是一门很有趣的课，介绍了程序设计语言的历史和发展脉络。可惜这是一节早课，我经常在意识模糊中听课（甚至是没有成功起床）。 这门课有一半的时间是同学展示。我倒是更希望翁老师能多留出时间自己讲。 最终的期末考试内容为：BNF，数据类型和运算符，程序控制结构，流计算，递归，并行计算，函数的调用和返回，Actor，">
+<meta name="keywords" content="Knowledge Learning,Course Review,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《程序设计方法学》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《程序设计方法学》这门课。这是一门很有趣的课，介绍了程序设计语言的历史和发展脉络。可惜这是一节早课，我经常在意识模糊中听课（甚至是没有成功起床）。 这门课有一半的时间是同学展示。我倒是更希望翁老师能多留出时间自己讲。 最终的期末考试内容为：BNF，数据类型和运算符，程序控制结构，流计算，递归，并行计算，函数的调用和返回，Actor，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/memory.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/computation_graph.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/stream.jpg">
+<meta property="og:updated_time" content="2020-06-30T10:13:45.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《程序设计方法学》知识整理">
+<meta name="twitter:description" content="$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《程序设计方法学》这门课。这是一门很有趣的课，介绍了程序设计语言的历史和发展脉络。可惜这是一节早课，我经常在意识模糊中听课（甚至是没有成功起床）。 这门课有一半的时间是同学展示。我倒是更希望翁老师能多留出时间自己讲。 最终的期末考试内容为：BNF，数据类型和运算符，程序控制结构，流计算，递归，并行计算，函数的调用和返回，Actor，">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/memory.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<!--<script type="text/javascript" src="\js\snow.js"></script>-->
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Principle-of-Programming-Language" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      《程序设计方法学》知识整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/01/16/Principle-of-Programming-Language/" class="article-date">
+	  <time datetime="2020-01-16T06:38:48.000Z" itemprop="datePublished">2020-01-16</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$2019.9 \sim 2020.1$ 上了永平奖获得者翁恺老师《程序设计方法学》这门课。这是一门很有趣的课，介绍了程序设计语言的历史和发展脉络。可惜这是一节早课，我经常在意识模糊中听课（甚至是没有成功起床）。</p>
+<p>这门课有一半的时间是同学展示。我倒是更希望翁老师能多留出时间自己讲。</p>
+<p>最终的期末考试内容为：BNF，数据类型和运算符，程序控制结构，流计算，递归，并行计算，函数的调用和返回，Actor，异步执行。我对他们做了一个简单的整理。</p>
+<a id="more"></a>
+<h4 id="三种编程语言"><a href="#三种编程语言" class="headerlink" title="三种编程语言"></a>三种编程语言</h4><ul>
+<li>imperative language 命令式程序设计语言<ul>
+<li>Variables, assignment statements, and iteration</li>
+<li>Include languages that support object-oriented programming, scripting languages, visual languages</li>
+<li>Ex.: C, Java, Perl, JavaScript, Visual BASIC .NET</li>
+</ul>
+</li>
+<li>Functional Language<ul>
+<li>Computing by applying functions to given parameters</li>
+<li>Ex.: LISP, Scheme, ML</li>
+</ul>
+</li>
+<li>Logic Language (Highly inefficient)<ul>
+<li>Rule-based (rules are specified in no particular order) </li>
+<li>Ex.: Prolog</li>
+</ul>
+</li>
+</ul>
+<h4 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h4><ul>
+<li>FORTRAN 1950s-1960s - 第一门高级语言</li>
+<li>Pascal：第一门结构化语言</li>
+<li>ALGOL 1960s: <ul>
+<li>Structured programming, free format lexical</li>
+<li>Top-down design and step-wise refinement</li>
+</ul>
+</li>
+<li>LISP: 1958 - beginning of <strong>functional programming</strong><ul>
+<li>Only two data types: atoms and lists</li>
+<li>Computations by applying functions to parameters</li>
+<li>No concept of variables (storage) or assignment</li>
+<li>Control via recursion and conditional expressions</li>
+</ul>
+</li>
+<li>BASIC: 1963 - beginning of <strong>Timesharing language</strong><ul>
+<li>BASIC: Beginner’s All-purpose Symbolic Instruction Code</li>
+<li>BASIC () “ Kemeny &amp; Kurtz at Dartmouth, 1963</li>
+<li>keyword: interactive</li>
+</ul>
+</li>
+<li>SIMULA: 1961- beginning of <strong>Data Abstraction</strong></li>
+<li>SmallTalk：1972 - beginning of <strong>Object-Oriented Programming</strong></li>
+<li>Language evaluation criteria<ul>
+<li>Readability</li>
+<li>Writability</li>
+<li>Reliability</li>
+<li>Cost</li>
+</ul>
+</li>
+<li>The major methods of implementing programming languages are: compilation, pure interpretation, and hybrid implementation.</li>
+</ul>
+<h4 id="BNF（Backus-Naur-Form）"><a href="#BNF（Backus-Naur-Form）" class="headerlink" title="BNF（Backus-Naur Form）"></a>BNF（Backus-Naur Form）</h4><ul>
+<li>Syntax: 语法    Semantics: 语义</li>
+<li>BNF is a metalanguage—a language used to describe another language</li>
+<li>BNF 概念<ul>
+<li>lexeme 语素</li>
+<li>token 标记</li>
+</ul>
+</li>
+<li>BNF 结构<ul>
+<li>Any word or words enclosed in angle brackets, &lt; &gt;, is a nonterminal — it stands for some string (it’s like a string variable)</li>
+<li>The symbol ::= or -&gt; means “is defined as”</li>
+<li>The symbol | means “or”</li>
+<li>Anything else is a terminal — it stands for itself</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>BNF isn’t great for setting limits on lengths</li>
+<li>BNF cannot do numeric comparisons</li>
+<li>BNF can only describe local syntax; it cannot refer to another part of the program</li>
+</ul>
+</li>
+<li>EBNF：引入正则表达式来简化BNF</li>
+</ul>
+<h4 id="Binding-绑定"><a href="#Binding-绑定" class="headerlink" title="Binding 绑定"></a>Binding 绑定</h4><ul>
+<li><strong>Imperative languages</strong> are abstractions of <strong>von Neumann architecture</strong>.<ul>
+<li>Variables $\leftrightarrow$ memory cells</li>
+<li>Expressions $\leftrightarrow$ CPU executions<br><img src="//jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/memory.png" alt></li>
+</ul>
+</li>
+<li>Variable Attributes<ul>
+<li>Name</li>
+<li>Value</li>
+<li>Type</li>
+<li>lifetime</li>
+<li>scope</li>
+</ul>
+</li>
+<li>Binding: an association <strong>between a variable and its storage or its type</strong>.<ul>
+<li>A binding is <strong>static</strong> if it first occurs before run time and remains unchanged throughout program execution.</li>
+<li>A binding is <strong>dynamic</strong> if it first occurs during execution or can change during execution.</li>
+</ul>
+</li>
+<li>Variables:<ul>
+<li>Static Variables</li>
+<li>Stack-dynamic Variables</li>
+<li>Explicit Heap-dynamic Variab: All objects in Java.</li>
+<li><strong>Implicit Heap-dynamic Variables</strong>: Allocation and deallocation caused by assignment statements, regardless of what the variable was previously used for.</li>
+</ul>
+</li>
+<li>Scope<ul>
+<li><strong>Static Scope</strong>: Scope of a variable can be statically determined. <ul>
+<li>Variables can be hidden from a unit by having a “closer” variable with the same name.</li>
+</ul>
+</li>
+<li><strong>Dynamic Scope</strong>：<ul>
+<li>Based on calling sequences of program units, not their textual layout.（在命名空间里找变量时并不是沿着 static chain跳的，而是一直往caller那儿跳）</li>
+<li>References to variables are connected to declarations by <strong>searching back through the chain of subprogram</strong> calls that forced execution to this point</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Type-数据类型"><a href="#Type-数据类型" class="headerlink" title="Type 数据类型"></a>Type 数据类型</h4><ul>
+<li>Uses of Type<ul>
+<li>Program organization and documentation</li>
+<li>Identify and prevent errors</li>
+<li>Support optimization</li>
+</ul>
+</li>
+<li><strong>primitive data types</strong>: Those not defined in terms of other data types</li>
+<li>String<ul>
+<li>注意 C/C++ 里 String 是有上限的（maxsize = unsigned(-1)）</li>
+<li>Static length: compile-time descriptor</li>
+<li>Limited dynamic length: may need a run-time descriptor for length (but not in C and C++)</li>
+<li>Dynamic length: need run-time descriptor; allocation/deallocation is the biggest implementation problem.</li>
+</ul>
+</li>
+<li>Two common user-defined ordinal types<ul>
+<li><strong>Enumeration</strong>: All possible values, which are named constants, are provided or enumerated in the definition, e.g., C# example enum days {mon, tue, wed, thu, fri, sat, sun}; </li>
+<li><strong>Subrange</strong>: An ordered contiguous subsequence of an ordinal type, e.g., 12..18 is a subrange of integer type.</li>
+</ul>
+</li>
+<li>Array<ul>
+<li><strong>Static</strong>: subscript ranges are statically bound and storage allocation is static (before run-time)</li>
+<li><strong>Fixed stack-dynamic</strong>: subscript ranges are statically bound, but the allocation is done at declaration time during execution<ul>
+<li>C and C++ arrays without static modifier</li>
+</ul>
+</li>
+<li><strong>Stack-dynamic</strong>: subscript ranges and storage allocation are dynamically bound at elaboration time and remain fixed during variable lifetime.</li>
+<li><strong>Fixed heap-dynamic</strong>: storage binding is dynamic but fixed after allocation, allocated from heap <ul>
+<li>C and C++ through malloc</li>
+</ul>
+</li>
+<li><strong>Heap-dynamic</strong>: binding of subscript ranges and storage is dynamic and can change<ul>
+<li>C#: ArrayList</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Union<ul>
+<li>In Fortran, C, and C++, no language-supported type checking for union, called <strong>free union</strong><ul>
+<li>unsafe: Do not allow type checking.</li>
+</ul>
+</li>
+<li><strong>Discriminated union</strong>: supported by Ada.</li>
+</ul>
+</li>
+<li>Pointer and Reference <ul>
+<li><strong>pointer</strong>: has a range of values that consists of memory addresses and a special value, nil.<ul>
+<li>Operations: assignment and dereferencing</li>
+<li>Dangling pointers (dangerous)<ul>
+<li>Tombstone</li>
+<li>Locks-and-keys</li>
+</ul>
+</li>
+<li>Lost heap-dynamic variable $\rightarrow$ <strong>memory leakage</strong></li>
+</ul>
+</li>
+<li><strong>reference</strong> : refers to an object or a value in memory, while a pointer refers to an address<ul>
+<li>not sensible to do arithmetic on references</li>
+</ul>
+</li>
+<li>Pointers or references are <strong>necessary for dynamic data structures</strong>.</li>
+</ul>
+</li>
+<li>Heap Management<ul>
+<li><strong>Reference counters (eager)</strong></li>
+<li><strong>Garbage collection (lazy)</strong><ul>
+<li>Disadvantages: when you need it most, it works worst.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Type Checking<ul>
+<li>A programming language is <strong>strongly typed</strong> if type errors are always detected.<ul>
+<li>FORTRAN 77 is not: EQUIVALENCE </li>
+<li><strong>C and C++ are not</strong>: unions are not type checked</li>
+</ul>
+</li>
+<li>Type Equivalence<ul>
+<li>Name Type Equivalence （类型的）名字要严格一样</li>
+<li>Structure Type Equivalence 只需要有同样的结构</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="递归和尾递归"><a href="#递归和尾递归" class="headerlink" title="递归和尾递归"></a>递归和尾递归</h4><ul>
+<li><a href="https://joeylian.github.io/ppl/2020/01/14/递归与尾递归/" target="_blank" rel="noopener">LJY的整理</a></li>
+</ul>
+<h4 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h4><ul>
+<li><p>并发（concurrency）：⼀个程序的多个任务同时执行</p>
+</li>
+<li><p>并行（parallellism）：⼀个任务分解为多个字任务同时执行，协作完成⼀ 个问题</p>
+</li>
+<li><p>分布式：并行的计算在不同的计算机上进行</p>
+<p><img src="//jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/computation_graph.png" alt></p>
+</li>
+</ul>
+<h4 id="lambda表达式和流"><a href="#lambda表达式和流" class="headerlink" title="lambda表达式和流"></a>lambda表达式和流</h4><ul>
+<li><a href="https://joeylian.github.io/ppl/2020/01/14/Java-Lambda%E4%B8%8EStream%E7%AE%80%E8%AE%B0/" target="_blank" rel="noopener">LJY的整理</a></li>
+<li><strong>四类基本的函数式接口</strong>：<ul>
+<li><code>Function：R apply(T t)；</code> 输入类型T返回类型R。</li>
+<li><code>Consumer：void accept(T t)；</code> 输入类型T，消费掉，无返回。</li>
+<li><code>Predicate：boolean test(T t)；</code> 输入类型T，并进行条件判断，返回true 或 false。</li>
+<li><code>Supplier：T get()；</code> 无输入，产生一个T类型的返回值。</li>
+</ul>
+</li>
+<li><img src="//jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/stream.jpg" alt></li>
+</ul>
+<h4 id="Expression"><a href="#Expression" class="headerlink" title="Expression"></a>Expression</h4><ul>
+<li>Side Effects<ul>
+<li>Functions in pure mathematics do not have side effects</li>
+<li>Solution 1: define the language by disallowing functional side effects<ul>
+<li>No two-way parameters in functions</li>
+<li>No non-local references in functions</li>
+<li>Disadvantage: inflexibility of one-way parameters and lack of non-local references</li>
+</ul>
+</li>
+<li>Solution 2: write the language definition to demand that operand evaluation order be fixed<ul>
+<li>Java requires that operands appear to be evaluated in left-to-right order</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Overloaded Operators</li>
+<li>Short Circuit Evaluation</li>
+<li>Type Conversions<ul>
+<li>narrowing conversion</li>
+<li>widening conversion</li>
+</ul>
+</li>
+</ul>
+<h4 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h4><p>To be continued…</p>
+<h4 id="Subprograms"><a href="#Subprograms" class="headerlink" title="Subprograms"></a>Subprograms</h4><ul>
+<li>activation record (AR) <ul>
+<li>Format, or layout, of non-code part of an executing subprogram is called <strong>activation record (AR) </strong>.</li>
+<li>For a “simple” subprogram, AR has fixed size, and can be statically allocated (not in stack) .</li>
+<li>Allocate local variables on the run-time stack<ul>
+<li>Main advantage: <strong>support recursion</strong></li>
+<li>Use <strong>Base pointer (BP)</strong>: Always points at the base of the activation record instance of the currently executing program unit.</li>
+<li>When a subprogram is called, the current BP is saved in the new AR instance and the BP is set to point at the base of the new AR instance.</li>
+<li>Upon return from the subprogram, BP is restored from the AR instance of the callee.</li>
+</ul>
+</li>
+<li>Local offset<ul>
+<li>Local variables can be accessed by their offset from the beginning of the activation record, whose address is in the BP. This offset is called the local_offset</li>
+<li>The local offset of a local variable can be determined by the compiler at compile time.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>static link<ul>
+<li>Static link in an AR instance points to bottom of AR instance of the static parent </li>
+</ul>
+</li>
+<li>dynamic link<ul>
+<li>在子程序返回时恢复而保存的 base pointer 称为动态链指针</li>
+</ul>
+</li>
+<li>static chain<ul>
+<li>（relative chain depth, local_offset）to find a variable.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/01/16/Principle-of-Programming-Language/" target="_blank" title="《程序设计方法学》知识整理">https://jiangshibiao.github.io/2020/01/16/Principle-of-Programming-Language/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Robustness-for-Sensing-Reasoning-Pipelines
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/13/Computer-Vision/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">《计算机视觉》知识整理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#三种编程语言"><span class="nav-number">1.</span> <span class="nav-text">三种编程语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BNF（Backus-Naur-Form）"><span class="nav-number">3.</span> <span class="nav-text">BNF（Backus-Naur Form）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Binding-绑定"><span class="nav-number">4.</span> <span class="nav-text">Binding 绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-数据类型"><span class="nav-number">5.</span> <span class="nav-text">Type 数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归和尾递归"><span class="nav-number">6.</span> <span class="nav-text">递归和尾递归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发"><span class="nav-number">7.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lambda表达式和流"><span class="nav-number">8.</span> <span class="nav-text">lambda表达式和流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression"><span class="nav-number">9.</span> <span class="nav-text">Expression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Control"><span class="nav-number">10.</span> <span class="nav-text">Control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subprograms"><span class="nav-number">11.</span> <span class="nav-text">Subprograms</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
