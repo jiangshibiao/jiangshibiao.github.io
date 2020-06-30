@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>theory-of-computation | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="During $2019.9 \sim 2020.1$，I was involved in a class guided by Yingchun Yang. Mrs. Yang do not teach well, so I had to learn by myself and tried to summary something.">
+<meta name="keywords" content="Knowledge Learning,Course Review,Computing Theory">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Theory-of-Computation">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="During $2019.9 \sim 2020.1$，I was involved in a class guided by Yingchun Yang. Mrs. Yang do not teach well, so I had to learn by myself and tried to summary something.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/configuration.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/tm_example.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/2-tapes.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/anbncn.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/succ.png">
+<meta property="og:updated_time" content="2020-06-30T09:28:56.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Theory-of-Computation">
+<meta name="twitter:description" content="During $2019.9 \sim 2020.1$，I was involved in a class guided by Yingchun Yang. Mrs. Yang do not teach well, so I had to learn by myself and tried to summary something.">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/configuration.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<!--<script type="text/javascript" src="\js\snow.js"></script>-->
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Theory-of-Computation" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Theory-of-Computation
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/28/Theory-of-Computation/" class="article-date">
+	  <time datetime="2019-06-28T06:38:51.000Z" itemprop="datePublished">2019-06-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>During $2019.9 \sim 2020.1$，I was involved in a class guided by Yingchun Yang.</p>
+<p>Mrs. Yang do not teach well, so I had to learn by myself and tried to summary something.</p>
+<a id="more"></a>
+<h2 id="Set-and-Language"><a href="#Set-and-Language" class="headerlink" title="Set and Language"></a>Set and Language</h2><ul>
+<li>The Diagonalization Principle<ul>
+<li>$R$ is the binary relation on set $A$.</li>
+<li>$D$ is the diagonal set for $R$: $\{ a:a \in A \wedge (a,a) \notin R \}$.</li>
+<li>Let $R_a = \{ b: b \in A \wedge (a,b) \in R \}$</li>
+<li>Then <strong>D is distinct from each $R_a$</strong>.</li>
+</ul>
+</li>
+<li>if $\sigma$ is a finite alphabet, then $\sigma^\ast$ is countably infinite set (Lexicographically).</li>
+<li>Kleene Star: <script type="math/tex">\begin{aligned} L^{\ast} &=\{w \in \Sigma^{*}: w=w_{1} \cdots w_{k}, k \geq 0, w_{1}, \cdots, w_{k} \in L\} \\ &=L^{0} \cup L^{1} \cup L^{2} \cup \cdots \\ L^{+}&=L^{1} \cup L^{2} \cup L^{3} \cup \cdots \end{aligned}</script></li>
+</ul>
+<h2 id="Regular-Language-leftrightarrow-Finite-Automata"><a href="#Regular-Language-leftrightarrow-Finite-Automata" class="headerlink" title="Regular Language $\leftrightarrow$ Finite Automata"></a>Regular Language $\leftrightarrow$ Finite Automata</h2><ul>
+<li>Definition: The <strong>Regular Expressions</strong> are all strings over the alphabet $\sum \cup\{(,), \cup, \star\}$ that can be obtained as follows:<ol>
+<li>$\Theta$ and $\{x\}(\forall x \in \Sigma)$ is a regular expression.</li>
+<li>If $\alpha$ and $\beta$ are regular expressions, then so are $(\alpha \beta)$ $(\alpha \cup \beta), \alpha^{\star}$.</li>
+<li>Nothing is regular expression unless it follows from 1 through 2.</li>
+</ol>
+</li>
+<li>The function $\mathscr{L}$ is defined as follows:<ol>
+<li>$\mathscr{L}(\Theta)=\emptyset,$ and $\mathscr{L}(a)=\{a\}$ for each $a \in \Sigma$</li>
+<li>If $\alpha$ and $\beta$ are regular expressions, then <ul>
+<li>${\mathscr{L}(\alpha \beta)=\mathscr{L}(\alpha) \mathscr{L}(\beta)}$</li>
+<li>${\mathscr{L}(\alpha \cup \beta)=\mathscr{L}(\alpha) \cup \mathscr{L}(\beta)}$ </li>
+<li>${\mathscr{L}(\alpha^{\star})=\mathscr{L}(\alpha)^{*}}$<blockquote>
+<p>Example: $\mathscr{L}(((a \cup b)^{\star} a))=(\{a, b\})^{\ast}\{a\}$</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Definition: The class of regular languages over an alphabet $\Sigma$ is defined to consist of all languages $L$ such that $L=L(a)$ for some regular expression a over $\Sigma .$ i.e. the class of regular languages over an alphabet $\Sigma$ is precisely the closure of the set of languages: $\{\{\sigma\}: \sigma \in \Sigma\} \cup\{\emptyset\}$.</li>
+<li>Definition: A <strong>Deterministic Finite Automata</strong> is a quintuple $(K, \Sigma, \delta, s, F),$ where<ul>
+<li>$K$ is a finite set of states</li>
+<li>$\Sigma$ is an alphabet</li>
+<li>$s \in K$ is the initial state</li>
+<li>$F \subseteq K$ is the set of final states</li>
+<li>$\delta:$ transition <strong>function</strong> $K \times \sum \rightarrow K$</li>
+</ul>
+</li>
+<li>Definition: A <strong>Nondeterministic Finite Automata</strong> is a quintuple $(K, \Sigma, \Delta, s, F),$ where<ul>
+<li>$K$ is a finite set of states</li>
+<li>$\Sigma$ is an alphabet</li>
+<li>$s \in K$ is the initial state $-F \subseteq K$ is the set of final states.</li>
+<li>$\Delta,$ transition relation, is a subset of $K \times(\sum \cup\{e\}) \times K$</li>
+</ul>
+</li>
+<li>Theorem: <strong>For each NFA, there is an equivalent DFA</strong>.<ul>
+<li>Key idea: Every subset of $K$ becomes a single state in the new machine.</li>
+<li>Construction: For any NFA $M=(K, \Sigma, \Delta, s, F)$, construct an equivalent DFA $M^{\prime}=(K^{\prime}, \Sigma, \delta, s^{\prime}, F^{\prime})$:<ul>
+<li>$K^{\prime}=2^{K}$</li>
+<li>$s^{\prime}=E(s)$</li>
+<li>$F^{\prime}=\{Q | Q \subseteq K, Q \cap F \neq \emptyset\}$</li>
+<li>For each $Q \subseteq K$ and $\forall a \in \Sigma$, let $\delta(Q, a)=\cup\{E(p) | p \in K$ and $(q, a, p) \in \Delta$ for some $q \in Q\}$</li>
+</ul>
+</li>
+<li>Claim: For any string $w \in \sum^{\ast}$ and any states $p, q \in K$, $(q, w) \vdash_{M}^{\ast}(p, e) \Leftrightarrow(E(q), w) \vdash_{M^{\prime}}^{\ast}(P, e)$ (for some set $P$ containing $p$).<blockquote>
+<p>Use Mathematical Induction to prove this claim.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><strong>Closure Properties</strong> of Regular Languages: The class of languages accepted by FA is <strong>closed</strong> under:<ul>
+<li>Union<ul>
+<li>use NFA to simply prove it.</li>
+<li>Note: Any finite union of regular sets is regular. <strong>Infinite unions may not</strong> be regular.</li>
+</ul>
+</li>
+<li>Concatenation</li>
+<li>Kleene star</li>
+<li>Complementation<ul>
+<li>Simply reverse the Final State.</li>
+</ul>
+</li>
+<li>Intersection<ul>
+<li>Prove1: $L (M_{1}) \cap L(M_{2})=\sum^{\ast}-(\sum^{\ast}-L(M_{1})) \cup(\sum^{\ast}-L(M_{2}))$</li>
+<li>Prove2: $K = K_1 \times K_2, F = F_1 \times F_2\dots$</li>
+</ul>
+</li>
+<li><strong>Example</strong>: Show $L=\{w \in\{a, b\}^{\ast}: w \text { has an equal number of } a^{\prime} s \text { and } b^{\prime} s\}$ is not regular.</li>
+<li><strong>Proof</strong>: If $L$ is regular, then so would be $L \cap a^{\ast} b^{\ast}$ But $L \cap a^{\ast} b^{\ast}=\{a^{n} b^{n}: n \geq 0\}$ is not regular language.</li>
+</ul>
+</li>
+<li>Theorem: <strong>A language is regular iff it is accepted by a $\mathrm{FA}$ .</strong><ul>
+<li>$\mathrm{RL}\rightarrow \mathrm{FA}$: Simply use the above properties.</li>
+<li>$\mathrm{FA}\rightarrow \mathrm{RL}$ <ul>
+<li>Definition: For $i, j=1, \cdots, n$ and $k=0, \cdots, n$, define $R(i, j, k)=\{w | w \in \sum^{\ast}, \delta(q_i, w)=q_j \}$ and for any prefix $x$ of $w$, $x \neq e$, $\delta (q_{i}, x)=q_{l} \wedge (l \leq k)$. </li>
+<li>i.e. Each string $w$ which satisfies that $q_i$ use $w$ to reach $q_j$ just with the help of $q_1\dots q_k$.</li>
+<li>Lemma: $R(i, j, k)$ are regular languages.</li>
+<li>Construct the new equivalent FA $K’=K \cup \{s’,f’\}$ that has the only initial state and the only final state. $R(s’,f’,n)$ is the regular language we construct.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Theorem: (<strong>Pumping Theorem</strong>) Let $L$ be a regular language. Exist an integer $n \geq 1$ such that <strong>any</strong> string $w \in L$ with $|w| \geq n$ can be written as $w=x y z$ such that:<ul>
+<li>$y \neq e$</li>
+<li>$|xy| \leq n$</li>
+<li>for each $i \geq 0, xy^{i}z \in L$<br><strong>Example</strong>: Show $L=\{a^{n} | n \text { is prime }\}$ is not regular.<br><strong>Proof</strong>: <ul>
+<li>Assume $L$ regular. $\exists w=x y z,$ and $x=a^{p}, y=a^{q}$ and $z=a^{r},$ where $p, r \geq 0$ and $q&gt;0$ (<strong>any $p,q,r$ as long meets the condition</strong>). </li>
+<li>By Pumping theorem, $x y^{n} z \in L$ for each $n \geq 0 ;$ that is, $p+n q+r$ is prime for each $n \geq 0$.</li>
+<li>However, let $n=p+2 q+r+2 ;$ then $p+n q+r=(q+1) \cdot(p+2 q+r)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Context-Free-Language-leftrightarrow-PushDown-Automata"><a href="#Context-Free-Language-leftrightarrow-PushDown-Automata" class="headerlink" title="Context-Free Language $\leftrightarrow$ PushDown Automata"></a>Context-Free Language $\leftrightarrow$ PushDown Automata</h2><ul>
+<li>Definition: A <strong>Context-Free Grammar</strong> is a quadruple $G=(V, \Sigma, R, S),$ where<ul>
+<li>$V$ is an alphabet;</li>
+<li>$\Sigma \subseteq V$ is the set of terminal symbols; </li>
+<li>$S \in V-\sum$ is the start symbol;</li>
+<li>$R$ is the set of rules, a finite subset of $(V-\Sigma) \times V^{<em>}$<br><em>*Example</em></em>: Let $G=(\{S, a, b\},\{a, b\}, R=\{S \rightarrow e, S \rightarrow S S, S \rightarrow a S b, S \rightarrow b S a\}, S)$, then $L(G)=\{w \in\{a, b\}^{\ast}: w \text { has the same number of } a^{\prime} s \text { and } b^{\prime} s\}$</li>
+</ul>
+</li>
+<li>Definition: A <strong>PushDown Automata</strong> is a sextuple $M=\left(K, \sum, \Gamma, \Delta, s, F\right)$, where<ul>
+<li>$K$ is a finite set of states</li>
+<li>$\sum$ is an alphabet (the input symbols)</li>
+<li>$\Gamma$ is an alphabet (the stack symbols)</li>
+<li>$s \in K$ is the initial state</li>
+<li>$F \subseteq K$ is the set of final states</li>
+<li>$\Delta,$ transition relation, is a subset of $(K \times(\sum \cup\{e\}) \times \Gamma^{\ast}) \times(K \times \Gamma^{\ast})$.</li>
+</ul>
+</li>
+<li>$\mathrm{PDA}$ <strong>execution</strong>: reading a symbol<br>Consider $((p, \alpha, \beta),(q, \gamma)) \in \Delta,$ Then the PDA can: <ul>
+<li>enter some state $q$</li>
+<li>replace $\beta$ by $\gamma$ on the top of the stack<ul>
+<li>advance the tape head<br><strong>Note</strong>:<ol>
+<li>If $\beta=abc$, then $a$ is the top and $c$ is the bottom. </li>
+<li>PDA receives strings when reach the final state and its stack is empty.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Theorem: <strong>The class of languages accepted by PDA is exactly the class of CFL</strong>.<ul>
+<li>$\mathrm{CFL} \rightarrow \mathrm{PDA}$<ul>
+<li>Build $2-$state PDA and simply change each grammar to each transition relation.</li>
+</ul>
+</li>
+<li>$\mathrm{PDA} \rightarrow \mathrm{CFL}$<ul>
+<li>Definition: A PDA is simple if the following is true: Whenever $((q, a, \beta),(p, \gamma))$ is a transition of the PDA and $q$ is not the start state, then $\beta \in \Gamma$ and $|\gamma| \leq 2$.</li>
+<li>$\mathrm{PDA} \rightarrow \mathrm{simple~PDA} \rightarrow \mathrm{CFL}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Closure Properties</strong>: The CFL are closed under Union, Concatenation, and Kleene star.</li>
+<li><strong>Theorem</strong>: The Intersection of a CFL with a regular language is a CFL.</li>
+<li><strong>Pumping Theorem</strong> for CFL.<ul>
+<li>Lemma: The yield of any parse tree of G of height $h$ has length at most $\phi(G)^{h}$.</li>
+<li>Theorem: Let $G=(V, \Sigma, R, S)$ be a CFG. Then any string $w \in L(G)$ of length greater than $\phi(G)|V-\Sigma|$ can be rewritten as $w=u v x y z$ in such way that<ul>
+<li>$|v y| \geq 1$</li>
+<li>${u v^{n} x y^{n} z \in L(G) \text { for every } n \geq 0}$</li>
+</ul>
+</li>
+<li><strong>Example</strong>: Show that $L=\{a^{n} b^{n} c^{n}: n \geq 0\}$ is not CFL.</li>
+<li><strong>Proof</strong>: <ul>
+<li><strong>Case</strong> $1$: $v, y$ contains occurrences of all three symbols $a, b, c$ $\Rightarrow$ at least one of $v, y$ must contain at least two of them $\Rightarrow$ order error in $u v^{2} x y^{2} z$.</li>
+<li><strong>Case</strong> $2$: $v, y$ contains occurrences of some but not all of them $\Rightarrow u v^{2} x y^{2} z$ has unequal number of $a^{\prime} s, b^{\prime} s$ and $c^{\prime} s$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Turing-Machine"><a href="#Turing-Machine" class="headerlink" title="Turing Machine"></a>Turing Machine</h2><ul>
+<li>Definition: A <strong>Turing Machine</strong> is a quintuple $(K, \sum, \delta, s, H)$ where<ul>
+<li>$K$ is a finite set of states</li>
+<li>$\Sigma$ is an alphabet containing $\cup (\text {blank symbol})$ and $\rhd(\text {left end})$ but not containing the symbols $\leftarrow$ and $\rightarrow$ </li>
+<li>$s \in K$ is the initial state </li>
+<li>$H \subseteq K$ is the set of halting states </li>
+<li>$\delta:(K-H) \times \sum \rightarrow K \times (\sum \cup\{\leftarrow, \rightarrow\})$ be the transition <em>function</em>:<ul>
+<li>$\forall q \in K-H$ if $\delta(q, \rhd)=(p, b),$ then $b=\rightarrow$</li>
+<li>$\forall q \in K-H$ and $a \in \sum,$ if $\delta(q, a)=(p, b),$ then $b \neq \rhd$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2019/06/28/Theory-of-Computation/configuration.png" alt></p>
+<ul>
+<li><p>Notation for Turing Machine</p>
+<ul>
+<li>$M_a$ (or simply <code>a</code>): The machine with two states that only to write $a$ on the tape.</li>
+<li>$M_\leftarrow$ and $M_\rightarrow$ (or simply <code>L</code> and <code>R</code>): The machine with two states that only move left or right.</li>
+<li>Machine Combination: $M_1 \stackrel{a}{\longrightarrow} M_2$. If the scanned symbol when halting is $a$, $M_2$ starts up.</li>
+</ul>
+</li>
+<li><p><strong>Example</strong>：<br>  <img src="//jiangshibiao.github.io/2019/06/28/Theory-of-Computation/tm_example.png" alt></p>
+</li>
+<li><p><strong>Multiple tapes Turing Machine</strong></p>
+<ul>
+<li>Definition: Let $k \geq 1$ be an integer. A $k$ -tape TM is a quintuple $(K, \sum, \delta, s, H)$. The transition function $ \delta:(K-H) \times \sum^{k} \rightarrow K \times(\sum \cup\{\leftarrow, \rightarrow\})^{k}$.</li>
+<li>Conventionally, the input string is placed on the first tape, as well as the output string.</li>
+<li>Example：2-tapes copy machine：<br>  <img src="//jiangshibiao.github.io/2019/06/28/Theory-of-Computation/2-tapes.png" alt></li>
+<li>Theorem: Any $k-$ tapes TM $M$ has a corresponding standard machine $M \prime$ so that:<ul>
+<li>$\forall x \in \sigma \ast$, they halt in the same state and output same string.</li>
+<li>If $M$ halts on input $x$ after $t$ steps, then $M^{\prime}$ halts on input $x$ after a number of steps which is $\mathscr{O}(t \cdot(|x|+t))$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="More-concepts"><a href="#More-concepts" class="headerlink" title="More concepts"></a>More concepts</h2><ul>
+<li><strong>Recursive</strong><ul>
+<li>$M$ decides $L \subseteq \Sigma^{\ast}$ if $\forall w \in \Sigma^{\ast}$ the following is true:<ul>
+<li>$w \in L$ iff $M$ accepts $w$ (ends in the $yes$ configuration)</li>
+<li>$w \notin L$ iff $M$ rejects $w$ (ends in the $no$ configuration)</li>
+</ul>
+</li>
+<li>A language $L$ is <strong>recursive</strong> if $\exists$ a $\mathrm{TM}$ that decides $L$.</li>
+<li>Example:  $L=\{a^{n} b^{n} c^{n}: n \geq 0\} .$ The Turing Machine shown below decides $L$.<br>  <img src="//jiangshibiao.github.io/2019/06/28/Theory-of-Computation/anbncn.png" alt></li>
+<li>Definition: Let $f$ be a function $f: \Sigma_{0}^{\ast} \rightarrow \Sigma_{0}^{\ast}$ . $M$ <strong>computes</strong> function $f$ if $\forall w \in \Sigma_{0}^{\ast}, M(w)=f(w)$. <ul>
+<li>A function $f$ is <strong>recursive</strong> if $\exists$ a TM $M$ <strong>computes</strong> $f$.</li>
+<li>Example: $succ(n)=n+1$.<br>  <img src="//jiangshibiao.github.io/2019/06/28/Theory-of-Computation/succ.png" alt></li>
+</ul>
+</li>
+<li>Properties:<ul>
+<li>The recursive language is  are closed under Union, Intersection, and Complement.</li>
+<li>.The recursive language is recursive enumerable.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Recursive Enumerable</strong></p>
+<ul>
+<li>Definition: Let $M=(K, \Sigma, \delta, s, H)$ is a TM. Let $\Sigma_{0} \subseteq$ $\Sigma-\{\rhd, \sqcup\}$ be an alphabet and $L \subseteq \Sigma_{0}^{*}$<ul>
+<li>$M$ <strong>semidecides</strong> $L$ if for $\forall w \in \Sigma^{*}$ the following is true: $w \in L \Leftrightarrow M$ halts on input $w$.</li>
+<li>A language $L$ is <strong>recursively enumerable</strong>(r.e.), iff $\exists a$ TM $M$ that <strong>semidecides</strong> $L$</li>
+<li>$M \uparrow$ means $M$ can not halt.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>grammar</strong></p>
+<ul>
+<li>Definition: A <strong>grammar</strong> (or unrestricted grammar) is a quadruple $G=(V, \Sigma, R, S),$ where<ul>
+<li>$V$ is an alphabet;</li>
+<li>$\Sigma \subseteq V$ is the set of terminal symbols ($V-\sum$ is called the set of nonterminal symbols).</li>
+<li>$S \in V-\sum$ is the start symbol</li>
+<li>$R$ is the set of rules, a finite subset of $(V^{\ast}(V-\Sigma) V^{\ast}) \times V^{\ast}$</li>
+</ul>
+</li>
+<li>Theorem: A language is generated by a <strong>grammar</strong> if and only if it is <strong>recursively enumerable</strong>.</li>
+<li>Definition: Let $G=(V, \Sigma, R, S)$ be a <em>grammar</em>, and let $f: \Sigma^{\ast} \rightarrow \Sigma^{\ast}$ be a function. $G$ <strong>computes</strong> $f$, if for all $w, v \in \Sigma^{\ast},$ the following is true: $S w S \Rightarrow_{G}^{\ast} v \text { iff } v=f(w)$</li>
+<li>A function $f: \Sigma^{\ast} \rightarrow \Sigma^{\ast}$ is called <strong>grammatically computable</strong> iff there is a <em>grammar</em> $G$ that <strong>computes</strong> it.</li>
+<li>Theorem: A function $f: \Sigma^{\ast} \rightarrow \Sigma^{\ast}$ is <strong>recursive</strong> iff and only if it is <strong>grammatically computable</strong>.</li>
+</ul>
+</li>
+<li><p><strong>primitive recursive function</strong></p>
+<ul>
+<li>The <strong>primitive recursive functions</strong> are all basic functions (<em>the $k$-ary zero function, the $j$-th $k$-ary identity function,  the successor function</em>), and all functions that can be obtained by them by any number of successive applications of composition and recursive definition.</li>
+<li>Example<ul>
+<li>$\mathrm{plus(m, 0)=m, plus(m, n+1)=succ(plus(m, n))}$</li>
+<li>$\mathrm{mult(m, 0)=zero(m),mult(m, n+1)=plus(m, mult(m, n))}$</li>
+<li>$\mathrm{exp (m, 0)=succ(zero(m)),exp(m, n+1)=mult(m, exp (m, n))}$</li>
+<li>$n \sim m = \max(n-m,0)$</li>
+</ul>
+</li>
+<li>Definition: A <strong>primitive recursive predicate</strong> is a primitive recursive function that only takes values 0 and $1$. <ul>
+<li>$f(\pmb{x})=g(\pmb{x}) \text{ if } c(x) \text{ otherwise } h(\pmb{x})$. $f(\pmb{x})$ is also primitive recursive if others are.</li>
+<li>If $p\left(n_{1}, \ldots, n_{k}, m\right)$ is primitive recursive predicate, then $\exists t_{(\leq m)} p\left(n_{1}, \ldots, n_{k}, t\right) \text { and } \forall t_{(\leq m)} p\left(n_{1}, \ldots, n_{k}, t\right)$ are primitive recursive predicates.</li>
+</ul>
+</li>
+<li>Example: <ul>
+<li>$\mathrm{rem, div}$</li>
+<li>$\operatorname{digit}(m, n, p)=\operatorname{div}(\operatorname{rem}(n, p \uparrow m), p \uparrow(m \sim 1))$</li>
+<li>$y | x \Leftrightarrow \exists t_{(\leq x)}(y \cdot t=x)$</li>
+<li>$\mathrm{prime}(x) \Leftrightarrow(x&gt;1) \wedge \forall t_{(&lt;x)}[t=1 \vee \neg(t | x)]$</li>
+</ul>
+</li>
+<li>Note: The set of primitive recursive function is <strong>proper subset</strong> of the set of recursive function.<ul>
+<li>Prove: List all the primitive recursive function $f_i$. Assume $g(n)=f_n(n)+1$, so $g$ is computable but not primitive recursive.</li>
+</ul>
+</li>
+<li>Definition: A function is <strong>$\mu$-recursive</strong> if it can be obtained from the basic functions by the operations of composition, recursive definition, and minimalization of minimalizable functions.<ul>
+<li>$\log (m, n)=\mu ~ p[\text {greater-than-or-equal( }(m+2) \uparrow p, n+1)]$</li>
+</ul>
+</li>
+<li>Theorem: A function $f: \mathbb{N}^{k} \rightarrow \mathbb{N}$ is <strong>$\mu$ -recursive</strong> iff it is recursive (that is, computable by a TM).</li>
+</ul>
+</li>
+</ul>
+<h2 id="Undecidability"><a href="#Undecidability" class="headerlink" title="Undecidability"></a>Undecidability</h2><ul>
+<li><p>Church - Turing thesis: Intuitive notation of “computable” = Formal notation of “computable functions by TM” .</p>
+<ul>
+<li>A problem is <strong>decidable</strong> iff it is <strong>recursive</strong>.</li>
+</ul>
+</li>
+<li>There is no program, no algorithm for solving the halting problem.</li>
+<li>Theorem: Let $H=\{‘’M’’~’’w’’: \text { TM } M \text { halts on input string } w \}$ The language $H$ is not recursive (but r.e.).<ul>
+<li>Therefore, the class of recursive languages is a strict subset of the class of recursively enumerable languages.</li>
+<li>Proof:<ul>
+<li>$H$ recursive $\Rightarrow H_{1}$ recursive, where $H_{1}=\{‘’M^{\prime \prime}: M \text { halts on input “M” }\}$<br>$M$ Who decides $H$ surely decides $H_1$.</li>
+<li>$H_{1}$ recursive $\Rightarrow \overline{H_{1}}$ recursive.<br>The class of recursive languages is closed under complement.</li>
+<li>$\overline{H_{1}}$ is not even a r.e. language.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Note that $H_1$ is r.e.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Properties of Recursive Languages<ul>
+<li>$L$ is recursive iff $L$ and $\hat{L}$ are both r.e..<ul>
+<li>Left $\rightarrow$ Right: Simple.</li>
+<li>Right $\rightarrow$ Left: Left two $TM$ run simultaneously, either of them will stop finally.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Definition: We say that a Turing machine $M$ enumerates the language $L$ iff for some fixed state $q$ of $M$, $L=\{w:(s, \rhd, \underline \sqcup) \vdash_{M}(q, \rhd, \underline  \sqcup w)\}$. A language is Turing-enumerable iff there is a Turing machine that enumerates it.<ul>
+<li>A language is <strong>recursively enumerable</strong> iff it is Turing-enumerable.</li>
+<li>A language is <strong>recursively</strong> iff it is lexicographically Turing-enumerable.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Rice Theorem:</strong> If $S$ is a class of recursively enumerable languages such that $\mathscr{I}(S)$ is neither empty nor the set of all indices, then $\mathscr{I}(S)$ is undecidable.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2019/06/28/Theory-of-Computation/" target="_blank" title="Theory-of-Computation">https://jiangshibiao.github.io/2019/06/28/Theory-of-Computation/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computing-Theory/">Computing Theory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/28/Object-Oriented-Programming/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          《面向对象程序设计》知识整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/28/Python-Programming/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">《Python 程序设计》知识整理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-and-Language"><span class="nav-number">1.</span> <span class="nav-text">Set and Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular-Language-leftrightarrow-Finite-Automata"><span class="nav-number">2.</span> <span class="nav-text">Regular Language $\leftrightarrow$ Finite Automata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-Free-Language-leftrightarrow-PushDown-Automata"><span class="nav-number">3.</span> <span class="nav-text">Context-Free Language $\leftrightarrow$ PushDown Automata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Turing-Machine"><span class="nav-number">4.</span> <span class="nav-text">Turing Machine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-concepts"><span class="nav-number">5.</span> <span class="nav-text">More concepts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Undecidability"><span class="nav-number">6.</span> <span class="nav-text">Undecidability</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
