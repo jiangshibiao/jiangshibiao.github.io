@@ -11,19 +11,21 @@
   
   
   
-  <meta name="description" content="Review of Class Computer Vision 计算机视觉复习$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。 美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。">
-<meta name="keywords" content="Course Review,Knowledge Learning,Machine Learning">
+  <meta name="description" content="$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。 美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。">
+<meta name="keywords" content="Knowledge Learning,Course Review,Computer Vision">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《计算机视觉》知识整理">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="Review of Class Computer Vision 计算机视觉复习$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。 美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。">
+<meta property="og:description" content="$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。 美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/laplacian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/NMS.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/corner1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/corner2.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/corner3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/DoG.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/DoG_pic.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/SIFT.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/chain_order.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/camera1.png">
@@ -38,10 +40,10 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/camera_steps.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/Triangulation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/K-means.png">
-<meta property="og:updated_time" content="2020-06-30T07:59:03.164Z">
+<meta property="og:updated_time" content="2020-06-30T08:06:47.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机视觉》知识整理">
-<meta name="twitter:description" content="Review of Class Computer Vision 计算机视觉复习$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。 美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。">
+<meta name="twitter:description" content="$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。 美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/01/13/Computer-Vision/laplacian.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -221,7 +223,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Review-of-Class-Computer-Vision-计算机视觉复习"><a href="#Review-of-Class-Computer-Vision-计算机视觉复习" class="headerlink" title="Review of Class Computer Vision 计算机视觉复习"></a>Review of Class Computer Vision 计算机视觉复习</h2><p>$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。</p>
+        <p>$2019.9 \sim 2020.1$ 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。</p>
 <p>美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 <a href="https://blog.csdn.net/Dango_miracle/article/details/79049104" target="_blank" rel="noopener">这个网站</a> 已经做了我想做的事了，遂我不再重复造轮子。</p>
 <a id="more"></a>
 <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><ul>
@@ -281,11 +283,13 @@
 <li>区域边界跟踪算法<ul>
 <li>从左到右、从上到下找到左上角的起点 $s$，初始化 $b$ 是它左侧的点。</li>
 <li>从 $b$ 开始围绕 $c$ 逆时针旋转，设找过的点编号为 $n_i$。</li>
-<li>当$n_i$的值是 $1$时停止，设 $c’=n_i,b’=n_{i-1}$，重复操作 $2$ 直到结束。<h4 id="边缘和边缘检测"><a href="#边缘和边缘检测" class="headerlink" title="边缘和边缘检测"></a>边缘和边缘检测</h4></li>
+<li>当$n_i$的值是 $1$时停止，设 $c’=n_i,b’=n_{i-1}$，重复操作 $2$ 直到结束。</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h4 id="边缘和边缘检测"><a href="#边缘和边缘检测" class="headerlink" title="边缘和边缘检测"></a>边缘和边缘检测</h4><ul>
 <li>模板卷积</li>
 <li>四种最主要的不连续： <ol>
 <li>表面法向量的不连续 </li>
@@ -334,8 +338,7 @@
 <li><p><strong>Harris 角点检测</strong><br>  <img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/corner1.png" alt></p>
 <ul>
 <li>Denote $E(u,v)=\sum \limits_{x,y} w(x,y)[I(x+u,y+u)-I(x,y)]^2$. The corner has bigger $E(u,v)$.</li>
-<li>Using bilinear approximation, we can derive that:<ul>
-<li>$E(u,v)\approx[u,v]M[u,v]^\mathrm{T}$</li>
+<li>Using bilinear approximation, we can derive that:<br>  $E(u,v)\approx[u,v]M[u,v]^\mathrm{T}$<ul>
 <li><img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/corner2.png" alt></li>
 <li>$\lambda1 \sim \lambda2$: Corner</li>
 <li>$\lambda1 \gg \lambda2$: Edge</li>
@@ -362,13 +365,10 @@
 <li>Solution: search for maxima of suitable functions in scale and in space (over the image).</li>
 </ul>
 </li>
-</ul>
-<p>Harris-Laplace</p>
-<pre><code>+ DoG: $D(x, y, \sigma) =(G(x, y, k \sigma)-G(x, y, \sigma)) \ast I(x, y) =L(x, y, k \sigma)-L(x, y, \sigma)$
-    &lt;img src=&quot;DoG.png&quot; style=&quot;zoom:50%;&quot; /&gt;
-    &lt;img src=&quot;DoG_pic.png&quot; style=&quot;zoom:50%;&quot; /&gt;
-</code></pre><ul>
-<li><strong>SIFT描述子的计算</strong><br><img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/SIFT.png" alt><ul>
+<li><p>Harris-Laplace: DoG: $D(x, y, \sigma) =(G(x, y, k \sigma)-G(x, y, \sigma)) \ast I(x, y) =L(x, y, k \sigma)-L(x, y, \sigma)$<br>  <img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/DoG.png" alt><br>  <img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/DoG_pic.png" alt></p>
+</li>
+<li><p><strong>SIFT描述子的计算</strong><br><img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/SIFT.png" alt></p>
+<ul>
 <li>Full Version<ul>
 <li>Divide the 16x16 window into a 4x4 grid of cells.</li>
 <li>Compute an orientation histogram for each cell</li>
@@ -395,10 +395,8 @@
 </li>
 </ul>
 <h4 id="曲线"><a href="#曲线" class="headerlink" title="曲线"></a>曲线</h4><ul>
-<li><p>和<strong>边缘检测的关系</strong>：将边缘连接起来就可以知道一个物体在二维平面上的投影边界，称这一边界为轮廓。</p>
-</li>
-<li><p>链码用相邻边缘点组成的方向序列来表示边缘</p>
-<ul>
+<li>和<strong>边缘检测的关系</strong>：将边缘连接起来就可以知道一个物体在二维平面上的投影边界，称这一边界为轮廓。</li>
+<li>链码用相邻边缘点组成的方向序列来表示边缘<ul>
 <li>4-连通对应四方向链码</li>
 <li>8-连通对应八方向链码<br><img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/chain_order.png" alt></li>
 </ul>
@@ -433,8 +431,7 @@
 </li>
 </ul>
 <h4 id="人脸识别"><a href="#人脸识别" class="headerlink" title="人脸识别"></a>人脸识别</h4><ul>
-<li><p>Principal component analysis</p>
-<ul>
+<li>Principal component analysis<ul>
 <li>It is a linear transformation that chooses a new coordinate system for the data.</li>
 <li>PCA 定义<ul>
 <li>数据在 $d$ 维空间 $x=(x1,x2,\dots,x_d)$</li>
@@ -452,8 +449,7 @@
 <li>结论：求 $S$ 的前 $k$ 大特征值。对应的特征向量即为变换方式。</li>
 </ul>
 </li>
-<li><p>Eigenface 人脸识别方法</p>
-<ul>
+<li>Eigenface 人脸识别方法<ul>
 <li>步骤<ol>
 <li>对所有人脸图像作归一化处理。</li>
 <li>通过 PCA 计算获得一组特征向量(特征脸)，将每幅人脸图像都投影到由该组特征脸张成的子空间中，得到在该子空间坐标。</li>
@@ -558,8 +554,7 @@
 <li>光圈越大，景深越小；镜头焦距越长，景深越小。</li>
 </ul>
 </li>
-<li><p><strong>Field of View (视场，FOV)</strong></p>
-<ul>
+<li><strong>Field of View (视场，FOV)</strong><ul>
 <li>FOV depends of Focal Length $\phi=\tan^{-1}{\frac{d}{2f}}$</li>
 </ul>
 </li>
@@ -645,10 +640,8 @@
 </li>
 </ul>
 <h4 id="Stereo-Vision-立体视觉"><a href="#Stereo-Vision-立体视觉" class="headerlink" title="Stereo Vision 立体视觉"></a>Stereo Vision 立体视觉</h4><ul>
-<li><p><strong>Triangulation</strong><br><img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/Triangulation.png" alt></p>
-</li>
-<li><p>四个基本步骤</p>
-<ol>
+<li><strong>Triangulation</strong><br><img src="//jiangshibiao.github.io/2020/01/13/Computer-Vision/Triangulation.png" alt></li>
+<li>四个基本步骤<ol>
 <li>Undistortion: remove distortions -&gt; undistorted images.</li>
 <li>Rectification: adjust cameras -&gt; the two images row-aligned</li>
 <li>Correspondence:  find the same features in the two images -&gt; disparity – Reprojection</li>
@@ -772,7 +765,7 @@ var a = new Donate({
       
       
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computer-Vision/">Computer Vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
 
       
 
@@ -792,6 +785,11 @@ var a = new Donate({
     </a>
   
   
+    <a href="/2019/06/28/Data-Based-System/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">《数据库系统》知识整理</div>
+    </a>
+  
 </nav>
 
   
@@ -803,7 +801,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Review-of-Class-Computer-Vision-计算机视觉复习"><span class="nav-number">1.</span> <span class="nav-text">Review of Class Computer Vision 计算机视觉复习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引言"><span class="nav-number">1.0.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二值图像"><span class="nav-number">1.0.2.</span> <span class="nav-text">二值图像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边缘和边缘检测"><span class="nav-number">1.0.3.</span> <span class="nav-text">边缘和边缘检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部特征-Local-Feature"><span class="nav-number">1.0.4.</span> <span class="nav-text">局部特征 Local Feature</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#曲线"><span class="nav-number">1.0.5.</span> <span class="nav-text">曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#人脸识别"><span class="nav-number">1.0.6.</span> <span class="nav-text">人脸识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像拼接-Image-Stitching"><span class="nav-number">1.0.7.</span> <span class="nav-text">图像拼接 Image Stitching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bag-Of-Words-Model"><span class="nav-number">1.0.8.</span> <span class="nav-text">Bag Of Words Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#光流-optical-flow"><span class="nav-number">1.0.9.</span> <span class="nav-text">光流 optical flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Camera"><span class="nav-number">1.0.10.</span> <span class="nav-text">Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stereo-Vision-立体视觉"><span class="nav-number">1.0.11.</span> <span class="nav-text">Stereo Vision 立体视觉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像分割"><span class="nav-number">1.0.12.</span> <span class="nav-text">图像分割</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二值图像"><span class="nav-number">2.</span> <span class="nav-text">二值图像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边缘和边缘检测"><span class="nav-number">3.</span> <span class="nav-text">边缘和边缘检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部特征-Local-Feature"><span class="nav-number">4.</span> <span class="nav-text">局部特征 Local Feature</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#曲线"><span class="nav-number">5.</span> <span class="nav-text">曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#人脸识别"><span class="nav-number">6.</span> <span class="nav-text">人脸识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像拼接-Image-Stitching"><span class="nav-number">7.</span> <span class="nav-text">图像拼接 Image Stitching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bag-Of-Words-Model"><span class="nav-number">8.</span> <span class="nav-text">Bag Of Words Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#光流-optical-flow"><span class="nav-number">9.</span> <span class="nav-text">光流 optical flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Camera"><span class="nav-number">10.</span> <span class="nav-text">Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stereo-Vision-立体视觉"><span class="nav-number">11.</span> <span class="nav-text">Stereo Vision 立体视觉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图像分割"><span class="nav-number">12.</span> <span class="nav-text">图像分割</span></a></li></ol>
     
     </div>
   </aside>
@@ -994,21 +992,5 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

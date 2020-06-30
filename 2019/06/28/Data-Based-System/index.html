@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>《数据库系统》知识整理 | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="$2019.3 \sim 2019.6$ 上了高云君教授《数据库系统》这门课，讲得还是挺不错的。 这门课的 Workload 很大，期中和期末分别有一个 Project：  期中 Project：实现一个图书管理系统 期末 Project：实现一个迷你版的 SQL查询系统  还有一个硬核的期末考试。为了巩固知识点特撰写此文。">
+<meta name="keywords" content="Knowledge Learning,Course Review,Data Base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《数据库系统》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="$2019.3 \sim 2019.6$ 上了高云君教授《数据库系统》这门课，讲得还是挺不错的。 这门课的 Workload 很大，期中和期末分别有一个 Project：  期中 Project：实现一个图书管理系统 期末 Project：实现一个迷你版的 SQL查询系统  还有一个硬核的期末考试。为了巩固知识点特撰写此文。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/10.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/11.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/12.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/2.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/4.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/24.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/6.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/5.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/22.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/23.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/8.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/9.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/13.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/14.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/15.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/16.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/17.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/18.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/20.png">
+<meta property="og:updated_time" content="2020-06-30T08:30:07.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《数据库系统》知识整理">
+<meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了高云君教授《数据库系统》这门课，讲得还是挺不错的。 这门课的 Workload 很大，期中和期末分别有一个 Project：  期中 Project：实现一个图书管理系统 期末 Project：实现一个迷你版的 SQL查询系统  还有一个硬核的期末考试。为了巩固知识点特撰写此文。">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/10.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<!--<script type="text/javascript" src="\js\snow.js"></script>-->
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Data-Based-System" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      《数据库系统》知识整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/28/Data-Based-System/" class="article-date">
+	  <time datetime="2019-06-28T06:38:48.000Z" itemprop="datePublished">2019-06-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$2019.3 \sim 2019.6$ 上了高云君教授《数据库系统》这门课，讲得还是挺不错的。</p>
+<p>这门课的 Workload 很大，期中和期末分别有一个 Project：</p>
+<ul>
+<li>期中 Project：实现一个<a href="https://github.com/jiangshibiao/Simple-Library-Manage-System" target="_blank" rel="noopener">图书管理系统</a></li>
+<li>期末 Project：实现一个迷你版的 <a href="https://github.com/jiangshibiao/MiniSQL" target="_blank" rel="noopener">SQL查询系统</a></li>
+</ul>
+<p>还有一个硬核的期末考试。为了巩固知识点特撰写此文。</p>
+<a id="more"></a>
+<h2 id="Relational-algebra-Expression"><a href="#Relational-algebra-Expression" class="headerlink" title="Relational-algebra Expression"></a>Relational-algebra Expression</h2><ul>
+<li><p>基本功能</p>
+<ul>
+<li>$\cup, -,$ 并，差</li>
+<li>$r \times s = \{(t,q) | t \in r, q \in s \}$：笛卡尔积</li>
+<li>$\rho_X(r)$: 将 $r$ 重命名为 $X$。</li>
+<li>$\sigma_X(r)$：选取 $r$ 中符合条件 $X$ 的记录。</li>
+<li>$\prod_{X,Y}(r)$：投影 $r$ 中的部分属性。</li>
+</ul>
+</li>
+<li><p>拓展功能</p>
+<ul>
+<li>$r \cap s = r - (r - s)$ 交</li>
+<li>$r \Join s$ 自然连接</li>
+<li>$r \Join_{\theta} s$ 带条件连接</li>
+</ul>
+</li>
+</ul>
+<h2 id="MySQL语法"><a href="#MySQL语法" class="headerlink" title="MySQL语法"></a>MySQL语法</h2><h5 id="约束（Constraints）"><a href="#约束（Constraints）" class="headerlink" title="约束（Constraints）"></a>约束（Constraints）</h5><ol>
+<li>普通约束<ul>
+<li><code>not null</code></li>
+<li><code>unique</code></li>
+<li><code>check()</code></li>
+<li><code>create assertion &lt;name&gt; check()</code></li>
+</ul>
+</li>
+<li>键约束<ul>
+<li>单一主键 <code>id numeric(4,0) primary key</code></li>
+<li>复合主键 <code>primary key(...)</code></li>
+<li>外键 <code>foreign key (name1) references name2</code><ul>
+<li>可以添加 <code>on delete/update cascade</code> 来定义 transaction</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="函数和过程（Functions-and-Procedures）"><a href="#函数和过程（Functions-and-Procedures）" class="headerlink" title="函数和过程（Functions and Procedures）"></a>函数和过程（Functions and Procedures）</h5><ol>
+<li><p>函数</p>
+<ul>
+<li><p>定义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> fuction &lt;fuc_name&gt;(参数列表) <span class="keyword">returns</span> (返回参数列表)</span><br><span class="line">    <span class="keyword">return</span>(返回值列表)</span><br></pre></td></tr></table></figure>
+<p><code>return</code> 前后可以加<code>begin</code>和<code>end</code></p>
+</li>
+<li>调用<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span>(&lt;fuc_name&gt;(参数列表))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>过程</p>
+<ul>
+<li><p>定义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> &lt;fuc_name&gt;(<span class="keyword">in</span> <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>), <span class="keyword">out</span> ans <span class="built_in">integer</span>)</span><br><span class="line">	<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">into</span> ans <span class="keyword">from</span> dict</span><br><span class="line">	<span class="keyword">where</span> dict.name == <span class="keyword">name</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> cnt <span class="built_in">integer</span>;</span><br><span class="line"><span class="keyword">call</span> &lt;fuc_name&gt;(<span class="string">'Bob'</span>, cnt)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h5><ol>
+<li><p>基本语法</p>
+<ul>
+<li>定义变量： <code>declare n integer</code></li>
+<li>赋值： <code>set A = B;</code></li>
+<li>删除表 $r$ 中的属性 $A$： <code>ALTER TABLE r DROP A</code></li>
+<li>选择时： <code>select distinct/all</code> 不能重复/需要重复</li>
+<li><p><code>Group by</code> </p>
+<ul>
+<li>注意：Attributes in select clause outside of aggregate functions must appear in group by list.</li>
+<li><p>如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> branch_name, <span class="keyword">avg</span>(balance) avg_bal</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">account</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> brach_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>HAVING ...</code> 用来对 <code>group by</code> 之后的结果选择<ul>
+<li>按某属性排序： <code>order by ...</code> 结尾加：<code>asc</code> 升序 <code>desc</code> 降序。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>where</code> 中可以加的表达式：<code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>BETWEEN ... AND ...</code></li>
+<li>字符串<ul>
+<li>连接： <code>||</code></li>
+<li>正则表达式： <code>where A LIKE ...</code><ul>
+<li><code>%</code> 匹配任意字符</li>
+<li><code>_</code> 匹配任意字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>集合操作<ul>
+<li><code>UNION</code></li>
+<li><code>INTERSECT</code></li>
+<li><code>EXCEPT</code></li>
+</ul>
+</li>
+<li>一些函数<ul>
+<li><code>avg, sum, count, min, max</code></li>
+<li>用 <code>GROUP BY</code> 来聚合</li>
+<li><code>Having ...</code> 一般跟在 <code>GROUP</code> 后面用来描述条件</li>
+</ul>
+</li>
+<li><code>with ... as ...</code> 局部定义（类似于函数）</li>
+<li>修改表 $A$ 中数据</li>
+</ul>
+</li>
+<li><p>分支结构</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if boolean_expression</span><br><span class="line">	then compound_statement</span><br><span class="line">else if boolean_expression</span><br><span class="line">	then compound_statement</span><br><span class="line">else compound_statement</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>循环结构</p>
+<ul>
+<li><p>for</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> n <span class="built_in">integer</span> <span class="keyword">default</span> <span class="number">0</span>;</span><br><span class="line">for r as</span><br><span class="line">	selet budget from department</span><br><span class="line">	where dept_name == 'Music'</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="keyword">set</span> n = n - r.budget</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">for</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>while</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while boolean_expression <span class="keyword">do</span></span><br><span class="line">	statements;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">while</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>repeat</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repeat</span><br><span class="line">	statements;</span><br><span class="line">until boolean_expression</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">repeat</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="ER模型"><a href="#ER模型" class="headerlink" title="ER模型"></a>ER模型</h2><p><img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/10.png" alt><br><img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/11.png" alt><br><img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/12.png" alt></p>
+<h2 id="范式理论"><a href="#范式理论" class="headerlink" title="范式理论"></a>范式理论</h2><ul>
+<li><strong>第一范式（First Normal Form，1NF）</strong><ul>
+<li>定义：所有 Domain 都是不可分的（atomic）。</li>
+<li>关系型数据库要求都是满足 1NF 的。</li>
+</ul>
+</li>
+<li><strong>函数依赖（Functional dependency）</strong><ul>
+<li>函数依赖 $\alpha \rightarrow \beta$ 在 $R$ 上成立，当且仅当对于所有关系 $r(R)$，$\forall (t_1,t_2)$<script type="math/tex; mode=display">t_1(\alpha)=t_2(\alpha) \Rightarrow t_1(\beta)=t_2(\beta)</script>  $\alpha$ 的值确定了，那么 $\beta$ 的值也确定了。<ul>
+<li>举例：比如主键 K 能推出所有属性。</li>
+</ul>
+</li>
+<li>如果一个函数依赖集 $F$ 对于所有 $r$ 成立，则称 $F$ 在 $R$ 上成立。</li>
+<li>$F$ 能推出的极大函数依赖集，称为 $F$ 的闭包（closure），记作 $F^+$。</li>
+</ul>
+</li>
+<li>函数依赖集闭包<ul>
+<li><strong>Armstrong’s 公理</strong><br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/2.png" alt></li>
+<li>推导 $F^+$<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/3.png" alt></li>
+<li>属性 $a$ 在 $F$ 下的闭包记为 $a^+$。<ul>
+<li>求 $a^+$ 的方法<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/4.png" alt></li>
+</ul>
+</li>
+<li>检验<ul>
+<li>$a$ 是否是 <code>super key</code>。 $R \subseteq a^+$</li>
+<li>$\alpha \rightarrow \beta$ 是否成立。$\beta \subseteq \alpha^+$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>正则覆盖（Canonical Cover）</strong><ul>
+<li>函数依赖集 $F$ 的“最小表示”。</li>
+<li>三种去重方式：<ul>
+<li>能被别的函数依赖直接推出的。</li>
+<li>在箭头左侧的对象，可能可以变少。</li>
+<li>在箭头右侧的对象，可能可以因为拆开后重复导致变少。</li>
+</ul>
+</li>
+<li><strong>无关属性（Extraneous Attributes ）：</strong><br>  $\quad$ 首先设 $\{ \alpha \rightarrow \beta \} \subseteq F$。<ol>
+<li>称 $A$ 是 $\alpha$ 的无关属性（$A \in \alpha$），如果 $F$ 能推出 $F’=\{F-\{\alpha  \beta\}\} \cup \{(\alpha-A) \rightarrow \beta\}$<ul>
+<li>检验：$\beta \subseteq (\alpha -A)^+$</li>
+</ul>
+</li>
+<li>称 $A$ 是 $\beta$ 的无关属性（$A \in \beta$），如果 $F’=\{F-\{\alpha - \beta\}\} \cup \{\alpha \rightarrow \{\beta -A \}\}$ 能推出 $F$。<ul>
+<li>检验：$A \in \alpha^+$</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>正则覆盖过程：每次去掉无关属性。</li>
+</ul>
+</li>
+<li><strong>分解（Decomposition）</strong><ul>
+<li>将 Schema $R$ 分解成 $(R1，R2)$，必须满足 $R1 \cup R2 =R$。</li>
+<li><strong>无损连接分解（Lossless-join decomposition）</strong>：<br>  对于 Schema $R$ 的所有关系 $r$，满足 $\prod_{R1}(r) \Join \prod_{R2}(r) =r$<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/1.png" alt><ul>
+<li>二元分解的判定：以下依赖在 $F^+$ 至少有一个成立：<script type="math/tex; mode=display">\{R_1 \cap R_2 \} \rightarrow R_1</script><script type="math/tex; mode=display">\{R_1 \cap R_2 \} \rightarrow R_2</script></li>
+</ul>
+</li>
+<li>依赖保持（Dependency preservation）<ul>
+<li>$(\cup F_i)^+ = F^+$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>BCNF（Boyce-Codd Normal Form）</strong><ul>
+<li>定义：对于 $F^+$ 里的每一个非 trival 的 $\alpha \rightarrow \beta$，满足 $\alpha$ 是 $R$ 里的 super key。</li>
+<li>注意：只检验 $F$ 和检验 $F^+$ 是在 $R$ 处等价，在分解 $R_i$ 处不等价。</li>
+</ul>
+</li>
+<li><strong>Third Normal Form (3NF)</strong><ul>
+<li>定义：对于 $F^+$ 里的每一个非 trival 的 $\alpha \rightarrow \beta$，至少满足以下的某一条：<ul>
+<li>$\alpha$ 是 $R$ 里的 super key。</li>
+<li>$\forall A \in \{\beta - \alpha\}$， $A$ 包含于 $R$ 的一个 candidate key 里。</li>
+</ul>
+</li>
+<li>一定存在一种满足函数依赖、所得关系都是第三范式的无损连接分解。</li>
+</ul>
+</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li>Two basic kinds of indices:<ul>
+<li>Ordered indices<ol>
+<li><ul>
+<li><code>Clustering(Primary) index（聚集索引）</code><ul>
+<li><code>Secondary index</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><code>Dense index (稠密索引)</code><ul>
+<li><code>Sparse index (稀疏索引)</code></li>
+<li><code>Sparse index</code> 只能用于顺序文件, 而 <code>dense index</code> 可以用于顺序和非顺序文件，如构成索引无序文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><code>Secondary Indices(辅助索引)</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Hash indices</li>
+</ul>
+</li>
+<li>B+ 树<ul>
+<li>实时满足的性质<ul>
+<li>对于 $M$ 阶 <code>B+树</code> ，每个节点拥有最多 $M$ 个孩子，$M-1$ 个键值。</li>
+<li>对于叶节点，储存 $\lceil \frac{M-1}{2} \rceil \sim M-1$ 条记录。</li>
+<li>任意一个非根非叶节点，有 $\lceil \frac{M}{2} \rceil \sim ~ M$ 个孩子。</li>
+<li>如果根不是叶节点，至少要有两个孩子。</li>
+</ul>
+</li>
+<li>高度和size的估算<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/24.png" alt></li>
+</ul>
+</li>
+</ul>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ul>
+<li><p>Measures of Query Cost</p>
+<ul>
+<li>cost：<ul>
+<li>$t_T$ – time to transfer one block.  (≈ 0.1ms)</li>
+<li>$t_S$ – time for one seek.  (≈ 4ms)</li>
+<li>Cost for b block transfers plus S seeks：$b \times t_T + S \times t_S $</li>
+</ul>
+</li>
+<li><strong>cost for selection</strong>:<ul>
+<li>不使用 <code>index</code><ul>
+<li>linear search：$b_r$ block transfers, 1 seek</li>
+<li>binary search: $\lceil \log_2(b_r) \rceil$ <code>block transfer</code> + $\lceil \log_2(b_r) \rceil$ <code>seek</code><br>  如果不是 <code>key</code>，<code>block transfer</code>要额外加上 $ex = \lceil \frac{b_r}{f_r} \rceil - 1$</li>
+</ul>
+</li>
+<li>使用 <code>index</code><ul>
+<li>用<code>key</code>：$(h_i + 1)$ <code>block transfer</code> + $(h_i + 1)$ <code>seek</code>。</li>
+<li>非 <code>key</code> 同样也要加上 $ex$ 个<code>block transfer</code>.。</li>
+</ul>
+</li>
+<li>非等值查询一般用 <code>linear search</code>。</li>
+<li>查询 Conjunction ：根据耗时最少的条件找到记录并 <code>check</code> 剩余。</li>
+<li>查询 Disjunction ：直接暴力查询，除非所有条件都有 <code>index</code>。</li>
+</ul>
+</li>
+<li><p><strong>cost for join</strong>:</p>
+<ul>
+<li><p>Nested-Loop Join<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/6.png" alt></p>
+<pre><code>    - 最坏情况：$n_r \times b_s + b_r$ `transfer`， $n_r + b_r$ `seek`
+    - 最好情况：$b_r + b_s$ `transfer`，$2$ `seek`
++ Block Nested-Loop Join
+  ![](Data-Based-System/7.png)
+  - 最坏情况 $b_r \times b_s + b_r$ `transfer`。
+
+ - Let the relation with smaller number of blocks be outer relation.
+ - 最好情况：与上同理。
++ Indexed Nested-Loop Join
+ - `inner relation` 要有索引。
+ - 枚举每一个 $n_s$，用索引去找符合要求的 $t$。
+ - 代价：$b_r (t_T + t_S) + n_r \times c$
++ Merge-Join（排序归并连接）
+ - $br + bs$  `transfers`  ， $\lceil \frac{b_r}{b_b} \rceil + \lceil \frac{b_s}{b_b} \rceil$ `seeks`
++ Hash-Join Algorithm
+       1. 对 $s$ 用外层哈希对 $r$ 和 $s$ 进行 `Partition`。
+            2. 对每一个 $s_i$ 进行 `in-memory hash`.
+                 3. 对每一个 $t_i$，找到对应的 $s_i$。
+ - $s$ 称为 `build input`，$t$ 称为 `probe input`。
+</code></pre><ul>
+<li>一般 $n = \lceil \frac{b_s}{M}\rceil  * f $，$f = 1.2$。</li>
+<li>代价大概是 $3(b_r+b_s)$</li>
+<li>如果 $n&gt;M$，进行 <code>Recursive partitioning</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cost Estimation<ul>
+<li>Statistical Information<pre><code>  + $n_r$ : number of tuples in a relation r.
+  + $b_r$ : number of blocks containing tuples of r.
+  + $l_r$ : size of a tuple of r.
+  + $f_r$ : blocking factor of r — i.e., the number of tuples of r that fit into one block.
+  + $V(A, r)$ : number of distinct values that appear in r for attribute A;  same as the size of $\prod_A(r)$.
+  + If tuples of $r$ are stored together physically in a file, then:
+      $$ b_r = \lceil \frac{n_r}{f_r} \rceil $$
+</code></pre><ul>
+<li>Selection Size Estimation<ul>
+<li>$\sigma_{A=v}(r) : \frac{nr}{V(A,r)}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务（Transaction）"><a href="#事务（Transaction）" class="headerlink" title="事务（Transaction）"></a>事务（Transaction）</h2><ul>
+<li>概念：a unit of program execution that accesses and possibly updates various data items.</li>
+<li>在 <code>transaction</code> 期间数据可以不一致，结束后必须一致。</li>
+<li>四个特性：<ul>
+<li>Atomicity.</li>
+<li>Consistency.</li>
+<li>Isolation.</li>
+<li>Durability.</li>
+</ul>
+</li>
+<li>Transaction state<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/5.png" alt><pre><code>- `aborted`: `roll back` 结束后返回到的初始状态。
+</code></pre></li>
+<li>The shadow-database scheme<ul>
+<li>始终指向正确的数据库。</li>
+<li>每次 <code>update</code> 时新开一个 <code>new copy</code> 来更新。<code>commit</code> 了后再指向新的。</li>
+</ul>
+</li>
+<li>Concurrent Executions（并发）<ul>
+<li><code>Schedules</code><ul>
+<li>indicate the chronological order in which instructions of concurrent transactions are executed.</li>
+<li><code>Serial schedule</code> (串行调度)：必能保证一致性，但是低效。</li>
+</ul>
+</li>
+<li><code>Conflict Serializability</code>（可串行化）<ul>
+<li>若2个操作是有冲突的，则二者执行次序不可交换；若2个操作不冲突，则可以交换次序。</li>
+<li>如果 <code>S</code> 可以通过交换次序到达 <code>S&#39;</code>，称它们 <code>conflict equivalent</code>.</li>
+<li>如果 <code>S</code> 是等价于 <code>serial schedule</code>，称为 <code>conflict serializable</code>.</li>
+</ul>
+</li>
+<li><code>View Serializability</code></li>
+</ul>
+</li>
+<li>Recoverability<ul>
+<li><code>Recoverable schedule</code> — if a transaction $T_j$ reads a data item previously written by a transaction $T_i$ , then the commit operation of $T_i$  appears before the commit operation of $T_j$.</li>
+<li><code>recover</code> 会导致 <code>Cascading rollback</code>.</li>
+<li><code>Cascadeless schedules</code> — $T_j$ reads a data item previously written by  $T_i$, the commit operation of $T_i$ appears before the read operation of $T_j$.</li>
+</ul>
+</li>
+</ul>
+<h2 id="并发控制（Concurrency-Control）"><a href="#并发控制（Concurrency-Control）" class="headerlink" title="并发控制（Concurrency Control）"></a>并发控制（Concurrency Control）</h2><ul>
+<li>Lock-Based Protocols<ul>
+<li><code>Exclusive (X) mode</code>: 只允许事务 T 读取和修改，其他任何事务都不能读取、写入和加锁，直到 T 释放。<ul>
+<li><code>Shared (S) mode</code>: 允许 T 读但不能修改，其他事务只能加 S 锁但不能加 X 锁，直到 T 释放。</li>
+<li><code>deadlock</code>：双方都施加过 S 锁，想申请 T 锁时都要等待对方释放。<br>  | .    | S    | X    |<br>  | —— | —— | —— |<br>  | S    | T    | F    |<br>  | X    | F    | F    |</li>
+<li><code>strict two-phase locking</code> 事务结束前不能释放锁。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Graph-Based Protocols</p>
+<ul>
+<li>If $d_i \rightarrow d_j$  then any transaction accessing both $d_i$ and $d_j$ must access $d_i$ before accessing $d_j$.</li>
+<li><code>Tree Protocol</code><ul>
+<li>只有 $X$ 锁。</li>
+<li>事务 $T$ 第一次可以给任何点加锁，之后给点 $t$ 加锁时必须保证 $t$ 的父亲目前被 $T$ 锁住。</li>
+<li>一个 <code>item</code> 可以在任何时候被解锁，但不能重新再上锁。</li>
+</ul>
+</li>
+<li>优缺点<ul>
+<li>保证了 <code>conflict serializability</code>，防止了 <code>deadlock</code>。</li>
+<li>不保证 <code>recoverability</code>，增加了无用的 <code>lock</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Multiple Granularity（多粒度）</p>
+<ul>
+<li>描述成一个树结构<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/22.png" alt><ul>
+<li>意向锁<ul>
+<li><code>Intention-shared</code> (IS，共享型意向锁)</li>
+<li><code>Intention-exclusive</code> (IX ，排它型意向锁)</li>
+<li><code>Shared and intention-exclusive</code> (SIX，共享排它型意向锁)</li>
+</ul>
+</li>
+<li>Compatibility Matrix<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/23.png" alt></li>
+<li>Transaction Ti can lock a node Q, using the following rules:</li>
+</ul>
+<ol>
+<li>The lock compatibility matrix must be observed.</li>
+<li>The root of the tree must be locked first, and may be locked in any mode.</li>
+<li>A node Q can be locked by Ti in S or IS mode only if the parent of Q is currently locked by Ti in either IX or IS mode.</li>
+<li>A node Q can be locked by Ti in X, SIX, or IX mode only if the parent of Q is currently locked by Ti in either IX or SIX mode.</li>
+<li>Ti can lock a node only if it has not previously unlocked any node (that is, Ti is two-phase).</li>
+<li>Ti can unlock a node Q only if none of the children of Q are currently locked by Ti.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="恢复（Recovery）"><a href="#恢复（Recovery）" class="headerlink" title="恢复（Recovery）"></a>恢复（Recovery）</h2><ul>
+<li><strong>Log-Based Recovery</strong><ul>
+<li>语法<ul>
+<li><code>&lt;Ti start&gt;</code>，<code>&lt;Ti commit&gt;</code>，<code>&lt;Ti abort&gt;</code></li>
+<li><code>&lt;Ti, X, V1, V2&gt;</code> X 从 V1 变成了 V2（在输出操作前）</li>
+<li><code>&lt;Ti, X, V&gt;</code> 将 X 以值 V 输出。</li>
+<li><code>checkpoint &lt;L1, L2 ...&gt;</code> 设立断点，将所有数据保存下来</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>Deferred Database Modification（所有写操作在 <code>commit</code> 后进行）</li>
+<li>Immediate Database Modification（后来的讨论都是针对它）</li>
+</ul>
+</li>
+<li>先进行 <code>undo</code> 操作（有 <code>start</code> 无 <code>commit</code>）再进行 <code>redo</code> 操作（有 <code>start</code> 有 <code>commit</code>）</li>
+<li><code>recover</code> 时，只有那些在最近一次 <code>checkpoint</code> 里或者之后开始的事务，才需要对其 <code>redo</code> 或者 <code>undo</code>。</li>
+<li>并发恢复<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/8.png" alt><br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/9.png" alt title="markdown&quot; &quot;width:450px"></li>
+</ul>
+</li>
+<li>ARIES：a state of the art recovery method</li>
+</ul>
+<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><ul>
+<li><code>&lt;tagname&gt;...&lt;/tagname&gt;</code> 嵌套时必须严格匹配</li>
+<li>XML 主要用于数据传输</li>
+<li><p>元素（Element）</p>
+<ul>
+<li>元素可以拥有一些属性（attribute）<ul>
+<li>用 <code>name = value</code> 标注<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/13.png" alt></li>
+<li>元素中还可以定义 子元素（Subelement）<ul>
+<li>use attributes for identifiers of elements, and use subelements for contents.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用命名空间来防止变量名重复<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/14.png" alt title="markdown&quot; &quot;width:350px"></p>
+</li>
+<li><p>用 <code>![CDATA[...]]</code> 套起来的是不套用XML语法的纯字符串</p>
+</li>
+<li><p>Document Type Definition (DTD)</p>
+<ul>
+<li>不含有类型（全以字符串储存）</li>
+<li>语法<ul>
+<li><code>&lt;!ELEMENT element (subelements-specification)&gt;</code></li>
+<li><code>&lt;!ATTLIST element (attributes)&gt;</code></li>
+</ul>
+</li>
+<li>ELEMENT 定义规则<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/15.png" alt title="markdown&quot; &quot;width:400px"><ul>
+<li>ELEMENT 支持正则表达式<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/16.png" alt title="markdown&quot; &quot;width:350px"></li>
+<li>Attribute 定义规则<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/17.png" alt title="markdown&quot; &quot;width:400px"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>XPath</p>
+<ul>
+<li>Result of path expression:  set of values that along with their containing elements/attributes match the specified path.</li>
+<li>查询 []<ul>
+<li><code>/bank-2/account[balance &gt; 400]</code>：Returns account elements with a balance value greater than 400. </li>
+<li><code>/bank-2/account[balance]</code>：Returns account elements containing a balance sub-element.</li>
+</ul>
+</li>
+<li>选择 attribute @<ul>
+<li><code>/bank-2/account[balance &gt;400] /@account_number</code>：Returns the account numbers of accounts with balance &gt; 400.</li>
+</ul>
+</li>
+<li>并操作 |</li>
+<li>跳过一级目录 <code>//</code></li>
+<li><code>ID</code> 和 <code>IDREF</code><ul>
+<li>可以给attribute一个唯一的 <code>ID</code> 值，这样如果有个地方有一个 <code>IDREF</code>，就可以实现联系和跳转。</li>
+<li><code>IDREFS</code> 可以建立与 0 或 多个 <code>ID</code> 的联系。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>XQuery</p>
+<ul>
+<li><p>基本语法<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/18.png" alt></p>
+<ul>
+<li>FLWOR Syntax<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png" alt></li>
+<li>join 操作<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png" alt></li>
+</ul>
+<ul>
+<li>这句话等价于<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/20.png" alt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2019/06/28/Data-Based-System/" target="_blank" title="《数据库系统》知识整理">https://jiangshibiao.github.io/2019/06/28/Data-Based-System/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Base/">Data Base</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          《计算机视觉》知识整理
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-algebra-Expression"><span class="nav-number">1.</span> <span class="nav-text">Relational-algebra Expression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL语法"><span class="nav-number">2.</span> <span class="nav-text">MySQL语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#约束（Constraints）"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">约束（Constraints）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数和过程（Functions-and-Procedures）"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">函数和过程（Functions and Procedures）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用语法"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">常用语法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ER模型"><span class="nav-number">3.</span> <span class="nav-text">ER模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式理论"><span class="nav-number">4.</span> <span class="nav-text">范式理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">5.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">6.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务（Transaction）"><span class="nav-number">7.</span> <span class="nav-text">事务（Transaction）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制（Concurrency-Control）"><span class="nav-number">8.</span> <span class="nav-text">并发控制（Concurrency Control）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复（Recovery）"><span class="nav-number">9.</span> <span class="nav-text">恢复（Recovery）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML"><span class="nav-number">10.</span> <span class="nav-text">XML</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
