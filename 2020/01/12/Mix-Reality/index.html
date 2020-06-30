@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>mix-reality | jiangshibiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
+  
+  
+  
+  
+  <meta name="description" content="During $2019.9 \sim 2020.1$，I was involved in the Mix-Reality class guided by Hujun Bao. The topic in this class is similar with computer vision. I’m really regretful because I didn’t listen to Mr. Ba">
+<meta name="keywords" content="Knowledge Learning,Course Review,Computing Theory">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mix-Reality">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/index.html">
+<meta property="og:site_name" content="jiangshibiao">
+<meta property="og:description" content="During $2019.9 \sim 2020.1$，I was involved in the Mix-Reality class guided by Hujun Bao. The topic in this class is similar with computer vision. I’m really regretful because I didn’t listen to Mr. Ba">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/SVD.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/transform1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/affinity.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/projective1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/matrix_multiplication.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/camera1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/camera0.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/camera3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/camera4.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/camera6.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/camera9.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/epipolar.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/epipolar_constraint.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/epipolar_properties.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/Fundamental_Matrix.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/Correlation_Methods.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/Gaussian.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/Differentiation.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/corner1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/corner2.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/corner3.png">
+<meta property="og:updated_time" content="2020-06-30T09:40:40.659Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mix-Reality">
+<meta name="twitter:description" content="During $2019.9 \sim 2020.1$，I was involved in the Mix-Reality class guided by Hujun Bao. The topic in this class is similar with computer vision. I’m really regretful because I didn’t listen to Mr. Ba">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/01/12/Mix-Reality/SVD.png">
+  
+    <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css">
+  
+
+</head>
+</html>
+<!--<script type="text/javascript" src="\js\snow.js"></script>-->
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="100px" height="100px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendlink">友链</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Mix-Reality" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Mix-Reality
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/01/12/Mix-Reality/" class="article-date">
+	  <time datetime="2020-01-12T06:38:51.000Z" itemprop="datePublished">2020-01-12</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>During $2019.9 \sim 2020.1$，I was involved in the <em>Mix-Reality</em> class guided by Hujun Bao.</p>
+<p>The topic in this class is similar with computer vision. I’m really regretful because I didn’t listen to Mr. Bao’s class carefully, even though he explained the knowledge points carefully.</p>
+<p>Mr. Bao sent me a book written by himself. I must read it when I’m free.</p>
+<a id="more"></a>
+<h2 id="Singular-Value-decomposition-SVD"><a href="#Singular-Value-decomposition-SVD" class="headerlink" title="Singular Value decomposition(SVD)"></a>Singular Value decomposition(SVD)</h2><ul>
+<li>a factorization of a normal matrix, extended from eigendecomposition.</li>
+<li>$A_{n \times m} = U_{n \times n}\Sigma_{n \times m}V^T_{m \times m}$<ul>
+<li>$(A^TA)v_i = \lambda_iv_i$</li>
+<li><strong>singular values</strong>: $\sigma_i = \sqrt{\lambda_i}$</li>
+<li>$u_i=\frac{1}{\sigma_i}Av_i$</li>
+</ul>
+</li>
+<li>One can easily verify that the square matrix also satisfies this definition(the same as eigendecomposition).</li>
+<li>$U,V$ are orthogonal matrices</li>
+<li>Usually we set $r \in (0,rk(A)]$ to approximate SVD.<br>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/SVD.png" alt></li>
+</ul>
+<h2 id="Transfomation-in-2D"><a href="#Transfomation-in-2D" class="headerlink" title="Transfomation in 2D"></a>Transfomation in 2D</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+<th>Preserve</th>
+<th>DOF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Isometries</td>
+<td>rotation, translation</td>
+<td>distance</td>
+<td>$3$</td>
+</tr>
+<tr>
+<td>Similarities</td>
+<td>[above], scale</td>
+<td>ratio of lengths, angles</td>
+<td>$4$</td>
+</tr>
+<tr>
+<td>Affinities</td>
+<td></td>
+<td>parallel lines, ratio of areas and lengths</td>
+<td>$6$</td>
+</tr>
+<tr>
+<td>Projective</td>
+<td></td>
+<td>cross ratio of 4 collinear points, collinearity</td>
+<td>$8$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p><strong>Rotation+Scaling+Translation</strong></p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/transform1.png" alt></p>
+</li>
+<li><p><strong>Affinities</strong></p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/affinity.png" alt></p>
+</li>
+<li><p><strong>Projective</strong></p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/projective1.png" alt></p>
+<ul>
+<li>find $H$<ul>
+<li>Due to projective transformation, they are in 3D Homogeneous Coordinates and $x’ \times Hx = 0$.</li>
+<li>Rewrite $9$ parameters from $H$ in a column vector $h$. For one pair of points, it can be derived that $A_{3\times9}h_{9 \times 1}=0$. Note that although there are $3$ equations, only $2$ of them are independent. So finally we can acquire that $A_{2N\times9}\cdot h=0$</li>
+<li>Use SVD to solve this equation: $A=U_{2N\times9}\Sigma_{9\times9}V^T_{9\times9}$. <strong>$h$ is is the last column of $V^T$.</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Cross in Matrix</strong></p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/matrix_multiplication.png" alt></p>
+</li>
+</ul>
+<h2 id="Camera-Model"><a href="#Camera-Model" class="headerlink" title="Camera Model"></a>Camera Model</h2><ul>
+<li><p><strong>Pinhole camera</strong></p>
+<ul>
+<li><p>Because the point is not exactly at the center, we should add shift parameters $c_x$ and $c_y$. So that $x’=f_xx+c_x, y’=f_yy+c_y$.</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/camera1.png" alt></p>
+</li>
+<li>Why the aperture cannot be too small?<ul>
+<li>Less light passes through</li>
+<li>Diffraction effect</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Lenses</p>
+<ul>
+<li><p>For thin lense:</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/camera0.png" alt></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Camera-Calibration"><a href="#Camera-Calibration" class="headerlink" title="Camera Calibration"></a>Camera Calibration</h2><ul>
+<li><p><strong>intrinsic parameters</strong></p>
+<ul>
+<li><p>From Pinhole Camera Model, totally $4$ parameters. Use the trick of <strong>Homogeneous Coordinates</strong>, finally:</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/camera3.png" alt></p>
+</li>
+</ul>
+</li>
+<li><strong>extrinsic parameters</strong><ul>
+<li>rotation and translation</li>
+<li>$6$ parameters: $(\theta, \phi, \psi, c_x, c_y, c_z)$</li>
+</ul>
+</li>
+<li><strong>distortion parameters</strong></li>
+</ul>
+<ul>
+<li><p>Radial distortion</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/camera4.png" alt></p>
+<pre><code>  ![](Mix-Reality/camera5.png)
+</code></pre></li>
+<li><p>Tangential distortion</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/camera6.png" alt></p>
+<pre><code>  ![](Mix-Reality/camera7.png)
+</code></pre><ul>
+<li>$5$ parameters: $(k1,k2,k3,p1,p2)$</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>Camera Calibration</strong></p>
+<ul>
+<li><p>Without distortion, the transform matrices are as follows ($s$ is the Skew parameter):</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/camera9.png" alt></p>
+</li>
+<li>parameters number: $5+3+3=11$. Need $6$ correspondences.</li>
+</ul>
+</li>
+<li><p><strong>Homogeneous $M \times N$ Linear Systems</strong></p>
+<ul>
+<li>$Ax=0$, $A_{M \times N}, M &gt; N$</li>
+<li>To find non-zero solution, Minimize $|Ax|^2$ under the constraint $|x|^2=1$.</li>
+<li>A possible method: Direct Linear Transformation</li>
+<li>General method for Calibration Problem: Compute SVD decomposition of $A$, the last column of V gives $x$.</li>
+<li>Degenerate cases<ul>
+<li>Points cannot lie on the same plane.</li>
+<li>Points cannot lie on the intersection curve of two quadric surfaces.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Taking Radial Distortion into Account</strong></p>
+<ul>
+<li>nonlinear</li>
+<li>Methods<ul>
+<li>Newton Method</li>
+<li>Levenberg-Marquardt Algorithm</li>
+</ul>
+</li>
+<li>The latter doesn’t require the computation of $H$.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Stereo-view-Geometry"><a href="#Stereo-view-Geometry" class="headerlink" title="Stereo-view Geometry"></a>Stereo-view Geometry</h2><ul>
+<li>Sets of parallel lines on the same plane lead to collinear <strong>vanishing points</strong>.</li>
+<li><p><strong>Epipolar Geometry 对极几何</strong></p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/epipolar.png" alt></p>
+</li>
+<li><p><strong>Epipolar Constraint</strong></p>
+<p><img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/epipolar_constraint.png" alt></p>
+<ul>
+<li>Denote $p=K[I,0]P$ and $p’=K[R,T]P$.</li>
+<li>Let $x=K^{-1}p$, finally we get that $x^T \cdot [T \times (Rx’)] = 0$, which is called <strong><em>Epipolar Constraint</em></strong>. It means that <strong>vector $x^T$,$T$ and $Rx’$ are coplanar</strong>.</li>
+<li><p>Denote $E=T \times R$, then $x^TEx’=0$, $E$ is called <strong><em>Essential Matrix</em></strong>.</p>
+<ul>
+<li>Properties about Essential Matrix</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/epipolar_properties.png" alt></p>
+<ul>
+<li>Write back $K$(may different between cameras), $F$ is called <strong><em>Fundamental Matrix</em></strong>.<br><img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/Fundamental_Matrix.png" alt></li>
+</ul>
+</li>
+<li><p>Properties about Fundamental Matrix is similar to essential matrix. $7$ DOF.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solve for Fundamental Matrix</strong></p>
+<ul>
+<li>$Wf = 0$ ($f_{9 \times 1}$ collects the parameters in $F$).<ul>
+<li>If $rk(W)=8$:  exists unqiue $f$.</li>
+<li>If $rk(W)&gt;8$:  find $\hat F$calculated by SVD.</li>
+</ul>
+</li>
+<li>Note that $F$’s rank is $2$ but $\hat F$ may not. Second equation: $||F-\hat F|| =0$ and $det(F)=0$</li>
+<li>Normalization<ul>
+<li>Transform one image first before calculating $F$.</li>
+<li>Find a transform that: Origin (1) centroid of image points. (2) Mean square distance of the data points from origin is $2$ pixels.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Stereo-systems"><a href="#Stereo-systems" class="headerlink" title="Stereo systems"></a>Stereo systems</h2><ul>
+<li><p>Some applications</p>
+<ul>
+<li>Stereo vision: Estimate the position of $P$ given the observation of $P$ from two view points.</li>
+<li>Triangulation: Intersecting the two lines of sight gives rise to $P$</li>
+</ul>
+</li>
+<li><p>Making image planes parallel</p>
+<ul>
+<li>Goal: Estimate the perspective transformation $H$ that makes the images parallel.</li>
+<li>To be continued…</li>
+</ul>
+</li>
+<li><p>Correspondence problem</p>
+<ul>
+<li>Correlation Methods<br>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/Correlation_Methods.png" alt></li>
+<li>Smaller window<ul>
+<li>More detail</li>
+<li>More noise</li>
+</ul>
+</li>
+<li>Larger window<ul>
+<li>Smoother disparity maps</li>
+<li>Less prone to noise</li>
+</ul>
+</li>
+<li>To be continued…</li>
+</ul>
+</li>
+</ul>
+<h2 id="Image-Processing"><a href="#Image-Processing" class="headerlink" title="Image Processing"></a>Image Processing</h2><ul>
+<li><p>Filters</p>
+<ul>
+<li>goals<ul>
+<li>Extract useful information from the images</li>
+<li>Modify or enhance image properties</li>
+</ul>
+</li>
+<li><p>Gaussian Filters</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/Gaussian.png" alt></p>
+<ul>
+<li>Rule of thumb: set filter half-width to about $3\sigma$</li>
+<li><em>Separable</em> kernel; Convolution with self is another Gaussian</li>
+</ul>
+</li>
+<li>Median and Mean filter</li>
+</ul>
+</li>
+<li><p>Differentiation<br>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/Differentiation.png" alt></p>
+</li>
+<li><p>Sub-sampling</p>
+<ul>
+<li>Problem: Aliasing</li>
+<li>Sampling Theorem (Nyquist)： When sampling a signal at discrete intervals, the sampling frequency must be $2f_{max}$($f$ is frequency).</li>
+</ul>
+</li>
+<li><p>Edge Detection</p>
+<ul>
+<li>Edge: a location with high gradient</li>
+<li>Most widely used method: Canny Edge Detection<ol>
+<li>Gaussian smoothing</li>
+<li>Derivative of Gaussian</li>
+<li>Find magnitude and orientation of gradient</li>
+<li>Extract edge points: “Non-maximum suppression”</li>
+<li>Linking and thresholding “Hysteresis”</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Harris Corner Detector<br>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/corner1.png" alt></p>
+<ul>
+<li>Denote $E(u,v)=\sum \limits_{x,y} w(x,y)[I(x+u,y+u)-I(x,y)]^2$. The corner has bigger $E(u,v)$.</li>
+<li><p>Using bilinear approximation, we can derive that:</p>
+<p>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/corner2.png" alt></p>
+<ul>
+<li>$\lambda1 \sim \lambda2$: Corner</li>
+<li>$\lambda1 \gg \lambda2$: Edge</li>
+</ul>
+</li>
+<li>Set $\rm R=det(M)-k \cdot Trace(M)$, use $R$ to judge corners ($k \in [0.04,0.06]$).<br>  <img src="//jiangshibiao.github.io/2020/01/12/Mix-Reality/corner3.png" alt></li>
+<li>Property: Rotation invariance</li>
+</ul>
+</li>
+</ul>
+<h2 id="Fitting"><a href="#Fitting" class="headerlink" title="Fitting"></a>Fitting</h2><ul>
+<li>Goal: Choose a parametric model to fit a certain quantity from data.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120623700-1112702341.png',
+  alipayImage: 'https://img2020.cnblogs.com/blog/608627/202004/608627-20200426120511951-977988305.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2020/01/12/Mix-Reality/" target="_blank" title="Mix-Reality">https://jiangshibiao.github.io/2020/01/12/Mix-Reality/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computing-Theory/">Computing Theory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          《计算机视觉》知识整理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/12/Theory-of-Computation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Theory-of-Computation</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Singular-Value-decomposition-SVD"><span class="nav-number">1.</span> <span class="nav-text">Singular Value decomposition(SVD)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfomation-in-2D"><span class="nav-number">2.</span> <span class="nav-text">Transfomation in 2D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera-Model"><span class="nav-number">3.</span> <span class="nav-text">Camera Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera-Calibration"><span class="nav-number">4.</span> <span class="nav-text">Camera Calibration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stereo-view-Geometry"><span class="nav-number">5.</span> <span class="nav-text">Stereo-view Geometry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stereo-systems"><span class="nav-number">6.</span> <span class="nav-text">Stereo systems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Processing"><span class="nav-number">7.</span> <span class="nav-text">Image Processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fitting"><span class="nav-number">8.</span> <span class="nav-text">Fitting</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/friendlink" class="mobile-nav-link">Friendlink</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            jiangshibiao
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 jiangshibiao All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
