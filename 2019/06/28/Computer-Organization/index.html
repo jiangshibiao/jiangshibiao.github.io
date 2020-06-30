@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>趣题摘记-理论和算法 | jiangshibiao</title>
+  <title>《计算机组成》知识整理 | jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
@@ -11,23 +11,24 @@
   
   
   
-  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
-<meta name="keywords" content="Knowledge Learning,Algorithm,Math">
+  <meta name="description" content="$2019.3 \sim 2019.6$ 上了马德教授《计算机组成》这门课，讲得还是挺不错的。 我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。 本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 见此。 本文对《计算机组成》的知识点进行了随性的整理。">
+<meta name="keywords" content="Knowledge Learning,Course Review,Computer System">
 <meta property="og:type" content="article">
-<meta property="og:title" content="趣题摘记-理论和算法">
-<meta property="og:url" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/index.html">
+<meta property="og:title" content="《计算机组成》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
+<meta property="og:description" content="$2019.3 \sim 2019.6$ 上了马德教授《计算机组成》这门课，讲得还是挺不错的。 我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。 本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 见此。 本文对《计算机组成》的知识点进行了随性的整理。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-2.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-3.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-4.png">
-<meta property="og:updated_time" content="2020-06-10T08:12:23.253Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/Repositories/Course-Review/Computer-Organization/3.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/4.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/5.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/1.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/2.png">
+<meta property="og:updated_time" content="2020-06-30T08:50:20.244Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="趣题摘记-理论和算法">
-<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png">
+<meta name="twitter:title" content="《计算机组成》知识整理">
+<meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了马德教授《计算机组成》这门课，讲得还是挺不错的。 我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。 本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 见此。 本文对《计算机组成》的知识点进行了随性的整理。">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2019/06/28/Computer-Organization/Repositories/Course-Review/Computer-Organization/3.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -171,7 +172,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Interesting-Problems-Theory-and-Algorithm" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-Computer-Organization" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -179,7 +180,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      趣题摘记-理论和算法
+      《计算机组成》知识整理
     </h1>
   
 
@@ -187,12 +188,12 @@
     
     <div class="article-meta">
       
-	<a href="/2020/06/03/Interesting-Problems-Theory-and-Algorithm/" class="article-date">
-	  <time datetime="2020-06-03T08:41:36.000Z" itemprop="datePublished">2020-06-03</time>
+	<a href="/2019/06/28/Computer-Organization/" class="article-date">
+	  <time datetime="2019-06-28T06:38:49.000Z" itemprop="datePublished">2019-06-28</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
+    <a class="article-category-link" href="/categories/Course-Review/">Course Review</a>
 
       
 	<a class="article-views">
@@ -206,141 +207,128 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这一系列文章记录了我遇到过的一些 <strong>趣题</strong>——过小小思考后能豁然开朗的那种。</p>
-<ul>
-<li><a href="https://jiangshibiao.github.io/2020/06/10/Interesting-Problems-Probability/">概率和期望</a></li>
-<li><a href="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/">理论和算法</a></li>
-<li><a href="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/">奇思妙想</a></li>
-</ul>
-<p>这一篇主要介绍一些 <strong>计算理论和算法</strong> 方向的题。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li><a href="#运筹学课程详细整理"><strong>运筹学课程详细整理</strong></a></li>
-<li><a href="#边权最小使指定顶点连通">边权最小使指定顶点连通</a></li>
-<li><a href="#最小生成树局部最优等于全局最优">最小生成树局部最优等于全局最优</a></li>
-<li><a href="#图的最大割问题">图的最大割问题</a></li>
-<li><a href="#BP-算法">BP 算法</a></li>
-</ul>
+        <p>$2019.3 \sim 2019.6$ 上了马德教授《计算机组成》这门课，讲得还是挺不错的。</p>
+<p>我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。</p>
+<p>本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 <a href="https://github.com/jiangshibiao/Flappy_bird" target="_blank" rel="noopener">见此</a>。</p>
+<p>本文对《计算机组成》的知识点进行了随性的整理。</p>
 <a id="more"></a>
-<h4 id="运筹学课程详细整理"><a href="#运筹学课程详细整理" class="headerlink" title="运筹学课程详细整理"></a>运筹学课程详细整理</h4><p><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/">包含线性规划、近似算法等众多有趣内容</a></p>
-<h4 id="边权最小使指定顶点连通"><a href="#边权最小使指定顶点连通" class="headerlink" title="边权最小使指定顶点连通"></a>边权最小使指定顶点连通</h4><ul>
-<li><p>题目描述</p>
+<h2 id="MIPS相关"><a href="#MIPS相关" class="headerlink" title="MIPS相关"></a>MIPS相关</h2><ul>
+<li><p>移码（增码）：符号位取反的补码</p>
 <ul>
-<li>给定联通无向图 $(V,E)$ 和若干个顶点集合 $S= \{ t_1,t_2,⋯,t_{|S|} \}$</li>
-<li>要求选出边权和最小的边，使得任意 $S$ 中的点联通。</li>
+<li>一般用指数的移码减一来做浮点数的阶码</li>
 </ul>
 </li>
-<li><p>确定性做法</p>
+<li><p>IEEE754 标准</p>
 <ul>
-<li>在ICPC竞赛里，这是一道很经典的斯坦纳树问题。</li>
-<li>设 $f_{S,i}$ 表示使“以$i$ 为根，点集为 $S$”的树连通的最小边权和。</li>
-<li>对于一种状态 $(S,i)$，有两种转移方式：<ol>
-<li>将 $S$ 拆成两个子集 $S_1$ 和 $S_2$ 转移（相当于这棵树有至少两个子树）。</li>
-<li>枚举点 $j$ ，用 $f_{S’,j}+E_{j,i}$ 转移（相当于这棵树只有一个子树，枚举子树顶点）。</li>
-</ol>
-</li>
-<li>复杂度是 $O(n3^n)$。</li>
+<li><code>float</code>  （1位符号位 + 8位指数位 + 23位底数位）<ul>
+<li>其中，指数位 <code>实际值 = 显示值 - 127</code></li>
 </ul>
 </li>
-<li><p>一个有趣的近似做法</p>
+<li><code>double</code> （1位符号位 + 11位指数位 + 52位底数位）</li>
+</ul>
+</li>
+<li><p>MIPS指令</p>
 <ul>
-<li>构造一个新图 $(S,F)$，对于原图中 $S$ 中的每一对顶点 $(i,j)$，连一条边权为 $F_{i,j}$ 的边，其中 $F_{i,j}$ 是原图中 $i$ 到 $j$ 的最短路。</li>
-<li>在新图上跑一遍 $MST$ 得到一个边集 $E_{result}$.</li>
-<li>显然这组边一定是原图的一个解。</li>
+<li><code>beq $rs, $rt, offset</code><ul>
+<li>注意此处顺序是<strong>正</strong>的。</li>
+<li><code>offset</code> 是 新地址 和 PC+4 的差除以 4 后的结果。</li>
 </ul>
 </li>
-<li><p>证明近似度为 $2$</p>
+<li><code>lw $rt, offset($rs)</code><ul>
+<li>注意此处顺序是<strong>反</strong>的。</li>
+</ul>
+</li>
+<li><code>sw $rt, offset($rs)</code><ul>
+<li>注意此处顺序是<strong>反</strong>的。</li>
+</ul>
+</li>
+<li><code>add $rd, $rs, $st</code></li>
+<li><code>J Jumpaddr</code><ul>
+<li>实际跳转地址 = <code>PC+4[31:28] + Jumpaddr[25:0] + 00</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>寄存器表</p>
+<p>  | 编号  | 寄存器      | 作用               |<br>  | ——- | —————- | ————————— |<br>  | 0     | $zero       |                    |<br>  | 1     | $at         | 保留给汇编器       |<br>  | 2-3   | \$v0 , \$v1 | 函数调用返回值     |<br>  | 4-7   | \$a0 - \$a3 | 函数调用参数       |<br>  | 8-15  | \$t0 - \$t7 |                    |<br>  | 16-23 | \$s0 - \$s7 |                    |<br>  | 24-25 | \$t8 , \$t9 |                    |<br>  | 26,27 | \$k0 , \$k1 | 保留给异常处理函数 |<br>  | 28    | \$gp        | 全局指针           |<br>  | 29    | \$sp        | 堆栈指针           |<br>  | 30    | \$fp        | 帧指针             |<br>  | 31    | \$ra        | 返回地址           |</p>
+</li>
+<li><p>杂碎注意点</p>
 <ul>
-<li>在原图中，考虑一个包含 $S$ 的路径 $P= \{ p_1,p_2,…,p_k \}$.</li>
-<li>任意找出路径上的 $S$ 子序列 $Q= \{ q_1,q_2,…,q_{|S|} \}$. $P$ 中 $q_i \rightarrow q_{i+1}$ 的路径边权和，必然不小于新图中的 $F_{q_i,q_{i+1}}$.</li>
-<li>假设原图最优解的边集是 $E_{answer}$。将 $E_{answer}$ 中的每条边都复制一遍，可以得到一张欧拉图，且能导出一个 $P$ 路径。</li>
-<li>由以上分析可知，$\sum E_{q_i,q_{i+1}} \geq \sum E_{result}$。即 $2\sum E_{answer} \geq \sum E_{result}$.</li>
-<li>考虑一个边权都相等的菊花图。当 $n \rightarrow +\infty$ 时，$E_{result} \rightarrow 2\sum E_{answer}$.</li>
-<li>所以该做法的近似度正好是 $2$.</li>
+<li><strong>寄存器里的负数值都是用补码表示的。</strong></li>
 </ul>
 </li>
 </ul>
-<h4 id="最小生成树局部最优等于全局最优"><a href="#最小生成树局部最优等于全局最优" class="headerlink" title="最小生成树局部最优等于全局最优"></a>最小生成树局部最优等于全局最优</h4><ul>
-<li><p>题目描述</p>
+<h2 id="多周期"><a href="#多周期" class="headerlink" title="多周期"></a>多周期</h2><ul>
+<li><p>多周期的步数<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/Repositories/Course-Review/Computer-Organization/3.png" alt></p>
+</li>
+<li><p>ALU 译码表</p>
+</li>
+<li><p>多周期控制信号含义</p>
+<p>  | 信号名称    | = 0 时候的含义            | = 1 时候的含义                  |<br>  | —————- | ————————————- | ———————————————- |<br>  | RegDst      | 选 <code>rt[20:16]</code>            | 选 <code>rt[15:11]</code>                  |<br>  | RegWrite    |                           | 对寄存器执行写操作              |<br>  | ALUScrA     | ALU 第一个值是PC          | ALU第一个值来自寄存器 A         |<br>  | MemRead     |                           | 从 memory 中读入                |<br>  | MemWrite    |                           | 输出到 memory                   |<br>  | MemtoReg    | 写入 reg 数据从 ALUout 来 | 写入 reg 数据从MDA来            |<br>  | IorD        | PC 来做访问的内存地址     | ALUout 来做访问的内存地址       |<br>  | IRWrite     |                           | 内存输出到 IR 里去              |<br>  | PCWrite     |                           | J指令的强制跳转                 |<br>  | PCWriteCond |                           | 如果 <code>ALU = 0</code>，branch 强制跳转 |</p>
+<p>  | 信号名称 | 作用           | 00   | 01     | 10         | 11            |<br>  | ———— | ——————— | —— | ——— | ————— | ——————- |<br>  | ALUop    | 给 ALU 信息    | 加   | 减     | 其他       |               |<br>  | ALUScrB  | ALU 第二个值   | B    | 4      | 位拓展的IR | 位拓展的IR*4 |<br>  | PCSource | 新 PC 被什么写 | PC+4 | branch | Jump       |               |</p>
+</li>
+<li><p>多周期数据通路<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/4.png" alt></p>
+</li>
+<li><p>多周期状态机控制信号表<br>  <img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/5.png" alt></p>
+</li>
+</ul>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><ul>
+<li><p>Locality</p>
 <ul>
-<li>在 MST 问题中，定义一个解的邻域为：删掉一条边并加上一条边后能到达的所有解。</li>
-<li>求证：一个局部最优解必然是全局最优解。</li>
+<li><code>temporal locality</code> (locality in time): If an item is referenced, it will tend to be referenced again soon.</li>
+<li><code>spatial locality</code> (locality in space): If an item is referenced, items whose addresses are close by will tend to be referenced soon.</li>
 </ul>
 </li>
-<li><p>先简化问题，假设所有边权值都不相同。</p>
-<ol>
-<li>设局部最优解是 $T$，全局最优解是 $T^*$。将局部最优解连成一棵树。</li>
-<li>反证，假设 $T$ 不是全局最优解。则至少存在一条在$T^*$中的非树边 $E=(u,v)$。</li>
-<li>在 $T$ 里找到 $u \rightarrow v$ 的路径，依次经过了 $e_1,e_2,…e_k$ 这些边。由条件可知，$\max \limits_{i=1..k} c(e_i) &lt; c(E)$ （否则就不是局部最优解了）。</li>
-<li>显然，$u \rightarrow v$ 的路径中，必然存在一条边 $e_i=(p,q)$，使得 $p$ 和 $q$ 属于不同的集合。我们在全局最优解里删掉边 $E=(u,v)$，加入边 $e_i$。全局最优解答案更变得更优，产生矛盾。</li>
-<li>所以（任意一个）局部最优解必然是全局最优解。</li>
-</ol>
-</li>
-<li><p>再考虑权值可以相同。</p>
-<ol>
-<li>在之前的第 $3$ 步里，条件变成了 $\max \limits_{i=1..k} c(e_i) \leq c(E)$。</li>
-<li>在之前的第 $4$ 步里，有可能会出现 $c(E)=c(e_i)$，此时替换边后权值不变，无法导出矛盾。</li>
-<li>注意到，<strong>$T$ 中存在 $e_i$ 不存在 $E$，$T^*$ 中存在 $E$ 不存在 $e_i$</strong>。我们还是做一下边的替换，得到变换后的“等价局部最优解” $T’$。</li>
-<li>经过了这样一次变换后，$T’$ 和 $T^{\ast}$ 之间重复的边增加了一条。重复上述的流程，直到导出反证法的矛盾或是推出 $T’=T^*$。</li>
-</ol>
-</li>
-<li><p>注意，上述的证明过程是<strong>有漏洞的</strong>。<strong>在变换了 $T$ 后，我们并没有证明 $T’$ 在它的邻域也是最优的，就不能应用局部最优解的性质。</strong> 可以反过来进行修正：</p>
-<ol>
-<li>同上述步骤，找到一条非树边 $E$。如果 $c(E)=c(e_i)$，固定 $T$ 不动，把 $T^\ast$ 里的边 $E$ 替换成 $e_i$。</li>
-<li>$T$ 和 $T’$ 之间重复的边增加了一条。重复上述的流程，直到导出反证法的矛盾或是推出 $T=T’$。</li>
-</ol>
-</li>
-<li><p><strong>一个简洁的证法</strong></p>
-<ol>
-<li>之前的证明需要一步步调整，其实可以<strong>一步到位</strong>。</li>
-<li>在取 $T^\ast$ 的时候，我们不妨在所有全局最优解里，取一个 <strong>和 $T$ 重复的边最多的解</strong>。</li>
-<li>如果 $T^\ast \ne T$，存在一个 $T’$ 使得 $T’$ 里 $T$ 重复的边更近，但是这和 $T^{\ast}$ 矛盾。所以 $T^{\ast}=T$。</li>
-</ol>
-</li>
-</ul>
-<h4 id="图的最大割问题"><a href="#图的最大割问题" class="headerlink" title="图的最大割问题"></a>图的最大割问题</h4><ul>
-<li><p>整理自 <a href="http://zhenweiliu.gitee.io/blog/2019/10/19/Approximation-Algorithm-9-The-Maxcut-Problem/" target="_blank" rel="noopener">lzw</a> 的博客</p>
+<li><p>Cache</p>
 <ul>
-<li>给定边权非负的无向图 $G=(V,E)$</li>
-<li>要将其分成两个点集 $(S, V \backslash S)$</li>
-<li>最大化 $\sum_{e \in cut(S, V \backslash S)}{w_e}$</li>
-</ul>
-</li>
-<li><p>一个简单有效的基于随机的 2-approximation 做法</p>
-<ul>
-<li>设最优解为 $W$.</li>
-<li>对于每个点, 有 $p$ 的概率选入集合 $S$, 那么有 <script type="math/tex">W' = \sum \limits_{e}{w_e \cdot P[e \in (S, V \backslash S)]} = \sum \limits_{e} 2p(1-p)w_e \geq 2p(1-p) W</script></li>
-<li>取 $p=\frac{1}{2}$ 时有 $W’ \geq \frac{1}{2}W$.</li>
-</ul>
-</li>
-<li><p>一个更加简单的贪心做法</p>
-<ul>
-<li>初始化集合 $A=B=\emptyset$. 依次考虑每个点, 如果把它加入 $A$ 集合收益更大就加入，否则加入 $B$ 集合。收益指 $\sum \limits_{e \in (A,B)}{w_e}$增加的量。</li>
-<li>容易证明在这个过程中始终满足下面的性质:<script type="math/tex; mode=display">\sum \limits_{e \in (A,B)}{w_e} \geq \sum \limits_{e \in (A,A)}{w_e} + \sum \limits_{e \in (B,B)}{w_e}</script></li>
-<li>从而得出 $W’=\sum \limits_{e \in (A,B)}{w_e} \geq \frac{1}{2}\sum \limits_{e}{w_e} \geq \frac{1}{2}W$</li>
+<li>分类<pre><code>  - Direct Mapped：取最后几个二进制位直接映射。
+      + `TAG` 是前几个二进制位
+      + 一个我们需求的地址由 `TAG + Index + offset` 组成
+      + Cache里一个单位由 `Validbit + TAG + data` 组成
+  - Fully associative
+</code></pre><ul>
+<li>Set associative<ul>
+<li>Direct Mapped 其实是一路组关联</li>
 </ul>
 </li>
 </ul>
-<h4 id="BP-算法"><a href="#BP-算法" class="headerlink" title="BP 算法"></a>BP 算法</h4><ul>
-<li><p>描述</p>
-<ul>
-<li>已知联合分布函数 $F(x_1,x_2,…x_n)$ （可以设 $x_i=0,1$ 来简化思考），求每个 $x_i$ 边缘分布函数。</li>
-<li>一般认为联合分布函数比较“稀疏”，可以用一张无向图（因子图, factor graph）来描述（点是变量，边是两个变量之间的条件概率函数，设为 $\Phi_{i,j}$）。</li>
-<li>例子：一个五个变量的因子图以及信息的传递。<br>  <img src="//jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png" alt></li>
+</li>
+<li>Strategy of block Replacement<ul>
+<li>Random replacement</li>
+<li>Least-recently used (LRU)</li>
+<li>First in,first out(FIFO)</li>
 </ul>
 </li>
-<li><p>转化</p>
-<ul>
-<li>一般认为，可以从物理角度去解析某个概率分布的构型。具体地，设上述图的能量为：<br>  <img src="//jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-2.png" alt></li>
-<li>这样，某构型 $E=\{x_1,x_2…x_n\}$ 出现的概率是 $\frac{1}{normalize} e^{-E}$</li>
-<li>不太懂实际的物理意义，我的理解为：将求边缘分布函数 $f(p)$ 的累乘通过取 $\log$ 转化为累加。</li>
-<li>取完对数后，比如我们要求的 $P(x_1)$ 就可以表示为：<br>  <img src="//jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-3.png" alt></li>
+<li>Write hit：<ul>
+<li><code>write-back</code> (Cause Inconsistent)： Wrote the data into only the data cache</li>
+<li><code>write-through</code> (Ensuring Consistent)： Write the data into both the memory the cache</li>
 </ul>
 </li>
-<li><p>迭代过程</p>
+<li>Write miss：<ul>
+<li>read the entire block into the cache, then write the word</li>
+<li><code>Write allocate</code>：The block is loaded into the cache on a miss before anything else occurs</li>
+<li><code>Write around</code>：The block is only written to main memory (not stored in the cache)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>虚拟内存</p>
 <ul>
-<li>迭代其实就是把上述式子不断累加求出来的过程。</li>
-<li>定义点 $i \rightarrow j$ 的 <code>message</code> 为：<br>  <img src="//jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-4.png" alt></li>
-<li>很显然，上述式子是一个迭代的过程。且易得 $P(x_i) = \prod \limits_{j \in N(i)} m_{ji}(x_i)$</li>
+<li>blocks of memory (called <code>pages</code>) are mapped from <code>virtual addresses</code> to <code>physical address</code>.</li>
+<li><code>page number</code> 决定 <code>physical address</code> 的高位， <code>page offset</code> 决定低位。</li>
+<li>每个 <code>page</code> 的大小一般是 4KB $\sim$ 16KB</li>
+<li>采用 <code>write back</code> 策略（频繁写入）</li>
+<li><p><code>page table</code> is indexed with the page number from the virtual address to discover physical address.</p>
+<ul>
+<li>由 <code>valid bit</code> 和 <code>page number</code> 两部分组成。</li>
+<li>位宽是 <code>physical page number</code> 的位宽加一（注意要向上填充）</li>
+<li>如果 <code>valid bit = 0</code>，会产生 <code>page fault</code>。`</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/1.png" alt></p>
+<ul>
+<li>TLB (Translation-lookaside Buffer)：<br><img src="//jiangshibiao.github.io/2019/06/28/Computer-Organization/2.png" alt></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -370,7 +358,7 @@ var a = new Donate({
           </li>
           <li class="post-copyright-link">
           <strong>本文链接:  </strong>
-          <a href="/2020/06/03/Interesting-Problems-Theory-and-Algorithm/" target="_blank" title="趣题摘记-理论和算法">https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/</a>
+          <a href="/2019/06/28/Computer-Organization/" target="_blank" title="《计算机组成》知识整理">https://jiangshibiao.github.io/2019/06/28/Computer-Organization/</a>
           </li>
           <li class="post-copyright-license">
             <strong>版权声明:   </strong>
@@ -410,7 +398,7 @@ var a = new Donate({
       
       
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computer-System/">Computer System</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course-Review/">Course Review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li></ul>
 
       
 
@@ -420,19 +408,19 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="/2020/06/10/Interesting-Problems-Probability/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          趣题摘记-概率和期望
+          《计算机视觉》知识整理
         
       </div>
     </a>
   
   
-    <a href="/2020/05/23/Use-Python-Gracefully/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/06/28/Data-Based-System/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">如何优雅地使用 Python</div>
+      <div class="article-nav-title">《数据库系统》知识整理</div>
     </a>
   
 </nav>
@@ -446,7 +434,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运筹学课程详细整理"><span class="nav-number">2.</span> <span class="nav-text">运筹学课程详细整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边权最小使指定顶点连通"><span class="nav-number">3.</span> <span class="nav-text">边权最小使指定顶点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小生成树局部最优等于全局最优"><span class="nav-number">4.</span> <span class="nav-text">最小生成树局部最优等于全局最优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图的最大割问题"><span class="nav-number">5.</span> <span class="nav-text">图的最大割问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BP-算法"><span class="nav-number">6.</span> <span class="nav-text">BP 算法</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MIPS相关"><span class="nav-number">1.</span> <span class="nav-text">MIPS相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多周期"><span class="nav-number">2.</span> <span class="nav-text">多周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">3.</span> <span class="nav-text">存储</span></a></li></ol>
     
     </div>
   </aside>

@@ -28,6 +28,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/24.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/6.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/7.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/5.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/22.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/23.png">
@@ -42,7 +43,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2019/06/28/Data-Based-System/20.png">
-<meta property="og:updated_time" content="2020-06-30T08:30:07.453Z">
+<meta property="og:updated_time" content="2020-06-30T08:44:34.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据库系统》知识整理">
 <meta name="twitter:description" content="$2019.3 \sim 2019.6$ 上了高云君教授《数据库系统》这门课，讲得还是挺不错的。 这门课的 Workload 很大，期中和期末分别有一个 Project：  期中 Project：实现一个图书管理系统 期末 Project：实现一个迷你版的 SQL查询系统  还有一个硬核的期末考试。为了巩固知识点特撰写此文。">
@@ -234,8 +235,7 @@
 <p>还有一个硬核的期末考试。为了巩固知识点特撰写此文。</p>
 <a id="more"></a>
 <h2 id="Relational-algebra-Expression"><a href="#Relational-algebra-Expression" class="headerlink" title="Relational-algebra Expression"></a>Relational-algebra Expression</h2><ul>
-<li><p>基本功能</p>
-<ul>
+<li>基本功能<ul>
 <li>$\cup, -,$ 并，差</li>
 <li>$r \times s = \{(t,q) | t \in r, q \in s \}$：笛卡尔积</li>
 <li>$\rho_X(r)$: 将 $r$ 重命名为 $X$。</li>
@@ -243,15 +243,14 @@
 <li>$\prod_{X,Y}(r)$：投影 $r$ 中的部分属性。</li>
 </ul>
 </li>
-<li><p>拓展功能</p>
-<ul>
+<li>拓展功能<ul>
 <li>$r \cap s = r - (r - s)$ 交</li>
 <li>$r \Join s$ 自然连接</li>
 <li>$r \Join_{\theta} s$ 带条件连接</li>
 </ul>
 </li>
 </ul>
-<h2 id="MySQL语法"><a href="#MySQL语法" class="headerlink" title="MySQL语法"></a>MySQL语法</h2><h5 id="约束（Constraints）"><a href="#约束（Constraints）" class="headerlink" title="约束（Constraints）"></a>约束（Constraints）</h5><ol>
+<h2 id="MySQL语法"><a href="#MySQL语法" class="headerlink" title="MySQL语法"></a>MySQL语法</h2><h4 id="约束（Constraints）"><a href="#约束（Constraints）" class="headerlink" title="约束（Constraints）"></a>约束（Constraints）</h4><ol>
 <li>普通约束<ul>
 <li><code>not null</code></li>
 <li><code>unique</code></li>
@@ -269,7 +268,7 @@
 </ul>
 </li>
 </ol>
-<h5 id="函数和过程（Functions-and-Procedures）"><a href="#函数和过程（Functions-and-Procedures）" class="headerlink" title="函数和过程（Functions and Procedures）"></a>函数和过程（Functions and Procedures）</h5><ol>
+<h4 id="函数和过程（Functions-and-Procedures）"><a href="#函数和过程（Functions-and-Procedures）" class="headerlink" title="函数和过程（Functions and Procedures）"></a>函数和过程（Functions and Procedures）</h4><ol>
 <li><p>函数</p>
 <ul>
 <li><p>定义</p>
@@ -291,7 +290,7 @@
 </ul>
 </li>
 </ol>
-<h5 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h5><ol>
+<h4 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h4><ol>
 <li><p>基本语法</p>
 <ul>
 <li>定义变量： <code>declare n integer</code></li>
@@ -500,27 +499,35 @@
 </li>
 <li><p><strong>cost for join</strong>:</p>
 <ul>
-<li><p>Nested-Loop Join<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/6.png" alt></p>
-<pre><code>    - 最坏情况：$n_r \times b_s + b_r$ `transfer`， $n_r + b_r$ `seek`
-    - 最好情况：$b_r + b_s$ `transfer`，$2$ `seek`
-+ Block Nested-Loop Join
-  ![](Data-Based-System/7.png)
-  - 最坏情况 $b_r \times b_s + b_r$ `transfer`。
-
- - Let the relation with smaller number of blocks be outer relation.
- - 最好情况：与上同理。
-+ Indexed Nested-Loop Join
- - `inner relation` 要有索引。
- - 枚举每一个 $n_s$，用索引去找符合要求的 $t$。
- - 代价：$b_r (t_T + t_S) + n_r \times c$
-+ Merge-Join（排序归并连接）
- - $br + bs$  `transfers`  ， $\lceil \frac{b_r}{b_b} \rceil + \lceil \frac{b_s}{b_b} \rceil$ `seeks`
-+ Hash-Join Algorithm
-       1. 对 $s$ 用外层哈希对 $r$ 和 $s$ 进行 `Partition`。
-            2. 对每一个 $s_i$ 进行 `in-memory hash`.
-                 3. 对每一个 $t_i$，找到对应的 $s_i$。
- - $s$ 称为 `build input`，$t$ 称为 `probe input`。
-</code></pre><ul>
+<li>Nested-Loop Join<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/6.png" alt><ul>
+<li>最坏情况：$n_r \times b_s + b_r$ <code>transfer</code>， $n_r + b_r$ <code>seek</code></li>
+<li>最好情况：$b_r + b_s$ <code>transfer</code>，$2$ <code>seek</code></li>
+</ul>
+</li>
+<li>Block Nested-Loop Join<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/7.png" alt><ul>
+<li>最坏情况 $b_r \times b_s + b_r$ <code>transfer</code>。</li>
+<li>Let the relation with smaller number of blocks be outer relation.</li>
+<li>最好情况：与上同理。</li>
+</ul>
+</li>
+<li>Indexed Nested-Loop Join<ul>
+<li><code>inner relation</code> 要有索引。</li>
+<li>枚举每一个 $n_s$，用索引去找符合要求的 $t$。</li>
+<li>代价：$b_r (t_T + t_S) + n_r \times c$</li>
+</ul>
+</li>
+<li><p>Merge-Join（排序归并连接）</p>
+<ul>
+<li>$br + bs$  <code>transfers</code>  ， $\lceil \frac{b_r}{b_b} \rceil + \lceil \frac{b_s}{b_b} \rceil$ <code>seeks</code></li>
+</ul>
+</li>
+<li>Hash-Join Algorithm<ol>
+<li>对 $s$ 用外层哈希对 $r$ 和 $s$ 进行 <code>Partition</code>。</li>
+<li>对每一个 $s_i$ 进行 <code>in-memory hash</code>.</li>
+<li>对每一个 $t_i$，找到对应的 $s_i$。</li>
+</ol>
+<ul>
+<li>$s$ 称为 <code>build input</code>，$t$ 称为 <code>probe input</code>。</li>
 <li>一般 $n = \lceil \frac{b_s}{M}\rceil  * f $，$f = 1.2$。</li>
 <li>代价大概是 $3(b_r+b_s)$</li>
 <li>如果 $n&gt;M$，进行 <code>Recursive partitioning</code>。</li>
@@ -531,18 +538,17 @@
 </ul>
 </li>
 <li>Cost Estimation<ul>
-<li>Statistical Information<pre><code>  + $n_r$ : number of tuples in a relation r.
-  + $b_r$ : number of blocks containing tuples of r.
-  + $l_r$ : size of a tuple of r.
-  + $f_r$ : blocking factor of r — i.e., the number of tuples of r that fit into one block.
-  + $V(A, r)$ : number of distinct values that appear in r for attribute A;  same as the size of $\prod_A(r)$.
-  + If tuples of $r$ are stored together physically in a file, then:
-      $$ b_r = \lceil \frac{n_r}{f_r} \rceil $$
-</code></pre><ul>
-<li>Selection Size Estimation<ul>
-<li>$\sigma_{A=v}(r) : \frac{nr}{V(A,r)}$</li>
+<li>Statistical Information<ul>
+<li>$n_r$ : number of tuples in a relation r.</li>
+<li>$b_r$ : number of blocks containing tuples of r.</li>
+<li>$l_r$ : size of a tuple of r.</li>
+<li>$f_r$ : blocking factor of r — i.e., the number of tuples of r that fit into one block.</li>
+<li>$V(A, r)$ : number of distinct values that appear in r for attribute A;  same as the size of $\prod_A(r)$.</li>
+<li>If tuples of $r$ are stored together physically in a file, then: <script type="math/tex">b_r = \lceil \frac{n_r}{f_r} \rceil</script></li>
 </ul>
 </li>
+<li>Selection Size Estimation<ul>
+<li>$\sigma_{A=v}(r) : \frac{nr}{V(A,r)}$</li>
 </ul>
 </li>
 </ul>
@@ -587,11 +593,34 @@
 </ul>
 </li>
 </ul>
-<h2 id="并发控制（Concurrency-Control）"><a href="#并发控制（Concurrency-Control）" class="headerlink" title="并发控制（Concurrency Control）"></a>并发控制（Concurrency Control）</h2><ul>
+<h2 id="并发控制（Concurrency-Control）"><a href="#并发控制（Concurrency-Control）" class="headerlink" title="并发控制（Concurrency Control）"></a>并发控制（Concurrency Control）</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>S</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>X</td>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
 <li>Lock-Based Protocols<ul>
 <li><code>Exclusive (X) mode</code>: 只允许事务 T 读取和修改，其他任何事务都不能读取、写入和加锁，直到 T 释放。<ul>
 <li><code>Shared (S) mode</code>: 允许 T 读但不能修改，其他事务只能加 S 锁但不能加 X 锁，直到 T 释放。</li>
-<li><code>deadlock</code>：双方都施加过 S 锁，想申请 T 锁时都要等待对方释放。<br>  | .    | S    | X    |<br>  | —— | —— | —— |<br>  | S    | T    | F    |<br>  | X    | F    | F    |</li>
+<li><code>deadlock</code>：双方都施加过 S 锁，想申请 T 锁时都要等待对方释放。</li>
 <li><code>strict two-phase locking</code> 事务结束前不能释放锁。</li>
 </ul>
 </li>
@@ -661,8 +690,7 @@
 <h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><ul>
 <li><code>&lt;tagname&gt;...&lt;/tagname&gt;</code> 嵌套时必须严格匹配</li>
 <li>XML 主要用于数据传输</li>
-<li><p>元素（Element）</p>
-<ul>
+<li>元素（Element）<ul>
 <li>元素可以拥有一些属性（attribute）<ul>
 <li>用 <code>name = value</code> 标注<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/13.png" alt></li>
 <li>元素中还可以定义 子元素（Subelement）<ul>
@@ -673,12 +701,9 @@
 </li>
 </ul>
 </li>
-<li><p>用命名空间来防止变量名重复<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/14.png" alt title="markdown&quot; &quot;width:350px"></p>
-</li>
-<li><p>用 <code>![CDATA[...]]</code> 套起来的是不套用XML语法的纯字符串</p>
-</li>
-<li><p>Document Type Definition (DTD)</p>
-<ul>
+<li>用命名空间来防止变量名重复<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/14.png" alt title="markdown&quot; &quot;width:350px"></li>
+<li>用 <code>![CDATA[...]]</code> 套起来的是不套用XML语法的纯字符串</li>
+<li>Document Type Definition (DTD)<ul>
 <li>不含有类型（全以字符串储存）</li>
 <li>语法<ul>
 <li><code>&lt;!ELEMENT element (subelements-specification)&gt;</code></li>
@@ -692,8 +717,7 @@
 </li>
 </ul>
 </li>
-<li><p>XPath</p>
-<ul>
+<li>XPath<ul>
 <li>Result of path expression:  set of values that along with their containing elements/attributes match the specified path.</li>
 <li>查询 []<ul>
 <li><code>/bank-2/account[balance &gt; 400]</code>：Returns account elements with a balance value greater than 400. </li>
@@ -713,10 +737,8 @@
 </li>
 </ul>
 </li>
-<li><p>XQuery</p>
-<ul>
-<li><p>基本语法<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/18.png" alt></p>
-<ul>
+<li>XQuery<ul>
+<li>基本语法<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/18.png" alt><ul>
 <li>FLWOR Syntax<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png" alt></li>
 <li>join 操作<br>  <img src="//jiangshibiao.github.io/2019/06/28/Data-Based-System/19.png" alt></li>
 </ul>
@@ -803,11 +825,11 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="/2020/01/13/Computer-Vision/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/28/Computer-Organization/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          《计算机视觉》知识整理
+          《计算机组成》知识整理
         
       </div>
     </a>
@@ -824,7 +846,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-algebra-Expression"><span class="nav-number">1.</span> <span class="nav-text">Relational-algebra Expression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL语法"><span class="nav-number">2.</span> <span class="nav-text">MySQL语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#约束（Constraints）"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">约束（Constraints）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数和过程（Functions-and-Procedures）"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">函数和过程（Functions and Procedures）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用语法"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">常用语法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ER模型"><span class="nav-number">3.</span> <span class="nav-text">ER模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式理论"><span class="nav-number">4.</span> <span class="nav-text">范式理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">5.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">6.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务（Transaction）"><span class="nav-number">7.</span> <span class="nav-text">事务（Transaction）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制（Concurrency-Control）"><span class="nav-number">8.</span> <span class="nav-text">并发控制（Concurrency Control）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复（Recovery）"><span class="nav-number">9.</span> <span class="nav-text">恢复（Recovery）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML"><span class="nav-number">10.</span> <span class="nav-text">XML</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-algebra-Expression"><span class="nav-number">1.</span> <span class="nav-text">Relational-algebra Expression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL语法"><span class="nav-number">2.</span> <span class="nav-text">MySQL语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约束（Constraints）"><span class="nav-number">2.0.1.</span> <span class="nav-text">约束（Constraints）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数和过程（Functions-and-Procedures）"><span class="nav-number">2.0.2.</span> <span class="nav-text">函数和过程（Functions and Procedures）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用语法"><span class="nav-number">2.0.3.</span> <span class="nav-text">常用语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ER模型"><span class="nav-number">3.</span> <span class="nav-text">ER模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式理论"><span class="nav-number">4.</span> <span class="nav-text">范式理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">5.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">6.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务（Transaction）"><span class="nav-number">7.</span> <span class="nav-text">事务（Transaction）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制（Concurrency-Control）"><span class="nav-number">8.</span> <span class="nav-text">并发控制（Concurrency Control）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复（Recovery）"><span class="nav-number">9.</span> <span class="nav-text">恢复（Recovery）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML"><span class="nav-number">10.</span> <span class="nav-text">XML</span></a></li></ol>
     
     </div>
   </aside>
@@ -1015,5 +1037,21 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
