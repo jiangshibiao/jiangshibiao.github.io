@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/05/11/Data-Mining/Bayesian-Estimation-Example.png">
-<meta property="og:updated_time" content="2020-06-25T08:21:53.646Z">
+<meta property="og:updated_time" content="2020-07-22T08:49:10.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据挖掘》知识整理">
 <meta name="twitter:description" content="$2020.4 \sim 2020.6$ 上了蔡登教授《数据挖掘导论》这门课，讲得硬核而严谨。 课程内容涉及机器学习入门的 topic，包括以下内容：  贝叶斯模型和线性分类器  非线性方法，包括 Kernel 和 神经网络 KNN，决策树和随机森林 聚类和降维 主题模型和矩阵分解  于是撰写此文，试图把一些 solid 的知识点总结下来。">
@@ -318,7 +318,7 @@ EPE(f)=\int (f(\pmb{x})-E(y|\pmb{x}))^2p(\pmb{x})d\pmb{x} + \int var(y|\pmb{x})p
 \text{noise} &= \int var(y|\pmb{x})p(\pmb{x})d\pmb{x}
 \end{align}</script><p>之前说的正则化操作，大的 $\lambda$ 会导致更大的 bias，小的 $\lambda$ 会导致更大的 variance。</p>
 <p>在模型选择时，常用 <strong>Cross-Validation</strong> 的方法。将训练数据集划成 $k$ 份，每次留一份 $i$ 作为 Validation，其它$k-1$ 份用来训练，挑选 bias 或者 variance 比较小的模型。不同的 Validation 能重复 $k$ 次。当训练数据比较少时，可能会用到比较极端的 leave-one-out 方法，即取 $k=N$。 </p>
-<h2 id="Decision-Tree-amp-Random-Forest-决策树和随机森林"><a href="#Decision-Tree-amp-Random-Forest-决策树和随机森林" class="headerlink" title="Decision Tree &amp; Random Forest 决策树和随机森林"></a>Decision Tree &amp; Random Forest 决策树和随机森林</h2><p><strong>决策树</strong>（Decision Tree）是一个简单而有效的分类问题的解决方案。训练时，它每次从当前（带标签的）样本中选择一个“方差”最大的属性 $a$，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前样本的标签均相同或是特征均相同。预测时直接沿着对应分叉往下走。</p>
+<h2 id="Decision-Tree-决策树"><a href="#Decision-Tree-决策树" class="headerlink" title="Decision Tree 决策树"></a>Decision Tree 决策树</h2><p><strong>决策树</strong>（Decision Tree）是一个简单而有效的分类问题的解决方案。训练时，它每次从当前（带标签的）样本中选择一个“方差”最大的属性 $a$，不同属性值的数据会被分配到不同的分叉里；重复这个操作，直到当前样本的标签均相同或是特征均相同。预测时直接沿着对应分叉往下走。</p>
 <p><strong>熵</strong>（entropy）是随机变量不确定性的度量。设 $E$ 是离散随机变量，概率分布为 $P(X=x_k) = p_k$，则熵：</p>
 <script type="math/tex; mode=display">
 Ent(E)=-\sum \limits_{k=1}^{K} p_k\log(p_k)</script><p> $Ent$ 越小，$E$ 就越稳定。注意到 $\lim \limits_{p\to 0^+} p_k\log(p_k)=0$，所以额外定义 $0 \log 0=0$。</p>
@@ -336,6 +336,62 @@ g_R(D,a)=\frac{g(D,a)}{H_a(D)}</script><p>这里的 $H_a(D)$ 和之前的 $H(D)$
 I(E)=\sum \limits_{k=1}^K p_i \sum \limits_{k \ne i}p_k=1-\sum \limits_{k=1}^K p_k^2</script><p>推广到决策树，定义属性 $a$ 对样本 $D$ 的基尼指数增益为：</p>
 <script type="math/tex; mode=display">
 g_I(D,a)=I(D)-\sum \limits_{v=1}^V \frac{|D_v|}{|D|}I(D_v)</script><p>更加优美的是：<strong>基尼不纯度增益</strong> 和 <strong>信息熵增益</strong> 还有神秘的联系！当 $p$ 很小的时候，$\log(p) \sim p-1$，于是 $-p \log p \sim p(1-p)$！也就是说，我们可以用基尼指数近似熵里的对数来加速。</p>
+<p>单一的决策树往往会遇到过拟合的问题。所以我们往往会留下一部分数据作为 Validation，同时在构建决策树时利用它们做一些 <strong>剪枝</strong>。下面是两个有效的剪枝技巧：</p>
+<ul>
+<li>Prepruning 预剪枝：在某个点决定完分支后，我们把 Validation 的数据分别用不分支（即直接在这个点投票决定统一的预测）和分支验证一遍。如果前者优于后者，我们就在这个节点进行剪枝。</li>
+<li>Postpruning 后剪枝：我们先建好整棵搜索树，在回溯的时候同时维护当前子树的 Validation 结果。如果某个点直接投票的答案优于产生分支的答案（即子树结果和），我们就在这个节点进行剪枝。</li>
+</ul>
+<p>预剪枝的剪枝本身带有估计的成分（因为下一层其实还没有继续分叉），剪枝力度往往很大；实际中一般会采取比较稳定的后剪枝方法。下面是我对 <strong>Titanic</strong> 数据集进行决策树剪枝的实验结果：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>总运行时间 s</th>
+<th>平均节点</th>
+<th>平均训练集正确率 %</th>
+<th>平均测试集正确率 %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No pruning</strong></td>
+<td>3.85</td>
+<td>217.7</td>
+<td>86.11</td>
+<td>79.43</td>
+</tr>
+<tr>
+<td><strong>Prepruning</strong></td>
+<td>1.84</td>
+<td>14.6</td>
+<td>79.88</td>
+<td>78.47</td>
+</tr>
+<tr>
+<td><strong>Postpruning</strong></td>
+<td>2.91</td>
+<td>44.4</td>
+<td>81.87</td>
+<td>80.76</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Ensemble-Model-集成模型"><a href="#Ensemble-Model-集成模型" class="headerlink" title="Ensemble Model 集成模型"></a>Ensemble Model 集成模型</h2><p>我们通常用 <strong>committee</strong> 来形容多个模型集成的方法。首先来证明一下集成模型的有效性。</p>
+<p>假设 $h(x)$ 是真实模型，$y_m(x)$ 是我们给出的单一预测模型。定义继承模型 $y_{com}=\frac{1}{M}y_m(x)$。</p>
+<p>（这里待续……）</p>
+<p>那么如何来科学地生成 $M$ 个不同的小模型呢？有以下两种方法：</p>
+<ul>
+<li><strong>Bagging</strong> (<strong>B</strong>ootstrap <strong>Agg</strong>regat<strong>ing</strong>)：通过采样多组数据构建不同的模型。这些 Base Learners 之间需要略微不同，且允许有过拟合的现象发生。Bagging 分为以下两个阶段：<ol>
+<li><strong>Bootstrap Sampling</strong>：每次从 $N$ 组数据里随机抽取 $D$ 组构建模型并放回。 </li>
+<li><strong>Aggregating</strong>：每一个模型都训练一套参数，并把它们的预测结果聚合起来。</li>
+</ol>
+</li>
+<li><strong>Boosting</strong>：通过修改每组数据的权重来构建不同的模型。</li>
+</ul>
+<p>决策树是一个很好的 Base Learner，而用决策树来 Bagging 的方法被称为 <strong>随机森林（Random Forest）</strong>。为了保证每次构建的决策树之间有更多的特异性，在每次决定分支时，我们往往先在总特征 $F$ 里面随机选择一个子集 $f$，并在 $f$ 里寻找最优的特征。经验性地来说，一般分类问题 $|f|=\sqrt{|F|}$  回归问题 $|f|=|F|/3$。</p>
+<p><strong>AdaBoosting</strong> 是一个 Boosting 经典的应用。</p>
 <h2 id="Topic-Model-主题模型"><a href="#Topic-Model-主题模型" class="headerlink" title="Topic Model 主题模型"></a>Topic Model 主题模型</h2><p>主题模型多用于文本分析，比如判断一篇文档的主题。或者说给出一个文档集合和一些 queries，每次要回答与当前 query 最相近的页面（搜索引擎）。</p>
 <p>注意，我们在这里探讨的主题模型属于 Bag‐of‐Words（词袋模型），即我们不考虑单词出现的顺序问题，只考虑整篇文档里单词的概率分布。这样可以简化问题。</p>
 <p>一个最直接的做法是 <strong>Salton’s Vector Space Model</strong>。对于每一个文档，统计各个单词出现的次数，并用一个向量去描述它——该向量的长度就是字典大小。我们可以开一个 $weight$ 向量去给每个单词加权，最后用 cos 相似度去衡量两个文档之间的相似程度。</p>
@@ -487,7 +543,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-amp-Random-Forest-决策树和随机森林"><span class="nav-number">4.</span> <span class="nav-text">Decision Tree &amp; Random Forest 决策树和随机森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-Model-主题模型"><span class="nav-number">5.</span> <span class="nav-text">Topic Model 主题模型</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Decision-Theory"><span class="nav-number">1.</span> <span class="nav-text">Bayesian Decision Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.</span> <span class="nav-text">Linear Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Assessment-and-Selection"><span class="nav-number">3.</span> <span class="nav-text">Model Assessment and Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-决策树"><span class="nav-number">4.</span> <span class="nav-text">Decision Tree 决策树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ensemble-Model-集成模型"><span class="nav-number">5.</span> <span class="nav-text">Ensemble Model 集成模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-Model-主题模型"><span class="nav-number">6.</span> <span class="nav-text">Topic Model 主题模型</span></a></li></ol>
     
     </div>
   </aside>
@@ -678,5 +734,21 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

@@ -20,7 +20,12 @@
 <meta property="og:description" content="打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Interpretation.png">
-<meta property="og:updated_time" content="2020-05-07T07:41:35.052Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Earley_Parser.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Generalized_Earley_Parser.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Generalized_Earley_Parser_Sample.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/1-BS.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/03/31/Geometry-Problem/Back_Search.png">
+<meta property="og:updated_time" content="2020-07-16T03:39:49.403Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Geometry-Problem">
 <meta name="twitter:description" content="打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。">
@@ -229,8 +234,7 @@
 <h4 id="Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation"><a href="#Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation" class="headerlink" title="Solving Geometry Problems: Combining Text and Diagram Interpretation"></a>Solving Geometry Problems: Combining Text and Diagram Interpretation</h4><ul>
 <li>EMNLP 2015 <a href="https://www.aclweb.org/anthology/D15-1171.pdf" target="_blank" rel="noopener">论文地址</a></li>
 <li>提出了一个 GEOS 系统，把文本和图片变成 <strong>形式语言</strong>（logical expression）再推理。<br><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/Interpretation.png" alt></li>
-<li><p><strong>logical expression</strong> $\Omega$ 的定义</p>
-<ul>
+<li><strong>logical expression</strong> $\Omega$ 的定义<ul>
 <li>它是一阶逻辑语言（first-order logic），包含以下四种内容：<ul>
 <li>constants ：已知的量或实体。例如 <code>5</code>。</li>
 <li>variables：未知的量或实体。例如 <code>x</code>，<code>CE</code>。</li>
@@ -239,16 +243,131 @@
 </ul>
 </li>
 <li>定义 <strong>Literal</strong> 是 predicates 的应用实例，如 <code>isTriangle(ABC)</code></li>
-<li><p>定义 <strong>Logical formulas</strong> 是以上内容和 existential quantifiers，conjunctions 的组合，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">∃x, IsTriangle(x)∧IsIsosceles(x)</span><br></pre></td></tr></table></figure>
+<li>定义 <strong>Logical formulas</strong> 是以上内容和 existential quantifiers，conjunctions 的组合，如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">∃x, IsTriangle(x)∧IsIsosceles(x)</span><br></pre></td></tr></table></figure>
 </li>
-<li></li>
 </ul>
 </li>
 </ul>
 <h4 id="Transformers-as-Soft-Reasoners-over-Language"><a href="#Transformers-as-Soft-Reasoners-over-Language" class="headerlink" title="Transformers as Soft Reasoners over Language"></a>Transformers as Soft Reasoners over Language</h4><ul>
 <li><a href="https://arxiv.org/pdf/2002.05867" target="_blank" rel="noopener">论文地址</a></li>
 <li>挖坑</li>
+</ul>
+<h4 id="A-Generalized-Earley-Parser-for-Human-Activity-Parsing-and-Prediction"><a href="#A-Generalized-Earley-Parser-for-Human-Activity-Parsing-and-Prediction" class="headerlink" title="A Generalized Earley Parser for Human Activity Parsing and Prediction"></a>A Generalized Earley Parser for Human Activity Parsing and Prediction</h4><ul>
+<li>This paper is an extension of previous ICCV and ICML papers. 1TPAMI 2020 <a href="http://www.stat.ucla.edu/~sczhu/papers/PAMI2020_Prediction_Generalized_Earley_Parser.pdf" target="_blank" rel="noopener">Address</a> </li>
+<li><strong>Earley Parser</strong> is a classical method to parse CFG, while it can not tackle the non-Markovian and compositional properties of high-level semantics. This paper generalize the Earley parser to solve sequence data by only given an arbitrary <strong>probabilistic classifier</strong>.</li>
+<li>This <strong>Generalized Earley Parser</strong> combined detection, parsing and future predictions together, which is really generic and applicable. It finds the optimal (<em>maximizing the joint probability</em>) segmentation and label sentence according to both a symbolic grammar and a classifier output of probabilities of labels for each frame.</li>
+<li>Brief introduction for EARLEY PARSER<ul>
+<li>Early parser takes a sentence with length $T$ as input, and find out this CFG.</li>
+<li>It is similar with LR parser. There are three main process:<ul>
+<li><strong>Prediction</strong>: For each $(A \to \alpha \cdot B\beta)$, add $(B \to \cdot \gamma)$ if $B \to \gamma$ exists.</li>
+<li><strong>Scanning</strong>: If $(A \to \alpha \cdot a \beta)$ and the next character is $\alpha$, add $(A \to \alpha a \cdot \beta)$.</li>
+<li><strong>Completion</strong>: If $(A \to \gamma \cdot)$ appears, change $(B \to \alpha \cdot A\beta)$ to $(B \to \alpha A \cdot \beta)$.</li>
+<li>l=k1k2   k3</li>
+</ul>
+</li>
+<li>An sample<br><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/Earley_Parser.png" alt></li>
+</ul>
+</li>
+<li><p>GENERALIZED EARLEY PARSER</p>
+<ul>
+<li>Consider a sequence with length $T$, Generalized Early parser takes an $T \times K$ probability matrix as input, and output sentence $l$ of labels $(l \le |T|)$ that best explains the data according to a grammar G, where each label $k \in \{0, 1, \dots, K-1\}$ corresponds to a segment of  sequence.</li>
+<li><strong>Parsing Probability</strong><ul>
+<li>The parsing probability $p(l|x_{0:T})$ is computed in a dynamic programming fashion.</li>
+<li>Consider whether this frame is a new frame with label $k$. The previous frames can be labeled as either $l$ or $l^-$: $p(l|x_{0:t}) = y^k_t (p(l|x_{0:t−1}) + p(l^−|x_{0:t−1}))$</li>
+<li>x [0:t] = xxxxxxxx…</li>
+<li>l = k1k2k3…</li>
+<li>l=1+…</li>
+<li>l=1+  1</li>
+<li>l=1+1.. / l=1+..</li>
+</ul>
+</li>
+<li><strong>Prefix Probability</strong><ul>
+<li>Then we compute the prefix probability $p(l \dots|x_{0:T})$. Once the label $k$ is observed (the transition happens), l becomes the prefix and the rest frames can be labeled arbitrarily.$p\left(l \ldots | x_{0: T}\right)=p\left(l | x_{0}\right)+\sum_{t=1}^{T} y_{t}^{k} p\left(l^{-} | x_{0: t-1}\right)$</li>
+<li>In practice, the probability $p(l|x_{0:t})$ decreases exponentially as $t$ increases and will soon lead to numeric underflow. So we should solve it with $\log$.</li>
+</ul>
+</li>
+<li><strong>Posterior Probability</strong><ul>
+<li>Transition probability $p(k|l^−, G)$ can be calculated by: <script type="math/tex">p\left(k | l^{-}, G\right)=\frac{p(l \ldots | G)}{p\left(l^{-}, | G\right)}</script>.</li>
+<li>So we can modify the posterior of <em>Parsing Probability</em> by: $p\left(l \mid x_{0:}, G\right) \propto y_{t}^{k}\left(p\left(l \mid x_{0: t-1}, G\right)+p\left(k \mid l^{-}, G\right) p\left(l^{-} \mid x_{0: t-1}, G\right)\right)$</li>
+<li>And the posterior of <em>Prefix Probability</em> is: $p\left(l \ldots \mid x_{0: T}, G\right)=p\left(l \mid x_{0}, G\right)+\sum_{t=1}^{T} p\left(k \mid l^{-}, G\right) y_{t}^{k} p\left(l^{-} \mid x_{0: t-1}, G\right)$</li>
+</ul>
+</li>
+<li>An sample<br><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/Generalized_Earley_Parser.png" alt></li>
+</ul>
+</li>
+<li><p>Generalized_Earley_Parser_Sample</p>
+<p><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/Generalized_Earley_Parser_Sample.png" alt></p>
+</li>
+</ul>
+<h4 id="Closed-Loop-Neural-Symbolic-Learning-via-Integrating-Neural-Perception-Grammar-Parsing-and-Symbolic-Reasoning"><a href="#Closed-Loop-Neural-Symbolic-Learning-via-Integrating-Neural-Perception-Grammar-Parsing-and-Symbolic-Reasoning" class="headerlink" title="Closed Loop Neural-Symbolic Learning via Integrating Neural Perception, Grammar Parsing, and Symbolic Reasoning"></a>Closed Loop Neural-Symbolic Learning via Integrating Neural Perception, Grammar Parsing, and Symbolic Reasoning</h4><ul>
+<li><a href="https://liqing-ustc.github.io/NGS/" target="_blank" rel="noopener">ICML2020</a>. Propose a Neural-Grammar-Symbolic Model (<strong>NGS</strong>).</li>
+<li>Learning neural-symbolic models with RL approach usually converges slowly with sparse rewards. The author proposes a novel top-down <strong>back-search</strong>, which can also serve as Metropolis-Hastings sampler (a sampling method in MCMC).</li>
+<li><strong>Model Inference</strong><ul>
+<li>Let $x$ be the input (e.g.an image or question), $z$ be the hidden symbolic representation, and $y$ be the desired output inferred by $z$.    </li>
+</ul>
+<ol>
+<li><strong>Neural Perception</strong>: Map $x$ to a normalized probability distribution of the hidden symbolic representation $z$: $p_θ(z|x) = softmax(\phi_θ(z, x))$</li>
+<li><strong>Grammar Parsing</strong>:  Find the most probable $z$ that can be accepted by the grammar: $\hat z = \arg \max \limits_{z \in L(G)} p_θ(z|x)$. We use Generalized Early Parser doing the grammar parsing.</li>
+<li><strong>Symbolic Reasoning</strong>: Given the parsed symbolic representation $\hat z$, performs deterministic inference with $\hat z$ and the domain-specific knowledge $\Delta$ to predict $y$: $\hat y = f(\hat z; ∆)$</li>
+</ol>
+</li>
+<li><p><strong>Learning Details</strong></p>
+<ul>
+<li><p>1-STEP BACK-SEARCH</p>
+<ul>
+<li>Previous methods using policy gradient to learn the model discard all the samples with zero reward, but 1-STEP BACK-SEARCH can <em>correct</em> wrong samples and use the corrections as <em>pseudo labels</em> for training.</li>
+<li>In the 1-BS, assume that <strong>only one symbol</strong> can be replaced at a time. Given $(\hat z,S,y)$, the 1-BS gradually searches down the reasoning tree starting from the root node $S$ to the leaf nodes and wants to find the most probable correction $z ^{\ast}$ at one-step distance.</li>
+<li>During this process, maintain a priority queue storing 3-tuple $(A, \alpha_A, p)$: <em>current node</em>, <em>current expected value</em> (If the value of $A$ changes to $\alpha_A$, $\hat z$ will execute to the ground-truth answer $y$) and <em>the visiting priority</em> (probability).</li>
+<li>When transformation, enumerate each child $B$ of $A$ and calculate expected value $\alpha_B$ such that $f(\hat z(B \to \alpha_B); \Delta)) = f(\hat z(A \to \alpha_A); \Delta)) = y$. New tuple: $(B,\alpha_B,p(B \to \alpha_B))$.</li>
+<li>$p\left(A \rightarrow \alpha_{A}\right)=\left\{\begin{array}{ll}<br>\frac{1-p(A)}{p(A)}, &amp; \text { if } A \notin \Sigma \\<br>\frac{p\left(\alpha_{A}\right)}{p(A)}, &amp; \text { if } A \in \Sigma \and \alpha_{A} \in \Sigma<br>\end{array}\right.$</li>
+</ul>
+<p><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/1-BS.png" alt></p>
+</li>
+<li><p>MAXIMUM LIKELIHOOD ESTIMATION</p>
+<ul>
+<li>For a pair of $(x,y)$, we know $p(y | x)=\sum_{z} p(y, z | x)=\sum_{z} p(y | z) p_{\theta}(z | x)$</li>
+<li>The learning goal is to maximize $L(x, y) = \log p(y|x)$. By taking derivative:<script type="math/tex; mode=display">\begin{aligned}
+\nabla_{\theta} L(x, y) &=\nabla_{\theta} \log p(y \mid x) \\
+&=\frac{1}{p(y \mid x)} \nabla_{\theta} p(y \mid x) \\
+&=\sum_{z} \frac{p(y \mid z) p_{\theta}(z \mid x)}{\sum_{z^{\prime}} p\left(y \mid z^{\prime}\right) p_{\theta}\left(z^{\prime} \mid x\right)} \nabla_{\theta} \log p_{\theta}(z \mid x) \\
+&=\mathbb{E}_{z \sim p(z \mid x, y)}\left[\nabla_{\theta} \log p_{\theta}(z \mid x)\right]
+\end{aligned}</script></li>
+<li>Computing the posterior distribution is not efficient.</li>
+<li>We only need to consider $Q=\{z:p(y|z)=1\}$, which is usually a small part. </li>
+<li>So we want to sample from $Q$ efficiently using Markov chain Monte Carlo.</li>
+</ul>
+</li>
+<li><p>m-BS AS METROPOLIS-HASTINGS SAMPLER</p>
+<ul>
+<li>Use Metropolis–Hastings algorithm to sampe from the probability distribution.</li>
+<li><strong>Detailed balance</strong> $\pi(s)Q(s′|s)=\pi(s′)Q(s|s′)$ is a sufficient condition to get a stationary distribution. To contruct a valid $P(s|s’)$, we use <strong>acceptance-rejection</strong> model and the ratio is $A(s,s’)=\pi(s’)Q(s’,s)$ so that $\pi(s)Q(s′|s)A(s,s’)=\pi(s′)Q(s|s′)A(s’,s)$.</li>
+<li><script type="math/tex; mode=display">A\left(s, s^{\prime}\right)=\min \left\{1, \frac{\pi\left(s^{\prime}\right) Q\left(s \mid s^{\prime}\right)}{\pi(s) Q\left(s^{\prime} \mid s\right)}\right\}</script></li>
+<li>Assume that the transition probability during Random Walk is <strong>Poisson distribution</strong>. $g(z1|z2) = Poisson(d(z1, z2); \beta)$, where $\beta$ is usually set to $1$.</li>
+<li>So we know $A(z,z’)=\min \{1, \frac{p_{\theta}\left(z’ \mid x\right)}{p_{\theta}\left(z \mid x\right)}\}$</li>
+</ul>
+</li>
+<li><p>Algorithm for 1-BS and m-BS</p>
+<p><img src="//jiangshibiao.github.io/2020/03/31/Geometry-Problem/Back_Search.png" alt></p>
+</li>
+<li><p>COMPARISON WITH POLICY GRADIENT</p>
+<ul>
+<li><p>Treat $p_θ(z|x)$ as the policy function and the reward given $z, y$ can be written as</p>
+<script type="math/tex; mode=display">r(z, y)=\left\{\begin{array}{l}
+0, \text { if } f(z ; \Delta) \neq y \\
+1, \text { if } f(z ; \Delta)=y
+\end{array}\right.</script></li>
+<li><p>Similarly, $<br>\nabla_{\theta} R(x, y) =\mathbb{E}_{z \sim p_{\theta}(z \mid x)}[r(z, y) \nabla_{\theta} \log p_{\theta}(z \mid x)]$</p>
+</li>
+<li><script type="math/tex; mode=display">\nabla_\theta=\left\{\begin{array}{ll}
+0, & \text { if } f(z ; \Delta) \neq y \\
+\nabla_{\theta} \log p_{\theta}(z \mid x), & \text { if } f(z ; \Delta)=y
+\end{array}\right.</script></li>
+<li><p>Among the whole space of $z$, only a very small portion can generate the desired $y$, which implies that the REINFORCE will get zero gradients from most of the samples.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
@@ -352,7 +471,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Diagram-Understanding-in-Geometry-Questions"><span class="nav-number">1.</span> <span class="nav-text">Diagram Understanding in Geometry Questions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation"><span class="nav-number">2.</span> <span class="nav-text">Solving Geometry Problems: Combining Text and Diagram Interpretation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transformers-as-Soft-Reasoners-over-Language"><span class="nav-number">3.</span> <span class="nav-text">Transformers as Soft Reasoners over Language</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Diagram-Understanding-in-Geometry-Questions"><span class="nav-number">1.</span> <span class="nav-text">Diagram Understanding in Geometry Questions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solving-Geometry-Problems-Combining-Text-and-Diagram-Interpretation"><span class="nav-number">2.</span> <span class="nav-text">Solving Geometry Problems: Combining Text and Diagram Interpretation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transformers-as-Soft-Reasoners-over-Language"><span class="nav-number">3.</span> <span class="nav-text">Transformers as Soft Reasoners over Language</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Generalized-Earley-Parser-for-Human-Activity-Parsing-and-Prediction"><span class="nav-number">4.</span> <span class="nav-text">A Generalized Earley Parser for Human Activity Parsing and Prediction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Closed-Loop-Neural-Symbolic-Learning-via-Integrating-Neural-Perception-Grammar-Parsing-and-Symbolic-Reasoning"><span class="nav-number">5.</span> <span class="nav-text">Closed Loop Neural-Symbolic Learning via Integrating Neural Perception, Grammar Parsing, and Symbolic Reasoning</span></a></li></ol>
     
     </div>
   </aside>
@@ -543,5 +662,21 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
