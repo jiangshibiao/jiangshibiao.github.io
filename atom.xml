@@ -6,10 +6,40 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jiangshibiao.github.io/"/>
-  <updated>2020-07-02T03:28:44.115Z</updated>
+  <updated>2020-07-24T08:32:52.319Z</updated>
   <id>https://jiangshibiao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DNN-Driven-Streaming</title>
+    <link href="https://jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/"/>
+    <id>https://jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/</id>
+    <published>2020-07-23T07:41:30.000Z</published>
+    <updated>2020-07-24T08:32:52.319Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is the reading notes for <strong><em>Server-Driven Video Streaming for Deep Learning Inference</em></strong>.</p><h4 id="Iterative-Workflow"><a href="#Iterative-Workflow" class="headerlink" title="Iterative Workflow"></a>Iterative Workflow</h4><ul><li>Stream A: Camera $\to$ uniform low quality video $\to$  server $\to$ inference &amp; propose feedback regions $\to$  send feedback regions to camera</li><li>Stream B: Camera $\to$  re-encode feedback regions in high quality $\to$  server $\to$  inference</li></ul><p>Note:  By deriving feedback directly from the server-side DNN, it sends high-quality content only in the <strong>minimal</strong> set of relevant regions <strong>necessary</strong> for high inference accuracy.</p><p><img src="//jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/Comparison.png" alt></p><h4 id="Performance-metrics"><a href="#Performance-metrics" class="headerlink" title="Performance metrics"></a>Performance metrics</h4><ul><li><strong>Accuracy</strong>: Use the <em>similarity</em> between DNN output on each frame with limited bandwidth (low quality) video and the DNN output on each frame with the original (highest quality) video.<ul><li><em>object detection</em>: F1 score $2 \cdot \frac{pre \times recall}{pre+recall}$</li><li><em>semantic segmentation</em>: IoU</li></ul></li><li><strong>Bandwidth usage</strong>: In this paper, measure the bandwidth usage by the size of the sent video divided by its duration (leave out the camera cost)</li><li><strong>Average response delay (freshness)</strong>:  Average processing delay per object/pixel.</li></ul><h4 id="Feedback-Regions"><a href="#Feedback-Regions" class="headerlink" title="Feedback Regions"></a>Feedback Regions</h4><ul><li><strong>Object detection</strong> (based on bounding boxes): If DNN uses region proposal networks (RPNs), each proposed region is directly associated with an <em>objectness score</em>. If it is not RPN-based like Yolo, sum up the scores of non-background classes as the <em>objectness score</em>. Consider all possible regions with objectness score over a threshold and apply two following filters. The remains are feedback regions.<ol><li>Filter out those regions that have over 30% IoU overlap with the labeled bounding boxes.</li><li>Empirically remove regions that are over 4% of the frame size (roughly 20% of each dimension). <em>Motivation</em>: If an object is large, DNN should have successfully detected it.</li></ol></li><li><strong>Semantic segmentation</strong> (based on pixels): Semantic segmentation DNNs give a score of each class for each pixel. We assign a new score of $1+max_1-max_2$ to each pixel ($max_1$ is the maximum score of one class, and $max_2$ is the second largest). Repeat $k$ times, each time choose a $n \times n$ rectangle in which the pixels have maximum average score and zero out the scores of corresponding pixels.</li></ul><h4 id="Handling-Bandwidth-Variation"><a href="#Handling-Bandwidth-Variation" class="headerlink" title="Handling Bandwidth Variation"></a>Handling Bandwidth Variation</h4><p>DDS applies a <strong>feedback control system</strong>.</p><ol><li>Estimates the <em>base bandwidth</em> usage with default parameters.</li><li>Compare the difference with the <em>estimated available bandwidth</em>.</li><li>Change the tunable <strong>resolution</strong> and <strong>quantization</strong> parameters of both the low and high quality.</li></ol><h4 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h4><ul><li><strong>Saving bandwidth by leveraging codec</strong>:  Instead of encoding each feedback region as a separate high-quality image, DDS sets the pixels outside of the feedback regions in the high quality image to black (to remove spatial redundancies) and encodes these images into a video file (to remove temporal redundancies).</li><li><strong>Reducing average delay via early reporting</strong>: About $90\%$ of the DNN output from the low-quality video (Stream A) already has high confidence and thus can be returned without waiting for Stream B.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;This is the reading notes for &lt;strong&gt;&lt;em&gt;Server-Driven Video Streaming for Deep Learning Inference&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4 id=&quot;Iterative-
+      
+    
+    </summary>
+    
+      <category term="Paper Reading" scheme="https://jiangshibiao.github.io/categories/Paper-Reading/"/>
+    
+    
+      <category term="Machine Learning" scheme="https://jiangshibiao.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Video Analytics" scheme="https://jiangshibiao.github.io/tags/Video-Analytics/"/>
+    
+      <category term="Video Streaming" scheme="https://jiangshibiao.github.io/tags/Video-Streaming/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue-Js-Css-Html 胡乱入门</title>
@@ -580,31 +610,6 @@
       <category term="Computer Vision" scheme="https://jiangshibiao.github.io/tags/Computer-Vision/"/>
     
       <category term="Natural Language Processing" scheme="https://jiangshibiao.github.io/tags/Natural-Language-Processing/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Robustness-for-Sensing-Reasoning-Pipelines</title>
-    <link href="https://jiangshibiao.github.io/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/"/>
-    <id>https://jiangshibiao.github.io/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/</id>
-    <published>2020-03-31T05:27:50.000Z</published>
-    <updated>2020-04-07T08:37:30.596Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>这是 Professor Bo Li 推荐我的一篇 paper，有关 Adversarial Attacks 的内容。</li><li><a href="https://arxiv.org/abs/2003.00120" target="_blank" rel="noopener">Arxiv 传送门</a></li></ul><a id="more"></a><h4 id="什么是-Sensing-Reasoning-pipelines"><a href="#什么是-Sensing-Reasoning-pipelines" class="headerlink" title="什么是 Sensing-Reasoning pipelines"></a>什么是 Sensing-Reasoning pipelines</h4><ul><li>对于 <strong>Sensing</strong> 层面，我们用若干种不同的模型去感知，得到很多组 $01$ 的随机变量。</li><li>对于 <strong>Reasoning</strong> 层面，我们把之前的若干个结果汇总，利用领域知识（domain knowledge）和概率模型去矫正和逼近真实答案。常见的概率模型有：<ul><li>基于无向图的 Markov logic networks（<strong>MLN</strong>）</li><li>基于有向图的 Bayesian networks （其实就是条件概率构建在图上）</li></ul></li><li>论文里介绍了一个有趣的例子：假设我们想判断一张图 $X$ 的信息。<ul><li>我们在 Sensing 层面设了 Dog Sensor，Cat Sensor 和 Animial Sensor 三个神经网络模型去感知，从而能得到三个概率 $p_1, p_2, p_3$，$p_i$ 表示该图 <strong>是</strong> 物体 $i$ 的概率。</li><li>由知识和经验，我们知道猫和狗都是动物，该规律可以在 Reasoning 层面帮我们去矫正之前的概率。<br><img src="//jiangshibiao.github.io/2020/03/31/Robustness-for-Sensing-Reasoning-Pipelines/MLN_example.png" alt></li></ul></li></ul><h4 id="Markov-Logic-Networks"><a href="#Markov-Logic-Networks" class="headerlink" title="Markov Logic Networks"></a>Markov Logic Networks</h4><ul><li>下面介绍一下在 Reasoning 层面下的 MLN 的标准化定义。它是一张图 $\mathcal{(V,F)}$ 。<ul><li>$\mathcal{V=X \cup Y}$ 代表节点集合。 <ul><li>$\mathcal{X}$ 是为每一个 Sensor 分别创立的点的集合，$\mathcal{Y}$ 是 MLN 里的其他节点集合。</li></ul></li><li>$\mathcal{F=G \cup H}$ 代表事实集合，每个元素 $f$ 包括权重 $w_f$ 和函数 $F_f$（从 $\mathcal{V}$ 的一个子集映射到 $\{0,1\}$）<ul><li>$\mathcal{G}$ 对应 $\mathcal{X}$ 子集里每一个点的 Factor，$w_{G_i}=\log{\frac{p_i(X)}{1-p_i(X)}}$，$F_{G_i}(a)=[a=1]$ </li><li>$\mathcal{H}$ 对应 MLN 里的其他 Factor 集合。</li></ul></li></ul></li><li>对于任何一个可能的情况，MLN 里的每一个节点都会有一个唯一的 $0$ 或 $1$ 的取值，我们称它为一个 <strong>possible world</strong>。更规范地来说，一个 possible world 对应一个函数 $\sigma:\mathcal{V} \rightarrow \{0,1\}$ </li><li>一个 MLN 节点的最终预测由以下公式给出<ul><li>$\mathbb{E}[R_{M L N}(\{p_{i}(X)\}_{i \in[n]})]=\operatorname{Pr}[v=1]<br>= \frac{Z_{1}(\{p_{i}(X)\}_{i \in[n]})}{Z_{2}(\{p_{i}(X)\}_{i \in[n]})}$</li><li>$Z_{1}(\{p_{i}(X)\}_{i \in[n]})=\sum \limits_{\sigma \in \Sigma \wedge \sigma(v)=1} \exp \{\sum_{G_{i} \in \mathcal{G}} w_{G_{i}} \sigma(x_{i})+\sum_{H \in \mathcal{H}} w_{H} f_{H}(\sigma(\overline{\mathbf{v}}_{H}))\}$</li><li>$Z_{2}(\{p_{i}(X)\}_{i \in[n]})=\sum \limits_{\sigma \in \Sigma} \exp \{\sum_{G_{i} \in \mathcal{G}} w_{G_{i}} \sigma(x_{i})+\sum_{H \in \mathcal{H}} w_{H} f_{H}(\sigma(\overline{\mathbf{v}}_{H}))\}$</li></ul></li><li>这里也可以解释为什么 $\mathcal{G}$ 集合里的 Factor 权重要定义为 $\log{\frac{p_i(X)}{1-p_i(X)}}$，因为假设 $\mathcal{H}=\varnothing$，把这个式子带入预测公式，得到的答案正好是 $p_i(X)$，这是自洽、符合逻辑的。</li></ul><h4 id="Reasoning-Robustness-的复杂性理论"><a href="#Reasoning-Robustness-的复杂性理论" class="headerlink" title="Reasoning Robustness 的复杂性理论"></a>Reasoning Robustness 的复杂性理论</h4><ul><li><strong>Counting Problem</strong>：给出多项式时间内可计算的权值函数 $w$ 和询问函数 $Q$（相当于一个模型，比如可以用 MLN） 以及一个实数 $\varepsilon_c&gt;0$，要 <strong>求一个Z</strong> 使得 $1-\varepsilon_{c} \leq \frac{Z}{\mathbf{E}_{\sigma \sim \pi_{\alpha}}[Q(\sigma)]} \leq 1+\varepsilon_{c}$</li><li><strong>Robustness Problem</strong>：给出多项式时间内可计算的权值函数 $w$ 和询问函数 $Q$ 以及两个实数  $\epsilon,\delta&gt;0$，对于满足 $|\alpha-\alpha’|_{\infty} &lt; \epsilon$  的任何扰动 $\alpha’$ ，<strong>判定</strong> 是否一直有 $|\mathbf{E}_{\sigma \sim \pi_{\alpha}}[Q(\sigma)]-\mathbf{E}_{\sigma \sim \pi_{\alpha^{\prime}}}[Q(\sigma)]|&lt;\delta$ 。</li></ul><h4 id="Counting-到-Robustness-的规约"><a href="#Counting-到-Robustness-的规约" class="headerlink" title="*Counting 到 Robustness 的规约"></a>*Counting 到 Robustness 的规约</h4><ul><li><p>论文里证明了：COUNTING 问题可以通过询问 $O(\frac{1}{\varepsilon_C^2})$ 次 规约到 ROBUSTNESS 问题。</p><ul><li>我们要解决的 COUNTING 问题是：求 $\mathbf{E}_{\sigma \sim \pi_{\alpha}}[Q(\sigma)]=\frac{Z_{1}}{Z_{0}+Z_{1}}$</li><li>设计一个去 ROBUSTNESS 里询问的新问题，它的权重函数为 $t(\sigma ; \beta)=w(\sigma ; \alpha) \exp (\beta Q(\sigma))$ ，其中 $w,Q$ 是原 COUNTING 问题的参数，$\alpha$ 是原分布，$\beta$ 是新分布。</li><li>则这个新问题满足 $\mathbf{E}_{\sigma \sim \tau_{\beta}}[Q(\sigma)]=\frac{e^{\beta} Z_{1}}{Z_{0}+e^{\beta} Z_{1}}$</li></ul></li><li><p>设 $R=\frac{Z_0}{Z_1}$，我们来评估分布 $\beta$ 偏差了一个 $x$ 后函数值的变化：</p><ul><li>$Y^{+}(\beta, x)=\mathbf{E}_{\sigma \sim \tau_{\beta+x}}[Q(\sigma)]-\mathbf{E}_{\sigma \sim \tau_{\beta}}[Q(\sigma)]=\frac{e^{x} e^{\beta} Z_{1}}{Z_{0}+e^{x} e^{\beta} Z_{1}}-\frac{e^{\beta} Z_{1}}{Z_{0}+e^{\beta} Z_{1}}=\frac{(e^{x}-1) e^{\beta}}{R+(e^{x}+1) e^{\beta}+\frac{e^{x} e^{2 \beta}}{R}}$</li><li>$Y^{-}(\beta, x)=\mathbf{E}_{\sigma \sim \tau_{\beta}}[Q(\sigma)]-\mathbf{E}_{\sigma \sim \tau_{\beta-x}}[Q(\sigma)]=\frac{e^{\beta} Z_{1}}{Z_{0}+e^{\beta} Z_{1}}-\frac{e^{-x} e^{\beta} Z_{1}}{Z_{0}+e^{-x} e^{\beta} Z_{1}}=\frac{(e^{x}-1) e^{\beta}}{e^{x} R+(e^{x}+1) e^{\beta}+\frac{e^{2 \beta}}{R}}$</li><li>上述两式均 $\leq \frac{e^{x / 2}-1}{e^{x / 2}+1}$，且在 $R=e^{\beta \pm x / 2}$ 时取到。</li><li>设 $Y(\beta)=\max \{Y^{+}(\beta, x), Y^{-}(\beta, x)\}$，则 $Y(\beta)$ 由 $e^{\beta}$ 和 $R$ 的大小关系决定。</li><li>$Y$ 函数满足：在 $[0, \log R-x / 2]$ 上升，$[\log R-x / 2, \log R]$ 下降，$[\log R, \log R+$ $x / 2]$ 上升, $[\log R+x / 2, \infty)$ 下降。</li></ul></li><li><p><strong>我们希望用 ROBUSTNESS 的结果估计 $R$，这样 COUNTING 问题的答案就是 $\mathbf{E}_{\sigma \sim \pi_{\alpha}}[Q(\sigma)]=\frac{1}{1+R}$ </strong></p><ol><li>假设 $x$ 是一个已知的 $O(\varepsilon_{c})$ 的定值</li><li>首先，如果分布 $\beta$ 已经确定，我们可以二分 $\delta$ + 调用判定，求出误差小于 $\varepsilon_{c}$ 的 $\delta$，也即 $Y(\beta)$ 的值。</li><li>我们已经知道了 $Y$ 函数的性质，可以再套一个二分去找极大值点 $\beta_0$，使得 $Y(\beta_{0}) \geq \frac{e^{x / 2}-1}{e^{x / 2}+1}-\varepsilon_{0}$。</li><li>根据一番推导，我们找到的这个 $\beta_0$ 满足 $e^{-x}&lt;\frac{R}{e^{\beta_{0}}}&lt;e^{x}$，这样我们便确定了 $R$ 的范围。</li><li>最后我们只要设 $x=\log(1+\varepsilon_{c})$，那么估计值  $\frac{1}{1+R}$ 的偏差就是 $\varepsilon_{c}$ 了。</li></ol></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;这是 Professor Bo Li 推荐我的一篇 paper，有关 Adversarial Attacks 的内容。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/2003.00120&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Arxiv 传送门&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Paper Reading" scheme="https://jiangshibiao.github.io/categories/Paper-Reading/"/>
-    
-    
-      <category term="Adversarial Attacks" scheme="https://jiangshibiao.github.io/tags/Adversarial-Attacks/"/>
     
   </entry>
   

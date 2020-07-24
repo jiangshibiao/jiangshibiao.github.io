@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>vue-js-css-html 胡乱入门 | jiangshibiao</title>
+  <title>dnn-driven-streaming | jiangshibiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Math, Computer Science, Algorithm, Life">
@@ -11,18 +11,20 @@
   
   
   
-  <meta name="description" content="$2020.3 \sim 2020.6$ 上了《BS体系软件设计》这门课，最终决定用 Django + Vue 的架构完成课程设计。 不要说 Vue 了，js 和 css 我都一知半解，于是决定开坑速成。">
-<meta name="keywords" content="Knowledge Learning,Web">
+  <meta name="description" content="This is the reading notes for Server-Driven Video Streaming for Deep Learning Inference. Iterative Workflow Stream A: Camera $\to$ uniform low quality video $\to$  server $\to$ inference &amp;amp; propose">
+<meta name="keywords" content="Machine Learning,Video Analytics,Video Streaming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue-Js-Css-Html 胡乱入门">
-<meta property="og:url" content="https://jiangshibiao.github.io/2020/06/11/Vue-Js-Css-Html/index.html">
+<meta property="og:title" content="DNN-Driven-Streaming">
+<meta property="og:url" content="https://jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="$2020.3 \sim 2020.6$ 上了《BS体系软件设计》这门课，最终决定用 Django + Vue 的架构完成课程设计。 不要说 Vue 了，js 和 css 我都一知半解，于是决定开坑速成。">
+<meta property="og:description" content="This is the reading notes for Server-Driven Video Streaming for Deep Learning Inference. Iterative Workflow Stream A: Camera $\to$ uniform low quality video $\to$  server $\to$ inference &amp;amp; propose">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-02T03:28:44.115Z">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/Comparison.png">
+<meta property="og:updated_time" content="2020-07-24T08:32:52.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue-Js-Css-Html 胡乱入门">
-<meta name="twitter:description" content="$2020.3 \sim 2020.6$ 上了《BS体系软件设计》这门课，最终决定用 Django + Vue 的架构完成课程设计。 不要说 Vue 了，js 和 css 我都一知半解，于是决定开坑速成。">
+<meta name="twitter:title" content="DNN-Driven-Streaming">
+<meta name="twitter:description" content="This is the reading notes for Server-Driven Video Streaming for Deep Learning Inference. Iterative Workflow Stream A: Camera $\to$ uniform low quality video $\to$  server $\to$ inference &amp;amp; propose">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/Comparison.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
   
@@ -166,7 +168,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Vue-Js-Css-Html" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-DNN-Driven-Streaming" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -174,7 +176,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Vue-Js-Css-Html 胡乱入门
+      DNN-Driven-Streaming
     </h1>
   
 
@@ -182,12 +184,12 @@
     
     <div class="article-meta">
       
-	<a href="/2020/06/11/Vue-Js-Css-Html/" class="article-date">
-	  <time datetime="2020-06-11T15:06:56.000Z" itemprop="datePublished">2020-06-11</time>
+	<a href="/2020/07/23/DNN-Driven-Streaming/" class="article-date">
+	  <time datetime="2020-07-23T07:41:30.000Z" itemprop="datePublished">2020-07-23</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Knowledge-Learning/">Knowledge Learning</a>
+    <a class="article-category-link" href="/categories/Paper-Reading/">Paper Reading</a>
 
       
 	<a class="article-views">
@@ -201,67 +203,39 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>$2020.3 \sim 2020.6$ 上了《BS体系软件设计》这门课，最终决定用 Django + Vue 的架构完成课程设计。</p>
-<p>不要说 Vue 了，js 和 css 我都一知半解，于是决定开坑速成。</p>
-<a id="more"></a>
-<h4 id="vue-的基本函数"><a href="#vue-的基本函数" class="headerlink" title="vue 的基本函数"></a>vue 的基本函数</h4><ul>
-<li><code>v-bind</code> 属性绑定：<code>&lt;a v-bind:href=&quot;url&quot;&gt; ... &lt;/a&gt;</code><ul>
-<li>也可以动态地绑定一个类 <code>v-bind:class=&quot;{‘textColor‘:isColor}</code></li>
-<li>因为很常用，可以完全省略这个词。</li>
+        <p>This is the reading notes for <strong><em>Server-Driven Video Streaming for Deep Learning Inference</em></strong>.</p>
+<h4 id="Iterative-Workflow"><a href="#Iterative-Workflow" class="headerlink" title="Iterative Workflow"></a>Iterative Workflow</h4><ul>
+<li>Stream A: Camera $\to$ uniform low quality video $\to$  server $\to$ inference &amp; propose feedback regions $\to$  send feedback regions to camera</li>
+<li>Stream B: Camera $\to$  re-encode feedback regions in high quality $\to$  server $\to$  inference</li>
+</ul>
+<p>Note:  By deriving feedback directly from the server-side DNN, it sends high-quality content only in the <strong>minimal</strong> set of relevant regions <strong>necessary</strong> for high inference accuracy.</p>
+<p><img src="//jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/Comparison.png" alt></p>
+<h4 id="Performance-metrics"><a href="#Performance-metrics" class="headerlink" title="Performance metrics"></a>Performance metrics</h4><ul>
+<li><strong>Accuracy</strong>: Use the <em>similarity</em> between DNN output on each frame with limited bandwidth (low quality) video and the DNN output on each frame with the original (highest quality) video.<ul>
+<li><em>object detection</em>: F1 score $2 \cdot \frac{pre \times recall}{pre+recall}$</li>
+<li><em>semantic segmentation</em>: IoU</li>
 </ul>
 </li>
-<li><code>v-if</code> 条件语句：<code>v-if=&quot;seen&quot;</code> <ul>
-<li>后面可以接 <code>v-else</code>，<code>v-else-if</code></li>
+<li><strong>Bandwidth usage</strong>: In this paper, measure the bandwidth usage by the size of the sent video divided by its duration (leave out the camera cost)</li>
+<li><strong>Average response delay (freshness)</strong>:  Average processing delay per object/pixel.</li>
 </ul>
+<h4 id="Feedback-Regions"><a href="#Feedback-Regions" class="headerlink" title="Feedback Regions"></a>Feedback Regions</h4><ul>
+<li><strong>Object detection</strong> (based on bounding boxes): If DNN uses region proposal networks (RPNs), each proposed region is directly associated with an <em>objectness score</em>. If it is not RPN-based like Yolo, sum up the scores of non-background classes as the <em>objectness score</em>. Consider all possible regions with objectness score over a threshold and apply two following filters. The remains are feedback regions.<ol>
+<li>Filter out those regions that have over 30% IoU overlap with the labeled bounding boxes.</li>
+<li>Empirically remove regions that are over 4% of the frame size (roughly 20% of each dimension). <em>Motivation</em>: If an object is large, DNN should have successfully detected it.</li>
+</ol>
 </li>
-<li><code>v-on</code> 事件绑定：<code>&lt;button v-on:click=&quot;myclick&quot;&gt;click me&lt;/button&gt;</code><ul>
-<li>可以绑定多个：<code>&lt;v-on=&quot;{mouseenter:onenter,mouseleave:leave}&quot;&gt;</code></li>
-<li>可以用 <code>@</code> 来简写。</li>
+<li><strong>Semantic segmentation</strong> (based on pixels): Semantic segmentation DNNs give a score of each class for each pixel. We assign a new score of $1+max_1-max_2$ to each pixel ($max_1$ is the maximum score of one class, and $max_2$ is the second largest). Repeat $k$ times, each time choose a $n \times n$ rectangle in which the pixels have maximum average score and zero out the scores of corresponding pixels.</li>
 </ul>
-</li>
-<li><code>v-model</code> 在一些表单控件元素上创建双向数据绑定<ul>
-<li><code>&lt;input v-model=&quot;message&quot;&gt;</code> 一开始显示 message 内容，message 也会绑定用户输入。</li>
-</ul>
-</li>
-<li><code>v-for</code> 循环语句：<code>&lt;li v-for=&quot;site in sites&quot;&gt;</code><ul>
-<li>也可以迭代字典（第三个表示索引）<code>&lt;li v-for=&quot;(value, key, index) in object&quot;&gt;</code></li>
-<li>也可以直接循环整数 <code>&lt;li v-for=&quot;n in 10&quot;&gt;</code></li>
-</ul>
-</li>
-<li>过滤操作  <ul>
-<li>调用：<code></code> 和 <code>&lt;div v-bind:id=&quot;rawId | formatId&quot;&gt;&lt;/div&gt;</code></li>
-<li>注意 vue 里定义的是 <code>filter</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="Vue-应用"><a href="#Vue-应用" class="headerlink" title="Vue 应用"></a>Vue 应用</h4><ul>
-<li><code>computed</code> 和 <code>method</code> 功能相同，前者会利用缓存，而后者每次渲染时会重新计算。</li>
-<li><p><code>watch</code> 监听相应数据的变化</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm.$watch(<span class="string">'counter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">nval, oval</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'计数器值的变化 :'</span> + oval + <span class="string">' 变为 '</span> + nval + <span class="string">'!'</span>);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>v-model</code> 支持多个绑定，会以数组的形式呈现。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>多个复选框：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"runoob"</span> <span class="attr">value</span>=<span class="string">"Runoob"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"runoob"</span>&gt;</span>Runoob<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"google"</span> <span class="attr">value</span>=<span class="string">"Google"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"google"</span>&gt;</span>Google<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"taobao"</span> <span class="attr">value</span>=<span class="string">"Taobao"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"taobao"</span>&gt;</span>taobao<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 选择的值为: [ "Runoob", "Taobao", "Google" ] --&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="Vue-组件"><a href="#Vue-组件" class="headerlink" title="Vue 组件"></a>Vue 组件</h4><ul>
-<li>组件系统让我们可以用独立可复用的小组件来构建大型应用。</li>
-<li>全局组件<ul>
-<li>用 <code>Vue.component(tagName, options)</code> 定义</li>
-<li>用 <code>&lt;tagName&gt;&lt;/tagName&gt;</code> 调用</li>
-</ul>
-</li>
-<li><p>局部组件：在 Vue 创建时开一个 <code>components</code> 关键词。</p>
-<ul>
-<li><p><strong>prop</strong> 是子组件用来接受父组件传递过来的数据的一个自定义属性。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">child</span> <span class="attr">message</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">Vue.component(<span class="string">'child'</span>, &#123;</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 声明 props</span></span></span><br><span class="line"><span class="actionscript">  props: [<span class="string">'message'</span>], <span class="comment">// 可以在 vm 实例中像 “this.message” 这样使用</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  template: '<span class="tag">&lt;<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123; message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span>'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在调用组件的时，可以用 <code>v-on</code> 把组件 <strong>emit</strong> 出来的返回值当做事件绑定到其他属性值 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 使用</span><br><span class="line"><span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span> </span><br><span class="line">// 定义组件</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">Vue.component(<span class="string">'button-counter'</span>, &#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">  template: '<span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"incrementHandler"</span>&gt;</span></span><span class="template-variable">&#123;&#123; counter &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span>',</span></span></span><br><span class="line"><span class="actionscript">  data: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      counter: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line"><span class="actionscript">    incrementHandler: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.counter += <span class="number">1</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.$emit(<span class="string">'increment'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注意到上述代码的 data 里返回的是函数。如果返回的是对象，不同调用者会共享。</p>
-</li>
-</ul>
-</li>
+<h4 id="Handling-Bandwidth-Variation"><a href="#Handling-Bandwidth-Variation" class="headerlink" title="Handling Bandwidth Variation"></a>Handling Bandwidth Variation</h4><p>DDS applies a <strong>feedback control system</strong>.</p>
+<ol>
+<li>Estimates the <em>base bandwidth</em> usage with default parameters.</li>
+<li>Compare the difference with the <em>estimated available bandwidth</em>.</li>
+<li>Change the tunable <strong>resolution</strong> and <strong>quantization</strong> parameters of both the low and high quality.</li>
+</ol>
+<h4 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h4><ul>
+<li><strong>Saving bandwidth by leveraging codec</strong>:  Instead of encoding each feedback region as a separate high-quality image, DDS sets the pixels outside of the feedback regions in the high quality image to black (to remove spatial redundancies) and encodes these images into a video file (to remove temporal redundancies).</li>
+<li><strong>Reducing average delay via early reporting</strong>: About $90\%$ of the DNN output from the low-quality video (Stream A) already has high confidence and thus can be returned without waiting for Stream B.</li>
 </ul>
 
       
@@ -289,7 +263,7 @@ var a = new Donate({
           </li>
           <li class="post-copyright-link">
           <strong>本文链接:  </strong>
-          <a href="/2020/06/11/Vue-Js-Css-Html/" target="_blank" title="Vue-Js-Css-Html 胡乱入门">https://jiangshibiao.github.io/2020/06/11/Vue-Js-Css-Html/</a>
+          <a href="/2020/07/23/DNN-Driven-Streaming/" target="_blank" title="DNN-Driven-Streaming">https://jiangshibiao.github.io/2020/07/23/DNN-Driven-Streaming/</a>
           </li>
           <li class="post-copyright-license">
             <strong>版权声明:   </strong>
@@ -329,7 +303,7 @@ var a = new Donate({
       
       
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Knowledge-Learning/">Knowledge Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Video-Analytics/">Video Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Video-Streaming/">Video Streaming</a></li></ul>
 
       
 
@@ -339,19 +313,10 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="/2020/07/23/DNN-Driven-Streaming/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          DNN-Driven-Streaming
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/10/Interesting-Problems-Probability/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/06/11/Vue-Js-Css-Html/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">趣题摘记-概率和期望</div>
+      <div class="article-nav-title">Vue-Js-Css-Html 胡乱入门</div>
     </a>
   
 </nav>
@@ -365,7 +330,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-的基本函数"><span class="nav-number">1.</span> <span class="nav-text">vue 的基本函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-应用"><span class="nav-number">2.</span> <span class="nav-text">Vue 应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-组件"><span class="nav-number">3.</span> <span class="nav-text">Vue 组件</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterative-Workflow"><span class="nav-number">1.</span> <span class="nav-text">Iterative Workflow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Performance-metrics"><span class="nav-number">2.</span> <span class="nav-text">Performance metrics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Feedback-Regions"><span class="nav-number">3.</span> <span class="nav-text">Feedback Regions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handling-Bandwidth-Variation"><span class="nav-number">4.</span> <span class="nav-text">Handling Bandwidth Variation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optimization"><span class="nav-number">5.</span> <span class="nav-text">Optimization</span></a></li></ol>
     
     </div>
   </aside>
