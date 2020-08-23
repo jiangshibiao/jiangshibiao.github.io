@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="在这个系列里，我会把遇到的 ACM-ICPC 向的算法题选择性记下来，博君一笑。因为退役很久了，我个人更喜欢 灵机一动、轻盈有趣 的题目。我会略过比较复杂的证明，留下简洁的结论。 在我以前的博客里有过类似的整理，这里给出部分链接：  Petrozavodsk Camp 2018 题解 2018 ITMO 金牌训练营题目总结 2019 字节跳动 ACM 冬令营题解 2019 Moscow Works">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-18T15:54:12.045Z">
+<meta property="og:updated_time" content="2020-08-23T09:11:36.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ACM-ICPC题目精选-1">
 <meta name="twitter:description" content="在这个系列里，我会把遇到的 ACM-ICPC 向的算法题选择性记下来，博君一笑。因为退役很久了，我个人更喜欢 灵机一动、轻盈有趣 的题目。我会略过比较复杂的证明，留下简洁的结论。 在我以前的博客里有过类似的整理，这里给出部分链接：  Petrozavodsk Camp 2018 题解 2018 ITMO 金牌训练营题目总结 2019 字节跳动 ACM 冬令营题解 2019 Moscow Works">
@@ -256,14 +256,16 @@
 <p><strong>如何判断第三种情况</strong>：不妨设目前 $0$ 的个数小于 $1$ 的个数。我们先套用上述贪心使得 $1$ 的个数不断减少。由性质 1，如果某一时刻 $0$ 的个数等于 $1$ 的个数了，说明最终能剩下 $01$ 或消光。</p>
 <p><strong>进一步优化</strong>：上述做法是 $O(N^2)$ 的，因为我们要依次枚举每一个 $x$ 并判断。现在考虑从小到大枚举 $x$，这样每次有一个 $1$ 会转变成 $0$。暴力维护从 $1$ 到 $i$ 的贪心前缀 $(x_i,y_i)$，并套用上述的分类讨论求得答案。</p>
 <p>每当第 $k$ 个数从 $1$ 变 $0$ 时，观察 $(x_i,y_i)$ 整个序列的变化情况：要不需要修改的位置是 $O(1)$ 的，要不对于所有 $i \ge k+2$，$x_i$ 都至少增加了 $1$。又因为 $y_i \le 2$，所以一旦 $x_i \ge 3$ 后 $k+2,k+3\dots N$ 的所有位置都可以不作考虑（均合法）。 所以 $(x_i,y_i)$ 序列的均摊总变化是 $O(N)$ 的。</p>
-<h4 id="Zimpha-2020-Noi-ac-Contest-A"><a href="#Zimpha-2020-Noi-ac-Contest-A" class="headerlink" title="Zimpha 2020 Noi.ac Contest A"></a>Zimpha 2020 Noi.ac Contest A</h4><p>比赛结束后更新。</p>
-<h4 id="ZJU-2020-Summer-Camp-Phase-2-Contest-7-D"><a href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-D" class="headerlink" title="ZJU 2020 Summer Camp Phase 2 Contest 7 D"></a>ZJU 2020 Summer Camp Phase 2 Contest 7 D</h4><p><strong>题意</strong>：有 $n + 1$ 种物品，体积分别为 $0, 1, \dots, n$，价值分别为 $w_0,w_1, \dots, w_n$，每种物品的数量都是无限的。 $m$ 个询问，每次给定 $k$ 和 $v$，你需要选择恰好 $k$ 个物品， 使得总体积模 $n + 1$ 恰好为 $v$，且总价值最大。$n,k,v \le 1500, m \le 10000$</p>
-<p><strong>题解</strong>：设 $f_{i,j}$ 表示选择 $i$ 个物品，体积模 $n + 1$ 为 $j$ 的最大价值。直接转移是 $O(N^3)$ 的，不太行。</p>
-<p>注意 $f$ 的转移满足结合律，我们不必对于所有 $i$ 都计算出 $f_i$。具体地，取 $K = \lceil \sqrt N \rceil$，则对于询问 $q$，我们把计算 $f_q$ 拆成如下两部分 $f_q = f_{\lfloor \frac{q}{K} \rfloor K} \oplus f_{q \mod K}$。 同时预处理出 $f_0, f_1, \dots, f_K$ 以及 $f_K, f_{2K}, \dots, f_{K^2}$，复杂度 $O(N^{2.5}+NM)$</p>
-<h4 id="ZJU-2020-Summer-Camp-Phase-2-Contest-7-G"><a href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-G" class="headerlink" title="ZJU 2020 Summer Camp Phase 2 Contest 7 G"></a>ZJU 2020 Summer Camp Phase 2 Contest 7 G</h4><p><strong>题意</strong>：给定一个 $n$ 个点 $m$ 条边的 DAG，由 $q$ 次询问。 每次给定一个点集 $S$，问仅保留 $S$ 中的点时图中有多少条不同的路径。$n,q \le 10^5,m,\sum |S| \le 2 \times 10^5$。</p>
-<p><strong>题解</strong>：这种操作只能逐边逐点的进行计数，所以重点在怎么优化枚举上。</p>
-<p>对于一个大小为 $K$ 的询问，除了 $O(M)$ 的全图 DP，我们还可以做到 $O(K^2)$（两两枚举合法的边进行 DP），所以单次复杂度是 $\min\{M,K^2\}$。如果我们采取了这种简单的 trick，考虑构造出最糟糕的数据。如果 $M &lt; K^2$ 会浪费我们的 $\sum |S|$，而 $M \le K^2$ 时最坏复杂度就是 $O(QK)$，当 $K$ 取到 $\sqrt M$ 时是根号级别的。</p>
-<p>标程给出了一种常数更小的做法（因为 $O(K^2)$ 过程中我们需要检查每条边是否存在，有类似于哈希的步骤）。先考察我们 dp 的细节，设 $f_x$ 表示所有点到 $x$ 的总方案。注意对于一条边 $x \to y$，我们既可以枚举 $x$ 的出边从 $f_x$ 正向地推过去，也可以反着枚举 $y$ 的入边推过来。我们的策略是：对于边 $x \to y$，我们在 $d_x$ 小的那一侧枚举边（注意这里是枚举全图的边，观察边是否落在集合 $S$ 里再 DP）。 </p>
+<h4 id="Zimpha-2020-Noi-ac-Contest-A"><a href="#Zimpha-2020-Noi-ac-Contest-A" class="headerlink" title="Zimpha 2020 Noi.ac Contest A"></a>Zimpha 2020 Noi.ac Contest A</h4><p><strong>题意</strong>：有一个字符串 $S$ 和一个空字符串 $P$。可以执行如下两种操作：在 $P$ 后面加入一个字符；删除 $P$ 的最后一个字符。 每次操作完毕，$P$ 在 $S$ 中所有的匹配位置都会被高亮。求能够使得 $S$ 里每个位置都被至少高亮过一次的最小操作次数。$|S| \le 2 \times 10^5, |\Sigma| \le 26$</p>
+<p><strong>简单结论</strong>：答案步数不会超过 $2|\Sigma|-1$，因为总能用单个字符的增删去覆盖整个串。</p>
+<p><strong>进一步结论</strong>：一定存在一个最优的操作序列类似：加一个字符，删一个字符；加一个字符，删 一个字符；……；加字符，加字符，……，加字符。也就是说除了最后连续的加字符，其他任意时刻，$T$ 要么是空串，要么是一个字符。证明可以使用调整法。</p>
+<p>假设某个最优操作过程删字符前的字符串依次为 $x_1, x_2, \dots, x_k$ 。考虑 $x_1$ 和 $x_2$ 的最长公共前缀长度 $l$：</p>
+<ul>
+<li>如果 $l = 0$，显然我们需要执行 $|x_1|$ 次加和 $|x_1|$ 次删，才能便会成空串。这个不如直接搞成把 x1 的每个不同的字符加一次，删一次，答案肯定不会变劣。</li>
+<li>如果 $l \ge 1$，考虑 $x_1$ 中除去最长公共前缀的部分。显然可以把里面每个不同字符拿出来加删一次。</li>
+</ul>
+<p>依次类推，我们可以把 $x_1, x_2, \dots, x_{k-1}$ 都拆成单个字符。</p>
+<p><strong>题解</strong>：根据以上结论，我们可以在后缀自动机枚举所有长度不超过 $2|\Sigma|-1$ 的子串，复杂度 $O(|S||\Sigma|)$。</p>
 <h4 id="2020上海高校程序设计竞赛-D"><a href="#2020上海高校程序设计竞赛-D" class="headerlink" title="2020上海高校程序设计竞赛 D"></a>2020上海高校程序设计竞赛 D</h4><p><strong>题意</strong>：有一张 $N$ 个点 $M$ 条边的有向图和 $Q$ 个询问，每次询问能否从 $u$ 走到 $v$。有向边边和询问都是由一个 $\mathrm{rand()}\%n$ 的 pair 随机得到。 $N \le 10^5, M \le N+5000, Q \le 3 \times 10^5$。</p>
 <p><strong>题解</strong>：最开始想到的是首尾同时 BFS 的 trick。但此图的最短路很大，这样做依然会超时。</p>
 <p>网络赛的通过率很低。过的代码都是先进行 tarjan 缩环，然后采用以下两种方法之一：</p>
@@ -278,6 +280,19 @@
 <li>如果 $p \ge \frac{1+\epsilon}{n}$，生成的图会包括一个大连通块和若干个大小是 $O(\log N)$ 的小连通块。</li>
 <li>如果 $p=\frac{1}{n}$，生成的图里的最大连通块个数和 $n^\frac{2}{3}$ 成正比。</li>
 </ul>
+<h4 id="ZJU-2020-Summer-Camp-Phase-2-Contest-7-D"><a href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-D" class="headerlink" title="ZJU 2020 Summer Camp Phase 2 Contest 7 D"></a>ZJU 2020 Summer Camp Phase 2 Contest 7 D</h4><p><strong>题意</strong>：有 $n + 1$ 种物品，体积分别为 $0, 1, \dots, n$，价值分别为 $w_0,w_1, \dots, w_n$，每种物品的数量都是无限的。 $m$ 个询问，每次给定 $k$ 和 $v$，你需要选择恰好 $k$ 个物品， 使得总体积模 $n + 1$ 恰好为 $v$，且总价值最大。$n,k,v \le 1500, m \le 10000$</p>
+<p><strong>题解</strong>：设 $f_{i,j}$ 表示选择 $i$ 个物品，体积模 $n + 1$ 为 $j$ 的最大价值。直接转移是 $O(N^3)$ 的，不太行。</p>
+<p>注意 $f$ 的转移满足结合律，所以我们不必对于所有 $i$ 都计算出 $f_i$。</p>
+<p>具体地，取 $K = \lceil \sqrt N \rceil$，则对于询问 $q$，我们把计算 $f_q$ 拆成如下两部分 $f_q = f_{\lfloor \frac{q}{K} \rfloor K} \oplus f_{q \mod K}$。 同时预处理出 $f_0, f_1, \dots, f_K$ 以及 $f_K, f_{2K}, \dots, f_{K^2}$，复杂度 $O(N^{2.5}+NM)$</p>
+<h4 id="ZJU-2020-Summer-Camp-Phase-2-Contest-7-G"><a href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-G" class="headerlink" title="ZJU 2020 Summer Camp Phase 2 Contest 7 G"></a>ZJU 2020 Summer Camp Phase 2 Contest 7 G</h4><p><strong>题意</strong>：给定一个 $n$ 个点 $m$ 条边的 DAG，由 $q$ 次询问。 每次给定一个点集 $S$，问仅保留 $S$ 中的点时图中有多少条不同的路径。$n,q \le 10^5,m,\sum |S| \le 2 \times 10^5$。</p>
+<p><strong>题解</strong>：这种操作只能逐边逐点的进行计数，所以重点在怎么优化枚举上。</p>
+<p>对于一个大小为 $K$ 的询问，除了 $O(M)$ 的全图 DP，我们还可以做到 $O(K^2)$（两两枚举合法的边进行 DP），所以单次复杂度是 $\min\{M,K^2\}$。如果我们采取了这种简单的 trick，考虑构造出最糟糕的数据。如果 $M &lt; K^2$ 会浪费我们的 $\sum |S|$，而 $M \le K^2$ 时最坏复杂度就是 $O(QK)$，当 $K$ 取到 $\sqrt M$ 时是根号级别的。</p>
+<p>标程给出了一种常数更小的做法（因为 $O(K^2)$ 过程中我们需要检查每条边是否存在，有类似于哈希的步骤）。先考察我们 dp 的细节，设 $f_x$ 表示所有点到 $x$ 的总方案。注意对于一条边 $x \to y$，我们既可以枚举 $x$ 的出边从 $f_x$ 正向地推过去，也可以反着枚举 $y$ 的入边推过来。我们的策略是：对于边 $x \to y$，我们在 $d_x$ 小的那一侧枚举边（注意这里是枚举全图的边，观察边是否落在集合 $S$ 里再 DP）。 </p>
+<h4 id="ZJU-2020-Summer-Camp-Phase-2-Contest-9-A"><a href="#ZJU-2020-Summer-Camp-Phase-2-Contest-9-A" class="headerlink" title="ZJU 2020 Summer Camp Phase 2 Contest 9 A"></a>ZJU 2020 Summer Camp Phase 2 Contest 9 A</h4><p><strong>题意</strong>：设 $f(x,y)$ 为十进制加法 $x+y$ 时产生的进位次数。求 $\sum \limits_{i=1}^n \sum \limits_{j=i+1}^n f(a_i,a_j)$。$n \le 10^5$。</p>
+<p><strong>题解</strong>：考虑如何拆分每一位。第 $k$ 位的贡献是 $[a_i \mod 10^k + a_j \mod 10^k \ge 10^k]$。这样我们可以把为一位视作独立问题，分别枚举后使用排序+双指针统计答案。复杂度 $O(N \log N \log W)$。</p>
+<h4 id="ZJU-2020-Summer-Camp-Phase-2-Contest-9-F-amp-2020-HDU-多校-10-1010"><a href="#ZJU-2020-Summer-Camp-Phase-2-Contest-9-F-amp-2020-HDU-多校-10-1010" class="headerlink" title="ZJU 2020 Summer Camp Phase 2 Contest 9 F &amp; 2020 HDU 多校 #10-1010"></a>ZJU 2020 Summer Camp Phase 2 Contest 9 F &amp; 2020 HDU 多校 #10-1010</h4><p><strong>题意</strong>：考虑一个 $3 \times 3$ 的格子，每个格子上有正数个石子。Alice 和 Bob 轮流取石子，每次只能在某一堆石子里取正数个石子。当某一行或者某一列的石子全为空时，最后一个取石子的人获胜。还有一个额外要求是：Alice 和 Bob 在各自的第一轮取石子时必须取光完整的一堆。</p>
+<p><strong>题解</strong>：注意 $3 \times 3$ 的绝对顺序不影响答案，通过枚举后我们可以设 Alice 首先取光了 $(1,1)$。如果此时 Bob 取（光）了 $(1,x)$ 或者 $(x,1)$ 他就输了（Alice 取光那一行/列剩下的那堆石子），所以他的决策只有四种。我们接着枚举，不妨假设 Bob 取光了 $(2,2)$。</p>
+<p>此时对于 $(1,2),(1,3),(2,1),(2,3),(3,1),(3,2)$ 这六堆石子，如果有一个人第一次取到了某堆石子的最后一颗，他就必输（另一个人可以立刻取光对应行列的剩下那堆）。而 $(3,3)$ 是可以随便取的。问题转化成在 $a_{1,2}-1,a_{1,3}-1,a_{2,1}-1,a_{2,3}-1,a_{3,1}-1,a_{3,2}-1,a_{3,3}$ 里进行 nim 游戏。</p>
 
       
     </div>
@@ -371,7 +386,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#NOIP-2012-D2T2-借教室"><span class="nav-number">1.</span> <span class="nav-text">NOIP 2012 D2T2 借教室</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2019-ICPC-HK-Regional-D"><span class="nav-number">2.</span> <span class="nav-text">2019 ICPC HK Regional D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020-牛客多校-4-A"><span class="nav-number">3.</span> <span class="nav-text">2020 牛客多校 #4 A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020-牛客多校-4-D"><span class="nav-number">4.</span> <span class="nav-text">2020 牛客多校 #4 D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020-牛客多校-4-E"><span class="nav-number">5.</span> <span class="nav-text">2020 牛客多校 #4 E</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zimpha-2020-Noi-ac-Contest-A"><span class="nav-number">6.</span> <span class="nav-text">Zimpha 2020 Noi.ac Contest A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-D"><span class="nav-number">7.</span> <span class="nav-text">ZJU 2020 Summer Camp Phase 2 Contest 7 D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-G"><span class="nav-number">8.</span> <span class="nav-text">ZJU 2020 Summer Camp Phase 2 Contest 7 G</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020上海高校程序设计竞赛-D"><span class="nav-number">9.</span> <span class="nav-text">2020上海高校程序设计竞赛 D</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#NOIP-2012-D2T2-借教室"><span class="nav-number">1.</span> <span class="nav-text">NOIP 2012 D2T2 借教室</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2019-ICPC-HK-Regional-D"><span class="nav-number">2.</span> <span class="nav-text">2019 ICPC HK Regional D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020-牛客多校-4-A"><span class="nav-number">3.</span> <span class="nav-text">2020 牛客多校 #4 A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020-牛客多校-4-D"><span class="nav-number">4.</span> <span class="nav-text">2020 牛客多校 #4 D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020-牛客多校-4-E"><span class="nav-number">5.</span> <span class="nav-text">2020 牛客多校 #4 E</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zimpha-2020-Noi-ac-Contest-A"><span class="nav-number">6.</span> <span class="nav-text">Zimpha 2020 Noi.ac Contest A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2020上海高校程序设计竞赛-D"><span class="nav-number">7.</span> <span class="nav-text">2020上海高校程序设计竞赛 D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-D"><span class="nav-number">8.</span> <span class="nav-text">ZJU 2020 Summer Camp Phase 2 Contest 7 D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJU-2020-Summer-Camp-Phase-2-Contest-7-G"><span class="nav-number">9.</span> <span class="nav-text">ZJU 2020 Summer Camp Phase 2 Contest 7 G</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJU-2020-Summer-Camp-Phase-2-Contest-9-A"><span class="nav-number">10.</span> <span class="nav-text">ZJU 2020 Summer Camp Phase 2 Contest 9 A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZJU-2020-Summer-Camp-Phase-2-Contest-9-F-amp-2020-HDU-多校-10-1010"><span class="nav-number">11.</span> <span class="nav-text">ZJU 2020 Summer Camp Phase 2 Contest 9 F &amp; 2020 HDU 多校 #10-1010</span></a></li></ol>
     
     </div>
   </aside>
