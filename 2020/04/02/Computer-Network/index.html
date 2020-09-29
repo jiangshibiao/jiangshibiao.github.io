@@ -25,8 +25,8 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv4.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Classful-and-special-addressing.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/protocol-and-ICMP.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Users/Jiang%20Shibiao/Desktop/routing-algorithm.png">
-<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/IPv6.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png">
+<meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/ipv6.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Berkeley.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/UDP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Email_head.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/HTTP.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/02/Computer-Network/Digital-Signature.png">
-<meta property="og:updated_time" content="2020-06-23T08:58:14.185Z">
+<meta property="og:updated_time" content="2020-09-16T01:50:07.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络》知识整理">
 <meta name="twitter:description" content="在此记录一下我在 $2020.3 \sim 2020.6$ 在浙江大学上的《计算机网络》这门课的知识点。">
@@ -742,14 +742,14 @@
 </ol>
 </li>
 <li>Border Gateway Protocol <strong>BGP</strong> 协议<ul>
-<li>Exterior Gateway Routing Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/Users\Jiang Shibiao\Desktop\routing-algorithm.png" alt></li>
+<li>Exterior Gateway Routing Protocol<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/routing-algorithm.png" alt></li>
 <li>为保证可靠传输，采用 TCP 协议（放入 TCP 报文的字段里面）</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/IPv6.png" alt></p>
+<p><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/ipv6.png" alt></p>
 <ul>
 <li>IPv6<ul>
 <li>将地址从 $32$ 位或占到 $128$ 位，增加了扩展首部（提高路由器效率），校验和子段被移除（加速）。</li>
@@ -793,22 +793,16 @@
 <li>Real-time Transport Protocol <strong>RTP协议</strong>：RTP is to multiplex several real-time data streams onto a single stream of UDP packets and unicast or multicast the UDP packets.</li>
 </ul>
 </li>
-<li><p>Transmission Control Protocol <strong>TCP协议</strong></p>
-<ul>
-<li><p>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</p>
-</li>
-<li><p>无结构的字节流：A TCP connection is a byte stream, not a message queue。</p>
-</li>
-<li><p>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。</p>
-<ul>
+<li>Transmission Control Protocol <strong>TCP协议</strong><ul>
+<li>点对点的虚连接，可靠有序，不丢失不重复，全双工通信（full duplex）。</li>
+<li>无结构的字节流：A TCP connection is a byte stream, not a message queue。</li>
+<li>TCP Header 的固定部分是 20B，可以额外加 options（注意填充成 4B 整数倍）。<ul>
 <li>Window size: tell how many bytes may be sent starting at the byte acknowledged.</li>
 <li>Urgent pointer: indicate a byte offset at which urgent data are to be found.<br><img src="//jiangshibiao.github.io/2020/04/02/Computer-Network/TCP.png" alt></li>
 </ul>
 </li>
-<li><p>Nagle’s algorithm: When data come into the sender one byte at a time, just send the first byte and buffer all the rest until the outstanding byte is acknowledged. </p>
-</li>
-<li><p>Connection Management</p>
-<ul>
+<li>Nagle’s algorithm: When data come into the sender one byte at a time, just send the first byte and buffer all the rest until the outstanding byte is acknowledged. </li>
+<li>Connection Management<ul>
 <li>Establishment:  Three-way Handshake<ol>
 <li>SYN=1, SEQ=x</li>
 <li>SYN=1, SEQ=y, ACK=x+1</li>
@@ -825,10 +819,8 @@
 </li>
 </ul>
 </li>
-<li><p>采用 Sliding Windows 机制，</p>
-</li>
-<li><p>Timer Management</p>
-<ul>
+<li>采用 Sliding Windows 机制，</li>
+<li>Timer Management<ul>
 <li>Retransmission Timer 重传计时器<ul>
 <li>Smoothed Round-Trip Time. $\text{SRTT’}=\alpha \text{SRTT}+(1-\alpha)\text{RTT}$ （$\alpha=\frac{7}{8}$）</li>
 <li>Round-Trip Time VARiation. $\text{RTTVAR’}=\beta \text{RTTVAR}+(1-\beta)|\text{SRTT}-\text{RTT}|$ （ $\beta=\frac{3}{4}$）</li>
