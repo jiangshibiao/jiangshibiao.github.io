@@ -11,23 +11,23 @@
   
   
   
-  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 奇思妙想 的题。 目录 一道初中几何题 求k组出现了奇数次的数字 公平分蛋糕问题 非ww串的文法表达 选数问题 翻纸牌 环形取数游戏">
+  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 奇思妙想 的题。 目录 一道初中几何题 求k组出现了奇数次的数字 公平分蛋糕问题 非ww串的文法表达 选数问题 翻纸牌 环形取数游戏 逆序对还能怎么求">
 <meta name="keywords" content="Knowledge Learning,Algorithm,Math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="趣题摘记-奇思妙想">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 奇思妙想 的题。 目录 一道初中几何题 求k组出现了奇数次的数字 公平分蛋糕问题 非ww串的文法表达 选数问题 翻纸牌 环形取数游戏">
+<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 奇思妙想 的题。 目录 一道初中几何题 求k组出现了奇数次的数字 公平分蛋糕问题 非ww串的文法表达 选数问题 翻纸牌 环形取数游戏 逆序对还能怎么求">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/geometry.jpg">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/theory.jpg">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/三人连续分蛋糕.jpg">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/三人离散分蛋糕.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/环形取数.png">
-<meta property="og:updated_time" content="2020-06-10T08:12:44.084Z">
+<meta property="og:updated_time" content="2020-10-01T16:22:59.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="趣题摘记-奇思妙想">
-<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 奇思妙想 的题。 目录 一道初中几何题 求k组出现了奇数次的数字 公平分蛋糕问题 非ww串的文法表达 选数问题 翻纸牌 环形取数游戏">
+<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 奇思妙想 的题。 目录 一道初中几何题 求k组出现了奇数次的数字 公平分蛋糕问题 非ww串的文法表达 选数问题 翻纸牌 环形取数游戏 逆序对还能怎么求">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/04/07/Interesting-Problems-Fancy-Idea/geometry.jpg">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -222,6 +222,7 @@
 <li><a href="#选数问题">选数问题</a></li>
 <li><a href="#翻纸牌">翻纸牌</a></li>
 <li><a href="环形取数游戏">环形取数游戏</a></li>
+<li><a href="#逆序对还能怎么求">逆序对还能怎么求</a></li>
 </ul>
 <a id="more"></a>
 <h4 id="一道初中几何题"><a href="#一道初中几何题" class="headerlink" title="一道初中几何题"></a>一道初中几何题</h4><ul>
@@ -390,6 +391,18 @@
 </ul>
 </li>
 </ul>
+<h4 id="逆序对还能怎么求"><a href="#逆序对还能怎么求" class="headerlink" title="逆序对还能怎么求"></a>逆序对还能怎么求</h4><ul>
+<li>给出 $N$ 个数，每个数的范围是 $[1,N]$，如何不用分治和数据结构求逆序对数量？</li>
+<li>有一个基于二进制和桶排的 $O(N \log V+V)$ 做法。<ul>
+<li>对于每一组逆序对 $(x,y)$，分别考虑 $a_x$ 和 $a_y$ 的二进制表示 $B_x,B_y$。因为 $a_x&gt;a_y$，所以必然存在一个位置 $i$，使得 $B_{x,1 \sim i}&gt;B_{y,1 \sim i}$。我们考虑在位置 $i$ 处统计贡献。</li>
+<li>具体地，整个算法分为 $O(\log V)$ 轮。每一轮执行以下操作。<ul>
+<li>从 $1$ 到 $N$ 遍历，如果 $a_x$ 是奇数就 $cnt_{a_x}++$，如果 $a_x$ 是偶数就 $ans+=cnt_{a_x+1}$。</li>
+<li>每个数都对 $2$ 下取整。如果某个数变成 $0$ 了，下一轮将不再考虑。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -492,7 +505,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一道初中几何题"><span class="nav-number">2.</span> <span class="nav-text">一道初中几何题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求k组出现了奇数次的数字"><span class="nav-number">3.</span> <span class="nav-text">求k组出现了奇数次的数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公平分蛋糕问题"><span class="nav-number">4.</span> <span class="nav-text">公平分蛋糕问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非ww串的文法表达"><span class="nav-number">5.</span> <span class="nav-text">非ww串的文法表达</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选数问题"><span class="nav-number">6.</span> <span class="nav-text">选数问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#翻纸牌"><span class="nav-number">7.</span> <span class="nav-text">翻纸牌</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环形取数游戏"><span class="nav-number">8.</span> <span class="nav-text">环形取数游戏</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一道初中几何题"><span class="nav-number">2.</span> <span class="nav-text">一道初中几何题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求k组出现了奇数次的数字"><span class="nav-number">3.</span> <span class="nav-text">求k组出现了奇数次的数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公平分蛋糕问题"><span class="nav-number">4.</span> <span class="nav-text">公平分蛋糕问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非ww串的文法表达"><span class="nav-number">5.</span> <span class="nav-text">非ww串的文法表达</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选数问题"><span class="nav-number">6.</span> <span class="nav-text">选数问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#翻纸牌"><span class="nav-number">7.</span> <span class="nav-text">翻纸牌</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环形取数游戏"><span class="nav-number">8.</span> <span class="nav-text">环形取数游戏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逆序对还能怎么求"><span class="nav-number">9.</span> <span class="nav-text">逆序对还能怎么求</span></a></li></ol>
     
     </div>
   </aside>
@@ -683,21 +696,5 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
