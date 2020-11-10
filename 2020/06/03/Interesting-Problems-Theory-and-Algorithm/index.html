@@ -11,22 +11,22 @@
   
   
   
-  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 闭区间连续函数的极值 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
+  <meta name="description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 严格线性求第k小 闭区间连续函数的极值 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
 <meta name="keywords" content="Knowledge Learning,Algorithm,Math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="趣题摘记-理论和算法">
 <meta property="og:url" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/index.html">
 <meta property="og:site_name" content="jiangshibiao">
-<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 闭区间连续函数的极值 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
+<meta property="og:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 严格线性求第k小 闭区间连续函数的极值 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-2.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-3.png">
 <meta property="og:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-4.png">
-<meta property="og:updated_time" content="2020-09-15T17:36:16.006Z">
+<meta property="og:updated_time" content="2020-11-09T03:36:28.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="趣题摘记-理论和算法">
-<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 闭区间连续函数的极值 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
+<meta name="twitter:description" content="这一系列文章记录了我遇到过的一些 趣题——过小小思考后能豁然开朗的那种。  概率和期望 理论和算法 奇思妙想  这一篇主要介绍一些 计算理论和算法 方向的题。 目录 运筹学课程详细整理 严格线性求第k小 闭区间连续函数的极值 边权最小使指定顶点连通 最小生成树局部最优等于全局最优 图的最大割问题 BP 算法">
 <meta name="twitter:image" content="https://jiangshibiao.github.io/2020/06/03/Interesting-Problems-Theory-and-Algorithm/0801-1.png">
   
     <link rel="alternate" href="/atom.xml" title="jiangshibiao" type="application/atom+xml">
@@ -215,6 +215,7 @@
 <p>这一篇主要介绍一些 <strong>计算理论和算法</strong> 方向的题。</p>
 <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
 <li><a href="#运筹学课程详细整理"><strong>运筹学课程详细整理</strong></a></li>
+<li><a href="#严格线性求第k小">严格线性求第k小</a></li>
 <li><a href="#闭区间连续函数的极值">闭区间连续函数的极值</a></li>
 <li><a href="#边权最小使指定顶点连通">边权最小使指定顶点连通</a></li>
 <li><a href="#最小生成树局部最优等于全局最优">最小生成树局部最优等于全局最优</a></li>
@@ -223,6 +224,27 @@
 </ul>
 <a id="more"></a>
 <h4 id="运筹学课程详细整理"><a href="#运筹学课程详细整理" class="headerlink" title="运筹学课程详细整理"></a>运筹学课程详细整理</h4><p><a href="https://jiangshibiao.github.io/2020/04/19/Linear-Programming-Theory/">包含线性规划、近似算法等众多有趣内容</a></p>
+<h4 id="严格线性求第k小"><a href="#严格线性求第k小" class="headerlink" title="严格线性求第k小"></a>严格线性求第k小</h4><ul>
+<li>给出一个无序数组，试求第 $K$ 小的数是多少，要求严格线性。</li>
+<li>一个广为人知的近似线性做法<ul>
+<li>基于快排的分治策略，每次随机一个 $\mathrm{pivot}$，然后按 $\mathbb{pivot}$ 将数组划成两半并递归进其中一半。</li>
+<li>复杂度为 $T(N)=\frac{1}{N}\sum \limits_{i=1}^NT(i)+O(N)=O(N)$</li>
+</ul>
+</li>
+<li>一个优化后的严格线性做法：<ol>
+<li>定义 $F(A,k)$ 能在 $O(|A|)$ 时间里求出 $A$ 中第 $k$ 小。流程为 $2 \sim 4$。</li>
+<li>将所有数 $5$ 个一组，每组求一个中位数，并将这 $\lceil \frac{N}{5} \rceil$ 个数排成数列 $B$。</li>
+<li>调用 $F(B,\frac{|B|+1}{2})$，求得 $B$ 的中位数 $b$。</li>
+<li>以 $b$ 为 $\mathrm{pivot}$ 将数组分成两半，并递归进入其中一个 $F(A’,k’)$。</li>
+</ol>
+</li>
+<li>复杂度分析<ul>
+<li>在复杂度不变的情况下适当定一个 $\mathbb{pivot}$，使得每次划分区间时不出现极端情况。</li>
+<li>我们知道，必然有 $\frac{3N}{10}$ 的数小于 $b$，也有 $\frac{3N}{10}$ 的数大于 $b$，所以区间最多变成原来的 $O(\frac{7}{10}N)$。</li>
+<li>复杂度为 $T(N)=T(\frac{N}{5})+T(\frac{7}{10}N)+O(N)=O(N)$</li>
+</ul>
+</li>
+</ul>
 <h4 id="闭区间连续函数的极值"><a href="#闭区间连续函数的极值" class="headerlink" title="闭区间连续函数的极值"></a>闭区间连续函数的极值</h4><ul>
 <li>今天碰巧回顾了一个数学分析的基础内容，重新翻看证明后发现很有意思，特此记录。</li>
 <li>试证：对于定义在闭区间 $[a,b]$ 上的连续函数 $f(x)$ ，必然在定义域内存在最小值（和最大值）。</li>
@@ -453,9 +475,9 @@ var a = new Donate({
     </a>
   
   
-    <a href="/2020/06/01/Animation-Recommendation/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/05/23/Use-Python-Gracefully/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">动漫推荐</div>
+      <div class="article-nav-title">如何优雅地使用 Python</div>
     </a>
   
 </nav>
@@ -469,7 +491,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运筹学课程详细整理"><span class="nav-number">2.</span> <span class="nav-text">运筹学课程详细整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭区间连续函数的极值"><span class="nav-number">3.</span> <span class="nav-text">闭区间连续函数的极值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边权最小使指定顶点连通"><span class="nav-number">4.</span> <span class="nav-text">边权最小使指定顶点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小生成树局部最优等于全局最优"><span class="nav-number">5.</span> <span class="nav-text">最小生成树局部最优等于全局最优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图的最大割问题"><span class="nav-number">6.</span> <span class="nav-text">图的最大割问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BP-算法"><span class="nav-number">7.</span> <span class="nav-text">BP 算法</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运筹学课程详细整理"><span class="nav-number">2.</span> <span class="nav-text">运筹学课程详细整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#严格线性求第k小"><span class="nav-number">3.</span> <span class="nav-text">严格线性求第k小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭区间连续函数的极值"><span class="nav-number">4.</span> <span class="nav-text">闭区间连续函数的极值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边权最小使指定顶点连通"><span class="nav-number">5.</span> <span class="nav-text">边权最小使指定顶点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小生成树局部最优等于全局最优"><span class="nav-number">6.</span> <span class="nav-text">最小生成树局部最优等于全局最优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图的最大割问题"><span class="nav-number">7.</span> <span class="nav-text">图的最大割问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BP-算法"><span class="nav-number">8.</span> <span class="nav-text">BP 算法</span></a></li></ol>
     
     </div>
   </aside>
@@ -660,21 +682,5 @@ var a = new Donate({
   
     <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":250},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
