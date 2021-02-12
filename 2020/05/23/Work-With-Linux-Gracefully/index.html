@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="jiangshibiao">
 <meta property="og:description" content="导语用惯了傻瓜式的 Windows 环境，在 Linux 服务器上跑任务总是磕磕绊绊的。 于是我就开了这篇博客，整理一些经典的操作，例如 Linux 命令行、Git 的用法等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-20T17:41:43.627Z">
+<meta property="og:updated_time" content="2021-02-02T10:42:30.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地在 Linux 下工作">
 <meta name="twitter:description" content="导语用惯了傻瓜式的 Windows 环境，在 Linux 服务器上跑任务总是磕磕绊绊的。 于是我就开了这篇博客，整理一些经典的操作，例如 Linux 命令行、Git 的用法等。">
@@ -204,6 +204,34 @@
         <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><p>用惯了傻瓜式的 Windows 环境，在 Linux 服务器上跑任务总是磕磕绊绊的。</p>
 <p>于是我就开了这篇博客，整理一些经典的操作，例如 Linux 命令行、Git 的用法等。</p>
 <a id="more"></a>
+<h4 id="服务器常用操作"><a href="#服务器常用操作" class="headerlink" title="服务器常用操作"></a>服务器常用操作</h4><ul>
+<li>pip 换源：<code>pip install -i &lt;url&gt; &lt;package_name&gt;</code><ul>
+<li><code>https://pypi.tuna.tsinghua.edu.cn/simple</code></li>
+<li><code>http://mirrors.aliyun.com/pypi/simple/</code></li>
+</ul>
+</li>
+<li><p>Jupyter Notebook 的跨 ssh 连接</p>
+<ul>
+<li>服务器：<code>jupyter notebook –no-browser –port=8890</code></li>
+<li>本地：<code>ssh -N -f -L localhost:8888:localhost:8890 usr_name@server_ip</code></li>
+</ul>
+</li>
+<li>nohup</li>
+<li>tmux</li>
+</ul>
+<h4 id="深度学习相关"><a href="#深度学习相关" class="headerlink" title="深度学习相关"></a>深度学习相关</h4><ul>
+<li><p>查看 cuda 版本：<code>cat /usr/local/cuda/version.txt</code></p>
+</li>
+<li><p>指定显卡训练：<code>CUDA_VISIBLE_DEVICES=1,2 python ...</code></p>
+</li>
+<li><p><a href="https://pytorch.org/" target="_blank" rel="noopener">pytorch 安装网站</a></p>
+<ul>
+<li>查看 pytorch 版本：<code>print(torch.__version__)</code></li>
+</ul>
+</li>
+<li><p>指定 CUDA 编号：CUDA_VISIBLE_DEVICES=1</p>
+</li>
+</ul>
 <h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><ul>
 <li><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">推荐中文教程</a></li>
 <li>创建，更新和丢弃<ul>
@@ -262,7 +290,8 @@
 </ul>
 </li>
 </ul>
-<h4 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h4><div class="table-container">
+<h4 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h4><p>第一次安装 anaconda 时，可能需要激活环境变量：在 <code>vim ~/.bashrc</code> 里 <code>export</code> 一下。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -311,35 +340,23 @@
 <td>重建环境（跨平台）</td>
 <td><code>conda env create -f environment.yml</code></td>
 </tr>
-<tr>
-<td>pip 换源</td>
-<td><code>pip install -i &lt;url&gt; &lt;package_name&gt;</code></td>
-</tr>
-<tr>
-<td></td>
-<td><code>http://mirrors.aliyun.com/pypi/simple/</code></td>
-</tr>
-<tr>
-<td></td>
-<td><code>https://pypi.tuna.tsinghua.edu.cn/simple/</code></td>
-</tr>
 </tbody>
 </table>
 </div>
 <p>注：上述表格里的”导出环境“都是导出一个配置列表，重建时 Conda 会重新下载安装包。在实际应用中，如果新环境网络状况不稳定，可以考虑用 <strong>Conda Pack</strong> 来 <strong>打包整个环境</strong>。</p>
 <ul>
-<li><p>可以参考这个<a href="https://zhuanlan.zhihu.com/p/87344422" target="_blank" rel="noopener">教程</a>。 </p>
-</li>
-<li><p>首先我们用 <code>conda install -c conda-forge conda-pack</code> 或者 <code>pip install conda-pack</code> 安装 conda pack。也可以直接在官网上下载 whl 安装（体积特别小）。</p>
-</li>
-<li><p>打包一个环境的两种方法</p>
-<ul>
+<li>可以参考这个<a href="https://zhuanlan.zhihu.com/p/87344422" target="_blank" rel="noopener">教程</a>。 </li>
+<li>首先我们用 <code>conda install -c conda-forge conda-pack</code> 或者 <code>pip install conda-pack</code> 安装 conda pack。也可以直接在官网上下载 whl 安装（体积特别小）。</li>
+<li>打包一个环境的两种方法<ul>
 <li><code>conda pack -n my_env -o out_name.tar.gz</code> </li>
 <li><code>conda pack -p /explicit/path/to/my_env</code></li>
 </ul>
 </li>
 <li><p>将 tar 包复制到新平台即可重建环境（操作系统要一致）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p my_env</span><br><span class="line">tar -xzf my_env.tar.gz -C my_env</span><br><span class="line">source my_env/bin/activate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 channel：打开 <code>~/.condarc</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -444,7 +461,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git"><span class="nav-number">2.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Anaconda"><span class="nav-number">3.</span> <span class="nav-text">Anaconda</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器常用操作"><span class="nav-number">2.</span> <span class="nav-text">服务器常用操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深度学习相关"><span class="nav-number">3.</span> <span class="nav-text">深度学习相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git"><span class="nav-number">4.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Anaconda"><span class="nav-number">5.</span> <span class="nav-text">Anaconda</span></a></li></ol>
     
     </div>
   </aside>
@@ -459,7 +476,7 @@ var a = new Donate({
   <div class="container">
       	<div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2020 - 2020 jiangshibiao All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2020 - 2021 jiangshibiao All Rights Reserved.</p>
 	      
 	      
     		<p class="busuanzi_uv">
@@ -615,7 +632,7 @@ var a = new Donate({
             jiangshibiao
           </div>
           <div class="panel-body">
-            Copyright © 2020 jiangshibiao All Rights Reserved.
+            Copyright © 2021 jiangshibiao All Rights Reserved.
           </div>
         </div>
       </div>
