@@ -1,0 +1,451 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>《Python 程序设计》知识整理 | Technology Comes First</title><meta name="keywords" content="Knowledge Learning,Course Review,Python"><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2019.3∼2019.62019.3 \sim 2019.62019.3∼2019.6 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Python 程序设计》知识整理">
+<meta property="og:url" content="https://jiangshibiao.github.io/2019/06/28/Python-Programming/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="2019.3∼2019.62019.3 \sim 2019.62019.3∼2019.6 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。 在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2019-06-28T06:38:50.000Z">
+<meta property="article:modified_time" content="2020-06-30T09:11:32.228Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Knowledge Learning">
+<meta property="article:tag" content="Course Review">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jiangshibiao.github.io/2019/06/28/Python-Programming/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《Python 程序设计》知识整理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-06-30 17:11:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Technology Comes First</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《Python 程序设计》知识整理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-28T06:38:50.000Z" title="Created 2019-06-28 14:38:50">2019-06-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-30T09:11:32.228Z" title="Updated 2020-06-30 17:11:32">2020-06-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Course-Review/">Course Review</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《Python 程序设计》知识整理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2019.3</mn><mo>∼</mo><mn>2019.6</mn></mrow><annotation encoding="application/x-tex">2019.3 \sim 2019.6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2019.3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2019.6</span></span></span></span> 上了陈春晖教授《Python 程序设计》这门课。陈老师对 Python 有一种孤傲感，认为其他语言均不及 Python 来的轻巧灵便。</p>
+<p>在上这门课之前，我对 Python 编程还不甚了解，想以此为契机系统性地学习一下。虽然这门课涉及的知识点比较基础，期末考时依然会考一些刁钻的内容。于是开此文章，把知识点总结一下。</p>
+<span id="more"></span>
+<h2 id="第一章">第一章</h2>
+<ul>
+<li><code>Unicode</code> ：为每种语言中的每个字符设定了统一并且唯一的二进制编码。</li>
+<li><code>UTF-8</code>：<code>Unicode</code> 并不是存储器中的码，实际使用时将其转换为字节或位。
+<ul>
+<li>每一个 <code>ASCII</code> 字符都有一个与其相等的 8 位 <code>UTF-8</code> 编码。</li>
+<li>编写 <code>Python3</code> 程序，默认的是 <code>UTF-8</code>。</li>
+</ul>
+</li>
+<li><code>python</code> ：面向对象的解释型计算机程序设计语言。</li>
+<li><code>Python</code> 变量有一个非常重要的性质：变量是将名字和对象关联起来。
+<ul>
+<li>赋值操作并不会实际复制值，<strong>它只是为数据对象取个相关的名字</strong>。</li>
+<li>名字是对象的引用而不是对象本身。</li>
+<li><code>id</code>：Python的内置函数，用来显示对象的地址。</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章">第二章</h2>
+<ul>
+<li>进制表示
+<ul>
+<li><code>0x(X)</code>：十六进制。<code>hex</code> 转化为十六进制。</li>
+<li><code>0o(O)</code>：八进制。<code>oct</code> 转化为八进制。</li>
+<li><code>0b(B)</code>：二进制。<code>bin()</code> 转化为二进制。</li>
+<li><code>int(a, base = 10)</code></li>
+</ul>
+</li>
+<li>复数
+<ul>
+<li>虚树部分用 <code>j</code> 表示，比如 <code>2+3j</code></li>
+<li><code>complex()</code> 创建复数，<code>real</code>,<code>imag</code> 取出实部和虚部。</li>
+</ul>
+</li>
+<li><code>'2'*3</code>：<code>*</code> 用来重复 3 遍。</li>
+<li><code>type</code>：查询对象的类型信息。</li>
+<li>关系运算符可以连续连接，比如 <code>1&gt;6&lt;8</code>。</li>
+<li><code>ord</code>：返回 <code>Unicode</code> 字符对应的整数；<code>chr</code>：返回整数对应的 <code>Unicode</code>。</li>
+<li>数量不等的序列赋值
+<ul>
+<li><code>i, *j = [1, 2, 3]</code>。结果：<code>i = 1, j = [2, 3]</code></li>
+</ul>
+</li>
+<li>列表推导式：<code>sum([1/i if i%2==1 else -1/i  for i in range(1,n+1)])</code></li>
+<li><code>format</code>格式化输出：
+<ul>
+<li><code>print(&quot;&#123;0:.2f&#125;&#123;1:20s&#125;&quot;.format(1.2, &quot;123&quot;))</code></li>
+<li>字符串默认左对齐。<code>&lt;20s</code> 左对齐，<code>&gt;20s</code> 右对齐，<code>^20s</code> 居中，</li>
+<li><code>0:*&lt;10</code> ：<code>*</code> 表示填充字符（默认为空格）。</li>
+<li>{:,} 千分位格式化</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三章">第三章</h2>
+<ul>
+<li>切片 <code>[a:b:c]</code>
+<ul>
+<li><code>a</code> ：起点，为空则为0</li>
+<li><code>b</code> ：终点（不包括），为空则切到最后</li>
+<li><code>c</code> ：步长，为空默认为1</li>
+<li>均可用负下标访问。<code>c=-1</code> 意为反向。</li>
+</ul>
+</li>
+<li>复制列表
+<ul>
+<li><strong>特别注意：直接 <code>b = a</code> 后复制的是地址，会同步修改原list里的值。</strong></li>
+<li>若希望各自拥有独立的序列，写成 <code>b = a[:]</code>。</li>
+</ul>
+</li>
+<li>字符串
+<ul>
+<li>长字符串：用三个引号<code>'''</code>嵌套或者加入<code>\</code>来跨行表示字符串。</li>
+<li>原始字符串：前面加 <code>r</code>，表示不接受转义字符，如<code>s = r'hello\nworld'</code></li>
+<li><strong>字符串里的数据不能修改。</strong></li>
+<li><code>s.title() s.upper() s.lower()</code> 每个单词首字母大写，全大写，全小写。</li>
+<li><code>s.replace(old,new)</code> 把 <code>old</code> 子串替换为 <code>new</code> 子串。</li>
+<li><code>format</code> 和 格式化运算符<code>%</code> 本质都是把一段表达式转化为字符串。</li>
+</ul>
+</li>
+<li>列表
+<ul>
+<li><code>del &lt;列表名&gt;[下标]</code> 删除列表指定位。</li>
+<li>切片表示列表的一部分，可以被赋值；接受另一个列表，替换对应元素。<br>
+如 <code>name = list('Perl)</code>，然后 <code>name[2:] = list('ar')</code></li>
+<li><code>a.index(val)</code> 查询 <code>val</code> 值在 <code>a</code> 里的下标。</li>
+<li><code>a.copy()</code> 列表的备份。</li>
+<li><code>a.insert(index,x)</code> 在 <code>index</code> 处插入 <code>x</code>。</li>
+<li><code>a.pop(index)</code> 返回并删除下标为index的元素，默认是最后一个。</li>
+<li><code>a.remove(val)</code> 删除值为 <code>val</code> 的元素。</li>
+<li>其他函数 <code>sort(), extaned(), reverse(), clear(), count()</code></li>
+</ul>
+</li>
+<li>随机库random
+<ul>
+<li><code>random()</code> 返回 <code>[0,1)</code> 之间的浮点数。</li>
+<li><code>uniform(a, b)</code> 返回 <code>[a,b]</code> 之间的浮点数。</li>
+<li><code>randint(a, b)</code> 返回 <code>[a,b]</code> 之间的整数。</li>
+<li><code>choice(seq)</code> 返回 <code>seq</code> 里随机的一个数。</li>
+<li><code>shuffle(seq)</code> 打乱列表 <code>seq</code>。</li>
+<li><code>sample(seq, k)</code> 从 <code>seq</code> 里随机获得 <code>k</code> 个数。</li>
+</ul>
+</li>
+</ul>
+<h2 id="第四章">第四章</h2>
+<ul>
+<li><code>while (): else :</code> 一旦条件不成立，跳出循环并执行 <code>else</code>。</li>
+<li><code>for ... : else :</code> 只要所有循环结束（没有中途 <code>break</code>，就执行 <code>else</code>）。</li>
+<li>异常处理  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">1</span>:</span><br><span class="line">      <span class="keyword">except</span> 异常类型<span class="number">2</span>:</span><br><span class="line">      <span class="keyword">except</span>:</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">finally</span>:</span><br></pre></td></tr></table></figure>
+</li>
+<li>如果程序没有发生异常，执行 <code>else</code>。所有情况最终执行 <code>finally</code>。</li>
+</ul>
+<h2 id="第五章">第五章</h2>
+<ul>
+<li>集合
+<ul>
+<li>用 <code>add</code> 和 <code>remove</code> 添加或删除值。</li>
+<li>用 <code>issubset()</code> 和 <code>issuperset()</code> 判断是否是子集和超集（相同也算）。</li>
+<li>也可以直接用比较符来判断子集关系。</li>
+<li><code>union()</code> 或 <code>|</code>：并集</li>
+<li><code>intersection()</code> 或 <code>&amp;</code>：交集</li>
+<li><code>difference()</code> 或 <code>-</code>：差集</li>
+<li><code>symmertric_difference</code> 或 <code>^</code>：除了共同元素之外的所有元素。</li>
+<li>列表去重保持原有顺序  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mailto = [<span class="string">&#x27;cc&#x27;</span>, <span class="string">&#x27;bbbb&#x27;</span>, <span class="string">&#x27;afa&#x27;</span>, <span class="string">&#x27;sss&#x27;</span>, <span class="string">&#x27;bbbb&#x27;</span>, <span class="string">&#x27;cc&#x27;</span>, <span class="string">&#x27;shafa&#x27;</span>]</span><br><span class="line">addr_to = <span class="built_in">list</span>(<span class="built_in">set</span>(mailto))</span><br><span class="line">addr_to.sort(key = mailto.index)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>字典
+<ul>
+<li><strong>可变对象不可以作为字典的键。</strong></li>
+<li>定义：
+<ul>
+<li><code>fac=&#123;1:&quot;0001&quot;, 2:&quot;0002&quot;, 3:&quot;0003&quot;&#125;</code></li>
+<li><code>fac=dict(math=&quot;0001&quot;, python=&quot;0002&quot;, c=&quot;0003&quot;)</code>
+<ul>
+<li>该方式左侧只支持字符串（去掉引号）；是纯数字会编译错误。</li>
+</ul>
+</li>
+<li><code>fac=dict([(&quot;math&quot;,&quot;0001&quot;),(&quot;python&quot;,&quot;0002&quot;),(&quot;c&quot;,&quot;0003&quot;)])</code></li>
+</ul>
+</li>
+<li>访问和修改：<code>&lt;字典&gt; [键] = ?</code></li>
+<li>删除： <code>del &lt;字典&gt; [键]</code> 或 <code>&lt;字典&gt;.pop([键])</code>（返回这个值并删除）</li>
+<li><code>keys()</code> 键值组成的序列；<code>values()</code> 值组成的序列；</li>
+<li><code>items()</code> 键值和键组成的元组组成的序列。</li>
+<li><code>get(key, defalut)</code> 获得键值 <code>key</code> 的值，若没找到返回 <code>default</code>（默认返回<code>None</code>）</li>
+</ul>
+</li>
+<li>可变对象和不可变对象
+<ul>
+<li>可变对象和不可变对象是Python语言的核心概念。</li>
+<li>不可变对象，该对象所指向的内存中的值不能被改变。当改变某个变量时候，由于其所指的值不能被改变，相当于把原来的值复制一份后再改变，这会开辟一个新的地址，变量再指向这个新的地址。</li>
+<li>可变对象，该对象所指向的内存中的值可以被改变。变量（准确的说是引用）改变后，实际上是其所指的值直接发生改变，并没有发生复制行为，也没有开辟新的出地址。</li>
+</ul>
+</li>
+</ul>
+<h2 id="第六章">第六章</h2>
+<ul>
+<li>匿名函数 lamba 表达式</li>
+</ul>
+<ul>
+<li><code>g = lambda x,y,z : x+y+z</code></li>
+</ul>
+<ul>
+<li>函数参数
+<ul>
+<li>分为位置参数、关键字参数、带默认值参数、可变数量参数。</li>
+<li>如果位置参数和关键字参数同时出现，必须先写前者，再写后者。</li>
+<li><strong>默认参数值在函数对象被创建时计算。</strong></li>
+</ul>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span>(<span class="params"> arg, result=[]</span>):</span></span><br><span class="line">     		result.append(arg)</span><br><span class="line">	<span class="built_in">print</span>( result)</span><br><span class="line">init(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">init(<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">   程序输出：</span><br><span class="line">	[<span class="string">&#x27;a&#x27;</span>]</span><br><span class="line">	[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数参数数目不确定时，星号将一组可变数量的位置参数集合成参数值元组。</li>
+<li><code>*</code> 或 <code>**</code> 都加在形参的前面，表示不定长参数，分别用来接收不带变量名的多余参数和带有变量名的多余参数，分别将它们以元组和字典的形式接收。<strong>字典的形式即为：键值是参数名，值是参数值。</strong></li>
+<li>与上述同理，当实参是不可变对象时，形参值改变不会影响实参；当实参是可变对象时，形参值改变可能会影响实参。</li>
+</ul>
+</li>
+<li>带默认值参数的list
+<ul>
+<li>如果未传入，只会创建一次，之后都获得原来创建时的地址。</li>
+<li>如果先传入参数再不传入，不传入的时候依然会新建</li>
+</ul>
+</li>
+<li>如函数没有用 <code>return</code> 语句返回，返回值为 <code>None</code>。</li>
+<li>函数的返回值可以是另一个函数。</li>
+<li>如希望在函数中使用全局变量，需要用 <code>global</code> 关键字声明。</li>
+<li>sort
+<ul>
+<li><code>sort</code>是应用在 <code>list</code> 上的方法，是过程。</li>
+<li><code>sorted</code> 可以对更多的数据类型进行排序操作，是函数。</li>
+<li><code>sorted(iterable[,key[, reverse]])</code></li>
+<li>双关键字排序<br>
+<code>ans = sorted(counts.items(), key=lambda x:(-x[1], x[0]))</code></li>
+</ul>
+</li>
+<li><code>zip([iterable, ...])</code>
+<ul>
+<li>按顺序取出每个容器的某一位打包，合成一个新容器。</li>
+<li>如字典键值和值互换： <code>d1 = dict(zip(d.values(), d.keys())</code></li>
+</ul>
+</li>
+<li><code>all</code> 和 <code>any</code>
+<ul>
+<li><code>all()</code> 和 <code>any()</code> 函数将可迭代的对象作为参数。</li>
+<li><code>all()</code> 中所有参数都是 <code>True</code> 时才返回 <code>True</code>， <code>any()</code> 只要有一个。</li>
+</ul>
+</li>
+<li><code>sys</code>
+<ul>
+<li><code>sys.argv</code>：程序外向程序传递参数。</li>
+<li><code>sys.exit(arg = 0)</code>：程序中间的退出，<code>arg = 0</code> 为正常退出。</li>
+</ul>
+</li>
+</ul>
+<h2 id="第七章">第七章</h2>
+<ul>
+<li><code>open()</code>
+<ul>
+<li><code>t</code>（可省略）表示文本文件，<code>b</code> 表示二进制文件。</li>
+<li><code>r</code>,<code>w</code>,<code>a</code>,<code>+</code>。</li>
+<li><code>x</code> 表示创建写模式，如果本来存在就报错。</li>
+</ul>
+</li>
+<li>读入
+<ul>
+<li><code>read(size)</code>：读入 <code>size</code> 字节，默认读入全部。</li>
+<li><code>readline()</code>：动态读取每一行。</li>
+<li><code>readlines()</code>：读取所有行并放入列表里。</li>
+<li><code>write()/writelines()</code></li>
+<li><code>tell()</code> ：返回文件指针当前位置</li>
+<li><code>seek(off, whence = 0)</code>：设置文件当前位置。</li>
+</ul>
+</li>
+<li>`sys
+<ul>
+<li><code>sys.stdin</code>	标准输入</li>
+<li><code>sys.stdout</code>	标准输出</li>
+<li><code>sys.stderr</code>  标准错误输出</li>
+</ul>
+</li>
+</ul>
+<h2 id="第八章">第八章</h2>
+<ul>
+<li>类和对象
+<ul>
+<li>面向对象特性：封装、继承、多态</li>
+<li>对象三个要素：<code>（id,type,value）</code></li>
+<li>Python中对象的概念很广泛，Python中的一切内容都是对象。</li>
+</ul>
+</li>
+<li>类的创建
+<ul>
+<li><code>__init__</code>：类的初始化函数（系统会自动调用）
+<ul>
+<li>不能有返回值（否则编译错误）</li>
+</ul>
+</li>
+<li>调用 <code>a = A(self, ...)</code> 来创建</li>
+<li><code>_</code>开头的变量：当做内部名，不应该在外部使用；<br>
+不能用<code>from module import *</code>导入。</li>
+<li><code>__</code> 开头的变量是类内私有，外界不能调用（强制不能访问）
+<ul>
+<li>但是可以用 <code>对象名._类名__私有成员名</code> 访问</li>
+</ul>
+</li>
+<li>类变量和实例变量
+<ul>
+<li>实例的成员变量一般是指在构造方法 `<strong>init</strong>()· 中定义的，定义和使用时以self作为前缀。</li>
+<li>类的成员变量是在类中所有方法之外定义的</li>
+</ul>
+</li>
+<li>外界定义一个不存在的类内变量，会动态给当前 <strong>实例</strong> 增加这个变量（类不会）。</li>
+</ul>
+</li>
+<li>类内函数和方法
+<ul>
+<li>对象的成员函数第一个参数一般是 <code>self</code>，代表自身。
+<ul>
+<li>可以用 <code>a.f()</code> 或 <code>A.f(a)</code> 来调用</li>
+</ul>
+</li>
+<li><code>isinstance(a, A)</code>：<code>a</code> 是否是 <code>A</code> 的一个实例。</li>
+<li>类方法（class method）：作用于整个类，类似于 <code>C++</code> 里的 <code>static</code>
+<ul>
+<li><code>def kids(cls)</code>: <code>cls</code> 修饰这个class（通过它访问和修改类的成员变量）</li>
+</ul>
+</li>
+<li>静态方法（@staticmethod）：既不影响类，也不影响对象。</li>
+</ul>
+</li>
+<li>继承：<code>class B(A)</code></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/2019/06/28/Python-Programming/">https://jiangshibiao.github.io/2019/06/28/Python-Programming/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><a class="post-meta__tags" href="/tags/Course-Review/">Course Review</a><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/06/28/Object-Oriented-Programming/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">《面向对象程序设计》知识整理</div></div></a></div><div class="next-post pull-right"><a href="/2019/06/28/Computer-Organization/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">《计算机组成》知识整理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/06/28/Computer-Organization/" title="《计算机组成》知识整理"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-28</div><div class="title">《计算机组成》知识整理</div></div></a></div><div><a href="/2019/06/28/Object-Oriented-Programming/" title="《面向对象程序设计》知识整理"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-28</div><div class="title">《面向对象程序设计》知识整理</div></div></a></div><div><a href="/2020/01/12/Mix-Reality/" title="《混合现实》知识整理"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-12</div><div class="title">《混合现实》知识整理</div></div></a></div><div><a href="/2020/01/16/Principle-of-Programming-Language/" title="《程序设计方法学》知识整理"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-16</div><div class="title">《程序设计方法学》知识整理</div></div></a></div><div><a href="/2020/04/26/Algorithm-Designs-and-Analysis/" title="算法的设计和分析"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-26</div><div class="title">算法的设计和分析</div></div></a></div><div><a href="/2020/04/27/CoSQL/" title="CoSQL数据集"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-27</div><div class="title">CoSQL数据集</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">jiangshibiao</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">27</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第二章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第三章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">第四章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">第五章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">6.</span> <span class="toc-text">第六章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0"><span class="toc-number">7.</span> <span class="toc-text">第七章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0"><span class="toc-number">8.</span> <span class="toc-text">第八章</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/22/Java-Review/" title="Java 综述"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java 综述"/></a><div class="content"><a class="title" href="/2021/08/22/Java-Review/" title="Java 综述">Java 综述</a><time datetime="2021-08-22T08:20:20.000Z" title="Created 2021-08-22 16:20:20">2021-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/25/Use-Git-Gracefully/" title="如何优雅地使用 Git"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何优雅地使用 Git"/></a><div class="content"><a class="title" href="/2021/07/25/Use-Git-Gracefully/" title="如何优雅地使用 Git">如何优雅地使用 Git</a><time datetime="2021-07-25T12:49:13.000Z" title="Created 2021-07-25 20:49:13">2021-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/18/Travel-Notes-of-Sanya/" title="三亚游记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="三亚游记"/></a><div class="content"><a class="title" href="/2021/05/18/Travel-Notes-of-Sanya/" title="三亚游记">三亚游记</a><time datetime="2021-05-18T09:33:31.000Z" title="Created 2021-05-18 17:33:31">2021-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/16/Vehicle-Routing-Problem/" title="Vehicle-Routing-Problem"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vehicle-Routing-Problem"/></a><div class="content"><a class="title" href="/2021/05/16/Vehicle-Routing-Problem/" title="Vehicle-Routing-Problem">Vehicle-Routing-Problem</a><time datetime="2021-05-16T08:03:31.000Z" title="Created 2021-05-16 16:03:31">2021-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/26/CodeCraft2021/" title="2021华为软件精英挑战赛总结"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021华为软件精英挑战赛总结"/></a><div class="content"><a class="title" href="/2021/04/26/CodeCraft2021/" title="2021华为软件精英挑战赛总结">2021华为软件精英挑战赛总结</a><time datetime="2021-04-26T08:08:22.000Z" title="Created 2021-04-26 16:08:22">2021-04-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
