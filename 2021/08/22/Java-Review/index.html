@@ -155,7 +155,7 @@
 <h2 id="Introduction">Introduction</h2>
 <p>Java 由 SUN 公司 James Gosling 首创，原名 Oak，最初是针对嵌入式引用。随着互联网的崛起，SUN 公司改造了 Oak，并在 1995 年以 Java 的名称发布。SUN 公司后被 Oracle 收购。</p>
 <p>Java是将代码编译成一种“字节码”（类似于抽象的CPU指令），并针对不同平台编写虚拟机，负责加载字节码并执行。对于 java 开发者来说，就实现了“一次编写，到处运行”的效果。源文件 <code>*.java</code> 经过编译得到了字节码文件 <code>*.class</code> 后，就可以在虚拟机上运行。<code>javac</code> 就是编译命令，而 <code>java</code> 是执行命令。</p>
-<p><img src="/.io//layer.png" alt></p>
+<p><img src="/2021/08/22/Java-Review/layer.png" alt></p>
 <h2 id="Basic-Grammar">Basic Grammar</h2>
 <p>Java 总体分为基本类型和引用类型。引用类型有一种取值叫做 <code>null</code>。</p>
 <p>Java 中 使用 <code>==</code> 会判段是否指向同一个内存地址，<code>A.equals(B)</code> 才是判断内容是否逻辑上相等。</p>
@@ -223,7 +223,7 @@
 <li>静态嵌套类用 static 修饰，无法调用 <code>Outer.this</code>，但可以调用外部类的静态成员。</li>
 </ul>
 <p>Java 有四种类内成员的修饰符，相比 C++ 多了一个 default。</p>
-<p><img src="/.io//class.png" alt></p>
+<p><img src="/2021/08/22/Java-Review/class.png" alt></p>
 <h2 id="Exception-and-Logging">Exception and Logging</h2>
 <p>Java 的异常用 Throwable 类表示，它分为 Error 和 Exception。</p>
 <ul>
@@ -293,7 +293,7 @@
 <h2 id="Collection">Collection</h2>
 <p>翁恺老师在讲课时抨击了 Collection 的标准翻译，认为“集合”这个词和 Set 高度相关，建议翻译成“容器”。</p>
 <p>Java 在 <code>java.util</code> 包提供了容器类，主要有 List，Set 和 Map 等。</p>
-<p><img src="/.io//collection.png" alt></p>
+<p><img src="/2021/08/22/Java-Review/collection.png" alt></p>
 <p>容器的对象不能设为基本类型（所以容器里也支持放入 null）。容器可以用统一的迭代器来高效遍历。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Iterator&lt;String&gt; it = &lt;collection&gt;.iterator(); it.hasNext(); ) &#123;</span><br><span class="line">    String s = it.next();</span><br><span class="line">    System.out.println(s);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (String s : list) System.out.println(s);             <span class="comment">// 会自动翻译成上一种方式</span></span><br></pre></td></tr></table></figure>
 <p>List 是一种有序列表，它本身是个接口，有 ArrayList 和 LinkedList 两种具体泛型，分别用数组和链表实现。</p>
