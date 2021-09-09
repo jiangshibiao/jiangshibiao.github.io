@@ -368,21 +368,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Coding/</loc>
-    <lastmod>2021-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/tags/Python/</loc>
-    <lastmod>2021-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -431,13 +417,6 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
-    <lastmod>2021-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/tags/Computing-Theory/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -466,6 +445,20 @@
   </url>
   
   <url>
+    <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
+    <lastmod>2021-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Coding/</loc>
+    <lastmod>2021-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangshibiao.github.io/tags/Compiling-Principle/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -474,6 +467,13 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Data-Base/</loc>
+    <lastmod>2021-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -531,14 +531,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/categories/Life/</loc>
+    <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
+    <loc>https://jiangshibiao.github.io/categories/Life/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
