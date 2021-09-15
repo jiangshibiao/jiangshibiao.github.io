@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiangshibiao.github.io/archives/index.html</loc>
+    
+    <lastmod>2021-09-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/about/index.html</loc>
+    
+    <lastmod>2021-09-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jiangshibiao.github.io/Datathon2021/</loc>
     
     <lastmod>2021-09-10</lastmod>
@@ -240,13 +254,6 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/about/index.html</loc>
-    
-    <lastmod>2021-05-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/Life-is-a-Moment-Primary-School/</loc>
     
     <lastmod>2021-01-01</lastmod>
@@ -312,7 +319,7 @@
 
   <url>
     <loc>https://jiangshibiao.github.io/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -320,189 +327,189 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Knowledge-Learning/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Course-Review/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Computer-System/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Video-Analytics/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Video-Streaming/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/ACG/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Python/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Web/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Computer-Vision/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Natural-Language-Processing/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Life/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Math/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Algorithm/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Computing-Theory/</loc>
-    <lastmod>2021-09-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Java/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/C/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Java/</loc>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Adversarial-Attacks/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Coding/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Compiling-Principle/</loc>
-    <lastmod>2021-09-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Data-Base/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Data-Base/</loc>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Linear-Algebra/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/ACM-ICPC/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Computer-Network/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Theory-of-Computer-Science/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -511,42 +518,42 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/Course-Review/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/Paper-Reading/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/ACG/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/Life/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/ACM-ICPC/</loc>
-    <lastmod>2021-09-10</lastmod>
+    <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
