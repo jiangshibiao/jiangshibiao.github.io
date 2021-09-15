@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiangshibiao.github.io/about/index.html</loc>
+    
+    <lastmod>2021-09-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jiangshibiao.github.io/archives/index.html</loc>
     
     <lastmod>2021-09-15</lastmod>
@@ -9,7 +16,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/about/index.html</loc>
+    <loc>https://jiangshibiao.github.io/tags/index.html</loc>
+    
+    <lastmod>2021-09-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/categories/index.html</loc>
     
     <lastmod>2021-09-15</lastmod>
     
@@ -219,21 +233,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/index.html</loc>
-    
-    <lastmod>2021-09-01</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/Theory-of-Computation/</loc>
-    
-    <lastmod>2021-08-25</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/categories/index.html</loc>
     
     <lastmod>2021-08-25</lastmod>
     
@@ -389,6 +389,13 @@
   </url>
   
   <url>
+    <loc>https://jiangshibiao.github.io/tags/Life/</loc>
+    <lastmod>2021-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangshibiao.github.io/tags/Computer-Vision/</loc>
     <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
@@ -397,13 +404,6 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Natural-Language-Processing/</loc>
-    <lastmod>2021-09-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Life/</loc>
     <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -473,14 +473,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Data-Base/</loc>
     <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Data-Base/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
     <lastmod>2021-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
