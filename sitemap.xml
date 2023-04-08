@@ -466,20 +466,6 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Computer-Vision/</loc>
-    <lastmod>2023-04-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Natural-Language-Processing/</loc>
-    <lastmod>2023-04-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/tags/Life/</loc>
     <lastmod>2023-04-08</lastmod>
     <changefreq>daily</changefreq>
@@ -488,6 +474,20 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Game/</loc>
+    <lastmod>2023-04-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Computer-Vision/</loc>
+    <lastmod>2023-04-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Natural-Language-Processing/</loc>
     <lastmod>2023-04-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -515,6 +515,13 @@
   </url>
   
   <url>
+    <loc>https://jiangshibiao.github.io/tags/Computing-Theory/</loc>
+    <lastmod>2023-04-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangshibiao.github.io/tags/C/</loc>
     <lastmod>2023-04-08</lastmod>
     <changefreq>daily</changefreq>
@@ -523,13 +530,6 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Java/</loc>
-    <lastmod>2023-04-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Computing-Theory/</loc>
     <lastmod>2023-04-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
