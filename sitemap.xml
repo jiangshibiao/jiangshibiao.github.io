@@ -9,14 +9,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/Selected-Problems-from-ACM-ICPC-1/</loc>
-    
-    <lastmod>2023-07-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/Selected-Problems-from-ACM-ICPC-2/</loc>
+    <loc>https://jiangshibiao.github.io/Something-Chaotic-But-Interesting/</loc>
     
     <lastmod>2023-07-12</lastmod>
     
@@ -30,7 +23,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/Something-Chaotic-But-Interesting/</loc>
+    <loc>https://jiangshibiao.github.io/Selected-Problems-from-ACM-ICPC-2/</loc>
+    
+    <lastmod>2023-07-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/Selected-Problems-from-ACM-ICPC-1/</loc>
     
     <lastmod>2023-07-12</lastmod>
     
@@ -501,14 +501,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Computing-Theory/</loc>
     <lastmod>2023-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Computing-Theory/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
     <lastmod>2023-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
