@@ -438,21 +438,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2023-09-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Coding/</loc>
-    <lastmod>2023-09-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
+    <loc>https://jiangshibiao.github.io/tags/ACG/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -466,14 +452,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/ACG/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Compiling-Principle/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Computer-Vision/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Coding/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -487,28 +473,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Compiling-Principle/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Competition/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Computer-Network/</loc>
-    <lastmod>2023-09-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Cryptography/</loc>
-    <lastmod>2023-09-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Engineering/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Machine-Learning/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -516,6 +488,13 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Computer-System/</loc>
+    <lastmod>2023-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Computer-Network/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -530,6 +509,27 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Video-Streaming/</loc>
+    <lastmod>2023-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Computer-Vision/</loc>
+    <lastmod>2023-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Cryptography/</loc>
+    <lastmod>2023-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Engineering/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -557,7 +557,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Java/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Game/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -571,7 +571,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Game/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Java/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -592,13 +592,6 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Linear-Algebra/</loc>
-    <lastmod>2023-09-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/tags/Adversarial-Attacks/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
@@ -606,7 +599,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Theory-of-Computer-Science/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Linear-Algebra/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -614,6 +607,13 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Git/</loc>
+    <lastmod>2023-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Theory-of-Computer-Science/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -650,13 +650,6 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
-    <lastmod>2023-09-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangshibiao.github.io/categories/Paper-Reading/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
@@ -664,7 +657,7 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/categories/Knowledge-Collect/</loc>
+    <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -672,6 +665,13 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/categories/Game/</loc>
+    <lastmod>2023-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/categories/Knowledge-Collect/</loc>
     <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
