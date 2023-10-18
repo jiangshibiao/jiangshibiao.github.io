@@ -431,6 +431,20 @@
   </url>
   
   <url>
+    <loc>https://jiangshibiao.github.io/tags/Cryptography/</loc>
+    <lastmod>2023-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangshibiao.github.io/tags/Engineering/</loc>
+    <lastmod>2023-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangshibiao.github.io/tags/Video-Analytics/</loc>
     <lastmod>2023-10-18</lastmod>
     <changefreq>daily</changefreq>
@@ -446,20 +460,6 @@
   
   <url>
     <loc>https://jiangshibiao.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2023-10-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Cryptography/</loc>
-    <lastmod>2023-10-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangshibiao.github.io/tags/Engineering/</loc>
     <lastmod>2023-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -522,14 +522,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Life/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
     <lastmod>2023-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/tags/Linear-Programming/</loc>
+    <loc>https://jiangshibiao.github.io/tags/Life/</loc>
     <lastmod>2023-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -657,14 +657,14 @@
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/categories/Paper-Reading/</loc>
+    <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
     <lastmod>2023-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangshibiao.github.io/categories/Knowledge-Learning/</loc>
+    <loc>https://jiangshibiao.github.io/categories/Paper-Reading/</loc>
     <lastmod>2023-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
