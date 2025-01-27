@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Technology Comes First">
 <meta property="og:url" content="https://jiangshibiao.github.io/page/2/index.html">
 <meta property="og:site_name" content="Technology Comes First">
@@ -6,366 +6,279 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/images/avatar.jpg">
 <meta property="article:author" content="jiangshibiao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/images/avatar.jpg"><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://jiangshibiao.github.io/images/avatar.jpg"><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
   },
   relativeDate: {
     homepage: false,
     post: false
   },
   runtime: '',
-  date_suffix: {
-    just: 'Just',
+  dateSuffix: {
+    just: 'Just now',
     min: 'minutes ago',
     hour: 'hours ago',
     day: 'days ago',
     month: 'months ago'
   },
-  copyright: {"limitCount":50,"languages":{"author":"Author: jiangshibiao","link":"Link: ","source":"Source: Technology Comes First","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  copyright: undefined,
   lightbox: 'fancybox',
   Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
-  isanchor: false
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'Technology Comes First',
-  isPost: false,
-  isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2025-01-14 08:31:26'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-          if (t === undefined) {
-            if (isLightMode) activateLightMode()
-            else if (isDarkMode) activateDarkMode()
-            else if (isNotSpecified || hasNoSupport) {
-              const now = new Date()
-              const hour = now.getHours()
-              const isNight = hour <= 6 || hour >= 18
-              isNight ? activateDarkMode() : activateLightMode()
-            }
-            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-              if (saveToLocal.get('theme') === undefined) {
-                e.matches ? activateDarkMode() : activateLightMode()
-              }
-            })
-          } else if (t === 'light') activateLightMode()
-          else activateDarkMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/images/home.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Technology Comes First</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Technology Comes First</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Survey-of-Minimal-Cycle-Basis/" title="论文调研：图的最小圈基">     <img class="post_bg" src="/post_images/Survey-of-Minimal-Cycle-Basis.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文调研：图的最小圈基"></a></div><div class="recent-post-info"><a class="article-title" href="/Survey-of-Minimal-Cycle-Basis/" title="论文调研：图的最小圈基">论文调研：图的最小圈基</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-10-16T13:56:34.000Z" title="Created 2023-10-16 21:56:34">2023-10-16</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Paper-Reading/">Paper Reading</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Paper-Reading/">Paper Reading</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Graph/">Graph</a></span></div><div class="content">最小环基（Minimal Cycle Basis，中文翻译是我随便取的）是图论的一个具体的研究问题。借着华为 Hackathon 2023 的机会，我决定对学界的 Minimal Cycle Basis 问题做一次系统性地调研。
-
-概念和记号表示
-考虑不存在重边、自环的无向/有向图 G=(V,E)G=(V,E)G=(V,E)，点没有权重，边可以有权重。
-
-
-
-记号
-含义
-
-
-
-
-n,mn,mn,m
-图 GGG 中的点数和边数，即 $n=
-
-
-x,yx,yx,y
-图 GGG 中的某两个顶点，即 x,y∈Vx,y \in Vx,y∈V
-
-
-eee
-图 GGG 中的某条边，即 e∈Ee \in Ee∈E
-
-
-P(x,y)P(x,y)P(x,y)
-从 xxx 到 yyy 的某条最短路径的边集
-
-
-BBB
-GGG 的某一个环基
-
-
-CCC
-GGG 的某一个环
-
-
-TTT
-GGG 的某一个生成树
-
-
-TxT_xTx​
-GGG 中以 xxx 为根的最短路径树
-
-
-
-环：环是一个边的子集，满足导出子图连通且每个点的度数都是偶数。简单环 额外要求每个点的度数都是 222。
-环的和：对于两个环 C1,C2 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Probability-and-Statistics/" title="概率论和数理统计">     <img class="post_bg" src="/post_images/Probability-and-Statistics.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="概率论和数理统计"></a></div><div class="recent-post-info"><a class="article-title" href="/Probability-and-Statistics/" title="概率论和数理统计">概率论和数理统计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-03T15:46:36.000Z" title="Created 2023-09-03 23:46:36">2023-09-03</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Learning/">Knowledge Learning</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Math/">Math</a></span></div><div class="content">本文将对概率论和数理统计的经典知识点做一个简要的总结和归纳。
-相关传送门：线性代数复习，趣题摘记-概率和期望。
-
-概率相关的定义
-统计三大分布
-基础不等式
-马尔科夫不等式 Markov inequality：对于非负随机变量 XXX 和定值 aaa：
-P(X≥a)≤μaP(X \ge a) \le \frac{\mu}{a}
-P(X≥a)≤aμ​
-证明：对 XXX 的概率密度函数积分即可。
-切比雪夫不等式 Chebyshev Inequality：假设随机变量 XXX 总体均值为 μ\muμ，总体方差为 σ2\sigma^2σ2：
-P(∣X−μ∣≥c)≤σ2c2P(|X-\mu| \ge c) \le \frac{\sigma^2}{c^2}
-P(∣X−μ∣≥c)≤c2σ2​
-证明：取 X′=(X−μ)2,a′=c2X&#x27;=(X-\mu)^2,a&#x27;=c^2X′=(X−μ)2,a′=c2 带入马尔科夫不等式即得证。
-取 c=kσc=k\sigmac=kσ 立得推论：
-P(∣X−μ∣≥kσ)≤1k2P(|X-\mu| \ge k\sigma) \le \frac{1}{k ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Use-Python-Gracefully/" title="如何优雅地使用 Python">     <img class="post_bg" src="/post_images/Python-Programming.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何优雅地使用 Python"></a></div><div class="recent-post-info"><a class="article-title" href="/Use-Python-Gracefully/" title="如何优雅地使用 Python">如何优雅地使用 Python</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-23T15:13:40.000Z" title="Created 2023-08-23 23:13:40">2023-08-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Coding/">Coding</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Python/">Python</a></span></div><div class="content">记录一些经常用到的 Python 技巧和方法。
-
-基础
-变量是将名字和对象关联起来，变量名是对象的引用而不是对象本身。
-
-可变对象 的内存地址可以改变，也可以修改当前指向的对象的值，例如列表、字典和集合等；
-不可变对象 的内存地址永远不会改变，无法修改其值，例如整数、浮点数和字符串等。
-
-1234a, b = [0] * 10, [&#123;&#125;] * 10          # 生成内容的地址均相同print (id(a[0]) == id(a[1]))        # Trueprint (type(a[0]), type(b[0]))      # &lt;class &#x27;int&#x27;&gt; &lt;class &#x27;dict&#x27;&gt;a = b; a = b[:]                     # 前者单纯地改变内存地址，后者能复制一份列表 b
-数值类型和字符串类型的基础运算
-1234567891011120x(1), 0o(1), 0b(1)                # 十六进制，八进制和二进制的字面量hex(),  ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Travel-Notes-of-Wuhan/" title="武汉游记">     <img class="post_bg" src="/post_images/Travel-Notes-of-Wuhan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="武汉游记"></a></div><div class="recent-post-info"><a class="article-title" href="/Travel-Notes-of-Wuhan/" title="武汉游记">武汉游记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-13T05:32:48.000Z" title="Created 2023-08-13 13:32:48">2023-08-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Life/">Life</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div><div class="content">周二抢到了演唱会门票，周六早上就飞去武汉，纪念一下这说走就走的四天旅行。
-
-起因和旅游准备
-周二下午励颖突然给我发了一条微信：帮我抢到了一张 990990990 内场的武汉蔡依林演唱会的回流票，自己的没抢到。为了这一千的沉没成本，我和她在晚上翻遍了闲鱼，寻找同位置的黄牛票。蔡依林演唱会采用最近比较流行的强实名机制，彻底杜绝了“大众黄牛”，只能找那种有官方背景的黄牛。内场总共分为 1390,1190,9901390,1190,9901390,1190,990 三档，990990990 的票数最少最难买。闲鱼上 990990990 只能买到 111 区 101010 排或随机位置（应该是官方给黄牛预留的）。考虑到已出票的座位号是 222 区 191919 排 444444 号，我就挑了后者（希望能随到 222 区吧），花了 160016001600。人生中的第一次演唱会，就这么糊里糊涂地开始了。拿下演唱会门票后我们开始规划这突如其来的武汉之旅：周一周二请假两天，在那呆四天。
-
-搜了搜周五晚上的飞机，只有 19:5519:5519:55 这一班。时间看起来很完美，计算后发现励颖很悬——她 1 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Life-is-a-Moment-Senior-High-School/" title="朝花夕拾·漫谈高中">     <img class="post_bg" src="/post_images/Life-is-a-Moment-Senior-High-School.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="朝花夕拾·漫谈高中"></a></div><div class="recent-post-info"><a class="article-title" href="/Life-is-a-Moment-Senior-High-School/" title="朝花夕拾·漫谈高中">朝花夕拾·漫谈高中</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-27T13:45:24.000Z" title="Created 2023-07-27 21:45:24">2023-07-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Life/">Life</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div><div class="content">记录了 高中 的记忆片段。
-
-一中简介
-新高考和分班
-竞赛之路
-课间生活
-高考前，在语文年段长王老师的推动下，流行起晚自修前看《朗读者》的风潮。老师们的本意是好的，但大部分同学并没有认真去聆听和汲取里面的语文素养，而是将其当做了一段很好的休息时间甚至聊天时间。每当吃完晚饭回到教室，窗帘正在被拉起来的时候，我都会出神地望着缓缓下拉的大屏幕，听着教室里喧闹的声音，心想：再过几个月等高考一过，大家就四散飞翔了——我只能把握如今，与大家共度一个个青春的夜晚。
-课余生活
-有了初中的铺垫，我继续在长跑方面发光发热。运动会最远的田径项目是 1500m1500m1500m 和 3000m3000m3000m，高一高二的时候两个项目都拿了冠军（下图是高二的决赛成绩单）。当然这成绩也不是随上随有的，往往在比赛开始前一个月就得开始练习了。短则一两圈，中则四五圈，多则超过 3000m3000m3000m（为了防止比赛前期用力过猛导致后劲不足）。起跑前后是最紧张的，总是担心起跑被挤，或者中途鞋带散了、肚子疼了；中后期紧张感已经全被疲惫感替换了，不断消费自己的毅力向前冲。我校有个奇怪的传统：如果周四周五是运动会， ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Something-Chaotic-But-Interesting/" title="杂乱而有趣的冷知识合集">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="杂乱而有趣的冷知识合集"></a></div><div class="recent-post-info"><a class="article-title" href="/Something-Chaotic-But-Interesting/" title="杂乱而有趣的冷知识合集">杂乱而有趣的冷知识合集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-12T13:25:06.000Z" title="Created 2023-07-12 21:25:06">2023-07-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div><div class="content">这里将记录我在知乎等地学到的各种奇奇怪怪的知识。数学和计算机科学会专门记录于 这里。
-
-兰彻斯特方程 Lanchester’s laws
-兰彻斯特方程由英国人弗雷德里克·威廉·兰彻斯特首先在一战前期（1914 年）创立。它采用数学演绎战术原则，提出了一个关于空战战术的尝试性数学模型，描述作战双方兵力变化过程的数学微分方程。
-
-兰彻斯特线性率，主要为模拟古代作战。
-兰彻斯特平方率（兵力之比代表着战力平方之比），主要用于模拟近代作战。
-
-毛毛帽 Fluffy Hat
-DOTA2 中有一件物品 Fluffy Hat（毛毛帽），英文描述：
-
-Fine and functional foppery for the fashion-forward fighter.
-
-直译：给时髦前卫的斗士准备的高品质又实用的精美奢华饰品。
-DOTA2 官方中文翻译：
-
-缤纷纨绔绒，纯绚绵绝缎。
-
-冒名頂替症候群 Impostor Syndrome
-冒名頂替症候群在 1978 年由临床心理学家克兰斯博士与因墨斯所提出。患有冒名顶替症候群的人无法将自己的成功归因于自己的能力，并总是担心有朝一日会被他人识破自己其实是骗 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Summary-of-Game-Mechanism-in-Seer/" title="赛尔号PVE百科全书">     <img class="post_bg" src="/post_images/Summary-of-Game-Mechanism-in-Seer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="赛尔号PVE百科全书"></a></div><div class="recent-post-info"><a class="article-title" href="/Summary-of-Game-Mechanism-in-Seer/" title="赛尔号PVE百科全书">赛尔号PVE百科全书</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-26T01:44:13.000Z" title="Created 2023-02-26 09:44:13">2023-02-26</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Game/">Game</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Game/">Game</a></span></div><div class="content">在这篇文章里，我将详细收录 赛尔号页游 &amp; 互通手游 中一些不太寻常的游戏机制。注意，本文不是新手教程，对一些常规机制不会做太多的说明，定位是 拥有一定门槛的《PVE 百科全书》。
-鸣谢 B 站大佬：dqs 白纸，摸鱼的橙汁，异域华尔兹，流风天啸，晶蓝实验室，摸鱼的娜娜。
-鸣谢贴吧大佬：假诩，铭记，飞鱼三千里，哇内外妇儿，阿米族联盟。
-
-工具相关
-2015 年 7 月，北冥玄武上线后被发现可以用草马无脑瞬，但冗长的出招总是让小赛尔们奋斗几个小时后白屏。第一款爆红的 V171 登录器就是为了解决频繁白屏的问题，随后赛尔桌面版、子杰登录器等产品相继出现，打开了登录器这个全新时代的大门。由于这属于官方不承认的第三方软件，起初只有小规模玩家使用登录器；推着时间的推移，登录器越来越丰富的功能吸引了越来越多的用户，而始终绕不开的盗号风险只能靠对作者人品的信赖。橙汁曾开发过一款流畅而稳定的 Waking辅助-Seer登录器，可惜在 2020 年 2 月 14 日因精力不足和饱受质疑而 停运。为了应对 2021年 1 月12日 Flash Player 插件被禁用，赛尔号官方在 2020 年底 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集">     <img class="post_bg" src="/post_images/Game-Collect-In-Seer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="赛尔号决策类游戏收集"></a></div><div class="recent-post-info"><a class="article-title" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集">赛尔号决策类游戏收集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-11-20T08:43:55.000Z" title="Created 2022-11-20 16:43:55">2022-11-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Game/">Game</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Game/">Game</a></span></div><div class="content">在这篇文章里，我系统性地整理了《赛尔号》近几年每周活动中的 决策类游戏。其中：
-
-主要是精灵对战或走剧情的不收录，例如 光与影的试炼、午夜追魂剧场、探索远坠盆地、一日城主。
-主要靠键鼠操作的不收录，例如 植树送精灵（兔子跳地球）、星海的研究、密室机关盒。
-过于老套或几乎不用动脑子的不收录，例如 破解幽契/幻光之门（扫雷）、法莉的烦恼（连连看）。
-
-这些游戏基本都是 技术+运气 相结合的 趣味游戏，而且只用简单策略并全勤参与往往也能拿满有用的奖励。
-
-每个游戏的标题源于官方命名，底下还标有具体的更新时间，可以在 B 站搜索标题来获取更详细信息。
-游戏总体上按月日的时间顺序排序。考虑到小游戏会复刻，多次出现时会取平均数或中位数参与排序。
-每个游戏都有图片展示，一般至少会有界面/规则+得分展示两张图。规则图大多是去 B 站搜的，如有水印保留了水印，侵删；分数图基本是靠自己打的，我有把自己的周活动高分结果保存下来的习惯。
-
-
-神秘俱乐部
-更新时间：2023-1-19 神秘俱乐部 / 2024-2-16 神秘俱乐部。
-游戏规则介绍：有三种牌，分别为太阳牌、月亮牌和星星牌。
-一共有四个人玩游戏。每 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Selected-Problems-from-ACM-ICPC-2/" title="趣题摘记-算法题精选-2">     <img class="post_bg" src="/post_images/Selected-Problems-from-ACM-ICPC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="趣题摘记-算法题精选-2"></a></div><div class="recent-post-info"><a class="article-title" href="/Selected-Problems-from-ACM-ICPC-2/" title="趣题摘记-算法题精选-2">趣题摘记-算法题精选-2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-08-30T13:25:59.000Z" title="Created 2022-08-30 21:25:59">2022-08-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ACM-ICPC/">ACM-ICPC</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Coding/">Coding</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Algorithm/">Algorithm</a></span></div><div class="content">这一系列文章记录了我遇到过的一些 趣题。
-
-
-
-文章内容
-简介
-
-
-
-
-奇思妙想
-数学和计算机领域，通过小小思考后能豁然开朗的趣题。
-
-
-概率和期望
-数学和计算机领域，与概率和期望相关的趣题。
-
-
-算法题精选-1
-OI/ICPC 向的算法题，去其琐碎、留其精髓，望博君一笑。
-
-
-算法题精选-2
-OI/ICPC 向的算法题，相比上一期题意更简洁，出处往往不可考。
-
-
-
-
-按机器得金币
-题意：有 nnn 台机器。第 iii 个机器在前三次被按下时，分别掉出 ai,bi,aia_i,b_i,a_iai​,bi​,ai​ 个金币，第四次开始不会掉金币。对于每一个 k=1,2,…,3nk=1,2,\dots,3nk=1,2,…,3n 都要询问：如果按正好 kkk 次，最多能掉出多少金币。n≤105,v≤109n \le 10^5,v \le 10^9n≤105,v≤109
-题解：每个机器的选择之间有限制，不利于分析。一台机器的四阶段顺序事件 (0,+ai,+ai+bi,+2ai+bi)(0,+a_i,+a_i+b_i,+2a_i+b_i)(0,+ai​,+ai​+bi​,+2ai​+bi​)，可 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Docker/" title="Docker">     <img class="post_bg" src="/post_images/Docker.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker"></a></div><div class="recent-post-info"><a class="article-title" href="/Docker/" title="Docker">Docker</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-04T02:41:10.000Z" title="Created 2022-05-04 10:41:10">2022-05-04</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Learning/">Knowledge Learning</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Engineering/">Engineering</a></span></div><div class="content">Docker 是一个很基本的工程工具。本文总结自 《每天5分钟玩转Docker容器技术》。
-
-容器简介
-容器核心技术包括以下内容：
-
-规范：Docker、CoreOS、Google 等公司成立了 Open Container Initiative 制定容器规范。
-runtime：为容器提供运行环境，包括 lxc（老牌）、runc（Docker 默认） 和 rkt（CoreOS 开发）。
-管理工具：lxd（对应 lxc）、docker engine、rkt cli（对应 rkt）。
-Registry：存放和管理镜像的仓库。
-容器 OS：与传统 OS 相比体积较小，运行效率高，包括 CoreOS、atomic、ubuntu core。
-
-容器平台技术包括以下内容：
-
-容器编排引擎：把容器有机地组合成微服务应用，进行容器管理、调度、集群定义和服务发现等。
-
-docker swarm：Docker 公司开发。
-kubernetes：Google 开发，同事支持 Docker 和 CoreOS。
-mesos+marathon。
-
-
-容器管理平台：抽象了上述引擎的底层细节，是一个更为通用的平台。包 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">jiangshibiao</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读"><img src="/post_images/Automated-Reasoning-in-Cloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云上形式化验证论文走读"/></a><div class="content"><a class="title" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读">云上形式化验证论文走读</a><time datetime="2025-01-07T13:49:18.000Z" title="Created 2025-01-07 21:49:18">2025-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Yunnan/" title="云南游记"><img src="/post_images/Travel-Notes-of-Yunnan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云南游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Yunnan/" title="云南游记">云南游记</a><time datetime="2024-12-24T14:44:15.000Z" title="Created 2024-12-24 22:44:15">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅"><img src="/post_images/Travel-Notes-of-Maldives.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="马尔代夫之旅"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅">马尔代夫之旅</a><time datetime="2024-10-08T15:14:36.000Z" title="Created 2024-10-08 23:14:36">2024-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Elementary-Number-Theory/" title="初等数论"><img src="/post_images/Elementary-Number-Theory.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初等数论"/></a><div class="content"><a class="title" href="/Elementary-Number-Theory/" title="初等数论">初等数论</a><time datetime="2024-06-23T11:19:01.000Z" title="Created 2024-06-23 19:19:01">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Japan/" title="日本游记"><img src="/post_images/Travel-Notes-of-Japan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日本游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Japan/" title="日本游记">日本游记</a><time datetime="2024-05-15T12:06:43.000Z" title="Created 2024-05-15 20:06:43">2024-05-15</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/images/home.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Technology Comes First</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/Travel-Notes-of-Shanghai/" title="上海游记"><img class="post-bg" src="/post_images/Travel-Notes-of-Shanghai.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="上海游记"></a></div><div class="recent-post-info"><a class="article-title" href="/Travel-Notes-of-Shanghai/" title="上海游记">上海游记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-31T14:52:10.000Z" title="Created 2024-03-31 22:52:10">2024-03-31</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-04-01T15:16:20.000Z" title="Updated 2024-04-01 23:16:20">2024-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Life/">Life</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Introduction-to-Cryptography/" title="密码学导论"><img class="post-bg" src="/post_images/Cryptography-in-Engineering.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="密码学导论"></a></div><div class="recent-post-info"><a class="article-title" href="/Introduction-to-Cryptography/" title="密码学导论">密码学导论</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-02-14T09:52:53.000Z" title="Created 2024-02-14 17:52:53">2024-02-14</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-02-20T13:36:23.000Z" title="Updated 2024-02-20 21:36:23">2024-02-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Learning/">Knowledge Learning</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Engineering/">Engineering</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Cryptography/">Cryptography</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Travel-Notes-of-Hong-Kong/" title="香港游记"><img class="post-bg" src="/post_images/HongKong.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="香港游记"></a></div><div class="recent-post-info"><a class="article-title" href="/Travel-Notes-of-Hong-Kong/" title="香港游记">香港游记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-15T15:14:42.000Z" title="Created 2024-01-15 23:14:42">2024-01-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-01-16T13:28:07.000Z" title="Updated 2024-01-16 21:28:07">2024-01-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Life/">Life</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Selected-Problems-from-ACM-ICPC-1/" title="趣题摘记-算法题精选-1"><img class="post-bg" src="/post_images/Selected-Problems-from-ACM-ICPC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="趣题摘记-算法题精选-1"></a></div><div class="recent-post-info"><a class="article-title" href="/Selected-Problems-from-ACM-ICPC-1/" title="趣题摘记-算法题精选-1">趣题摘记-算法题精选-1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-07-28T12:59:59.000Z" title="Created 2020-07-28 20:59:59">2020-07-28</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-12-14T00:29:12.000Z" title="Updated 2023-12-14 08:29:12">2023-12-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ACM-ICPC/">ACM-ICPC</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Algorithm/">Algorithm</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Coding/">Coding</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Survey-of-Minimal-Cycle-Basis/" title="论文调研：图的最小圈基"><img class="post-bg" src="/post_images/Survey-of-Minimal-Cycle-Basis.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文调研：图的最小圈基"></a></div><div class="recent-post-info"><a class="article-title" href="/Survey-of-Minimal-Cycle-Basis/" title="论文调研：图的最小圈基">论文调研：图的最小圈基</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-10-16T13:56:34.000Z" title="Created 2023-10-16 21:56:34">2023-10-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-30T16:37:50.544Z" title="Updated 2023-12-01 00:37:50">2023-12-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Paper-Reading/">Paper Reading</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Paper-Reading/">Paper Reading</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Graph/">Graph</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Interesting-Problems-Probability/" title="趣题摘记-概率和期望"><img class="post-bg" src="/post_images/Interesting-Problems-Probability.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="趣题摘记-概率和期望"></a></div><div class="recent-post-info"><a class="article-title" href="/Interesting-Problems-Probability/" title="趣题摘记-概率和期望">趣题摘记-概率和期望</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-10T08:41:36.000Z" title="Created 2020-06-10 16:41:36">2020-06-10</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-28T17:34:38.000Z" title="Updated 2023-11-29 01:34:38">2023-11-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Collect/">Knowledge Collect</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Algorithm/">Algorithm</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Math/">Math</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Probability-and-Statistics/" title="概率论和数理统计"><img class="post-bg" src="/post_images/Probability-and-Statistics.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="概率论和数理统计"></a></div><div class="recent-post-info"><a class="article-title" href="/Probability-and-Statistics/" title="概率论和数理统计">概率论和数理统计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-03T15:46:36.000Z" title="Created 2023-09-03 23:46:36">2023-09-03</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-03T17:38:01.520Z" title="Updated 2023-09-04 01:38:01">2023-09-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Learning/">Knowledge Learning</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Math/">Math</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Use-Git-Gracefully/" title="如何优雅地使用 Git"><img class="post-bg" src="/post_images/Use-Git-Gracefully.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何优雅地使用 Git"></a></div><div class="recent-post-info"><a class="article-title" href="/Use-Git-Gracefully/" title="如何优雅地使用 Git">如何优雅地使用 Git</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-07-25T12:49:13.000Z" title="Created 2021-07-25 20:49:13">2021-07-25</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-23T14:54:17.000Z" title="Updated 2023-08-23 22:54:17">2023-08-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Coding/">Coding</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Git/">Git</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Use-Linux-Gracefully/" title="如何优雅地在 Linux 下工作"><img class="post-bg" src="/post_images/Use-Linux-Gracefully.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何优雅地在 Linux 下工作"></a></div><div class="recent-post-info"><a class="article-title" href="/Use-Linux-Gracefully/" title="如何优雅地在 Linux 下工作">如何优雅地在 Linux 下工作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-04T02:39:39.000Z" title="Created 2021-05-04 10:39:39">2021-05-04</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-23T14:54:08.000Z" title="Updated 2023-08-23 22:54:08">2023-08-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Engineering/">Engineering</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Use-Python-Gracefully/" title="如何优雅地使用 Python"><img class="post-bg" src="/post_images/Python-Programming.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何优雅地使用 Python"></a></div><div class="recent-post-info"><a class="article-title" href="/Use-Python-Gracefully/" title="如何优雅地使用 Python">如何优雅地使用 Python</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-23T15:13:40.000Z" title="Created 2023-08-23 23:13:40">2023-08-23</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-23T14:54:00.000Z" title="Updated 2023-08-23 22:54:00">2023-08-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Knowledge-Collect/">Knowledge Collect</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Coding/">Coding</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a></span></div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读"><img src="/post_images/Automated-Reasoning-in-Cloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云上形式化验证论文走读"/></a><div class="content"><a class="title" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读">云上形式化验证论文走读</a><time datetime="2025-01-27T23:00:21.713Z" title="Updated 2025-01-28 07:00:21">2025-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Yunnan/" title="云南游记"><img src="/post_images/Travel-Notes-of-Yunnan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云南游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Yunnan/" title="云南游记">云南游记</a><time datetime="2024-12-24T15:27:41.243Z" title="Updated 2024-12-24 23:27:41">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅"><img src="/post_images/Travel-Notes-of-Maldives.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="马尔代夫之旅"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅">马尔代夫之旅</a><time datetime="2024-12-24T14:53:10.350Z" title="Updated 2024-12-24 22:53:10">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game/" title="桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game/" title="桌游推荐">桌游推荐</a><time datetime="2024-11-28T15:24:33.000Z" title="Updated 2024-11-28 23:24:33">2024-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集"><img src="/post_images/Game-Collect-In-Seer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="赛尔号决策类游戏收集"/></a><div class="content"><a class="title" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集">赛尔号决策类游戏收集</a><time datetime="2024-10-14T15:08:38.000Z" title="Updated 2024-10-14 23:08:38">2024-10-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
-            <a class="card-more-btn" href="/categories/" title="More">
-    <i class="fas fa-angle-right"></i></a>
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+            <a class="card-more-btn" href="/categories/" title="View More">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG/"><span class="card-category-list-name">ACG</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACM-ICPC/"><span class="card-category-list-name">ACM-ICPC</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Competition/"><span class="card-category-list-name">Competition</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Course-Review/"><span class="card-category-list-name">Course Review</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Game/"><span class="card-category-list-name">Game</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Knowledge-Collect/"><span class="card-category-list-name">Knowledge Collect</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Knowledge-Learning/"><span class="card-category-list-name">Knowledge Learning</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life/"><span class="card-category-list-name">Life</span><span class="card-category-list-count">11</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/ACG/" style="font-size: 1.14em; color: #999b9d">ACG</a> <a href="/tags/ACM-ICPC/" style="font-size: 1.18em; color: #999ca1">ACM-ICPC</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Adversarial-Attacks/" style="font-size: 1.1em; color: #999">Adversarial Attacks</a> <a href="/tags/Algorithm/" style="font-size: 1.26em; color: #999fa8">Algorithm</a> <a href="/tags/Automated-Reasoning/" style="font-size: 1.1em; color: #999">Automated Reasoning</a> <a href="/tags/C/" style="font-size: 1.14em; color: #999b9d">C++</a> <a href="/tags/Coding/" style="font-size: 1.34em; color: #99a3b0">Coding</a> <a href="/tags/Competition/" style="font-size: 1.18em; color: #999ca1">Competition</a> <a href="/tags/Compiling-Principle/" style="font-size: 1.1em; color: #999">Compiling Principle</a> <a href="/tags/Computer-Network/" style="font-size: 1.1em; color: #999">Computer Network</a> <a href="/tags/Computer-System/" style="font-size: 1.1em; color: #999">Computer System</a> <a href="/tags/Computer-Vision/" style="font-size: 1.14em; color: #999b9d">Computer Vision</a> <a href="/tags/Computing-Theory/" style="font-size: 1.18em; color: #999ca1">Computing Theory</a> <a href="/tags/Course-Review/" style="font-size: 1.46em; color: #99a7bb">Course Review</a> <a href="/tags/Cryptography/" style="font-size: 1.1em; color: #999">Cryptography</a> <a href="/tags/Database/" style="font-size: 1.1em; color: #999">Database</a> <a href="/tags/Engineering/" style="font-size: 1.18em; color: #999ca1">Engineering</a> <a href="/tags/Game/" style="font-size: 1.14em; color: #999b9d">Game</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Graph/" style="font-size: 1.1em; color: #999">Graph</a> <a href="/tags/Java/" style="font-size: 1.18em; color: #999ca1">Java</a> <a href="/tags/Knowledge-Collect/" style="font-size: 1.38em; color: #99a4b4">Knowledge Collect</a> <a href="/tags/Knowledge-Learning/" style="font-size: 1.5em; color: #99a9bf">Knowledge Learning</a> <a href="/tags/Life/" style="font-size: 1.42em; color: #99a6b7">Life</a> <a href="/tags/Linear-Algebra/" style="font-size: 1.1em; color: #999">Linear Algebra</a> <a href="/tags/Linear-Programming/" style="font-size: 1.14em; color: #999b9d">Linear Programming</a> <a href="/tags/Machine-Learning/" style="font-size: 1.22em; color: #999ea4">Machine Learning</a> <a href="/tags/Math/" style="font-size: 1.3em; color: #99a1ac">Math</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 1.1em; color: #999">Natural Language Processing</a> <a href="/tags/Paper-Reading/" style="font-size: 1.14em; color: #999b9d">Paper Reading</a> <a href="/tags/Python/" style="font-size: 1.14em; color: #999b9d">Python</a> <a href="/tags/Rust/" style="font-size: 1.1em; color: #999">Rust</a> <a href="/tags/Theory-of-Computer-Science/" style="font-size: 1.1em; color: #999">Theory of Computer Science</a> <a href="/tags/Video-Analytics/" style="font-size: 1.1em; color: #999">Video Analytics</a> <a href="/tags/Video-Streaming/" style="font-size: 1.1em; color: #999">Video Streaming</a> <a href="/tags/Web/" style="font-size: 1.18em; color: #999ca1">Web</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">January 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">December 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">October 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">June 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">May 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">352.4k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-01-14T00:31:24.997Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>function subtitleType () {
-  if (true) { 
-    var typed = new Typed("#subtitle", {
-      strings: "use my blog to describe the world".split(","),
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Cryptography/" style="font-size: 1.1em; color: #999">Cryptography</a> <a href="/tags/Graph/" style="font-size: 1.1em; color: #999">Graph</a> <a href="/tags/Python/" style="font-size: 1.14em; color: #999b9d">Python</a> <a href="/tags/C/" style="font-size: 1.14em; color: #999b9d">C++</a> <a href="/tags/Database/" style="font-size: 1.1em; color: #999">Database</a> <a href="/tags/Paper-Reading/" style="font-size: 1.14em; color: #999b9d">Paper Reading</a> <a href="/tags/Algorithm/" style="font-size: 1.26em; color: #999fa8">Algorithm</a> <a href="/tags/ACG/" style="font-size: 1.14em; color: #999b9d">ACG</a> <a href="/tags/Computer-System/" style="font-size: 1.1em; color: #999">Computer System</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Computer-Vision/" style="font-size: 1.14em; color: #999b9d">Computer Vision</a> <a href="/tags/Game/" style="font-size: 1.14em; color: #999b9d">Game</a> <a href="/tags/Knowledge-Learning/" style="font-size: 1.5em; color: #99a9bf">Knowledge Learning</a> <a href="/tags/ACM-ICPC/" style="font-size: 1.18em; color: #999ca1">ACM-ICPC</a> <a href="/tags/Automated-Reasoning/" style="font-size: 1.1em; color: #999">Automated Reasoning</a> <a href="/tags/Compiling-Principle/" style="font-size: 1.1em; color: #999">Compiling Principle</a> <a href="/tags/Rust/" style="font-size: 1.1em; color: #999">Rust</a> <a href="/tags/Video-Analytics/" style="font-size: 1.1em; color: #999">Video Analytics</a> <a href="/tags/Video-Streaming/" style="font-size: 1.1em; color: #999">Video Streaming</a> <a href="/tags/Linear-Programming/" style="font-size: 1.14em; color: #999b9d">Linear Programming</a> <a href="/tags/Course-Review/" style="font-size: 1.46em; color: #99a7bb">Course Review</a> <a href="/tags/Linear-Algebra/" style="font-size: 1.1em; color: #999">Linear Algebra</a> <a href="/tags/Computer-Network/" style="font-size: 1.1em; color: #999">Computer Network</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Math/" style="font-size: 1.3em; color: #99a1ac">Math</a> <a href="/tags/Computing-Theory/" style="font-size: 1.18em; color: #999ca1">Computing Theory</a> <a href="/tags/Adversarial-Attacks/" style="font-size: 1.1em; color: #999">Adversarial Attacks</a> <a href="/tags/Machine-Learning/" style="font-size: 1.22em; color: #999ea4">Machine Learning</a> <a href="/tags/Theory-of-Computer-Science/" style="font-size: 1.1em; color: #999">Theory of Computer Science</a> <a href="/tags/Web/" style="font-size: 1.18em; color: #999ca1">Web</a> <a href="/tags/Life/" style="font-size: 1.42em; color: #99a6b7">Life</a> <a href="/tags/Competition/" style="font-size: 1.18em; color: #999ca1">Competition</a> <a href="/tags/Engineering/" style="font-size: 1.18em; color: #999ca1">Engineering</a> <a href="/tags/Java/" style="font-size: 1.18em; color: #999ca1">Java</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 1.1em; color: #999">Natural Language Processing</a> <a href="/tags/Coding/" style="font-size: 1.34em; color: #99a3b0">Coding</a> <a href="/tags/Knowledge-Collect/" style="font-size: 1.38em; color: #99a4b4">Knowledge Collect</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      <a class="card-more-btn" href="/archives/"
+            title="View More">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/01/">
+            <span class="card-archive-list-date">
+              January 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              December 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              October 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/06/">
+            <span class="card-archive-list-date">
+              June 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/05/">
+            <span class="card-archive-list-date">
+              May 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/03/">
+            <span class="card-archive-list-date">
+              March 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/02/">
+            <span class="card-archive-list-date">
+              February 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/01/">
+            <span class="card-archive-list-date">
+              January 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">Total Word Count :</div><div class="item-count">352.4k</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-01-27T23:01:23.049Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
       startDelay: 300,
       typeSpeed: 150,
       loop: true,
-      backSpeed: 50
-    })
-  } else {
-    document.getElementById("subtitle").innerHTML = 'u'
+      backSpeed: 50,
+    }, {"loop":true}))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
   }
 }
-
-if (true) {
-  if (typeof Typed === 'function') {
-    subtitleType()
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init("use my blog to describe the world")
   } else {
-    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+    document.getElementById("subtitle").textContent = "u"
   }
-} else {
-  subtitleType()
-}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

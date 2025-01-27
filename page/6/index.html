@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Technology Comes First">
 <meta property="og:url" content="https://jiangshibiao.github.io/page/6/index.html">
 <meta property="og:site_name" content="Technology Comes First">
@@ -6,390 +6,279 @@
 <meta property="og:image" content="https://jiangshibiao.github.io/images/avatar.jpg">
 <meta property="article:author" content="jiangshibiao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jiangshibiao.github.io/images/avatar.jpg"><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/page/6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://jiangshibiao.github.io/images/avatar.jpg"><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/page/6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
   },
   relativeDate: {
     homepage: false,
     post: false
   },
   runtime: '',
-  date_suffix: {
-    just: 'Just',
+  dateSuffix: {
+    just: 'Just now',
     min: 'minutes ago',
     hour: 'hours ago',
     day: 'days ago',
     month: 'months ago'
   },
-  copyright: {"limitCount":50,"languages":{"author":"Author: jiangshibiao","link":"Link: ","source":"Source: Technology Comes First","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  copyright: undefined,
   lightbox: 'fancybox',
   Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
-  isanchor: false
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'Technology Comes First',
-  isPost: false,
-  isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2025-01-14 08:31:26'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-          if (t === undefined) {
-            if (isLightMode) activateLightMode()
-            else if (isDarkMode) activateDarkMode()
-            else if (isNotSpecified || hasNoSupport) {
-              const now = new Date()
-              const hour = now.getHours()
-              const isNight = hour <= 6 || hour >= 18
-              isNight ? activateDarkMode() : activateLightMode()
-            }
-            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-              if (saveToLocal.get('theme') === undefined) {
-                e.matches ? activateDarkMode() : activateLightMode()
-              }
-            })
-          } else if (t === 'light') activateLightMode()
-          else activateDarkMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/images/home.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Technology Comes First</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Technology Comes First</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Geometry-Problem/" title="Geometry-Problem">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Geometry-Problem"></a></div><div class="recent-post-info"><a class="article-title" href="/Geometry-Problem/" title="Geometry-Problem">Geometry-Problem</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-31T13:54:26.000Z" title="Created 2020-03-31 21:54:26">2020-03-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Paper-Reading/">Paper Reading</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Computer-Vision/">Computer Vision</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Natural-Language-Processing/">Natural Language Processing</a></span></div><div class="content">打算在近期看完 “解简单几何题” 相关的论文工作并做个总结。
-
-Diagram Understanding in Geometry Questions
-
-AAAI 2014 论文地址
-本文提出了一个叫做 G-ALIGNER 的 Image Parse 的工具，并证明了它使用的估价函数是次模函数。
-估价函数介绍
-
-设 T={T1,T2,…,Tm}T=\{T_1,T_2,\dots,T_m\}T={T1​,T2​,…,Tm​} 表示题目文本中提到的元素集合，LLL 是图片中初步提取后的所有 primitives 集合。本论文默认 LLL 已经得到，现在要找一个最优的子集 L^\hat{L}L^ 以准确地表达图片信息。
-引入一个 W∈{0,1}∣L∣×∣T∣W \in \{0,1\}^{|L| \times |T|}W∈{0,1}∣L∣×∣T∣ 表示该图上的 primitive 是否与指定文本元素对应。 L^=L×(W×1∣T∣×1)\hat{L}=L \times (W \times 1_{|T| \times 1})L^=L×(W×1∣T∣×1​)，可以将求一个最优子集 L^\hat{L ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Robustness-for-Sensing-Reasoning-Pipelines/" title="Robustness-for-Sensing-Reasoning-Pipelines">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robustness-for-Sensing-Reasoning-Pipelines"></a></div><div class="recent-post-info"><a class="article-title" href="/Robustness-for-Sensing-Reasoning-Pipelines/" title="Robustness-for-Sensing-Reasoning-Pipelines">Robustness-for-Sensing-Reasoning-Pipelines</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-31T05:27:50.000Z" title="Created 2020-03-31 13:27:50">2020-03-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Paper-Reading/">Paper Reading</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Adversarial-Attacks/">Adversarial Attacks</a></span></div><div class="content">
-这是 Professor Bo Li 推荐我的一篇 paper，有关 Adversarial Attacks 的内容。
-Arxiv 传送门
-
-
-什么是 Sensing-Reasoning pipelines
-
-对于 Sensing 层面，我们用若干种不同的模型去感知，得到很多组 010101 的随机变量。
-对于 Reasoning 层面，我们把之前的若干个结果汇总，利用领域知识（domain knowledge）和概率模型去矫正和逼近真实答案。常见的概率模型有：
-
-基于无向图的 Markov logic networks（MLN）
-基于有向图的 Bayesian networks （其实就是条件概率构建在图上）
-
-
-论文里介绍了一个有趣的例子：假设我们想判断一张图 XXX 的信息。
-
-我们在 Sensing 层面设了 Dog Sensor，Cat Sensor 和 Animial Sensor 三个神经网络模型去感知，从而能得到三个概率 p1,p2,p3p_1, p_2, p_3p1​,p2​,p3​，pip_ipi​ 表示该图 是 物体 iii 的概率。
-由知识和经验，我们知道猫和 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Principle-of-Programming-Language/" title="《程序设计方法学》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《程序设计方法学》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Principle-of-Programming-Language/" title="《程序设计方法学》知识整理">《程序设计方法学》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-01-16T06:38:48.000Z" title="Created 2020-01-16 14:38:48">2020-01-16</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">2019.9∼2020.12019.9 \sim 2020.12019.9∼2020.1 上了永平奖获得者翁恺老师《程序设计方法学》这门课。这是一门很有趣的课，介绍了程序设计语言的历史和发展脉络。可惜这是一节早课，我经常在意识模糊中听课（甚至是没有成功起床）。
-这门课有一半的时间是同学展示。我倒是更希望翁老师能多留出时间自己讲。
-最终的期末考试内容为：BNF，数据类型和运算符，程序控制结构，流计算，递归，并行计算，函数的调用和返回，Actor，异步执行。我对他们做了一个简单的整理。
-
-三种编程语言
-
-imperative language 命令式程序设计语言
-
-Variables, assignment statements, and iteration
-Include languages that support object-oriented programming, scripting languages, visual languages
-Ex.: C, Java, Perl, JavaScript, Visual BASIC .NET
-
-
-Functional Languag ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Computer-Vision/" title="《计算机视觉》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《计算机视觉》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Computer-Vision/" title="《计算机视觉》知识整理">《计算机视觉》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-01-13T06:38:48.000Z" title="Created 2020-01-13 14:38:48">2020-01-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Computer-Vision/">Computer Vision</a></span></div><div class="content">2019.9∼2020.12019.9 \sim 2020.12019.9∼2020.1 上了宋明黎教授《计算机视觉》这门课。课程内容丰富，五个实验则偏基础。
-美中不足的是最终的考评形式——像文科一样的纸笔考试。为了巩固知识点并提高背诵效率，决定开始整理此文。整理到一半时，发现 这个网站 已经做了我想做的事了，遂我不再重复造轮子。
-
-引言
-
-Gestalt Laws（格式塔法则）：出发点是形。
-
-Law of Proximity: 接近的物体容易被感知成同一组。
-Law of Similarity: 将相似的物体感知成同一组的部分。
-Law of Good Continuation: 沿着元素暗示的弧方向走。
-Law of Closure: 人们会把不完整的个体看成是一个整体的形状。
-Law of goodform : 希望图片由几个规则图形组成。
-Law of Figure/Ground: 区别前景和背景。
-
-
-什么是计算机视觉？
-
-根据场景的图像实现场景中对象信息的恢复和利用。
-
-
-五大研究内容
-
-输入设备
-底层视觉（图像处理）
-中层视觉（恢复场景，2.5 维）
-高层视觉（三维重建 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Mix-Reality/" title="《混合现实》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《混合现实》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Mix-Reality/" title="《混合现实》知识整理">《混合现实》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-01-12T06:38:51.000Z" title="Created 2020-01-12 14:38:51">2020-01-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Computing-Theory/">Computing Theory</a></span></div><div class="content">During 2019.9∼2020.12019.9 \sim 2020.12019.9∼2020.1，I was involved in the Mix-Reality class guided by Hujun Bao.
-The topic in this class is similar with computer vision. I’m really regretful because I didn’t listen to Mr. Bao’s class carefully, even though he explained the knowledge points carefully.
-Mr. Bao sent me a book written by himself. I must read it when I’m free.
-
-Singular Value decomposition(SVD)
-
-a factorization of a normal matrix, extended from eigendecomposition.
-An×m=Un×nΣn×mVm×mTA ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Theory-of-Computation/" title="《计算理论》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《计算理论》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Theory-of-Computation/" title="《计算理论》知识整理">《计算理论》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-01-12T06:38:51.000Z" title="Created 2020-01-12 14:38:51">2020-01-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Computing-Theory/">Computing Theory</a></span></div><div class="content">During 2019.9∼2020.12019.9 \sim 2020.12019.9∼2020.1，I was involved in the Theory-of-Computation class guided by Yingchun Yang.
-Mrs. Yang do not teach well, so I had to learn by myself and tried to summary something.
-
-Set and Language
-
-The Diagonalization Principle
-
-RRR is the binary relation on set AAA.
-DDD is the diagonal set for RRR: {a:a∈A∧(a,a)∉R}\{ a:a \in A \wedge (a,a) \notin R \}{a:a∈A∧(a,a)∈/R}.
-Let Ra={b:b∈A∧(a,b)∈R}R_a = \{ b: b \in A \wedge (a,b) \in R \}Ra​={b:b∈A∧(a,b)∈R}
-Then D is ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Java-Application-Technology/" title="《Java应用技术》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《Java应用技术》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Java-Application-Technology/" title="《Java应用技术》知识整理">《Java应用技术》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-01-11T06:38:48.000Z" title="Created 2020-01-11 14:38:48">2020-01-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">2019.9∼2020.12019.9 \sim 2020.12019.9∼2020.1 上了永平奖获得者翁恺老师《Java应用技术》这门课。翁老师在课程设计上用心良苦，不仅讲了 Java 的语法，还介绍了很多现代 Java 的理念和科技（比如各种设计模式）。
-期末考试为了和其他班对齐，主要考的还是 Java 的基本语法。这也是本文关注的重点。
-
-Java 概述
-
-Features
-
-A compiled language
-A productive OOP language
-a type-safe and stable language
-No point
-Index check
-Auto memory management
-![](Java-Application-Technology/compiling order.png)
-
-
-
-Unique data type
-
-char 是 Unicode 存储的，每个占2字节。
-int 是 4字节。
-
-
-all objects should be constructed in runtime and be stored in heap.
-To ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Object-Oriented-Programming/" title="《面向对象程序设计》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《面向对象程序设计》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Object-Oriented-Programming/" title="《面向对象程序设计》知识整理">《面向对象程序设计》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-06-28T06:38:51.000Z" title="Created 2019-06-28 14:38:51">2019-06-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/C/">C++</a></span></div><div class="content">2019.3∼2019.62019.3 \sim 2019.62019.3∼2019.6 上了胡兰青老师的《面向对象程序设计》、说是面向对象，其实就是专讲 C++ 的面向对象。胡老师的专业能力很厉害，知识点讲得很严密。
-为了应付刁钻和故意设坑的期末考，特开此文复习（虽然最后期末考还是考砸了）。
-
-类&amp;对象
-
-
-类访问修饰符
-
-public,private,protected。（默认 private）
-
-
-
-构造函数和析构函数
-
-离开函数时先销毁后定义的类。
-构造函数先调用父类，析构函数先调用子类。
-
-
-
-拷贝构造函数
-
-形如 A::A(const A &amp;obj)。（必须加引用，一般加上 const）
-以下两种初始化对于其他类型是等价的，对于类类型有区别：
-
-A a(2) 是直接初始化，调用构造函数。
-A b = a 是拷贝初始化，调用拷贝构造函数（等价于 A b(a)）。
-
-
-应用场景
-
-函数的参数为类的对象时（将外层调用的值拷贝给参数）
-函数的返回值是类的对象时（将 return 来的值拷贝给一个临时对象）
-对象需要通过另外一个对象进行初始化（常见形式）
-
-
-默认构造 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Computer-Organization/" title="《计算机组成》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《计算机组成》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Computer-Organization/" title="《计算机组成》知识整理">《计算机组成》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-06-28T06:38:49.000Z" title="Created 2019-06-28 14:38:49">2019-06-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Computer-System/">Computer System</a></span></div><div class="content">2019.3∼2019.62019.3 \sim 2019.62019.3∼2019.6 上了马德教授《计算机组成》这门课，讲得还是挺不错的。
-我校把计算机系统划成了《数字逻辑设计》、《计算机组成》和《计算机体系结构》三门课。
-本门课程进一步熟悉了 MIPS 和 Verilog，最终还要在自己写的 CPU 上运行一个自己设计的程序。我写了一个迷你的 Flappy Bird 小游戏，链接 见此。
-本文对《计算机组成》的知识点进行了随性的整理。
-
-MIPS相关
-
-
-移码（增码）：符号位取反的补码
-
-一般用指数的移码减一来做浮点数的阶码
-
-
-
-IEEE754 标准
-
-float  （1位符号位 + 8位指数位 + 23位底数位）
-
-其中，指数位 实际值 = 显示值 - 127
-
-
-double （1位符号位 + 11位指数位 + 52位底数位）
-
-
-
-MIPS指令
-
-beq $rs, $rt, offset
-
-注意此处顺序是正的。
-offset 是 新地址 和 PC+4 的差除以 4 后的结果。
-
-
-lw $rt, offset($rs)
-
-注意此处顺序是反的。
-
-
-sw $rt, offs ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Data-Based-System/" title="《数据库系统》知识整理">     <img class="post_bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《数据库系统》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Data-Based-System/" title="《数据库系统》知识整理">《数据库系统》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-06-28T06:38:48.000Z" title="Created 2019-06-28 14:38:48">2019-06-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Database/">Database</a></span></div><div class="content">2019.3∼2019.62019.3 \sim 2019.62019.3∼2019.6 上了高云君教授《数据库系统》这门课，讲得还是挺不错的。
-这门课的 Workload 很大，期中和期末分别有一个 Project：
-
-期中 Project：实现一个图书管理系统
-期末 Project：实现一个迷你版的 SQL查询系统
-
-还有一个硬核的期末考试。为了巩固知识点特撰写此文。
-
-Relational-algebra Expression
-
-基本功能
-
-∪,−,\cup, -,∪,−, 并，差
-r×s={(t,q)∣t∈r,q∈s}r \times s = \{(t,q) | t \in r, q \in s \}r×s={(t,q)∣t∈r,q∈s}：笛卡尔积
-ρX(r)\rho_X(r)ρX​(r): 将 rrr 重命名为 XXX。
-σX(r)\sigma_X(r)σX​(r)：选取 rrr 中符合条件 XXX 的记录。
-∏X,Y(r)\prod_{X,Y}(r)∏X,Y​(r)：投影 rrr 中的部分属性。
-
-
-拓展功能
-
-r∩s=r−(r−s)r \cap s = r - (r -  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">jiangshibiao</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读"><img src="/post_images/Automated-Reasoning-in-Cloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云上形式化验证论文走读"/></a><div class="content"><a class="title" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读">云上形式化验证论文走读</a><time datetime="2025-01-07T13:49:18.000Z" title="Created 2025-01-07 21:49:18">2025-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Yunnan/" title="云南游记"><img src="/post_images/Travel-Notes-of-Yunnan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云南游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Yunnan/" title="云南游记">云南游记</a><time datetime="2024-12-24T14:44:15.000Z" title="Created 2024-12-24 22:44:15">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅"><img src="/post_images/Travel-Notes-of-Maldives.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="马尔代夫之旅"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅">马尔代夫之旅</a><time datetime="2024-10-08T15:14:36.000Z" title="Created 2024-10-08 23:14:36">2024-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Elementary-Number-Theory/" title="初等数论"><img src="/post_images/Elementary-Number-Theory.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初等数论"/></a><div class="content"><a class="title" href="/Elementary-Number-Theory/" title="初等数论">初等数论</a><time datetime="2024-06-23T11:19:01.000Z" title="Created 2024-06-23 19:19:01">2024-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Japan/" title="日本游记"><img src="/post_images/Travel-Notes-of-Japan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日本游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Japan/" title="日本游记">日本游记</a><time datetime="2024-05-15T12:06:43.000Z" title="Created 2024-05-15 20:06:43">2024-05-15</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/images/home.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Technology Comes First</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/Travel-Notes-of-Sanya/" title="三亚游记"><img class="post-bg" src="/post_images/Travel-Notes-of-Sanya.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="三亚游记"></a></div><div class="recent-post-info"><a class="article-title" href="/Travel-Notes-of-Sanya/" title="三亚游记">三亚游记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-18T09:33:31.000Z" title="Created 2021-05-18 17:33:31">2021-05-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-02T00:43:16.000Z" title="Updated 2021-09-02 08:43:16">2021-09-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Life/">Life</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Life/">Life</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Theory-of-Computation/" title="《计算理论》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《计算理论》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Theory-of-Computation/" title="《计算理论》知识整理">《计算理论》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-01-12T06:38:51.000Z" title="Created 2020-01-12 14:38:51">2020-01-12</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-08-25T01:07:55.000Z" title="Updated 2021-08-25 09:07:55">2021-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Computing-Theory/">Computing Theory</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Mix-Reality/" title="《混合现实》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《混合现实》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Mix-Reality/" title="《混合现实》知识整理">《混合现实》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-01-12T06:38:51.000Z" title="Created 2020-01-12 14:38:51">2020-01-12</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-05-18T10:19:31.000Z" title="Updated 2021-05-18 18:19:31">2021-05-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Computing-Theory/">Computing Theory</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Geometry-Problem/" title="Geometry-Problem"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Geometry-Problem"></a></div><div class="recent-post-info"><a class="article-title" href="/Geometry-Problem/" title="Geometry-Problem">Geometry-Problem</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-03-31T13:54:26.000Z" title="Created 2020-03-31 21:54:26">2020-03-31</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-07-16T03:39:49.000Z" title="Updated 2020-07-16 11:39:49">2020-07-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Paper-Reading/">Paper Reading</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Computer-Vision/">Computer Vision</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Natural-Language-Processing/">Natural Language Processing</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Principle-of-Programming-Language/" title="《程序设计方法学》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《程序设计方法学》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Principle-of-Programming-Language/" title="《程序设计方法学》知识整理">《程序设计方法学》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-01-16T06:38:48.000Z" title="Created 2020-01-16 14:38:48">2020-01-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-30T10:13:45.000Z" title="Updated 2020-06-30 18:13:45">2020-06-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Java-Application-Technology/" title="《Java应用技术》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《Java应用技术》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Java-Application-Technology/" title="《Java应用技术》知识整理">《Java应用技术》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-01-11T06:38:48.000Z" title="Created 2020-01-11 14:38:48">2020-01-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-30T10:03:03.000Z" title="Updated 2020-06-30 18:03:03">2020-06-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Object-Oriented-Programming/" title="《面向对象程序设计》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《面向对象程序设计》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Object-Oriented-Programming/" title="《面向对象程序设计》知识整理">《面向对象程序设计》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-28T06:38:51.000Z" title="Created 2019-06-28 14:38:51">2019-06-28</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-30T09:13:25.000Z" title="Updated 2020-06-30 17:13:25">2020-06-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/C/">C++</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Computer-Organization/" title="《计算机组成》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《计算机组成》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Computer-Organization/" title="《计算机组成》知识整理">《计算机组成》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-28T06:38:49.000Z" title="Created 2019-06-28 14:38:49">2019-06-28</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-30T08:55:31.000Z" title="Updated 2020-06-30 16:55:31">2020-06-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Computer-System/">Computer System</a></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Computer-Vision/" title="《计算机视觉》知识整理"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《计算机视觉》知识整理"></a></div><div class="recent-post-info"><a class="article-title" href="/Computer-Vision/" title="《计算机视觉》知识整理">《计算机视觉》知识整理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-01-13T06:38:48.000Z" title="Created 2020-01-13 14:38:48">2020-01-13</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-06-30T08:06:47.000Z" title="Updated 2020-06-30 16:06:47">2020-06-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Course-Review/">Course Review</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Knowledge-Learning/">Knowledge Learning</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Course-Review/">Course Review</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Computer-Vision/">Computer Vision</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Robustness-for-Sensing-Reasoning-Pipelines/" title="Robustness-for-Sensing-Reasoning-Pipelines"><img class="post-bg" src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robustness-for-Sensing-Reasoning-Pipelines"></a></div><div class="recent-post-info"><a class="article-title" href="/Robustness-for-Sensing-Reasoning-Pipelines/" title="Robustness-for-Sensing-Reasoning-Pipelines">Robustness-for-Sensing-Reasoning-Pipelines</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-03-31T05:27:50.000Z" title="Created 2020-03-31 13:27:50">2020-03-31</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-04-07T08:37:30.000Z" title="Updated 2020-04-07 16:37:30">2020-04-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Paper-Reading/">Paper Reading</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Adversarial-Attacks/">Adversarial Attacks</a></span></div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读"><img src="/post_images/Automated-Reasoning-in-Cloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云上形式化验证论文走读"/></a><div class="content"><a class="title" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读">云上形式化验证论文走读</a><time datetime="2025-01-27T23:00:21.713Z" title="Updated 2025-01-28 07:00:21">2025-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Yunnan/" title="云南游记"><img src="/post_images/Travel-Notes-of-Yunnan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云南游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Yunnan/" title="云南游记">云南游记</a><time datetime="2024-12-24T15:27:41.243Z" title="Updated 2024-12-24 23:27:41">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅"><img src="/post_images/Travel-Notes-of-Maldives.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="马尔代夫之旅"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Maldives/" title="马尔代夫之旅">马尔代夫之旅</a><time datetime="2024-12-24T14:53:10.350Z" title="Updated 2024-12-24 22:53:10">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game/" title="桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game/" title="桌游推荐">桌游推荐</a><time datetime="2024-11-28T15:24:33.000Z" title="Updated 2024-11-28 23:24:33">2024-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集"><img src="/post_images/Game-Collect-In-Seer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="赛尔号决策类游戏收集"/></a><div class="content"><a class="title" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集">赛尔号决策类游戏收集</a><time datetime="2024-10-14T15:08:38.000Z" title="Updated 2024-10-14 23:08:38">2024-10-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
-            <a class="card-more-btn" href="/categories/" title="More">
-    <i class="fas fa-angle-right"></i></a>
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+            <a class="card-more-btn" href="/categories/" title="View More">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG/"><span class="card-category-list-name">ACG</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACM-ICPC/"><span class="card-category-list-name">ACM-ICPC</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Competition/"><span class="card-category-list-name">Competition</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Course-Review/"><span class="card-category-list-name">Course Review</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Game/"><span class="card-category-list-name">Game</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Knowledge-Collect/"><span class="card-category-list-name">Knowledge Collect</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Knowledge-Learning/"><span class="card-category-list-name">Knowledge Learning</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life/"><span class="card-category-list-name">Life</span><span class="card-category-list-count">11</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/ACG/" style="font-size: 1.14em; color: #999b9d">ACG</a> <a href="/tags/ACM-ICPC/" style="font-size: 1.18em; color: #999ca1">ACM-ICPC</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Adversarial-Attacks/" style="font-size: 1.1em; color: #999">Adversarial Attacks</a> <a href="/tags/Algorithm/" style="font-size: 1.26em; color: #999fa8">Algorithm</a> <a href="/tags/Automated-Reasoning/" style="font-size: 1.1em; color: #999">Automated Reasoning</a> <a href="/tags/C/" style="font-size: 1.14em; color: #999b9d">C++</a> <a href="/tags/Coding/" style="font-size: 1.34em; color: #99a3b0">Coding</a> <a href="/tags/Competition/" style="font-size: 1.18em; color: #999ca1">Competition</a> <a href="/tags/Compiling-Principle/" style="font-size: 1.1em; color: #999">Compiling Principle</a> <a href="/tags/Computer-Network/" style="font-size: 1.1em; color: #999">Computer Network</a> <a href="/tags/Computer-System/" style="font-size: 1.1em; color: #999">Computer System</a> <a href="/tags/Computer-Vision/" style="font-size: 1.14em; color: #999b9d">Computer Vision</a> <a href="/tags/Computing-Theory/" style="font-size: 1.18em; color: #999ca1">Computing Theory</a> <a href="/tags/Course-Review/" style="font-size: 1.46em; color: #99a7bb">Course Review</a> <a href="/tags/Cryptography/" style="font-size: 1.1em; color: #999">Cryptography</a> <a href="/tags/Database/" style="font-size: 1.1em; color: #999">Database</a> <a href="/tags/Engineering/" style="font-size: 1.18em; color: #999ca1">Engineering</a> <a href="/tags/Game/" style="font-size: 1.14em; color: #999b9d">Game</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Graph/" style="font-size: 1.1em; color: #999">Graph</a> <a href="/tags/Java/" style="font-size: 1.18em; color: #999ca1">Java</a> <a href="/tags/Knowledge-Collect/" style="font-size: 1.38em; color: #99a4b4">Knowledge Collect</a> <a href="/tags/Knowledge-Learning/" style="font-size: 1.5em; color: #99a9bf">Knowledge Learning</a> <a href="/tags/Life/" style="font-size: 1.42em; color: #99a6b7">Life</a> <a href="/tags/Linear-Algebra/" style="font-size: 1.1em; color: #999">Linear Algebra</a> <a href="/tags/Linear-Programming/" style="font-size: 1.14em; color: #999b9d">Linear Programming</a> <a href="/tags/Machine-Learning/" style="font-size: 1.22em; color: #999ea4">Machine Learning</a> <a href="/tags/Math/" style="font-size: 1.3em; color: #99a1ac">Math</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 1.1em; color: #999">Natural Language Processing</a> <a href="/tags/Paper-Reading/" style="font-size: 1.14em; color: #999b9d">Paper Reading</a> <a href="/tags/Python/" style="font-size: 1.14em; color: #999b9d">Python</a> <a href="/tags/Rust/" style="font-size: 1.1em; color: #999">Rust</a> <a href="/tags/Theory-of-Computer-Science/" style="font-size: 1.1em; color: #999">Theory of Computer Science</a> <a href="/tags/Video-Analytics/" style="font-size: 1.1em; color: #999">Video Analytics</a> <a href="/tags/Video-Streaming/" style="font-size: 1.1em; color: #999">Video Streaming</a> <a href="/tags/Web/" style="font-size: 1.18em; color: #999ca1">Web</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">January 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">December 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">October 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">June 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">May 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">352.4k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-01-14T00:31:24.997Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>function subtitleType () {
-  if (true) { 
-    var typed = new Typed("#subtitle", {
-      strings: "use my blog to describe the world".split(","),
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Cryptography/" style="font-size: 1.1em; color: #999">Cryptography</a> <a href="/tags/Graph/" style="font-size: 1.1em; color: #999">Graph</a> <a href="/tags/Python/" style="font-size: 1.14em; color: #999b9d">Python</a> <a href="/tags/C/" style="font-size: 1.14em; color: #999b9d">C++</a> <a href="/tags/Database/" style="font-size: 1.1em; color: #999">Database</a> <a href="/tags/Paper-Reading/" style="font-size: 1.14em; color: #999b9d">Paper Reading</a> <a href="/tags/Algorithm/" style="font-size: 1.26em; color: #999fa8">Algorithm</a> <a href="/tags/ACG/" style="font-size: 1.14em; color: #999b9d">ACG</a> <a href="/tags/Computer-System/" style="font-size: 1.1em; color: #999">Computer System</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Computer-Vision/" style="font-size: 1.14em; color: #999b9d">Computer Vision</a> <a href="/tags/Game/" style="font-size: 1.14em; color: #999b9d">Game</a> <a href="/tags/Knowledge-Learning/" style="font-size: 1.5em; color: #99a9bf">Knowledge Learning</a> <a href="/tags/ACM-ICPC/" style="font-size: 1.18em; color: #999ca1">ACM-ICPC</a> <a href="/tags/Automated-Reasoning/" style="font-size: 1.1em; color: #999">Automated Reasoning</a> <a href="/tags/Compiling-Principle/" style="font-size: 1.1em; color: #999">Compiling Principle</a> <a href="/tags/Rust/" style="font-size: 1.1em; color: #999">Rust</a> <a href="/tags/Video-Analytics/" style="font-size: 1.1em; color: #999">Video Analytics</a> <a href="/tags/Video-Streaming/" style="font-size: 1.1em; color: #999">Video Streaming</a> <a href="/tags/Linear-Programming/" style="font-size: 1.14em; color: #999b9d">Linear Programming</a> <a href="/tags/Course-Review/" style="font-size: 1.46em; color: #99a7bb">Course Review</a> <a href="/tags/Linear-Algebra/" style="font-size: 1.1em; color: #999">Linear Algebra</a> <a href="/tags/Computer-Network/" style="font-size: 1.1em; color: #999">Computer Network</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Math/" style="font-size: 1.3em; color: #99a1ac">Math</a> <a href="/tags/Computing-Theory/" style="font-size: 1.18em; color: #999ca1">Computing Theory</a> <a href="/tags/Adversarial-Attacks/" style="font-size: 1.1em; color: #999">Adversarial Attacks</a> <a href="/tags/Machine-Learning/" style="font-size: 1.22em; color: #999ea4">Machine Learning</a> <a href="/tags/Theory-of-Computer-Science/" style="font-size: 1.1em; color: #999">Theory of Computer Science</a> <a href="/tags/Web/" style="font-size: 1.18em; color: #999ca1">Web</a> <a href="/tags/Life/" style="font-size: 1.42em; color: #99a6b7">Life</a> <a href="/tags/Competition/" style="font-size: 1.18em; color: #999ca1">Competition</a> <a href="/tags/Engineering/" style="font-size: 1.18em; color: #999ca1">Engineering</a> <a href="/tags/Java/" style="font-size: 1.18em; color: #999ca1">Java</a> <a href="/tags/Natural-Language-Processing/" style="font-size: 1.1em; color: #999">Natural Language Processing</a> <a href="/tags/Coding/" style="font-size: 1.34em; color: #99a3b0">Coding</a> <a href="/tags/Knowledge-Collect/" style="font-size: 1.38em; color: #99a4b4">Knowledge Collect</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      <a class="card-more-btn" href="/archives/"
+            title="View More">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/01/">
+            <span class="card-archive-list-date">
+              January 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              December 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              October 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/06/">
+            <span class="card-archive-list-date">
+              June 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/05/">
+            <span class="card-archive-list-date">
+              May 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/03/">
+            <span class="card-archive-list-date">
+              March 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/02/">
+            <span class="card-archive-list-date">
+              February 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/01/">
+            <span class="card-archive-list-date">
+              January 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">Total Word Count :</div><div class="item-count">352.4k</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-01-27T23:01:23.049Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
       startDelay: 300,
       typeSpeed: 150,
       loop: true,
-      backSpeed: 50
-    })
-  } else {
-    document.getElementById("subtitle").innerHTML = 'u'
+      backSpeed: 50,
+    }, {"loop":true}))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
   }
 }
-
-if (true) {
-  if (typeof Typed === 'function') {
-    subtitleType()
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init("use my blog to describe the world")
   } else {
-    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+    document.getElementById("subtitle").textContent = "u"
   }
-} else {
-  subtitleType()
-}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
