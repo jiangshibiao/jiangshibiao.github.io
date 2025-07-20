@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>上海游记 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了 2024.3.30-3.31 在上海的旅程，第一次去了心心念念的迪士尼。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="上海游记">
+<meta property="og:url" content="https://jiangshibiao.github.io/Travel-Notes-of-Shanghai/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了 2024.3.30-3.31 在上海的旅程，第一次去了心心念念的迪士尼。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Shanghai.jpg">
+<meta property="article:published_time" content="2024-03-31T14:52:10.000Z">
+<meta property="article:modified_time" content="2024-03-31T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Log">
+<meta property="article:tag" content="Journeys">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Shanghai.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "上海游记",
+  "url": "https://jiangshibiao.github.io/Travel-Notes-of-Shanghai/",
+  "image": "https://jiangshibiao.github.io/post_images/Travel-Notes-of-Shanghai.jpg",
+  "datePublished": "2024-03-31T14:52:10.000Z",
+  "dateModified": "2024-03-31T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Travel-Notes-of-Shanghai/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '上海游记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Travel-Notes-of-Shanghai.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">上海游记</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">上海游记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-31T14:52:10.000Z" title="Created 2024-03-31 2024-03-31T22:52:10+08:00">2024-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-31T16:00:00.000Z" title="Updated 2024-04-01 2024-04-01T00:00:00+08:00">2024-04-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Life/">Life</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">5.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>17mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="上海-CityWalk">上海 CityWalk</h2>
+<p>周六 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>:</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">11:16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span> 抵达虹桥站，二号线坐到中山公园站，在长宁来福士和我徒弟张扬播会合。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E6%8A%B5%E8%BE%BE%E4%B8%8A%E6%B5%B7.jpg" alt></p>
+<p>我们从四楼一直逛到七楼（电影院）都没找到想吃的店，美团上翻出两个感兴趣的都在斜对面的龙之梦。路过米桃时，门口的松鼠桂鱼海报吸引了我，价格还行+环境雅致，就决定是江苏菜了！无锡全家福小笼包上得很快，分为鲜肉，黑松露，蟹粉三种口味，一口爆汁；蟹粉带着点腥味，看起来货真价实；后悔点牛肋排了，我们仨胃口小吃得够呛；招牌的松鼠桂鱼上得最慢（想必制作工艺很麻烦），鱼肉外面用面粉包裹炸一圈，味道不错。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E7%B1%B3%E6%A1%83%E6%B1%9F%E8%8B%8F%E8%8F%9C.jpg" alt></p>
+<p>我们自来福士出，沿着愚园路步行。天气很好，愚园路的人却并不多。上海的建筑总给我一种泛红的厚重气息。励颖开开心心地从一家网红店里买了个蓝莓蛋糕，很难想象一个中午吃撑的人能完整吃下它。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E7%99%BD%E5%A4%A9%E7%9A%84%E5%8D%97%E4%BA%AC%E8%B7%AF%E6%AD%A5%E8%A1%8C%E8%A1%97.jpg" alt></p>
+<p>根据计划，我们得从江苏路进站坐二号线至人民广场，沿着步行街一直走到外滩。事实上我们坐过了一站，只能各自多交 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 块钱往回。南京路步行街比愚园路热闹太多，马路宽行人多，两侧是各色的招牌。路边有一家很大的 M 豆店，我心想“卖巧克力豆还需要这么大场地嘛”——二楼那些大量粗粗长长的圆筒打消了我的疑问。</p>
+<p><img src="/Travel-Notes-of-Shanghai/M%E8%B1%86.jpg" alt></p>
+<p>路过了一些标志性的建筑，如老凤祥银楼、上海第一食品商店、上海时装商店等。街边的美团充电宝很多，在扬播的推荐之下我搞了一个充手机。走到口渴腿麻之时，抬头赫然是网鱼网咖的 Logo，用余额刷了一小时的 LOL+三杯果汁——带励颖去网吧总让我有一种罪恶感。期间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.5</mn><mi mathvariant="normal">/</mi><mn>30</mn><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">3.5/30min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3.5/30</span><span class="mord mathnormal">min</span></span></span></span> 的充电宝快把我的支付宝余额扣没了。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E8%80%81%E5%87%A4%E7%A5%A5%E5%92%8C%E7%BD%91%E9%B1%BC.jpg" alt></p>
+<p>行至恒基名人购物中心已是六点多，五楼有传说中的”上上谦火锅“，我力劝他俩上去尝尝。门外小等了五分钟，进去后灯光有些昏暗，耳边一直循环着薛之谦的歌。菜品的形式和口味与常见火锅店类似，调料 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span> 元一位。谦谦心头肉蛋糕很瞩目，上面用牛舌包成了一朵花，服务员光是把牛舌撕成一片片的就花了很久。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E4%B8%8A%E4%B8%8A%E8%B0%A6.jpg" alt></p>
+<p>灯光亮起，晚上的步行街更有一番风味。人头攒动，隔几步就能看到一个宏伟的建筑。我们很好奇一楼之外的房子怎么使用。快行至外滩时，路上出现大量兜售船票的人，口中念着的一律是“最后一班船了，还有五分钟发车”。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E6%99%9A%E4%B8%8A%E7%9A%84%E5%8D%97%E4%BA%AC%E8%B7%AF%E6%AD%A5%E8%A1%8C%E8%A1%97.jpg" alt></p>
+<p>外滩的夜景更是迷人。内侧的建筑在灯光辉映下显得富丽堂皇，励颖的评价是“远超武汉的灯光秀”；黄浦江上的游船和对岸的景色也很不错，励颖的评价是“远超带有浑浊气味的维多利亚港”。我在地图上研究了一番黄浦江在哪一侧入海（严格来说附近是三岔路口，只是有一条支流被视线挡住了），哈哈他俩都回答错误。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E5%A4%96%E6%BB%A9%E6%99%AF%E8%89%B2.jpg" alt></p>
+<p>那么下一步怎么走？我望着对岸的东方明珠塔陷入了沉思。搜了搜美团，有个海底隧道的东西可以直通浦东，优惠后的门票高达 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>45</mn></mrow><annotation encoding="application/x-tex">45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">45</span></span></span></span>。听起来像是个带灯光的玻璃隧道，没准可以看到鱼？我就说服他俩进去坐。没什么人排队，纯粹是一个慢速且封闭的轨道车通道，为了取悦来坐车的小孩子就加了点隧道内的灯光图案，很后悔。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E6%B5%B7%E5%BA%95%E9%9A%A7%E9%81%93.jpg" alt></p>
+<p>到浦东时已是晚上九点多，我心心念念的东方明珠塔已经没有票了——记得小时候老妈带我来上海玩，都到东方明珠塔脚下了，说是单人的门票要小几百就没上去。陆家嘴的人明显比外滩少很多，建筑也从宏伟的近代风转变为现代风。转过一个街角，猛然发现有一家迪士尼旗舰店，很契合明天的行程。看了一圈后，我逐渐适应里面的标价：迷你玩偶 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>109</mn><mo>−</mo><mn>159</mn></mrow><annotation encoding="application/x-tex">109-159</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">109</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">159</span></span></span></span>，小玩偶 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mo>+</mo></mrow><annotation encoding="application/x-tex">200+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">200</span><span class="mord">+</span></span></span></span>，大玩偶 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>699</mn></mrow><annotation encoding="application/x-tex">699</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">699</span></span></span></span>——竟觉得没什么不妥。我们在两只样子相同、大小不同的唐老鸭里面纠结：小的那只带有金属钥匙扣价格 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>159</mn></mrow><annotation encoding="application/x-tex">159</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">159</span></span></span></span>，大的那只长宽高近似都大了一倍价格 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>229</mn></mrow><annotation encoding="application/x-tex">229</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">229</span></span></span></span>。励颖觉得小鸭子更精致，而我觉得钥匙扣不实用且大的性价比更高。我们唇枪舌战讨论了半天，最终采纳了我的意见。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E8%BF%AA%E5%A3%AB%E5%B0%BC%E6%97%97%E8%88%B0%E5%BA%97.jpg" alt></p>
+<p>沿着天桥前往陆家嘴地铁站，一转身就能看到偌大的东方明珠塔。我发现高德地图的平面导航里都画出了立体的东方明珠塔，算是一个彩蛋。进地铁前突然下起了阵雨，我们仓皇逃窜，二号线坐到川沙再打车去民宿。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E4%B8%9C%E6%96%B9%E6%98%8E%E7%8F%A0%E5%A1%94.jpg" alt></p>
+<h2 id="迪士尼">迪士尼</h2>
+<p>订票策略：飞猪 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500</mn></mrow><annotation encoding="application/x-tex">500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">500</span></span></span></span> 一人的 <em>特别常规日</em> 早鸟套餐+官方 APP <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>149</mn></mrow><annotation encoding="application/x-tex">149</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">149</span></span></span></span> 一人的早享卡——这应该是周末出游性价比最高的方式了。早鸟套餐由普通门票和 6 张满 xxx 减 5 的优惠券构成，可惜限制太多我们一张都没用出去。不缺钱的话可以把早享卡替换为热门项目的速通，我的想法是需求不高、性价比低，钱可以换成更多的纪念品。</p>
+<p>周六白天我曾有意识地打开迪士尼 APP 观察白天和傍晚的排队情况，来充分利用早享卡的优势。此外，作为极度讨厌失重感的小白，我在知乎、小红书等调研了迪士尼所有刺激的项目，结论如下：</p>
+<ul>
+<li>失重感最强的是抱抱龙冲天赛车，被称为海盗船 PLUS，直接被我拉黑。</li>
+<li>争议比较大的是七个小矮人矿山车和创极速光轮，很多人觉得某一个没事而另一个很害怕。前者是低配版的过山车，速度慢，某些环节仍有较强失重感且后座更突出；后者失重感不强，但是速度特别快。</li>
+<li>剩下的项目问题不大。喷气背包飞行器在旋转时可以自由调整高度，雷鸣山漂流略有失重。</li>
+</ul>
+<p><img src="/Travel-Notes-of-Shanghai/%E8%BF%AA%E5%A3%AB%E5%B0%BC%E9%A1%B9%E7%9B%AE%E6%94%BB%E7%95%A5.jpg" alt></p>
+<p>迪士尼周边的开发程度不高，除了迪士尼乐园酒店、玩具总动员酒店和百万石温泉酒店这种大型酒店外，就只有四五公里外村子里的民宿了。考虑到行程较满酒店没啥用，我在美团上随手订了个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>300</mn></mrow><annotation encoding="application/x-tex">300</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">300</span></span></span></span> 的民宿。上海 CityWalk 太嗨了，我们在前一天的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>23</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">23:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">23</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 才抵达民宿，只剩下一楼院子的房间了。卫生一般，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">0:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 将就着躺下，太艰苦了。早上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">5:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 就听到楼上叮叮咚咚的声音，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>:</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">6:10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> 正式起床，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">6:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 民宿接送，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>:</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">6:45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">45</span></span></span></span> 抵达迪士尼。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E6%B8%85%E6%99%A8%E7%9A%84%E8%BF%AA%E5%A3%AB%E5%B0%BC.jpg" alt></p>
+<p>攻略说得没错，早享卡在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>:</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">7:15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span> 就能进入园区。当天的天气是多云有阵雨，人相对偏少，算是很适合逛迪士尼的日子。根据我的调研结果，飞越地平线、加勒比海盗（事实上当天这个项目排队人很少）、矿山车和热力追踪是最火的项目，值得发挥早享卡的作用。后者在动物城里且并非一早就开放，我决定逆时针玩前面三个项目。进门后励颖不知哪来的力气飞速狂奔，一口气冲进了飞跃地平线的排队区。游客分批坐到几排会飞的座椅上，感受来自眼前大屏幕的穿越世界的立体效果。我一开始飞上去有点紧张，后来逐渐适应了（大不了俯冲的时候闭眼）。飞行至森林和海滩时，空气中会弥漫一股香甜的气息。因为在横店影视城玩过类似的项目，我俩都觉得一般。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E9%A3%9E%E8%B6%8A%E5%9C%B0%E5%B9%B3%E7%BA%BF.jpg" alt></p>
+<p>励颖满心想玩热力追踪，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>:</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">7:45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">45</span></span></span></span> 我们来到疯狂动物城入口被告知开放时间待定，于是转头去玩加勒比海盗。坐船感受一次海盗冒险，全程都有连贯的剧情娓娓道来（我印象比较深的是一段逼真的船战画面）。总体很不错，中途有一段刺激的倒退有轻微失重感。听说这个项目有多个结局，我们刷到的应该是正常的找到宝藏的结局。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E5%8A%A0%E5%8B%92%E6%AF%94%E6%B5%B7%E7%9B%97.jpg" alt></p>
+<p>此时 APP 上显示七个小矮人矿山车的队伍已达到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mo>+</mo></mrow><annotation encoding="application/x-tex">30+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">30</span><span class="mord">+</span></span></span></span> 分钟。这是个极其热门的项目，当时过去能赶在常规游客入园前排上队。我本计划把前三恐怖的项目都 BAN 掉，结果就这么糊里糊涂地就被励颖骗过去了。排队时候我一直在刷小红书，试图从一些失重人员的描述中给予自己一点安慰。听说第一排比较刺激，后面几排的失重感很强，于是我下决心要抢在第三排前后。轮到我们时正好在第四排，我正想跨上矿山车，扭头看了看前面的轨道——居然是一头扎下去的！我一下子失了魂，扭捏地告诉励颖想跑路。她似乎对我的行为早有预料，摆摆手，头一甩就上了矿山车。我在服务员的帮助下直达出口，她结束后说这个车一点儿都不刺激，还不忘冷嘲热讽我两句。</p>
+<p>下一个目标是明日世界的创极速光轮，排队时间从最初的 5min 增加到了 15min。摩托车轨道就穿插在整个建筑上，速度看着很吓人，我自觉地连队伍都没排。励颖一副天不怕地不怕的样子冲了进去，我则负责在外面给她抓拍（她坐在第二排，可惜视频帧率太低糊掉了）。摩托车的频率特别高，平均一分钟就有一班，我足足在外头拍了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn></mrow><annotation encoding="application/x-tex">13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span> 段视频。每一班摩托经过时都充满了尖叫，我心想不去排队正是个英明的举动。励颖出来后似乎心有余悸，她低头看表发现自己心率快了很多，连连感叹说“还好你没来，这个项目你肯定吃不消的”。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E5%88%9B%E6%9E%81%E9%80%9F%E5%85%89%E8%BD%AE.jpg" alt></p>
+<p>接着玩了巴斯光年星际营救的项目，两个人各自配有一把红色和绿色的枪，坐在无风险的轨道车里朝着各种靶子射击。射击得多不多、准不准没啥数据呈现，结束后也没奖品或互动，甚感乏味。可能小朋友会玩得开心。</p>
+<p>上午突然下起了不小的阵雨，我们手头上没有雨衣，只能临时取消室外项目的游玩计划。我们先撑着伞向南走到入口处的商店买食品充饥，再慢悠悠地转去 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>:</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">10:45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">45</span></span></span></span> 开始的米奇妙游童话书的剧场。街边一根玉米热狗 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>45</mn></mrow><annotation encoding="application/x-tex">45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">45</span></span></span></span>，商店里一个芝士可颂 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>58</mn></mrow><annotation encoding="application/x-tex">58</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">58</span></span></span></span>，这就是迪士尼的物价嘛。童话书的剧情还不错，讲述了在米奇和高飞穿越童话书拯救小雪人的故事。励颖在剧场过半时装高手，煞有介事地点起了喜茶（甚至还选了一杯迪士尼限定），因为攻略说看完正好去拿。搞了半天是要中途离开园区，去迪士尼小镇的喜茶店自取。好在那里有一个快速出入的通道。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E7%B1%B3%E5%A5%87%E5%A6%99%E6%B8%B8%E7%AB%A5%E8%AF%9D%E4%B9%A6.jpg" alt></p>
+<p>中午 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn><mo>:</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">11:10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>，APP 显示疯狂动物城的排队时间是 40min。我们希望赶上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">12:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 的动物城花车巡游，急匆匆地跑过去排队。我在队伍里一边吃着可颂一边喝着喜茶，心想真是一出绝妙的时间规划，结果进了动物城后傻眼了——原来花车巡游都是在动物城外的主园区。励颖吃到了心心念念的爪爪冰棍，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>45</mn></mrow><annotation encoding="application/x-tex">45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">45</span></span></span></span> 一根，这就是正版嘛&gt;_&lt;。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E7%96%AF%E7%8B%82%E5%8A%A8%E7%89%A9%E5%9F%8E.jpg" alt></p>
+<p>既来之则安之，我们放弃花车巡游去排热力追踪。这是 2023 年 12 月 20 日新开的项目，从设施到设计都有一种先进感。虽然队伍长达 40min，队列周围满是各种铺垫（包括豹警官和牛局长的互动，朱迪和尼克的房间，监狱里关押囚犯的房间等等），让排队的大家提前进入状态。剧情继承自《疯狂动物城》，监狱里有三只橙色衣服的绵羊越狱，游客将化身新警员去城市里追逐逃犯。各种先进的道具、屏幕和灯光，让我仿佛置身于电影之中，以第一视角欣赏城市街景、处理突发情况。出口处的几个扭蛋机前排起了长队，我紧急在小红书调研了一下，是疯狂动物城比较火的周边盲盒，分为摇摇公仔（钥匙圈）、戒指、演唱会、公交车站、迷你扭蛋机五种系列。一个人限购两个，我排了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>+</mo></mrow><annotation encoding="application/x-tex">20+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">20</span><span class="mord">+</span></span></span></span> 分钟选了戒指和演唱会，结果抽到的都是大先生。励颖从商店里挑了一只朱迪玩偶。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E7%83%AD%E5%8A%9B%E8%BF%BD%E8%B8%AA%E6%8E%92%E9%98%9F.jpg" alt></p>
+<p>出了动物城，我们略过了人气较高的小熊维尼历险记，排了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">10min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord">10</span><span class="mord mathnormal">min</span></span></span></span> 的旋转疯蜜罐。盯着旋转的地板很容易头晕，我上车前十分忐忑，闭了一会眼睛才逐渐适应。蜜罐在“公转”的同时，中间的圆盘也会“自转”。励颖想增加自转吓唬我，尝试拨了拨圆盘发现扭不过原始的自转，吐槽说根本没法控制。哈哈，我随即大力一扭打消她疑惑。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E6%97%8B%E8%BD%AC%E7%96%AF%E8%9C%9C%E7%BD%90.jpg" alt></p>
+<p>雨过天晴阳光正好，励颖拽着我前往安迪玩具盒，说是对里面的小游戏已经了如指掌、势在必得。结合她曾经虐遍地摊射击的经历，我真相信了。安迪玩具盒由若干付费小游戏构成，单次费用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>35</mn></mrow><annotation encoding="application/x-tex">35</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">35</span></span></span></span>（以前是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn></mrow><annotation encoding="application/x-tex">30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span>）。一等奖是很大的抱枕（不同游戏出货不同），二等奖是挂绳，三等奖是徽章，官方价值分别是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>350</mn><mo separator="true">,</mo><mn>69</mn><mo separator="true">,</mo><mn>39</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[350,69,39]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">350</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">69</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">39</span><span class="mclose">]</span></span></span></span>。</p>
+<ul>
+<li>火腿金币钓钓乐：共 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">50</span></span></span></span> 个外壳相同的金币，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 个塞有一等奖的纸条，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span> 个二等奖，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>28</mn></mrow><annotation encoding="application/x-tex">28</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">28</span></span></span></span> 个三等奖。多个钓点并行开始钓，玩家钓起一个金币后单次游戏结束，根据金币内的纸条内容评奖。若某玩家钓起的是二三等奖，直接将金币放回池中继续游戏；若某玩家钓起的是一等奖，管理员重新拾起所有金币搅混后放入。</li>
+<li>三眼仔冲冲火箭：射击游戏，某人说一等奖的三眼仔玩偶太丑了，我就没细看规则。</li>
+<li>派对恐龙对对乐：长方形的高尔顿板，从顶部任意位置放下圆片，观察其落入哪个洞中（如果掉出板外则重新选位置落下）。单次扔 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> 个圆片，若 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\ge 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 个落入左二或右二获一等奖，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\ge 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 个落入获二等奖，否则三等奖。</li>
+<li>安琪星球投投乐：单次投 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 个沙包，若 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\ge 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 个丢进预设洞里获一等奖，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\ge 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个获二等奖，否则三等奖。</li>
+</ul>
+<p>看起来三眼仔和投沙包是技术活，火腿和派对是纯运气，彼此都收敛到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">4\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">4%</span></span></span></span> 的一等奖概率。</p>
+<p>励颖的主攻的项目是钓钓乐，坚称攻略说一等奖的金币会特殊一点，用不知从哪看来的野路子不断尝试：低空尝试吸金币，吸上金币后不断摇晃，晃掉了就继续否则收手。结局是：我们买的两次机会都让给她了，在那晃了十几分钟晃到引导员都不耐烦了，喜提一个二等奖和一个三等奖哈哈。自此励颖的心态大打折扣，开始随便玩模式。派对恐龙我们每人一次，她只中了一个搞了三等奖，我多中了一个混了二等奖。星球投投乐这种技术性项目对于我们普通人来说太不友好了，俩人信心满满地各玩了一次，一个球都没扔进，两个三等奖铩羽而归。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>210</mn></mrow><annotation encoding="application/x-tex">210</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">210</span></span></span></span> 打水漂~</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E5%AE%89%E8%BF%AA%E7%8E%A9%E5%85%B7%E7%9B%92.jpg" alt></p>
+<p>玩安迪玩具盒期间正值花车巡游，我们隔着老远望向花车和动漫人物，没有多泛起太多涟漪。等快到疯狂动物城的第二场巡游时，我俩都懒得过去张望了。我心下感叹，大家可能都已过了那个天真烂漫的年纪。</p>
+<p>我建议励颖重点关注迪士尼乐园本身，把人气不错的项目都去体验一遍。首先是我心心念念的胡迪牛仔嘉年华，早享卡期间排队时长只要 5min，下午已经飙升至 40min。这项目俗称甩驴，在换轨道的时候会咯噔甩一下，很多网友都评价说玩得很欢乐。转圈本身会带来离心力，相比失重感更容易让我接受，所以我也玩得很欢乐~</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E8%83%A1%E8%BF%AA%E7%89%9B%E4%BB%94%E5%98%89%E5%B9%B4%E5%8D%8E.jpg" alt></p>
+<p>接下来是不那么热门的小飞侠天空奇遇和晶彩奇航。前者是迷你版的热力追踪/加勒比海盗，沿着轨道车探访小飞侠，我俩感觉一般；后者是坐船环游水系，节奏很慢适合养生（风吹得我快睡着了），包含克众多迪士尼 IP 的雕塑：阿拉丁和神灯、海的女儿、米奇童话书、十二个跳舞的公主、花木兰、美女与野兽、长发公主等等。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E6%99%B6%E5%BD%A9%E5%A5%87%E8%88%AA.jpg" alt></p>
+<p>从玩具总动员朝园区东边进发，我们略过了城堡前的演出和没什么人排队的爱丽丝漫游仙境迷宫。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E5%9F%8E%E5%A0%A1%E5%89%8D%E7%9A%84%E5%BA%A7%E4%BD%8D.jpg" alt></p>
+<p>励颖抽中了漫月食府限量开放的纪念品商店的资格，而我怀疑这一切都是资本主义和消费主义的阴谋。商店很小，里面陈列了固定几种迪士尼 IP 的玩偶，我基本都不认识。很多柜台上都会立起“XX 系列每人限购两份”的告示牌，估计明面上是在抑制代购行为实则吸引游客购物。我看到一个小姐姐在一个柜台上对着整排的玩偶挑挑拣拣过滤瑕疵品，身前的黑色布袋里已盛满玩偶。励颖似乎被这种氛围感染了，逛来逛去挑了一只小的玲娜贝儿。</p>
+<p>天色逐渐变暗，雷鸣山漂流的排队人数从 40min 降到了 15min。励颖觉得漂流会打湿身子，我就一个人去排队。十块钱现金可以买件雨衣，价位在迪士尼里堪称良心；不过质量一言难尽，把领子努力往下拽才能勉强遮住膝盖。开场后先碰撞旋转了几圈，稍有点晕但逐渐适应；随后沿着一个超长的通道爬坡，我为后续可能的降落捏了把冷汗；接着进入一个全黑的山谷，在里面疯狂旋转碰撞，我紧握扶手确保不被甩出去；出山谷时果真有一个俯冲的陡坡，持续时间不长的很强的失重感，算是我今日玩过的最刺激的部分；结尾时缓慢漂至终点，被励颖的相机捕捉。我和两家子坐在一辆船上，面对这些小朋友只能强装镇定抑制叫喊，其实心里瑟瑟发抖。其中一家子有年龄差不多的一个男孩和一个女孩，男孩在经过漆黑山谷时哭着叫喊，而女孩全程淡淡地说不够刺激。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E9%9B%B7%E9%B8%A3%E5%B1%B1%E6%BC%82%E6%B5%81.jpg" alt></p>
+<p>当天游客偏少，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>:</mo><mn>00</mn><mi mathvariant="normal">/</mi><mn>20</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">20:00/20:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">00/20</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 都没安排烟花秀，只有唯一的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>21</mn><mo>:</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">21:15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">21</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span> 场。即使是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>22</mn><mo>:</mo><mn>29</mn></mrow><annotation encoding="application/x-tex">22:29</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">22</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">29</span></span></span></span> 出发的高铁也赶不上这么迟的烟花秀了，我们决定购物完提早回家。先在园区内的米奇大街逛。M+购物廊挺大的，什么纪念品都有。作为我们家常规的旅行纪念品，冰箱贴在迪士尼的标价翻了近三倍，我们没找到钟意的就没下手。我小时候一直对迪士尼的城堡很向往，看到一个城堡微缩快迈不动步了，可惜做工不够精致。我和励颖一合计，先买了个迪士尼项目相关的盲盒作为纪念，以及挑了一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>399</mn></mrow><annotation encoding="application/x-tex">399</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">399</span></span></span></span> 的疯狂动物城朱迪/尼克手办。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E7%B1%B3%E5%A5%87%E5%A4%A7%E8%A1%97.jpg" alt></p>
+<p>出了园区，在迪士尼小镇的大食代解决晚饭，七点抵达最后一站世界商店。世界商店的占地面积很大、纪念品种类很丰富，总体呈圆形，中心是环状的商品柜。看到一些限量版的疯狂动物城手办，感叹囊中羞涩。冰箱贴依然没有特别钟意的，买了只星黛露；某人看到一只睡着的玲娜贝儿的中型玩偶后就迈不动步子了，买买买。</p>
+<p><img src="/Travel-Notes-of-Shanghai/%E4%B8%96%E7%95%8C%E5%95%86%E5%BA%97.jpg" alt></p>
+<p>迪士尼热门游乐项目总结（按当天游玩顺序排序）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">迪士尼项目</th>
+<th style="text-align:center">我们的排队时间</th>
+<th style="text-align:center">早享卡</th>
+<th style="text-align:center">排队攻略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">翱翔·飞越地平线</td>
+<td style="text-align:center">10min</td>
+<td style="text-align:center">强推</td>
+<td style="text-align:center">热门项目，排队☆☆☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">加勒比海盗·沉落宝藏之战</td>
+<td style="text-align:center">5min</td>
+<td style="text-align:center">可玩</td>
+<td style="text-align:center">排队☆☆☆，当天人气不高</td>
+</tr>
+<tr>
+<td style="text-align:center">七个小矮人矿山车</td>
+<td style="text-align:center">30min</td>
+<td style="text-align:center">强推</td>
+<td style="text-align:center">热门项目，排队☆☆☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">创极速光轮</td>
+<td style="text-align:center">15min</td>
+<td style="text-align:center">可玩</td>
+<td style="text-align:center">热门项目，排队☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">巴斯光年星际营救</td>
+<td style="text-align:center">5min</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆</td>
+</tr>
+<tr>
+<td style="text-align:center">疯狂动物城入口</td>
+<td style="text-align:center">40min</td>
+<td style="text-align:center">可玩</td>
+<td style="text-align:center">排队☆☆☆☆，很疑惑为啥要限流</td>
+</tr>
+<tr>
+<td style="text-align:center">疯狂动物城：热力追踪</td>
+<td style="text-align:center">40min</td>
+<td style="text-align:center">可玩</td>
+<td style="text-align:center">热门项目，排队☆☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">旋转疯蜜罐</td>
+<td style="text-align:center">10min</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">安迪玩具盒</td>
+<td style="text-align:center">15min*3</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">每一种排队 ☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">胡迪牛仔嘉年华</td>
+<td style="text-align:center">35min</td>
+<td style="text-align:center">强推</td>
+<td style="text-align:center">热门项目，排队☆☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">小飞侠天空奇遇</td>
+<td style="text-align:center">25min</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">晶彩奇航</td>
+<td style="text-align:center">15min</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">雷鸣山漂流</td>
+<td style="text-align:center">15min</td>
+<td style="text-align:center">可玩</td>
+<td style="text-align:center">热门项目，排队☆☆☆☆，方差较大</td>
+</tr>
+<tr>
+<td style="text-align:center">与迪士尼王室见面会</td>
+<td style="text-align:center">未游玩</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">小熊维尼历险记</td>
+<td style="text-align:center">未游玩</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">小飞象</td>
+<td style="text-align:center">未游玩</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">抱抱龙冲天赛车</td>
+<td style="text-align:center">未游玩</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆☆☆，方差较大</td>
+</tr>
+<tr>
+<td style="text-align:center">弹簧狗团团转</td>
+<td style="text-align:center">未游玩</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆☆</td>
+</tr>
+<tr>
+<td style="text-align:center">喷气背包飞行器</td>
+<td style="text-align:center">未游玩</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">排队☆☆☆</td>
+</tr>
+</tbody>
+</table>
+<p>忽略几乎不用排队的项目，比如太空幸会史迪奇、爱丽丝梦游仙境迷宫、探秘海妖复仇号、探险家独木舟等。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Travel-Notes-of-Shanghai/">https://jiangshibiao.github.io/Travel-Notes-of-Shanghai/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Log/">Log</a><a class="post-meta__tags" href="/tags/Journeys/">Journeys</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Travel-Notes-of-Shanghai.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/Introduction-to-Cryptography/" title="密码学导论"><img class="cover" src="/../post_images/Cryptography-in-Engineering.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">密码学导论</div></div><div class="info-2"><div class="info-item-1">本篇密码学导论主要有以下几个特征：概括性（用统一的风格，列举密码学里经典的概念、定理和算法）、准确性（总体风格不拘小节，每个细节力求准确无误）、应用性（重点关注应用）和持续性（想到哪就写到哪，持续修正和扩展）。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Japan/" title="日本游记"><img class="cover" src="/../post_images/Travel-Notes-of-Japan.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">日本游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024 五一假期在日本的旅程。对日本的主要印象有：路面整洁，国际化，轨道交通发达，便利店多而外卖少。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/Travel-Notes-of-Changsha/" title="长沙游记"><img class="cover" src="/../post_images/Travel-Notes-of-Changsha.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-06</div><div class="info-item-2">长沙游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.6.27-6.29 在长沙的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hengdian/" title="横店游记"><img class="cover" src="/../post_images/Hengdian.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-10-26</div><div class="info-item-2">横店游记</div></div><div class="info-2"><div class="info-item-1">记录了 2021.9.19-9.20 在横店的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Huangshan/" title="黄山游记"><img class="cover" src="/../post_images/Travel-Notes-of-Huangshan.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-04-30</div><div class="info-item-2">黄山游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.4.18-4.19 在黄山的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hong-Kong/" title="香港游记"><img class="cover" src="/../post_images/HongKong.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-01-16</div><div class="info-item-2">香港游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.1.13-1.16 在香港的旅程。主要就是三件事：买金，办卡和吃喝玩乐。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Maldives/" title="马尔代夫游记"><img class="cover" src="/../post_images/Travel-Notes-of-Maldives.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-10-08</div><div class="info-item-2">马尔代夫游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024 中秋假期在马尔代夫莉莉岛五天四晚的旅程。对马尔代夫的主要印象有：开放式管理，中国人很多，浮潜环境非常好。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Japan/" title="日本游记"><img class="cover" src="/../post_images/Travel-Notes-of-Japan.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-05-19</div><div class="info-item-2">日本游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024 五一假期在日本的旅程。对日本的主要印象有：路面整洁，国际化，轨道交通发达，便利店多而外卖少。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E6%B5%B7-CityWalk"><span class="toc-number">1.</span> <span class="toc-text">上海 CityWalk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AA%E5%A3%AB%E5%B0%BC"><span class="toc-number">2.</span> <span class="toc-text">迪士尼</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Exploring-DeepSeek/" title="探索 DeepSeek"><img src="/../post_images/DeepSeek.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="探索 DeepSeek"/></a><div class="content"><a class="title" href="/Exploring-DeepSeek/" title="探索 DeepSeek">探索 DeepSeek</a><time datetime="2025-07-20T16:00:00.000Z" title="Updated 2025-07-21 2025-07-21T00:00:00+08:00">2025-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐">重度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轻度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Light-Fun/" title="轻度桌游推荐">轻度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多方计算之 ECDSA 门限签名"/></a><div class="content"><a class="title" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名">多方计算之 ECDSA 门限签名</a><time datetime="2025-07-17T16:00:00.000Z" title="Updated 2025-07-18 2025-07-18T00:00:00+08:00">2025-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Zero-Knowledge-Proof/" title="零知识证明"><img src="/../post_images/Zero-Knowledge-Proof.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="零知识证明"/></a><div class="content"><a class="title" href="/Zero-Knowledge-Proof/" title="零知识证明">零知识证明</a><time datetime="2025-07-14T16:00:00.000Z" title="Updated 2025-07-15 2025-07-15T00:00:00+08:00">2025-07-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

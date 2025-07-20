@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docker | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了 Docker 相关的工程知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="https://jiangshibiao.github.io/Docker/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了 Docker 相关的工程知识。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Docker.png">
+<meta property="article:published_time" content="2022-05-04T02:41:10.000Z">
+<meta property="article:modified_time" content="2023-07-26T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Docker.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Docker",
+  "url": "https://jiangshibiao.github.io/Docker/",
+  "image": "https://jiangshibiao.github.io/post_images/Docker.png",
+  "datePublished": "2022-05-04T02:41:10.000Z",
+  "dateModified": "2023-07-26T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Docker/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Docker.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">Docker</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Docker</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-04T02:41:10.000Z" title="Created 2022-05-04 2022-05-04T10:41:10+08:00">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-26T16:00:00.000Z" title="Updated 2023-07-27 2023-07-27T00:00:00+08:00">2023-07-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Dev/">Dev</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Docker 是一个很基本的工程工具。本文总结自 《每天5分钟玩转Docker容器技术》。</p>
+<h2 id="容器简介">容器简介</h2>
+<p>容器核心技术包括以下内容：</p>
+<ul>
+<li>规范：Docker、CoreOS、Google 等公司成立了 Open Container Initiative 制定容器规范。</li>
+<li>runtime：为容器提供运行环境，包括 lxc（老牌）、runc（Docker 默认） 和 rkt（CoreOS 开发）。</li>
+<li>管理工具：lxd（对应 lxc）、docker engine、rkt cli（对应 rkt）。</li>
+<li>Registry：存放和管理镜像的仓库。</li>
+<li>容器 OS：与传统 OS 相比体积较小，运行效率高，包括 CoreOS、atomic、ubuntu core。</li>
+</ul>
+<p>容器平台技术包括以下内容：</p>
+<ul>
+<li>容器编排引擎：把容器有机地组合成微服务应用，进行容器管理、调度、集群定义和服务发现等。
+<ul>
+<li>docker swarm：Docker 公司开发。</li>
+<li>kubernetes：Google 开发，同事支持 Docker 和 CoreOS。</li>
+<li>mesos+marathon。</li>
+</ul>
+</li>
+<li>容器管理平台：抽象了上述引擎的底层细节，是一个更为通用的平台。包括 Rancher 和 ContainerShip。</li>
+<li>基于容器的 PaaS：主要代表为 Deris、Flynn、Dokku。</li>
+</ul>
+<p>容器支持技术包括：网络、服务发现、监控、数据管理、日志管理、安全性。</p>
+<p>Docker 的核心组件包括：client、docker daemon、image、container、Registry。</p>
+<ul>
+<li>客户端 client、服务器 docker daemon：可以在同一个 host 上交互，也支持通信。</li>
+<li>镜像 image：只读模板，可以从零开始搭建，也可以从别的 image 修改而来。</li>
+<li>容器 container：Docker 的运行实例，可以从 image 中拓展而来。</li>
+</ul>
+<h2 id="Docker-镜像">Docker 镜像</h2>
+<p>Docker 采用分层结构，base 建立在 kernel 之上，随后一层一层叠加镜像，最上面是容器层。</p>
+<ul>
+<li>分层结构最大的好处是能共享资源：镜像能被多个容器共享。</li>
+<li>只有容器层是可写的，容器层下面的所有镜像层都是只读的。</li>
+<li>Copy-On-Write 特性
+<ul>
+<li>在容器中读取文件时，docker 会从上到下在各镜像层查找此文件，找到后读入内存并停止。</li>
+<li>在容器中修改文件时，docker 会从上到下在各镜像层查找此文件，复制至容器层进行修改。</li>
+<li>在容器中删除文件时，docker 会从上到下在各镜像层查找此文件，在容器层记录删除操作。</li>
+</ul>
+</li>
+<li>Docker 会缓存已有镜像的镜像层，以供快速使用。一层有改动后，其上层的所有缓存都失效。</li>
+</ul>
+<p>镜像可以用 <code>docker commit</code> 手动构建，但最好通过写 dockerfile 来构建。Dockerfile 会按指令顺序重复以下操作：对容器做修改、生成新的镜像、根据新镜像运行容器。一个简单的创建镜像的例子：</p>
+<ol>
+<li>dockerfile 上写 <code>RUN apt-get update &amp;&amp; apt-get install -y vim</code></li>
+<li>根据 dockerfile 创建命令：<code>docker build -t &lt;image_name&gt; -f &lt;dockerfile_path&gt;</code></li>
+</ol>
+<p><code>docker images</code> 查看所有镜像的信息，<code>docker history &lt;image_name&gt;</code> 查看指定镜像的构建历史。</p>
+<p><code>RUN</code>、<code>CMD</code> 和 <code>ENTRYPOINT</code> 这三个 Dockerfile 指令都有运行的含义。</p>
+<ul>
+<li><code>RUN</code> 通常用于安装应用和软件包，支持 Shell 格式和 Exec 格式。</li>
+<li><code>CMD</code> 用于设置容器启动后默认执行的命令和参数，整个 dockfile 中只有最后一条 <code>CMD</code> 有效，会被 <code>docker run</code> 的命令和参数 <strong>替换</strong>。支持 Exec 格式 和 Shell 格式（建议前者），也可为 <code>ENTRYPOINT</code> 提供额外参数。</li>
+<li><code>ENTRYPOINT</code> 也可以指定命令和参数，但是不会被 <strong>替换</strong>（除非使用 <code>docker run --entrypoint xxx</code>）。Exec 格式可以配合 <code>CMD</code> / 输入参数形成串联；Shell 格式则会忽略任何 CMD 或 <code>docker run</code> 提供的参数。</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;/bin/echo&quot;</span>, <span class="string">&quot;Hello&quot;</span>] </span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;word&quot;</span>]</span></span><br><span class="line"><span class="comment"># docker run -it [image] --&gt; Hello world</span></span><br><span class="line"><span class="comment"># docker run -it [image] test --&gt; Hello test</span></span><br></pre></td></tr></table></figure>
+<h2 id="Docker-的容器操作">Docker 的容器操作</h2>
+<p>容器一般分为工具类（busybox、ubuntu、debian）和服务类（web server、数据库）。</p>
+<p>容器靠 <code>docker run</code> 指定的命令或是 <code>CMD/ENTRYPOINT</code> 启动，其运行状态取决于该命令的生命周期。<code>docker run</code> 本质上是 <code>docker create</code> 和 <code>docker start</code> 的组合。</p>
+<p>使用 <code>--name</code> 和 <code>docker rename</code> 来命名。可以用容器名称、长 ID、短 ID 来定位某个容器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run ubuntu pwd</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">print</span> and <span class="built_in">exit</span></span></span><br><span class="line">docker run ubuntu /bin/bash -c &quot;while true; do sleep 1; done&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">occupy one terminal (run endlessly)</span></span><br><span class="line">docker run --name &quot;my http server&quot; -d httpd</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">use -d to run <span class="keyword">in</span> the back endlessly</span></span><br><span class="line">docker stop unbuntu</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">stop a container</span></span><br></pre></td></tr></table></figure>
+<p><code>docker ps / docker container ls</code> 可以查看当前运行的容器，加上 <code>-a</code> 会额外显示已经退出的容器。</p>
+<p><code>docker logs -f &lt;container&gt;</code> 可以查看容器启动命令后的输出。</p>
+<p><code>docker attach</code> 或 <code>docker exec</code> 可以进入在后台运行的容器。</p>
+<ul>
+<li>attach 是直接进入容器里，如果执行 <code>exit</code> 会打断正在运行的容器。</li>
+<li>exec 是在容器里打开新的终端，所以用 <code>exit</code> 不会打断容器的运行，推荐使用此方案。
+<ul>
+<li><code>-i</code>：即使没有附加也保持 STDIN 打开；<code>-t</code>：分配一个伪终端。</li>
+<li>常用命令：<code>docker exec -it &lt;container&gt; bash</code></li>
+</ul>
+</li>
+</ul>
+<p><code>docker stop</code> 和 <code>docker kill</code> 可以停止容器，相当于往容器的进程里发送 <code>SIGTERM</code> 和 <code>SIGKILL</code> 信号。</p>
+<p>对于已停止的容器可以用 <code>docker start</code> 唤醒，启动时保留上一次的所有参数。</p>
+<p><code>docker restart</code> 会依次执行 <code>stop</code> 和 <code>start</code>。也可以在 <code>docker run</code> 时加入 <code>--restart</code> 来自动重启。</p>
+<ul>
+<li><code>docker run -d --start=always</code> 意味任何时候退出都会自动重启。</li>
+<li><code>docker run -d --start=on-failure:3</code> 意思是退出就重启，但是最多三次。</li>
+</ul>
+<p><code>docker pause/unpause</code> 暂停容器运行（block CPU）和恢复容器运行。</p>
+<p><code>docker rm &lt;container1&gt; &lt;container2&gt;...</code>：删除容器，包括那些已停止但是保留参数的记录。</p>
+<ul>
+<li>
+<p><code>docker rm -v $(docker ps -aq -f status=exited)</code> 删除所有已退出的容器（记录）。</p>
+</li>
+<li>
+<p>注意 <code>docker rmi</code> 是删除镜像。</p>
+</li>
+</ul>
+<p>Docker 可以限制容器的内存和 CPU 的占有量。</p>
+<ul>
+<li><code>-m/--memory</code> 设置内存上限，<code>--memory-swap</code> 设置内存+swap的上限。后者默认是前者的两倍。</li>
+<li><code>-c/--cpu-shares</code> 设置 CPU 权重，默认是 <code>1024</code>。权重影响的是 CPU 的相对占有量。</li>
+<li>如果不设限制的话，默认没有内存上限，CPU 资源平等分配。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -m 200M --memory-swap=300M ubuntu</span><br><span class="line">docker run -it -m 200M --memory-swap=300M progrium/stress --vm 1 --vm-bytes 280M</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">progrium/stress 是压力测试，--vm 指定数量，--vm-bytes 指定每个线程的内存，此时不会报错。</span></span><br></pre></td></tr></table></figure>
+<p>Docker 还可以限制容器的 IO 资源。</p>
+<ul>
+<li><code>--blkio-weight</code> 设置 IO 读写磁盘的权重， 默认是 <code>500</code>。</li>
+<li><code>--device-read-bps --device-write-bps --device-read-iops --device-write-iops</code> 来限制读/写某个设备的 bps/iops。bps 表示每秒读写的数据量，iops 是每秒 IO 的次数。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --device-write-bps /dev/sda:30MB ubuntu</span><br><span class="line">time dd if=/dev/zero of=test.out bs=1M count=800 oflag=direct    # &lt;30MB/s</span><br></pre></td></tr></table></figure>
+<p>Docker 的资源 <strong>限额</strong> 技术本质上是 linux 的 Control Group 功能，其目录在 <code>/sys/fs/cgroup/</code> 下。</p>
+<p>Docker 还利用了 linux 的 namespace 技术来实现容器资源的 <strong>隔离</strong>，对应以下六中资源。</p>
+<ul>
+<li>Mount 让容器看上去拥有整个文件系统。</li>
+<li>UTS 让容器拥有自己的 hostname（Docker 默认 hostname 为容器的短 ID，可以用 <code>--hostname/-h</code>）。</li>
+<li>IPC 让容器拥有自己的共享内存和信号量来实现进程间通信，而不会和其他容器混在一起。</li>
+<li>PID 让每个容器拥有自己的 PID。</li>
+<li>Network 让容器拥有独立的网卡、IP、路由。</li>
+<li>User 让容器管理自己的用户（host 里看不到容器里创建的用户）。</li>
+</ul>
+<h2 id="Docker-的网络">Docker 的网络</h2>
+<p><code>docker network ls</code> 可以查看当前网络， <code>docker network inspect &lt;network_name&gt;</code> 查看具体信息。</p>
+<p>docker 安装时会创建三个默认网络 <code>bridge, host, none</code>。可以用 <code>--network</code> 指定网络。</p>
+<ul>
+<li><code>none</code> 网络指的是什么都没有封闭网络，起到隔离效果。</li>
+<li><code>host</code> 可以共享和主机的所有网络配置，方便但有可能会起冲突。<code>--privileged=true</code> 可以修改主机配置。</li>
+<li><code>bridge</code>：docker 启动时会在主机创建一个虚拟网桥，没指定 network 的容器都会挂到这个网桥里。</li>
+</ul>
+<p>Docker 还提供三种用户自定义的网络驱动，<code>bridge, overlay, macvlan</code>，后两者用于创建跨主机网络。对于 <code>bridge</code> 驱动，用 <code>--subnet, --gateway</code> 指定网关和子网参数，用 <code>--ip</code> 指定静态参数（而非分配）。</p>
+<p>容器之间通信有以下几种方式：</p>
+<ol>
+<li>通过 ip 通信。同一网桥可以直接通信，不同网桥的容器需要用 <code>docker network connect</code> 加网卡来通信。</li>
+<li><code>--network=container:&lt;container_name_or_id&gt;</code>：让新容器共享某个容器的所有网络配置。</li>
+</ol>
+<p>容器访问外部网络时， iptables 会判断出外发包并将源地址替换成 host 地址发出去。</p>
+<p>外部网络访问容器需要做端口映射。用 <code>--port &lt;docker_port&gt;</code> 后会自动生成一个对外的端口（通过 <code>docker ps/port</code> 查看） ，也可以用 <code>--port &lt;host_port&gt;:&lt;docker_port&gt;</code> 指定端口映射。</p>
+<h2 id="Docker-的存储">Docker 的存储</h2>
+<p>Docker 提供了两种存放数据的资源。storage driver 是无状态的，它分层管理镜像层，适合 busybox 等工具类容器；Data Volume 是有状态的，适合那些启动时需要加载已有的数据、销毁时需要保留数据的容器。</p>
+<p>Docker 支持多种 storage driver，有 AUFS、Device Mapper、Btrfs、OverlayFS、VFS 和 ZFS。它们都能实现 Copy-On-Write 的分层架构，同时又有各自的特性。Docker 在安装时会根据 OS 选择一个默认的 driver，如 Unbuntu 用 AUFS，Redhat/CentOS 用 Device Mapper，SUSE 用 Btrfs。</p>
+<p>Data Volume 本质上是共享主机上的目录或文件，可用容量即为主机剩余容量。</p>
+<ol>
+<li><code>docker run --volume &lt;host_path&gt;:&lt;container_path&gt;[:ro/z/Z]</code> 可以把容器里的路径 mount 到主机的文件/文件夹路径上，该路径如果不存在会被新建。默认是可读可写，可以用 <code>ro</code> 指定为可读，<code>z</code> 表示这个目录可以多容器共享，<code>Z</code> 表示是该容器私有的。以上命令等价于 <code>docker run --mount type=bind, source=&lt;host_path&gt;, target=&lt;container_path&gt;[, readonly]</code>，但是这种用法如果路径不存在会报错。</li>
+<li>如果 <code>--volume</code> 时没有冒号，视为只指定了容器路径，docker 会在主机里生成一个该容器专属目录，然后再该容器路径 mount 到该专属目录下。可以用 <code> docker volume</code> 查看具体情况。 这种方法不需要指定主机的绝对路径，可以执行强。但是它只能支持目路，且不能控制读写权限（默认均能读写）。</li>
+</ol>
+<p>上述是容器与主机共享数据，而容器之间共享数据有以下三种方法：</p>
+<ol>
+<li>最简单的操作是把不同的容器用上述第一种方法 mount 到相同的主机目录。</li>
+<li>也可以先定义一个 volume container ，后续容器可以直接绑定到这。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker create --name share_volume -v &lt;host_name&gt;:&lt;docker_name1&gt; -v &lt;docker_name2&gt; ...</span><br><span class="line">docker run --name web1 -d --volumes-from share_volume httpd</span><br><span class="line">docker run --name web2 -d --volumes-from share_volume httpd</span><br><span class="line">docker run --name web3 -d --volumes-from share_volume httpd</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以上三个容器都可以使用 share_volume 里的两种 volume。</span></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Docker/">https://jiangshibiao.github.io/Docker/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Docker.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/Rust/" title="Rust 语法"><img class="cover" src="/../post_images/Rust.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Rust 语法</div></div><div class="info-2"><div class="info-item-1">记录了我对 Rust 语言的系统性学习。</div></div></div></a><a class="pagination-related" href="/Selected-Problems-from-ACM-ICPC-2/" title="趣题摘记-算法题精选-2"><img class="cover" src="/../post_images/Selected-Problems-from-ACM-ICPC.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">趣题摘记-算法题精选-2</div></div><div class="info-2"><div class="info-item-1">记录了 OI/ICPC 向的算法题，去其琐碎、留其精髓，望博君一笑。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/Hexo-Butterfly/" title="Hexo-Butterfly 主题配置"><img class="cover" src="/../post_images/Hexo-Butterfly.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-03-05</div><div class="info-item-2">Hexo-Butterfly 主题配置</div></div><div class="info-2"><div class="info-item-1">记录了本博客采用的 Hexo/Butterfly 框架的部署配置。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">容器简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E9%95%9C%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">Docker 镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">Docker 的容器操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">4.</span> <span class="toc-text">Docker 的网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">5.</span> <span class="toc-text">Docker 的存储</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Exploring-DeepSeek/" title="探索 DeepSeek"><img src="/../post_images/DeepSeek.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="探索 DeepSeek"/></a><div class="content"><a class="title" href="/Exploring-DeepSeek/" title="探索 DeepSeek">探索 DeepSeek</a><time datetime="2025-07-20T16:00:00.000Z" title="Updated 2025-07-21 2025-07-21T00:00:00+08:00">2025-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐">重度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轻度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Light-Fun/" title="轻度桌游推荐">轻度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多方计算之 ECDSA 门限签名"/></a><div class="content"><a class="title" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名">多方计算之 ECDSA 门限签名</a><time datetime="2025-07-17T16:00:00.000Z" title="Updated 2025-07-18 2025-07-18T00:00:00+08:00">2025-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Zero-Knowledge-Proof/" title="零知识证明"><img src="/../post_images/Zero-Knowledge-Proof.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="零知识证明"/></a><div class="content"><a class="title" href="/Zero-Knowledge-Proof/" title="零知识证明">零知识证明</a><time datetime="2025-07-14T16:00:00.000Z" title="Updated 2025-07-15 2025-07-15T00:00:00+08:00">2025-07-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

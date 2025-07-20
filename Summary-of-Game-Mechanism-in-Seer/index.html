@@ -1,0 +1,1407 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>赛尔号 PVE 百科全书 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="系统系地整理了《赛尔号》这个游戏在 PVE 方面的知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="赛尔号 PVE 百科全书">
+<meta property="og:url" content="https://jiangshibiao.github.io/Summary-of-Game-Mechanism-in-Seer/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="系统系地整理了《赛尔号》这个游戏在 PVE 方面的知识点。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Summary-of-Game-Mechanism-in-Seer.png">
+<meta property="article:published_time" content="2023-02-26T01:44:13.000Z">
+<meta property="article:modified_time" content="2023-07-30T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Collection">
+<meta property="article:tag" content="Game">
+<meta property="article:tag" content="Seer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Summary-of-Game-Mechanism-in-Seer.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "赛尔号 PVE 百科全书",
+  "url": "https://jiangshibiao.github.io/Summary-of-Game-Mechanism-in-Seer/",
+  "image": "https://jiangshibiao.github.io/post_images/Summary-of-Game-Mechanism-in-Seer.png",
+  "datePublished": "2023-02-26T01:44:13.000Z",
+  "dateModified": "2023-07-30T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Summary-of-Game-Mechanism-in-Seer/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '赛尔号 PVE 百科全书',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Summary-of-Game-Mechanism-in-Seer.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">赛尔号 PVE 百科全书</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">赛尔号 PVE 百科全书</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-02-26T01:44:13.000Z" title="Created 2023-02-26 2023-02-26T09:44:13+08:00">2023-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-30T16:00:00.000Z" title="Updated 2023-07-31 2023-07-31T00:00:00+08:00">2023-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Fun/">Fun</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">19.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>60mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>在这篇文章里，我将详细收录 <a target="_blank" rel="noopener" href="https://seer.61.com/">赛尔号页游 &amp; 互通手游</a> 中一些不太寻常的游戏机制。注意，本文不是新手教程，对一些常规机制不会做太多的说明，定位是 <strong>拥有一定门槛的《PVE 百科全书》</strong>。</p>
+<p>鸣谢 B 站大佬：dqs 白纸，摸鱼的橙汁，异域华尔兹，流风天啸，晶蓝实验室，摸鱼的娜娜。</p>
+<p>鸣谢贴吧大佬：假诩，铭记，飞鱼三千里，哇内外妇儿，阿米族联盟。</p>
+<h2 id="工具相关">工具相关</h2>
+<p>2015 年 7 月，北冥玄武上线后被发现可以用草马无脑瞬，但冗长的出招总是让小赛尔们奋斗几个小时后白屏。第一款爆红的 V171 登录器就是为了解决频繁白屏的问题，随后赛尔桌面版、子杰登录器等产品相继出现，打开了登录器这个全新时代的大门。由于这属于官方不承认的第三方软件，起初只有小规模玩家使用登录器；推着时间的推移，登录器越来越丰富的功能吸引了越来越多的用户，而始终绕不开的盗号风险只能靠对作者人品的信赖。橙汁曾开发过一款流畅而稳定的 Waking辅助-Seer登录器，可惜在 2020 年 2 月 14 日因精力不足和饱受质疑而 <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/6490289450">停运</a>。为了应对 2021年 1 月12日 Flash Player 插件被禁用，赛尔号官方在 2020 年底上线了一款类似登录器的工具“赛尔号微端”且陆续在更新（最新的 V1.0.3 可见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv17843269">橙汁的介绍</a>），因为功能单一、使用卡顿，并没有被玩家广泛使用。</p>
+<p>时至今日，绝大部分玩家都投靠了登录器的怀抱，来加速对战、规避繁琐的日常、辅助精灵关卡——可以说，这个发明直接推动了赛尔号的蒸蒸日上。目前最广泛使用的登录器工具无疑是 <a target="_blank" rel="noopener" href="https://yoso.redstoner.cn/wp/">bop</a> 制作的 Yoso 赛尔器和 chika 登录器。该工具开放了“魔法”的制作方法，大量民间开发者可在 <a target="_blank" rel="noopener" href="https://bbs.yoso.live/forum.php">chika 魔法论坛</a> 分享自己为每周活动、精灵关卡等制作的脚本。目前 <a target="_blank" rel="noopener" href="https://space.bilibili.com/383994824">歆冉忆梦</a> 是最活跃的周活动脚本制作者。此外，该工具还提供了分别针对 PVE 的 RUBY 日常器和针对 PVP 的赛尔巅峰器，后者可以很方便地开发巅峰脚本，导致了 flash 端橘子、寒雪飞舞、未明脚本泛滥。必须要指出的是，登录器的功能日益强大也导致很多玩家从“脚本”向”外挂“迈步（推荐阅读 <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7229731446">浅谈脚本的前世今生</a>）。当严重影响游戏平衡或触及官方的核心利益时，官方就不会再睁一只眼闭一只眼了。</p>
+<p>登录器 <strong>一键压血</strong> 的本质：把背包里的全体精灵恢复，去打白虎送掉，再嗑 20 血药剂。</p>
+<ul>
+<li>这个流程会导致不允许中途退出的关卡无法压血，如萨特和小舞的最后一关。</li>
+<li>少压了一只精灵后，把目标精灵放入出战背包、剩下压完血的精灵放入待命背包后再执行一键压血，则待命背包的精灵也会恢复至满血。这种场景推荐通过仓库中转，或把压完血的精灵一起再压血。</li>
+</ul>
+<p>阿米族联盟开发了一款名为 <strong>MV 赛尔手册</strong> 的安卓 APP（对应 QQ 小程序 <strong>赛尔营地</strong>， 微信小程序 <strong>赛尔手册</strong>），目前已经成为玩家搜索精灵技能、搭配精灵刻印、查询仓库精灵等不可或缺的工具。每个技能都对应若干个编码，这让玩家深刻地意识到描述类似的技能之间的关联和区别，例如区分技能增伤在 PVE 中是否有效。</p>
+<h2 id="游戏内常见设定">游戏内常见设定</h2>
+<p>赛尔号通常在每周五更新（遇到节假日可能会前后微调），新版本将维持一周。</p>
+<ul>
+<li>周五开服时间从以前的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">6:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span>，一直拖到现在的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>:</mo><mn>00</mn><mo>∼</mo><mn>13</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">12:00\sim 13:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span>。根据 h5 端显示，官方承诺常规开服时间不会低于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">15:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span>。延迟开服时通常会全服补偿刻印、荣耀铸币等资源。</li>
+<li>除周四外每天晚上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>23</mn><mo>:</mo><mn>59</mn></mrow><annotation encoding="application/x-tex">23:59</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">23</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">59</span></span></span></span> 左右关服，周四一般提早至 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>23</mn><mo>:</mo><mn>55</mn></mrow><annotation encoding="application/x-tex">23:55</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">23</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">55</span></span></span></span>。</li>
+<li>除周五外每天早上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">0:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 开服。远古时期赛尔号每天 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>:</mo><mn>00</mn><mo>−</mo><mn>6</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">0:00-6:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">00</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 都会强制关服维护。</li>
+<li>大型节日（如春节）时，官方可能会一口气载入两周的版本，第二周的周五零点能直接进入游戏。</li>
+</ul>
+<p>战斗火焰有紫色、绿色、金色、蓝色火焰四种，仅 PVE 有效。</p>
+<ul>
+<li>VIP 玩家每天可以选一种火焰领取一次，有效时长 30 分钟，称为加强型火焰，俗称大火；非 VIP 玩家可以从带火的玩家上蹭火，有效时长 10 分钟，称为普通火焰，俗称小火。</li>
+<li>紫火、金火、蓝火对于 VIP/非 VIP 效果不同。前者是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>25</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">25\%,25\%,60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">25%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">25%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">60</span></span></span></span>，后者是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>20</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">20\%,20\%,50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">20%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">20%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">50</span></span></span></span>。不管是哪种紫火，增伤效果均不及紫火，除非用于无法强化或 boss 会偷强的场合。</li>
+<li>VIP 玩家如果借的是加强型火焰，生效的也就是 30 分钟的加强型火焰，反之亦然。</li>
+<li>每天借火的次数没有限制，但 <strong>火焰消失后才能去再借火</strong>。VIP 玩家可以通过选择自己每日一次的火焰 <strong>覆盖掉借来的火焰</strong>，但反过来不行。由于绿火最常用，推荐绿火去蹭，要用别的火了再覆盖。</li>
+<li>购买寒假/暑假月卡能让火焰的持续时间延长至 2 小时。</li>
+<li>上述都是 flash 端的火焰规则，h5 端和 flash 端不互通。h5 端每日可免费领取一次火焰，时长和效果同端游；当日再次领取火焰则需要用好友之间互发的星星兑换，五个星星领取一个。</li>
+</ul>
+<p>出战背包里的非首发精灵的顺序和实际对战时不一定相同。其满足下列的性质：</p>
+<ul>
+<li>除首发外精灵的实际对战顺序由放入出战背包的先后决定。举例来说，往空的出战背包依次放入帝皇之御、六界帝王、蒂朵并调整成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span> 倍速后，就能实现自动 84（对应技能需调至第一格）。</li>
+<li>重新登陆后，上一次登陆时的出战背包放入顺序不再生效，对战时除首发外可能会乱序。</li>
+<li>换首发时会打乱出战顺序，即出战背包里的顺序不再是战斗时的顺序。</li>
+<li>当出战背包的精灵不是预期的顺序时，可借助仓库或待命背包来调整顺序。即先把除首发外的所有精灵都放入待命背包/仓库，然后按期望的顺序把精灵从待命背包/仓库里放回出战背包。</li>
+</ul>
+<h2 id="精灵能力值计算">精灵能力值计算</h2>
+<p>关于精灵的能力值，赛尔号官方发布过权威 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12647887">专栏</a>。</p>
+<p>根据 <a target="_blank" rel="noopener" href="https://news.4399.com/gonglue/seer/jingyanxinde/797541.html">橙汁的攻略</a>，对于满级精灵来说，基础能力值的计算公式为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>基础能力值</mtext><mo>=</mo><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mn>2</mn><mo>⋅</mo><mtext>种族值</mtext><mo>+</mo><mtext>学习力</mtext><mi mathvariant="normal">/</mi><mn>4</mn><mo>+</mo><mtext>个体值</mtext><mo>+</mo><mtext>偏移量</mtext><mo stretchy="false">)</mo><mo>×</mo><mtext>性格修正</mtext><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">基础能力值=\lfloor (2 \cdot 种族值+学习力/4+个体值+偏移量) \times 性格修正 \rfloor
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">基础能力值</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">种族值</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">学习力</span><span class="mord">/4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">个体值</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">偏移量</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">性格修正</span><span class="mclose">⌋</span></span></span></span></span></p>
+<p>其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>性格修正</mtext><mo>∈</mo><mo stretchy="false">[</mo><mn>0.9</mn><mo separator="true">,</mo><mn>1.0</mn><mo separator="true">,</mo><mn>1.1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">性格修正 \in [0.9,1.0,1.1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord cjk_fallback">性格修正</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0.9</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1.0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1.1</span><span class="mclose">]</span></span></span></span>，体力能力值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>偏移量</mtext><mo>=</mo><mn>110</mn></mrow><annotation encoding="application/x-tex">偏移量=110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">偏移量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">110</span></span></span></span>，其他能力值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>偏移量</mtext><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">偏移量=5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">偏移量</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span>。</p>
+<p>从上述公式可以得到如下推论：</p>
+<ul>
+<li>每 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 点种族值可简单对应成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 点能力值。</li>
+<li>每 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 点学习力对应 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 点能力值，所以正常情况下学习力刷 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 的倍数就不会浪费，最高拉到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>252</mn></mrow><annotation encoding="application/x-tex">252</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">252</span></span></span></span> 就行。受性格加成的那项能力值（如固执精灵的攻击能力值）会让学习力的加点变得 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11y4y197q3">十分复杂</a>。假设精灵的个体值是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>31</mn></mrow><annotation encoding="application/x-tex">31</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">31</span></span></span></span> 且攻击种族值非 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo separator="true">,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">2,7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">7</span></span></span></span> 结尾，则攻体精灵的刷法模板是：攻 254，体 252，速 4。</li>
+</ul>
+<p>根据异域华尔兹的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11168267">讲解</a>，精灵在 PVE 对战时的实际能力值计算公式为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>实际能力值</mtext><mo>=</mo><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mtext>基础能力值</mtext><mo>+</mo><mtext>特性</mtext><mo>+</mo><mtext>刻印</mtext><mo>+</mo><mtext>战队</mtext><mo>+</mo><mtext>年费</mtext><mo>+</mo><mtext>称号</mtext><mo>+</mo><mtext>目镜</mtext><mo stretchy="false">)</mo><mo>×</mo><mtext>绝大多数套装百分比</mtext><mo stretchy="false">⌋</mo><mo>+</mo><mtext>道具</mtext></mrow><annotation encoding="application/x-tex">实际能力值=\lfloor (基础能力值+特性+刻印+战队+年费+称号+目镜)×绝大多数套装百分比 \rfloor +道具
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">实际能力值</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊(</span><span class="mord cjk_fallback">基础能力值</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">特性</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">刻印</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">战队</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">年费</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">称号</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">目镜</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">绝大多数套装百分比</span><span class="mclose">⌋</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">道具</span></span></span></span></span></p>
+<p>PVE 常用套装和目镜总结可见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv15146186">ツバサ99ova的整理</a>。整理如下：</p>
+<ul>
+<li>银翼、皇帝套与其他增伤效果可能加算也可能乘算，云端少女莫妮卡的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21309143">各系强攻手</a> 里有标注。</li>
+<li>乾古套是个有潜力但目前非必备的套装，固伤效果能辅助月华更快地打完高防 boss。</li>
+<li>未来战甲、苍星战甲、元神守护、永夜玄铠、杰出新兵套、耀世战铠是常见的属性站场套装。</li>
+<li>关于耀世套的减伤效果：与大部分精灵（伊芙莉莎，四九，幻境，混索，特兰西完全体）的魂印减伤加算，与部分精灵（王之哈莫，圣莫，凡尔斯，战神·盖亚）魂印减伤乘算，还会与少部分精灵（霍夫曼）的魂印减伤冲突导致减伤被覆盖掉；减伤效果与技能减伤也可能是加算、乘算和冲突；减伤不响应属性技能造成的红伤；除魂印减伤和技能减伤以外，与其他来源的减伤（坚硬特性，金火，珠子）都是乘算。特别地，我方处于护盾状态时，被护盾吸收的伤害不带减伤效果。具体细节详见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv14670492">流风天啸的测试</a>。</li>
+<li>典狱长与未来套相比，前者额外增加命中率，后者数值加成更高（原因详见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6724351">橙汁的分析</a>）。</li>
+<li>常用目镜：未来之瞳（双攻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">+20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">20</span></span></span></span>，速度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">+15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">15</span></span></span></span>），魔界之风（双防 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">+25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">25</span></span></span></span> 速度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">+15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">15</span></span></span></span>），星愿之镜（特攻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">+30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">30</span></span></span></span> 速度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">+15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">15</span></span></span></span>），预言之镜（攻击 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">+30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">30</span></span></span></span> 速度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">+15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">15</span></span></span></span>），粒子目镜（命中率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>3</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+3\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">3%</span></span></span></span>）。</li>
+</ul>
+<p>所有能力称号列表可见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv19880387">黎姿蹙尕的整理</a>。常用的 PVE 能力称号如下：</p>
+<ul>
+<li>站场：齐天小圣（体力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">+100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">100</span></span></span></span>），神话（体力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">+100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">100</span></span></span></span> 双防 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">+25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">25</span></span></span></span> ）。</li>
+<li>强攻：吉光凤羽（双攻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">+50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">50</span></span></span></span>），夏日狂想曲（攻击 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">+60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">60</span></span></span></span> 体力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">+30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">30</span></span></span></span>），音浪袭来（特攻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">+60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">60</span></span></span></span> 体力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">+30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">30</span></span></span></span>）。</li>
+</ul>
+<p>能量珠和能力提升药剂只有 PVE 有效，是有次数限制的消耗品。</p>
+<ul>
+<li>效果最好的能量珠均可用战队资源兑换，分别是奇效攻击/特攻/防御/特防能量珠（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>80</mn></mrow><annotation encoding="application/x-tex">+80</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">80</span></span></span></span>），奇效速度能量珠（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>45</mn></mrow><annotation encoding="application/x-tex">+45</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">45</span></span></span></span>），不灭能量珠（减少我方 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">1/4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/4</span></span></span></span> 伤害）和愤怒能量珠（增加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">1/8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/8</span></span></span></span> 暴击率）。</li>
+<li>瞬杀能量珠的瞬杀形式是红伤，面板概率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">1\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">1%</span></span></span></span> 但实测只有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.6</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">0.6\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">0.6%</span></span></span></span>。曾经瞬杀能量珠在 PVP 有效，由于 PVP 不会消耗药剂，可以反复使用；2020 年 5 月 1 日的版本修复成 PVP 无效。</li>
+<li>减伤能量珠（减少双方 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">1/4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/4</span></span></span></span> 伤害）看似是低配版的不灭珠，在压攻时有奇效。减伤前若红伤满足斩杀伤害则不触发减伤效果，补 PP 的回合也不触发减伤效果，详见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1114y1H7Nj">凤兮凤兮的测试</a>。</li>
+<li>能量珠每次战斗最多使用一个，除了减伤能量珠和不灭能量珠可以一起使用。根据 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1f24y1X75D">摸鱼的娜娜测试</a>，金火、不灭能量珠、减伤能量珠乘法叠加，同时使用后减伤 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>58</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">58\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">58%</span></span></span></span>。</li>
+<li>全面提升药剂、赛尔号正能量和全面提升药剂（龙）能提升全属性 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mi mathvariant="normal">/</mi><mn>50</mn><mi mathvariant="normal">/</mi><mn>80</mn></mrow><annotation encoding="application/x-tex">50/50/80</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">50/50/80</span></span></span></span> 点，不能一起使用。</li>
+<li>战斗结束前刷新不会消耗能量珠和药剂，在无次数要求的关卡里可使用刷新战术。</li>
+</ul>
+<h2 id="伤害计算">伤害计算</h2>
+<p>赛尔号的伤害分成三种：红伤、粉伤、真伤。</p>
+<ul>
+<li><strong>红伤</strong> 指攻击技能直接造成的伤害，由基础伤害和增减伤效果经过 <strong>乘法叠加</strong> 后得到，以红字显示。</li>
+<li><strong>粉伤</strong> 分为固定伤害和百分比伤害两种，以粉字显示。粉伤可被抗性、魂印、护罩、少量技能减免。固定伤害和百分比伤害彼此之间很容易混淆，官方的技能和魂印描述里经常混用。</li>
+<li><strong>真伤</strong> 指真实伤害，大多以白字显示，无法被任何方式减免。很多秒杀技能的补偿伤害、圣甲·盖亚的魂印弹伤等虽然是由粉字显示，实质上也是真实伤害。</li>
+</ul>
+<p><strong>基础伤害</strong> 又称 <strong>初始伤害、裸伤</strong>，指根据以下 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ti4y1y7ez">计算公式</a> 直接计算出来的伤害：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mn>0.4</mn><mo>⋅</mo><mi>l</mi><mi>e</mi><mi>v</mi><mi>e</mi><mi>l</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi><mo>×</mo><mi>a</mi><mi>t</mi><mi>t</mi><mi>a</mi><mi>c</mi><mi>k</mi><mo>÷</mo><mi>d</mi><mi>e</mi><mi>f</mi><mi>e</mi><mi>n</mi><mi>s</mi><mi>e</mi><mo>÷</mo><mn>50</mn><mo>+</mo><mn>2</mn><mo stretchy="false">]</mo><mo>×</mo><mi>β</mi><mo>×</mo><mi>α</mi><mo>×</mo><mo stretchy="false">(</mo><mn>217</mn><mo>∼</mo><mn>255</mn><mo stretchy="false">)</mo><mo>÷</mo><mn>255</mn></mrow><annotation encoding="application/x-tex">[(0.4 \cdot level+2) \times power \times attack \div defense \div 50+2] \times \beta \times \alpha \times (217 \sim 255) \div 255
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[(</span><span class="mord">0.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">tt</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">se</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">50</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">217</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">255</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">255</span></span></span></span></span></p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>e</mi><mi>v</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">level</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span></span></span></span> 分别是攻击方等级、本系修正和克制系数修正。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mo stretchy="false">{</mo><mn>1.0</mn><mo separator="true">,</mo><mn>1.5</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\beta=\{1.0,1.5\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1.0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1.5</span><span class="mclose">}</span></span></span></span> 是本系修正，若技能属性和本方属性一致则享受加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.5</mn></mrow><annotation encoding="application/x-tex">1.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.5</span></span></span></span> 的本系加成。特别地，双属性精灵如果使用其中一个属性对应的单属性技能，也能享受本系加成。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> 是克制系数修正。单属性攻击单属性只分为克制、普通、微弱、无效四种，系数分别是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>2</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>0.5</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{2,1,0.5,0\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">}</span></span></span></span>。注意 A 克制 B 并不代表 B 微弱 A，反之亦然（如地面无效飞行但是飞行普通地面）。<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6206519">涉及双属性的计算规则</a> 比较复杂，总之合成后的克制系数会被控制在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\alpha \in [0,4]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">]</span></span></span></span>。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">power</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span></span></span></span> 是技能威力（处于烧伤状态时数值减半）和威力宝石的总和。有些技能的描述中会带“威力提升”或“伤害提升”的字样。前者是对公式中的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">power</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span></span></span></span> 进行提升，后者是对公式的值进行提升。在满级的情况下，技能描述为 “伤害提升 v% ”的技能会比 “威力提升v%” 造成的伤害 <strong>更多</strong>（但差距很小）。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>t</mi><mi>t</mi><mi>a</mi><mi>c</mi><mi>k</mi></mrow><annotation encoding="application/x-tex">attack</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">tt</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 是 攻击方的攻击值/特攻值 乘上 攻击方攻击/特攻能力等级系数；</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>e</mi><mi>f</mi><mi>e</mi><mi>n</mi><mi>s</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">defense</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">se</span></span></span></span> 是 防守方的防御值/特防值 乘上 防守方防御/特防能力等级系数 再乘上 攻击方的穿甲系数。</li>
+</ul>
+<p>流风天啸 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13768880">指出</a>，官方在计算裸伤时可能做了精度截取，实际值与理论值会有个位数级的不一致。</p>
+<p>战斗中一共有六项能力等级，分别是攻击、特攻、防御、特防、速度和命中。能力等级登场时为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，强化等级上限是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">+6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">6</span></span></span></span>，弱化等级下限是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">-6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">6</span></span></span></span>。前五项能力等级会让对应的能力值乘或除 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mn>0.5</mn><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1+0.5n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.5</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 是强化或弱化的等级。例如，战斗中攻击能力值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">+2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">2</span></span></span></span> 后攻击数值就翻倍，裸伤也就翻倍。</p>
+<p><strong>增减伤效果</strong> 泛指暴击、套装、魂印、回合类效果等对裸伤进行的修饰，大多数是按比例增加或减少，也有一些是强制修正至某个数值。注意不同的增减伤效果的触发节点不一致，细节可见 刀锋下的阴影7 的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ti4y1y7ez/">讲解</a>。注意大部分增伤技能和银翼乘算，少量攻击技能（如 1472）的增伤和银翼加算。</p>
+<p>PVE 有效的 <strong>伤害提升技能</strong> 整理如下（威力宝石有效）：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>效果简介</th>
+<th>代表精灵和技能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>600</td>
+<td>若对手是雄性/雌性则伤害提升x%</td>
+<td>启灵元神-真神信仰、魔化克雷尔-邪光之怒</td>
+</tr>
+<tr>
+<td>769</td>
+<td>若对手不处于异常状态则造成的攻击伤害额外提升n%</td>
+<td>光之惩戒·英卡洛斯-天河圣芒斩，炽风烈鬼-风炽狂躁断，无上·万魔天尊-深渊忏悔</td>
+</tr>
+<tr>
+<td>795</td>
+<td>每次使用则当回合造成的攻击伤害额外提升n</td>
+<td>艾夏拉-灵剑封魂</td>
+</tr>
+<tr>
+<td>1021</td>
+<td>对手不处于能力提升状态时造成的伤害提高x%</td>
+<td>混沌魔君索伦森-烈火净世击，圣光莫妮卡-王·梦之乌托邦，皮特尔·万寂寒光剑</td>
+</tr>
+<tr>
+<td>1048</td>
+<td>对手处于异常状态时自身造成的伤害提高x%</td>
+<td>光之惩戒·英卡洛斯-天河圣芒斩</td>
+</tr>
+<tr>
+<td>1129</td>
+<td>x%的几率为y倍，自身处于能力提升状态时几率翻倍</td>
+<td>混沌魔君索伦森-诸雄之主，艾莫莉萨-冥夜镇魂弑，六界御神-超界审判</td>
+</tr>
+<tr>
+<td>1198</td>
+<td>对手不处于能力下降状态则造成伤害提升x%</td>
+<td>混沌蒂亚斯-幽火勾爪袭</td>
+</tr>
+<tr>
+<td>1242</td>
+<td>n%的几率伤害为m倍，未触发则概率提升</td>
+<td>艾欧丽娅-有女初长成</td>
+</tr>
+<tr>
+<td>1252</td>
+<td>自身体力低于1/x时伤害为n倍，低于1/y时伤害为m倍</td>
+<td>月照星魂-月下华尔兹，魔钰-梦境残缺，混沌魔眼耶里梅斯-灵魂碎灭袭</td>
+</tr>
+<tr>
+<td>1472</td>
+<td>自身处于能力提升状态时造成的伤害提升x%，先出手时效果翻倍（<strong>与银翼加算</strong>）</td>
+<td>潜隐灵蛇-灵能炫光击，特罗斯-迅猛暴龙拳</td>
+</tr>
+<tr>
+<td>1686</td>
+<td>先出手时造成的攻击伤害提升n%，若对手当前体力高于自身则伤害额外提升m%</td>
+<td>至序圣华-荡尽芜杂，龙伽-龙语星辰陨</td>
+</tr>
+<tr>
+<td>1718</td>
+<td>后出手时造成的攻击伤害提升n%，若对手当前体力高于自身则伤害额外提升m%</td>
+<td>环·源-零·神庭轰坠</td>
+</tr>
+</tbody>
+</table>
+<p>刀锋下的阴影 7 总结了 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1i44y1z7ZJ">PVE 无效的增伤效果</a>：986（先出手时造成的攻击伤害额外提升x%，时空界神-界·无尽永前），999（自身每处于一种能力提升状态，造成的伤害提升x%，纳西斯-星辰万丈光），1086（自身体力低于对手时造成的伤害提高x%，不灭地威·萨瑞卡-X·天罡碎岩），1103（若对手处于能力提升状态则造成的攻击伤害额外提升n%，古温婆婆-桑田不语），1439（对手处于能力下降状态造成的伤害提升x%，桃桃丸-翻花舞袖 ）。</p>
+<h2 id="变威力">变威力</h2>
+<p>若某个攻击技能的威力有多种可能的取值，则我们称这个技能拥有 <strong>变威力效果</strong>。异域华尔兹在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11502078">技能威力的种类和威力宝石的影响</a> 一文中，把攻击技能拆分了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> 种不同的威力类型，其中第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>∼</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">3 \sim 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span> 类技能即为带变威力效果的技能。长夜之主-艾希丝在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv15679900">变威力效果&amp;特点总览</a> 中也总结了很多带有变威力效果的技能。</p>
+<p>若某个攻击技能会在初始威力的基础上连续攻击若干次，则称为 <strong>连击技能</strong>。橙汁在 2018 年整理了 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv1271924">连续攻击技能精灵列表一览</a>，异域华尔兹则在 2021 年的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13767360">关于连击技能</a> 一文中总结了新旧两种效果不同的连击技能。老连击技能的特点属于常规技能，而新连击技能属于变威力技能（但有可能 PVE 无效）。</p>
+<p><strong>变威力技能</strong> 是更为特殊的概念，只有一部分拥有变威力效果的技能才是变威力技能。异域华尔兹在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13459300">关于变威力技能</a> 一文中总结了这类技能，刀锋下的阴影7 也有一个 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qq4y1Q7Gu/">讲解视频</a>。根据流风天啸的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv15573185">变威力技能</a>，可利用库莱姆斯的罪龙无赦（当回合受到攻击则令对手下回合使用的攻击技能所附加的效果失效）来检验是否是变威力技能。</p>
+<p>变威力技能的一些重要特性列举如下：</p>
+<ul>
+<li>除新型连击技能外，变威力技能在 PVE、PVP 均有效。</li>
+<li>变威力技能在暴击时和常规技能的效果不同，先破防再结算暴击伤害（能打出更多伤害）。</li>
+<li>对于同时具有消强/吸强/反弱的变威力技能而言：如果描述在变威力之前，则会先消强/吸强/反弱，再计算伤害；若描述在变威力之后，则会先计算伤害，再产生消强/吸强/反弱。</li>
+<li>变威力技能不吃威力宝石的加成，也不受本方烧伤状态影响。</li>
+<li>变威力技能具有击穿效果（诸如加梵迪先三“毁灭重剑”中减裸伤效果）。</li>
+<li>结算靠后的增伤方式对变威力技能有效，而结算靠前的增伤方式（如紫火，伤害加成特性，魂印，描述为“下n回合伤害翻倍/提升m%”的属性）对变威力技能无效。</li>
+</ul>
+<p>流风天啸 <a href="(https://www.bilibili.com/read/cv15573185)">认为</a>，变威力技能拥有上述特性的本质原因是：操作阶段计算裸伤时使用了初始威力，而战斗阶段发生的威力变化导致伤害公式重新计算并产生二段初始伤害，二段初始伤害的出现最终将一段初始伤害覆盖。</p>
+<p>PVE 有效的 <strong>变威力技能</strong> 整理如下（威力宝石无效）：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>效果简介</th>
+<th>代表精灵和技能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>连续使用每次威力增加 x，最高威力 y</td>
+<td>鲁斯王-湍流龙击打</td>
+</tr>
+<tr>
+<td>35</td>
+<td>威力=面板威力+20*对手对应攻防等级强化</td>
+<td>烈焰猩猩-惩罚，圣灵谱尼-灵光之怒</td>
+</tr>
+<tr>
+<td>100</td>
+<td>自身体力越少则威力越大（165-65*体力百分比）</td>
+<td>安卡-圣火攻心，锢灵·舞-精神封锁</td>
+</tr>
+<tr>
+<td>179</td>
+<td>属性相同则威力提升 x</td>
+<td>喵佐/飒雷孤影·喵佐-萌喵电刃</td>
+</tr>
+<tr>
+<td>539</td>
+<td>若对手处于能力强化状态则先制额外+1且威力翻倍</td>
+<td>金吉娜-狂热烈焰枪，恶鬼·图伽-成王败寇，阿琳-琳·锋刃之殇</td>
+</tr>
+<tr>
+<td>604</td>
+<td>威力随机，随机范围x-y，连续使用基础威力加k，最高z</td>
+<td>沉睡之眼-千目离合碎，西斯里-巫祝祈愿符，混沌·哈肯撒-邪念余烬，塞娅-鬼魅惊雷箭，影蝠-千重影缠身，鱼龙帝王-荡尽天下</td>
+</tr>
+<tr>
+<td>810</td>
+<td>每次命中对手后此威力技能下降x点</td>
+<td>乌拉诺斯-怒霆狂劈，八岐大蛇-恶魔瘟疫</td>
+</tr>
+<tr>
+<td>845</td>
+<td>若自身体力高于1/n则威力提升m%，</td>
+<td><strong>2023.3.17 改成变威力</strong>。烈羽赤兔-舍身莲花踏，凛锋剑心-战威利刃，伽尔-暗流星光破。</td>
+</tr>
+<tr>
+<td>862</td>
+<td>每消耗一层神耀能量此技能威力提升 x</td>
+<td>重生之翼-正义天启歌</td>
+</tr>
+<tr>
+<td>882</td>
+<td>自身每处于一种能力提升状态技能威力提升 x</td>
+<td>王之哈莫-王·龙子圣威决</td>
+</tr>
+<tr>
+<td>925</td>
+<td>出手时若自身满体力则威力技能提升x%</td>
+<td>霍夫曼-震地无双锤，帕尔妮兹-阗阗驱静迹，异维·拉伯克-芥子纳须弥，月华-月落星沉/月明星稀，妖族元皇·兰蒂斯-鬼面凝望</td>
+</tr>
+<tr>
+<td>1470</td>
+<td>自身天赋值越高则技能威力越强（满天赋 180）</td>
+<td>月照星魂-魂·月照星河，墨影星魂-魂·墨影春秋</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>n回合做x-y次攻击，每次攻击xx；xx 时连击上限为n</td>
+<td>启灵元神-涤罪（连击有效），锢灵·舞-罪恶锁链（连击无效）</td>
+</tr>
+<tr>
+<td>1652</td>
+<td>释放技能时自身每损失 xx 的体力值则此技能威力提升 xx</td>
+<td>虹雨·茜尔-虹·赤空辉痕，滢心-异域大雪崩</td>
+</tr>
+</tbody>
+</table>
+<p>PVE 有效的 <strong>有变威力效果的非变威力技能</strong> 整理如下（威力宝石无效）：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>效果简介</th>
+<th>代表精灵和技能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td>n回合做x-y次攻击</td>
+<td>弑神猎皇-扩散光雨，万兽之尊·猛虎王-狩·无限连抓</td>
+</tr>
+<tr>
+<td>37</td>
+<td>自身HP小于1/n时威力为m倍</td>
+<td>天香·小乔-扇舞天涯，逐界苍星-神明反叛</td>
+</tr>
+<tr>
+<td>61</td>
+<td>随机威力（面板威力通常为 0）</td>
+<td>远古鱼龙系列-远古审判，闪光波克尔-峰回路转</td>
+</tr>
+<tr>
+<td>645</td>
+<td>体力低于1/n时威力m倍</td>
+<td>阿徒-幻象冲击波，不羁·弗里德-次元星芒阵，利亚苏斯-七星殒命歌</td>
+</tr>
+<tr>
+<td>1444</td>
+<td>当前剩余体力越少则威力越大（240-100*当前体力*/总体力）</td>
+<td>审判之魂-秘耀空明判</td>
+</tr>
+</tbody>
+</table>
+<p>PVE 有效的 <strong>写作威力提升实为伤害提升技能</strong> 整理如下（威力宝石有效）：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>效果简介</th>
+<th>代表精灵和技能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30</td>
+<td>后出手的话威力为2倍</td>
+<td>圣光灵神-烽火无尽，万兽之尊·猛虎王-狂怒吞天啸</td>
+</tr>
+<tr>
+<td>40</td>
+<td>先出手的话威力为2倍</td>
+<td>御象灵尊-福泽聚宝象，空灵之刃-飞燕无影剑</td>
+</tr>
+<tr>
+<td>132</td>
+<td>若当前 hp 低于对手，则技能威力翻倍</td>
+<td>堕落绝语系列，黄金龙鹰-光芒耀世/琉璃碎心咒</td>
+</tr>
+<tr>
+<td>511</td>
+<td>x%概率威力翻倍，体力低于y时概率增加z%</td>
+<td>璎珞-五彩缤纷破，天蛇太祖系列-天蛇幻泪斩</td>
+</tr>
+<tr>
+<td>606</td>
+<td>若体力高于/低于对手，技能威力翻倍</td>
+<td>雷霆虎卫-雷鸣天荒闪</td>
+</tr>
+<tr>
+<td>645</td>
+<td>体力低于 x 时威力为 y 倍</td>
+<td>阿徒-幻象冲击波，瀚宇星皇-玄震命斩</td>
+</tr>
+<tr>
+<td>842</td>
+<td>若自身处于能力强化状态则威力提升 x%</td>
+<td>王·雷伊-雷裂残阳，莫迪西斯-秘境魔影，圣光莫妮卡-王·再见桃花源</td>
+</tr>
+<tr>
+<td>1443</td>
+<td>连续使用威力增加 k%，最高增加 n%</td>
+<td>查梅洛尼达-镜·灼渊龙息，镇世·乔特鲁德-王·真龙贯云</td>
+</tr>
+</tbody>
+</table>
+<h2 id="裸伤理论和拉防差">裸伤理论和拉防差</h2>
+<p><strong>裸伤理论</strong> 由 dqs 白纸提出并在 PVE 发扬光大：若 boss 使用攻击技能，则其更倾向于使用能对我方造成更多裸伤的技攻击能；当 boss 某个攻击技能的裸伤超过我方当前体力时，boss 必定使用攻击技能。”该理论在白纸 2019 年的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1F4411Z7h2">作品1</a> 和 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w4411d7r1">作品2</a> 里就可见端倪，在 2021 年的作品里 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aX4y1g7fR">正式完善</a>。可见多年来赛尔号一直未改裸伤判定。</p>
+<p>从上一节裸伤的计算公式里可以看出：</p>
+<ul>
+<li>双方的强弱化，boss 的烧伤效果，boss 攻击我方的克制系数 <strong>影响</strong> 裸伤的判定。</li>
+<li>我方的护盾护罩效果，双方的增减伤效果 <strong>不影响</strong> 裸伤的判定。</li>
+</ul>
+<p>裸伤理论主要用来规避 boss 吃月亮，常见的使用场景就是我方压 20 血或降到 1 级。</p>
+<p>注意并不是我方压到 20 血后 boss 就一定不会使用属性技能，一些常见的反例：</p>
+<ul>
+<li>boss 攻击技能造成的裸伤浮动伤害低于 20。常见的例子是飞行系 boss 对地面系开属性。</li>
+<li>boss 本身只有属性技能（这真是个有趣的反例），详见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV143411178x/">白纸的视频</a>。</li>
+<li>boss 有药剂反噬技能（代码 69）且我方未处于药剂反噬状态时，boss 会优先使用这一技能。</li>
+</ul>
+<p><strong>拉防差理论</strong> 是裸伤理论的推论：如果 boss 同时拥有攻击技能和特攻技能，则 boss 会有更大概率使用裸伤更大的那类攻击技能；当裸伤差距足够大时，boss 会表现出只使用裸伤更大的那类攻击技能。</p>
+<p>根据拉防差理论，我方常常会把防御值和特防值拉得足够大来“控制” boss 的技能使用，特别是当 boss 某个技能附带大比例固伤或回血。此外，冰冷或高热特性的精灵常通过拉高特防来提高特性的触发率。</p>
+<p>除了调整精灵的学习力和性格，常见的拉防差方法还有：</p>
+<ul>
+<li>称号拉防差：新年大吉（特攻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">+25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">25</span></span></span></span> 特防 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">+15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">15</span></span></span></span> 体力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>55</mn></mrow><annotation encoding="application/x-tex">+55</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">55</span></span></span></span>），牛尾除厄（攻击 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">+25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">25</span></span></span></span> 特防 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>35</mn></mrow><annotation encoding="application/x-tex">+35</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">35</span></span></span></span> 体力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>55</mn></mrow><annotation encoding="application/x-tex">+55</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">55</span></span></span></span>）。</li>
+<li>套装拉防差：四九战将套装（特防 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">10%</span></span></span></span>），奇克战将套装（防御 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">10%</span></span></span></span>）。</li>
+<li>珠子拉防差：防御/特防能量珠。</li>
+<li>刻印拉防差：锦系列，瓏系列，衡系列，寒系列，神牛系列，4 级偃月之云（邪教）。</li>
+</ul>
+<h2 id="命中和暴击">命中和暴击</h2>
+<p>每个技能使用时都会判定是否 <strong>命中</strong>，未命中的技能会显示 Miss 的字样，通常情况下无法造成伤害和技能特效。</p>
+<p>每个技能都有内置的基准命中率。攻击技能的命中率大多位于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>80</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>100</mn><mi mathvariant="normal">%</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[80\%,100\%]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">80%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">100%</span><span class="mclose">]</span></span></span></span> 的区间（如剑挥四方命中率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">95\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">95%</span></span></span></span>，技能石的命中率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span>），也有少数特殊情况（如极度冰点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">30%</span></span></span></span>，千华觅月歌 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">0\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">0%</span></span></span></span>）。属性技能在新时代的命中率基本是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span>，早期更容易不满（如灵魂干涉命中率为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>70</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">70\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">70%</span></span></span></span>） 。套装、珠子、精准特性都可以增加命中率：</p>
+<ul>
+<li>粒子目镜加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>3</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+3\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">3%</span></span></span></span>。典狱长目镜加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>4</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+4\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">4%</span></span></span></span>（只需目镜就生效），祝福腰带加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">5\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">5%</span></span></span></span>。</li>
+<li>杰出新兵套装加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>4</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+4\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">4%</span></span></span></span>，天尊战铠和无畏勇者加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+5\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">5%</span></span></span></span>，机械师套装加成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">7\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">7%</span></span></span></span>。</li>
+<li>对于战斗中的命中能力等级：强化会让数值乘上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mn>0.5</mn><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1+0.5n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.5</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 是强化等级；弱化效果 <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/8110063120">经过一次调整</a>，下降幅度更小了，数值为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn><mo>:</mo><mn>85</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mo>−</mo><mn>2</mn><mo>:</mo><mn>70</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mo>−</mo><mn>3</mn><mo>:</mo><mn>55</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mo>−</mo><mn>4</mn><mo>:</mo><mn>45</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mo>−</mo><mn>5</mn><mo>:</mo><mn>35</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mo>−</mo><mn>6</mn><mo>:</mo><mn>25</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">-1:85\%,-2:70\%,-3:55\%,-4:45\%,-5:35\%,-6:25\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">85%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">70%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">55%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">45%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">35%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">25%</span></span></span></span>。</li>
+</ul>
+<p>理论上最高命中加成是精准特性+粒子目镜+祝福腰带+机械师套装。</p>
+<p><strong>致命一击</strong> 俗称暴击，正常情况下会让红伤的数值翻倍。暴击会受到抗性的减免，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\alpha \%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord">%</span></span></span></span> 的暴击抗性会把暴击增伤降低至 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mi mathvariant="normal">%</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2 \times (1-\alpha\%)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord">%</span><span class="mclose">)</span></span></span></span>。例如，若本方暴击抗性为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">5\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">5%</span></span></span></span>，则受到的暴击增伤为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.9</mn></mrow><annotation encoding="application/x-tex">1.9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.9</span></span></span></span> 倍。</p>
+<p>暴击需要在命中的前提上产生，即“下回合必定暴击”并不保证下回合必定命中。暴击后会造成 <strong>破防效果</strong>（若我方物理攻击则对方防御等级清零，我方特殊攻击则对方特防等级清零）。常规的技能是先结算伤害再造成破防效果，而变威力技能和部分连击技能则是先破防再结算伤害。</p>
+<p>每个攻击技能都有内置的基础暴击率，形如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi mathvariant="normal">/</mi><mn>16</mn></mrow><annotation encoding="application/x-tex">x/16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mord">/16</span></span></span></span>。大部分技能 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，特殊情况可见橙汁的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6178427">盘点</a>，如重生之翼银雾之翼 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">x=10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>，月华主要攻击技能都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>。称号、套装、珠子、会心（见精灵特性节）、宝石（见宝石节）都可以增加暴击率，且均为<strong>加法</strong>叠加。根据异域华尔兹的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11114047">盘点</a>，前三者的加成率如下：</p>
+<ul>
+<li>PVE 有效的暴击称号是 劳动最光荣 和 赛尔小劳模。前者在 flash 界面显示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">10%</span></span></span></span>，h5 界面显示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>6</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+6\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">6%</span></span></span></span>，实战更接近 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">10%</span></span></span></span>；后者在 flash 面板显示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>14</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+14\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">14%</span></span></span></span>，h5 面板显示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>8</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+8\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">8%</span></span></span></span>，实战更接近 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>8</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+8\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">8%</span></span></span></span>。 <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7327205650">测试1</a>，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xA411V7oQ">测试2</a>。</li>
+<li>PVE 有效的暴击套装是 皇帝战铠（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>12.5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+12.5\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">12.5%</span></span></span></span>）和永夜玄铠（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>6.25</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+6.25\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">6.25%</span></span></span></span>）。</li>
+<li>暴击珠子仅 PVE 有效， 致命能量珠（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>6.25</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+6.25\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">6.25%</span></span></span></span>）和愤怒能量珠（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>12.5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">+12.5\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">12.5%</span></span></span></span>）。</li>
+</ul>
+<h2 id="异常状态">异常状态</h2>
+<p><strong>异常状态</strong> 指的是在战斗中精灵所受到的弱化或控制效果，这种效果使得精灵体力流失或者技能展开受限或者无法释放技能。 橙汁有专栏介绍 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6278378">无处不在的异常状态</a>，异域华尔兹有两篇 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12243084">异常状态和免疫异常状态</a> 和 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12264250">异常状态的细节说明</a> 。图标可查看 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4943131">橙汁的战斗效果图标专栏</a>（下图贴了），注意这里缺少新更新的臣服和凝滞。</p>
+<p><img src="/Summary-of-Game-Mechanism-in-Seer/%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81.png" alt></p>
+<p>下表按 ID 顺序汇总了异常状态的名称、效果和首次出现的精灵技能。</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>状态</th>
+<th>效果</th>
+<th>首次出现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>麻痹</td>
+<td>无法行动</td>
+<td>天雷鼠-雷之牙</td>
+</tr>
+<tr>
+<td>1</td>
+<td>中毒</td>
+<td>回合结束时损失 1/8 最大体力，中毒效果可叠加</td>
+<td>巨型仙人掌-毒粉</td>
+</tr>
+<tr>
+<td>2</td>
+<td>烧伤</td>
+<td>回合结束时损失 1/8 最大体力，攻击技能伤害减半</td>
+<td>烈焰猩猩-火焰旋涡</td>
+</tr>
+<tr>
+<td>3/4</td>
+<td>寄生</td>
+<td>5 回合内，一方吸取另一方1/8 体力</td>
+<td>布布花-寄生种子</td>
+</tr>
+<tr>
+<td>5</td>
+<td>冻伤</td>
+<td>每回合结束时损失 1/8 最大体力</td>
+<td>巴鲁斯-旋涡</td>
+</tr>
+<tr>
+<td>6</td>
+<td>害怕</td>
+<td>无法行动</td>
+<td>布布花-齿突</td>
+</tr>
+<tr>
+<td>7</td>
+<td>疲惫</td>
+<td>无法行动</td>
+<td>巴拉龟-火箭头槌/光栅炮</td>
+</tr>
+<tr>
+<td>8</td>
+<td>睡眠</td>
+<td>无法行动，受到攻击后解除</td>
+<td>巨型仙人掌-催眠粉</td>
+</tr>
+<tr>
+<td>9</td>
+<td>石化</td>
+<td>无法行动</td>
+<td>墨杜萨-石化之视</td>
+</tr>
+<tr>
+<td>10</td>
+<td>混乱</td>
+<td>80% 攻击 MISS，5% 对自己造成 50 点伤害</td>
+<td>狄修斯-混乱魔光</td>
+</tr>
+<tr>
+<td>11</td>
+<td>衰弱</td>
+<td>五个等级，双防能力值下降 25%/50%/100%/250%/500%</td>
+<td>德拉萨-龙魂冰摄</td>
+</tr>
+<tr>
+<td>13</td>
+<td>易燃</td>
+<td>降低 30% 命中率，受到火系技能攻击会进入烧伤状态</td>
+<td>克莱芬-醉酒燃烧</td>
+</tr>
+<tr>
+<td>15</td>
+<td>冰封</td>
+<td>无法行动，结束后进入冻伤状态且速度 -1</td>
+<td>神·鱼龙王-海妖镇魂曲</td>
+</tr>
+<tr>
+<td>16</td>
+<td>流血</td>
+<td>每回合结束时使精灵损失 80 点体力</td>
+<td>幻天·萨格罗斯-异元幻空斩</td>
+</tr>
+<tr>
+<td>19</td>
+<td>瘫痪</td>
+<td>无法行动且无法更换精灵</td>
+<td>兰斯洛特-强能魔剑</td>
+</tr>
+<tr>
+<td>20</td>
+<td>失明</td>
+<td>非必中攻击技能 50% 失效，且无法使用必中攻击技能</td>
+<td>斯嘉丽-圣辉天翔</td>
+</tr>
+<tr>
+<td>22</td>
+<td>焚烬</td>
+<td>无法行动，结束后进入 2 回合烧伤状态且命中 -1</td>
+<td>炽羽炎凰·朱雀-九霄凤鸣</td>
+</tr>
+<tr>
+<td>23</td>
+<td>诅咒</td>
+<td>无法行动，结束后进入 2 回合烈焰/致命/虚弱诅咒</td>
+<td>狄修-末日诅咒</td>
+</tr>
+<tr>
+<td>24</td>
+<td>烈焰诅咒</td>
+<td>每回合结束时损失 1/8 最大体力</td>
+<td>狄修-末日诅咒</td>
+</tr>
+<tr>
+<td>25</td>
+<td>致命诅咒</td>
+<td>受到的攻击伤害提升 50%</td>
+<td>狄修-末日诅咒</td>
+</tr>
+<tr>
+<td>26</td>
+<td>虚弱诅咒</td>
+<td>造成的攻击伤害降低 50%</td>
+<td>狄修-末日诅咒</td>
+</tr>
+<tr>
+<td>27</td>
+<td>感染</td>
+<td>无法行动，结束后进入 2 回合中毒状态且双攻 -1</td>
+<td>芳馨·茉蕊儿-生命长河</td>
+</tr>
+<tr>
+<td>28</td>
+<td>束缚</td>
+<td>所有限制效果失效，结束后损失 1/8 最大体力</td>
+<td>怒涛·沧岚-沧海永存</td>
+</tr>
+<tr>
+<td>29</td>
+<td>失神</td>
+<td>属性技能 50% 失效（包括必中）</td>
+<td>女王·蔻缇娅-血色叹息</td>
+</tr>
+<tr>
+<td>30</td>
+<td>沉默</td>
+<td>第五技能 100% 失效且每回合损失 1/8 最大体力</td>
+<td>无上·万魔天尊-滅天闪</td>
+</tr>
+<tr>
+<td>31</td>
+<td>臣服</td>
+<td>造成的伤害（包括固定伤害、百分比伤害）将被免疫</td>
+<td>始皇帝•嬴政-群生俯首</td>
+</tr>
+<tr>
+<td>32</td>
+<td>凝滞</td>
+<td>无法切换精灵，免疫受到的控制类异常状态</td>
+<td>不破帝•南霜-大雪纷飞</td>
+</tr>
+</tbody>
+</table>
+<p>注：12 山神守护、14 狂暴、17/18 免疫、21 异常免疫 不计入传统的异常状态中。</p>
+<p>上表的异常状态可分为控制类、干扰类和扣血类三种。<strong>控制类异常</strong> 会让精灵无法释放技能（但是能嗑药），包括麻痹、害怕、疲惫、睡眠、石化、冰封、瘫痪、焚烬、诅咒和感染；<strong>干扰类异常</strong> 不会影响精灵的技能释放，但是会给精灵施加 debuff 或影响某类技能的释放成功与否，包括混乱、衰弱、易燃、失明、束缚、失神、沉默、臣服和凝滞。<strong>扣血类异常</strong> 只会让精灵持续受到等效于真伤的扣血效果，包括中毒、烧伤、冻伤、寄生和流血。</p>
+<p>如果先出手方给对面施加了控制类异常，则后出手方当回合的技能无法成功释放。把鼠标放在战斗界面的异常图标上，可以看到该异常的剩余持续回合数。异常状态回合数的标准定义是 <strong>持续 1-3 回合</strong>。目前，游戏中显示的“剩余回合数”不包括当回合本身，即无论是先手控场还是后手控场，图标的语义都是 <strong>从下回合开始还能持续几回合</strong>。大部分异常状态的持续回合数都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>，所以游戏内显示的回合数是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>。有一些特殊情况：</p>
+<ul>
+<li>炼狱魔神的灵能一击效果能产生持续 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 回合的疲惫效果，所以游戏内显示的疲惫回合数为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>；</li>
+<li>腐蚀者套装的特效能产生持续 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 回合的麻痹效果，<strong>所以游戏内不会显示被腐蚀后的麻痹图标</strong>。</li>
+</ul>
+<p>异常状态主要来源于技能效果，此外还可能源于魂印效果、<a href="#%E7%B2%BE%E7%81%B5%E7%89%B9%E6%80%A7">精灵特性</a>（主动毒和被动毒）、<a href="#%E5%88%BB%E5%8D%B0%E5%AE%9D%E7%9F%B3">刻印宝石</a>、套装效果（腐蚀者套装）、弹控效果、抵抗异常效果（抗性触发后）。</p>
+<p>【免控、次免和弹控待补充】</p>
+<p>关于某些异常状态的补充说明【待补充】：</p>
+<ul>
+<li>扣血类异常在每回合出手流程前进行扣除，虽然显示为粉字，不会被抗性和护罩减免，对免粉精灵有效。</li>
+<li>烧伤会让攻击技能的面板威力降低 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">50\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">50%</span></span></span></span>，变威力技能不受影响，威力宝石不受影响。</li>
+<li>寄生本来分为“（被对手）寄生”和“寄生对手”两种，2022 年 12 月 2 日上线古温婆婆集成到了前者。</li>
+<li>抵抗异常 或 抗性免疫 出现在抗性抵抗异常后，<strong>其本身也算一种异常状态</strong>。</li>
+<li>冰封图标本来是个冰块（怒涛沧岚的介绍页还能看到），但后来只留下深蓝色背景。可参考 <a target="_blank" rel="noopener" href="http://tieba.baidu.com/p/8226057783">铭记的帖子</a>。</li>
+<li>束缚和沉默的扣血效果作用于回合结束后（与扣血类异常不同），且扣血效果是百分比伤害而非真伤。</li>
+<li>某位吧友 <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7810769136">自创全新异常状态图标及效果</a>，后续游戏中更新的凝滞就在其中（效果不同）。</li>
+</ul>
+<h2 id="抗性系统">抗性系统</h2>
+<p>2015 年 10 月 23 日上线全新的 <strong>抗性系统</strong>，需要一个泰坦神石才能开启。前两只拥有抗性系统的精灵是 2924 泊莱德 和 2927 芒克王。并不是每个精灵都可以开启抗性，一般是更新时间靠后的、能力较强的或有特殊活动支持的精灵才能开启。拥有抗性的最小 ID 的精灵是 2667 不动明王，通过后期活动使用道具“洛亚之息”开启的。</p>
+<p>ツバサ99ova 写过图文并茂的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv9439771">抗性系统简介</a>，异域华尔兹则有更专注细节的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11145121">抗性系统</a> 讲解。</p>
+<p>【抗性系统待补充】</p>
+<h2 id="精灵特性">精灵特性</h2>
+<p>赛尔号官方发布过权威 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13095292">专栏</a>，民间总结详见异域华尔兹的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11125941">专栏</a>，这里做了点总结和补充：</p>
+<ul>
+<li><strong>坚硬</strong>。与增伤后的红伤<strong>乘法</strong>叠加，实际概率比面板要低，分别是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>6</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>8</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>10</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>9</mn><mi mathvariant="normal">%</mi><mo separator="true">,</mo><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">5\%,6\%,8\%,10\%,9\%,10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">5%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">6%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">8%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">9%</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10%</span></span></span></span>。官方证实 <strong>三星=五星&gt;四星</strong>。注意王哈不值得用坚硬，与自身 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>80</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">80\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">80%</span></span></span></span> 减伤叠加后是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>82</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">82\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">82%</span></span></span></span>。</li>
+<li><strong>瞬杀</strong>。以<strong>红伤</strong>（受到增伤效果加成）或 <strong>粉伤</strong> 形式打出，狮盔、龙威或 miss 均不触发。零至五星概率正常提升，实际概率比面板提示的要低。根据 <a target="_blank" rel="noopener" href="https://space.bilibili.com/1103324179">摸鱼的娜娜</a> 在 2022 年 7 月 13 日各 1.2w 场测试，零到五星的实际瞬杀概率约为 0.93%，1.36%，1.61%，2.15%，2.34%，2.94%。</li>
+<li><strong>精准</strong>。零至五星概率正常提升，实际概率比面板提示的要低。根据摸鱼的娜娜在 2022 年 9 月10 日的 <a target="_blank" rel="noopener" href="https://space.bilibili.com/1103324179">测试</a>，零至五星的实际加成是 5%~10% 均匀增加。与技能基础命中率<strong>乘法</strong>叠加，如 95% 天河圣芒斩+零星精准的最终命中率为 95%×（1+5%）=99.75%。95% 碎梦袭+五星精准的最终命中率为 100%。</li>
+<li><strong>免爆</strong>。实际效果为受到暴击伤害时有概率免疫该伤害（挡伤）。零至五星概率正常提升，数值未知。</li>
+<li><strong>会心</strong>。与初始暴击率和暴击装备<strong>加法</strong>叠加。白纸 2020 年的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sf4y1Q7Sq">1000 次测试结论</a> 是：三到五星的概率接近。而根据摸鱼的娜娜在 2022 年的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bP411G7TR">6000 次测试</a> 的结论是：零至五星概率正常提升，零星约增加 6%（12%），五星约增加 14%（20%）。不知道是因为前者样本数量不足，还是官方修复了 bug。</li>
+<li><strong>回神</strong> 和 <strong>顽强</strong>。在抗固伤和压血方面各有优势，按需选择。触发节点均早于 boss 的 220 固伤，所以顽强和 &lt;=220 血的回神会被固伤穿。实际概率和面板相同。</li>
+<li><strong>阴森</strong> 和 <strong>带电</strong>，<strong>高热</strong> 和 <strong>冰冷</strong>。（被动）毒特性，实际概率和面板相同。狮盔或 miss 不触发。优先级很高，无视套装、抗性、buff 、回合免控、次免（不会消耗）、魂免、boss 特性。</li>
+<li><strong>颤栗</strong> 和 <strong>静电</strong>，<strong>火热</strong> 和 <strong>极寒</strong>。（主动）毒特性，实际概率和面板相同。狮盔或 miss 不触发。无视套装、抗性、buff、回合免控、次免（不会消耗），但是<strong>不能</strong>穿 boss 特性和高级魂免。</li>
+<li><strong>回避</strong> 和 <strong>虚无</strong>。双方对非必中技能触发时表现均为 miss；虚无对必中技能也会触发，表现为挡伤。虚无实际概率和面板相同；根据官方文档，回避的实际概率不超过 10%。</li>
+<li><strong>吸血</strong>：实际概率和面板相同。曾经吸血只计算裸伤，2023 年 2 月 24 的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22019478">版本</a> 加强成了最终伤害。</li>
+<li><strong>反弹</strong>：实际概率和面板接近。对方的进攻类技能和属性技能触发均会触发，打在我方狮盔上也会触发。经“摸鱼的娜娜” <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pt4y157YU">测试</a>，五星反弹的概率写为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>45</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">45\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">45%</span></span></span></span>，实测为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>54.36</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">54.36\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">54.36%</span></span></span></span> 左右。</li>
+<li><strong>强袭</strong> 和 <strong>精神</strong>。万金油进攻特性，<strong>乘法</strong>叠加，实际概率和面板相同。可以叠加变威力技能。</li>
+<li>15 种单属性的伤害加成特性。零至五星概率正常提升，但五星实际只有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">10%</span></span></span></span>。乘法叠加，只有用对应单属性的技能才会生效（技能石也生效）。变威力技能不生效，如王哈霍夫曼第五。</li>
+<li>10 个强化/弱化特性，实际概率和面板相同。白纸曾将 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1C54y1k78G/">草率和反驳</a> 引入 PVE，但随后遭官方暗改：目前弱化类特性使用时不可出手，只能嗑药/中切，否则无法触发弱化。</li>
+</ul>
+<p>一些基于上述结论的常见推论和事实：</p>
+<ul>
+<li>新时代大部分 boss 都有免瞬标志，所以瞬杀特性不再吃香，增伤或坚硬更吃香。</li>
+<li>新手日经问题：高热 or 冰冷千裳打月照真身为何一直不触发特性——没有拉防差让 boss 出物攻。</li>
+<li>魔钰强攻的最佳特性是魔幻、其次是精神，而月照只能选精神。</li>
+<li>吸血和反弹特性不能通过特性重组剂洗出来，也不能通过全能特性转化药剂指定。</li>
+<li>月华的挡伤技能不会触发高热 or 冰冷特性，但是<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XP4y1z76B">会触发反弹特性</a>。</li>
+<li>吸血特性只适用于一些特殊的精灵，常见搭配为：吸血屠龙，吸血艾莫，吸血圣萨，吸血太祖。</li>
+<li>有些 boss 带有主动控的特性或技能，用类似圣谱等魂免精灵就能避免；还有些 boss 带有高级的被动毒特性（因子，h5 SPT 等），只有圣萨的解控机制能不受控制地站场。</li>
+<li>回神/顽强常用于狮盔类精灵（坚壁机甲，圣雷，暴君史莱姆，月华）和弹伤类精灵（伊优系列，瑞尔斯，创世圣盾）。如果 boss 附带 220 固伤，只能用回神，且需用衡·飓风等刻印把体力拉高。</li>
+</ul>
+<h2 id="技能石">技能石</h2>
+<p>技能石能为任何精灵提供特定单属性的全新技能，名称为 技能石之力-S/A/B/C/D。关于技能石，赛尔号官方发布过 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12753609">专栏</a>。橙汁有很详细的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv5143984">解析</a>，异域华尔兹做过相应的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11920570">小结</a>。本章的图文主要源于橙汁的攻略。</p>
+<p>技能石一共分成五种威力类型，获得时一般是未开启形态，开启后变成某个单属性，可替换精灵的某个技能格子。安装时可以选择是物攻还是特攻。同一精灵最多只能安装一个技能石，重复安装会覆盖原先的技能石。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">技能石级别</th>
+<th style="text-align:center">威力</th>
+<th style="text-align:center">非本系折算威力</th>
+<th style="text-align:center">PP</th>
+<th style="text-align:center">等级下限</th>
+<th style="text-align:center">数量上线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">9999</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">9999</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">90</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">9999</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">120</td>
+<td style="text-align:center">80</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">80</td>
+<td style="text-align:center">999</td>
+</tr>
+<tr>
+<td style="text-align:center">S</td>
+<td style="text-align:center">160</td>
+<td style="text-align:center">106</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">999</td>
+</tr>
+</tbody>
+</table>
+<p>技能石系统于 2011 年 9 月 30 日上线，取了当时仅有的 16 个单属性：草、水、火、飞行、电、机械、地面、普通、冰、超能、战斗、光、暗影、神秘、龙、圣灵。 2018年11月9日，技能石系统更新，新添加了 5 个单属性：次元、远古、邪灵、自然、虫。目前不存在于技能石系统之内的单属性有王、混沌、神灵、轮回、虚空。</p>
+<p>安装技能石时有概率开出额外效果，概率随着技能石等级的提升而递减。“单属性专属特效” 举例：普通系 5% 威力翻倍、电系 10% 令对手麻痹、神秘石 10% 令对手疲惫、次元石 10% 令对手瘫痪、邪灵石 10% 先制 +1。</p>
+<p><img src="/Summary-of-Game-Mechanism-in-Seer/%E6%8A%80%E8%83%BD%E7%9F%B3.png" alt></p>
+<p>技能石可以 <strong>合成</strong>。选中四个技能石后，有概率能合出新的技能石，等级是原来的最高等级加一（所以 S 级石头不能参与合成）。合成失败时将随机损失一颗放入的技能石。当放入技能石属性全部相同时，合成成功则获得相同属性的技能石，否则会获得未知属性的技能石。合成成功率详见以下公式，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>P</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>P</mi><mn>3</mn></msub><mo separator="true">,</mo><msub><mi>P</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">P_1,P_2,P_3,P_4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是每一颗技能石单独的贡献，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mi>I</mi><mi>P</mi><mo>=</mo><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">VIP=10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">10%</span></span></span></span> 表示是否是 VIP。每颗技能石对目标等级的技能石的贡献 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">P_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 详见下表。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo>=</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>P</mi><mn>1</mn></msub><mo>+</mo><msub><mi>P</mi><mn>2</mn></msub><mo>+</mo><msub><mi>P</mi><mn>3</mn></msub><mo>+</mo><msub><mi>P</mi><mn>4</mn></msub><mo>+</mo><mi>V</mi><mi>I</mi><mi>P</mi><mo separator="true">,</mo><mtext> </mtext><mn>100</mn><mi mathvariant="normal">%</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P=\min(P_1+P_2+P_3+P_4+VIP, ~100\%)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mpunct">,</span><span class="mspace nobreak"> </span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">100%</span><span class="mclose">)</span></span></span></span></span></p>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>D-&gt;C</th>
+<th>D-&gt;B</th>
+<th>D-&gt;A</th>
+<th>D-&gt;S</th>
+<th>C-&gt;B</th>
+<th>C-&gt;A</th>
+<th>C-&gt;S</th>
+<th>B-&gt;A</th>
+<th>B-&gt;S</th>
+<th>A-&gt;S</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>概率</td>
+<td>24%</td>
+<td>5.8%</td>
+<td>1.4%</td>
+<td>0.3%</td>
+<td>23%</td>
+<td>5.5%</td>
+<td>1.3%</td>
+<td>22%</td>
+<td>5.3%</td>
+<td>21%</td>
+</tr>
+</tbody>
+</table>
+<p>在 PVE 中，技能石的主要应用如下：</p>
+<ul>
+<li>利用高威力技能石为我方强攻精灵提供高倍克制 boss 的技能。这里的强攻精灵一般是 <strong>有魂印增伤</strong> 的精灵（常被称为投石机），例如格拉托尼、典韦、龙伽、伊丽莎白、蓝露等，详见长夜之主艾希丝的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21557492/">盘点</a>。</li>
+<li>利用低威力技能石为我方战场精灵提供能力等级提升。常见场景战场精灵打封属 boss，通过给自身安装 C/D 级技能石来刷攻击/特攻的能力提升，例如圣谱在蚀骨冰姬第三关控回合。</li>
+<li>利用技能石为我方精灵达成“用 XX 属性的攻击技能击杀 boss”的目标，例如 h5 SPT 的部分关卡。</li>
+</ul>
+<h2 id="刻印宝石">刻印宝石</h2>
+<p>刻印宝石是一种可以镶嵌于精灵刻印、绑定于精灵技能的道具，可以使技能获得额外的概率效果。</p>
+<p>一代刻印宝石最早可以追溯到 2013 年，随着时间推移进行了多轮更新（如 2015 年新增疲惫宝石），最终演化到当前的稳定形态。目前一代宝石总共有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn></mrow><annotation encoding="application/x-tex">13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span> 种，等级从一级到十级，获得时一定是某种具体形态。关于（一代）刻印宝石，橙汁有 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4818241">详细的专栏讲解</a>，异域华尔兹做过相应的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11967690">总结</a>，本章图文主要摘自两者的文章。</p>
+<p><img src="/Summary-of-Game-Mechanism-in-Seer/%E4%B8%80%E4%BB%A3%E5%AE%9D%E7%9F%B3.png" alt></p>
+<p>从上表可以发现，一代宝石的数据比较连续，只有能力等级加一宝石在十级时会发生质变，一跃提高至 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">95\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">95%</span></span></span></span>。</p>
+<p>宝石必须 <strong>镶嵌</strong> 在刻印上才能使用。七级及以下的宝石必定镶嵌成功，八级、九级、十级的成功概率降低为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>70</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">70\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">70%</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">40\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">40%</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">30%</span></span></span></span>，镶嵌失败后宝石可能会降级。镶嵌成功后，当该刻印绑定到精灵身上时，系统会提示宝石需要绑定至除第五技能外的哪个技能。若取下刻印重新装上，则需重新选择绑定的技能。绑定技能后若该技能换下，默认取消了宝石效果，可重装刻印来重新选择要绑的技能。已镶嵌宝石的刻印只能用同种类更高等级的宝石覆盖。</p>
+<p>同类型的宝石可以从低级 <strong>合成</strong> 至高级。刻印宝石系统问世之初，高等级宝石的获取途径相对容易，宝石合成也没有明确约束的数量关系，几个一级宝石甚至能概率合出十级宝石。刻印系统改版了，宝石系统也相应改版了，并演化至今。目前宝石只能逐级合成，若干个同级的宝石必定能合成一个高一级的宝石，合成所需数量见下表。</p>
+<p>如果刻印被分解，镶嵌于刻印上的宝石也会被 <strong>分解</strong>。分解后会获得大量一级宝石，数量是合成原宝石所需的一级宝石数量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">30%</span></span></span></span> 上取整。宝石的合成是指数级的，当你分解了高等级的宝石后，往往能合出几乎用不完的中等级宝石（炸一个十级宝石后，则可以合成 7680 个六级宝石），这种行为被称为“<strong>炸宝石</strong>”。八到十级有概率镶嵌失败，所以炸宝石属于高风险高收益。容易证明，虽然八到十级的成功概率逐级递减，但期望收益逐级递增。</p>
+<p><img src="/Summary-of-Game-Mechanism-in-Seer/%E4%B8%80%E4%BB%A3%E5%AE%9D%E7%9F%B3%E6%95%B0%E6%8D%AE.png" alt></p>
+<p>一代刻印宝石的注意事项如下：</p>
+<ul>
+<li>宝石的生效需要技能命中，且在生效顺序上晚于技能自带的效果。</li>
+<li>异常状态宝石在 PVE 中无效。剩余的宝石中，暴击宝石的加成数值比较低，聊胜于无。</li>
+<li>固伤宝石使用场景比较少，一般是绑定一级时空的“诸界混沌击”来补刀，或绑定月华的技能来刮痧。</li>
+<li>威力宝石很常用，但对于变威力技能和连击技能无效，详情可见异域华尔兹的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11506017">威力宝石加成测试</a>。</li>
+<li>受限于获得方式，五级和六级宝石的使用频率最高，没炸过宝石的情况下七级已经很奢侈了。</li>
+</ul>
+<p><strong>二代刻印宝石</strong> 于 2021 年 10 月 29 日上线，包括活力维持宝石、活力消耗宝石、活力恢复宝石、追命宝石、逆命宝石、绝命宝石、失明宝石、失神宝石、冰封宝石和焚烬宝石十种，官方有 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13749008">研发笔记浅析</a>，橙汁有 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13790017">详细的解析</a>。2023 年 1 月 6 日新增疾风宝石、迅雷宝石和真实伤害宝石，异域华尔兹基于第二版做过 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22718161">总结</a>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">宝石名</th>
+<th style="text-align:center">效果</th>
+<th style="text-align:center">一级</th>
+<th style="text-align:center">二级</th>
+<th style="text-align:center">三级</th>
+<th style="text-align:center">四级</th>
+<th style="text-align:center">五级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">活力维持</td>
+<td style="text-align:center">使用技能概率不消耗 PP</td>
+<td style="text-align:center">5%</td>
+<td style="text-align:center">10%</td>
+<td style="text-align:center">15%</td>
+<td style="text-align:center">20%</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">活力消耗/恢复</td>
+<td style="text-align:center">命中后概率提升自己/降低对手所有PP值一点</td>
+<td style="text-align:center">4%</td>
+<td style="text-align:center">8%</td>
+<td style="text-align:center">12%</td>
+<td style="text-align:center">16%</td>
+<td style="text-align:center">20%</td>
+</tr>
+<tr>
+<td style="text-align:center">追命</td>
+<td style="text-align:center">命中后攻击伤害为 0 则吸取对手最大体力百分比</td>
+<td style="text-align:center">4%</td>
+<td style="text-align:center">8%</td>
+<td style="text-align:center">12%</td>
+<td style="text-align:center">16%</td>
+<td style="text-align:center">20%</td>
+</tr>
+<tr>
+<td style="text-align:center">逆命</td>
+<td style="text-align:center">本次攻击微弱对手时概率变成普通</td>
+<td style="text-align:center">5%</td>
+<td style="text-align:center">10%</td>
+<td style="text-align:center">15%</td>
+<td style="text-align:center">20%</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">绝命</td>
+<td style="text-align:center">本次攻击克制对手时伤害提升百分比</td>
+<td style="text-align:center">5%</td>
+<td style="text-align:center">10%</td>
+<td style="text-align:center">15%</td>
+<td style="text-align:center">20%</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">失明/失神</td>
+<td style="text-align:center">命中后概率让对手失明/失神</td>
+<td style="text-align:center">5%</td>
+<td style="text-align:center">10%</td>
+<td style="text-align:center">15%</td>
+<td style="text-align:center">20%</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">冰封/焚烬</td>
+<td style="text-align:center">命中后概率让对手冰封/焚烬</td>
+<td style="text-align:center">5%</td>
+<td style="text-align:center">10%</td>
+<td style="text-align:center">15%</td>
+<td style="text-align:center">20%</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">疾风/迅雷</td>
+<td style="text-align:center">自身/对方当前体力低于若干数值时先制+1</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">90</td>
+<td style="text-align:center">120</td>
+<td style="text-align:center">150</td>
+</tr>
+<tr>
+<td style="text-align:center">真实伤害</td>
+<td style="text-align:center">命中后附加若干点真实伤害</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">50</td>
+</tr>
+</tbody>
+</table>
+<p>开启 <strong>二代宝石原核</strong> 后能随机获得一个二代刻印宝石。一颗二代宝石原核需要 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3000000</mn></mrow><annotation encoding="application/x-tex">3000000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3000000</span></span></span></span>（三百万） 个 <strong>原核碎片</strong> 熔炼。值得注意的是：等级不小于六级的一代刻印宝石可以分解成原核碎片，分解后获得的碎片数量等同于合成它所需的一级宝石数量的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>10</mn></mrow><annotation encoding="application/x-tex">1/10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/10</span></span></span></span>。二代刻印宝石由 <strong>时之砂</strong> 强化等级。从一级开始，每提升一级所需的时之砂数量分别是一万、两万、三万和四万，相对比较平滑。把一颗二代刻印宝石强化成五级需要十万的时之砂。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">一代刻印宝石等级</th>
+<th style="text-align:center">六级</th>
+<th style="text-align:center">七级</th>
+<th style="text-align:center">八级</th>
+<th style="text-align:center">九级</th>
+<th style="text-align:center">十级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">分解后获得的原核碎片数量</td>
+<td style="text-align:center">112</td>
+<td style="text-align:center">896</td>
+<td style="text-align:center">8960</td>
+<td style="text-align:center">143360</td>
+<td style="text-align:center">2867200</td>
+</tr>
+</tbody>
+</table>
+<p>二代刻印宝石的镶嵌逻辑与一代刻印宝石相同，即同一个刻印只能镶嵌一个刻印宝石（不管是一代还是二代）。同种类且更高级别的宝石能替换镶嵌。与一代刻印宝石不同的是，任意级别的二代刻印宝石都 <strong>必定镶嵌成功</strong>。镶嵌有二代宝石的刻印被分解时宝石也随之损毁，不会返还原核碎片，只会返还强化所用的时之砂数量的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">30%</span></span></span></span>。</p>
+<p>二代刻印宝石的注意事项如下：</p>
+<ul>
+<li>二代刻印宝石和一代的效果一致，生效需要技能命中，且在生效顺序上晚于技能自带的效果。</li>
+<li>异常状态宝石、活力消耗宝石、追命宝石和绝命宝石 PVE 无效，且 PVE 有效的二代宝石用处也不大。</li>
+<li>绝命宝石和威力宝石的功能类似：优点是对变威力技能有效（与银翼、大多数魂印增伤加法叠加）；缺点是需要克制才触发、获得困难且 PVE 无效。更多细节详见 刀锋下的阴影7 的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cd4y1w7YM">绝命宝石讲解</a>。</li>
+<li>二代的异常状态宝石要好于一代，五级的控场概率等于一代的十级，而且是高贵的冰封和焚烬控。</li>
+</ul>
+<h2 id="boss-的图标和特性">boss 的图标和特性</h2>
+<p>boss 的个体值和性格在不同时期是不同的。现代 boss 多为 24 个体、平衡性格，详见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13490327">流风天啸的测试</a>。</p>
+<p>2019 年 12 月 20 日赛尔号更新了 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4943131">战斗效果图标</a>，使得部分 boss 特性从全隐藏变为部分可见。</p>
+<p><img src="/Summary-of-Game-Mechanism-in-Seer/%E7%89%B9%E6%80%A7.png" alt></p>
+<p>上面一排图标展示了可见的 boss 特性，按顺序分别为神话、疾行、封魔（封属）、锋锐、进化、腐化、格挡。</p>
+<p>2023 年 4 月 7 日赛尔号再次更新了 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22447402">战斗图标</a>，详见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22924367">橙汁的图解</a>。新版图标覆盖了大多数 boss 的特性，也有了官方的命名，按下图顺序分别为：神话、迅捷、疾行、进化、腐化、物攻格挡、特攻格挡、硬化、戒备、复苏、要害探寻、驱散、致盲、锁定、属性反转、封魔、锋锐、生命汲取、愈合。这些特性的注意事项如下：</p>
+<p><img src="/Summary-of-Game-Mechanism-in-Seer/%E6%96%B0%E7%89%B9%E6%80%A7.jpg" alt></p>
+<ul>
+<li>神话的效果是“免疫异常状态和能力下降状态，所有技能必中且 PP 无限”。神话还免疫绝命火焰等技能秒杀，海洋之心等技能百分比削血（目前有效果的百分比削血只有 <strong>潘克多斯和斯克鲁恩的魂印</strong>），同生共死、镇魂歌等技能特效。boss 的免疫异常状态可能会被穿，如极少数的精灵魂印（下方有列举）、被动毒特性、boss 自身的技能（如爵刻技能血契·恐）。boss 的免疫能力下降状态也可能会被穿，如反驳草率等特性、boss 自身的技能（如 h5 SPT 提亚斯技能魔能风暴） 。</li>
+<li>迅捷的效果是“所有技能先制 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mo>+</mo><mn>2</mn><mi mathvariant="normal">/</mi><mo>+</mo><mn>3</mn><mi mathvariant="normal">/</mi><mo>+</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">+1/+2/+3/+6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">+</span><span class="mord">1/</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2/</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3/</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span>”，可以和 boss 的技能先制叠加。</li>
+<li>疾行的效果是“所有技能必定先手”，隐藏效果是 <strong>免疫瞬杀</strong>。疾行曾经的效果是先制 +6，玩家通过叠先制能快过 boss。2019 年 12 月 27 日修改成必先，但流风天啸 <a target="_blank" rel="noopener" href="https://b23.tv/i1kxJ4Z">测试</a> 发现仍然可以被束缚影响，猜测是先制 +300。</li>
+<li>进化的效果是 boss 使用技能后全属性 +1，boss 当回合打出的伤害是 <strong>强化后的伤害</strong>。注意只有全属性 +1 才有图标，每回合双防+1/+2、每回合随机 n 项属性 +1 等部分强化没有图标。</li>
+<li>腐化的效果是我方使用技能后全属性 -1，我方当回合打出的伤害是 <strong>弱化前的伤害</strong>。异域华尔兹 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13802846">指出</a>，该图标细分为“我方每回合全属性-1”和“每回合我方全属性-1”两种，前者会受到抗性、星皇、天尊 buff、魂印免弱的保护，而后者会穿所有保护。</li>
+<li>物攻格挡和特攻格挡分别免疫物理攻击伤害和特殊攻击伤害。注意只免疫红伤，固伤的效果仍然有效，所以 84 后建议用附带剩余血量百分比固伤的技能补刀，或在技能上绑定固定伤害宝石。</li>
+<li>硬化和戒备分别免疫非暴击的伤害和非先制的伤害。注意先制 -1 也算先制。</li>
+<li>要害探寻的效果“攻击技能 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>15</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>20</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">5\%/15\%/20\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5%/15%/20%</span></span></span></span> 造成 5/10/10 倍伤害”。</li>
+<li>驱散的效果是“对手使用技能后，消除对手的能力提升”，多出现在因子关，强攻手第一次使用技能时强化仍然有效。还有些关卡是我方永远无法处于强化状态（暂无专属图标），需要使用紫火输出。</li>
+<li>致盲的效果是“闪避率提升 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>50</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>70</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>90</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">30\%/50\%/70\%/90\%/100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">30%/50%/70%/90%/100%</span></span></span></span>”，如 h5 SPT 提亚斯。</li>
+<li>复苏的效果有很多种，包括：首次死亡后恢复全部体力并使全能力等级等于+1/+6；死亡后恢复全部体力，一局游戏可触发 2/3/4 次；首次死亡后恢复全部体力；首次死亡后40%恢复全部体力。</li>
+<li>锁定的效果是“<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn><mi mathvariant="normal">%</mi><mi mathvariant="normal">/</mi><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">25\%/100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">25%/100%</span></span></span></span> 打出致命一击”。</li>
+<li>属性翻转的效果是“与对手精灵互换属性”，常出现在因子关，需在强攻手前送掉一只被克制精灵。</li>
+<li>锋锐的效果是每回合附加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>220</mn><mi mathvariant="normal">/</mi><mn>300</mn><mi mathvariant="normal">/</mi><mn>350</mn><mi mathvariant="normal">/</mi><mn>500</mn></mrow><annotation encoding="application/x-tex">220/300/350/500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">220/300/350/500</span></span></span></span> 点固定伤害，固伤可以被护罩或抗性减免（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>220</mn></mrow><annotation encoding="application/x-tex">220</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">220</span></span></span></span> 固伤满抗性是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>143</mn></mrow><annotation encoding="application/x-tex">143</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">143</span></span></span></span>）。若当回合 boss 先出手，先结算攻击伤害和固伤，再结算我方技能回血、星皇、三兄弟、蓝火等续航；若当回合 boss 没有出手，我方能否在固伤判定前出手的取决于我方是否有 <a href="#%E5%85%88%E6%89%8B%E6%9D%83">先手权</a>。注意 <strong>长效体力药剂</strong> 的效果是：立即回复 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span> 血，并在下三回合每回合回复 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>70</mn></mrow><annotation encoding="application/x-tex">70</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">70</span></span></span></span> 血、免疫锋锐效果。2023 年 4 月 14 日的版本优化了长效体力药剂的描述并提供了稳定的获得方法，站场型精灵可以通过适时嗑药来规避高额固伤。</li>
+<li>生命汲取的效果是“每回合汲取对手 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mi mathvariant="normal">/</mi><mn>250</mn><mi mathvariant="normal">/</mi><mn>300</mn><mi mathvariant="normal">/</mi><mn>350</mn><mi mathvariant="normal">/</mi><mn>400</mn><mi mathvariant="normal">/</mi><mn>500</mn><mi mathvariant="normal">/</mi><mn>1000</mn></mrow><annotation encoding="application/x-tex">200/250/300/350/400/500/1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">200/250/300/350/400/500/1000</span></span></span></span> 点体力”。</li>
+<li>愈合的效果是“每回合恢复若干百分比血量或若干固定血量”。</li>
+<li><strong>暴食</strong> 的效果是 “每回合增加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">10\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">10%</span></span></span></span> 体力上限，每回合结束时恢复损失血量的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">30\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">30%</span></span></span></span>”，于 2023 年 5 月 12 日上线因子关 boss，在贴吧引起了关于 <a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/8410525034">暴食特性稳定解</a> 的讨论。</li>
+</ul>
+<p>还有一些常见的 boss 特性至今没有被图标所覆盖。羽中颜攻略社做过一个 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zd4y1i7hw/">boss特性汇总</a>，而云端少女莫妮卡总结了 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv19211266">因子关卡特性汇总</a>。下面列举一些常见的隐藏特性：</p>
+<ul>
+<li>额外的增伤和减伤效果。因子关的 boss 基本都有不同比例的减伤。</li>
+<li>boss 附带攻击毒特性或被动毒特性。一般被动毒特性会穿我方的免控。</li>
+<li>boss 概率挡伤（有时概率高到被网友称为概率不挡伤）。一般出现在因子关。</li>
+<li>boss 出手后随机清空我方若干个技能的 PP，一般使用圣谱应对。</li>
+<li>boss 必定秒杀或概率秒杀。代表关卡为咤克斯系列。</li>
+<li>boss 只吃必中技能或低威力技能的伤害。</li>
+<li>boss 只吃特性属性的攻击技能的伤害，或者免疫克制系伤害。</li>
+<li>我方若当回合先/后出手则攻击伤害为零甚至技能失效。多出现在地图探索关和因子关。</li>
+<li>boss 免疫暴击伤害，受到暴击时回满血，或受到暴击时强制让我方阵亡。多出现在因子关。</li>
+<li>boss 使用任何技能则消除我方的回合类效果，例如王哈的回合引爆会失效。</li>
+<li>每回合真伤吸血。数值多为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mi mathvariant="normal">/</mi><mn>300</mn><mi mathvariant="normal">/</mi><mn>500</mn></mrow><annotation encoding="application/x-tex">200/300/500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">200/300/500</span></span></span></span>，且无法被抗性、护罩、天尊 buff 等减免。现代的因子关甚至有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1300</mn></mrow><annotation encoding="application/x-tex">1300</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1300</span></span></span></span> 的数值（古温婆婆地狱第四关），几乎抹去了站场的可能性。</li>
+</ul>
+<p>有极少部分精灵的魂印能穿 boss 的神话图标，下面列举一些流传甚广的例子。</p>
+<ul>
+<li>星界祖皇（超进化版本），能把能力等级继承给下一只精灵且反弹 boss 给予的异常。</li>
+<li>邪影之尊：受击 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">15\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">15%</span></span></span></span> 控 boss，类似于阴森和带电。草率暗改后仅不出手才有效。</li>
+<li>神·阿波罗：未出手的情况下能把 boss 给予的每回合弱化反弹。</li>
+<li>忍者精灵：攻击类技能概率让 boss 进入烧伤、中毒、失明和疲惫等异常状态。</li>
+<li>圣瞳·天蛇太祖或圣人之瞳·天蛇太祖：攻击技能 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">15\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">15%</span></span></span></span> 让 boss 睡眠。</li>
+<li>光辉·米瑞斯：处于强化状态时的攻击技能 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">15\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">15%</span></span></span></span> 让 boss 麻痹。</li>
+</ul>
+<h2 id="出手顺序">出手顺序</h2>
+<p>2022 年 9 月 2 日，赛尔号官方优化了出手顺序的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv18411677">判定逻辑</a>，细节有了细微的变化。修改前的判定可参考异域华尔兹的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11278767">出手、出手顺序和出手效果</a>，而流风天啸的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21476824">先手权</a> 则对修改后进行了建模。</p>
+<p>引用流风天啸的术语，目前每回合分为 <strong>操作阶段</strong> 和 <strong>战斗阶段</strong> 两个先后的阶段。</p>
+<ul>
+<li>在操作阶段中，点击技能算 <strong>选择出手</strong>，嗑药或切换算 <strong>放弃出手</strong>。</li>
+<li>操作阶段结束后，系统会根据操作阶段双方的决策、挑战者和被挑战者、双方使用技能的必先优先级和先制等级、双方的速度等各种因素来决定谁具有 <strong>先手权</strong>。</li>
+<li>在战斗阶段，成功使用技能被称为 <strong>出手</strong>，因各种原因没能使用技能（操作阶段放弃出手，受控制类技能影响，被驱逐）被称为 <strong>未出手</strong>。在战斗阶段成功出手且拥有先手权则被称为 <strong>先出手</strong>。先出手这个概念十分重要，因为触发银翼额外增伤就需要先出手。即，战斗阶段的唯一出手方不一定是先出手。</li>
+</ul>
+<p>出手顺序中涉及 <strong>被挑战者</strong>（房主）和 <strong>挑战者</strong> 的概念，机制 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11225879">详见此</a>。PVE 中 boss 默认为房主。</p>
+<p><strong>先手权</strong> 的详细判定如下：</p>
+<ol>
+<li>判断双方是否选择出手（点击技能算出手，算未出手）。若双方都出手，进入第 2 步判定；若一方放弃出手，则由另一方获得先手权；若双方都未出手，由挑战方获得先手权。</li>
+<li>判断双方是否使用必先技能。若双方都使用了，则根据 <strong>必先优先级</strong> 决定先手权（优先级相同则由挑战方获得先手权）；若只有一方使用，则该方获得先手权；若双方都未使用，进入第 3 步判定。</li>
+<li>依次比较双方的 <strong>先制等级</strong> 和 <strong>速度</strong>。一旦出现不同，则较高的那一方获得先手权；全相同则随机。</li>
+</ol>
+<p>根据 <a target="_blank" rel="noopener" href="http://tieba.baidu.com/p/8239192088">贴吧</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av797589414">B站视频</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21476824">B站专栏</a> 等各类讨论，总结了必先的优先级如下：远古少量 boss 必先（魔狮迪露）&gt; 魂印必先（圣谱=鲜血女王燃血）&gt; 攻击条件必先（天幕神龙，火王，混布，飞王）&gt; 少量 boss 受击必先（瑞尔斯）&gt; 攻击自爆必先（表姐）&gt; 属性自爆必先（幻影蝶，刘备，费德约克）&gt; 蒂朵自爆必先 &gt; 属性下回合无条件必先（光螳螂无始源光）&gt; 攻击下回合无条件必先（犀牛 150）&gt; 低于 200 必先（月照魔钰）&gt; 低于 250 必先（灵蛇）&gt; 现代 boss 的小翅膀必先。为何所有必先都快于现代 boss 的必先？根据流风天啸的 <a target="_blank" rel="noopener" href="https://b23.tv/i1kxJ4Z">测试</a>，小翅膀必先实为先制 +300，因为可以被束缚影响。</p>
+<p>根据以上性质和流程，可推出一些 PVE 常见的结论：</p>
+<ul>
+<li>假设拥有必先图标的 boss 被我方的毒特性精灵控了两回合。下回合我方精灵使用非必先的攻击技能时无法触发银翼的额外增伤，因为我方没抢到先手权，就不算先出手。</li>
+<li>拥有必先图标的 boss 被我方表姐自爆时的毒特性控了两回合。下回合上场的强攻手能触发银翼的额外增伤，因为表姐自爆的必先快于现代 boss 的小翅膀必先，我方抢到了先手权。</li>
+<li>先制+3 的 boss 被我方的毒特性精灵控到，下回合我方精灵使用必先或先制 +3 及以上的攻击技能时（假设我方速度快于 boss）能触发银翼的额外增伤。</li>
+</ul>
+<h2 id="常见-PVE-技能的一些说明">常见 PVE 技能的一些说明</h2>
+<p>施工中……</p>
+<p>封回血（特雷弗封核天使）。刀锋下的阴影 7：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1L94y1q73W/%E3%80%82">https://www.bilibili.com/video/BV1L94y1q73W/。</a></p>
+<p>穿盔技能对 boss 无效，但是星皇之怒对 boss 有效。</p>
+<p>先出手包含当前回合，后出手是下两回合。</p>
+<p>先制 -1 也算先制。</p>
+<h2 id="常见-PVE-精灵的一些说明">常见 PVE 精灵的一些说明</h2>
+<p>潘克多斯 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ku411z77K">增伤判定</a> 相关：</p>
+<ul>
+<li>增伤和银翼按加法结算，质量高。</li>
+<li>鬼火缠绕绑定对方 boss，多命 boss 能继承，换 boss 了则消失。</li>
+<li>本来表姐自爆类技能不能叠增伤，2022 年 9 月 16 日版本更新后修复了这一问题。</li>
+<li>重生复活后，仍可以触发死后魂印 5 回合增伤。</li>
+<li>自爆的护盾可以与老草王护盾叠加，但优先消耗老草王的护盾。</li>
+</ul>
+<p>幻影蝶的竭血残蝶是最常见的属性自爆，类似的还有白帝托孤、众神祝福和钢铁熔炉：</p>
+<ul>
+<li>原本这些自爆技能都是回合类效果，等一定回合结束后就失效了。官方 2022 年 9 月 2 日的出手逻辑变更后，操作阶段的弃权先于先手权的判断，导致在我方嗑药、切换时不消耗必先次数，变相加强了这些技能，成为了全队共享的传承必先。细节可参考 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19e411u7TU">这个视频</a>。总结来说：1. 蝶子自爆后我方切换精灵或嗑药，两回合必先必中必爆能传承；2. 蝶子自爆和蒂朵自爆会重合，不能做到三次必先传承。</li>
+<li>幻影蝶拥有 <strong>全赛最强免控</strong> 的说法。谱尼、帝皇之御都有免控，但是会被类似毒特性的受击控 boss 穿（表姐被穿前打守御八方还是能成功自爆出来）。而幻影蝶是 <strong>真免控</strong>，即使被标记成异常状态也能正常使用技能。刀锋下的阴影7 曾经 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zv41167Jq/">整了个活</a>，用最强穿控的 光辉·米瑞斯 打最强免控的 幻影蝶，结果蝶子依然能免控。</li>
+<li>幻影蝶魂印的免疫死亡相比帝皇之御也更高级。</li>
+<li>相比表姐的伪必中，竭血残蝶自爆后是真必中，不受命中下降的影响。</li>
+</ul>
+<p>帝皇之御的守御八方则是最常见的攻击自爆，刀锋下的阴影7 有一期 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qV411B7gw/">详细总结</a>：</p>
+<ul>
+<li>帝皇之御的登场前 2 回合免死在切走、切回来后会失效（但依然可以自爆）。</li>
+<li>守御八方的自爆效果打在免疫攻击伤害特性上的 boss 依然能触发，但打在盔上无法触发。</li>
+<li>守御八方触发后己方获得 <strong>两个独立的不可断次数效果</strong>：下两次攻击必定暴击，下两次攻击必定先手。场景一：中途有一次攻击 miss 了，暴击效果推迟一次；场景二：自爆后上替死，暴击和必先推迟。</li>
+<li>守御八方自爆后是 <strong>伪必中</strong>：己方攻击技能的基础命中率提升至 100%，但如果己方受到命中等级弱化，则攻击技能仍可能未命中。所以用 84 公式打每回合弱化我方精灵的 boss 时，最好首发天尊或蒂朵加必中 buff。</li>
+<li>帝皇之御的魂印免死在携带护盾且被秒杀时会被穿。经典场景：带元神盾，首发表姐被 boss 秒杀。</li>
+<li>重生复活帝皇之御后，魂印的两回合免死和复活前共享。一种常见的场景是 <strong>伪双表姐</strong>：帝皇之御首发自爆+重生复活+两个强攻手+帝皇之御再自爆+两个强攻手，那么被拉起来的表姐就只有一回合的免死。</li>
+<li>部分情况下，守御八方的自爆效果会与魂印免死起冲突，比如当对手有弹伤效果时。表姐自爆后其实已经成功，但是仍然会强制留一滴血，此时只要正常嗑药等死即可，如果点击其他攻击技能会消耗必先必爆。经典 PVE 例子是暗霆雷伊最后一关的燃魂巨兽。</li>
+</ul>
+<p>六界帝王和六界帝神：</p>
+<ul>
+<li>六界帝王老关卡已下架，商店里可以无限购买；六界帝神关卡仍在。一般两只就够用了。</li>
+<li>剑挥四方是目前唯一的先出手后无条件弹伤的攻击技能，boss 死亡时会强制留一滴血。</li>
+<li>对于多命 boss，除最后一命外，剑挥四方弹伤超过 boss 血量后 boss 会直接少一命。</li>
+</ul>
+<h2 id="PVE-资源获取">PVE 资源获取</h2>
+<p>赛尔号在 2022 年 9 月 16 日扩大了日常资源的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv18648454">数量上限</a>。注意付费获得的资源不计入当日限制。</p>
+<table>
+<thead>
+<tr>
+<th>资源名称</th>
+<th>每日上限</th>
+<th>总上限</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>赛尔豆</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">10^7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">4 \times 10^9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></td>
+<td>超过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false">(</mo><mn>2147483647</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2^{31}-1(2147483647)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mopen">(</span><span class="mord">2147483647</span><span class="mclose">)</span></span></span></span> 时可能会触发 bug</td>
+</tr>
+<tr>
+<td>学习力</td>
+<td>无</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9999</mn></mrow><annotation encoding="application/x-tex">9999</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9999</span></span></span></span></td>
+<td></td>
+</tr>
+<tr>
+<td>经验券</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500</mn><mi mathvariant="normal">/</mi><mn>100</mn><mi mathvariant="normal">/</mi><mn>50</mn></mrow><annotation encoding="application/x-tex">500/100/50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">500/100/50</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>8</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^8-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td></td>
+</tr>
+<tr>
+<td>泰坦之灵</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">10^7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>9</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^9-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td>官方公告里总上限为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">4 \times 10^9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span>，实际上限为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>9</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^9-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+</tr>
+<tr>
+<td>泰坦神石</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>8</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^8-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td></td>
+</tr>
+<tr>
+<td>其他神石</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>999</mn></mrow><annotation encoding="application/x-tex">999</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">999</span></span></span></span></td>
+<td></td>
+</tr>
+<tr>
+<td>红绿宝石</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500</mn></mrow><annotation encoding="application/x-tex">500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">500</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>99999</mn></mrow><annotation encoding="application/x-tex">99999</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">99999</span></span></span></span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>PVE 刻印获取主要靠每日第一次免费的刻印抽奖机和每日两次的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13802965">泰坦矿洞</a>。</p>
+<ul>
+<li>刻印抽奖机可抽衡系列，在寒暑假会增强成衡系列 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>，2023 年暑假甚至推出了全新的锦系列。</li>
+<li>泰坦矿洞可以大量刻印。关于二角衡系列，简单模式可产出衡·幻梦、衡·巡游、衡·突围、衡·破咒，普通模式可产出 衡·生机、衡·生灵、衡·疾袭、衡·迅箭，困难模式可产出 衡·巨刃、衡·聚魂、衡·飓风、衡·守望、偃月系列、泰坦 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> 系列；关于三角/四角刻印，简单模式可产出游骑兵徽记、魔导士徽记、角斗士徽记，普通模式可产出 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv10058379/">熠系列</a>，困难模式可产出偃月系列；关于五角刻印，三种模式分别产出泰坦 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>、泰坦、泰坦 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>。</li>
+</ul>
+<p>现版本的（一阶）精灵王刻印已不吃香，推荐兑换冰密空光海火风。刻印顺序按照精灵王的出场顺序，当周折扣刻印序号 = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>u</mi><mi>n</mi><mi>i</mi><mi>x</mi><mo>−</mo><mn>57600</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>7</mn><mo>×</mo><mn>86400</mn><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mspace></mspace><mspace width="0.6667em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mn>13</mn></mspace></mrow><annotation encoding="application/x-tex">[(unix - 57600)/( 7 \times 86400)] \mod 13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[(</span><span class="mord mathnormal">u</span><span class="mord mathnormal">ni</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">57600</span><span class="mclose">)</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">86400</span><span class="mclose">)]</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6667em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">13</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mi>n</mi><mi>i</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">unix</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">ni</span><span class="mord mathnormal">x</span></span></span></span>  表示当周的时间戳。</p>
+<h2 id="传送门">传送门</h2>
+<p>记录一下本文正文未曾收录的 PVE 向攻略文。</p>
+<table>
+<thead>
+<tr>
+<th>作者</th>
+<th>来源</th>
+<th>首发时间</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>云端少女莫妮卡</td>
+<td>B 站</td>
+<td>2023-1-19</td>
+<td><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21309143">赛尔号 各系强攻手全汇总</a>，每次更新后另开新文</td>
+</tr>
+<tr>
+<td>云端少女莫妮卡</td>
+<td>B 站</td>
+<td>2022-11-19</td>
+<td><a target="_blank" rel="noopener" href="https://www.bilibili.com/opus/730248254143332358">PVE精灵分类汇总、判定解析、配置展示、实战用途分析</a></td>
+</tr>
+<tr>
+<td>假诩</td>
+<td>贴吧</td>
+<td>2022-8-14</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7975678694">PVE非实用向冷门少见的东西</a></td>
+</tr>
+<tr>
+<td>繁华落尽空城</td>
+<td>贴吧</td>
+<td>2022-7-20</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7916164308">2022 全新精灵获取指南</a></td>
+</tr>
+<tr>
+<td>官方</td>
+<td>贴吧</td>
+<td>2022-7-14</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7922975467">大型全面科普扫盲解析</a>，相当于本文的基础版</td>
+</tr>
+<tr>
+<td>哇内外妇儿</td>
+<td>贴吧</td>
+<td>2022-4-17</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7800215007">PVE 精灵简略介绍</a></td>
+</tr>
+<tr>
+<td>摸鱼的橙汁</td>
+<td>B 站</td>
+<td>2021-7-18</td>
+<td><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12210252">繁殖精灵的孵化概率表</a></td>
+</tr>
+<tr>
+<td>摸鱼的橙汁</td>
+<td>B 站</td>
+<td>2021-2-13</td>
+<td><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv9963153">可捕捉野生精灵汇总</a></td>
+</tr>
+</tbody>
+</table>
+<p>记录一下有具体主题的赛尔号盘点文。</p>
+<table>
+<thead>
+<tr>
+<th>作者</th>
+<th>来源</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>奈落之底</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7859286669">淘米最近改技能特效的总结贴</a></td>
+</tr>
+<tr>
+<td>星芒毫厘</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7727470408">盘点 98 钻价格回归的精灵</a></td>
+</tr>
+<tr>
+<td>天雷断空</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7759314040">近现代家具装饰概说</a></td>
+</tr>
+<tr>
+<td>千川雪满</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/6522145779">刻印系统的发展史</a></td>
+</tr>
+<tr>
+<td>千川雪满</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7209533763">电竞之路 或许是注定败北的旅程</a></td>
+</tr>
+<tr>
+<td>龙炎圣月</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7800815448">盘点那些你知道或不知道的事件</a></td>
+</tr>
+<tr>
+<td>铭记</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/8307750092">盘点赛尔号图鉴中全套装的故事</a></td>
+</tr>
+</tbody>
+</table>
+<p>记录一下以年份或时间为轴的赛尔号历史梳理。</p>
+<table>
+<thead>
+<tr>
+<th>作者</th>
+<th>来源</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>千川雪满</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7636936539">近代 PVE 轶闻</a></td>
+</tr>
+<tr>
+<td>漂流欢</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7825654593">2021-破晓时代</a></td>
+</tr>
+<tr>
+<td>后山书生</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/8222033199">2020·阴间时代</a></td>
+</tr>
+<tr>
+<td>瀚宇星皇之力</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/8204591948">2019~2020 巅峰环境浅谈</a></td>
+</tr>
+<tr>
+<td>瀚宇星皇之力</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7974688370">2017~2018 巅峰环境浅谈</a></td>
+</tr>
+<tr>
+<td>千川雪满</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7224244520">2017·虚假的蓝调</a></td>
+</tr>
+<tr>
+<td>千川雪满</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/6775295298">2016·辉煌世代</a></td>
+</tr>
+<tr>
+<td>千川雪满</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7825654593">2015-黑暗时代·纪</a></td>
+</tr>
+<tr>
+<td>永存•烽火不息</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7439954374">2012-开元盛世</a></td>
+</tr>
+<tr>
+<td>log0 不为0</td>
+<td>贴吧</td>
+<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/8013341918">巅峰之战起源与开端</a></td>
+</tr>
+</tbody>
+</table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Summary-of-Game-Mechanism-in-Seer/">https://jiangshibiao.github.io/Summary-of-Game-Mechanism-in-Seer/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Collection/">Collection</a><a class="post-meta__tags" href="/tags/Game/">Game</a><a class="post-meta__tags" href="/tags/Seer/">Seer</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Summary-of-Game-Mechanism-in-Seer.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集"><img class="cover" src="/../post_images/Game-Collect-In-Seer.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">赛尔号决策类游戏收集</div></div><div class="info-2"><div class="info-item-1">系统性地整理了《赛尔号》近几年每周活动中的决策类游戏。</div></div></div></a><a class="pagination-related" href="/Something-Chaotic-But-Interesting/" title="杂乱而有趣的冷知识合集"><img class="cover" src="/images/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">杂乱而有趣的冷知识合集</div></div><div class="info-2"><div class="info-item-1">这里将记录我学到的各种奇奇怪怪的知识。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集"><img class="cover" src="/../post_images/Game-Collect-In-Seer.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-06-14</div><div class="info-item-2">赛尔号决策类游戏收集</div></div><div class="info-2"><div class="info-item-1">系统性地整理了《赛尔号》近几年每周活动中的决策类游戏。</div></div></div></a><a class="pagination-related" href="/Adventure-Animation/" title="冒险动漫推荐"><img class="cover" src="/../post_images/Adventure-Animation.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2023-07-27</div><div class="info-item-2">冒险动漫推荐</div></div><div class="info-2"><div class="info-item-1">该博客记录了我看过的冒险、剧情类的动漫（动画/电影）。我为每部动漫都配上图片和简要评价，略有剧透。</div></div></div></a><a class="pagination-related" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐"><img class="cover" src="/images/cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-20</div><div class="info-item-2">重度桌游推荐</div></div><div class="info-2"><div class="info-item-1">本文会为我玩过的轻中度桌游进行排序和打分，并给予详细评价。</div></div></div></a><a class="pagination-related" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img class="cover" src="/images/cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-20</div><div class="info-item-2">轻度桌游推荐</div></div><div class="info-2"><div class="info-item-1">本文会为我玩过的轻中度桌游进行排序和打分，并给予详细评价。</div></div></div></a><a class="pagination-related" href="/Daily-Animation/" title="日常动漫推荐"><img class="cover" src="/../post_images/Daily-Animation.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2022-02-03</div><div class="info-item-2">日常动漫推荐</div></div><div class="info-2"><div class="info-item-1">该博客记录了我看过的日常、温情类的动漫（动画/电影）。我为每部动漫都配上图片和简要评价，略有剧透。</div></div></div></a><a class="pagination-related" href="/Interesting-Problems-Probability/" title="趣题摘记-概率和期望"><img class="cover" src="/../post_images/Interesting-Problems-Probability.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2023-11-29</div><div class="info-item-2">趣题摘记-概率和期望</div></div><div class="info-2"><div class="info-item-1">记录了数学和计算机领域，与概率和期望相关的趣题。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">工具相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E5%86%85%E5%B8%B8%E8%A7%81%E8%AE%BE%E5%AE%9A"><span class="toc-number">2.</span> <span class="toc-text">游戏内常见设定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E7%81%B5%E8%83%BD%E5%8A%9B%E5%80%BC%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">精灵能力值计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A4%E5%AE%B3%E8%AE%A1%E7%AE%97"><span class="toc-number">4.</span> <span class="toc-text">伤害计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%A8%81%E5%8A%9B"><span class="toc-number">5.</span> <span class="toc-text">变威力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%B8%E4%BC%A4%E7%90%86%E8%AE%BA%E5%92%8C%E6%8B%89%E9%98%B2%E5%B7%AE"><span class="toc-number">6.</span> <span class="toc-text">裸伤理论和拉防差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%B8%AD%E5%92%8C%E6%9A%B4%E5%87%BB"><span class="toc-number">7.</span> <span class="toc-text">命中和暴击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81"><span class="toc-number">8.</span> <span class="toc-text">异常状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%97%E6%80%A7%E7%B3%BB%E7%BB%9F"><span class="toc-number">9.</span> <span class="toc-text">抗性系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E7%81%B5%E7%89%B9%E6%80%A7"><span class="toc-number">10.</span> <span class="toc-text">精灵特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E8%83%BD%E7%9F%B3"><span class="toc-number">11.</span> <span class="toc-text">技能石</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%BB%E5%8D%B0%E5%AE%9D%E7%9F%B3"><span class="toc-number">12.</span> <span class="toc-text">刻印宝石</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boss-%E7%9A%84%E5%9B%BE%E6%A0%87%E5%92%8C%E7%89%B9%E6%80%A7"><span class="toc-number">13.</span> <span class="toc-text">boss 的图标和特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E6%89%8B%E9%A1%BA%E5%BA%8F"><span class="toc-number">14.</span> <span class="toc-text">出手顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-PVE-%E6%8A%80%E8%83%BD%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E"><span class="toc-number">15.</span> <span class="toc-text">常见 PVE 技能的一些说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-PVE-%E7%B2%BE%E7%81%B5%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E"><span class="toc-number">16.</span> <span class="toc-text">常见 PVE 精灵的一些说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PVE-%E8%B5%84%E6%BA%90%E8%8E%B7%E5%8F%96"><span class="toc-number">17.</span> <span class="toc-text">PVE 资源获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%80%81%E9%97%A8"><span class="toc-number">18.</span> <span class="toc-text">传送门</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Exploring-DeepSeek/" title="探索 DeepSeek"><img src="/../post_images/DeepSeek.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="探索 DeepSeek"/></a><div class="content"><a class="title" href="/Exploring-DeepSeek/" title="探索 DeepSeek">探索 DeepSeek</a><time datetime="2025-07-20T16:00:00.000Z" title="Updated 2025-07-21 2025-07-21T00:00:00+08:00">2025-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐">重度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轻度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Light-Fun/" title="轻度桌游推荐">轻度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多方计算之 ECDSA 门限签名"/></a><div class="content"><a class="title" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名">多方计算之 ECDSA 门限签名</a><time datetime="2025-07-17T16:00:00.000Z" title="Updated 2025-07-18 2025-07-18T00:00:00+08:00">2025-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Zero-Knowledge-Proof/" title="零知识证明"><img src="/../post_images/Zero-Knowledge-Proof.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="零知识证明"/></a><div class="content"><a class="title" href="/Zero-Knowledge-Proof/" title="零知识证明">零知识证明</a><time datetime="2025-07-14T16:00:00.000Z" title="Updated 2025-07-15 2025-07-15T00:00:00+08:00">2025-07-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

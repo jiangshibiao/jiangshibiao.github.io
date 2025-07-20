@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>黄山游记 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了 2024.4.18-4.19 在黄山的旅程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黄山游记">
+<meta property="og:url" content="https://jiangshibiao.github.io/Travel-Notes-of-Huangshan/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了 2024.4.18-4.19 在黄山的旅程。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Huangshan.jpg">
+<meta property="article:published_time" content="2025-04-30T14:16:29.000Z">
+<meta property="article:modified_time" content="2025-04-29T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Log">
+<meta property="article:tag" content="Journeys">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Huangshan.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "黄山游记",
+  "url": "https://jiangshibiao.github.io/Travel-Notes-of-Huangshan/",
+  "image": "https://jiangshibiao.github.io/post_images/Travel-Notes-of-Huangshan.jpg",
+  "datePublished": "2025-04-30T14:16:29.000Z",
+  "dateModified": "2025-04-29T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Travel-Notes-of-Huangshan/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '黄山游记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Travel-Notes-of-Huangshan.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">黄山游记</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">黄山游记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-04-30T14:16:29.000Z" title="Created 2025-04-30 2025-04-30T22:16:29+08:00">2025-04-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-04-29T16:00:00.000Z" title="Updated 2025-04-30 2025-04-30T00:00:00+08:00">2025-04-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Life/">Life</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>14mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="抵达">抵达</h2>
+<p>黄山是历史悠久的 5A 级景区，但游览路线、交通方式等都需要有一定的钻研（特别是对于我这种不会开车的）。黄山风景区主要是从南大门进出，附近有两个交通集散中心：</p>
+<ul>
+<li><strong>南大门换乘中心</strong>（新国线黄山风景区汽车站/寨西换乘总站/汤口换乘总站），其坐落在汤口镇的街道上，与真正的黄山南大门有三公里远，民宿和店面众多。南大门换乘中心是交通枢纽，对外承载从黄山北、宏村等远距离站点来回的客流，对内负责运营来回慈光阁站和云谷寺站的景区巴士。各种小程序里线路预订比较混乱。</li>
+<li><strong>逍遥溪换乘中心</strong>，在真正的黄山南门，仅提供内部交通（南大门换乘中心去慈光阁和云谷寺必经之地）。</li>
+</ul>
+<p>黄山门票全价是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>180</mn></mrow><annotation encoding="application/x-tex">180</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">180</span></span></span></span> 一人。前后山分别有玉屏索道和云谷索道，票价都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>80</mn></mrow><annotation encoding="application/x-tex">80</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">80</span></span></span></span> 一人，相当于用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> 分钟缆车时间换 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 小时上/下山时间。根据我的研究，游览线路存在截然相反的两条，各自优点如下：</p>
+<ul>
+<li><strong>前山进后山出</strong>：前山景点的游客更多，大早上先爬前山能够规避一些人流。</li>
+<li><strong>后山进前山出</strong>：后山的坡度更缓，不坐索道的情况下爬行上山的难度对新手来说更友好。整条游览路线里存在可选的西海大峡谷一项，后山进就可以先沿着西海大峡谷的步道向下走（参考右下图路线），到谷底再坐小火车上升（注意西排云溪站是谷底而天海站是谷顶），在不走重复路的情况下爬行难度更低。</li>
+</ul>
+<p>征询了励颖的意见，她觉得上下山都坐索道比较稳，我们就选择了前山进后山出、跳过西海大峡谷的摆烂路线。其中莲花峰和天都峰这两个险峻景点都是周期性开放，看很多博主分享的视频感觉非常危险。我们运气不佳，前者自 2023 年 12 月 1 日开始封闭三到五年，后者自今年冬季以来暂未开放，就不必纠结要不要去了。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E9%BB%84%E5%B1%B1%E8%B7%AF%E7%BA%BF%E5%9B%BE.jpg" alt></p>
+<p>我买了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>21</mn><mo>:</mo><mn>24</mn><mo>−</mo><mn>22</mn><mo>:</mo><mn>58</mn></mrow><annotation encoding="application/x-tex">21:24-22:58</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">21</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">24</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">22</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">58</span></span></span></span> 从杭州南站到黄山北站的高铁票——反正下班过去已经赶不上北站到南门换乘中心的巴士了（末班车 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>19</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">19:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">19</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span>），不如选择这班速度快、起点离家近的高铁线。北站到黄山景区有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn></mrow><annotation encoding="application/x-tex">40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">40</span></span></span></span> 公里车程，巴士票价是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn></mrow><annotation encoding="application/x-tex">30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 一人。作为 i 人我选择预订哈啰顺风车，和司机沟通后议定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn></mrow><annotation encoding="application/x-tex">40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">40</span></span></span></span> 一人（时间晚价格稍高可以理解）。</p>
+<p>酒店草草将就了一下，原计划 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">7:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 起床，结果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">6:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 左右就被楼下马路边的汽车开关门声反复吵醒。</p>
+<h2 id="玉屏索道和迎客松">玉屏索道和迎客松</h2>
+<p>为了减少负重，把包裹都寄存在酒店前台，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">7:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 揣了充电宝、纸巾、无比滴一身轻装出发。小红书上指定早饭是冬冬小二面馆，而面馆距离酒店有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.7</mn></mrow><annotation encoding="application/x-tex">1.7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.7</span></span></span></span> 公里远（我们的酒店就在换乘中心边上），我们选择在路边的餐馆解决。路边随处都有登山木制拐杖出售，定价统一透明（把手小的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 元，把手大的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> 元），我俩各买了一根。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%AF%84%E5%AD%98%E8%A1%8C%E6%9D%8E%E5%92%8C%E6%97%A9%E9%A5%AD.jpg" alt></p>
+<p>南大门换乘中心到慈光阁的大巴是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>19</mn></mrow><annotation encoding="application/x-tex">19</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">19</span></span></span></span> 一个人，这段路被官方的巴士垄断，其中盘山公路甚是曲折想必造价颇高。玉屏索道用的是宽大的封闭式缆车，可以容纳八名游客，吞吐量极高。随着海拔的升高，时不时可以看到露出光溜溜岩石的山脊，看上去非常陡峭。说来也奇怪，石头块里总能长出几株松树出来。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E7%8E%89%E5%B1%8F%E7%B4%A2%E9%81%93.jpg" alt></p>
+<p>从玉屏索道下来后的第一个上行坡叫做好汉坡，我们混在多个旅行团里艰难爬行着。零星听到几句导游词后总是匆匆超过，防止被大队的人流冲挤。旅行团里大多是老头老太，清一色带着红帽子或者黄帽子，前面往往有个携带扩音喇叭的导游，除了介绍风景外可能有一半的吆喝是“来来来，我们 518 团的战友们赶紧跟上”。周五能避开大部分人流倒是不假，但排除了学生和社畜后体验提升不大。一路上松树甚多，东张西望找传迎客松时找到了送客松。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E9%80%81%E5%AE%A2%E6%9D%BE.jpg" alt></p>
+<p>峰回路转来到一个很大的平台，仰头赫然是黄山第一岩。大名鼎鼎的迎客松就在一旁，人头攒动。树前拍照的人络绎不绝，不乏很多素质奇差喜欢插队的大叔大妈，我们排了很久终于拼手速拍到两张。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E8%BF%8E%E5%AE%A2%E6%9D%BE.jpg" alt></p>
+<p>相比之下，侧面的栏杆前游人就少了很多。补给站前礼貌问价，饮料 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span> 一瓶，文创雪糕 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn></mrow><annotation encoding="application/x-tex">25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">25</span></span></span></span> 一支。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E8%83%8C%E9%9D%A0%E6%A0%8F%E6%9D%86.jpg" alt></p>
+<h2 id="鳌鱼峰">鳌鱼峰</h2>
+<p>转出迎客松后世界一下子清净了不少。接连穿过几个清幽的山洞，栏杆边上正是拍照的好地方。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E6%A0%8F%E6%9D%86%E8%BF%9C%E7%9C%BA.jpg" alt></p>
+<p>一路遇到很多肩挑零食饮料箱子的师傅，他们往往急速走一段路再停下休息片刻，走路时吆喝着让游人相让。一个游客说服师傅上次尝试挑担，颤颤巍巍地举起来后评估说有个一百六七十斤。另一种是两个师傅前后抬着的轿子，价格按距离收费（小红书上提到峰顶抬下山要 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>680</mn></mrow><annotation encoding="application/x-tex">680</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">680</span></span></span></span>），路边摆着休息的很多但实际乘坐的游客很少。</p>
+<p>再次遇到补给站时，我们多了三分敬意。文创冰激凌仍然是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn></mrow><annotation encoding="application/x-tex">25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">25</span></span></span></span> 一支，那就买一根支持一下吧！</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E9%B3%8C%E9%B1%BC%E5%B3%B0%E8%B7%AF%E7%BA%BF%E5%92%8C%E6%96%87%E5%88%9B%E5%86%B0%E6%BF%80%E5%87%8C.jpg" alt></p>
+<p>接下来是一条极长的向鳌鱼峰进发的山路，曲折向上盘旋，两侧怪石林立。有一段下坡路非常陡峭，窄处只能容下一两人通过，两侧有悬挂的绳索供接力。我非常担心有人从高处摔倒，这样势必会导致大批的游客滚下山区。</p>
+<p>我们沿路有一搭没一搭地听着不同的导游介绍，莲花峰边上的大小狗头看得非常分明，但其余的祥云、鸳鸯戏水、龟兔赛跑、孔雀开屏、观音等就得靠想象力了。偶尔回头看到走过的曲折山路，成就感油然而生。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%B2%A9%E7%9F%B3%E6%9E%97%E7%AB%8B.jpg" alt></p>
+<h2 id="光明顶和云谷索道">光明顶和云谷索道</h2>
+<p>下了鳌鱼峰就能远远望见光明顶的圆球，笔直飞过去似乎距离不远，但山路上上下下弯弯绕绕看不到尽处。一路上植被非常茂密，远处甚至蓄有水库。一路向前是天海美食广场，卖一些小吃、汉堡和饮料。商家套路多，汉堡 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span> 一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span> 获得一份豆浆，收到的是口味寡淡的一小个纸杯。我俩都已疲倦，确认放弃去坐西海大峡谷的小火车。路上游客高频提到明教、张无忌、杨逍等角色，有导游在解释说这里的光明顶和《倚天屠龙记》并无关联。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E9%81%A5%E6%9C%9B%E5%85%89%E6%98%8E%E9%A1%B6.jpg" alt></p>
+<p>一鼓作气爬到光明顶上，终于能近距离观察这个圆球。圆球侧面有上去的通道，立着一块“雷达重地”的牌子，一个保安拦在隘口阻挡游客，说上面是“光明顶山庄”，只有预订酒店的游客才能上去。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%85%89%E6%98%8E%E9%A1%B6%E4%B8%8A.jpg" alt></p>
+<p>光明顶上有一个很大的山坡，坡角用栏杆围住，下面是一望无际的美景。有位游客自带了一面很大的五星红旗，其他游客争着接过来贴在栏杆上拍照。从这个角度望下去又能看到一个山中之湖，不知是否就是上一个。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%85%89%E6%98%8E%E9%A1%B6%E7%9C%BA%E6%9C%9B.jpg" alt></p>
+<p>从光明顶出发后地势一路向下，反向的游客数量陡增，有不少在感叹“怎么还没到光明顶”，想必都是云谷索道上来逆向游览的。阶梯两侧或是高耸的松树，或是高山草甸，植被非常茂盛，偶尔能发现一只松树窜来窜去。松树林间遥遥望见了飞来石（左下图正中间），可惜没有力气走过去欣赏了。路上遇到的挑担师傅颇有不同，上午搬运的是饮料、烤肠、烤翅之类的零食卖给补给站，而下午搬运的是青菜、土豆之类的蔬菜卖给宾馆。根据小红书博主的采访，师傅们按重量结算费用，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.9</mn></mrow><annotation encoding="application/x-tex">0.9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.9</span></span></span></span> 元一斤，从两侧的索道开始往山上搬运，一天来回搬两到三次。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E4%B8%8B%E5%85%89%E6%98%8E%E9%A1%B6.jpg" alt></p>
+<p>我们从云谷索道下山，风景和来时非常相似。腿开始酸疼，我俩通过比拼成语接龙支撑着下山。听说回收拐杖可以换一瓶水，我们在山下看到了宣传语，却没找到换水的店家。有几个老婆婆笑呵呵想来白嫖，我俩兀自拐着。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E4%BA%91%E8%B0%B7%E7%B4%A2%E9%81%93%E4%B8%8B.jpg" alt></p>
+<p>山脚的换乘中心可以坐汽车直达宏村，可惜我们得折返酒店拿行李，虽只一公里路来回已甚为吃力。我在小程序上订票迟了，进去时 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>14</mn><mo>:</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">14:10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">14</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> 的票只剩最后两张，填完身份证后已经失效了，咬牙切齿买了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>14</mn><mo>:</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">14:40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">14</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">40</span></span></span></span> 的班次。</p>
+<h2 id="初到宏村">初到宏村</h2>
+<p>下大巴后，我们沿着人流从宏村西门进入，跨过秀丽的羊栈河就看到了南湖，湖边散布着很多穿着汉服正在拍照的小姐姐。南湖中心有一条非常窄的小桥被称为画桥，因为宏村被称为画里乡村。画桥上人流速度非常慢，因为游人们往往在桥上左顾右盼地拍照。听到一位导游介绍说，游客总爱在画桥上把手机跌下去。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%88%9D%E5%85%A5%E5%AE%8F%E6%9D%91.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%8D%97%E6%B9%96%E5%92%8C%E7%94%BB%E6%A1%A5.jpg" alt></p>
+<p>过了画桥就是宏村的古建筑群了，均是白墙黑瓦的徽式特色。我们径直沿着导航去往“不急民宿”，途中看到几名游客围着一处正在炸毛豆腐的老太太。我口水流得难以抑制，强行被励颖拽走，说一会儿要按她的攻略去吃。</p>
+<p>别看宏村建筑外表看起来很古老，“不急民宿”大堂里的内饰干净整洁。我们的房子正好在院子的一楼，沿着落地窗向外看去风景很美。房间精致而现代化，中央空调、地暖（虽然用不上）、冰箱等一应俱全。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E4%B8%8D%E6%80%A5%E6%B0%91%E5%AE%BF.jpg" alt></p>
+<p>洗去了黄山的疲倦后，我们就在院子里飞起了无人机。从高处眺望，古村落和月沼都别有一番风味。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E6%97%A0%E4%BA%BA%E6%9C%BA%E8%88%AA%E6%8B%8D.jpg" alt></p>
+<h2 id="夜游宏村">夜游宏村</h2>
+<p>傍晚华灯初上，我们美滋滋地出去觅食。励颖掏出她的八宝口袋（备忘录），指出当晚可在聚八方试试。宏村的街道和丽江古城很像，但是少了网红美食街的那种浮躁，给人一种地道淳朴的风格。我们民宿所在的巷子比较寂静，隔壁大多也是民宿；转出一个街角后灯光和人流突然多了起来，隔几步就能看到一家提供本地菜的小饭店。饭店门前小黑板的招牌菜里高频出现“臭鳜鱼”、“五加皮炒蛋”、“毛豆腐”、“笋干炒肉”、“石耳炖土鸡”等字眼。</p>
+<p>聚八方是一家貌不惊人的店，微信里点完 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>128</mn></mrow><annotation encoding="application/x-tex">128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">128</span></span></span></span> 的臭鳜鱼后我们就开始纠结其他点什么了。毛豆腐？励颖推荐在等会去找“中街婆婆毛豆腐”。五加皮炒蛋？蛋有点常见。石耳炖土鸡？一问石耳很像木耳，励颖应该吃不了。我抱着试试看的心理打开美团，发现有包含臭鳜鱼、酸菜炒野笋、老面饼、米酒的五折套餐，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>141</mn></mrow><annotation encoding="application/x-tex">141</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">141</span></span></span></span> 这下不得不冲了。臭鳜鱼味道不错，更难得的是这种鱼几乎没有刺，我和着鱼和笋足足下了三碗米饭。酒足饭饱后我们信步闲逛，脑中已哈希好励颖的小红书美食单，依次找到了黄山毛峰冰激凌、话梅柠檬等经典美食。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%AE%8F%E6%9D%91%E5%A4%9C%E9%A3%9F.jpg" alt></p>
+<p>宏村或者说安徽的特色店铺很多，比如烧饼店（这里的烧饼是一个半径很小的馅饼）、徽墨歙砚店、米酒店、剁椒店、茶叶店（安徽的黄山毛峰、祁门红茶、太平猴魁、 六安瓜片都很有名）等。卖冰箱贴的纪念品店也很多，报价错综复杂。经常看到一只长得很像灯笼的鱼，属添灯食堂门口的体型最巨大，我们猜想这是一条鳜鱼。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%AE%8F%E6%9D%91%E5%A4%9C%E5%BA%97.jpg" alt></p>
+<p>宏村邮局是一个招牌的打卡点——里面空间敞亮、陈列精致、价格实在，果然名不虚传。我对集邮有少许的爱好，看到店内陈设的款式非常详细，对几款以黄山和宏村主题的邮票爱不释手；更难能可贵的是，这家店里还收集着已绝版的零几年以宏村为主题的邮戳。在我挑选邮票之际，励颖对冰箱贴也大打出手，选来选去选了灯笼鳜鱼。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%AE%8F%E6%9D%91%E9%82%AE%E5%B1%80.jpg" alt></p>
+<p>我走到哪都有往家寄明信片的传统，宏村邮局里有大量好看的章，这下就不用憋明信片的内容啦。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%86%99%E6%98%8E%E4%BF%A1%E7%89%87.jpg" alt></p>
+<p>月沼有家咖啡和纪念品店的二楼是音乐酒吧，应该是宏村唯一一家，励颖盛赞店家选址不错、定位不错。</p>
+<p>当晚我们几乎把宏村逛了个遍，唯独有“中街婆婆毛豆腐“和”四喜纪念品店“两处地方找不到：前者完全没有任何线索，后者虽然在高德地图上查不到，但在百度地图上标有”村前街 45 号“的地址。我提出先找到村前街再横向移动到 45 号商铺，结果来来回回在村里绕了半天，终于在月沼前的建筑上找到了“前街”的标识。此时街上部分店铺已经关门，我灵机一动，在高德地图上根据村前街 45 号反向查建筑，查到的竟然是汪乐梅米店！门上的四个喜字其实能看出一些端倪；我们进一步找店员询问，证实了这里本是四喜纪念品店，后转租给汪乐梅米店。</p>
+<h2 id="日游宏村">日游宏村</h2>
+<p>我本想凌晨拖励颖起来去月沼前看日出，没想到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">5:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 下了一场大雨只能作罢。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">8:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 起床去吃早饭，民宿的阿姨为我们提供了白粥、牛奶、千张酥、烧饼、鸡蛋、玉米、刀切馒头和樱桃番茄，朴实而丰盛。牛奶是山姆的，摸得出来外面刚热过，足以看出阿姨的细心。雨过天阴空气很清新，我们挽着手再游宏村。</p>
+<p>游至南湖附近，我们听到有官方导游在用扩音器推销，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>90</mn></mrow><annotation encoding="application/x-tex">90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">90</span></span></span></span> 元一小时带你逛完宏村的古建筑。带我们的是一个穿着红夹克的男导游，每人发一个骨传导的耳麦。他介绍说，宏村由汪氏族人迁入并创建，原名”弘村“，为避讳乾隆帝名“弘历”改名为“宏村”。宏村非常重视水利系统，牵引山泉流经村中小巷汇入南湖，着火时扑救很方便。宏村整体布局呈现很有意思的“牛形”，村口两棵古树为牛角，月沼为牛胃，环绕全村的水渠为牛肠，南湖为牛肚。</p>
+<p>我们的第一站是南湖书院，由宏村汪氏族人集资合并扩建，是徽商“贾而好儒”的典型体现。门口的志道堂挂着“蔚为国华”的匾额，是先生授课、学子诵读之所，拍照的游人很多；旁边的启蒙阁则是更低龄化的授课场所。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%8D%97%E6%B9%96%E4%B9%A6%E9%99%A2.jpg" alt></p>
+<p>进口出开了一处方形的天井让人印象深刻，不仅采光不错，还能联想到到雨天水滴沿着天井滴答下落的浪漫之感。侧门出去有几间稍显现代化的建筑和一块空地（操场)，据说一直作为宏村小学用到 20 世纪 90 年代。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%A4%A9%E7%AA%97%E5%92%8C%E5%9C%B0%E5%AD%94.jpg" alt></p>
+<p>我们顺着导游的思路，接连逛了秀才家、族长家、首富家、做官家和茶商家。除了首富家都一直继承至今在用，而首富家在建国后打土豪分田地时被没收充公，令人唏嘘。由于地位和财富不尽相同，这几处古建筑的空间大小和布置细节各有不同，但秉承着相同的徽式风格：白墙黑瓦，门面很高，窗户很小或几乎无窗，室内的梁上或窗上雕刻着精美的浮雕。越富的人家住得越北，处于上游先用水。室内起居的房间多布局为左镜右瓶中钟，镜子代表“平静祥瑞”，花瓶代表“平安”，联合中间的钟表示“终身平静”；但是老人房间里不会带有钟，因为“送终”不吉利。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E6%B5%AE%E9%9B%95.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Huangshan/%E5%AE%A4%E5%86%85%E5%B8%83%E5%B1%80.jpg" alt></p>
+<p>白天的月沼别有一番风味，白墙黑瓦倒映水中很好看，难怪经常会看到一批批夹着素描板来写生的学生。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E6%9C%88%E6%B2%BC%E5%90%88%E5%BD%B1.jpg" alt></p>
+<p>月沼北面正中心是汪氏宗祠，是汪家主持大师时的议事厅。门面修得非常高大，挂着“世德发祥”的匾额。宗祠内事乐叙堂，堂上挂着三个最有代表性的汪氏先人，包括汪氏远祖汪华、宏村迁入始祖汪彦济和完善宏村水利建设的汪辛。值得注意的是，侧面供奉着一位标有“巾帼大夫”的女性，系宏村水利系统的设计者胡重娘。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E6%B1%AA%E6%B0%8F%E5%AE%97%E7%A5%A0.jpg" alt></p>
+<p>终点是村口的两棵古树：一棵是红杨，承担村里的喜事；一棵是银杏，承担村里的白事。经过民宿边上一个毛豆腐摊时，励颖突然“噢”地叫了出来：原来这是便是中街婆婆毛豆腐，我们来的时候就已路过但一直没有知觉。毛豆腐在视觉上非常好吃，一口下去的味道却比想象中的差些——入口厚实，没有绍兴臭豆腐那么软。</p>
+<p><img src="/Travel-Notes-of-Huangshan/%E4%B8%AD%E8%A1%97%E5%A9%86%E5%A9%86%E6%AF%9B%E8%B1%86%E8%85%90.jpg" alt></p>
+<p>中午在添灯食堂点了份套餐，鳜鱼、笋等口味和聚八方差别不大。出宏村后没忘记在路边买了灵山酒酿。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Travel-Notes-of-Huangshan/">https://jiangshibiao.github.io/Travel-Notes-of-Huangshan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Log/">Log</a><a class="post-meta__tags" href="/tags/Journeys/">Journeys</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Travel-Notes-of-Huangshan.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/Travel-Notes-of-Xiamen/" title="厦门游记"><img class="cover" src="/../post_images/Travel-Notes-of-Xiamen.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">厦门游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.3.29-3.30 在厦门的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Yantai/" title="烟台威海游记"><img class="cover" src="/../post_images/Travel-Notes-of-Yantai.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">烟台威海游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.5.4-5.6 在威海和烟台的错峰旅游。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/Travel-Notes-of-Changsha/" title="长沙游记"><img class="cover" src="/../post_images/Travel-Notes-of-Changsha.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-06</div><div class="info-item-2">长沙游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.6.27-6.29 在长沙的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hengdian/" title="横店游记"><img class="cover" src="/../post_images/Hengdian.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-10-26</div><div class="info-item-2">横店游记</div></div><div class="info-2"><div class="info-item-1">记录了 2021.9.19-9.20 在横店的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hong-Kong/" title="香港游记"><img class="cover" src="/../post_images/HongKong.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-01-16</div><div class="info-item-2">香港游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.1.13-1.16 在香港的旅程。主要就是三件事：买金，办卡和吃喝玩乐。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Maldives/" title="马尔代夫游记"><img class="cover" src="/../post_images/Travel-Notes-of-Maldives.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-10-08</div><div class="info-item-2">马尔代夫游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024 中秋假期在马尔代夫莉莉岛五天四晚的旅程。对马尔代夫的主要印象有：开放式管理，中国人很多，浮潜环境非常好。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Japan/" title="日本游记"><img class="cover" src="/../post_images/Travel-Notes-of-Japan.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-05-19</div><div class="info-item-2">日本游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024 五一假期在日本的旅程。对日本的主要印象有：路面整洁，国际化，轨道交通发达，便利店多而外卖少。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Sanya/" title="三亚游记"><img class="cover" src="/../post_images/Travel-Notes-of-Sanya.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-09-02</div><div class="info-item-2">三亚游记</div></div><div class="info-2"><div class="info-item-1">记录了 2021 五月初在三亚的旅程，算是毕业旅行吧！</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%B5%E8%BE%BE"><span class="toc-number">1.</span> <span class="toc-text">抵达</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%89%E5%B1%8F%E7%B4%A2%E9%81%93%E5%92%8C%E8%BF%8E%E5%AE%A2%E6%9D%BE"><span class="toc-number">2.</span> <span class="toc-text">玉屏索道和迎客松</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%B3%8C%E9%B1%BC%E5%B3%B0"><span class="toc-number">3.</span> <span class="toc-text">鳌鱼峰</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E6%98%8E%E9%A1%B6%E5%92%8C%E4%BA%91%E8%B0%B7%E7%B4%A2%E9%81%93"><span class="toc-number">4.</span> <span class="toc-text">光明顶和云谷索道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%88%B0%E5%AE%8F%E6%9D%91"><span class="toc-number">5.</span> <span class="toc-text">初到宏村</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9C%E6%B8%B8%E5%AE%8F%E6%9D%91"><span class="toc-number">6.</span> <span class="toc-text">夜游宏村</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%B8%B8%E5%AE%8F%E6%9D%91"><span class="toc-number">7.</span> <span class="toc-text">日游宏村</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Exploring-DeepSeek/" title="探索 DeepSeek"><img src="/../post_images/DeepSeek.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="探索 DeepSeek"/></a><div class="content"><a class="title" href="/Exploring-DeepSeek/" title="探索 DeepSeek">探索 DeepSeek</a><time datetime="2025-07-20T16:00:00.000Z" title="Updated 2025-07-21 2025-07-21T00:00:00+08:00">2025-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐">重度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轻度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Light-Fun/" title="轻度桌游推荐">轻度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多方计算之 ECDSA 门限签名"/></a><div class="content"><a class="title" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名">多方计算之 ECDSA 门限签名</a><time datetime="2025-07-17T16:00:00.000Z" title="Updated 2025-07-18 2025-07-18T00:00:00+08:00">2025-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Zero-Knowledge-Proof/" title="零知识证明"><img src="/../post_images/Zero-Knowledge-Proof.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="零知识证明"/></a><div class="content"><a class="title" href="/Zero-Knowledge-Proof/" title="零知识证明">零知识证明</a><time datetime="2025-07-14T16:00:00.000Z" title="Updated 2025-07-15 2025-07-15T00:00:00+08:00">2025-07-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

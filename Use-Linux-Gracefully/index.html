@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>优雅地在 Linux 下工作 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了我对 Linux 的系统性学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优雅地在 Linux 下工作">
+<meta property="og:url" content="https://jiangshibiao.github.io/Use-Linux-Gracefully/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了我对 Linux 的系统性学习。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Use-Linux-Gracefully.jpg">
+<meta property="article:published_time" content="2021-05-04T02:39:39.000Z">
+<meta property="article:modified_time" content="2023-08-22T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Digest">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Use-Linux-Gracefully.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "优雅地在 Linux 下工作",
+  "url": "https://jiangshibiao.github.io/Use-Linux-Gracefully/",
+  "image": "https://jiangshibiao.github.io/post_images/Use-Linux-Gracefully.jpg",
+  "datePublished": "2021-05-04T02:39:39.000Z",
+  "dateModified": "2023-08-22T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Use-Linux-Gracefully/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '优雅地在 Linux 下工作',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Use-Linux-Gracefully.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">优雅地在 Linux 下工作</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">优雅地在 Linux 下工作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-04T02:39:39.000Z" title="Created 2021-05-04 2021-05-04T10:39:39+08:00">2021-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-22T16:00:00.000Z" title="Updated 2023-08-23 2023-08-23T00:00:00+08:00">2023-08-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Dev/">Dev</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>6mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="服务器常用操作">服务器常用操作</h2>
+<ul>
+<li>
+<p>pip 换源：<code>pip install -i &lt;url&gt; &lt;package_name&gt;</code></p>
+<ul>
+<li><code>https://pypi.tuna.tsinghua.edu.cn/simple</code></li>
+<li><code>http://mirrors.aliyun.com/pypi/simple/</code></li>
+</ul>
+</li>
+<li>
+<p>Jupyter Notebook 的跨 ssh 连接</p>
+<ul>
+<li>服务器：<code>jupyter notebook –no-browser –port=8890</code></li>
+<li>本地：<code>ssh -N -f -L localhost:8888:localhost:8890 usr_name@server_ip</code></li>
+</ul>
+</li>
+<li>
+<p>nohup</p>
+</li>
+<li>
+<p>tmux</p>
+</li>
+</ul>
+<h2 id="深度学习相关">深度学习相关</h2>
+<ul>
+<li>
+<p>查看 cuda 版本：<code>cat /usr/local/cuda/version.txt</code></p>
+</li>
+<li>
+<p>指定显卡训练：<code>CUDA_VISIBLE_DEVICES=1,2 python ...</code></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/">pytorch 安装网站</a></p>
+<ul>
+<li>查看 pytorch 版本：<code>print(torch.__version__)</code></li>
+</ul>
+</li>
+<li>
+<p>指定 CUDA 编号：CUDA_VISIBLE_DEVICES=1</p>
+</li>
+</ul>
+<h2 id="Anaconda">Anaconda</h2>
+<p>第一次安装 anaconda 时，可能需要激活环境变量：在 <code>vim ~/.bashrc</code> 里 <code>export</code> 一下。</p>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看当前所有环境</td>
+<td><code>conda info --env</code></td>
+</tr>
+<tr>
+<td>新建一个环境</td>
+<td><code>conda create --name experiment python=3.5</code></td>
+</tr>
+<tr>
+<td>在某个目录下新建环境</td>
+<td><code>conda create --prefix ~/env/experiment python=3.5</code></td>
+</tr>
+<tr>
+<td>激活环境</td>
+<td><code>conda activate&lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>关闭环境</td>
+<td><code>deactivate &lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>删除环境</td>
+<td><code>conda remove -n python35 --all</code></td>
+</tr>
+<tr>
+<td>复制一个配置</td>
+<td><code>conda create -n experiment_new --clone experiment_last</code></td>
+</tr>
+<tr>
+<td>导出环境（相同 OS）</td>
+<td><code>conda list --explicit &gt; requirements.txt</code></td>
+</tr>
+<tr>
+<td>根据列表创建环境</td>
+<td><code>conda create  --name python-course --file requirements.txt</code></td>
+</tr>
+<tr>
+<td>导出环境（跨平台）</td>
+<td><code>conda env export &gt; environment.yml</code></td>
+</tr>
+<tr>
+<td>重建环境（跨平台）</td>
+<td><code>conda env create -f environment.yml</code></td>
+</tr>
+</tbody>
+</table>
+<p>注：上述表格里的”导出环境“都是导出一个配置列表，重建时 Conda 会重新下载安装包。在实际应用中，如果新环境网络状况不稳定，可以考虑用 <strong>Conda Pack</strong> 来 <strong>打包整个环境</strong>。</p>
+<p>Conda 操作可以参考这个<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87344422">教程</a>。 首先我们用 <code>conda install -c conda-forge conda-pack</code> 或者 <code>pip install conda-pack</code> 安装 conda pack。也可以直接在官网上下载 whl 安装（体积特别小）。</p>
+<p>打包一个环境的两种方法</p>
+<ul>
+<li><code>conda pack -n my_env -o out_name.tar.gz</code></li>
+<li><code>conda pack -p /explicit/path/to/my_env</code></li>
+</ul>
+<p>将 tar 包复制到新平台即可重建环境（操作系统要一致）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p my_env</span><br><span class="line">tar -xzf my_env.tar.gz -C my_env</span><br><span class="line">source my_env/bin/activate</span><br></pre></td></tr></table></figure>
+<p>修改 channel：打开 <code>~/.condarc</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br></pre></td></tr></table></figure>
+<h2 id="Linux-Command">Linux Command</h2>
+<p><strong>cat/more/head/tail</strong>: print the file content on the screen.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat [file...]</span><br><span class="line">head/tail -n [file...]</span><br><span class="line">cat /etc/passwd &gt; passwd.back</span><br><span class="line">cat test1 test2 &gt;test3</span><br><span class="line">cat a.txt | more</span><br><span class="line"></span><br><span class="line">more [-options] [-num] [+/pattern] [+linenum] [file_name]</span><br><span class="line">-d : help the user to navigate.</span><br><span class="line">-s : squeeze multiple blank lines into one single blank line</span><br></pre></td></tr></table></figure>
+<p><strong>find</strong>:  find files and directories and perform subsequent operations on them.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">find [path...] [-options]</span><br><span class="line">-[i]name: find by names (i: whether ignore the case)</span><br><span class="line">-exec [CMD \] : do this command on found files</span><br><span class="line">-empty: find the empty files</span><br><span class="line">-perm xxx: find files with permission xxx</span><br><span class="line">-type f/d: find files/directories only</span><br><span class="line">-size [+/-]s: find files with size</span><br><span class="line">-mtime [+/-]t: find files with modified time</span><br><span class="line"></span><br><span class="line">find ./GFG -name *.txt </span><br><span class="line">find ./GFG -name sample.txt -exec rm -i &#123;&#125; \; </span><br><span class="line">find ./ -type f -name &quot;*.txt&quot; -exec grep &#x27;Geek&#x27; &#123;&#125; \;</span><br><span class="line">find . -type f (-name &quot;*.txt&quot; -o -name &quot;*.pdf&quot; -o -name &quot;*.doc&quot; )</span><br><span class="line">find / -type f -exec grep -l &quot;hyperconvergence&quot; &#123;&#125; ;</span><br></pre></td></tr></table></figure>
+<p><strong>grep</strong>: Search the matched line from a source.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">grep [options] PATTERN [file...]</span><br><span class="line">-c: only count the lines that match a pattern</span><br><span class="line">-n: display the matched lines and their line numbers.</span><br><span class="line">-A/B/C n : print searched line and n lines after/before/after before the result</span><br><span class="line">-i: ignore the case</span><br><span class="line">-v: display the unmatched lines</span><br><span class="line">-l: list the file name who contains the specific content</span><br><span class="line">ps -ef | grep &lt;pattern&gt; | grep -v grep</span><br></pre></td></tr></table></figure>
+<p><strong>ln</strong>: Create a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hard_link">hard link</a> or a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Symbolic_link">symbolic link</a> (symlink) to an existing file or directory.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ln [-fs] [-L|-P] source_file target_file</span><br><span class="line">-L: if the source_file is a symlink, create the corresponding hard link to the source.</span><br><span class="line">-P: if the source_file is a symlink, create the corresponding hard link to itself.</span><br><span class="line">-s: create symbolic links instead of hard links(-L and -P options are ignored)</span><br></pre></td></tr></table></figure>
+<p><strong>ls</strong>：查看目录下的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls [options] [file...]</span><br><span class="line">-a: list all files including the hidden one</span><br><span class="line">-l: list with addtional properties like permission and size</span><br><span class="line">-t: sort with the created time</span><br><span class="line">-r: reverse the order</span><br><span class="line">-R: show all the files recursively</span><br><span class="line"></span><br><span class="line">ls -lh</span><br></pre></td></tr></table></figure>
+<p><strong>ps</strong>: Process Status, list the currently running processes and their PIDs.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ps [options] [--help]</span><br><span class="line">-a  : view the processes not associated with a terminal</span><br><span class="line">-T  : view the processes associated with a terminal</span><br><span class="line">-A/e: view all the processes</span><br><span class="line">-f  : view the processes with full-format listing</span><br><span class="line">aux : display processes in BSD format (with their CPU, MEM)</span><br></pre></td></tr></table></figure>
+<p>Note: The TIME column counts the total accumulated CPU utilization time for a process, and 00:00:00 indicates no CPU time has been given by the kernel till now. For example, bash always shows 00:00:00, because it is just a parent process for different processes which needs bash for their execution.</p>
+<p><strong>tar/gzip/zip/rar</strong>: compress/decompress the files. <code>-v == --verbose</code>: show the process.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tar xvf &lt;name&gt;.tar[.gz/bz2]                   </span><br><span class="line">tar cvf &lt;name&gt;.tar[.gz/bz2] [file...]   # -z: use gzip; -j: use bzip2</span><br><span class="line">gzip -d &lt;name&gt;.gz / gunzip &lt;name&gt;.gz      </span><br><span class="line">gzip &lt;name&gt;                             # gzip can not compress the folder</span><br><span class="line">unzip &lt;name&gt;.zip                        # -d: decompress to the given -path</span><br><span class="line">zip -r &lt;name&gt;.zip [file...]             # compress the following files recursively</span><br><span class="line">rar x &lt;name&gt;.rar</span><br><span class="line">rar a &lt;name&gt;.rar [file...]              # -p: set the password, e.g.: -p123</span><br></pre></td></tr></table></figure>
+<h2 id="vim">vim</h2>
+<p><img src="/Use-Linux-Gracefully/vim.jpeg" alt></p>
+<p><strong>移动光标</strong>：可在前面加数字表示移动的次数。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>h/j/k/l</td>
+<td>光标向左/下/上/右移动一位</td>
+</tr>
+<tr>
+<td>w 或 W</td>
+<td>光标移动至下一个单词的单词首</td>
+</tr>
+<tr>
+<td>b 或 B</td>
+<td>光标移动至上一个单词的单词首</td>
+</tr>
+<tr>
+<td>e 或 E</td>
+<td>光标移动至下一个单词的单词尾</td>
+</tr>
+<tr>
+<td>0 或 Home</td>
+<td>光标移动至当前行最前面的字符</td>
+</tr>
+<tr>
+<td>$ 或 End</td>
+<td>光标移动至当前行最后面的字符</td>
+</tr>
+<tr>
+<td>G</td>
+<td>光标移动至文件最后一行</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>光标移动至文件第一行</td>
+</tr>
+<tr>
+<td>ctrl+f</td>
+<td>向下翻页</td>
+</tr>
+<tr>
+<td>ctrl+b</td>
+<td>向上翻页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>查找和替换文本</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/abc</td>
+<td>从光标所在位置向前查找字符串 abc</td>
+</tr>
+<tr>
+<td>/^abc$</td>
+<td>查找以 abc 为行首/尾的行</td>
+</tr>
+<tr>
+<td>?abc</td>
+<td>从光标所在为主向后查找字符串 abc</td>
+</tr>
+<tr>
+<td>n</td>
+<td>向同一方向重复上次的查找指令</td>
+</tr>
+<tr>
+<td>N</td>
+<td>向相反方向重复上次的查找指定</td>
+</tr>
+<tr>
+<td>r</td>
+<td>替换光标所在位置的字符</td>
+</tr>
+<tr>
+<td>R</td>
+<td>从光标所在位置开始替换字符，其输入内容会覆盖掉后面等长的文本内容，按“Esc”结束</td>
+</tr>
+<tr>
+<td>:n1,n2s/a1/a2/g</td>
+<td>将文件中 n1 到 n2 行中所有 a1 都用 a2 替换</td>
+</tr>
+<tr>
+<td>:%s/a1/a2/gc</td>
+<td>尝试将文件中所有的 a1 都用 a2 替换，取代前会询问用户</td>
+</tr>
+</tbody>
+</table>
+<p><strong>插入删除操作</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x/X</td>
+<td>向后/前删除一个字符</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>p/P</td>
+<td>粘贴到当前行的下/上一行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销上一个操作</td>
+</tr>
+<tr>
+<td>ctrl+r</td>
+<td>重做上一个操作</td>
+</tr>
+</tbody>
+</table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Use-Linux-Gracefully/">https://jiangshibiao.github.io/Use-Linux-Gracefully/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Digest/">Digest</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Use-Linux-Gracefully.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/CodeCraft2021/" title="2021华为软件精英挑战赛总结"><img class="cover" src="/../post_images/CodeCraft2021.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">2021华为软件精英挑战赛总结</div></div><div class="info-2"><div class="info-item-1">记录了我 2021.03.10~2021.04.24 获得华为软件精英挑战赛全球季军的比赛历程。</div></div></div></a><a class="pagination-related" href="/Vehicle-Routing-Problem/" title="车辆路径规划问题"><img class="cover" src="/../post_images/Vehicle-Routing-Problem.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">车辆路径规划问题</div></div><div class="info-2"><div class="info-item-1">结合 DIMACS 2023-2024 的比赛，记录了对车辆路径规划问题（Vehicle Routing Problem）的调研。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/ACM-From-Zero/" title="从零开始 ICPC"><img class="cover" src="/../post_images/Selected-Problems-from-ACM-ICPC.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-10-10</div><div class="info-item-2">从零开始 ICPC</div></div><div class="info-2"><div class="info-item-1">OI/ICPC 知识图和难度分级。</div></div></div></a><a class="pagination-related" href="/Elementary-Number-Theory/" title="初等数论"><img class="cover" src="/../post_images/Elementary-Number-Theory.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-01-29</div><div class="info-item-2">初等数论</div></div><div class="info-2"><div class="info-item-1">记录了我对初等数论的系统性学习。</div></div></div></a><a class="pagination-related" href="/Introduction-to-Cryptography/" title="密码学导论"><img class="cover" src="/../post_images/Cryptography-in-Engineering.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-14</div><div class="info-item-2">密码学导论</div></div><div class="info-2"><div class="info-item-1">本篇密码学导论主要有以下几个特征：概括性（用统一的风格，列举密码学里经典的概念、定理和算法）、准确性（总体风格不拘小节，每个细节力求准确无误）、应用性（重点关注应用）和持续性（想到哪就写到哪，持续修正和扩展）。</div></div></div></a><a class="pagination-related" href="/Java-Review/" title="Java 语法"><img class="cover" src="/../post_images/Java-Review.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-09-02</div><div class="info-item-2">Java 语法</div></div><div class="info-2"><div class="info-item-1">记录了我对 Java 语法的系统性学习。</div></div></div></a><a class="pagination-related" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img class="cover" src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-18</div><div class="info-item-2">多方计算之 ECDSA 门限签名</div></div><div class="info-2"><div class="info-item-1">本篇文章试图入坑多方计算，缓更。</div></div></div></a><a class="pagination-related" href="/Probability-and-Statistics/" title="概率论和数理统计"><img class="cover" src="/../post_images/Probability-and-Statistics.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2023-09-04</div><div class="info-item-2">概率论和数理统计</div></div><div class="info-2"><div class="info-item-1">记录了我对概率论和数理统计的系统性学习。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">服务器常用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3"><span class="toc-number">2.</span> <span class="toc-text">深度学习相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anaconda"><span class="toc-number">3.</span> <span class="toc-text">Anaconda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Command"><span class="toc-number">4.</span> <span class="toc-text">Linux Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim"><span class="toc-number">5.</span> <span class="toc-text">vim</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Exploring-DeepSeek/" title="探索 DeepSeek"><img src="/../post_images/DeepSeek.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="探索 DeepSeek"/></a><div class="content"><a class="title" href="/Exploring-DeepSeek/" title="探索 DeepSeek">探索 DeepSeek</a><time datetime="2025-07-20T16:00:00.000Z" title="Updated 2025-07-21 2025-07-21T00:00:00+08:00">2025-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Heavy-Strategy/" title="重度桌游推荐">重度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轻度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Light-Fun/" title="轻度桌游推荐">轻度桌游推荐</a><time datetime="2025-07-19T16:00:00.000Z" title="Updated 2025-07-20 2025-07-20T00:00:00+08:00">2025-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多方计算之 ECDSA 门限签名"/></a><div class="content"><a class="title" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名">多方计算之 ECDSA 门限签名</a><time datetime="2025-07-17T16:00:00.000Z" title="Updated 2025-07-18 2025-07-18T00:00:00+08:00">2025-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Zero-Knowledge-Proof/" title="零知识证明"><img src="/../post_images/Zero-Knowledge-Proof.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="零知识证明"/></a><div class="content"><a class="title" href="/Zero-Knowledge-Proof/" title="零知识证明">零知识证明</a><time datetime="2025-07-14T16:00:00.000Z" title="Updated 2025-07-15 2025-07-15T00:00:00+08:00">2025-07-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
