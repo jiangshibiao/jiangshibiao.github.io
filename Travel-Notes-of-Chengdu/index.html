@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>成都游记 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了 2025.10.25-10.27 忙里偷闲在成都的旅程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="成都游记">
+<meta property="og:url" content="https://jiangshibiao.github.io/Travel-Notes-of-Chengdu/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了 2025.10.25-10.27 忙里偷闲在成都的旅程。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Chengdu.jpg">
+<meta property="article:published_time" content="2025-11-01T04:33:56.000Z">
+<meta property="article:modified_time" content="2025-11-05T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Log">
+<meta property="article:tag" content="Journeys">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Chengdu.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "成都游记",
+  "url": "https://jiangshibiao.github.io/Travel-Notes-of-Chengdu/",
+  "image": "https://jiangshibiao.github.io/post_images/Travel-Notes-of-Chengdu.jpg",
+  "datePublished": "2025-11-01T04:33:56.000Z",
+  "dateModified": "2025-11-05T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Travel-Notes-of-Chengdu/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '成都游记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Travel-Notes-of-Chengdu.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">成都游记</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">成都游记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-11-01T04:33:56.000Z" title="Created 2025-11-01 2025-11-01T12:33:56+08:00">2025-11-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-11-05T16:00:00.000Z" title="Updated 2025-11-06 2025-11-06T00:00:00+08:00">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Life/">Life</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>13mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="总体印象">总体印象</h2>
+<p>成都人民给人一种松弛感：路边充满了市井烟火气的火锅店和麻将馆，物价也让人感到舒适。要是住在成都，我一定会定期去九眼桥的酒吧转转。街上的店很有辨识度，例如采耳、看戏、熊猫周边、双流兔头、老妈蹄花等。</p>
+<h2 id="宽窄巷子一带">宽窄巷子一带</h2>
+<p>周六晚上地铁前往宽窄巷子附近的鹏鹏妈火锅和励颖会合。这家火锅店给我以非常强的割裂感：出地铁站后，骑车从<strong>闹市区</strong>穿进了小桥流水的<strong>幽静居民区</strong>，转了几个弯后在空荡的街道里出现了这家排队众多的<strong>热闹火锅店</strong>。正如其墙壁上贴的字“成都本地人喜欢的社区火锅”。我们坐在角落里，墙面有些破旧，显露出岁月的痕迹。成都的物价是非常值得信任的，豆芽白菜等辅料都是三五块一份，点了七分饱的食材加上优惠只花了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span>。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E9%B9%8F%E9%B9%8F%E5%A6%88%E7%81%AB%E9%94%85.jpg" alt></p>
+<p>步行来到奎星路，路人在排五块钱一串的糖油果子，我们上去凑了个热闹，味道着实不错。奎星路市井气息浓厚，街边主要是火锅摊和钵钵鸡，听口音很多本地人都在这里吃，可惜我们的胃已经容纳不下了。出口处有一家五里关火锅，建筑很有韵味。右拐有几家水果店，有一种奇怪的恐龙蛋水果。我们买了个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn></mrow><annotation encoding="application/x-tex">13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span> 块的巨大桃子。</p>
+<p>一转进宽窄巷子，游人一下子多了很多，物价也瞬间变高了。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn></mrow><annotation encoding="application/x-tex">25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">25</span></span></span></span> 一个的花椒冰激凌下不去手，最后还是妥协买了杯 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>18</mn></mrow><annotation encoding="application/x-tex">18</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">18</span></span></span></span> 的刺梨汁。怪味豆看着也是成都的特色，被路边的试吃吸引买了半斤麻辣和牛肉的双拼，要不是励颖及时阻止我可以一口气吃完。成都真是漫天的熊猫周边店，一开始我们会进去耐心地逛一逛，到后来一看到就加快脚步。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90.jpg" alt></p>
+<h2 id="春熙路一带">春熙路一带</h2>
+<p>周日活动结束后我们赶往市区，励颖精挑细选找了家知名连锁店烤匠。点了经典口味的麻辣烤鱼，除了更麻一些，和以前吃过的区别不大。去到 IFS 空中花园逛了逛，和长沙的 IFS 布局高度相似，只是这里的玩偶发生了变化：一个是常驻的大熊猫，一个是王者荣耀十周年庆典的宇航员鲁班。盘旋着扶梯下楼，商场里不怎么好逛。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E6%98%A5%E7%86%99%E8%B7%AF%E5%85%A8%E6%99%AF.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Chengdu/ifs.jpg" alt></p>
+<p>我们按照小红书上的攻略，总体沿着 IFS-春熙路-太古里-望平街-东门大桥-九眼桥的路线走。春熙路是路面开阔的步行街，而太古里则是高冷的奢侈品广场。就像是南京的德基广场一样，大牌的奢侈品店一个接一个，励颖对着 GUCCI、CELINE 这些招牌双眼放光。逛了一家很大的乐高店，展品很有地方特色，有火锅台和三星堆。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E4%B9%90%E9%AB%98.jpg" alt></p>
+<p>走向望平街时下起了小雨，我们戴上帽子狼狈地穿梭在屋檐下。望平街坐落在锦江一侧，分为内道和沿江两条路。我们先抵达沿江的那一条，街上有很多酒吧，但淅淅沥沥的雨中游客很少。走了一会，右手边出现一条烟火气十足的街，它有个很好听的名字叫“香香巷”，窄小的空间里会摆出不少火锅用的桌椅。途中经过一个麻将馆，我像模像样地读了一遍门口贴着的麻将海选的告示，结果店主很热情地叫我们去参赛。香香巷走到底就是望江路的内侧，这条路的画风和奎星路很接近，两侧主要都是美食店和夜宵摊。我们没啥食欲，又买了一份糖油果子。</p>
+<p>离开望平街后我们径向小道前行，左侧是僻静的居民区，右侧是锦江。锦江非常安静，偶尔会划过来一条载客的小船，江两侧只有一些淡淡的灯光。行至东门大桥附近时灯光骤然变亮，很多游船汇集在码头边。再往前转入兰桂坊时画风突变，两侧的店面和摊位从慢节奏的火锅和熊猫转变为各种惊悚的玩物，如骷髅头、塔罗牌、古着旧物、暗黑风格的服饰、古怪的标本艺术品等，可能是庆祝万圣节的特殊活动？再往前走锦江突然横过来了，一座富丽堂皇的桥横跨其上，这就是著名的<strong>安顺廊桥</strong>。廊桥上建有飞檐翘角的亭台楼阁，在夜晚灯光的映衬下尤为壮观。站在廊桥上，低头可俯瞰宁静锦江风光，仰头可远眺成都的现代都市天际线，感受历史与现实的对话。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E6%98%A5%E7%86%99%E8%B7%AF%E5%A4%9C%E6%99%AF.jpg" alt></p>
+<p>翻过廊桥后抵达成都夜生活的地标——<strong>九眼桥酒吧街</strong>。整条街上全是酒吧，一路走去，很难拒绝门口小哥盛情的招募词：“外面在下雨，小哥哥你看小姐姐也走累了，进来喝杯酒看看江景听听歌如何”。我们先走到尽头欣赏了九眼桥，据说其始建于明朝万历年间，初名为“宏济桥”后改名“锁江桥”，因其有九个桥洞，后人习惯称之为“九眼桥”。桥身原由青石砌成，2001 年重建为钢筋混凝土的结构。走回酒吧街，我们选择了一家热闹又不怎么喧哗的酒吧，叫做“隔壁子”。令人震惊的是酒吧没有低消，我们点了份 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span> 的雪碧和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>88</mn></mrow><annotation encoding="application/x-tex">88</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">88</span></span></span></span> 的小盘水果，就这么从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>21</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">21:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">21</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 悠闲地听歌到了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>23</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">23:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">23</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span>。水果盘分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>88</mn><mi mathvariant="normal">/</mi><mn>128</mn></mrow><annotation encoding="application/x-tex">88/128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">88/128</span></span></span></span> 的小盘和大盘，这种定价策略让人倾向于选择大盘。服务员小哥很实在，告诉我们小盘的分量已经够两个人吃了。每桌都有发放拍拍掌和棒状气球，每隔约莫半小时都会换一批主唱，音准、节奏和气氛都非常顶。酒吧的上座率很高，其中少不了国外的友人，到深夜时占比提高到了约 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">50\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">50%</span></span></span></span>。外国人普遍更热情，通常是干点很多瓶酒，只要听到节奏很明快的歌就会起身一起律动，情绪价值拉满。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E9%9A%94%E5%A3%81%E5%AD%90%E9%85%92%E5%90%A7.jpg" alt></p>
+<h2 id="熊猫基地">熊猫基地</h2>
+<p>周一请假玩耍，按计划上午去大熊猫繁育研究基地。我俩早起失败，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">9:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 才抵达西门。官方提供的地铁站到基地的摆渡车好评，不过随车讲解员推销冰箱贴的行为有点掉价。买好票后没有详细攻略，后来才发现网红花花的别墅会在周一闭馆，只能自我安慰说熊猫都长得差不多。西门的游客比较稀疏，更显整个基地之庞大。</p>
+<p>我们首先逛的是<strong>冒险溪谷区</strong>，集中了山月馆、云月馆、望月馆、秋月馆和映月馆、江月馆、揽月馆两批熊猫馆舍。这些馆舍主要居住着成年和亚成年的大熊猫，馆的外面都围有一片片的竹林，这样熊猫可以自由选择在室内还是室外活动。找熊猫主要靠人群，如果室内/外有一处地方围满了人，顺着他们手机的方向就能找到。熊猫们过得很慵懒，不是趴在主架子或地上一动不动，就是嘴里忙着啃树枝。有些隔间可能会住着两三只熊猫。</p>
+<p>穿过密林金丝猴馆，终于走到了网红的星星产房和星汉馆一带，不坐观光车有点累。我们在产房里绕了一圈，没看到熊猫幼崽，兴致索然。出了门看到一只熊猫挂在高高的树杈上（详见本文的封面图），非常有趣。翻了翻小红书，原来这只熊猫叫做金豆，出了名地喜欢挂在这棵高树上，已经成为了星星产房的地标了。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E7%86%8A%E7%8C%AB-1.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Chengdu/%E7%86%8A%E7%8C%AB-2.jpg" alt></p>
+<p>由于已经被成都各类熊猫周边店洗眼，我们对官方纪念品店的兴趣不大，只有励颖选中了一只抱着星星的蛋状花花——后来我们多次被路人询问这是哪里买的，从小红书上确认这是一只非常热门的玩偶。买了点寿司和芝士热狗当午饭，熊猫咖啡的拉花很漂亮。考虑到景区直通车是先到南门再返回东门，为了给下午三星堆预留充足的时间，我们没有继续往熊猫基地的南门出发，而是折返回到西门坐上了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">12:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 出发三星堆的车。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E7%BE%8E%E9%A3%9F%E5%92%8C%E5%92%96%E5%95%A1.jpg" alt></p>
+<h2 id="三星堆博物馆">三星堆博物馆</h2>
+<p>三星堆博物馆的设计载客量看上去非常大，从停车场到博物馆入口处要穿过地下通道，步行约 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span> 分钟。官方讲解服务“量大管饱”值得好评（批评此前去过的几个博物馆，官方讲解员太少导致第三方旅行团乱象横生），<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> 人内小团总价 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn></mrow><annotation encoding="application/x-tex">400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span>，散客拼团 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mo>∼</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">30 \sim 40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">40</span></span></span></span> 人每位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span>。我们正好赶上了一个 E 人大哥在自发组织小团，光速凑齐出发。官方讲解员的基本功很扎实，语调平缓清晰，颇有幽默感。顺次参观了一号“世纪逐梦”展馆、二号“巍然王都”展馆和三号“天地人神”展馆，这三个展馆分别对应三星堆的百年考古发掘史、古蜀人的衣食住行、古蜀国的精神信仰。</p>
+<p>三星堆的考古挖掘时间线横跨将近一个世纪，成为了一桩美谈：梦的开始是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1929</mn></mrow><annotation encoding="application/x-tex">1929</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1929</span></span></span></span> 年月亮湾的农民燕道诚首次发掘出三四百件玉器，可惜很多已流失；新中国成立后将其命名为“三星堆文化”，并进行了多次考古挖掘，确认其是古蜀文化的中心；文化大革命期间挖掘停滞，直到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1986</mn></mrow><annotation encoding="application/x-tex">1986</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1986</span></span></span></span> 年才挖出了震惊世界的一号祭祀坑和二号祭祀坑，出土了例如<strong>青铜大立人、青铜神树、青铜纵目面具、太阳轮</strong>等大量珍贵文物；<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2019</mn></mrow><annotation encoding="application/x-tex">2019</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2019</span></span></span></span> 年在两个坑附近挖掘时意外发现了另外六个祭祀坑，系统性、高科技地进行考古发掘，直到今天仍在继续，出土了例如<strong>黄金面具</strong>、<strong>青铜神坛</strong>、<strong>龟背形网格器</strong>、<strong>顶尊跪坐人像</strong> &amp; <strong>骑兽顶尊人像</strong>等珍贵文物。当讲解员看到有游客在拍“世纪逐梦”展馆里的青铜人面像时，摇摇头打趣说三星堆最不缺这种人面像，说着便从发掘现场的老照片里为我们找出了好几个横七竖八躺着的人面像。令我印象最深刻的是青铜神树，考古队员在坑里看到的其实是混杂着象牙、青铜碎渣、灰烬的“烂摊子”——神树碎成了上千块大小不一的碎片，整个修复过程花了六年的时间，目前拼好的神树完整度只有约 70%-80%。讲解员自豪地提到，当年姚明一家来参观时就是他负责讲解的——他要仰望姚明，姚明却也要仰望三米高的神树。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E4%B8%89%E6%98%9F%E5%A0%86%E5%8D%9A%E7%89%A9%E9%A6%86.jpg" alt></p>
+<p>二号馆“巍然王都”是标准意义上的历史陈列馆，为我们描述了几千年前繁华的古蜀王国：从新石器时代晚期一直到春秋时期，后被秦国所灭。青铜大立人同时期的黄河流域正经历着夏商文明，相比之下古蜀国拥有迥然不同的文化，是一个神秘、辉煌且独立发展的区域文明。令人啧啧称奇的是三星堆出土的兵器很少（相反主要是祭祀用品），说明这里没怎么经历过战乱。遗址中发现了大量的碳化稻米和稻壳痕迹，证明稻米是他们的绝对主食，辅以水果（出土了桃、李、野葡萄等果核）、酒（出土了大量造型精美的陶酒器）、荤食（出土的文物里有鱼、猪、鸡等形象）。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E5%8A%A8%E7%89%A9%E5%83%8F%E5%92%8C%E9%85%92%E5%9D%9B%E5%AD%90.jpg" alt></p>
+<p>二号馆里介绍了古蜀王国的各种技术，如青铜生产工具、玉石器制作、黄金加工、制陶业等。馆里详细展示了从玉料、半成品到成品的完整生产线，包括玉琮、玉璧、玉璋等，以及古蜀工匠切割了三面仍未发现玉的原石。重约一斤的黄金权杖上雕刻着神秘图案，从下到上雕刻着两个背对的人头像、两只背对的鸟、两只背对的鱼，学界普遍认为对应古蜀五大国王里的<strong>鱼凫</strong>，箭贯穿鸟和鱼象征着鱼凫王朝对以鱼和鸟为图腾的部落的征服与统一。</p>
+<p>有一只网红陶猪非常出圈，因其造型撞脸了《愤怒的小鸟》里的绿皮猪，而两者的创作并无关联（游戏形象问世远早于陶猪在2019年后的发掘）。讲解员介绍说这款陶猪的冰箱贴很快售罄，成为了三星堆文创的销量冠军。穿着 “包臀裙” 的铜人雕像也很火，他腰细屁股翘，肩膀上的肌肉鼓鼓的，网友戏称其为“健身教练”。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E9%BB%84%E9%87%91%E5%88%B6%E5%93%81%E5%92%8C%E7%BD%91%E7%BA%A2%E8%97%8F%E5%93%81.jpg" alt></p>
+<p>正如讲解员所说，三号馆“天地人神”是整个博物馆的精华和高潮所在，集中展示了三星堆最神秘、最震撼的文物。该展区通过青铜纵目面具、青铜大立人、青铜神树、青铜神坛、太阳轮、青铜顶尊人像等国之重器，系统呈现了古蜀人丰富的精神世界、神秘的祭祀礼仪和独特的“神权政治”体系。</p>
+<p><strong>青铜纵目面具</strong> 被认为是古蜀始祖蚕丛，极度夸张的双眼和双耳象征着“千里眼”、“顺风耳”的超凡神力，已经属于神阶。所谓“蚕丛及鱼凫，开国何茫然”。极少数青铜人像可以与金面具贴合，象征着佩戴者拥有与神沟通的独占权，推测其身份是神王或大祭司。普通的青铜人像数量众多，头像发型、冠饰、面貌各不相同（有平顶、戴冠、盘发、编发等），可能是各部落的长老，是神权政治的参与者和执行者。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E9%9D%92%E9%93%9C%E9%9D%A2%E5%85%B7.jpg" alt></p>
+<p><strong>太阳轮</strong> 酷似方向盘，实为太阳崇拜的产物：中心巨大的圆凸形是阳核；周围有五道放射状的芒条，代表光芒；外圈则是一个浑圆的晕圈。<strong>龟背形网格器</strong> 由两部分组合而成，外部是一个微微凸起的椭圆形青铜网格，内部嵌有一块椭圆形的青绿色玉器。外面的网格被网友戏称是烧烤架，实际是一个精巧的机械结构，由于关键部位腐烂现在没敢强行打开。主流观点认为这是祭祀用的法器，讲解员的观点是用来传承的玉玺，因为繁体 <strong>璽</strong> 就是玉+网格。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E5%A4%AA%E9%98%B3%E8%BD%AE%E5%92%8C%E9%BE%9F%E8%83%8C%E5%BD%A2%E7%BD%91%E6%A0%BC%E5%99%A8.jpg" alt></p>
+<p>令我印象深刻的是各类复合型青铜祭祀神器，看得出来古蜀人非常喜欢竖着的拼接状青铜器，出土时不同部件可能会分布在不同的坑，但连接处可以巧妙地组合在一起。很多器件难以恢复原状，展馆里就分开展示每一个部件，同时 3D 打印出一个完整的模型。<strong>青铜神坛</strong> 是古蜀人宇宙观的“立体模型”，底下方形上面圆形代表天圆地方。神坛整体是神兽飞天托举祭司，上面四个柱子描绘的是女娲补天时支撑天柱的乌龟的四条腿，代表东南西北四个方向；柱子上有很多条龙代表祈求降雨，和农业祭祀相关；柱子前有个拿着神器的天神，最上面还有四位没穿衣服的女性。<strong>骑兽顶尊人像</strong> 和 <strong>顶尊跪坐人像</strong> 可以巧妙地拼装成一个整体，同样使用了扁嘴兽这一意向。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E9%9D%92%E9%93%9C%E7%A5%9E%E5%9D%9B.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Chengdu/%E9%AA%91%E5%85%BD%E9%A1%B6%E5%B0%8A%E4%BA%BA%E5%83%8F.jpg" alt></p>
+<p><strong>青铜大立人</strong> 人像高 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.8</mn></mrow><annotation encoding="application/x-tex">1.8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.8</span></span></span></span> 米，底座高 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.82</mn></mrow><annotation encoding="application/x-tex">0.82</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.82</span></span></span></span> 米，通高 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.62</mn></mrow><annotation encoding="application/x-tex">2.62</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2.62</span></span></span></span> 米，被列为首批禁止出国（境）展览文物。其双臂环抱于胸前，双手握成环状，仿佛曾持有一件重要的物品——手中所持何物已成为三星堆最大的谜题之一。镇馆之宝 <strong>青铜神树</strong> 最浪漫之处在于同时融合了《山海经》里描绘的两棵神树的意象：树的一侧有九只树干和神鸟，对应 <strong>扶桑</strong> “九日居下枝，一日居上枝”的描述；树的另一侧没有枝条，仅有一只从天而降的龙，对应 <strong>建木</strong> “名曰建木，百仞无枝” 和 “建木在都广之野，众帝所自上下” 的描述。<strong>鸟足神像</strong> 底下的是一个从天而降的鸟足神使，按罍顶尊，是沟通天地人神的使者。尊盖上是一个天神，头带高冠、双手卧龙、脚骑神兽，代表君权神授。</p>
+<p><img src="/Travel-Notes-of-Chengdu/%E5%A4%A7%E7%AB%8B%E4%BA%BA%E5%92%8C%E7%A5%9E%E6%A0%91.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Chengdu/%E6%88%91%E5%9C%A8%E4%B8%89%E6%98%9F%E5%A0%86%E5%8D%9A%E7%89%A9%E9%A6%86.jpg" alt></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Travel-Notes-of-Chengdu/">https://jiangshibiao.github.io/Travel-Notes-of-Chengdu/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Log/">Log</a><a class="post-meta__tags" href="/tags/Journeys/">Journeys</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Travel-Notes-of-Chengdu.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/Travel-Notes-of-Yangzhou/" title="扬州游记"><img class="cover" src="/../post_images/Travel-Notes-of-Yangzhou.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">扬州游记</div></div><div class="info-2"><div class="info-item-1">记录了 2025.9.20-9.21 在扬州的旅程。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/Travel-Notes-of-Changsha/" title="长沙游记"><img class="cover" src="/../post_images/Travel-Notes-of-Changsha.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-06</div><div class="info-item-2">长沙游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.6.27-6.29 在长沙的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hengdian/" title="横店游记"><img class="cover" src="/../post_images/Hengdian.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-10-26</div><div class="info-item-2">横店游记</div></div><div class="info-2"><div class="info-item-1">记录了 2021.9.19-9.20 在横店的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Huangshan/" title="黄山游记"><img class="cover" src="/../post_images/Travel-Notes-of-Huangshan.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-04-30</div><div class="info-item-2">黄山游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.4.18-4.19 在黄山的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hong-Kong/" title="香港游记"><img class="cover" src="/../post_images/HongKong.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-01-16</div><div class="info-item-2">香港游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.1.13-1.16 在香港的旅程。主要就是三件事：买金，办卡和吃喝玩乐。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Jingdezhen/" title="景德镇游记"><img class="cover" src="/../post_images/Travel-Notes-of-Jingdezhen.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-08-15</div><div class="info-item-2">景德镇游记</div></div><div class="info-2"><div class="info-item-1">记录了 2025.8.9-8.10 在景德镇的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Shanghai/" title="上海游记"><img class="cover" src="/../post_images/Travel-Notes-of-Shanghai.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-04-01</div><div class="info-item-2">上海游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.3.30-3.31 在上海的旅程，第一次去了心心念念的迪士尼。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E5%8D%B0%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">总体印象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E4%B8%80%E5%B8%A6"><span class="toc-number">2.</span> <span class="toc-text">宽窄巷子一带</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A5%E7%86%99%E8%B7%AF%E4%B8%80%E5%B8%A6"><span class="toc-number">3.</span> <span class="toc-text">春熙路一带</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%86%8A%E7%8C%AB%E5%9F%BA%E5%9C%B0"><span class="toc-number">4.</span> <span class="toc-text">熊猫基地</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%98%9F%E5%A0%86%E5%8D%9A%E7%89%A9%E9%A6%86"><span class="toc-number">5.</span> <span class="toc-text">三星堆博物馆</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Chengdu/" title="成都游记"><img src="/../post_images/Travel-Notes-of-Chengdu.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="成都游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Chengdu/" title="成都游记">成都游记</a><time datetime="2025-11-05T16:00:00.000Z" title="Updated 2025-11-06 2025-11-06T00:00:00+08:00">2025-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集"><img src="/../post_images/Game-Collect-In-Seer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="赛尔号决策类游戏收集"/></a><div class="content"><a class="title" href="/Game-Collect-In-Seer/" title="赛尔号决策类游戏收集">赛尔号决策类游戏收集</a><time datetime="2025-11-04T16:00:00.000Z" title="Updated 2025-11-05 2025-11-05T00:00:00+08:00">2025-11-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Board-Game-Light-Fun/" title="轻度桌游推荐"><img src="/images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轻度桌游推荐"/></a><div class="content"><a class="title" href="/Board-Game-Light-Fun/" title="轻度桌游推荐">轻度桌游推荐</a><time datetime="2025-10-11T16:00:00.000Z" title="Updated 2025-10-12 2025-10-12T00:00:00+08:00">2025-10-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Yangzhou/" title="扬州游记"><img src="/../post_images/Travel-Notes-of-Yangzhou.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="扬州游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Yangzhou/" title="扬州游记">扬州游记</a><time datetime="2025-09-26T16:00:00.000Z" title="Updated 2025-09-27 2025-09-27T00:00:00+08:00">2025-09-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/HydroOJ-Development-Notes/" title="小白的 HydroOJ 二次开发手记"><img src="/../post_images/HydroOJ-Development-Notes.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小白的 HydroOJ 二次开发手记"/></a><div class="content"><a class="title" href="/HydroOJ-Development-Notes/" title="小白的 HydroOJ 二次开发手记">小白的 HydroOJ 二次开发手记</a><time datetime="2025-09-19T16:00:00.000Z" title="Updated 2025-09-20 2025-09-20T00:00:00+08:00">2025-09-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
