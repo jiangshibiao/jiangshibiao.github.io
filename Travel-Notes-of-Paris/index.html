@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>巴黎游记 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了 2025.4.9-4.11 婚假在法国巴黎的旅行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巴黎游记">
+<meta property="og:url" content="https://jiangshibiao.github.io/Travel-Notes-of-Paris/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了 2025.4.9-4.11 婚假在法国巴黎的旅行。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Paris.jpg">
+<meta property="article:published_time" content="2026-05-06T12:34:07.000Z">
+<meta property="article:modified_time" content="2026-05-05T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Log">
+<meta property="article:tag" content="Journeys">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Travel-Notes-of-Paris.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "巴黎游记",
+  "url": "https://jiangshibiao.github.io/Travel-Notes-of-Paris/",
+  "image": "https://jiangshibiao.github.io/post_images/Travel-Notes-of-Paris.jpg",
+  "datePublished": "2026-05-06T12:34:07.000Z",
+  "dateModified": "2026-05-05T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Travel-Notes-of-Paris/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '巴黎游记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Travel-Notes-of-Paris.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">巴黎游记</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">巴黎游记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-05-06T12:34:07.000Z" title="Created 2026-05-06 2026-05-06T20:34:07+08:00">2026-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-05-05T16:00:00.000Z" title="Updated 2026-05-06 2026-05-06T00:00:00+08:00">2026-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Life/">Life</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">6.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>20mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="第一天-铁塔周围">第一天-铁塔周围</h2>
+<p>坐新海航的航班自杭州中转西安飞巴黎。西安要停留六个小时，我们按照小红书的攻略，在西部机场小程序体验了中转时的免费餐饮（一碗𰻞𰻞面+两个泡芙很满足）和免费住宿（T5 云端眯一会，很优雅的睡眠仓）。云端眯一会位于安检外，我们小憩完去值机时才发现柜台前排满了长队。海航机上体验不错：每人发一个小包（带有眼罩、耳塞、耳机、袜子等物品），两顿餐食中规中矩，全程机上 WIFI（实测免费版只能接收 QQ 和微信消息）。</p>
+<p>当地时间清晨落地巴黎戴高乐 T1 后，我俩在边检流程上就体验了一把欧洲人的松弛。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>:</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">7:20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span> 开始排长队过边检，由于机器通道只能识别欧洲护照，大伙儿只能走人工通道。左侧两个头等舱/特殊旅客通道，右侧四个普通通道。我俩排在右侧的队伍里，一开始进度很正常（预计半小时能够结束），越到后来流速越慢：最右侧 1 号通道会为空乘人员和无障碍人员提供最高优先级，长期被 block 住，有时还要把 2 号通道也给卷进去；3 号和 4 号的工作人员起初还在认真敲章，某个时刻突然就把状态改成了 closed；至于左侧的头等舱队伍，从起初的零星客流（比如包头巾的中东大户）变成了后期的人挤人，估计工作人员已无暇检查旅客的身份。实际出关敲章倒是很丝滑，打印的行程单机酒信息都没用上。总共排了一小时出头，得出结论是下飞机后越快来越好，以应对不稳定的排队。</p>
+<p>顺着眼花缭乱的指示牌走到 RER B 线，面对一堆机器有点发慌，我就打开 Google Map 的目的地后找人工窗口买票，工作人员为我俩办理了两张 Navigo 交通卡（工本费 \euro 2一张）并充值了各 \euro 14 的机场线，很标准的购票组合。很可惜我此前没有研究过巴黎地铁，如果在周三以前抵达且本周内至少会坐两次机场线，周卡是最合适的。</p>
+<p>我们订了两晚宜必思巴黎埃菲尔铁塔酒店（<em>Hôtel ibis Paris Tour Eiffel Cambronne</em>）。前台的黑人小哥告知我们两件事：需要缴纳 \euro 22.12 的城市税和 \euro 35 的提前入住（early check-in）费。前者我们已有预料，欧洲城市税费用往往和人头和天数成正比；后者于是哥在一张纸上手写的费用，我们对这笔钱的官方性有所怀疑，其昂贵的价格也远不如负一楼 \euro 6 自助寄存实在。我们商议了一番决定寄存完就出门了，手机电量靠充电宝续命。</p>
+<p>励颖的兴致很高，我们就没有遵循 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span> 号线坐两站去铁塔附近的标准交通攻略，而是一路沿着地铁线步行，感受巴黎市区普通街道的风土人情。沿街有很多小的咖啡店和饭店，老老少少一边坐着晒太阳一边有说有笑，或许这就是巴黎的 <strong>松弛感</strong> 吧。面包店也很多，励颖很激动地买了个 \euro 2.8 的面包，咬了一口觉得太甜就丢给我了。找了个超市，发现饮料和水果价格很高。我买了一盒四杯共  \euro 0.89 的酸奶酪，结账时才发现不提供免费的塑料勺。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%B7%B4%E9%BB%8E%E8%B6%85%E5%B8%82.jpg" alt></p>
+<p>顺着比尔哈凯姆桥（<em>Pont de Bir-Hakeim</em>）跨过塞纳河，埃菲尔铁塔正好在桥的一侧：<strong>塞纳河比想象中的窄，铁塔比想象中的小</strong>。接着我们步行至夏乐宫（<em>Palais de Chaillot</em>）门口的特罗卡德罗广场（<em>Place du Trocadéro</em>），广场高处适合远眺埃菲尔铁塔。阳光很毒辣，但广场上饮料车的价格更毒辣——罐装可乐高达 \euro 5 一瓶。</p>
+<p><img src="/Travel-Notes-of-Paris/%E9%93%81%E5%A1%94%E8%B7%AF%E4%B8%8A.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A4%8F%E4%B9%90%E5%AE%AB.jpg" alt></p>
+<p>我们在特罗卡德罗广场的两个不同的位置（此后在欧洲见到不下五次）见识到了同一个街头魔术 <strong>Find the Ball</strong>：有个操盘手把一个球塞进三个杯子中的一个并不断交换位置，问观众球在哪里并赌钱。我俩旁观了一阵子，有些观众在”在预期内“猜对了球的位置从而赢得表演者的欧元现金，也有些观众”犯了很蠢的错误“猜错了球的位置从而输了现金——很明显这些旁观的壮汉都是托，等一个自以为是的老实观众上钩。我当时不知操盘手如何耍手段，查阅 <a target="_blank" rel="noopener" href="http://xhslink.com/o/2C8YUweyPEu">小红书</a> 可知这是中国玩剩下的街头魔术，本质是球一直在操盘手的手中，掀开时靠手法将球塞进某个杯子里。</p>
+<p>从特罗卡德罗广场下楼，穿过耶拿桥（<em>Pont d’Iéna</em>）就正式来到埃菲尔铁塔脚下：埃菲尔铁塔外侧的路面上，时不时就开过来一辆名为 BIG BUS 的双层观光巴士，二楼总是坐满了人；内侧道路是有好多小黑在摆地摊，商品都是铁塔相关的摆件或者钥匙扣，竞争非常激烈。我们顺着人流排队，从侧面进入埃菲尔铁塔内部。内部的广场四周排着好几支登塔的队伍，除此之外没啥好玩的。走出铁塔内部沿着战神广场（<em>Parc du Champ-de-Mars</em>）向东走，路上找到了卖 \euro 3.5 可乐的“良心商家”。战神广场中间是草坪，两侧是烦人的沙地，有人跑起来就会尘土飞扬。</p>
+<p>回酒店 check-in 并休整了一段时间后，我们坐地铁前往凯旋门（<em>Arc de Triomphe</em>）。我们想在日落时分再登顶，就沿着香榭丽舍大街（<em>Av. des Champs-Élysées</em>）散步。有家麦当劳提供神奇的甜品“爆米花冰激凌”，必须花 \euro 6 尝一尝了！顺便吐槽一下麦当劳点餐机里的中文语言，要不没有翻译，要不是机翻（“没有汉堡”）。</p>
+<p><img src="/Travel-Notes-of-Paris/%E9%BA%A6%E5%BD%93%E5%8A%B3%E7%88%86%E7%B1%B3%E8%8A%B1%E5%86%B0%E6%BF%80%E5%87%8C.jpg" alt></p>
+<p>晚餐选在励颖做过攻略的 <em>Paris Follie’s</em>。点了鹅肝火腿沙拉，油封鸭，蜗牛和菠萝汁，共计 \euro 40.4。励颖觉得油封鸭腿味道不错，我则觉得鹅肝味道不错。口味不能说惊艳，而是带有一种独特的质感，大概这就是法餐风格吧。</p>
+<p><img src="/Travel-Notes-of-Paris/parisfollie.jpg" alt></p>
+<p>凯旋门登顶票有点小贵，一人 \euro 22，小红书上只建议持巴黎博物馆通票前往。此前该景点我未和励颖沟通确认，最后硬着头皮刷卡买票。阶梯呈螺旋形，走多了容易晕。内部有卖纪念币和纪念钞的，我没忍住各花了 \euro 3 买了一份。顶层风很大景色非常好，正好可以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>360</mn><mi mathvariant="normal">°</mi></mrow><annotation encoding="application/x-tex">360°</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">360°</span></span></span></span> 观看整个放射状的道路，车辆以凯旋门为中心旋转着。可惜当天云太多了看不到日落。时不时有呼啸而过的警车（？）路过，尖锐的叫声有点煞风景。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%87%AF%E6%97%8B%E9%97%A8%E5%A4%96%E8%A7%82.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E7%99%BB%E9%A1%B6%E5%87%AF%E6%97%8B%E9%97%A8.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E5%87%AF%E6%97%8B%E9%97%A8%E9%A1%B6.jpg" alt></p>
+<p>凯旋门登顶结束后，我们坐公交车返回埃菲尔铁塔脚下，乘坐经典的塞纳河 Bateaux Parisiens 观光游船。我俩担心船上没有卫生间（实际是有的），不得不走到耶拿桥另一侧的桥底下花 \euro 1 上卫生间。单条船的吞吐量很大，很遗憾我们是靠后上船的那一批，没有抢到第二排的座位。荡漾在塞纳河的波浪里，我们相继睡了会。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A4%9C%E6%B8%B8%E9%93%81%E5%A1%94.jpg" alt></p>
+<p>两个人 \euro 3 一趟的地铁着实有点坑，游玩后我们依然是步行两站路回酒店。吸取今日口渴但饮料昂贵的经验，我们找了家超市买了一瓶 \euro 0.43 的大水和半打 \euro 5.89 的可乐，此后背着带出去。</p>
+<h3 id="第二天-艺术盛宴">第二天-艺术盛宴</h3>
+<p>第二天的重头戏是卢浮宫，这是我巴黎之旅最期待的环节。我预约了卢浮宫最早的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">9:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">00</span></span></span></span> 班次，掐好闹钟早早地带励颖地铁前往。当天官网显示狮门（<em>Porte des Lions</em>）开放，我就导航到了这个冷门的入口。坏消息是在门口吹风了二十多分钟，直到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><mo>:</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">9:15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span> 时才有工作人员放我们这帮人进去安检和验票。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%8D%A2%E6%B5%AE%E5%AE%AB%E5%A4%96%E8%A7%82.jpg" alt></p>
+<p>卢浮宫里游客还很少，我俩很顺利地沿着小红书 <a target="_blank" rel="noopener" href="http://xhslink.com/o/63AfiuR8Xdy">卢浮宫狮门进军蒙娜丽莎路线</a> 进入文艺复兴画廊的众神厅 （<em>Salle des États</em>，即蒙娜丽莎厅），很轻松地轮到第一排拍照。可惜《蒙娜丽莎》这幅画实在太小了，隔着几米的围栏根本望不清楚细节。对面是卢浮宫里最大的画作《加纳的婚礼》（<em>Les Noces de Cana</em>）。卢浮宫很大，欣赏完这幅世界顶级的画作后我俩就乱了浏览的阵脚，于是找了个有信号的地方缓存了 B 站顾爷的大作<a target="_blank" rel="noopener" href="https://b23.tv/eshFQuT">《卢浮宫全攻略》</a>（卢浮宫规模很大，一拐到某个地下室可能就没有信号了），准备沿着着他给出的攻略路径去打卡。</p>
+<p><img src="/Travel-Notes-of-Paris/%E8%92%99%E5%A8%9C%E4%B8%BD%E8%8E%8E%E5%92%8C%E5%AF%B9%E9%9D%A2.jpg" alt></p>
+<p>卢浮宫总共分为德农馆（<em>Aile Denon</em>）、黎塞留馆（<em>Aile Richelieu</em>）和叙利馆（<em>Aile Sully</em>）。我们先逆转回入口处叙利馆的大狮身人面像（<em>Great Sphinx of Tanis</em>），然后进入人气最高的德农馆，品鉴了米洛的维纳斯（<em>Venus de Milo</em>） 和萨莫色雷斯的胜利女神 （<em>Victoire de Samothrace</em>） ——这两个雕塑都是珍贵的古希腊原件。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%8D%A2%E6%B5%AE%E5%AE%AB%E9%9B%95%E5%83%8F.jpg" alt></p>
+<p>顾爷诙谐地把用来支撑的“女像柱”称之为“人棍”，我俩后来就牢牢记住了这个用于调侃的词汇。</p>
+<p><img src="/Travel-Notes-of-Paris/%E4%BA%BA%E6%A3%8D.jpg" alt></p>
+<p>卢浮宫非常大，即使是顾爷精心设计的路线也避免不了走回头路。雕塑通常都在底层，我们印象比较深的是《丘比特与普赛克》 （<em>Psyche Revived by Cupid’s Kiss</em>）。爱与美之神维纳斯嫉妒极其美丽的公主普赛克，命令她的儿子丘比特（<em>Cupid</em>）去惩罚普赛克（让他朝着世界上最丑陋的男人射箭），但丘比特不小心被箭划伤并爱上了公主。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%8D%A2%E6%B5%AE%E5%AE%AB%E5%86%85%E9%83%A8.jpg" alt></p>
+<p>最令人震撼的建筑莫过于德农馆里的大画廊（<em>Grande Galerie</em>），这条长长的画廊里汇聚了意大利文艺复兴鼎盛时期的旷世画作：从乔托开启透视法的萌芽，一直到拉斐尔和达·芬奇的巅峰之作。我们只能像无头苍蝇般寻找视频里的作品，其他作品根本欣赏不过来。其中我们找了很久的红厅（<em>Salles Rouges</em>），询问工作人员后才发现它们就潜藏在蒙娜丽莎画作背后。这里的墙面被刷成了深红色，专门陈列法国大尺寸油画，视觉冲击力极强。</p>
+<ul>
+<li>法国新古典主义的巅峰之作《拿破仑一世加冕礼》，描述了 1804 年拿破仑在巴黎圣母院为皇后约瑟芬加冕。</li>
+<li>法国浪漫主义代表作《自由引导人民》，描绘了 1830 年七月革命，自由女神高举三色旗领导民众。</li>
+<li>新古典主义名画《马拉之死》，表现了法国大革命时期激进派领袖马拉在浴缸中被刺杀后的圣洁化形象。</li>
+</ul>
+<p><img src="/Travel-Notes-of-Paris/%E6%B3%95%E5%9B%BD%E9%A6%861.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E6%B3%95%E5%9B%BD%E9%A6%862.jpg" alt></p>
+<p>我们没有看过瘾，跟随顾爷的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iQx5eREjT/">《卢浮宫全攻略（隐藏版）》</a>移步至黎塞留馆。《斯巴达克斯》（<em>Spartacus</em>）是法国国王查理十世出钱造的，描述了古罗马奴隶斯巴达克斯的反抗斗争，讽刺的是这个雕塑没完工国王就被推翻了，难道说群众从中受到了启发。黎塞留馆还珍藏了《汉谟拉比法典》真迹，居然是一块不起眼的黑色石柱。</p>
+<p><img src="/Travel-Notes-of-Paris/%E9%BB%8E%E5%A1%9E%E7%95%99%E9%A6%86.jpg" alt></p>
+<p>纪念品店价格高昂，特别是书籍、雨伞等国内寻常之物。我们买了 \euro 5 的《蒙娜丽莎》冰箱贴意思一下。励颖原计划在卢浮宫出口处（大金字塔底部）吃一家连锁面包店 <em>Paul</em>，可惜定位太飘没找到。走着走着来到一片很大的餐饮区域，如刘姥姥进大观园，挑来挑去买了 \euro 4 欧的巧克力华夫饼和 \euro 2.7 的肉桂卷，前者味道非常不错。</p>
+<p>出卢浮宫行至杜乐丽花园，沙地差评，池塘和绿椅子好评。意外看到有工作人员在给雕塑涂漆。</p>
+<p><img src="/Travel-Notes-of-Paris/%E6%9D%9C%E4%B9%90%E4%B8%BD%E8%8A%B1%E5%9B%AD.jpg" alt></p>
+<p>橘园美术馆（<em>Musée de l’Orangerie</em>）就在杜乐丽花园（<em>Jardin des Tuileries</em>）的一侧，据说是为了在冬季保护杜乐丽花园里的橘子树而得名。由于提前购入了橘园和奥德的年卡，我俩享受了一波 SVIP 的待遇——穿过长长的闷热的现场购票队伍，在右侧的特殊通道等了五分钟就进去了。橘园以收藏莫奈（<em>Claude Monet</em>）的巨幅《睡莲》而闻名于世，据说这两个圆形的房间是莫奈生前亲自设计的，八组巨幅画作整齐地排列在墙上，利用自然天光照射。两个圆形对应 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord">∞</span></span></span></span> 的符号，给人一种无边无际之感，让游客置身于池塘、睡莲的光影流转之中。</p>
+<p><img src="/Travel-Notes-of-Paris/%E7%9D%A1%E8%8E%B2.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E6%A9%98%E5%9B%AD%E5%86%85%E9%83%A8.jpg" alt></p>
+<p>参观橘园时我才意识到 <strong>可以通过拍照上传来让大模型讲解</strong> 画作的历史背景和艺术价值。可惜橘园大量印象派画作藏于负一楼，手机没有信号，只能硬着头皮欣赏了。我很喜欢一幅黑白壁画，其用黑白像素点复刻了一张历史照片，记录了橘园美术馆核心馆藏——约 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>140</mn></mrow><annotation encoding="application/x-tex">140</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">140</span></span></span></span> 件的“让·瓦尔特与保罗·纪尧姆收藏”（<em>Jean Walter and Paul Guillaume Collection</em>）——最初在收藏家私人公寓里的陈列样貌。壁画里 cue 了塞尚（<em>Paul Cézanne</em>）、雷诺阿（<em>Auguste Renoir</em>）、毕加索（<em>Pablo Picasso</em>）、马蒂斯（<em>Henri Matisse</em>）等作品，很多实物就在身后的展厅里。</p>
+<p><img src="/Travel-Notes-of-Paris/%E9%BB%91%E7%99%BD%E5%A3%81%E7%94%BB.jpg" alt></p>
+<p>年卡在纪念品店有九折优惠，除了经典必买的睡莲冰箱贴外，我选购了一本英法对照的橘园美术馆作品讲解。</p>
+<p>橘园美术馆隔壁是协和广场（<em>Place de la Concorde</em>），广场中心矗立了一座埃及方尖碑——卢克索方尖碑（<em>Luxor Obelisk</em>）。这座方尖碑原本是一对，如今只剩下另一座守卫在埃及卢克索神庙（<em>Luxor Temple</em>）的入口。事后查阅资料，这是 19 世纪时埃及总督穆罕默德·阿里作为礼物送给法国国王路易-菲利普一世的。广场对面看起来有一座很大的 LV 商场，事后发现是海军府（<em>Hôtel de la Marine</em>）在修缮时贴的 LV 巨幅广告。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%8D%8F%E5%92%8C%E5%B9%BF%E5%9C%BA.jpg" alt></p>
+<p>下一个地点是加尼叶歌剧院（<em>Palais Garnier</em>），这是巴黎歌剧院里最经典的一座，《歌剧魅影》故事的发生地。路上看到一个很像希腊神庙的宏伟建筑，事后查阅是马德莱娜教堂（<em>Église de la Madeleine</em>）。途经超市时我们进去选购鲜奶，冷柜前信号很差没法拍照给大模型。盲选了一瓶蓝色鲜奶，结果是很淡的脱脂奶。</p>
+<p><img src="/Travel-Notes-of-Paris/%E6%95%99%E5%A0%82%E5%92%8C%E6%AD%8C%E5%89%A7%E9%99%A2.jpg" alt></p>
+<p>我们此前已调研清楚，当晚 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>19</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">19:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">19</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 加尼叶歌剧院会演出《真理力量》（<em>Satyagraha</em>），正常票价格高昂且早就被订购一空，演出前两小时会出售视野被遮挡的 \euro 10 特价票。我们抵达时刚过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">16:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span>，头几个进去排队。</p>
+<p>买完票后时间很充裕，正好逛一逛附近的老佛爷百货旗舰店（<em>Galeries Lafayette Haussmann</em>）。主馆有一座高达 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>43</mn></mrow><annotation encoding="application/x-tex">43</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">43</span></span></span></span> 米的巨型彩色玻璃穹顶，每一层内圈都驻扎了一批奢侈品商家。我俩厚不起脸皮进去拍照，一层一层向上爬，终于在人群簇拥的地方找到了免费拍照点。有一座玻璃栈道探出头去，听说需要预约才能上去拍照。顶层一整层都是纪念品店（<em>L’Espace Souvenirs</em>），抱着退税的念头地逛了逛，发现同类物品的价格显著高于先前看过的店。爬上老佛爷天台后可以俯视巴黎市区，不过我俩已经在凯旋门吃过细糠了，老佛爷的顶层风光聊胜于无吧。</p>
+<p><img src="/Travel-Notes-of-Paris/%E8%80%81%E4%BD%9B%E7%88%B7.jpg" alt></p>
+<p>根据励颖的攻略，我们战略性放弃了老佛爷的家居美食分馆，转战附近的河马餐厅（<em>Hippopotamus</em>）。这是一家著名的牛排连锁店。我们买了份 \euro 21.9 的套餐，包括一份带绿豌豆的牛排、一份饮料和一份甜点。</p>
+<p><img src="/Travel-Notes-of-Paris/%E6%B2%B3%E9%A9%AC%E9%A4%90%E5%8E%85.jpg" alt></p>
+<p>饭后我让励颖导航带路，一不小心带错了方向，等我拨乱反正带她到门口时已接近 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>19</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">19:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">19</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span>。门口的工作人员看完我们的票指了指上楼的方向，嘴里念了一句 Run!，当时我们还没有意识到事情的严重性。在歌剧院里绕了很久，最后二楼场馆门口的工作人员告诉我们，由于我们抵达超时，无法进入二楼原来的房间，必须临时去顶层（四楼）找个位置。《真理力量》总共分为三幕，每一幕用时约 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">50</span></span></span></span> 分钟，我们需要等第一幕结束后才可下来。就这样，我们在前两幕分别体验了两处位置：四楼后排位置视野遮挡严重，探出头去又容易恐高，加之梵语歌唱完全听不懂，我大部分时间都在睡觉；二楼被安排在高高的凳子上，视野好了很多，我的清醒时间有了质的飞跃= =。</p>
+<p><img src="/Travel-Notes-of-Paris/%E6%AD%8C%E5%89%A7%E9%99%A2%E6%8D%A2%E4%BD%8D%E7%BD%AE.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E6%AD%8C%E5%89%A7%E9%99%A2%E9%87%8C%E9%9D%A2.jpg" alt></p>
+<p>第三幕前励颖终于撑不住她的高雅伪装了，我俩逛了逛内部富丽堂皇的大厅后扬长而去。</p>
+<p><img src="/Travel-Notes-of-Paris/%E6%AD%8C%E5%89%A7%E9%99%A2%E5%A4%A7%E5%8E%85.jpg" alt></p>
+<p>晚上途经家乐福超市进行深入调研。我们挑了些薯片和拉面试吃，口味都一般。水果价格都很贵，奶就实惠很多。励颖吸取教训买了一瓶红色全脂奶（和白天的蓝色相对），我买到了最后一小杯 \euro 1.9 的鲜榨橙汁。</p>
+<p><img src="/Travel-Notes-of-Paris/%E8%A7%A3%E9%94%81%E5%AE%B6%E4%B9%90%E7%A6%8F.jpg" alt></p>
+<h3 id="第三天-塞纳河左岸">第三天-塞纳河左岸</h3>
+<p>寄存完行李后出门。励颖在附近的面包店购买了 \euro 1.4 的杏仁可颂当早饭，评价说味道非常不错。</p>
+<p>奥赛博物馆（<em>Musée d’Orsay</em>）坐落在塞纳河左岸，与卢浮宫、橘园美术馆隔河相望。我们进门后急着去找名画，咨询工作人员得知要先沿着长廊走到底才能上楼。中轴大厅里有一尊《自由照耀世界》（<em>La Liberté éclairant le monde</em>），也就是举世闻名的自由女神像的缩小青铜复刻版。长廊末端上楼的时候偶遇了罗丹（<em>Auguste Rodin</em>）的最著名的两件杰作：《思考者》（<em>Le Penseur</em>）和《地狱之门》（<em>La Porte de l’Enfer</em>）。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E8%B5%9B2.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E8%B5%9B1.jpg" alt></p>
+<p>转进五楼，可以看到标志性的巨大透明钟表盘。奥赛博物馆的前身是奥赛火车站（<em>Gare d’Orsay</em>），所以博物馆内保留了火车站时期巨大的镀金时钟。透过时钟表盘可以俯瞰塞纳河对岸的卢浮宫和蒙马特高地。</p>
+<p>馆藏的画作大大超出了我的预期，配合 Gemini 食用更佳。这里有延续印象派的画作，如《弹钢琴的少女》、《舞蹈课》、《蓝衣舞者》，以及莫奈其中一幅《撑阳伞的女人》。我特别注意到有一块新立的指示牌，牌上说 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026</mn></mrow><annotation encoding="application/x-tex">2026</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2026</span></span></span></span> 年是莫奈逝世 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span> 周年，世界多地都有纪念活动。很遗憾的是，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026.2.7</mn><mo>∼</mo><mn>2026.5.24</mn></mrow><annotation encoding="application/x-tex">2026.2.7 \sim 2026.5.24</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2026.2.7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2026.5.24</span></span></span></span> 期间，日本石桥美术馆（<em>Artizon Museum</em>）向奥赛博物馆借走了高达 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>41</mn><mi mathvariant="normal">/</mi><mn>76</mn></mrow><annotation encoding="application/x-tex">41/76</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">41/76</span></span></span></span> 幅莫奈的画作用于举办莫奈大型特展，包括另外一幅《撑阳伞的女人》（总共有三幅传世，还有一幅在华盛顿国家美术馆）、多幅《睡莲》系列作品。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E8%B5%9B%E5%90%8D%E7%94%BB1.jpg" alt></p>
+<p>写实作品有《刨地板的工人》和《巴蒂尼奥勒画室》，后印象派作品有梵高（<em>Van Gogh</em>）《正午休憩》和《奥维尔教堂》。据说《奥维尔教堂》是梵高生命最后阶段的作品，建筑的线条开始扭曲、甚至像是在律动。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E8%B5%9B%E5%90%8D%E7%94%BB2.jpg" alt></p>
+<p>《罗纳河上的星夜》（<em>La Nuit étoilée, Arles</em>）是梵高的星空代表作之一，另一幅更著名的《星月夜》（<em>The Starry Night</em>）收藏于纽约现代艺术博物馆（<em>The Museum of Modern Art</em>）。《自画像》（<em>Portrait de l’artiste</em>）是梵高最著名的自画像之一，背景布满了像漩涡一样的波浪纹路，仿佛他脑海中不安的思绪在奔涌。</p>
+<p><img src="/Travel-Notes-of-Paris/%E6%98%9F%E7%A9%BA%E5%92%8C%E8%87%AA%E7%94%BB%E5%83%8F.jpg" alt></p>
+<p>莫奈画的三幅《鲁昂大教堂》也很让人震撼。他在同一位置、不同时间观察同一座教堂，据说以下三幅分别代表：清晨，弥漫着蓝紫色雾气，光线还没散开；阴天，灰蒙蒙的，光线均匀洒下；正午，太阳直射，满眼金灿灿的。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E8%B5%9B%E5%90%8D%E7%94%BB3.jpg" alt></p>
+<p>午餐是励颖精选的 <em>Les Cocottes</em> 店。店内全是高脚座位，吧台背后全是葡萄酒，无不营造出一种高级感。价格果然有点小贵，我们点了 \euro 37 的牛排和 \euro 29 的墨鱼面。墨鱼面还是很有特色的，我俩吃得嘴唇发黑。</p>
+<p><img src="/Travel-Notes-of-Paris/%E9%93%B8%E9%93%81%E9%94%85%E5%8D%88%E9%A5%AD.jpg" alt></p>
+<p>饭后去巴黎圣母院（<em>Cathédrale Notre-Dame de Paris</em>）的路上，<strong>我们经历了交通奇遇</strong>。按照 Google Map 的指示去阿尔玛桥站（<em>Pont de l’Alma</em>）乘坐 RER C 线，预计三站抵达圣米歇尔-圣母院站（<em>Saint-Michel Notre-Dame</em>）。火车是双层的看着很高级，结果行至下一站荣军院站（<em>Invalides</em>）时突然停住了。我和励颖稍坐片刻后就下车了，一同下来的还有零星几个乘客。大家都不知道发生了什么，用蹩脚的英语相互交流着。眼看一个大叔和一个老太太重新上车，我俩也跟着上去了，结果大叔赶在关门前又下去了。当列车启动时我俩傻眼了，它竟然沿着<strong>原来的轨道</strong>（而不是对面的轨道）逆向行驶起来！坐回阿尔玛桥站后我们火速下车，接着针对是否要去对面站台乘车讨论了很久。硬着头皮逮了个乘客问了问，得知确实要去对面的方向乘车，我俩只能灰溜溜地再进出了一趟闸机。我们离得近坐地铁本来就不划算（巴黎地铁是固定票价 \euro 1.5），励颖吐槽说这一来一去早就走到了。</p>
+<p>巴黎圣母院很难约，我们只在外围的广场上拍照打了卡。巴黎圣母院坐落在塞纳河上的西岱岛（<em>Île de la Cité</em>），由于这个岛占据了大半个塞纳河的宽度，上下岛的桥就十分不引人注意——来源于我昨晚游船看地图的经验。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%B7%B4%E9%BB%8E%E5%9C%A3%E6%AF%8D%E9%99%A2.jpg" alt></p>
+<p>隔壁就是莎士比亚书店（<em>Shakespeare and Company</em>）。入口有点不起眼，要不是门口有队伍完全不会注意。这个名字有点误导性，我以为莎士比亚曾经在这里工作或阅读过，查阅资料后得知这里只是致敬莎士比亚，因为旧店和新店的开业时间分别是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1919</mn></mrow><annotation encoding="application/x-tex">1919</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1919</span></span></span></span> 年和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1951</mn></mrow><annotation encoding="application/x-tex">1951</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1951</span></span></span></span> 年，完全沾不上莎士比亚生活的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>∼</mo><mn>17</mn></mrow><annotation encoding="application/x-tex">16 \sim 17</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">17</span></span></span></span> 世纪，真正经常来光顾的是海明威（旧店）和金斯堡（新店）。沿着队伍进店，店内非常拥挤，完全无暇细看书架上的书籍。书架从地板一直延伸到天花板，塞满了各种英文书籍。踩着吱呀作响的木质楼梯上二楼，可以看到各种读者的留言纸条。窗边放着一架旧钢琴，有个人在弹琴。寥寥的座位上都有人在看书，我们绕了一圈后就下楼离开了，走前带了张明信片。</p>
+<p><img src="/Travel-Notes-of-Paris/%E8%8E%8E%E5%A3%AB%E6%AF%94%E4%BA%9A%E4%B9%A6%E5%BA%97.jpg" alt></p>
+<p>原计划下午去蒙马特高地，结合风大、时间紧等原因，改为留在莎士比亚书店旁边的拉丁区（<em>Quartier Latin</em>）。我们去品尝了网红的可丽饼店 <em>La Crème de Paris</em>，事实证明门口排了一段时间的队伍是值得的。我们选择了甜味可丽饼（<em>Sweet Crêpe</em>），具体是 \euro 13 的 <em>Light Cream, Red Fruits</em>。可丽饼用料很扎实，味道很甜（但不是此前品尝的巴黎面包的那种单纯甜腻）很好吃。还点了一杯 \euro 6.5 的肉桂味拿铁，咖啡鉴赏家励颖无特殊评价。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%8F%AF%E4%B8%BD%E9%A5%BC.jpg" alt></p>
+<p>整个拉丁区全是小吃店和纪念品店，非常好逛，可惜天有些下雨。励颖抠抠搜搜的，我念叨了半天、货比三家后，才肯拨款 \euro 4 给我，买了一个包含埃菲尔铁塔、凯旋门和巴黎圣母院的微型模型（结果箱子里运输的过程中把铁塔的顶部折断了）。我控好了时间提前量，六点前动身返回酒店提取行李，再坐机场地铁线去奥利机场。</p>
+<p>奥利机场（<em>Aéroport de Paris-Orly</em>）给我留下了非常好的印象：空间大，人少，效率高。作为巴黎第二大机场，它主要运营法国国内以及欧洲区内的航线。安检前意外发现了连锁店 Paul，算是圆了在卢浮宫没找到的执念。和杭州机场一样，安检工作人员再度检查了励颖的修眉刀，我开玩笑说我们可以去代言这个修眉刀了，能过全球的安检！特殊的是，未开封的瓶装可乐竟然能通过安检。安检前后各有一家 Relay，里面有售料理鼠王的迪士尼玩偶，巴黎限定就必须拿下了（虽然比市区卖得贵）。安检后也很舒服，有很多座位可以选坐，到处都设有插座，WIFI 很稳定正好用来同步上传近期的照片。我们的目的地是冰岛雷克雅未克，励颖担心抵达冰岛后气温有点低，我们就打开箱子武装了一番（把羽绒内胆和冲锋衣裤都从箱子里掏进包里待命），事实证明这个决策很对。</p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E5%88%A9%E6%9C%BA%E5%9C%BA2.jpg" alt></p>
+<p><img src="/Travel-Notes-of-Paris/%E5%A5%A5%E5%88%A9%E6%9C%BA%E5%9C%BA1.jpg" alt></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Travel-Notes-of-Paris/">https://jiangshibiao.github.io/Travel-Notes-of-Paris/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Log/">Log</a><a class="post-meta__tags" href="/tags/Journeys/">Journeys</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Travel-Notes-of-Paris.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/Universe-of-Complex/" title="复数的宇宙"><img class="cover" src="/../post_images/Universe-of-Complex.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">复数的宇宙</div></div><div class="info-2"><div class="info-item-1">本文将围绕复数和复平面，介绍一些经典数学工具和算法。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Iceland/" title="冰岛游记"><img class="cover" src="/../post_images/Travel-Notes-of-Iceland.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">冰岛游记</div></div><div class="info-2"><div class="info-item-1">记录了 2025.4.12-4.18 婚假在冰岛的旅行。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/Travel-Notes-of-Changsha/" title="长沙游记"><img class="cover" src="/../post_images/Travel-Notes-of-Changsha.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-06</div><div class="info-item-2">长沙游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.6.27-6.29 在长沙的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hengdian/" title="横店游记"><img class="cover" src="/../post_images/Hengdian.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-10-26</div><div class="info-item-2">横店游记</div></div><div class="info-2"><div class="info-item-1">记录了 2021.9.19-9.20 在横店的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Huangshan/" title="黄山游记"><img class="cover" src="/../post_images/Travel-Notes-of-Huangshan.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-04-30</div><div class="info-item-2">黄山游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.4.18-4.19 在黄山的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Chengdu/" title="成都游记"><img class="cover" src="/../post_images/Travel-Notes-of-Chengdu.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-11-06</div><div class="info-item-2">成都游记</div></div><div class="info-2"><div class="info-item-1">记录了 2025.10.25-10.27 忙里偷闲在成都的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Jingdezhen/" title="景德镇游记"><img class="cover" src="/../post_images/Travel-Notes-of-Jingdezhen.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-08-15</div><div class="info-item-2">景德镇游记</div></div><div class="info-2"><div class="info-item-1">记录了 2025.8.9-8.10 在景德镇的旅程。</div></div></div></a><a class="pagination-related" href="/Travel-Notes-of-Hong-Kong/" title="香港游记"><img class="cover" src="/../post_images/HongKong.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2024-01-16</div><div class="info-item-2">香港游记</div></div><div class="info-2"><div class="info-item-1">记录了 2024.1.13-1.16 在香港的旅程。主要就是三件事：买金，办卡和吃喝玩乐。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%A4%A9-%E9%93%81%E5%A1%94%E5%91%A8%E5%9B%B4"><span class="toc-number">1.</span> <span class="toc-text">第一天-铁塔周围</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%A4%A9-%E8%89%BA%E6%9C%AF%E7%9B%9B%E5%AE%B4"><span class="toc-number">1.1.</span> <span class="toc-text">第二天-艺术盛宴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%A4%A9-%E5%A1%9E%E7%BA%B3%E6%B2%B3%E5%B7%A6%E5%B2%B8"><span class="toc-number">1.2.</span> <span class="toc-text">第三天-塞纳河左岸</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Paris/" title="巴黎游记"><img src="/../post_images/Travel-Notes-of-Paris.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="巴黎游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Paris/" title="巴黎游记">巴黎游记</a><time datetime="2026-05-05T16:00:00.000Z" title="Updated 2026-05-06 2026-05-06T00:00:00+08:00">2026-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Iceland/" title="冰岛游记"><img src="/../post_images/Travel-Notes-of-Iceland.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="冰岛游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Iceland/" title="冰岛游记">冰岛游记</a><time datetime="2026-05-05T16:00:00.000Z" title="Updated 2026-05-06 2026-05-06T00:00:00+08:00">2026-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Universe-of-Complex/" title="复数的宇宙"><img src="/../post_images/Universe-of-Complex.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="复数的宇宙"/></a><div class="content"><a class="title" href="/Universe-of-Complex/" title="复数的宇宙">复数的宇宙</a><time datetime="2026-03-26T16:00:00.000Z" title="Updated 2026-03-27 2026-03-27T00:00:00+08:00">2026-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Web-Identity-and-Authorization-Protocols/" title="Web 认证和授权协议"><img src="/../post_images/Web-Identity-and-Authorization-Protocols.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web 认证和授权协议"/></a><div class="content"><a class="title" href="/Web-Identity-and-Authorization-Protocols/" title="Web 认证和授权协议">Web 认证和授权协议</a><time datetime="2026-03-16T16:00:00.000Z" title="Updated 2026-03-17 2026-03-17T00:00:00+08:00">2026-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读"><img src="/../post_images/Automated-Reasoning-in-Cloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云上形式化验证论文走读"/></a><div class="content"><a class="title" href="/Automated-Reasoning-in-Cloud/" title="云上形式化验证论文走读">云上形式化验证论文走读</a><time datetime="2025-12-17T16:00:00.000Z" title="Updated 2025-12-18 2025-12-18T00:00:00+08:00">2025-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
