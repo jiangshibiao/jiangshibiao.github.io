@@ -1,0 +1,671 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Go 基础语法 | Technology Comes First</title><meta name="author" content="jiangshibiao"><meta name="copyright" content="jiangshibiao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了我对 Go 语言的系统性学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 基础语法">
+<meta property="og:url" content="https://jiangshibiao.github.io/Go-Essentials/index.html">
+<meta property="og:site_name" content="Technology Comes First">
+<meta property="og:description" content="记录了我对 Go 语言的系统性学习。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jiangshibiao.github.io/post_images/Go-Essentials.jpg">
+<meta property="article:published_time" content="2026-07-16T13:06:33.000Z">
+<meta property="article:modified_time" content="2026-07-16T16:00:00.000Z">
+<meta property="article:author" content="jiangshibiao">
+<meta property="article:tag" content="Digest">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jiangshibiao.github.io/post_images/Go-Essentials.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Go 基础语法",
+  "url": "https://jiangshibiao.github.io/Go-Essentials/",
+  "image": "https://jiangshibiao.github.io/post_images/Go-Essentials.jpg",
+  "datePublished": "2026-07-16T13:06:33.000Z",
+  "dateModified": "2026-07-16T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jiangshibiao",
+      "url": "https://jiangshibiao.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/mylogo.jpg"><link rel="canonical" href="https://jiangshibiao.github.io/Go-Essentials/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Go 基础语法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Technology Comes First" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../post_images/Go-Essentials.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Technology Comes First</span></a><a class="nav-page-title" href="/"><span class="site-name">Go 基础语法</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/friendlink/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Go 基础语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-07-16T13:06:33.000Z" title="Created 2026-07-16 2026-07-16T21:06:33+08:00">2026-07-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-16T16:00:00.000Z" title="Updated 2026-07-17 2026-07-17T00:00:00+08:00">2026-07-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Lang/">Lang</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">11.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>43mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Rust 和 Go 都是当下极为流行的后端编程语言，我将记录从前者出发学习后者的心得和感悟。</p>
+<blockquote>
+<p>Rust 把复杂度交给编译器和开发者，换取极致的安全与性能；Go 把复杂度砍掉，换取极致的简单与工程效率。</p>
+</blockquote>
+<p>目前看下来，Go 的优势非常明显：</p>
+<ul>
+<li><strong>语法极简，学习曲线平缓</strong>。整门语言只有 25 个关键字，没有类、继承和异常，一个下午就能开始写业务代码，团队协作时几乎不存在“看不懂同事代码”的问题。</li>
+<li><strong>原生并发模型</strong>。goroutine + channel 内置于语言，<code>go func()</code> 一行就拉起一个初始栈仅 2KB 的轻量协程，不需要在 Rust 的 <code>async/await</code>、<code>Pin</code>、<code>Send + Sync</code> 约束里挣扎。</li>
+<li><strong>极快的编译速度</strong>。Go 从设计之初就为编译速度优化（严格的依赖管理、禁止循环导入、导出信息扁平化），百万行级别的项目也能在几十秒内完成构建，这和 Rust 正好是两个极端。</li>
+<li><strong>静态链接的单二进制部署</strong>。默认产出不依赖系统动态库的可执行文件，交叉编译改两个环境变量即可，扔到任何同架构的机器或 scratch 容器里就能跑——这也是 Go 在云原生领域统治级地位的重要原因。</li>
+<li><strong>官方统一工具链</strong>。gofmt 统一了全世界 Go 代码的格式（没有配置项，没有争论），<code>go vet</code> 做静态检查，<code>go test</code> 内置测试与基准，<code>pprof</code> 做性能剖析，全部开箱即用。</li>
+<li><strong>强大的标准库</strong>。HTTP 服务器、JSON、加解密、压缩开箱即用，写网络服务经常可以做到零第三方依赖。</li>
+<li><strong>省心的 GC</strong>。并发三色标记清除垃圾回收器把 STW 控制在亚毫秒级，绝大多数业务场景无需思考内存管理。</li>
+</ul>
+<p>Go 的缺点同样鲜明，体感最强烈的是错误处理：满屏的 <code>if err != nil &#123; return err &#125;</code> 样板代码，写多了确实会怀念 Rust 的 <code>?</code> 运算符。其次是类型系统偏弱——泛型直到 Go 1.18（2022 年）才姗姗来迟，且限制不少；没有 sum type，没有 <code>Option</code>，<code>nil</code> 同时承担了空指针、空 slice、空 map、空 interface 等多重语义，坑不少。很多在 Rust 里编译期就能拦下的错误，在 Go 里要靠约定、code review 和 <code>-race</code> 检测兜底。</p>
+<h2 id="环境安装和资料推荐">环境安装和资料推荐</h2>
+<p>Go 的工具链是一体化的，一个 <code>go</code> 命令覆盖构建、测试、依赖管理、文档、剖析等所有环节。</p>
+<ul>
+<li><code>GOROOT</code>：Go 的安装目录，存放标准库和工具链本体，一般不需要手动设置。</li>
+<li><code>GOPATH</code>：历史上是所有 Go 代码的强制工作区（代码必须放在 <code>$GOPATH/src</code> 下），Go 1.11 引入 module 模式后这个约束被废除。现在 <code>GOPATH</code>（默认 <code>~/go</code>）只剩两个用途：<code>$GOPATH/pkg/mod</code> 存放下载的依赖缓存，<code>$GOPATH/bin</code> 存放 <code>go install</code> 安装的二进制。</li>
+</ul>
+<p>module 模式在 Go 1.11 引入、Go 1.16 起默认开启。项目可以放在任意目录，由 <code>go.mod</code> 声明模块身份。</p>
+<p>开发环境推荐 VSCode + Go 插件（背后是官方语言服务器 gopls）或 GoLand。格式化用 <code>gofmt</code>（扩展工具 <code>goimports</code> 可以顺带整理 import 分组），lint 用聚合器 <code>golangci-lint</code>，调试器用 <code>dlv</code>（Delve）。</p>
+<p>Go 的教程和资料：</p>
+<table>
+<thead>
+<tr>
+<th>网址</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://go.dev/tour/">A Tour of Go</a></td>
+<td>官方交互式入门教程，两三个小时可过完</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://go.dev/doc/effective_go">Effective Go</a></td>
+<td>官方风格指南，写出地道 Go 代码的必读文档</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gopl-zh.github.io/">Go 语言圣经（GOPL）</a></td>
+<td>《The Go Programming Language》中文版，体系最完整的教材</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://gobyexample.com/">Go by Example</a></td>
+<td>带大量代码示例的教程，风格类似 Rust by Example</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://go101.org/">Go 101</a></td>
+<td>深挖语言细节和内存模型的进阶资料</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pkg.go.dev/">pkg.go.dev</a></td>
+<td>官方包文档平台，地位类似 <a target="_blank" rel="noopener" href="http://crates.io">crates.io</a> + <a target="_blank" rel="noopener" href="http://docs.rs">docs.rs</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://go.dev/blog/">go.dev/blog</a></td>
+<td>官方博客，slice/map/GC 等底层机制的第一手资料</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://dave.cheney.net/">Dave Cheney’s Blog</a></td>
+<td>高质量的 Go 性能与工程实践文章</td>
+</tr>
+</tbody>
+</table>
+<p>Go 的 runtime 内置了剖析支持，import 一个 <code>net/http/pprof</code> 包就能通过 HTTP 端点拿到线上服务的 CPU、堆、goroutine、锁竞争等 profile，配合 <code>go tool pprof</code> 的火焰图定位问题。</p>
+<h2 id="包管理">包管理</h2>
+<p>一个 Go 项目（module）里通常含有以下几项：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>go.mod</code></td>
+<td>清单文件。声明模块路径、Go 版本、直接依赖及其版本</td>
+</tr>
+<tr>
+<td><code>go.sum</code></td>
+<td>校验文件。记录所有依赖（含间接依赖）内容的哈希，保证可复现构建，防止依赖被篡改</td>
+</tr>
+<tr>
+<td><code>main.go</code> / <code>cmd/*</code></td>
+<td>程序入口。<code>package main</code> + <code>func main()</code> 构成可执行程序，多个二进制习惯上放在 <code>cmd/&lt;name&gt;/</code> 下</td>
+</tr>
+<tr>
+<td><code>internal/*</code></td>
+<td>内部包目录。编译器强制：只有本模块（internal 的父目录子树）能导入</td>
+</tr>
+<tr>
+<td><code>vendor/*</code></td>
+<td>可选的依赖副本目录，由 <code>go mod vendor</code> 生成，存在时构建默认使用它。</td>
+</tr>
+<tr>
+<td><code>*_test.go</code></td>
+<td>测试文件。与被测代码放在同一目录，<code>go build</code> 时忽略，<code>go test</code> 时编译。</td>
+</tr>
+</tbody>
+</table>
+<p>模块（module）是版本管理和发布的单位，对应一个 <code>go.mod</code>；包（package）是编译和导入的单位，对应一个目录——同一目录下所有文件必须声明相同的 <code>package</code> 名。Rust 的 mod 树是在代码里声明的逻辑结构，Go 的包结构就是物理目录结构。</p>
+<ul>
+<li>可见性规则：Go 没有 <code>pub</code> 关键字，可见性完全由标识符首字母大小写决定。首字母大写（大驼峰）的函数、类型、字段、常量对包外可见（导出），小写（小驼峰）则仅包内可见。</li>
+<li><code>internal</code> 目录：放在 <code>internal/</code> 下的包只能被其父目录子树内的代码导入，编译器强制执行。</li>
+<li>依赖版本选择用 MVS（Minimal Version Selection）算法：取所有依赖声明中的最大下界，而不是像 Cargo 那样求解最新兼容版本。所以结果是构建天然可复现，不需要真正意义上的锁文件。</li>
+<li>为了践行语义化导入版本（Semantic Import Versioning），当一个库发布 v2.0.0 或更高的主版本时，它的模块路径（module path）必须变成 <code>…/v2</code> 的形式或更高版本的形式，即新包可以和旧包兼容存在。</li>
+</ul>
+<p><code>go.mod</code> 长这样：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">module github.com/user/project</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.22</span></span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">    github.com/gin-gonic/gin v1<span class="number">.10</span><span class="number">.0</span></span><br><span class="line">    golang.org/x/sync v0<span class="number">.7</span><span class="number">.0</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">replace github.com/user/lib =&gt; ../lib</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>replace</code> 指令把某个依赖指向本地路径或 fork，仅对主模块生效，常用于本地联调。</li>
+<li>Go 1.18 引入了工作区模式（<code>go.work</code>）：多个模块协同开发时，用 <code>go work init ./mod-a ./mod-b</code> 生成 go.work，比在各个 go.mod 里手写 replace 干净得多，且 go.work 不需要提交到仓库。</li>
+<li><code>go mod vendor</code> 把所有依赖拷贝进 <code>vendor/</code> 目录，构建时加 <code>-mod=vendor</code>（存在 vendor 目录时默认启用）。适合需要离线构建或审计依赖的场景。</li>
+</ul>
+<p>导入路径就是模块路径 + 包目录，支持别名与空白导入：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span>                            <span class="comment">// 标准库</span></span><br><span class="line">    <span class="string">&quot;github.com/gin-gonic/gin&quot;</span>       <span class="comment">// 第三方包，用最后一段 gin 作为包名</span></span><br><span class="line">    myjson <span class="string">&quot;encoding/json&quot;</span>           <span class="comment">// 别名导入</span></span><br><span class="line">    _ <span class="string">&quot;net/http/pprof&quot;</span>               <span class="comment">// 空白导入，只执行包的 init()，注册副作用</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>init()</code> 函数用于包初始化。初始化顺序：先初始化被依赖的包，再初始化包级变量，最后执行 <code>init()</code>；一个包里允许定义多个 <code>init()</code>。程序所有的 <code>init()</code> 跑完后才进入 <code>main()</code>。最典型的用途是驱动注册，<code>database/sql</code> 的数据库驱动就是靠匿名导入触发 <code>init()</code> 把自己注册进框架的。</p>
+<p>Go 的编译器很严格，未使用的导入和未使用的局部变量会报编译错误，也不允许循环导入。</p>
+<h2 id="基本语法">基本语法</h2>
+<p>Go 是静态类型语言，支持类型推导。变量声明有几种形式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a <span class="type">int</span>           <span class="comment">// 声明并赋零值 0</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">10</span>          <span class="comment">// 类型推导</span></span><br><span class="line">c := <span class="number">20</span>             <span class="comment">// 短变量声明，只能在函数内使用</span></span><br><span class="line"><span class="keyword">var</span> x, y = <span class="number">1</span>, <span class="string">&quot;hi&quot;</span>  <span class="comment">// 平行声明，类型可不同</span></span><br></pre></td></tr></table></figure>
+<p><code>:=</code> 的两条限制：只能用在函数内；同一作用域内不能用它纯重复声明同一个变量，除非左侧至少有一个新变量。注意它是&quot;声明&quot;而非&quot;赋值&quot;：在内层作用域对同名变量使用 <code>:=</code> 会创建一个新变量遮蔽（shadow）外层变量。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> err <span class="type">error</span></span><br><span class="line"><span class="keyword">if</span> cond &#123;</span><br><span class="line">    result, err := doSomething() <span class="comment">// 这里的 err 是新变量！外层 err 永远是 nil</span></span><br><span class="line">    _ = result</span><br><span class="line">    _ = err</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123; <span class="comment">// 永远不会触发</span></span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>go vet</code> 的 shadow 检查器可以辅助发现上述遮蔽 <code>err</code> 的问题：。补充一个规则：<code>:=</code> 左侧只要有至少一个新变量就合法，其余同名变量在<strong>同一作用域</strong>下是赋值、跨作用域则是新声明——坑就坑在这个差异上。</p>
+<p>常量用 <code>const</code> 声明，是编译期概念，没有内存地址。Go 的无类型常量（untyped constant）有任意精度，直到被使用时才收敛到具体类型，所以 <code>const big = 1 &lt;&lt; 62</code> 可以直接参与运算而不用担心中间溢出。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Pi = <span class="number">3.14159</span>      <span class="comment">// 无类型常量：既能当 float64 也能参与整数运算</span></span><br><span class="line"><span class="keyword">const</span> Size <span class="type">int64</span> = <span class="number">1024</span> <span class="comment">// 有类型常量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> huge = <span class="number">1</span> &lt;&lt; <span class="number">100</span> <span class="comment">// 任意精度，编译期成立</span></span><br><span class="line"><span class="keyword">const</span> four = huge &gt;&gt; <span class="number">98</span> <span class="comment">// 使用时收敛为 int，值为 4</span></span><br></pre></td></tr></table></figure>
+<p><code>iota</code> 是 const 块里的行号计数器（从 0 开始，逐行加一），是 Go 模拟枚举的惯用手段。其本质就是整数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Weekday <span class="type">int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    Sunday Weekday = <span class="literal">iota</span> <span class="comment">// 0</span></span><br><span class="line">    Monday                <span class="comment">// 1，省略表达式则复用上一行</span></span><br><span class="line">    Tuesday               <span class="comment">// 2</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    _  = <span class="literal">iota</span>             <span class="comment">// 跳过 0</span></span><br><span class="line">    KB = <span class="number">1</span> &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>) <span class="comment">// 1 &lt;&lt; 10</span></span><br><span class="line">    MB                    <span class="comment">// 1 &lt;&lt; 20</span></span><br><span class="line">    GB                    <span class="comment">// 1 &lt;&lt; 30</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>控制流方面，Go 只有一种循环 <code>for</code>，<code>if</code>/<code>switch</code> 都不需要给条件加括号。</p>
+<ul>
+<li>注意 range 的第二个返回值是拷贝，即用 <code>for _, v := range s &#123; v.X = 1 &#125;</code> 改的是副本，想原地修改必须用下标 <code>s[i].X = 1</code>。这里提一个重要的版本演进：Go 1.22 修复了 for 循环变量捕获问题。此前 <code>for i, v := range s</code> 的 <code>i</code>、<code>v</code> 在整个循环中是同一个变量，闭包里捕获它们会拿到最后一轮的值，堪称 Go 历史上被踩得最多的坑；1.22 起每轮迭代拥有独立的循环变量，老代码里满地的 <code>i := i</code> 拷贝惯用法就此退休。</li>
+<li><code>switch</code> 的 case 支持多值列表，默认不穿透，需要穿透时显式写 <code>fallthrough</code>；支持无表达式的 switch。</li>
+<li><code>goto</code> 存在且偶尔有用（跳出多层循环的另一个选择是带标签的 <code>break LABEL</code>）。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> v := compute(); v &gt; <span class="number">0</span> &#123; <span class="comment">// if 支持前置语句，v 的作用域仅限 if/else 块</span></span><br><span class="line">    fmt.Println(v)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;&#125; <span class="comment">// 经典三段式</span></span><br><span class="line"><span class="keyword">for</span> cond &#123;&#125;                <span class="comment">// 相当于 while</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> slice &#123; fmt.Println(i, v) &#125; <span class="comment">// range 遍历（循环变量不用会报编译错误）</span></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">range</span> <span class="number">5</span> &#123;&#125;             <span class="comment">// Go 1.22 起支持 range over int</span></span><br><span class="line"><span class="keyword">for</span> &#123;&#125;                     <span class="comment">// 死循环</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> x := f(); x &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>, <span class="number">2</span>:                 <span class="comment">// 多值匹配，不需要 break</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;small&quot;</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    <span class="keyword">fallthrough</span>            <span class="comment">// 显式穿透到下一个 case</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    fmt.Println(<span class="string">&quot;big&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> &#123;                   <span class="comment">// 无表达式的 switch，相当于 if-else 链</span></span><br><span class="line"><span class="keyword">case</span> x &lt; <span class="number">0</span>:</span><br><span class="line"><span class="keyword">case</span> x == <span class="number">0</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数支持多返回值，这是 Go 错误处理风格的基石；还支持命名返回值（在 defer 里可以修改它，后文会用到）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">divide</span><span class="params">(a, b <span class="type">int</span>)</span></span> (<span class="type">int</span>, <span class="type">error</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>, errors.New(<span class="string">&quot;division by zero&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a / b, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">split</span><span class="params">(sum <span class="type">int</span>)</span></span> (x, y <span class="type">int</span>) &#123; <span class="comment">// 命名返回值，自动声明并赋零值</span></span><br><span class="line">    x = sum * <span class="number">4</span> / <span class="number">9</span></span><br><span class="line">    y = sum - x</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">// 裸 return，返回当前 x, y</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>defer</strong> 把函数调用推迟到当前函数返回前执行，无论正常 return 还是 panic 展开都会执行：</p>
+<ul>
+<li>defer 在所在函数返回前按 <strong>LIFO（后注册先执行）</strong> 顺序执行，无论正常 return 还是 panic 展开都会执行。</li>
+<li>defer 语句的<strong>参数在注册时立即求值</strong>，函数体在返回时才执行——<code>defer fmt.Println(i)</code> 打印的是注册时刻的 <code>i</code>。想延迟求值就得包一层闭包。</li>
+<li>defer + 命名返回值可以在 return 之后、真正退出之前修改返回值。</li>
+<li>panic 发生时，当前 goroutine 沿调用栈逐层执行 defer，若无 recover 则整个进程崩溃。即任何一个 goroutine 的未捕获 panic 都会带走全部程序，所以长期运行的程序顶层通常有 recover 兜底。</li>
+</ul>
+<p>defer 的开销经历过一轮显著演进：早期版本每个 defer 都在堆上分配 <code>_defer</code> 记录并挂链表，开销几十纳秒；Go 1.13 改为多数场景栈上分配；Go 1.14 引入 open-coded defer，把不在循环里的 defer 直接内联展开成函数尾部的普通调用，开销降到接近直接调用。现在除了热循环内部，基本不用为 defer 的性能操心。</p>
+<h2 id="基本数据类型">基本数据类型</h2>
+<p>Go 的基本类型一览：</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>整型</td>
+<td><code>int8/16/32/64</code>, <code>uint8/16/32/64</code>, <code>int</code>, <code>uint</code>, <code>uintptr</code></td>
+<td><code>int</code> 的宽度与平台相关（64 位平台上是 64 位），字面量默认推导为 <code>int</code></td>
+</tr>
+<tr>
+<td>浮点</td>
+<td><code>float32</code>, <code>float64</code></td>
+<td>字面量默认 <code>float64</code>，没有 <code>float</code></td>
+</tr>
+<tr>
+<td>复数</td>
+<td><code>complex64</code>, <code>complex128</code></td>
+<td>内置复数支持，<code>complex(1, 2)</code>、<code>real()</code>、<code>imag()</code></td>
+</tr>
+<tr>
+<td>布尔</td>
+<td><code>bool</code></td>
+<td>不能与整数互转，<code>if 1 &#123;&#125;</code> 是编译错误</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td><code>string</code></td>
+<td>不可变字节序列，通常是 UTF-8 编码</td>
+</tr>
+<tr>
+<td>别名</td>
+<td><code>byte</code> = <code>uint8</code>，<code>rune</code> = <code>int32</code></td>
+<td><code>byte</code> 表示原始字节，<code>rune</code> 表示一个 Unicode 码点</td>
+</tr>
+</tbody>
+</table>
+<p>零值机制是 Go 的核心设计，变量声明后自动初始化为零值——数值为 <code>0</code>，布尔为 <code>false</code>，字符串为 <code>&quot;&quot;</code>，指针、slice、map、channel、函数、interface 为 <code>nil</code>。不存在&quot;未初始化变量&quot;，很多类型（如 <code>sync.Mutex</code>、<code>bytes.Buffer</code>）刻意设计成&quot;零值即可用&quot;。</p>
+<p>类型转换必须显式写成 <code>T(x)</code>。Go 没有任何数值隐式转换，<code>int32</code> 和 <code>int64</code> 相加都得先转：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a <span class="type">int32</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b <span class="type">int64</span> = <span class="number">2</span></span><br><span class="line">c := <span class="type">int64</span>(a) + b        <span class="comment">// 必须显式转换</span></span><br><span class="line">f := <span class="type">float64</span>(c) / <span class="number">3.0</span></span><br><span class="line">r := <span class="type">rune</span>(<span class="number">65</span>)            <span class="comment">// &#x27;A&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>整型溢出时不 panic，按补码继续工作（不同于 Rust 在 debug 模式下会 panic，Go 任何模式都静默回绕）。</p>
+<p>类型推断之外还有两种定义类型的方式，区别微妙：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Celsius <span class="type">float64</span>      <span class="comment">// 类型定义：全新的类型，可挂方法，与 float64 互转需显式</span></span><br><span class="line"><span class="keyword">type</span> Fahrenheit = <span class="type">float64</span> <span class="comment">// 类型别名：同一个类型，与 float64 随便混用</span></span><br></pre></td></tr></table></figure>
+<p>其中类型别名是 Go 1.9 引入的，<code>byte</code>/<code>rune</code>/<code>any</code> 都是官方别名。</p>
+<p>数组 <code>[N]T</code> 是值类型，长度是类型的一部分（<code>[3]int</code> 和 <code>[4]int</code> 是不同类型），赋值和传参会整个拷贝。元素可比较时数组也可以用 <code>==</code> 比较。日常代码里裸数组出场率很低，几乎总是通过 slice 使用：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a := [<span class="number">3</span>]<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">b := a          <span class="comment">// 整个数组拷贝，修改 b 不影响 a</span></span><br><span class="line">b[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">fmt.Println(a[<span class="number">0</span>], b[<span class="number">0</span>]) <span class="comment">// 1 100</span></span><br></pre></td></tr></table></figure>
+<h2 id="slice-和-string">slice 和 string</h2>
+<p>Go 指针只有两种基本运算符，不支持算术运算，不能 <code>p+1</code> 跳到下一个元素。Go 没有所有权和借用检查，多个指针同时读写同一块内存完全合法，回收交给 GC 兜底。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="number">42</span></span><br><span class="line">p := &amp;x  <span class="comment">// 取地址，类型 *int</span></span><br><span class="line">*p = <span class="number">43</span>  <span class="comment">// 解引用并修改</span></span><br></pre></td></tr></table></figure>
+<p>slice 是 Go 使用频率最高的容器。它在运行时是一个三元组结构：</p>
+<ul>
+<li>slice 本身是个 24 字节（64 位平台）的小结构体，赋值和传参时拷贝的是这三个字，底层数组是共享的——所以函数内 <code>s[0] = x</code> 对调用方可见，但 <code>s = append(s, x)</code> 若触发扩容则对调用方不可见。</li>
+<li>扩容策略（Go 1.18 起的实现）：所需容量超过当前两倍则直接用所需容量；否则旧容量小于 256 时翻倍，大于 256 时按约 1.25 倍平滑增长（公式 <code>newcap += (newcap + 3*256) / 4</code>，容量越大增长系数越接近 1.25）。最终还会按内存分配器的 size class 向上取整，所以实测容量常比公式略大。</li>
+<li><code>len(s)</code> 和 <code>cap(s)</code> 都是 O(1) 的字段读取。切片操作 <code>s[i:j]</code> 不拷贝数据，只生成新的三元组。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> slice <span class="keyword">struct</span> &#123;</span><br><span class="line">    array unsafe.Pointer <span class="comment">// 指向底层数组</span></span><br><span class="line">    <span class="built_in">len</span>   <span class="type">int</span>            <span class="comment">// 当前长度</span></span><br><span class="line">    <span class="built_in">cap</span>   <span class="type">int</span>            <span class="comment">// 底层数组从 array 起的容量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p := <span class="built_in">new</span>(<span class="type">int</span>)        <span class="comment">// 返回 *int，指向零值；适用于任何类型，实际很少用</span></span><br><span class="line">s := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">10</span>) <span class="comment">// 只用于 slice/map/channel，返回初始化后的值（不是指针）</span></span><br><span class="line"></span><br><span class="line">s := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">3</span>, <span class="number">5</span>) <span class="comment">// len=3, cap=5</span></span><br><span class="line">s = <span class="built_in">append</span>(s, <span class="number">1</span>)       <span class="comment">// 务必接收返回值：容量不足时会分配新数组</span></span><br><span class="line">t := s[<span class="number">1</span>:<span class="number">3</span>]            <span class="comment">// 前闭后开，不拷贝数据，只生成新三元组</span></span><br><span class="line">n := <span class="built_in">copy</span>(dst, src)    <span class="comment">// 拷贝 min(len(dst), len(src)) 个元素，返回拷贝个数</span></span><br></pre></td></tr></table></figure>
+<p>共享底层数组是效率来源，也是坑的来源：</p>
+<ul>
+<li>对 slice 进行 append 会影响到原数组，详见以下示例。</li>
+<li>从巨大 slice 上切一小段长期持有，会导致整个底层数组无法被 GC。解法是用 <code>copy</code> 把数据挪到新 slice。</li>
+<li><code>copy(dst, src)</code> 按 <code>min(len(dst), len(src))</code> 拷贝并返回拷贝数量。</li>
+<li><code>append</code> 是唯一的追加手段。它返回一个更新后的切片，务必写成 <code>s = append(s, x)</code> 接收返回值。</li>
+<li>Go 1.21 加入了内置函数 <code>min</code>/<code>max</code>/<code>clear</code>（<code>clear</code> 可清空 map 或将 slice 元素置零），Go 1.21 还引入了 <code>slices</code>、<code>maps</code> 标准库包，<code>slices.Contains</code>、<code>slices.Sort</code> 不再不要手写。</li>
+<li>nil slice（<code>var s []int</code>）与空 slice（<code>[]int&#123;&#125;</code>）行为几乎一致（len/cap 都是 0，都可以 append），但 <code>s == nil</code> 判断结果不同，JSON 序列化一个是 <code>null</code> 一个是 <code>[]</code>。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">sub := s[<span class="number">1</span>:<span class="number">3</span>]        <span class="comment">// len=2, cap=4，与 s 共享底层数组</span></span><br><span class="line">sub = <span class="built_in">append</span>(sub, <span class="number">99</span>) <span class="comment">// 没超 cap，直接写入底层数组：s[3] 被改成了 99！</span></span><br><span class="line">fmt.Println(s)        <span class="comment">// [1 2 3 99 5]</span></span><br><span class="line"></span><br><span class="line">safe := s[<span class="number">1</span>:<span class="number">3</span>:<span class="number">3</span>]      <span class="comment">// 完整切片表达式 s[low:high:max]，把 cap 限制为 2</span></span><br><span class="line">safe = <span class="built_in">append</span>(safe, <span class="number">7</span>) <span class="comment">// 超出 cap，触发扩容拷贝，不再污染 s</span></span><br></pre></td></tr></table></figure>
+<p>string 在运行时是一个二元组（没有 cap）：</p>
+<ul>
+<li>string 不可变，因此可以安全共享、可以做 map 的键、子串操作 <code>s[1:3]</code> 零拷贝。</li>
+<li><code>string</code> 和 <code>[]byte</code> 的互转都会发生内存拷贝（因为一个不可变一个可变，必须隔离）。编译器对少数模式做了免拷贝优化，例如 <code>m[string(b)]</code> 作 map 查询、<code>string(b) == s</code> 作比较时不会真的分配。Go 1.20 提供了 <code>unsafe.String</code>/<code>unsafe.SliceData</code> 用于确知安全时的零拷贝转换，但要慎用。</li>
+<li>对 string 下标索引 <code>s[i]</code> 得到的是 <code>byte</code> 而不是字符；<code>for range</code> 遍历则按 UTF-8 解码逐 <code>rune</code> 迭代，索引可能跳跃，遍历时遇到非法 UTF-8 字节会产出替换字符 U+FFFD。</li>
+<li>因为不可变，<code>+</code> 拼接每次都分配新串，而 <code>fmt.Sprintf</code> 更灵活且更慢。</li>
+<li>拼接大量字符串时用 <code>strings.Builder</code>：它内部维护一个 <code>[]byte</code>，<code>String()</code> 方法通过 unsafe 指针转换直接把字节切片&quot;变成&quot;字符串而不拷贝（安全性靠 Builder 禁止拷贝和继续写入来保证）。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> stringStruct <span class="keyword">struct</span> &#123;</span><br><span class="line">    str unsafe.Pointer</span><br><span class="line">    <span class="built_in">len</span> <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">s := <span class="string">&quot;Go语言&quot;</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(s)) <span class="comment">// 8，len() 返回字节数而非字符数</span></span><br><span class="line"><span class="keyword">for</span> i, r := <span class="keyword">range</span> s &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%d:%c &quot;</span>, i, r) <span class="comment">// 0:G 1:o 2:语 5:言（i 是字节偏移，可能跳跃）</span></span><br><span class="line">&#125;</span><br><span class="line">rs := []<span class="type">rune</span>(s)      <span class="comment">// 按码点拆分，O(n) 且分配内存</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(rs)) <span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b strings.Builder</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">100</span>; i++ &#123;</span><br><span class="line">    b.WriteString(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">result := b.String() <span class="comment">// 零拷贝取出结果</span></span><br></pre></td></tr></table></figure>
+<h2 id="map">map</h2>
+<p>map 是 Go 内置的哈希表，类型写作 <code>map[K]V</code>。使用层面：</p>
+<ul>
+<li>键类型必须是可比较的（comparable）：数值、字符串、指针、channel、interface、以及只含可比较字段的数组/结构体。slice、map、函数不能做键。</li>
+<li>map 的 value 不可寻址，要改得取出整个 value 改完再放回（和 range 的值拷贝是同一套值语义）。</li>
+<li>未初始化的 nil map 可以读（返回零值）但写入会 panic。</li>
+<li><code>v, ok :=</code> 的 comma-ok 模式是 Go 表达&quot;可能不存在&quot;的惯用法（相比之下 Rust 的 <code>Option&lt;&amp;V&gt;</code> 更优雅）</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>, <span class="number">16</span>) <span class="comment">// 可指定初始容量提示</span></span><br><span class="line">m[<span class="string">&quot;a&quot;</span>] = <span class="number">1</span></span><br><span class="line">v := m[<span class="string">&quot;b&quot;</span>]          <span class="comment">// 键不存在返回零值 0，不会 panic</span></span><br><span class="line">v, ok := m[<span class="string">&quot;b&quot;</span>]      <span class="comment">// comma-ok 惯用法，ok 表示键是否存在</span></span><br><span class="line"><span class="built_in">delete</span>(m, <span class="string">&quot;a&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> k, v := <span class="keyword">range</span> m &#123; fmt.Println(k, v) &#125; <span class="comment">// 遍历顺序随机！</span></span><br></pre></td></tr></table></figure>
+<p>Go 1.23 及之前的 map 是经典的桶式哈希表，核心结构是 <code>runtime/map.go</code> 里的 <code>hmap</code>：</p>
+<ul>
+<li><code>hmap</code> 记录元素个数 <code>count</code>、桶数量的对数 <code>B</code>（桶数为 2^B）、桶数组指针 <code>buckets</code>、扩容期间的旧桶数组 <code>oldbuckets</code> 等。</li>
+<li>每个桶（<code>bmap</code>）固定存 8 个键值对：先是 8 个 <code>tophash</code> 字节（哈希值高 8 位，用于快速过滤），然后 8 个 key 连续存放、8 个 value 连续存放（key/value 分开存是为了消除内存对齐产生的 padding），最后一个溢出桶指针。桶装满后挂溢出桶链。</li>
+<li>负载因子超过 6.5（平均每桶 6.5 个元素）时触发翻倍扩容；溢出桶过多时触发等量扩容整理。扩容是渐进式的：不是一次性搬迁，而是每次写操作顺带搬迁一两个旧桶（evacuation），把成本摊到多次操作上——这个思路和 Redis 的渐进式 rehash 一致。</li>
+<li>遍历顺序随机是有意为之：迭代从一个随机桶、随机槽位开始。早期版本的遍历顺序恰好稳定，大量程序无意中依赖了它，官方索性在运行时主动随机化，逼你不要依赖顺序。</li>
+<li>Go 1.24 把 map 的底层实现整体换成了 Swiss Tables（借鉴 abseil 的开放寻址 + SIMD 分组探测设计），典型场景有可观的性能提升。上面的 hmap 描述适用于 1.23 及之前。</li>
+</ul>
+<p>map 不是并发安全的：并发读没问题，只要有并发写（或读写并发）就会被 runtime 检测到并直接 <code>fatal error: concurrent map writes</code>——注意这是不可 recover 的崩溃，不是 panic。并发方案有两种：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方案一：互斥锁保护，通用</span></span><br><span class="line"><span class="keyword">var</span> mu sync.RWMutex</span><br><span class="line">mu.Lock()</span><br><span class="line">m[<span class="string">&quot;a&quot;</span>] = <span class="number">1</span></span><br><span class="line">mu.Unlock()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方案二：sync.Map，适合读多写少、键集合基本稳定的场景</span></span><br><span class="line"><span class="keyword">var</span> sm sync.Map</span><br><span class="line">sm.Store(<span class="string">&quot;a&quot;</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> v, ok := sm.Load(<span class="string">&quot;a&quot;</span>); ok &#123;</span><br><span class="line">    fmt.Println(v.(<span class="type">int</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>sync.Map</code> 内部维护 read、dirty 两个 map：read 支持无锁的原子读，miss 次数积累到阈值后把 dirty 提升为 read。它对&quot;读远多于写&quot;的场景很快，但泛用性差——它至今（含 1.24+）没有泛型 API，键值都是 <code>any</code>，取值永远要一次类型断言——官方文档也明说大多数场景直接用 <code>Mutex + map</code> 更合适。</p>
+<h2 id="结构体和方法">结构体和方法</h2>
+<p>struct 用字段名和类型定义，初始化有按字段名和按位置两种姿势。</p>
+<ul>
+<li>字段标签（tag） 用反引号标注，本身对编译器透明，由标准库或第三方通过反射消费，最典型的就是 <code>encoding/json</code> 读取 <code>json:&quot;name,omitempty&quot;</code> 决定序列化字段名和省略规则。</li>
+<li>如果结构体的所有字段都可比较（不含 slice/map/func），则结构体可比较（<code>==</code>），也可以作 map 的 key。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="type">string</span> <span class="string">`json:&quot;name,omitempty&quot;`</span> <span class="comment">// 字段标签（tag）：供反射读取的元数据</span></span><br><span class="line">	Age  <span class="type">int</span>    <span class="string">`json:&quot;age&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">u1 := User&#123;Name: <span class="string">&quot;jimmy&quot;</span>, Age: <span class="number">18</span>&#125; <span class="comment">// 按字段名初始化，推荐</span></span><br><span class="line">u2 := User&#123;<span class="string">&quot;jimmy&quot;</span>, <span class="number">18</span>&#125;            <span class="comment">// 按位置初始化，字段顺序变了就完蛋</span></span><br><span class="line"><span class="keyword">var</span> u3 User                        <span class="comment">// 零值直接可用：Name=&quot;&quot;, Age=0</span></span><br></pre></td></tr></table></figure>
+<p>方法是在 func 和函数名之间加接收者（receiver）声明的函数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Rect <span class="keyword">struct</span> &#123;</span><br><span class="line">    Width, Height <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r Rect)</span></span> Area() <span class="type">float64</span> &#123; <span class="comment">// 值接收者：操作的是副本</span></span><br><span class="line">    <span class="keyword">return</span> r.Width * r.Height</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Rect)</span></span> Scale(f <span class="type">float64</span>) &#123; <span class="comment">// 指针接收者：可修改原值</span></span><br><span class="line">    r.Width *= f</span><br><span class="line">    r.Height *= f</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">r := Rect&#123;Width: <span class="number">3</span>, Height: <span class="number">4</span>&#125;</span><br><span class="line">r.Scale(<span class="number">2</span>)          <span class="comment">// 编译器自动取址，等价于 (&amp;r).Scale(2)</span></span><br><span class="line">fmt.Println(r.Area())</span><br></pre></td></tr></table></figure>
+<ul>
+<li>值接收者 vs 指针接收者的选择：需要修改接收者、或结构体较大不想拷贝时用指针；小型不可变结构体用值。同一类型的方法集应保持一致，不要混用。</li>
+<li>一个重要细节：<code>*T</code> 的方法集包含值接收者和指针接收者的所有方法，而 <code>T</code> 的方法集只含值接收者方法。这在赋值给 interface 时会现形——只有 <code>&amp;r</code> 能满足含指针接收者方法的接口，<code>r</code> 不行。</li>
+<li>调用时的自动取址/解引用是语法糖（要求操作数可寻址），interface 赋值没有这层糖。</li>
+</ul>
+<p>Go 用嵌入（embedding）实现组合复用，字段和方法会被&quot;提升&quot;到外层（非继承和多态）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Animal <span class="keyword">struct</span>&#123; Name <span class="type">string</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a Animal)</span></span> Speak() <span class="type">string</span> &#123; <span class="keyword">return</span> a.Name + <span class="string">&quot; speaks&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Dog <span class="keyword">struct</span> &#123;</span><br><span class="line">    Animal      <span class="comment">// 匿名嵌入</span></span><br><span class="line">    Breed <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">d := Dog&#123;Animal: Animal&#123;Name: <span class="string">&quot;Rex&quot;</span>&#125;, Breed: <span class="string">&quot;Husky&quot;</span>&#125;</span><br><span class="line">fmt.Println(d.Speak()) <span class="comment">// 提升的方法，实际是 d.Animal.Speak()</span></span><br></pre></td></tr></table></figure>
+<p>内存布局方面，Go 结构体按声明顺序排列字段，并按对齐要求插入 padding，<strong>编译器不会重排字段</strong>：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Bad <span class="keyword">struct</span> &#123; <span class="comment">// 24 字节</span></span><br><span class="line">    A <span class="type">bool</span>  <span class="comment">// 1 字节 + 7 padding</span></span><br><span class="line">    B <span class="type">int64</span> <span class="comment">// 8</span></span><br><span class="line">    C <span class="type">bool</span>  <span class="comment">// 1 + 7 padding</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Good <span class="keyword">struct</span> &#123; <span class="comment">// 16 字节</span></span><br><span class="line">    B <span class="type">int64</span> <span class="comment">// 8</span></span><br><span class="line">    A <span class="type">bool</span>  <span class="comment">// 1</span></span><br><span class="line">    C <span class="type">bool</span>  <span class="comment">// 1 + 6 padding</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后说逃逸分析（escape analysis）：Go 里&quot;分配在栈还是堆&quot;不由你写 <code>new</code> 还是取址决定，而由编译器分析变量是否逃出函数作用域决定。返回局部变量的指针是完全合法的——它会被分配到堆上：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newRect</span><span class="params">()</span></span> *Rect &#123;</span><br><span class="line">    r := Rect&#123;Width: <span class="number">1</span>&#125; <span class="comment">// r 逃逸到堆</span></span><br><span class="line">    <span class="keyword">return</span> &amp;r           <span class="comment">// 合法且惯用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Go 没有构造函数，有逃逸分析的存在，惯例是写一个 <code>NewXxx()</code> 工厂函数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewUser</span><span class="params">(name <span class="type">string</span>)</span></span> *User &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;User&#123;Name: name&#125; <span class="comment">// 返回局部变量的指针完全合法（见“逃逸分析”）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用 <code>go build -gcflags=-m</code> 可以看到每个变量的逃逸决策。常见逃逸原因：指针被返回、被存进 interface、被闭包捕获、大小超阈值、被发送进 channel。性能调优时减少逃逸就是减少 GC 压力，这是 Go 性能工程的日常。</p>
+<h2 id="接口">接口</h2>
+<p>接口是 Go 类型系统的核心抽象。它声明一组方法集合，任何类型只要实现了全部方法就<strong>自动</strong>满足接口。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Stringer <span class="keyword">interface</span> &#123;</span><br><span class="line">    String() <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Point <span class="keyword">struct</span>&#123; X, Y <span class="type">int</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Point)</span></span> String() <span class="type">string</span> &#123; <span class="comment">// 没有任何&quot;我要实现 Stringer&quot;的声明</span></span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;(%d, %d)&quot;</span>, p.X, p.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s Stringer = Point&#123;<span class="number">1</span>, <span class="number">2</span>&#125; <span class="comment">// 自动满足</span></span><br></pre></td></tr></table></figure>
+<p>隐式实现的好处是解耦：接口可以定义在消费方，被实现类型甚至不需要知道接口的存在（“accept interfaces, return structs” 的惯用法由此而来）。代价是没有 Rust trait 那样清晰的实现关系导航，也没有默认方法、关联类型这些能力。惯用的编译期断言写法是 <code>var _ Stringer = Point&#123;&#125;</code>。</p>
+<p>底层实现上，interface 值是一个双字（两个指针宽）结构，分两种：</p>
+<ul>
+<li><code>itab</code> 缓存了（接口类型，具体类型）配对的方法函数指针数组，首次转换时生成并存入全局哈希表，之后复用——所以接口方法调用就是一次查表间接调用，比直接调用多一次指针跳转，且通常无法内联。</li>
+<li>和 Rust 对照：Go interface ≈ Rust 的 <code>&amp;dyn Trait</code> 胖指针（数据指针 + vtable 指针），永远是动态分发；Rust 泛型的静态分发在 Go 里没有对应物。</li>
+<li>把具体值装入 interface 时有装箱（boxing）成本：Go 1.4 起 data 字只允许存指针（为了让 GC 能精确扫描），非指针值不再直接内联进 interface——所以任何非指针类型装箱原则上都要在堆上分配一份拷贝，哪怕 <code>int</code> 这种恰好一个字宽的类型也不例外（runtime 给 0~255 的小整数等备了静态缓存，可以免分配）。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> iface <span class="keyword">struct</span> &#123; <span class="comment">// 非空接口</span></span><br><span class="line">    tab  *itab          <span class="comment">// 类型信息 + 方法表</span></span><br><span class="line">    data unsafe.Pointer <span class="comment">// 指向实际数据</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> eface <span class="keyword">struct</span> &#123; <span class="comment">// 空接口 interface&#123;&#125;</span></span><br><span class="line">    _type *_type        <span class="comment">// 只有类型信息，没有方法表</span></span><br><span class="line">    data  unsafe.Pointer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>interface 值等于 nil，当且仅当类型字和数据字都为 nil。即下列一个携带了具体类型的 nil 指针装进 interface 后，interface 本身不等于 nil。修复方式是让函数在无错时显式 <code>return nil</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyErr <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *MyErr)</span></span> Error() <span class="type">string</span> &#123; <span class="keyword">return</span> <span class="string">&quot;boom&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">do</span><span class="params">()</span></span> <span class="type">error</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> e *MyErr = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">return</span> e <span class="comment">// 返回的 error 里 tab 指向 *MyErr，data 为 nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> err := do(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;有错误？&quot;</span>, err) <span class="comment">// 会走到这里！err != nil 成立</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从 interface 取回具体类型用类型断言和 type switch：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i <span class="keyword">interface</span>&#123;&#125; = <span class="string">&quot;hello&quot;</span></span><br><span class="line"></span><br><span class="line">s := i.(<span class="type">string</span>)      <span class="comment">// 断言失败会 panic</span></span><br><span class="line">s, ok := i.(<span class="type">string</span>)  <span class="comment">// comma-ok 形式，失败时 s 为零值、ok 为 false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> v := i.(<span class="keyword">type</span>) &#123; <span class="comment">// type switch</span></span><br><span class="line"><span class="keyword">case</span> <span class="type">string</span>:</span><br><span class="line">    fmt.Println(<span class="string">&quot;string:&quot;</span>, v)</span><br><span class="line"><span class="keyword">case</span> <span class="type">int</span>:</span><br><span class="line">    fmt.Println(<span class="string">&quot;int:&quot;</span>, v)</span><br><span class="line"><span class="keyword">case</span> <span class="literal">nil</span>:</span><br><span class="line">    fmt.Println(<span class="string">&quot;nil interface&quot;</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    fmt.Printf(<span class="string">&quot;unknown: %T\n&quot;</span>, v)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>空接口 <code>interface&#123;&#125;</code> 没有任何方法，所有类型都满足它，是泛型出现前 Go 表达&quot;任意类型&quot;的唯一手段。Go 1.18 引入了别名 <code>any = interface&#123;&#125;</code>，现在新代码一律写 <code>any</code>。当然，能用泛型就别用 <code>any</code>——前者把类型检查留在编译期。</p>
+<h2 id="错误处理">错误处理</h2>
+<p>Go 的错误处理哲学是：错误是普通的值。<code>error</code> 就是一个接口：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="type">error</span> <span class="keyword">interface</span> &#123;</span><br><span class="line">    Error() <span class="type">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数把 error 作为最后一个返回值，调用方显式检查：</p>
+<ul>
+<li>这套模式的优点是控制流完全显式，没有隐藏的异常路径；缺点就是开篇吐槽的啰嗦。Rust 的 <code>Result&lt;T, E&gt;</code> + <code>?</code> 在类型层面强制处理错误且不失简洁，Go 的 error 只靠约定——你完全可以写 <code>f, _ := os.Open(...)</code> 把错误扔掉，编译器不拦你。</li>
+<li>Go 1.13 引入错误链机制：<code>fmt.Errorf</code> 的 <code>%w</code> 动词包装底层错误（被包装错误可通过 <code>Unwrap() error</code> 方法取出），配套三个工具函数：<code>errors.Is</code> 用于判断&quot;是不是某个已知错误&quot;，<code>errors.As</code> 用于取出&quot;某个类型的错误&quot;以读取字段，直接 <code>err == ErrNotFound</code> 在有包装的情况下会失效。Go 1.20 还加了 <code>errors.Join</code> 合并多个错误。</li>
+<li>惯例：包装错误的消息写&quot;正在做什么&quot;（<code>&quot;open config:&quot;</code>），不要写 <code>&quot;failed to&quot;</code> 层层堆叠。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, err := os.Open(<span class="string">&quot;config.yaml&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fmt.Errorf(<span class="string">&quot;open config: %w&quot;</span>, err) <span class="comment">// %w 包装错误，保留错误链</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">defer</span> f.Close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ErrNotFound = errors.New(<span class="string">&quot;not found&quot;</span>) <span class="comment">// 哨兵错误</span></span><br><span class="line"></span><br><span class="line">err := fmt.Errorf(<span class="string">&quot;query user 42: %w&quot;</span>, ErrNotFound)</span><br><span class="line"></span><br><span class="line">errors.Is(err, ErrNotFound) <span class="comment">// true，沿错误链逐层比对哨兵值</span></span><br><span class="line"><span class="keyword">var</span> pathErr *os.PathError</span><br><span class="line">errors.As(err, &amp;pathErr)    <span class="comment">// 沿错误链找指定类型并赋值</span></span><br><span class="line">errors.Unwrap(err)          <span class="comment">// 剥掉一层包装</span></span><br></pre></td></tr></table></figure>
+<p><code>panic</code> 用于不可恢复的程序错误（数组越界、空指针解引用、逻辑断言失败），不用于常规错误处理。<code>recover</code> 只能在 defer 函数中生效，用于在包边界或 goroutine 顶层兜底：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">safeCall</span><span class="params">(f <span class="keyword">func</span>()</span></span>) (err <span class="type">error</span>) &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> r := <span class="built_in">recover</span>(); r != <span class="literal">nil</span> &#123;</span><br><span class="line">            err = fmt.Errorf(<span class="string">&quot;panic recovered: %v&quot;</span>, r) <span class="comment">// 修改命名返回值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">    f()</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="泛型">泛型</h2>
+<p>Go 1.18（2022 年 3 月）引入了泛型，官方术语是类型参数（type parameters）。社区为此吵了十几年，最终落地的设计相当克制：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Map</span>[<span class="title">T</span>, <span class="title">U</span> <span class="title">any</span>]<span class="params">(s []T, f <span class="keyword">func</span>(T)</span></span> U) []U &#123;</span><br><span class="line">    r := <span class="built_in">make</span>([]U, <span class="number">0</span>, <span class="built_in">len</span>(s))</span><br><span class="line">    <span class="keyword">for</span> _, v := <span class="keyword">range</span> s &#123;</span><br><span class="line">        r = <span class="built_in">append</span>(r, f(v))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doubled := Map([]<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, <span class="function"><span class="keyword">func</span><span class="params">(x <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">return</span> x * <span class="number">2</span> &#125;) <span class="comment">// 类型实参自动推导</span></span><br></pre></td></tr></table></figure>
+<p>约束（constraint）就是接口，接口在泛型语境下被扩展为可以描述类型集合：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Number <span class="keyword">interface</span> &#123;</span><br><span class="line">    ~<span class="type">int</span> | ~<span class="type">int64</span> | ~<span class="type">float64</span> <span class="comment">// ~ 表示底层类型是它的所有类型（含自定义类型）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sum</span>[<span class="title">T</span> <span class="title">Number</span>]<span class="params">(s []T)</span></span> T &#123;</span><br><span class="line">    <span class="keyword">var</span> total T</span><br><span class="line">    <span class="keyword">for</span> _, v := <span class="keyword">range</span> s &#123;</span><br><span class="line">        total += v</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>~int</code> 中的波浪号表示&quot;底层类型为 int 的所有类型&quot;，这样 <code>type MyInt int</code> 也能满足约束。</li>
+<li>内置约束有 <code>any</code>（任意类型）和 <code>comparable</code>（可用 <code>==</code> 比较，做 map 键的约束）。</li>
+<li>常用约束最初放在扩展包 <code>golang.org/x/exp/constraints</code>（<code>constraints.Ordered</code> 等）；Go 1.21 把最常用的 <code>Ordered</code> 收编进了标准库 <code>cmp</code> 包（<code>cmp.Ordered</code>、<code>cmp.Compare</code>），同期的 <code>slices</code>/<code>maps</code> 包就是泛型的第一批标准库成果。</li>
+</ul>
+<p>Go 的泛型实现机制与 Rust 有本质区别。</p>
+<ul>
+<li>Rust 泛型完全单态化：每个具体类型实例化出一份独立代码，零运行时开销，代价是编译慢、二进制膨胀。</li>
+<li>Go 采用的是 GC shape stenciling + 字典的混合方案：<strong>指针形状相同的类型共享同一份实例化代码</strong>（所有指针类型共用一份，<code>int</code> 和 <code>int64</code> 则各一份），再通过隐式传入的字典（dictionary）在运行时区分具体类型信息。结果是编译速度和二进制体积可控，但泛型代码可能比手写具体类型略慢（字典查找可能阻碍内联）。</li>
+</ul>
+<p>当前限制（截至 1.18 落地的设计，多数至今未变）：</p>
+<ul>
+<li><strong>方法不能有自己的类型参数</strong>。<code>func (r Repo[T]) Find[U any](...)</code> 不合法，只能把类型参数放在类型上或改用顶层函数。这是被吐槽最多的限制，因为它阻碍了函数式风格的链式 API。</li>
+<li>没有特化（specialization），不能为特定类型提供优化实现。</li>
+<li>约束只能描述方法集和类型集，不能表达&quot;有某个字段&quot;。</li>
+<li>泛型类型的别名直到 Go 1.24 才支持（<code>type Set[T comparable] = map[T]struct&#123;&#125;</code>）。</li>
+</ul>
+<p>所以 Go 泛型只适合写容器和工具函数（<code>slices</code>/<code>maps</code> 那种），不适合像 Rust 那样做重度的类型体操。</p>
+<h2 id="并发编程">并发编程</h2>
+<p>并发是 Go 的招牌。<code>go</code> 关键字启动一个 goroutine：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(msg <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">    fmt.Println(msg)</span><br><span class="line">&#125;(<span class="string">&quot;hello&quot;</span>) <span class="comment">// 参数在 go 语句执行时求值</span></span><br></pre></td></tr></table></figure>
+<p>goroutine 是运行时调度的用户态协程，理解它要理解 GMP 调度模型：</p>
+<ul>
+<li><strong>G</strong>（goroutine）：协程本体，初始栈仅 2KB，按需增长（栈拷贝方式，最大默认 1GB）。这是&quot;有栈协程&quot;——对照 Rust 的 async：Rust 的 Future 是无栈的状态机，编译期把 async 函数展开成 enum，体积精确但有传染性（async 染色问题）；Go 的有栈协程没有函数染色，同步代码直接就是并发代码，代价是每个 G 至少 2KB 栈和栈增长检查。</li>
+<li><strong>M</strong>（machine）：操作系统线程，实际执行代码的载体。</li>
+<li><strong>P</strong>（processor）：逻辑处理器，数量默认等于 CPU 核数（<code>GOMAXPROCS</code>，Go 1.5 起默认为核数）。P 持有本地运行队列（容量 256），M 必须绑定 P 才能执行 G。</li>
+<li>调度细节：新 G 优先进 P 的本地队列；本地队列空了就从全局队列取，再不行就从其他 P 偷一半任务（work stealing）。G 发生阻塞系统调用时，M 会与 P 解绑，P 交给其他 M 继续跑，保证核不空转。网络 IO 则由 netpoller（epoll/kqueue）接管，G 挂起让出 M，就绪后重新入队——这就是 Go 用同步写法达到异步性能的原理。</li>
+<li>Go 1.14 引入基于信号（SIGURG）的异步抢占，解决了之前&quot;纯计算的死循环 goroutine 饿死调度器&quot;的问题。</li>
+</ul>
+<p>channel 是 goroutine 间通信的一等公民（“不要通过共享内存来通信，而要通过通信来共享内存”）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>)        <span class="comment">// 无缓冲：发送和接收必须同时就绪（同步交接）</span></span><br><span class="line">buf := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">10</span>)   <span class="comment">// 有缓冲：缓冲未满时发送不阻塞</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">    buf &lt;- <span class="number">1</span></span><br><span class="line">    <span class="built_in">close</span>(buf) <span class="comment">// 由发送方关闭</span></span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">v, ok := &lt;-buf              <span class="comment">// ok 为 false 表示 channel 已关闭且取空</span></span><br><span class="line"><span class="keyword">for</span> v := <span class="keyword">range</span> buf &#123;        <span class="comment">// range 持续接收直到 channel 关闭</span></span><br><span class="line">    fmt.Println(v)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">worker</span><span class="params">(in &lt;-<span class="keyword">chan</span> <span class="type">int</span>, out <span class="keyword">chan</span>&lt;- <span class="type">int</span>)</span></span> &#123;&#125; <span class="comment">// 方向限定：只收 / 只发</span></span><br></pre></td></tr></table></figure>
+<p>各种状态下的操作语义如下：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>nil channel</th>
+<th>已关闭 channel</th>
+<th>正常 channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发送 <code>ch &lt;- v</code></td>
+<td>永久阻塞</td>
+<td><strong>panic</strong></td>
+<td>阻塞或成功</td>
+</tr>
+<tr>
+<td>接收 <code>&lt;-ch</code></td>
+<td>永久阻塞</td>
+<td>缓冲区还有值则正常取出（ok=true），取空后立即返回零值（ok=false）</td>
+<td>阻塞或成功</td>
+</tr>
+<tr>
+<td>关闭 <code>close(ch)</code></td>
+<td><strong>panic</strong></td>
+<td><strong>panic</strong>（重复关闭）</td>
+<td>成功</td>
+</tr>
+</tbody>
+</table>
+<p>底层实现是 <code>runtime/chan.go</code> 的 <code>hchan</code> 结构：一个环形缓冲区 <code>buf</code>（配 <code>sendx</code>/<code>recvx</code> 两个游标）、等待发送的 goroutine 队列 <code>sendq</code>、等待接收的队列 <code>recvq</code>（元素是包装 G 的 <code>sudog</code>）、一把互斥锁 <code>lock</code>。</p>
+<ul>
+<li>无缓冲 channel（或缓冲空但有接收者等待）的发送会直接把数据从发送方拷贝到接收方 goroutine 的栈上，绕过缓冲区，这是罕见的一个 goroutine 写另一个 goroutine 栈的场景。</li>
+<li>阻塞的 goroutine 被打包成 sudog 挂进等待队列并让出调度，唤醒是精确的（FIFO 取队头），不存在惊群。</li>
+<li>所以 channel 并不是无锁结构，超高竞争下它的那把锁也会成为瓶颈。</li>
+</ul>
+<p><code>select</code> 在多个 channel 操作间多路复用：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> &#123;</span><br><span class="line"><span class="keyword">case</span> v := &lt;-ch1:</span><br><span class="line">    fmt.Println(<span class="string">&quot;recv&quot;</span>, v)</span><br><span class="line"><span class="keyword">case</span> ch2 &lt;- <span class="number">42</span>:</span><br><span class="line">    fmt.Println(<span class="string">&quot;sent&quot;</span>)</span><br><span class="line"><span class="keyword">case</span> &lt;-time.After(time.Second):</span><br><span class="line">    fmt.Println(<span class="string">&quot;timeout&quot;</span>)</span><br><span class="line"><span class="keyword">default</span>: <span class="comment">// 有 default 则不阻塞，实现非阻塞收发</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;nothing ready&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>多个 case 同时就绪时<strong>随机选择</strong>一个（又是主动随机化，防止饥饿）；向 nil channel 的 case 永远不会被选中——把 channel 置 nil 是动态关闭某个 case 的惯用技巧。</p>
+<p>共享内存的同步原语在 <code>sync</code> 包：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mu sync.Mutex         <span class="comment">// 互斥锁，零值可用，不可重入</span></span><br><span class="line"><span class="keyword">var</span> rw sync.RWMutex       <span class="comment">// 读写锁</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup     <span class="comment">// 等待一组 goroutine 完成</span></span><br><span class="line">wg.Add(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> wg.Done()</span><br><span class="line">    <span class="comment">// work</span></span><br><span class="line">&#125;()</span><br><span class="line">wg.Wait()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> once sync.Once        <span class="comment">// 恰好执行一次（单例初始化）</span></span><br><span class="line">once.Do(initialize)</span><br></pre></td></tr></table></figure>
+<p>对照 Rust：Go 的 <code>Mutex</code> 不包裹数据（Rust 是 <code>Mutex&lt;T&gt;</code>，锁和数据在类型上绑定，忘了加锁编译不过），Go 靠自觉和注释约定&quot;此字段由 mu 保护&quot;。数据竞争检测靠运行时的 <code>-race</code>：它基于 ThreadSanitizer，会让程序慢 5~10 倍，但 CI 里跑 <code>go test -race</code> 应当是铁律。</p>
+<p><code>context</code> 是取消信号和超时在调用链上的标准传播机制，所有阻塞的库函数都应接受它：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx, cancel := context.WithTimeout(context.Background(), <span class="number">2</span>*time.Second)</span><br><span class="line"><span class="keyword">defer</span> cancel() <span class="comment">// 务必调用，否则泄漏计时器资源</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> &#123;</span><br><span class="line"><span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">    <span class="keyword">return</span> ctx.Err() <span class="comment">// context.DeadlineExceeded 或 context.Canceled</span></span><br><span class="line"><span class="keyword">case</span> result := &lt;-doWork(ctx):</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>context 树形嵌套，父 context 取消时所有子 context 一并取消。函数签名的惯例是 <code>ctx context.Context</code> 作第一个参数。它解决的问题正是 goroutine 没有外部终止手段——你不能 kill 一个 goroutine，只能靠它自己检查 <code>ctx.Done()</code> 自觉退出，写长任务时别忘了这件事，否则就是 goroutine 泄漏。顺带强调：泄漏的重灾区是 channel——发送方忘了 close、或接收方提前退场，对端 goroutine 就永久阻塞在收发语句上，连同栈和引用的对象一起赖着不走。服务内存缓慢上涨时，<code>pprof</code> 的 goroutine 数曲线是第一个该看的图。</p>
+<h2 id="测试">测试</h2>
+<p>Go 把测试直接做进了语言和工具链：测试文件以 <code>_test.go</code> 结尾、与被测代码同目录，函数签名 <code>func TestXxx(t *testing.T)</code>，<code>go test</code> 一条命令跑完，不需要任何第三方框架。</p>
+<ul>
+<li>表驱动测试（table-driven tests）是 Go 社区的标志性写法：用例是数据，断言逻辑只写一遍，加用例就是加一行。</li>
+<li><code>t.Run</code> 划分子测试：每个用例有独立名字，可以用 <code>go test -run 'TestDivide/by_zero'</code> 精确到单个子用例，也可以在子测试里调 <code>t.Parallel()</code> 并行执行。</li>
+<li><code>t.Helper()</code> 标记测试辅助函数：失败时报告的行号指向调用方，而不是辅助函数内部。</li>
+<li>测试结果默认有缓存：代码与输入没变时 <code>go test</code> 直接回放上次结果（输出带 <code>(cached)</code>），加 <code>-count=1</code> 强制重跑——排查偶发失败时必备。</li>
+</ul>
+<p>表驱动测试先定义用例表：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tests := []<span class="keyword">struct</span> &#123;</span><br><span class="line">    name    <span class="type">string</span></span><br><span class="line">    a, b    <span class="type">int</span></span><br><span class="line">    want    <span class="type">int</span></span><br><span class="line">    wantErr <span class="type">bool</span></span><br><span class="line">&#125;&#123;</span><br><span class="line">    &#123;<span class="string">&quot;normal&quot;</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="literal">false</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;by zero&quot;</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">true</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再统一驱动，每个用例挂成一个子测试：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _, tt := <span class="keyword">range</span> tests &#123;</span><br><span class="line">    t.Run(tt.name, <span class="function"><span class="keyword">func</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">        got, err := Divide(tt.a, tt.b)</span><br><span class="line">        <span class="keyword">if</span> (err != <span class="literal">nil</span>) != tt.wantErr &#123;</span><br><span class="line">            t.Fatalf(<span class="string">&quot;error = %v, wantErr %v&quot;</span>, err, tt.wantErr)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> got != tt.want &#123;</span><br><span class="line">            t.Errorf(<span class="string">&quot;got %d, want %d&quot;</span>, got, tt.want)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>示例测试（Example test）：函数名写成 <code>ExampleXxx</code>，尾部的 <code>// Output:</code> 注释会被真实执行并校验，既是测试又是文档，还会展示在 pkg.go.dev 的文档页上。注意 <code>Xxx</code> 必须对应包内真实存在的标识符（通常是导出函数），<code>go vet</code> 会校验这一点：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ExampleDivide</span><span class="params">()</span></span> &#123;</span><br><span class="line">    v, _ := Divide(<span class="number">6</span>, <span class="number">3</span>)</span><br><span class="line">    fmt.Println(v)</span><br><span class="line">    <span class="comment">// Output: 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基准测试写 <code>func BenchmarkXxx(b *testing.B)</code>，循环次数 <code>b.N</code> 由框架动态校准到统计稳定；Go 1.24 引入了 <code>for b.Loop()</code> 的新写法，除了更简洁，还能防止编译器把&quot;结果没被使用&quot;的被测代码优化掉：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BenchmarkDivide</span><span class="params">(b *testing.B)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> b.Loop() &#123; <span class="comment">// Go 1.24；老写法是 for i := 0; i &lt; b.N; i++</span></span><br><span class="line">        Divide(<span class="number">6</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Go 1.18 起还内置了模糊测试（<code>func FuzzXxx(f *testing.F)</code>）。第三方生态里 testify 的 <code>assert</code>/<code>require</code> 是事实标准，能把三行 if 断言压成一行，一句带过。测试、基准、模糊、示例文档四位一体全在标准工具链里。</p>
+<h2 id="常用标准库速览">常用标准库速览</h2>
+<p>接下来过一遍日常使用频率最高的几个标准库。</p>
+<p><code>fmt</code> 的格式化动词：</p>
+<table>
+<thead>
+<tr>
+<th>动词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%v</code></td>
+<td>默认格式；<code>%+v</code> 结构体带字段名；<code>%#v</code> Go 语法表示</td>
+</tr>
+<tr>
+<td><code>%T</code></td>
+<td>值的类型</td>
+</tr>
+<tr>
+<td><code>%d</code> / <code>%b</code> / <code>%o</code> / <code>%x</code></td>
+<td>十/二/八/十六进制整数</td>
+</tr>
+<tr>
+<td><code>%f</code> / <code>%e</code> / <code>%g</code></td>
+<td>浮点数（定点 / 科学计数 / 自动）</td>
+</tr>
+<tr>
+<td><code>%s</code> / <code>%q</code></td>
+<td>字符串 / 带引号并转义的字符串</td>
+</tr>
+<tr>
+<td><code>%c</code> / <code>%U</code></td>
+<td>Unicode 字符 / 码点（U+4E2D）</td>
+</tr>
+<tr>
+<td><code>%t</code></td>
+<td>布尔</td>
+</tr>
+<tr>
+<td><code>%p</code></td>
+<td>指针地址</td>
+</tr>
+<tr>
+<td><code>%w</code></td>
+<td>仅用于 <code>fmt.Errorf</code>，包装错误</td>
+</tr>
+</tbody>
+</table>
+<p><code>strconv</code> 负责字符串与基本类型的转换（比 <code>fmt.Sprintf</code> 快得多，热路径优先用它）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i, err := strconv.Atoi(<span class="string">&quot;42&quot;</span>)</span><br><span class="line">s := strconv.Itoa(<span class="number">42</span>)</span><br><span class="line">f, err := strconv.ParseFloat(<span class="string">&quot;3.14&quot;</span>, <span class="number">64</span>)</span><br><span class="line">b, err := strconv.ParseBool(<span class="string">&quot;true&quot;</span>)</span><br><span class="line">q := strconv.Quote(<span class="string">`hi &quot;there&quot;`</span>) <span class="comment">// 加引号转义</span></span><br></pre></td></tr></table></figure>
+<p><code>time</code> 最出名的是它的布局字符串：不用 <code>%Y-%m-%d</code>，而是用一个固定的参考时间 <code>2006-01-02 15:04:05</code>（美式顺序的 1 2 3 4 5 6）作为模板：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">now := time.Now()</span><br><span class="line">s := now.Format(<span class="string">&quot;2006-01-02 15:04:05&quot;</span>)</span><br><span class="line">t, err := time.Parse(time.RFC3339, <span class="string">&quot;2026-07-15T06:30:00Z&quot;</span>)</span><br><span class="line"></span><br><span class="line">d := <span class="number">150</span> * time.Millisecond      <span class="comment">// time.Duration 是 int64 纳秒</span></span><br><span class="line">elapsed := time.Since(start)     <span class="comment">// 常用于计时</span></span><br><span class="line">timer := time.NewTimer(time.Second)</span><br><span class="line">ticker := time.NewTicker(time.Minute)</span><br><span class="line"><span class="keyword">defer</span> ticker.Stop()</span><br></pre></td></tr></table></figure>
+<p><code>encoding/json</code> 基于反射做序列化，行为完全由结构体 tag 控制：</p>
+<ul>
+<li>只有导出字段会被处理。</li>
+<li>JSON 数字反序列化进 <code>any</code> 时统一变成 <code>float64</code>，大整数会丢精度，需要精确处理时用 <code>json.Number</code>。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    ID      <span class="type">int64</span>   <span class="string">`json:&quot;id&quot;`</span></span><br><span class="line">    Name    <span class="type">string</span>  <span class="string">`json:&quot;name,omitempty&quot;`</span> <span class="comment">// 零值时省略该字段</span></span><br><span class="line">    Email   *<span class="type">string</span> <span class="string">`json:&quot;email,omitempty&quot;`</span></span><br><span class="line">    Secret  <span class="type">string</span>  <span class="string">`json:&quot;-&quot;`</span>              <span class="comment">// 永不序列化</span></span><br><span class="line">    private <span class="type">string</span>  <span class="comment">// 未导出字段直接忽略</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data, err := json.Marshal(u)</span><br><span class="line">err = json.Unmarshal(data, &amp;u) <span class="comment">// 必须传指针</span></span><br></pre></td></tr></table></figure>
+<p>Go 1.23 引入了迭代器（range over func）：<code>for v := range seq</code> 里的 <code>seq</code> 可以是 <code>func(yield func(V) bool)</code> 形式的函数，配套的 <code>iter</code> 包定义了 <code>iter.Seq[V]</code> 和 <code>iter.Seq2[K, V]</code>，标准库的 <code>slices.Values</code>、<code>maps.Keys</code> 等都已改造为返回迭代器。Go 终于有了基础的惰性序列的统一抽象。</p>
+<h2 id="反射与代码生成">反射与代码生成</h2>
+<p><code>reflect</code> 包提供运行时的类型自省与操纵能力，前文多次出现的结构体 tag、<code>encoding/json</code>、还有各类 ORM 和依赖注入框架，全部建立在它之上。Rob Pike 用三条定律（The Laws of Reflection）概括了它的使用规则：</p>
+<ul>
+<li>定律一：反射从 interface 值出发。<code>reflect.TypeOf(x)</code> / <code>reflect.ValueOf(x)</code> 的参数是 <code>any</code>——值先装箱成 interface，反射再从 eface 的类型字和数据字里把信息拆出来。</li>
+<li>定律二：反射对象可以还原回 interface 值，即 <code>v.Interface()</code>，与定律一互逆。</li>
+<li>定律三：要通过反射修改值，<code>Value</code> 必须可设置（settable）——必须从指针出发再 <code>Elem()</code>，对不可设置的 Value 调 <code>Set</code> 系列方法会 panic。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="number">3.14</span></span><br><span class="line">v := reflect.ValueOf(&amp;x).Elem() <span class="comment">// 定律三：从指针 Elem() 拿到可设置的 Value</span></span><br><span class="line">fmt.Println(v.CanSet())         <span class="comment">// true；reflect.ValueOf(x) 拿到的则是 false</span></span><br><span class="line">v.SetFloat(<span class="number">2.71</span>)                <span class="comment">// x 被改成 2.71</span></span><br></pre></td></tr></table></figure>
+<p>结构体 tag 的读取也在这里补全前文埋的线：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f, _ := reflect.TypeOf(User&#123;&#125;).FieldByName(<span class="string">&quot;Name&quot;</span>)</span><br><span class="line">fmt.Println(f.Tag.Get(<span class="string">&quot;json&quot;</span>)) <span class="comment">// name,omitempty</span></span><br></pre></td></tr></table></figure>
+<p>json 库做的事情就是遍历字段、读出 tag、按规则编码，如此而已。但反射要克制着用：它比直接调用慢一个数量级以上，常伴随装箱分配，更重要的是把类型错误从编译期推迟到了运行期 panic——能用泛型或代码生成解决的问题，都不该轮到反射出场。</p>
+<p>Go 没有宏，元编程的官方答案是代码生成。在源码里写一行指令注释：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//go:generate stringer -type=Weekday</span></span><br></pre></td></tr></table></figure>
+<p>执行 <code>go generate ./...</code> 会扫描并运行这些命令。<code>stringer</code> 会为前文那种 iota 枚举生成 <code>String()</code> 方法，是入门代码生成的标准例子；protobuf 的 protoc、打桩用的 mockgen 都是同一套路。工具本身用 <code>go install</code> 安装，Go 1.24 起还可以在 go.mod 里用 <code>tool</code> 指令把这类工具依赖纳入版本管理。</p>
+<p>条件编译也归这套体系管：文件顶部写 <code>//go:build linux &amp;&amp; amd64</code>（Go 1.17 起的布尔表达式语法，取代旧的 <code>// +build</code>），该文件就只在满足条件时参与编译；纯平台差异的场景连标签都可以省——文件名后缀 <code>foo_linux.go</code> 自带条件编译效果。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io">jiangshibiao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://jiangshibiao.github.io/Go-Essentials/">https://jiangshibiao.github.io/Go-Essentials/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Digest/">Digest</a><a class="post-meta__tags" href="/tags/Go/">Go</a></div><div class="post-share"><div class="social-share" data-image="/../post_images/Go-Essentials.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/images/wechatpay.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.png" target="_blank"><img class="post-qr-code-img" src="/images/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/Claude-Product-Insights/" title="Claude 产品洞察"><img class="cover" src="/../post_images/Claude-Product-Insights.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Claude 产品洞察</div></div><div class="info-2"><div class="info-item-1">本文将概述 Anthropic 打造的 Claude Code 产品的各种有趣特性。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/ACM-From-Zero/" title="从零开始 ICPC"><img class="cover" src="/../post_images/Selected-Problems-from-ACM-ICPC.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-10-10</div><div class="info-item-2">从零开始 ICPC</div></div><div class="info-2"><div class="info-item-1">OI/ICPC 知识图和难度分级。</div></div></div></a><a class="pagination-related" href="/Elementary-Number-Theory/" title="初等数论"><img class="cover" src="/../post_images/Elementary-Number-Theory.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-01-29</div><div class="info-item-2">初等数论</div></div><div class="info-2"><div class="info-item-1">记录了我对初等数论的系统性学习。</div></div></div></a><a class="pagination-related" href="/Introduction-to-Cryptography/" title="密码学导论"><img class="cover" src="/../post_images/Cryptography-in-Engineering.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-23</div><div class="info-item-2">密码学导论</div></div><div class="info-2"><div class="info-item-1">本篇密码学导论主要有以下几个特征：概括性（用统一的风格，列举密码学里经典的概念、定理和算法）、准确性（总体风格不拘小节，每个细节力求准确无误）、应用性（重点关注应用）和持续性（想到哪就写到哪，持续修正和扩展）。</div></div></div></a><a class="pagination-related" href="/Java-Review/" title="Java 语法"><img class="cover" src="/../post_images/Java-Review.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2021-09-02</div><div class="info-item-2">Java 语法</div></div><div class="info-2"><div class="info-item-1">记录了我对 Java 语法的系统性学习。</div></div></div></a><a class="pagination-related" href="/Multi-Party-ECDSA-Threshold-Signatures/" title="多方计算之 ECDSA 门限签名"><img class="cover" src="/../post_images/Multi-Party-ECDSA-Threshold-Signatures.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-08-05</div><div class="info-item-2">多方计算之 ECDSA 门限签名</div></div><div class="info-2"><div class="info-item-1">本篇文章试图入坑多方计算，缓更。</div></div></div></a><a class="pagination-related" href="/Probability-and-Statistics/" title="概率论和数理统计"><img class="cover" src="/../post_images/Probability-and-Statistics.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2023-09-04</div><div class="info-item-2">概率论和数理统计</div></div><div class="info-2"><div class="info-item-1">记录了我对概率论和数理统计的系统性学习。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jiangshibiao</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangshibiao"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jiangshibiao" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jiangshibiao1999@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://u.wechat.com/MMOFXmMIbxx2LV_lVEow1EY" target="_blank" title="Weixin"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎提出任何有用的建议~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E5%92%8C%E8%B5%84%E6%96%99%E6%8E%A8%E8%8D%90"><span class="toc-number">1.</span> <span class="toc-text">环境安装和资料推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">包管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice-%E5%92%8C-string"><span class="toc-number">5.</span> <span class="toc-text">slice 和 string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">6.</span> <span class="toc-text">map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">结构体和方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">8.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">9.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-number">10.</span> <span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">并发编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">12.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93%E9%80%9F%E8%A7%88"><span class="toc-number">13.</span> <span class="toc-text">常用标准库速览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E4%B8%8E%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90"><span class="toc-number">14.</span> <span class="toc-text">反射与代码生成</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Go-Essentials/" title="Go 基础语法"><img src="/../post_images/Go-Essentials.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go 基础语法"/></a><div class="content"><a class="title" href="/Go-Essentials/" title="Go 基础语法">Go 基础语法</a><time datetime="2026-07-16T16:00:00.000Z" title="Updated 2026-07-17 2026-07-17T00:00:00+08:00">2026-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Claude-Product-Insights/" title="Claude 产品洞察"><img src="/../post_images/Claude-Product-Insights.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Claude 产品洞察"/></a><div class="content"><a class="title" href="/Claude-Product-Insights/" title="Claude 产品洞察">Claude 产品洞察</a><time datetime="2026-07-07T16:00:00.000Z" title="Updated 2026-07-08 2026-07-08T00:00:00+08:00">2026-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Guangzhou/" title="广州游记"><img src="/../post_images/Travel-Notes-of-Guangzhou.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Guangzhou/" title="广州游记">广州游记</a><time datetime="2026-07-06T16:00:00.000Z" title="Updated 2026-07-07 2026-07-07T00:00:00+08:00">2026-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Travel-Notes-of-Italy/" title="意大利游记"><img src="/../post_images/Travel-Notes-of-Italy.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="意大利游记"/></a><div class="content"><a class="title" href="/Travel-Notes-of-Italy/" title="意大利游记">意大利游记</a><time datetime="2026-06-09T16:00:00.000Z" title="Updated 2026-06-10 2026-06-10T00:00:00+08:00">2026-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Rust/" title="Rust 基础语法"><img src="/../post_images/Rust.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Rust 基础语法"/></a><div class="content"><a class="title" href="/Rust/" title="Rust 基础语法">Rust 基础语法</a><time datetime="2026-05-20T16:00:00.000Z" title="Updated 2026-05-21 2026-05-21T00:00:00+08:00">2026-05-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By jiangshibiao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="没找到任何数据" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
