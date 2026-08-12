@@ -1,0 +1,11 @@
+# Hexo 生成的产物与本地缓存（由 GitHub Actions 构建，无需提交）
+public/
+.deploy_git/
+db.json
+
+# 依赖（CI 中通过 npm ci 安装）
+node_modules/
+
+# 系统/编辑器
+Thumbs.db
+.DS_Store
