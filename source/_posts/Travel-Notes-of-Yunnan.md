@@ -2,7 +2,7 @@
 categories: Life
 cover: ../post_images/Travel-Notes-of-Yunnan.jpg
 date: 2024-12-24 22:44:15
-description: 记录了 2023.12.20-12.23 在云南的旅程，特种兵式地逛了大理环洱海、丽江古城和玉龙雪山。
+description: 记录了 2024.12.20-12.23 在云南的旅程，特种兵式地逛了大理环洱海、丽江古城和玉龙雪山。
 tags: [Log, Journeys]
 title: 云南游记
 updated: 2024-12-24

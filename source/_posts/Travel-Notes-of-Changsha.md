@@ -2,7 +2,7 @@
 categories: Life
 cover: ../post_images/Travel-Notes-of-Changsha.jpg
 date: 2025-07-01 22:55:45
-description: 记录了 2024.6.27-6.29 在长沙的旅程。
+description: 记录了 2025.6.27-6.29 在长沙的旅程。
 tags: [Log, Journeys]
 title: 长沙游记
 updated: 2025-07-06

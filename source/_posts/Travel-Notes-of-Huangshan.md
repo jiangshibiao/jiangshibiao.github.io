@@ -2,7 +2,7 @@
 categories: Life
 cover: ../post_images/Travel-Notes-of-Huangshan.jpg
 date: 2025-04-30 22:16:29
-description: 记录了 2024.4.18-4.19 在黄山的旅程。
+description: 记录了 2025.4.18-4.19 在黄山的旅程。
 tags: [Log, Journeys]
 title: 黄山游记
 updated: 2025-04-30

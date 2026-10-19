@@ -2,7 +2,7 @@
 categories: Life
 cover: ../post_images/Travel-Notes-of-Yantai.jpg
 date: 2025-05-12 22:32:19
-description: 记录了 2024.5.4-5.6 在威海和烟台的错峰旅游。
+description: 记录了 2025.5.4-5.6 在威海和烟台的错峰旅游。
 tags: [Log, Journeys]
 title: 烟台威海游记
 updated: 2025-05-12

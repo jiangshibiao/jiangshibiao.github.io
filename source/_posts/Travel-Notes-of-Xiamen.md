@@ -2,7 +2,7 @@
 categories: Life
 cover: ../post_images/Travel-Notes-of-Xiamen.jpg
 date: 2025-04-09 22:59:00
-description: 记录了 2024.3.29-3.30 在厦门的旅程。
+description: 记录了 2025.3.29-3.30 在厦门的旅程。
 tags: [Log, Journeys]
 title: 厦门游记
 updated: 2025-04-10
